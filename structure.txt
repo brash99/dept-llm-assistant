@@ -1,0 +1,24 @@
+             User Interface
+          (Streamlit / Web App)
+                    │
+                    ▼
+            Application Logic
+                  (app/)
+                    │
+                    ▼
+              Retrieval Layer
+                  (rag/)
+                    │
+        ┌───────────┴───────────┐
+        ▼                       ▼
+   Vector Database         LLM Server
+        ▲                       ▲
+        │                       │
+      Embeddings            vLLM API
+        ▲
+        │
+   Document Processing
+     (ingestion/)
+        ▲
+        │
+   Google Drive Mirror

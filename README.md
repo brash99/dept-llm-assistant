@@ -20,3 +20,9 @@ for departmental knowledge management.
 - docker/        Container deployment
 - docs/          Documentation
 - scripts/       Utility scripts
+
+## Requirements
+
+- Python 3.9+
+- CUDA-capable GPU (optional for inference)
+- rclone

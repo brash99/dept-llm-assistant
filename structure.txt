@@ -42,3 +42,38 @@ Sprint1:
                                |         ▼            |
                                | Qwen3.5-122B-A10B    |
                                +----------------------+
+
+
+Sprint 2:
+
+                    Laptop
+               (Development)
+                     │
+                git push/pull
+                     │
+                 GitHub Repo
+                     │
+                     ▼
+        +--------------------------------+
+        |     A100 Development Server    |
+        |                                |
+        |  Source Code (Git)             |
+        |      app/                      |
+        |      scripts/                  |
+        |      docs/                     |
+        |      config/                   |
+        |                                |
+        |  Runtime State                 |
+        |      storage/raw_drive/        |
+        |      storage/processed/        |
+        |      storage/embeddings/       |
+        |      storage/vector_db/        |
+        +--------------------------------+
+                     ▲
+                     │
+              rclone sync
+                     │
+             Google Shared Drive
+                     │
+                     ▼
+          24,387 Department Documents

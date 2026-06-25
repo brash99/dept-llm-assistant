@@ -17,14 +17,14 @@ env/
 .DS_Store
 
 # Logs
-logs/
-*.log
+#logs/
+#*.log
 
 # Local data (never commit)
-data/
-models/
-vector_db/
-cache/
+#data/
+#models/
+#vector_db/
+#cache/
 
 # Environment variables
 .env
@@ -44,10 +44,23 @@ htmlcov/
 # Runtime storage
 # --------------------------------------------------------------------
 
-storage/raw_drive/
-storage/processed/
-storage/embeddings/
-storage/vector_db/
-storage/cache/
-storage/models/
-storage/logs/
+storage/raw_drive/*
+!storage/raw_drive/.gitkeep
+
+storage/processed/*
+!storage/processed/.gitkeep
+
+storage/embeddings/*
+!storage/embeddings/.gitkeep
+
+storage/vector_db/*
+!storage/vector_db/.gitkeep
+
+storage/models/*
+!storage/models/.gitkeep
+
+storage/cache/*
+!storage/cache/.gitkeep
+
+storage/logs/*
+!storage/logs/.gitkeep

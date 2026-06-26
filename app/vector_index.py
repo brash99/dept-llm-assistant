@@ -3,11 +3,17 @@ from pathlib import Path
 from typing import Dict, Any, List
 import json
 import pickle
+import re
+import hashlib
 
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+def text_fingerprint(text, max_chars=1500):
+    normalized = re.sub(r"\s+", " ", text.lower()).strip()
+    normalized = normalized[:max_chars]
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 @dataclass
 class RetrievalResult:
@@ -102,13 +108,14 @@ def load_index(vector_db_dir):
 
     return index, records, metadata
 
-
 def search_index(
     query,
     vector_db_dir,
     model_name,
     device="cuda",
     top_k=5,
+    fetch_k=None,
+    dedupe_by="text",
 ):
     index, records, metadata = load_index(vector_db_dir)
 
@@ -120,15 +127,39 @@ def search_index(
         show_progress_bar=False,
     ).astype("float32")
 
-    scores, indices = index.search(query_vector, top_k)
+    if fetch_k is None:
+        fetch_k = max(top_k * 5, top_k)
+
+    fetch_k = min(fetch_k, index.ntotal)
+
+    scores, indices = index.search(query_vector, fetch_k)
 
     results = []
+    seen = set()
 
     for score, idx in zip(scores[0], indices[0]):
         if idx < 0:
             continue
 
         record = records[int(idx)]
+        citation = record["citation"]
+
+        if dedupe_by is not None:
+            if dedupe_by == "relative_path":
+                key = citation.get("relative_path")
+            elif dedupe_by == "title":
+                key = citation.get("title")
+            elif dedupe_by == "knowledge_object_id":
+                key = record.get("knowledge_object_id")
+            elif dedupe_by == "text":
+                key = text_fingerprint(record["text"])
+            else:
+                key = citation.get(dedupe_by) or record.get(dedupe_by)
+
+            if key in seen:
+                continue
+
+            seen.add(key)
 
         results.append(
             RetrievalResult(
@@ -141,5 +172,8 @@ def search_index(
                 metadata=record["metadata"],
             )
         )
+
+        if len(results) >= top_k:
+            break
 
     return results

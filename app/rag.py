@@ -1,0 +1,78 @@
+from openai import OpenAI
+
+from app.vector_index import search_index
+
+
+def build_context(results):
+    parts = []
+
+    for i, result in enumerate(results, start=1):
+        citation = result.citation
+        parts.append(
+            f"[Source {i}]\n"
+            f"Title: {citation.get('title')}\n"
+            f"Path: {citation.get('relative_path')}\n"
+            f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n\n"
+            f"{result.text}"
+        )
+
+    return "\n\n" + ("-" * 70 + "\n\n").join(parts)
+
+
+def answer_question(
+    query,
+    vector_db_dir,
+    model_name,
+    embedding_device,
+    llm_base_url,
+    llm_model,
+    top_k=5,
+    fetch_k=None,
+    dedupe_by="text",
+):
+    results = search_index(
+        query=query,
+        vector_db_dir=vector_db_dir,
+        model_name=model_name,
+        device=embedding_device,
+        top_k=top_k,
+        fetch_k=fetch_k,
+        dedupe_by=dedupe_by,
+    )
+
+    context = build_context(results)
+
+    prompt = f"""
+You are a careful assistant answering questions using only the provided sources.
+
+Rules:
+- Answer only from the sources below.
+- If the sources do not contain the answer, say that clearly.
+- Cite sources inline using [Source 1], [Source 2], etc.
+- Be concise but complete.
+
+Question:
+{query}
+
+Sources:
+{context}
+
+Answer:
+""".strip()
+
+    client = OpenAI(
+        base_url=llm_base_url,
+        api_key="not-needed",
+    )
+
+    response = client.chat.completions.create(
+        model=llm_model,
+        messages=[
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.2,
+    )
+
+    answer = response.choices[0].message.content
+
+    return answer, results

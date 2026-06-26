@@ -1,3 +1,5 @@
+Phase I:  Non-AI Stuff
+
              User Interface
           (Streamlit / Web App)
                     │
@@ -309,3 +311,215 @@ Architecture
                         │
                         ▼
                Normalized JSON
+
+
+CHUNKING:
+
+Raw Google Drive
+       │
+       ▼
+Google Drive Sync
+       │
+       ▼
+Corpus Policy
+       │
+       ▼
+Inventory
+       │
+       ▼
+KnowledgeObject Normalization
+       │
+       ▼
+Chunking
+
+
+------------------ Status as of Friday June 26 2026 at 3:09pm -----------
+
+                                     ┌─────────────────────────┐
+                                     │   Google Drive (CNU)    │
+                                     │  Department Documents   │
+                                     └────────────┬────────────┘
+                                                  │
+                                                  │ rclone sync
+                                                  ▼
+                                  ┌─────────────────────────────────┐
+                                  │     storage/raw_drive/          │
+                                  │                                 │
+                                  │  Immutable local mirror of      │
+                                  │  the institutional documents    │
+                                  └────────────┬────────────────────┘
+                                               │
+                          inventory_corpus.py  │
+                                               ▼
+                ┌─────────────────────────────────────────────────────────┐
+                │                 Corpus Inventory                        │
+                │                                                         │
+                │ • Count files                                           │
+                │ • File extensions                                       │
+                │ • Largest files                                         │
+                │ • Top-level folders                                     │
+                │ • Corpus statistics                                     │
+                └───────────────┬─────────────────────────────────────────┘
+                                │
+                                │
+                                ▼
+                  ┌────────────────────────────────────┐
+                  │         Corpus Policy              │
+                  │                                    │
+                  │ settings.yaml                      │
+                  │                                    │
+                  │ • excluded folders                 │
+                  │ • excluded extensions              │
+                  │ • hidden files                     │
+                  │                                    │
+                  │ Applied consistently to            │
+                  │ inventory + normalization          │
+                  └───────────────┬────────────────────┘
+                                  │
+                                  ▼
+                ┌─────────────────────────────────────────────────────────┐
+                │                  Parser Registry                        │
+                │                                                         │
+                │    PDFParser                                            │
+                │    DOCXParser                                           │
+                │    HTMLParser                                           │
+                │    TextParser                                           │
+                │                                                         │
+                │ (Future: PPTX, XLSX, Email, Markdown, etc.)             │
+                └───────────────┬─────────────────────────────────────────┘
+                                │
+                                ▼
+                ┌─────────────────────────────────────────────────────────┐
+                │                  Normalization                          │
+                │                                                         │
+                │  Raw File                                               │
+                │      │                                                  │
+                │      ▼                                                  │
+                │  Parser extracts text                                   │
+                │      │                                                  │
+                │      ▼                                                  │
+                │  KnowledgeObject                                        │
+                │                                                         │
+                │      • id                                               │
+                │      • object_type                                      │
+                │      • title                                            │
+                │      • text                                             │
+                │      • metadata                                         │
+                │      • provenance                                       │
+                └───────────────┬─────────────────────────────────────────┘
+                                │
+                                │ JSON
+                                ▼
+                     storage/normalized/*.json
+                                │
+                                ▼
+                ┌─────────────────────────────────────────────────────────┐
+                │                     Chunking                            │
+                │                                                         │
+                │ KnowledgeObject                                         │
+                │        │                                                │
+                │        ▼                                                │
+                │ Sliding Window                                          │
+                │   chunk_size = 3000                                     │
+                │   overlap   = 300                                       │
+                │                                                         │
+                │ Optional max chunks/document                            │
+                │                                                         │
+                └───────────────┬─────────────────────────────────────────┘
+                                │
+                                ▼
+                     storage/chunks/*.json
+                                │
+                                ▼
+                ┌─────────────────────────────────────────────────────────┐
+                │                    Chunk                                │
+                │                                                         │
+                │ • id                                                    │
+                │ • knowledge_object_id                                   │
+                │ • chunk_index                                           │
+                │ • text                                                  │
+                │ • character offsets                                     │
+                │ • citation                                              │
+                │ • parser                                                │
+                │ • provenance                                            │
+                │ • truncation metadata                                   │
+                └─────────────────────────────────────────────────────────┘
+
+
+                     ┌──────────────────────────┐
+                     │     settings.yaml        │
+                     └──────────┬───────────────┘
+                                │
+        ┌───────────────────────┼─────────────────────────┐
+        │                       │                         │
+        ▼                       ▼                         ▼
+  Corpus Policy          Chunk Configuration       LLM Settings
+
+
+                 ┌───────────────────────────────┐
+                 │          Logging              │
+                 └──────────┬────────────────────┘
+                            │
+      Inventory ────────────┤
+      Normalization ─────────┤
+      Chunking ──────────────┤
+                            ▼
+                  storage/logs/*.json
+
+
+storage/
+
+    raw_drive/
+          │
+          ▼
+    normalized/
+          │
+          ▼
+      chunks/
+          │
+          ▼
+    embeddings/        (next)
+          │
+          ▼
+     vector_db/        (next)
+
+    cache/
+    logs/
+    models/
+
+RAG system tuneable parameters:
+
+chunk size
+overlap
+embedding model
+retrieval depth
+reranker
+LLM
+temperature
+prompt
+
+Layer			Tunable Parameters
+
+==========================================
+Corpus			Inclusion policy, excluded folders, supported parsers
+
+Parsing			OCR on/off, metadata extraction, quality thresholds
+
+Chunking		Chunk size, overlap, max chunks/document, semantic vs fixed chunking
+
+Embeddings		Embedding model, vector dimension, normalization
+
+Vector DB		ANN algorithm, index parameters, distance metric
+
+Retrieval		Top-k, metadata filters, hybrid lexical/vector weighting
+
+Reranking		Cross-encoder model, rerank depth
+
+Prompting		Context window, citation format, system prompt
+
+LLM			Model, temperature, max tokens, reasoning mode
+
+
+Phase II:  AI Stuff
+
+

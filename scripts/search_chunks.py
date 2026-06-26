@@ -11,6 +11,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("query", type=str)
     parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument("--fetch-k", type=int, default=None)
+    parser.add_argument("--no-dedupe", action="store_true")
     args = parser.parse_args()
 
     config = load_config()
@@ -36,6 +38,8 @@ def main():
         model_name=model_name,
         device=device,
         top_k=args.top_k,
+        fetch_k=args.fetch_k,
+        dedupe_by=None if args.no_dedupe else "text",
     )
 
     for i, result in enumerate(results, start=1):

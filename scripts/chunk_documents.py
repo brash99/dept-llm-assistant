@@ -56,6 +56,28 @@ def main():
     print(f"Failed                    : {results['failed']}")
     print(f"Documents with zero chunks: {results['documents_with_zero_chunks']}")
     print(f"Total chunks              : {results['total_chunks']}")
+    print(f"Average chunks/document   : {results['average_chunks_per_document']:.2f}")
+    print(f"Max chunks/document       : {results['max_chunks_per_document']}")
+    print(f"Average chunk length      : {results['average_chunk_length']:.1f}")
+    print(f"Min chunk length          : {results['min_chunk_length']}")
+    print(f"Max chunk length          : {results['max_chunk_length']}")
+
+    print()
+    print("Chunk Distribution")
+    print("-" * 70)
+    for num_chunks, count in results["chunk_distribution"].items():
+        print(f"{num_chunks:>4} chunks : {count:8,d} documents")
+
+    print()
+    print("Largest Documents by Chunk Count")
+    print("-" * 70)
+    for item in results["largest_documents"][:5]:
+        print(
+            f"{item['num_chunks']:>4} chunks  "
+            f"{item['text_length']:>8,d} chars  "
+            f"{item['relative_path']}"
+        )
+
     print(f"Log file                  : {log_path}")
 
 

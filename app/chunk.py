@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Dict, Any, List
 import hashlib
 import json
+from collections import Counter
 
 from app.knowledge import load_knowledge_object
 
@@ -127,6 +128,10 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
         "outputs": [],
         "chunk_size": chunk_size,
         "overlap": overlap,
+        "chunk_lengths": [],
+        "chunks_per_document": [],
+        "largest_documents": [],
+        "chunk_distribution": {},
     }
 
     for path in normalized_dir.glob("*.json"):
@@ -141,6 +146,21 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
                 document,
                 chunk_size=chunk_size,
                 overlap=overlap,
+            )
+
+            chunk_count = len(chunks)
+            chunk_lengths = [len(chunk.text) for chunk in chunks]
+
+            results["chunks_per_document"].append(chunk_count)
+            results["chunk_lengths"].extend(chunk_lengths)
+
+            results["largest_documents"].append(
+                {
+                    "relative_path": document.relative_path,
+                    "title": document.title,
+                    "num_chunks": chunk_count,
+                    "text_length": len(document.text),
+                }
             )
 
             if len(chunks) == 0:
@@ -164,5 +184,32 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
                 }
             )
             print(f"[FAIL] {path}: {exc}")
+    chunks_per_doc = results["chunks_per_document"]
+    chunk_lengths = results["chunk_lengths"]
 
+    results["chunk_distribution"] = dict(Counter(chunks_per_doc).most_common())
+
+    results["average_chunks_per_document"] = (
+        sum(chunks_per_doc) / len(chunks_per_doc)
+        if chunks_per_doc
+        else 0
+    )
+
+    results["max_chunks_per_document"] = max(chunks_per_doc) if chunks_per_doc else 0
+
+    results["average_chunk_length"] = (
+        sum(chunk_lengths) / len(chunk_lengths)
+        if chunk_lengths
+        else 0
+    )
+
+    results["min_chunk_length"] = min(chunk_lengths) if chunk_lengths else 0
+    results["max_chunk_length"] = max(chunk_lengths) if chunk_lengths else 0
+
+    results["largest_documents"] = sorted(
+        results["largest_documents"],
+        key=lambda item: item["num_chunks"],
+        reverse=True,
+    )[:10]
+    
     return results

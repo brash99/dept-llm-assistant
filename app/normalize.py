@@ -2,19 +2,14 @@ from pathlib import Path
 import hashlib
 
 from app.knowledge import save_knowledge_object
+from app.parser_registry import ParserRegistry
 from app.parsers.pdf_parser import PDFParser
 
 
-PARSERS = [
-    PDFParser(),
-]
-
-
-def get_parser(path):
-    for parser in PARSERS:
-        if parser.can_parse(path):
-            return parser
-    return None
+def build_default_registry():
+    registry = ParserRegistry()
+    registry.register(PDFParser())
+    return registry
 
 
 def normalized_output_path(document, normalized_dir):
@@ -26,6 +21,8 @@ def normalized_output_path(document, normalized_dir):
 def normalize_files(raw_drive, normalized_dir, limit=None):
     raw_drive = Path(raw_drive)
     normalized_dir = Path(normalized_dir)
+    
+    registry = build_default_registry()
 
     results = {
         "attempted": 0,
@@ -40,7 +37,7 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
         if not path.is_file():
             continue
 
-        parser = get_parser(path)
+        parser = registry.get_parser(path)
 
         if parser is None:
             results["skipped"] += 1

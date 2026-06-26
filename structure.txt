@@ -522,4 +522,43 @@ LLM			Model, temperature, max tokens, reasoning mode
 
 Phase II:  AI Stuff
 
+                     Department Google Drive
+                              │
+                              ▼
+                    inventory_corpus.py
+                              │
+                    (audit / statistics)
+                              │
+                              ▼
+                     sync_google_drive.py
+                              │
+                              ▼
+                        storage/raw_drive
+                              │
+                              ▼
+                      normalize_files()
+                              │
+      ┌───────────────────────┼────────────────────────┐
+      │                       │                        │
+ PDFParser              DOCXParser               HTMLParser
+      │                       │                        │
+      └───────────────────────┼────────────────────────┘
+                              ▼
+                    KnowledgeObject (.json)
+                     storage/normalized
+                              │
+                              ▼
+                      chunk_document()
+                              │
+                              ▼
+                      Chunk objects (.json)
+                       storage/chunks
+                              │
+                              ▼
+               SentenceTransformer (BGE-small)
+                              │
+                              ▼
+               384-dimensional embedding vectors
+                    storage/embeddings
+
 

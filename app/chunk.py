@@ -1,12 +1,13 @@
 from dataclasses import dataclass, asdict
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any
 import hashlib
 import json
 from collections import Counter
 
 from app.knowledge import load_knowledge_object
+
 
 @dataclass
 class Chunk:
@@ -20,12 +21,15 @@ class Chunk:
     citation: Dict[str, Any]
     metadata: Dict[str, Any]
 
+
 def now_iso():
     return datetime.now().isoformat(timespec="seconds")
+
 
 def make_chunk_id(knowledge_object_id, chunk_index, start_char, end_char):
     base = f"{knowledge_object_id}:{chunk_index}:{start_char}:{end_char}"
     return hashlib.sha256(base.encode("utf-8")).hexdigest()
+
 
 def chunk_text(text, chunk_size=3000, overlap=300):
     chunks = []
@@ -51,7 +55,7 @@ def chunk_text(text, chunk_size=3000, overlap=300):
     return chunks
 
 
-def chunk_document(document, chunk_size=3000, overlap=300):
+def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
     raw_chunks = chunk_text(
         document.text,
         chunk_size=chunk_size,
@@ -61,6 +65,8 @@ def chunk_document(document, chunk_size=3000, overlap=300):
     chunks = []
 
     for i, (text, start, end) in enumerate(raw_chunks):
+        if max_chunks is not None and len(chunks) >= max_chunks:
+            break
 
         chunk_id = make_chunk_id(document.id, i, start, end)
 
@@ -91,10 +97,18 @@ def chunk_document(document, chunk_size=3000, overlap=300):
                     "file_type": document.file_type,
                     "chunk_size": chunk_size,
                     "overlap": overlap,
+                    "max_chunks_per_document": max_chunks,
                     "created_at": now_iso(),
                 },
             )
         )
+
+    truncated = max_chunks is not None and len(raw_chunks) > len(chunks)
+
+    for chunk in chunks:
+        chunk.metadata["document_truncated"] = truncated
+        chunk.metadata["original_chunk_count"] = len(raw_chunks)
+        chunk.metadata["indexed_chunk_count"] = len(chunks)
 
     return chunks
 
@@ -114,7 +128,14 @@ def chunk_output_path(document, chunks_dir):
     return Path(chunks_dir) / f"{safe_hash}.json"
 
 
-def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overlap=300):
+def run_chunking(
+    normalized_dir,
+    chunks_dir,
+    limit=None,
+    chunk_size=3000,
+    overlap=300,
+    max_chunks_per_document=None,
+):
     normalized_dir = Path(normalized_dir)
     chunks_dir = Path(chunks_dir)
 
@@ -124,6 +145,8 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
         "failed": 0,
         "documents_with_zero_chunks": 0,
         "total_chunks": 0,
+        "max_chunks_per_document_setting": max_chunks_per_document,
+        "truncated_documents": 0,
         "errors": [],
         "outputs": [],
         "chunk_size": chunk_size,
@@ -142,14 +165,19 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
 
         try:
             document = load_knowledge_object(path)
+
             chunks = chunk_document(
                 document,
                 chunk_size=chunk_size,
                 overlap=overlap,
+                max_chunks=max_chunks_per_document,
             )
 
             chunk_count = len(chunks)
             chunk_lengths = [len(chunk.text) for chunk in chunks]
+
+            if chunks and chunks[0].metadata.get("document_truncated"):
+                results["truncated_documents"] += 1
 
             results["chunks_per_document"].append(chunk_count)
             results["chunk_lengths"].extend(chunk_lengths)
@@ -160,6 +188,11 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
                     "title": document.title,
                     "num_chunks": chunk_count,
                     "text_length": len(document.text),
+                    "truncated": (
+                        chunks[0].metadata.get("document_truncated")
+                        if chunks
+                        else False
+                    ),
                 }
             )
 
@@ -184,6 +217,7 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
                 }
             )
             print(f"[FAIL] {path}: {exc}")
+
     chunks_per_doc = results["chunks_per_document"]
     chunk_lengths = results["chunk_lengths"]
 
@@ -211,5 +245,5 @@ def run_chunking(normalized_dir, chunks_dir, limit=None, chunk_size=3000, overla
         key=lambda item: item["num_chunks"],
         reverse=True,
     )[:10]
-    
+
     return results

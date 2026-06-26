@@ -12,11 +12,21 @@ from app.chunk import run_chunking
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=20)
-    parser.add_argument("--chunk-size", type=int, default=3000)
-    parser.add_argument("--overlap", type=int, default=300)
+    parser.add_argument("--chunk-size", type=int, default=None)
+    parser.add_argument("--overlap", type=int, default=None)
+    parser.add_argument("--max-chunks-per-document", type=int, default=None)
     args = parser.parse_args()
 
     config = load_config()
+    chunk_cfg = config.get("chunking", {})
+
+    chunk_size = args.chunk_size or chunk_cfg.get("chunk_size", 3000)
+    overlap = args.overlap or chunk_cfg.get("overlap", 300)
+
+    if args.max_chunks_per_document is not None:
+        max_chunks = args.max_chunks_per_document
+    else:
+        max_chunks = chunk_cfg.get("max_chunks_per_document")
 
     project_root = Path(config["project"]["root"])
     normalized_dir = project_root / config["storage"]["normalized"]
@@ -29,16 +39,18 @@ def main():
     print(f"Normalized dir : {normalized_dir}")
     print(f"Chunks dir     : {chunks_dir}")
     print(f"Limit          : {args.limit}")
-    print(f"Chunk size     : {args.chunk_size}")
-    print(f"Overlap        : {args.overlap}")
+    print(f"Chunk size     : {chunk_size}")
+    print(f"Overlap        : {overlap}")
+    print(f"Max chunks/doc : {max_chunks}")
     print()
 
     results = run_chunking(
         normalized_dir=normalized_dir,
         chunks_dir=chunks_dir,
         limit=args.limit,
-        chunk_size=args.chunk_size,
-        overlap=args.overlap,
+        chunk_size=chunk_size,
+        overlap=overlap,
+        max_chunks_per_document=max_chunks,
     )
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -55,6 +67,7 @@ def main():
     print(f"Succeeded                 : {results['succeeded']}")
     print(f"Failed                    : {results['failed']}")
     print(f"Documents with zero chunks: {results['documents_with_zero_chunks']}")
+    print(f"Truncated documents       : {results['truncated_documents']}")
     print(f"Total chunks              : {results['total_chunks']}")
     print(f"Average chunks/document   : {results['average_chunks_per_document']:.2f}")
     print(f"Max chunks/document       : {results['max_chunks_per_document']}")
@@ -72,10 +85,11 @@ def main():
     print("Largest Documents by Chunk Count")
     print("-" * 70)
     for item in results["largest_documents"][:5]:
+        truncated = " TRUNCATED" if item.get("truncated") else ""
         print(
             f"{item['num_chunks']:>4} chunks  "
             f"{item['text_length']:>8,d} chars  "
-            f"{item['relative_path']}"
+            f"{item['relative_path']}{truncated}"
         )
 
     print(f"Log file                  : {log_path}")

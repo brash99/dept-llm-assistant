@@ -5,12 +5,14 @@ from app.knowledge import save_knowledge_object
 from app.parser_registry import ParserRegistry
 from app.parsers.pdf_parser import PDFParser
 from app.parsers.text_parser import TextParser
+from app.parsers.html_parser import HTMLParser
 
 
 def build_default_registry():
     registry = ParserRegistry()
     registry.register(PDFParser())
     registry.register(TextParser())
+    registry.register(HTMLParser())
     return registry
 
 
@@ -37,6 +39,10 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
 
     for path in raw_drive.rglob("*"):
         if not path.is_file():
+            continue
+
+        if path.name.startswith("._") or path.name == ".DS_Store":
+            results["skipped"] += 1
             continue
 
         parser = registry.get_parser(path)

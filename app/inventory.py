@@ -4,6 +4,8 @@ from datetime import datetime
 from pathlib import Path
 import json
 
+from app.corpus_policy import CorpusPolicy
+
 
 @dataclass
 class FileInfo:
@@ -23,12 +25,15 @@ def human_size(num: int) -> str:
     return f"{value:.1f} PB"
 
 
-def scan_directory(root: Path) -> list[FileInfo]:
+def scan_directory(root: Path, policy=None) -> list[FileInfo]:
     root = Path(root).resolve()
     files = []
 
     for path in root.rglob("*"):
         if not path.is_file():
+            continue
+
+        if policy is not None and not policy.should_include(path, root):
             continue
 
         try:
@@ -52,8 +57,9 @@ def scan_directory(root: Path) -> list[FileInfo]:
     return files
 
 
-def build_inventory(root: Path) -> dict:
-    files = scan_directory(root)
+def build_inventory(root: Path, config=None) -> dict:
+    policy = CorpusPolicy(config) if config is not None else None
+    files = scan_directory(root, policy=policy)
 
     extension_counts = Counter(f.suffix for f in files)
     folder_counts = Counter(f.top_folder for f in files)
@@ -64,6 +70,7 @@ def build_inventory(root: Path) -> dict:
     return {
         "scan_time": datetime.now().isoformat(timespec="seconds"),
         "root": str(Path(root).resolve()),
+        "policy_applied": config is not None,
         "num_files": len(files),
         "total_bytes": total_bytes,
         "total_size_human": human_size(total_bytes),
@@ -80,6 +87,7 @@ def print_inventory(inv: dict) -> None:
     print()
     print(f"Root directory : {inv['root']}")
     print(f"Scan time      : {inv['scan_time']}")
+    print(f"Policy applied : {inv.get('policy_applied', False)}")
     print(f"Files scanned  : {inv['num_files']:,}")
     print(f"Total size     : {inv['total_size_human']}")
     print()
@@ -116,8 +124,8 @@ def write_inventory(inv: dict, log_dir: Path) -> Path:
     return outpath
 
 
-def run_inventory(raw_drive: Path, log_dir: Path) -> dict:
-    inv = build_inventory(raw_drive)
+def run_inventory(raw_drive: Path, log_dir: Path, config=None) -> dict:
+    inv = build_inventory(raw_drive, config=config)
     print_inventory(inv)
     outpath = write_inventory(inv, log_dir)
     print(f"Inventory JSON written to: {outpath}")

@@ -8,6 +8,8 @@ from app.parsers.pdf_parser import PDFParser
 from app.parsers.text_parser import TextParser
 from app.parsers.html_parser import HTMLParser
 from app.parsers.docx_parser import DOCXParser
+from app.config import load_config
+from app.corpus_policy import CorpusPolicy
 
 def build_default_registry():
     registry = ParserRegistry()
@@ -29,6 +31,8 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
     normalized_dir = Path(normalized_dir)
     
     registry = build_default_registry()
+    config = load_config()
+    policy = CorpusPolicy(config)
 
     results = {
         "attempted": 0,
@@ -44,7 +48,7 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
         if not path.is_file():
             continue
 
-        if path.name.startswith("._") or path.name == ".DS_Store":
+        if not policy.should_include(path, raw_drive):
             results["skipped"] += 1
             continue
 

@@ -13,7 +13,11 @@ def main():
     raw_drive = project_root / config["storage"]["raw_drive"]
     log_dir = project_root / config["storage"]["logs"]
 
-    run_inventory(raw_drive, log_dir)
+    run_inventory(
+        raw_drive=raw_drive,
+        log_dir=log_dir,
+        config=config,
+    )
 
 
 if __name__ == "__main__":

@@ -32,8 +32,18 @@ class PDFParser(Parser):
             title = pdf_metadata.get("title") or path.stem
 
         text = "\n".join(text_parts).strip()
+
         metadata["text_length"] = len(text)
-        metadata["is_probably_scanned"] = len(text.strip()) < 50
+        
+        metadata["is_probably_scanned"] = (
+            metadata["num_pages"] > 0 and len(text.strip()) < 50
+        )
+
+        metadata["average_chars_per_page"] = (
+            len(text) / metadata["num_pages"]
+            if metadata["num_pages"] > 0
+            else 0
+        )
 
         return document_from_text(
             source_path=path,

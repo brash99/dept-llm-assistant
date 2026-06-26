@@ -23,13 +23,18 @@ class TextParser(Parser):
 
         text = path.read_text(
             encoding="utf-8",
-            errors="replace",
+            errors="ignore",
         )
 
+        lines = text.splitlines()
+        non_empty_lines = [line for line in lines if line.strip()]
+
         metadata = {
-            "encoding": "utf-8",
             "text_length": len(text),
-            "num_lines": text.count("\n") + 1 if text else 0,
+            "num_lines": len(lines),
+            "num_non_empty_lines": len(non_empty_lines),
+            "quality": "good" if len(text.strip()) >= 100 else "poor",
+            "is_empty": len(text.strip()) == 0,
         }
 
         return document_from_text(

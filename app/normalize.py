@@ -1,18 +1,20 @@
 from pathlib import Path
 import hashlib
+from collections import Counter
 
 from app.knowledge import save_knowledge_object
 from app.parser_registry import ParserRegistry
 from app.parsers.pdf_parser import PDFParser
 from app.parsers.text_parser import TextParser
 from app.parsers.html_parser import HTMLParser
-
+from app.parsers.docx_parser import DOCXParser
 
 def build_default_registry():
     registry = ParserRegistry()
     registry.register(PDFParser())
     registry.register(TextParser())
     registry.register(HTMLParser())
+    registry.register(DOCXParser())
     return registry
 
 
@@ -33,6 +35,7 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
         "succeeded": 0,
         "failed": 0,
         "skipped": 0,
+        "parser_counts": Counter(),
         "outputs": [],
         "errors": [],
     }
@@ -64,8 +67,11 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
                 registry=registry,
             )
 
+            results["parser_counts"][document.parser] += 1
+
             results["succeeded"] += 1
             results["outputs"].append(str(outpath))
+
         except Exception as exc:
             results["failed"] += 1
             results["errors"].append(
@@ -76,6 +82,8 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
             )
 
             print(f"[FAIL] {path}: {exc}")
+
+    results["parser_counts"] = dict(results["parser_counts"].most_common())
 
     return results
 

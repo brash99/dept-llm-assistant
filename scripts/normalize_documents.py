@@ -73,6 +73,13 @@ def main():
     print(f"Succeeded : {results['succeeded']}")
     print(f"Failed    : {results['failed']}")
     print(f"Skipped   : {results['skipped']}")
+    print()
+    print("Parser Usage")
+    print("-" * 70)
+
+    for parser_name, count in results.get("parser_counts", {}).items():
+        print(f"{parser_name:15} {count:8,d}")
+    
     print(f"Log file  : {log_path}")
 
 

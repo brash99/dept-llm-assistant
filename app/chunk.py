@@ -7,26 +7,24 @@ import json
 
 from app.knowledge import load_knowledge_object
 
-
 @dataclass
 class Chunk:
     id: str
-    document_id: str
+    knowledge_object_id: str
+    object_type: str
     chunk_index: int
     text: str
     start_char: int
     end_char: int
+    citation: Dict[str, Any]
     metadata: Dict[str, Any]
-
 
 def now_iso():
     return datetime.now().isoformat(timespec="seconds")
 
-
-def make_chunk_id(document_id, chunk_index, text):
-    base = f"{document_id}:{chunk_index}:{text}"
+def make_chunk_id(knowledge_object_id, chunk_index, start_char, end_char):
+    base = f"{knowledge_object_id}:{chunk_index}:{start_char}:{end_char}"
     return hashlib.sha256(base.encode("utf-8")).hexdigest()
-
 
 def chunk_text(text, chunk_size=3000, overlap=300):
     chunks = []
@@ -62,16 +60,29 @@ def chunk_document(document, chunk_size=3000, overlap=300):
     chunks = []
 
     for i, (text, start, end) in enumerate(raw_chunks):
-        chunk_id = make_chunk_id(document.id, i, text)
+
+        chunk_id = make_chunk_id(document.id, i, start, end)
+
+        citation = {
+            "title": document.title,
+            "relative_path": document.relative_path,
+            "source_path": document.source_path,
+            "file_type": document.file_type,
+            "parser": document.parser,
+            "start_char": start,
+            "end_char": end,
+        }
 
         chunks.append(
             Chunk(
                 id=chunk_id,
-                document_id=document.id,
+                knowledge_object_id=document.id,
+                object_type=document.object_type,
                 chunk_index=i,
                 text=text,
                 start_char=start,
                 end_char=end,
+                citation=citation,
                 metadata={
                     "document_title": document.title,
                     "relative_path": document.relative_path,

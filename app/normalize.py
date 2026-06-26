@@ -4,11 +4,13 @@ import hashlib
 from app.knowledge import save_knowledge_object
 from app.parser_registry import ParserRegistry
 from app.parsers.pdf_parser import PDFParser
+from app.parsers.text_parser import TextParser
 
 
 def build_default_registry():
     registry = ParserRegistry()
     registry.register(PDFParser())
+    registry.register(TextParser())
     return registry
 
 
@@ -49,15 +51,15 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
         results["attempted"] += 1
 
         try:
-            document = parser.parse(path, raw_drive)
-            outpath = normalized_output_path(document, normalized_dir)
-            save_knowledge_object(document, outpath)
+            document, outpath = normalize_single_file(
+                path=path,
+                raw_drive=raw_drive,
+                normalized_dir=normalized_dir,
+                registry=registry,
+            )
 
             results["succeeded"] += 1
             results["outputs"].append(str(outpath))
-
-            print(f"[OK] {document.relative_path}")
-
         except Exception as exc:
             results["failed"] += 1
             results["errors"].append(
@@ -70,3 +72,25 @@ def normalize_files(raw_drive, normalized_dir, limit=None):
             print(f"[FAIL] {path}: {exc}")
 
     return results
+
+def normalize_single_file(path, raw_drive, normalized_dir, registry=None):
+    path = Path(path)
+    raw_drive = Path(raw_drive)
+    normalized_dir = Path(normalized_dir)
+
+    if registry is None:
+        registry = build_default_registry()
+
+    parser = registry.get_parser(path)
+
+    if parser is None:
+        raise RuntimeError(f"No parser available for file: {path}")
+
+    document = parser.parse(path, raw_drive)
+    outpath = normalized_output_path(document, normalized_dir)
+
+    save_knowledge_object(document, outpath)
+
+    print(f"[OK] {document.parser:12} {document.relative_path}")
+
+    return document, outpath

@@ -102,3 +102,210 @@ Predictive Models             Retrieval Engine
                Reasoning Layer
                       ▼
             Human Decision Support
+
+Sprint 4:
+
+              Applications
+-------------------------------------------------
+ Department Assistant
+ Strategic Planning
+ Enrollment Forecasting
+ Faculty Analytics
+ Research Portal
+
+
+               Framework
+-------------------------------------------------
+ KnowledgeObject
+ Document
+ Chunk
+ Parser
+ Registry
+ Embedder
+ Retriever
+ Pipeline
+
+
+            Implementations
+-------------------------------------------------
+ PDFParser
+ DOCXParser
+ PyMuPDF
+ ChromaDB
+ FAISS
+ OpenAI
+ Qwen
+ BGE
+
+Sprint 4B:
+
+Framework:
+----------
+Raw Documents
+      │
+      ▼
+Inventory
+      │
+      ▼
+Classification
+      │
+      ▼
+Normalization
+      │
+      ▼
+Document
+
+or
+
+Framework:
+----------
+KnowledgeObject
+        │
+        ▼
+Document
+        │
+        ▼
+Chunk
+        │
+        ▼
+Embedding
+
+  
+
+Abstractions (Nouns)
+--------------------
+KnowledgeObject
+    ↓
+Document
+    ↓
+Parser
+    ↓
+ParserRegistry
+    ↓
+Normalizer
+    ↓
+Chunk
+    ↓
+Embedder
+    ↓
+VectorStore
+    ↓
+Retriever
+    ↓
+Reasoner (LLM)
+
+Methods:
+--------
+Parser.parse()
+
+Chunker.chunk()
+
+Embedder.embed()
+
+Retriever.search()
+
+Reasoner.answer()
+
+
+======================================================
+Session 4
+======================================================
+
+Added
+
+    KnowledgeObject
+    Document
+    Parser
+    ParserRegistry
+
+Reason
+
+    Separate parser discovery from normalization.
+
+Pipeline
+
+    Raw File
+        ↓
+    Parser
+        ↓
+    Document
+
+Next
+
+    TextParser
+
+======================================================
+Session 5 Complete
+======================================================
+
+Added
+
+    TextParser
+    normalize_single_file()
+
+Refactored
+
+    normalize_files()
+
+Result
+
+    Single-file normalization is now the
+    fundamental operation.
+
+    Batch normalization is simply iteration
+    over normalize_single_file().
+
+Framework Status
+
+    ✓ KnowledgeObject
+    ✓ Document
+    ✓ Parser
+    ✓ ParserRegistry
+    ✓ PDFParser
+    ✓ TextParser
+    ✓ Single-file normalization
+    ✓ Batch normalization
+
+Architecture
+
+          Raw File
+              │
+              ▼
+       ParserRegistry
+              │
+              ▼
+           Parser
+              │
+              ▼
+          Document
+              │
+              ▼
+      Normalized JSON
+
+                  Google Shared Drive
+                           │
+                           ▼
+                     rclone mirror
+                           │
+                           ▼
+                    storage/raw_drive
+                           │
+                           ▼
+                     Inventory Stage
+                           │
+                           ▼
+                  Classification Stage
+                           │
+                           ▼
+                 ParserRegistry
+                    │        │
+           ┌────────┘        └─────────┐
+           ▼                           ▼
+      PDFParser                  TextParser
+           │                           │
+           └────────────┬──────────────┘
+                        ▼
+                    Document
+                        │
+                        ▼
+               Normalized JSON

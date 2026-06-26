@@ -6,12 +6,13 @@ import json
 from datetime import datetime
 
 from app.config import load_config
-from app.normalize import normalize_files
+from app.normalize import normalize_files, normalize_single_file
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=10)
+    parser.add_argument("--file", type=str, help="Normalize a single file.")
     args = parser.parse_args()
 
     config = load_config()
@@ -29,11 +30,34 @@ def main():
     print(f"Limit         : {args.limit}")
     print()
 
-    results = normalize_files(
-        raw_drive=raw_drive,
-        normalized_dir=normalized,
-        limit=args.limit,
-    )
+    if args.file:
+        file_path = Path(args.file)
+    
+        if not file_path.is_absolute():
+            file_path = project_root / file_path
+
+        document, outpath = normalize_single_file(
+            path=file_path,
+            raw_drive=raw_drive,
+            normalized_dir=normalized,
+        )
+
+        results = {
+            "mode": "single_file",
+            "attempted": 1,
+            "succeeded": 1,
+            "failed": 0,
+            "skipped": 0,
+            "outputs": [str(outpath)],
+            "errors": [],
+        }
+
+    else:
+        results = normalize_files(
+            raw_drive=raw_drive,
+            normalized_dir=normalized,
+            limit=args.limit,
+        )
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_path = logs / f"normalization_{timestamp}.json"

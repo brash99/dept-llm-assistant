@@ -8,6 +8,8 @@ from app.parsers.pdf_parser import PDFParser
 from app.parsers.text_parser import TextParser
 from app.parsers.html_parser import HTMLParser
 from app.parsers.docx_parser import DOCXParser
+from app.parsers.pptx_parser import PPTXParser
+from app.parsers.xlsx_parser import XLSXParser
 from app.config import load_config
 from app.corpus_policy import CorpusPolicy
 
@@ -17,6 +19,8 @@ def build_default_registry():
     registry.register(TextParser())
     registry.register(HTMLParser())
     registry.register(DOCXParser())
+    registry.register(PPTXParser())
+    registry.register(XLSXParser())
     return registry
 
 

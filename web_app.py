@@ -19,13 +19,21 @@ st.caption(
 
 query = st.text_area(
     "Ask a question",
-    placeholder="What is the cybersecurity major?",
+    placeholder="What is the CNU travel reimbursement policy?",
     height=100,
 )
 
 top_k = st.slider("Number of retrieved sources", 3, 10, 5)
 
-show_debug = st.checkbox("Show retrieval debug info", value=False)
+developer_mode = st.checkbox("Developer mode", value=False)
+
+dedupe_by = st.selectbox(
+    "Deduplicate sources by",
+    ["relative_path", "text", "source_path", None],
+    index=0,
+)
+
+fetch_k = st.slider("Fetch candidates", 10, 200, 50)
 
 if st.button("Ask", type="primary") and query.strip():
     config = load_config()
@@ -41,7 +49,7 @@ if st.button("Ask", type="primary") and query.strip():
 
     try:
         with st.spinner("Searching documents and generating answer..."):
-            answer, results = answer_question(
+            response = answer_question(
                 query=query,
                 vector_db_dir=vector_db_dir,
                 model_name=embed_cfg.get("model", "BAAI/bge-small-en-v1.5"),
@@ -49,12 +57,21 @@ if st.button("Ask", type="primary") and query.strip():
                 llm_base_url=llm_cfg["base_url"],
                 llm_model=llm_cfg["model"],
                 top_k=top_k,
-                fetch_k=50,
-                dedupe_by="relative_path",
+                fetch_k=fetch_k,
+                dedupe_by=dedupe_by,
                 rerank=rerank_enabled,
                 reranker_model=rerank_cfg.get("model"),
                 reranker_device=rerank_cfg.get("device", "cuda"),
+                return_trace=developer_mode,
+                min_rerank_score=rerank_cfg.get("min_score", None),
             )
+
+        if developer_mode:
+            answer, results, retrieval_report, trace = response
+        else:
+            answer, results = response
+            retrieval_report = None
+            trace = None
 
     except Exception as e:
         st.error("The question-answering pipeline failed.")
@@ -63,7 +80,7 @@ if st.button("Ask", type="primary") and query.strip():
 
     st.caption(
         f"Reranking: {'enabled' if rerank_enabled else 'disabled'} | "
-        f"fetch_k=50 | top_k={top_k}"
+        f"fetch_k={fetch_k} | top_k={top_k} | dedupe_by={dedupe_by}"
     )
 
     st.subheader("Answer")
@@ -90,9 +107,70 @@ if st.button("Ask", type="primary") and query.strip():
                 if start_char is not None and end_char is not None:
                     st.write(f"**Characters:** {start_char}–{end_char}")
 
-                if show_debug:
+                st.write("**Text preview:**")
+                st.write(result.text[:2000])
+
+                if developer_mode:
                     st.write("**Citation metadata:**")
                     st.json(citation)
 
-                st.write("**Text preview:**")
-                st.write(result.text[:2000])
+                    st.write("**Result metadata:**")
+                    st.json(result.metadata)
+
+    if developer_mode and trace is not None:
+        st.subheader("Retrieval Diagnostics")
+
+        st.write(
+            {
+                "query": retrieval_report.query,
+                "fetch_k": retrieval_report.fetch_k,
+                "top_k": retrieval_report.requested_top_k,
+                "dedupe_by": retrieval_report.dedupe_by,
+                "raw_candidates": len(trace.raw_candidates),
+                "deduped_candidates": len(trace.deduped_candidates),
+                "reranked_candidates": len(trace.reranked_candidates),
+                "final_results": len(trace.final_results),
+                "reranking_enabled": retrieval_report.reranking_enabled,
+                "reranker_model": retrieval_report.reranker_model,
+                "min_rerank_score": retrieval_report.min_rerank_score,
+            }
+        )
+
+        def show_trace_section(label, items, max_items=25):
+            with st.expander(label, expanded=False):
+                for i, result in enumerate(items[:max_items], start=1):
+                    citation = result.citation
+                    metadata = result.metadata
+
+                    title = citation.get("title") or "Untitled source"
+                    path = citation.get("relative_path") or "Unknown path"
+
+                    st.markdown(
+                        f"### {i}. {title} — score {result.score:.4f}"
+                    )
+                    st.write(f"**Path:** `{path}`")
+                    st.write(
+                        f"**Parser:** `{citation.get('parser') or metadata.get('parser')}`"
+                    )
+                    st.write(
+                        f"**Chars:** {citation.get('start_char')}–{citation.get('end_char')}"
+                    )
+
+                    if metadata.get("faiss_score") is not None:
+                        st.write(f"**FAISS score:** `{metadata.get('faiss_score')}`")
+
+                    if metadata.get("rerank_score") is not None:
+                        st.write(f"**Rerank score:** `{metadata.get('rerank_score')}`")
+
+                    st.write("**Chunk preview:**")
+                    st.write(result.text[:1500])
+                    st.divider()
+
+        show_trace_section("1. Raw FAISS Candidates", trace.raw_candidates)
+        show_trace_section("2. After Deduplication", trace.deduped_candidates)
+        show_trace_section("3. After Reranking", trace.reranked_candidates)
+        show_trace_section(
+            "4. Final Results Sent to LLM",
+            trace.final_results,
+            max_items=top_k,
+        )

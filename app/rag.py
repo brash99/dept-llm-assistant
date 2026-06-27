@@ -31,8 +31,10 @@ def answer_question(
     rerank=False,
     reranker_model=None,
     reranker_device="cuda",
+    min_rerank_score=None,
+    return_trace=False,
 ):
-    results, retrieval_report = retrieve(
+    retrieved = retrieve(
         query=query,
         vector_db_dir=vector_db_dir,
         model_name=model_name,
@@ -43,7 +45,15 @@ def answer_question(
         rerank=rerank,
         reranker_model=reranker_model,
         reranker_device=reranker_device,
+        min_rerank_score=min_rerank_score,
+        return_trace=return_trace,
     )
+
+    if return_trace:
+        results, retrieval_report, trace = retrieved
+    else:
+        results, retrieval_report = retrieved
+        trace = None
 
     context = build_context(results)
 
@@ -79,5 +89,8 @@ Answer:
     )
 
     answer = response.choices[0].message.content
+
+    if return_trace:
+        return answer, results, retrieval_report, trace
 
     return answer, results

@@ -5,6 +5,12 @@ from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
 
+@dataclass
+class RetrievalTrace:
+    raw_candidates: List[RetrievalResult]
+    deduped_candidates: List[RetrievalResult]
+    reranked_candidates: List[RetrievalResult]
+    final_results: List[RetrievalResult]
 
 @dataclass
 class RetrievalReport:
@@ -16,7 +22,9 @@ class RetrievalReport:
     num_results: int
     reranking_enabled: bool = False
     reranker_model: Optional[str] = None
-
+    reranking_enabled: bool = False
+    reranker_model: Optional[str] = None
+    min_rerank_score: Optional[float] = None
 
 def rerank_results(
     query: str,
@@ -90,11 +98,13 @@ def retrieve(
     rerank: bool = False,
     reranker_model: Optional[str] = None,
     reranker_device: str = "cuda",
-) -> tuple[List[RetrievalResult], RetrievalReport]:
+    min_rerank_score=None,
+    return_trace: bool = False,
+):
     if fetch_k is None:
         fetch_k = max(50, top_k * 10)
 
-    candidate_results = search_index(
+    raw_candidates = search_index(
         query=query,
         vector_db_dir=vector_db_dir,
         model_name=model_name,
@@ -104,36 +114,59 @@ def retrieve(
         dedupe_by=None,
     )
 
-    candidate_results = dedupe_results(
-        candidate_results,
+    deduped_candidates = dedupe_results(
+        raw_candidates,
         dedupe_by=dedupe_by,
     )
+
+    num_after_dedup = len(deduped_candidates)
 
     if rerank:
         if reranker_model is None:
             raise ValueError("reranker_model must be provided when rerank=True")
 
-        ranked_results = rerank_results(
+        reranked_candidates = rerank_results(
             query=query,
-            results=candidate_results,
+            results=deduped_candidates,
             model_name=reranker_model,
             device=reranker_device,
         )
     else:
-        ranked_results = candidate_results
+        reranked_candidates = deduped_candidates
 
-    final_results = ranked_results[:top_k]
+    if rerank and min_rerank_score is not None:
+        filtered_results = [
+            result for result in reranked_candidates
+            if result.score >= min_rerank_score
+        ]
+
+        if filtered_results:
+            reranked_candidates = filtered_results
+
+    num_after_threshold = len(reranked_candidates)
+
+    final_results = reranked_candidates[:top_k]
 
     report = RetrievalReport(
         query=query,
         requested_top_k=top_k,
         fetch_k=fetch_k,
         dedupe_by=dedupe_by,
-        num_candidates=len(candidate_results),
+        num_candidates=len(raw_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
         reranker_model=reranker_model if rerank else None,
-    )
+        min_rerank_score=min_rerank_score,
+        )
+
+    if return_trace:
+        trace = RetrievalTrace(
+            raw_candidates=raw_candidates,
+            deduped_candidates=deduped_candidates,
+            reranked_candidates=reranked_candidates,
+            final_results=final_results,
+        )
+        return final_results, report, trace
 
     return final_results, report
 

@@ -1,7 +1,6 @@
 from openai import OpenAI
 
-from app.vector_index import search_index
-
+from app.retrieval import retrieve
 
 def build_context(results):
     parts = []
@@ -29,8 +28,13 @@ def answer_question(
     top_k=5,
     fetch_k=None,
     dedupe_by="text",
+    rerank=False,
+    reranker_model=None,
+    reranker_device="cuda",
+    min_rerank_score=None,
+    return_trace=False,
 ):
-    results = search_index(
+    retrieved = retrieve(
         query=query,
         vector_db_dir=vector_db_dir,
         model_name=model_name,
@@ -38,7 +42,18 @@ def answer_question(
         top_k=top_k,
         fetch_k=fetch_k,
         dedupe_by=dedupe_by,
+        rerank=rerank,
+        reranker_model=reranker_model,
+        reranker_device=reranker_device,
+        min_rerank_score=min_rerank_score,
+        return_trace=return_trace,
     )
+
+    if return_trace:
+        results, retrieval_report, trace = retrieved
+    else:
+        results, retrieval_report = retrieved
+        trace = None
 
     context = build_context(results)
 
@@ -74,5 +89,8 @@ Answer:
     )
 
     answer = response.choices[0].message.content
+
+    if return_trace:
+        return answer, results, retrieval_report, trace
 
     return answer, results

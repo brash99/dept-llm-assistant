@@ -1,0 +1,188 @@
+from dataclasses import dataclass
+from typing import List, Optional
+
+from sentence_transformers import CrossEncoder
+
+from app.vector_index import search_index, RetrievalResult
+
+@dataclass
+class RetrievalTrace:
+    raw_candidates: List[RetrievalResult]
+    deduped_candidates: List[RetrievalResult]
+    reranked_candidates: List[RetrievalResult]
+    final_results: List[RetrievalResult]
+
+@dataclass
+class RetrievalReport:
+    query: str
+    requested_top_k: int
+    fetch_k: int
+    dedupe_by: Optional[str]
+    num_candidates: int
+    num_results: int
+    reranking_enabled: bool = False
+    reranker_model: Optional[str] = None
+    reranking_enabled: bool = False
+    reranker_model: Optional[str] = None
+    min_rerank_score: Optional[float] = None
+
+def rerank_results(
+    query: str,
+    results: List[RetrievalResult],
+    model_name: str,
+    device: str = "cuda",
+) -> List[RetrievalResult]:
+    if not results:
+        return results
+
+    reranker = CrossEncoder(model_name, device=device)
+
+    pairs = [(query, result.text) for result in results]
+    scores = reranker.predict(pairs)
+
+    reranked = []
+
+    for result, score in zip(results, scores):
+        result.metadata["faiss_score"] = result.score
+        result.metadata["rerank_score"] = float(score)
+        result.score = float(score)
+        reranked.append(result)
+
+    reranked.sort(key=lambda item: item.score, reverse=True)
+
+    return reranked
+
+def dedupe_results(
+    results: List[RetrievalResult],
+    dedupe_by: Optional[str] = "text",
+) -> List[RetrievalResult]:
+    if dedupe_by is None:
+        return results
+
+    seen = set()
+    deduped = []
+
+    for result in results:
+        if dedupe_by == "text":
+            key = result.text.strip()
+
+        elif dedupe_by in ("document", "relative_path"):
+            key = result.citation.get("relative_path")
+
+        elif dedupe_by == "source_path":
+            key = result.citation.get("source_path")
+
+        else:
+            raise ValueError(f"Unknown dedupe_by mode: {dedupe_by}")
+
+        if key is None:
+            key = result.text.strip()
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        deduped.append(result)
+
+    return deduped
+
+
+def retrieve(
+    query: str,
+    vector_db_dir,
+    model_name: str,
+    device: str = "cuda",
+    top_k: int = 5,
+    fetch_k: Optional[int] = None,
+    dedupe_by: Optional[str] = "text",
+    rerank: bool = False,
+    reranker_model: Optional[str] = None,
+    reranker_device: str = "cuda",
+    min_rerank_score=None,
+    return_trace: bool = False,
+):
+    if fetch_k is None:
+        fetch_k = max(50, top_k * 10)
+
+    raw_candidates = search_index(
+        query=query,
+        vector_db_dir=vector_db_dir,
+        model_name=model_name,
+        device=device,
+        top_k=fetch_k,
+        fetch_k=fetch_k,
+        dedupe_by=None,
+    )
+
+    deduped_candidates = dedupe_results(
+        raw_candidates,
+        dedupe_by=dedupe_by,
+    )
+
+    num_after_dedup = len(deduped_candidates)
+
+    if rerank:
+        if reranker_model is None:
+            raise ValueError("reranker_model must be provided when rerank=True")
+
+        reranked_candidates = rerank_results(
+            query=query,
+            results=deduped_candidates,
+            model_name=reranker_model,
+            device=reranker_device,
+        )
+    else:
+        reranked_candidates = deduped_candidates
+
+    if rerank and min_rerank_score is not None:
+        filtered_results = [
+            result for result in reranked_candidates
+            if result.score >= min_rerank_score
+        ]
+
+        if filtered_results:
+            reranked_candidates = filtered_results
+
+    num_after_threshold = len(reranked_candidates)
+
+    final_results = reranked_candidates[:top_k]
+
+    report = RetrievalReport(
+        query=query,
+        requested_top_k=top_k,
+        fetch_k=fetch_k,
+        dedupe_by=dedupe_by,
+        num_candidates=len(raw_candidates),
+        num_results=len(final_results),
+        reranking_enabled=rerank,
+        reranker_model=reranker_model if rerank else None,
+        min_rerank_score=min_rerank_score,
+        )
+
+    if return_trace:
+        trace = RetrievalTrace(
+            raw_candidates=raw_candidates,
+            deduped_candidates=deduped_candidates,
+            reranked_candidates=reranked_candidates,
+            final_results=final_results,
+        )
+        return final_results, report, trace
+
+    return final_results, report
+
+
+def build_context(results: List[RetrievalResult]) -> str:
+    parts = []
+
+    for i, result in enumerate(results, start=1):
+        citation = result.citation
+        parts.append(
+            f"[Source {i}]\n"
+            f"Title: {citation.get('title')}\n"
+            f"Path: {citation.get('relative_path')}\n"
+            f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n"
+            f"Score: {result.score:.4f}\n\n"
+            f"{result.text}"
+        )
+
+    return "\n\n" + ("-" * 70 + "\n\n").join(parts)

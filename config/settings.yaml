@@ -29,6 +29,10 @@ corpus:
     - ".tmp"
     - ".pyc"
     - ".ds_store"
+  exclude_directories:
+    - _conversion_test
+    - cache
+    - .git
   exclude_hidden: true
 
 chunking:
@@ -43,3 +47,9 @@ embedding:
   model: BAAI/bge-small-en-v1.5
   batch_size: 32
   device: cuda
+
+reranking:
+  enabled: true
+  model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  device: cuda
+  min_score: 1.0

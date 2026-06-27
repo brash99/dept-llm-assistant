@@ -562,3 +562,265 @@ Phase II:  AI Stuff
                     storage/embeddings
 
 
+
+===================== Progress as of Friday, June 16, 2026 8:02pm ==========
+Google Drive / Raw Documents
+            │
+            ▼
+     Corpus Classification
+            │
+            ▼
+      Document Inventory
+            │
+            ▼
+        Normalization
+     (KnowledgeObjects)
+            │
+            ▼
+         Chunking
+            │
+            ▼
+        Embeddings
+   (BGE, 384-dimensional)
+            │
+            ▼
+      FAISS Vector Index
+            │
+            ▼
+      Semantic Retrieval
+   (with deduplication)
+            │
+            ▼
+        Local LLM
+     (context injection)
+            │
+            ▼
+      Grounded Answer
+
+
+
+
+======================= Saturday, June 27, 2026 7:17am ======================
+
+Cross-Encoding
+
+Question
+      │
+      ▼
+Embedding
+      │
+      ▼
+FAISS
+      │
+      ▼
+Top 100
+      │
+      ▼
+Deduplicate
+      │
+      ▼
+31 candidates
+      │
+      ▼
+Cross Encoder
+      │
+      ▼
+Best 5
+      │
+      ▼
+LLM
+
+======================================================
+Session 6
+======================================================
+
+Goal
+
+    Connect the normalized knowledge base to a
+    complete Retrieval-Augmented Generation (RAG)
+    pipeline.
+
+Result
+
+    End-to-end question answering is now operational.
+
+Pipeline
+
+                     User Question
+                           │
+                           ▼
+                  Question Embedding
+                           │
+                           ▼
+                  Vector Database Search
+                           │
+                           ▼
+                 Candidate Chunks (fetch_k)
+                           │
+                           ▼
+                      Re-ranking
+                           │
+                           ▼
+                    Top-k Chunks
+                           │
+                           ▼
+                     Prompt Builder
+                           │
+                           ▼
+                    Local Qwen LLM
+                           │
+                           ▼
+                  Answer + Citations
+
+Framework Status
+
+    ✓ Google Drive synchronization
+    ✓ Inventory
+    ✓ KnowledgeObject
+    ✓ Document
+    ✓ PDFParser
+    ✓ TextParser
+    ✓ ParserRegistry
+    ✓ Normalization
+    ✓ Chunking
+    ✓ Embedding generation
+    ✓ Vector database
+    ✓ Semantic retrieval
+    ✓ Re-ranking
+    ✓ Local LLM integration
+    ✓ Streamlit interface
+
+Major Insight
+
+    Documents are not transformed into embeddings.
+
+    Documents remain the canonical representation.
+
+    Instead, the framework progressively derives
+    richer representations:
+
+        Raw File
+            │
+            ▼
+        Document
+            │
+            ▼
+         Chunks
+            │
+            ▼
+       Embedding Vectors
+            │
+            ▼
+      Retrieved Context
+            │
+            ▼
+          LLM Reasoning
+
+Current Architecture
+
+        Google Drive
+             │
+             ▼
+        rclone Mirror
+             │
+             ▼
+      storage/raw_drive
+             │
+             ▼
+      ParserRegistry
+             │
+      ┌──────┴─────────┐
+      ▼                ▼
+ PDFParser       TextParser
+      │                │
+      └──────┬─────────┘
+             ▼
+         Document
+             │
+             ▼
+          Chunker
+             │
+             ▼
+          Chunks
+             │
+             ▼
+        Embedder
+             │
+             ▼
+     Vector Database
+             │
+             ▼
+       Semantic Search
+             │
+             ▼
+         Re-ranker
+             │
+             ▼
+       Context Builder
+             │
+             ▼
+         Local Qwen
+             │
+             ▼
+    Answer + Source Citations
+
+Observations
+
+    • The architecture cleanly separates parsing,
+      normalization, retrieval, and reasoning.
+
+    • The normalized Document JSON serves as the
+      stable interface between ingestion and AI.
+
+    • Retrieval and reasoning are independent.
+      Different embedding models, vector databases,
+      rerankers, or LLMs can be substituted without
+      changing the earlier stages.
+
+Next Steps
+
+    1. Improve source diversity (document-level
+       deduplication).
+
+    2. Add DOCX parser.
+
+    3. Improve citation rendering.
+
+    4. Add corpus statistics and inspection pages
+       to the web interface.
+
+    5. Continue evolving the framework toward a
+       general institutional knowledge engine.
+
+======================================================
+What We Have Learned
+======================================================
+
+Modern RAG systems are not "LLMs with documents."
+
+They are pipelines that progressively transform
+information into richer semantic representations.
+
+Each stage has a single responsibility:
+
+    Parser        extracts information.
+
+    Document      preserves semantics and provenance.
+
+    Chunker       creates reasoning units.
+
+    Embedder      maps semantics into geometry.
+
+    Vector DB     indexes semantic space.
+
+    Retriever     finds nearby concepts.
+
+    Re-ranker     improves relevance.
+
+    LLM           performs reasoning over retrieved
+                  context.
+
+The power of the system comes from the composition
+of these stages, not from any single component.
+
+

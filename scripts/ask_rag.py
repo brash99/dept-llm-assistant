@@ -23,6 +23,8 @@ def main():
     embed_cfg = config.get("embedding", {})
     llm_cfg = config.get("llm", {})
 
+    rerank_cfg = config.get("reranking", {})
+
     answer, results = answer_question(
         query=args.query,
         vector_db_dir=vector_db_dir,
@@ -33,6 +35,9 @@ def main():
         top_k=args.top_k,
         fetch_k=args.fetch_k,
         dedupe_by=None if args.no_dedupe else "relative_path",
+        rerank=rerank_cfg.get("enabled", False),
+        reranker_model=rerank_cfg.get("model"),
+        reranker_device=rerank_cfg.get("device", "cuda"),
     )
 
     print("=" * 70)

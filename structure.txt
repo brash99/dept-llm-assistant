@@ -791,3 +791,36 @@ Next Steps
 
     5. Continue evolving the framework toward a
        general institutional knowledge engine.
+
+======================================================
+What We Have Learned
+======================================================
+
+Modern RAG systems are not "LLMs with documents."
+
+They are pipelines that progressively transform
+information into richer semantic representations.
+
+Each stage has a single responsibility:
+
+    Parser        extracts information.
+
+    Document      preserves semantics and provenance.
+
+    Chunker       creates reasoning units.
+
+    Embedder      maps semantics into geometry.
+
+    Vector DB     indexes semantic space.
+
+    Retriever     finds nearby concepts.
+
+    Re-ranker     improves relevance.
+
+    LLM           performs reasoning over retrieved
+                  context.
+
+The power of the system comes from the composition
+of these stages, not from any single component.
+
+

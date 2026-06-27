@@ -1,7 +1,6 @@
 from openai import OpenAI
 
-from app.vector_index import search_index
-
+from app.retrieval import retrieve, build_context
 
 def build_context(results):
     parts = []
@@ -30,7 +29,7 @@ def answer_question(
     fetch_k=None,
     dedupe_by="text",
 ):
-    results = search_index(
+    results, retrieval_report = retrieve(
         query=query,
         vector_db_dir=vector_db_dir,
         model_name=model_name,

@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-from app.retrieval import retrieve, build_context
+from app.retrieval import retrieve
 
 def build_context(results):
     parts = []

@@ -44,6 +44,40 @@ def rerank_results(
 
     return reranked
 
+def dedupe_results(
+    results: List[RetrievalResult],
+    dedupe_by: Optional[str] = "text",
+) -> List[RetrievalResult]:
+    if dedupe_by is None:
+        return results
+
+    seen = set()
+    deduped = []
+
+    for result in results:
+        if dedupe_by == "text":
+            key = result.text.strip()
+
+        elif dedupe_by in ("document", "relative_path"):
+            key = result.citation.get("relative_path")
+
+        elif dedupe_by == "source_path":
+            key = result.citation.get("source_path")
+
+        else:
+            raise ValueError(f"Unknown dedupe_by mode: {dedupe_by}")
+
+        if key is None:
+            key = result.text.strip()
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        deduped.append(result)
+
+    return deduped
+
 
 def retrieve(
     query: str,
@@ -67,6 +101,11 @@ def retrieve(
         device=device,
         top_k=fetch_k,
         fetch_k=fetch_k,
+        dedupe_by=None,
+    )
+
+    candidate_results = dedupe_results(
+        candidate_results,
         dedupe_by=dedupe_by,
     )
 

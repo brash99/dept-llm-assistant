@@ -48,6 +48,11 @@ if st.button("Ask", type="primary") and query.strip():
     rerank_cfg = config.get("reranking", {})
 
     rerank_enabled = rerank_cfg.get("enabled", False)
+
+    # Keep this optional while calibrating. In settings.yaml, use:
+    # reranking:
+    #   min_score: null
+    # A hard score threshold can otherwise discard every result for some queries.
     min_rerank_score = rerank_cfg.get("min_score", None)
 
     try:
@@ -132,6 +137,7 @@ if st.button("Ask", type="primary") and query.strip():
                 "dedupe_by": retrieval_report.dedupe_by,
                 "raw_candidates": retrieval_report.num_candidates,
                 "after_dedup": retrieval_report.num_after_dedup,
+                "after_rerank": retrieval_report.num_after_rerank,
                 "after_threshold": retrieval_report.num_after_threshold,
                 "final_results": retrieval_report.num_results,
                 "reranking_enabled": retrieval_report.reranking_enabled,
@@ -172,9 +178,10 @@ if st.button("Ask", type="primary") and query.strip():
 
         show_trace_section("1. Raw FAISS Candidates", trace.raw_candidates)
         show_trace_section("2. After Deduplication", trace.deduped_candidates)
-        show_trace_section("3. After Reranking / Threshold", trace.reranked_candidates)
+        show_trace_section("3. After Reranking", trace.reranked_candidates)
+        show_trace_section("4. After Threshold", trace.thresholded_candidates)
         show_trace_section(
-            "4. Final Results Sent to LLM",
+            "5. Final Results Sent to LLM",
             trace.final_results,
             max_items=top_k,
         )

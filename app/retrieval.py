@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List, Optional
+import copy
 
 from sentence_transformers import CrossEncoder
 
@@ -11,6 +12,7 @@ class RetrievalTrace:
     raw_candidates: List[RetrievalResult]
     deduped_candidates: List[RetrievalResult]
     reranked_candidates: List[RetrievalResult]
+    thresholded_candidates: List[RetrievalResult]
     final_results: List[RetrievalResult]
 
 
@@ -23,12 +25,32 @@ class RetrievalReport:
 
     num_candidates: int
     num_after_dedup: int
+    num_after_rerank: int
     num_after_threshold: int
     num_results: int
 
     reranking_enabled: bool = False
     reranker_model: Optional[str] = None
     min_rerank_score: Optional[float] = None
+
+
+def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
+    """
+    Make shallow independent copies of retrieval results for tracing.
+
+    This prevents reranking from mutating the FAISS-stage objects in-place,
+    so Developer Mode can honestly show raw FAISS scores, deduped results,
+    reranked results, and thresholded results as separate stages.
+    """
+    cloned = []
+
+    for result in results:
+        item = copy.copy(result)
+        item.metadata = dict(result.metadata)
+        item.citation = dict(result.citation)
+        cloned.append(item)
+
+    return cloned
 
 
 def rerank_results(
@@ -127,31 +149,32 @@ def retrieve(
         dedupe_by=dedupe_by,
     )
 
-    num_after_dedup = len(deduped_candidates)
-
     if rerank:
         if reranker_model is None:
             raise ValueError("reranker_model must be provided when rerank=True")
 
+        # Clone so reranking does not mutate raw/deduped trace objects.
+        rerank_input = clone_results(deduped_candidates)
+
         reranked_candidates = rerank_results(
             query=query,
-            results=deduped_candidates,
+            results=rerank_input,
             model_name=reranker_model,
             device=reranker_device,
         )
     else:
-        reranked_candidates = deduped_candidates
+        reranked_candidates = clone_results(deduped_candidates)
 
     if rerank and min_rerank_score is not None:
-        reranked_candidates = [
+        thresholded_candidates = [
             result
             for result in reranked_candidates
             if result.score >= min_rerank_score
         ]
+    else:
+        thresholded_candidates = reranked_candidates
 
-    num_after_threshold = len(reranked_candidates)
-
-    final_results = reranked_candidates[:top_k]
+    final_results = thresholded_candidates[:top_k]
 
     report = RetrievalReport(
         query=query,
@@ -159,8 +182,9 @@ def retrieve(
         fetch_k=fetch_k,
         dedupe_by=dedupe_by,
         num_candidates=len(raw_candidates),
-        num_after_dedup=num_after_dedup,
-        num_after_threshold=num_after_threshold,
+        num_after_dedup=len(deduped_candidates),
+        num_after_rerank=len(reranked_candidates),
+        num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
         reranker_model=reranker_model if rerank else None,
@@ -172,6 +196,7 @@ def retrieve(
             raw_candidates=raw_candidates,
             deduped_candidates=deduped_candidates,
             reranked_candidates=reranked_candidates,
+            thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )
         return final_results, report, trace

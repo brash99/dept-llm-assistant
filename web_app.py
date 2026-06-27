@@ -36,6 +36,8 @@ dedupe_by = st.selectbox(
 fetch_k = st.slider("Fetch candidates", 10, 200, 50)
 
 if st.button("Ask", type="primary") and query.strip():
+    clean_query = query.strip()
+
     config = load_config()
 
     project_root = Path(config["project"]["root"])
@@ -46,11 +48,12 @@ if st.button("Ask", type="primary") and query.strip():
     rerank_cfg = config.get("reranking", {})
 
     rerank_enabled = rerank_cfg.get("enabled", False)
+    min_rerank_score = rerank_cfg.get("min_score", None)
 
     try:
         with st.spinner("Searching documents and generating answer..."):
             response = answer_question(
-                query=query,
+                query=clean_query,
                 vector_db_dir=vector_db_dir,
                 model_name=embed_cfg.get("model", "BAAI/bge-small-en-v1.5"),
                 embedding_device=embed_cfg.get("device", "cuda"),
@@ -62,8 +65,8 @@ if st.button("Ask", type="primary") and query.strip():
                 rerank=rerank_enabled,
                 reranker_model=rerank_cfg.get("model"),
                 reranker_device=rerank_cfg.get("device", "cuda"),
+                min_rerank_score=min_rerank_score,
                 return_trace=developer_mode,
-                min_rerank_score=rerank_cfg.get("min_score", None),
             )
 
         if developer_mode:
@@ -80,7 +83,8 @@ if st.button("Ask", type="primary") and query.strip():
 
     st.caption(
         f"Reranking: {'enabled' if rerank_enabled else 'disabled'} | "
-        f"fetch_k={fetch_k} | top_k={top_k} | dedupe_by={dedupe_by}"
+        f"fetch_k={fetch_k} | top_k={top_k} | "
+        f"dedupe_by={dedupe_by} | min_rerank_score={min_rerank_score}"
     )
 
     st.subheader("Answer")
@@ -126,10 +130,10 @@ if st.button("Ask", type="primary") and query.strip():
                 "fetch_k": retrieval_report.fetch_k,
                 "top_k": retrieval_report.requested_top_k,
                 "dedupe_by": retrieval_report.dedupe_by,
-                "raw_candidates": len(trace.raw_candidates),
-                "deduped_candidates": len(trace.deduped_candidates),
-                "reranked_candidates": len(trace.reranked_candidates),
-                "final_results": len(trace.final_results),
+                "raw_candidates": retrieval_report.num_candidates,
+                "after_dedup": retrieval_report.num_after_dedup,
+                "after_threshold": retrieval_report.num_after_threshold,
+                "final_results": retrieval_report.num_results,
                 "reranking_enabled": retrieval_report.reranking_enabled,
                 "reranker_model": retrieval_report.reranker_model,
                 "min_rerank_score": retrieval_report.min_rerank_score,
@@ -168,7 +172,7 @@ if st.button("Ask", type="primary") and query.strip():
 
         show_trace_section("1. Raw FAISS Candidates", trace.raw_candidates)
         show_trace_section("2. After Deduplication", trace.deduped_candidates)
-        show_trace_section("3. After Reranking", trace.reranked_candidates)
+        show_trace_section("3. After Reranking / Threshold", trace.reranked_candidates)
         show_trace_section(
             "4. Final Results Sent to LLM",
             trace.final_results,

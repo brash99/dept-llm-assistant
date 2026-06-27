@@ -2,6 +2,7 @@ from openai import OpenAI
 
 from app.retrieval import retrieve
 
+
 def build_context(results):
     parts = []
 
@@ -34,6 +35,8 @@ def answer_question(
     min_rerank_score=None,
     return_trace=False,
 ):
+    query = query.strip()
+
     retrieved = retrieve(
         query=query,
         vector_db_dir=vector_db_dir,

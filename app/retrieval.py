@@ -5,6 +5,7 @@ from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
 
+
 @dataclass
 class RetrievalTrace:
     raw_candidates: List[RetrievalResult]
@@ -12,19 +13,23 @@ class RetrievalTrace:
     reranked_candidates: List[RetrievalResult]
     final_results: List[RetrievalResult]
 
+
 @dataclass
 class RetrievalReport:
     query: str
     requested_top_k: int
     fetch_k: int
     dedupe_by: Optional[str]
+
     num_candidates: int
+    num_after_dedup: int
+    num_after_threshold: int
     num_results: int
-    reranking_enabled: bool = False
-    reranker_model: Optional[str] = None
+
     reranking_enabled: bool = False
     reranker_model: Optional[str] = None
     min_rerank_score: Optional[float] = None
+
 
 def rerank_results(
     query: str,
@@ -51,6 +56,7 @@ def rerank_results(
     reranked.sort(key=lambda item: item.score, reverse=True)
 
     return reranked
+
 
 def dedupe_results(
     results: List[RetrievalResult],
@@ -98,9 +104,11 @@ def retrieve(
     rerank: bool = False,
     reranker_model: Optional[str] = None,
     reranker_device: str = "cuda",
-    min_rerank_score=None,
+    min_rerank_score: Optional[float] = None,
     return_trace: bool = False,
 ):
+    query = query.strip()
+
     if fetch_k is None:
         fetch_k = max(50, top_k * 10)
 
@@ -135,13 +143,11 @@ def retrieve(
         reranked_candidates = deduped_candidates
 
     if rerank and min_rerank_score is not None:
-        filtered_results = [
-            result for result in reranked_candidates
+        reranked_candidates = [
+            result
+            for result in reranked_candidates
             if result.score >= min_rerank_score
         ]
-
-        if filtered_results:
-            reranked_candidates = filtered_results
 
     num_after_threshold = len(reranked_candidates)
 
@@ -153,11 +159,13 @@ def retrieve(
         fetch_k=fetch_k,
         dedupe_by=dedupe_by,
         num_candidates=len(raw_candidates),
+        num_after_dedup=num_after_dedup,
+        num_after_threshold=num_after_threshold,
         num_results=len(final_results),
         reranking_enabled=rerank,
         reranker_model=reranker_model if rerank else None,
         min_rerank_score=min_rerank_score,
-        )
+    )
 
     if return_trace:
         trace = RetrievalTrace(

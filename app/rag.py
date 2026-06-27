@@ -28,6 +28,9 @@ def answer_question(
     top_k=5,
     fetch_k=None,
     dedupe_by="text",
+    rerank=False,
+    reranker_model=None,
+    reranker_device="cuda",
 ):
     results, retrieval_report = retrieve(
         query=query,
@@ -37,6 +40,9 @@ def answer_question(
         top_k=top_k,
         fetch_k=fetch_k,
         dedupe_by=dedupe_by,
+        rerank=rerank,
+        reranker_model=reranker_model,
+        reranker_device=reranker_device,
     )
 
     context = build_context(results)

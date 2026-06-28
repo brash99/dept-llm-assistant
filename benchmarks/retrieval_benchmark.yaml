@@ -29,3 +29,119 @@ benchmarks:
       - PCSE_Events/Department Meetings/
     acceptable_sources:
       - Copy of Event Planning spreadsheet.xlsx
+
+  - id: faculty_travel_procedures
+    category: policy
+    question: What are the procedures for faculty travel reimbursement?
+    required_sources:
+      - Travel/Faculty Travel Procedures.docx
+    acceptable_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: student_travel_fund
+    category: policy
+    question: What are the procedural guidelines for student travel funding?
+    required_sources:
+      - Travel/Procedural Guidelines Student Travel Fund.docx
+    acceptable_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+      - Travel/Faculty Travel Procedures.docx
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: cs_four_year_plan_2020
+    category: advising
+    question: What does the 2020 Computer Science four-year plan recommend?
+    required_sources:
+      - Advising/Information Sheets/2020/CS/2020_CS_4years.pdf
+    acceptable_sources:
+      - Advising/Information Sheets/2019/CS/2019_CS_4years.pdf
+      - Advising/Information Sheets/2021/CS/2021_CS_4years.pdf
+
+  - id: cs_machine_learning_physics_specific
+    category: advising
+    question: Which physics sequence is recommended for Computer Science students interested in machine learning?
+    required_title_contains:
+      - Four-Year Plan
+    required_text_contains:
+      - machine learning
+      - PHYS 201-202
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: astronomy_milky_way
+    category: course_material
+    question: What does Chapter 14 say about the Milky Way Galaxy?
+    required_text_contains:
+      - Milky Way Galaxy
+      - galactic center
+      - spiral arms
+
+  - id: astronomy_dark_matter
+    category: course_material
+    question: How are galactic rotation curves used as evidence for dark matter?
+    required_text_contains:
+      - rotation curves
+      - dark matter
+      - Milky Way
+
+  - id: astronomy_rr_lyrae
+    category: course_material
+    question: What are RR Lyrae variables used for in astronomy?
+    required_text_contains:
+      - RR Lyrae
+      - globular clusters
+
+  - id: serc_ribbon_cutting
+    category: operations
+    question: What does the event planning spreadsheet say about the SERC Ribbon Cutting?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - SERC Ribbon Cutting
+
+  - id: mentoring_workshop
+    category: operations
+    question: What does the event planning spreadsheet say about the Mentoring Workshop?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Mentoring Workshop
+
+  - id: aviation_day
+    category: operations
+    question: What does the event planning spreadsheet say about Aviation Day?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Aviation Day
+
+  - id: abet_criterion_8
+    category: assessment
+    question: What does Criterion 8 say about institutional support?
+    required_title_contains:
+      - Criterion_8_InstSupport
+    required_text_contains:
+      - institutional support
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: faculty_travel_funding_abet
+    category: assessment
+    question: What does the ABET institutional support document say about faculty travel funding?
+    acceptable_sources:
+      - ABET/2018_EE/02_SelfStudy/08_Criterion_8_InstSupport/Criterion_8_InstSupport_Final.docx
+    required_text_contains:
+      - travel funds
+      - tenured or tenure track
+      - research grants
+    bad_source_patterns:
+      - Syllabi/

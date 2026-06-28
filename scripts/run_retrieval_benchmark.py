@@ -1,8 +1,10 @@
 from pathlib import Path
 from datetime import datetime
-import json
-import yaml
+from collections import defaultdict
 import argparse
+import json
+
+import yaml
 
 from app.config import load_config
 from app.retrieval import retrieve
@@ -67,17 +69,14 @@ def evaluate_case(case, final_results, trace):
         "raw_rank": find_required_rank(case, trace.raw_candidates),
         "deduped_rank": find_required_rank(case, trace.deduped_candidates),
         "reranked_rank": find_required_rank(case, trace.reranked_candidates),
-        "threshold_rank": find_required_rank(
-            case,
-            trace.thresholded_candidates,
-        ),
+        "threshold_rank": find_required_rank(case, trace.thresholded_candidates),
         "final_rank": find_required_rank(case, final_results),
     }
 
     acceptable_hits = []
     bad_hits = []
 
-    for i, result in enumerate(final_results[:5], start=1):
+    for result in final_results[:5]:
         path = result.citation.get("relative_path", "") or ""
 
         if path in acceptable_sources:
@@ -117,18 +116,53 @@ def serialize_results(results, max_items=None):
     ]
 
 
-def main():
-    
+def summarize_by_category(results_out):
+    category_stats = defaultdict(
+        lambda: {
+            "cases": 0,
+            "top1": 0,
+            "top5": 0,
+            "acceptable": 0,
+            "bad": 0,
+            "total_seconds": 0.0,
+        }
+    )
+
+    for result in results_out:
+        category = result.get("category") or "uncategorized"
+        stats = category_stats[category]
+        evaluation = result["evaluation"]
+        profile = result.get("profile", {})
+
+        stats["cases"] += 1
+
+        if evaluation.get("required_in_top1"):
+            stats["top1"] += 1
+
+        if evaluation.get("required_in_top5"):
+            stats["top5"] += 1
+
+        stats["acceptable"] += evaluation.get("acceptable_count_top5", 0)
+        stats["bad"] += evaluation.get("bad_count_top5", 0)
+        stats["total_seconds"] += profile.get("total_seconds", 0.0)
+
+    return dict(category_stats)
+
+
+def parse_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--benchmark",
         default="retrieval_benchmark.yaml",
-        help="Benchmark YAML file in benchmarks/",
+        help="Benchmark YAML file relative to the benchmarks/ directory.",
     )
 
-    args = parser.parse_args()
+    return parser.parse_args()
 
+
+def main():
+    args = parse_args()
     config = load_config()
 
     project_root = Path(config["project"]["root"])
@@ -141,6 +175,8 @@ def main():
     with open(benchmark_path, "r", encoding="utf-8") as f:
         benchmark = yaml.safe_load(f)
 
+    benchmark_cases = benchmark["benchmarks"]
+
     embed_cfg = config.get("embedding", {})
     rerank_cfg = config.get("reranking", {})
 
@@ -150,7 +186,7 @@ def main():
     print("Retrieval Benchmark")
     print("=" * 70)
 
-    for case in benchmark["benchmarks"]:
+    for case in benchmark_cases:
         query = case["question"]
 
         final_results, report, trace, profile = retrieve(
@@ -203,8 +239,11 @@ def main():
             f"bad@5={evaluation['bad_count_top5']}"
         )
 
+    total_seconds = sum(r["profile"]["total_seconds"] for r in results_out)
+
     summary = {
         "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "benchmark": str(benchmark_path),
         "num_cases": len(results_out),
         "required_top1_hits": sum(
             1 for r in results_out if r["evaluation"]["required_in_top1"]
@@ -218,26 +257,23 @@ def main():
         "bad_count_top5": sum(
             r["evaluation"]["bad_count_top5"] for r in results_out
         ),
-        "total_seconds": sum(r["profile"]["total_seconds"] for r in results_out),
-        "average_seconds": (
-            sum(r["profile"]["total_seconds"] for r in results_out)
-            / len(results_out)
-            if results_out else 0.0
-        ),
+        "total_seconds": total_seconds,
+        "average_seconds": total_seconds / len(results_out) if results_out else 0.0,
         "average_search_seconds": (
-            sum(r["profile"]["search_seconds"] for r in results_out)
-            / len(results_out)
+            sum(r["profile"]["search_seconds"] for r in results_out) / len(results_out)
             if results_out else 0.0
         ),
         "average_rerank_seconds": (
-            sum(r["profile"]["rerank_seconds"] for r in results_out)
-            / len(results_out)
+            sum(r["profile"]["rerank_seconds"] for r in results_out) / len(results_out)
             if results_out else 0.0
         ),
     }
 
+    category_summary = summarize_by_category(results_out)
+
     output = {
         "summary": summary,
+        "category_summary": category_summary,
         "results": results_out,
     }
 
@@ -246,52 +282,29 @@ def main():
     with open(outpath, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)
 
-    
+    print()
+    print("-" * 70)
+    print("Category Summary")
+    print("-" * 70)
 
-# --------------------------------------------------------------
-# Category summary
-# --------------------------------------------------------------
-from collections import defaultdict
+    for category in sorted(category_summary):
+        stats = category_summary[category]
+        average_time = (
+            stats["total_seconds"] / stats["cases"]
+            if stats["cases"] else 0.0
+        )
 
-category_stats = defaultdict(lambda: {
-    "cases": 0,
-    "top1": 0,
-    "top5": 0,
-    "acceptable": 0,
-    "bad": 0,
-})
+        print(
+            f"{category:16} "
+            f"cases={stats['cases']:2d} "
+            f"top1={stats['top1']:2d} "
+            f"top5={stats['top5']:2d} "
+            f"acceptable={stats['acceptable']:2d} "
+            f"bad@5={stats['bad']:2d} "
+            f"avg_time={average_time:.2f}s"
+        )
 
-for case, result in zip(benchmarks, results_out):
-    cat = case.get("category", "uncategorized")
-    stats = category_stats[cat]
-    stats["cases"] += 1
-
-    evaluation = result["evaluation"]
-    rank = evaluation.get("required_rank")
-    if rank == 1:
-        stats["top1"] += 1
-    if rank is not None and rank <= 5:
-        stats["top5"] += 1
-
-    stats["acceptable"] += evaluation.get("acceptable_count_top5", 0)
-    stats["bad"] += evaluation.get("bad_count_top5", 0)
-
-print()
-print("-" * 70)
-print("Category Summary")
-print("-" * 70)
-for cat in sorted(category_stats):
-    s = category_stats[cat]
-    print(
-        f"{cat:16} "
-        f"cases={s['cases']:2d} "
-        f"top1={s['top1']:2d} "
-        f"top5={s['top5']:2d} "
-        f"acceptable={s['acceptable']:2d} "
-        f"bad@5={s['bad']:2d}"
-    )
-
-print()
+    print()
     print("-" * 70)
     print("Summary")
     print("-" * 70)

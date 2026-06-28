@@ -1,0 +1,264 @@
+benchmarks:
+  - id: travel_policy
+    category: policy
+    question: What is the CNU travel reimbursement policy?
+    required_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+    acceptable_sources:
+      - Travel/Faculty Travel Procedures.docx
+      - Travel/Procedural Guidelines Student Travel Fund.docx
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: cs_machine_learning_physics
+    category: advising
+    question: What do the Computer Science four-year plans recommend for students interested in machine learning?
+    required_title_contains:
+      - Four-Year Plan
+    required_text_contains:
+      - machine learning
+      - PHYS 201-202
+
+  - id: serc_march_events
+    category: operations
+    question: Event Planning spreadsheet March events 
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    bad_source_patterns:
+      - Syllabi/
+      - PCSE_Events/Department Meetings/
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+
+  - id: faculty_travel_procedures
+    category: policy
+    question: What are the procedures for faculty travel reimbursement?
+    required_sources:
+      - Travel/Faculty Travel Procedures.docx
+    acceptable_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: student_travel_fund
+    category: policy
+    question: What are the procedural guidelines for student travel funding?
+    required_sources:
+      - Travel/Procedural Guidelines Student Travel Fund.docx
+    acceptable_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+      - Travel/Faculty Travel Procedures.docx
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: cs_four_year_plan_2020
+    category: advising
+    question: What does the 2020 Computer Science four-year plan recommend?
+    required_sources:
+      - Advising/Information Sheets/2020/CS/2020_CS_4years.pdf
+    acceptable_sources:
+      - Advising/Information Sheets/2019/CS/2019_CS_4years.pdf
+      - Advising/Information Sheets/2021/CS/2021_CS_4years.pdf
+
+  - id: cs_machine_learning_physics_specific
+    category: advising
+    question: Which physics sequence is recommended for Computer Science students interested in machine learning?
+    required_title_contains:
+      - Four-Year Plan
+    required_text_contains:
+      - machine learning
+      - PHYS 201-202
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: astronomy_milky_way
+    category: course_material
+    question: What does Chapter 14 say about the Milky Way Galaxy?
+    required_text_contains:
+      - Milky Way Galaxy
+      - galactic center
+      - spiral arms
+
+  - id: astronomy_dark_matter
+    category: course_material
+    question: How are galactic rotation curves used as evidence for dark matter?
+    required_text_contains:
+      - rotation curves
+      - dark matter
+      - Milky Way
+
+  - id: astronomy_rr_lyrae
+    category: course_material
+    question: What are RR Lyrae variables used for in astronomy?
+    required_text_contains:
+      - RR Lyrae
+      - globular clusters
+
+  - id: serc_ribbon_cutting
+    category: operations
+    question: What does the event planning spreadsheet say about the SERC Ribbon Cutting?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - SERC Ribbon Cutting
+
+  - id: mentoring_workshop
+    category: operations
+    question: What does the event planning spreadsheet say about the Mentoring Workshop?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Mentoring Workshop
+
+  - id: aviation_day
+    category: operations
+    question: What does the event planning spreadsheet say about Aviation Day?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Aviation Day
+
+  - id: abet_criterion_8
+    category: assessment
+    question: What does Criterion 8 say about institutional support?
+    required_title_contains:
+      - Criterion_8_InstSupport
+    required_text_contains:
+      - institutional support
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: faculty_travel_funding_abet
+    category: assessment
+    question: What does the ABET institutional support document say about faculty travel funding?
+    acceptable_sources:
+      - ABET/2018_EE/02_SelfStudy/08_Criterion_8_InstSupport/Criterion_8_InstSupport_Final.docx
+    required_text_contains:
+      - travel funds
+      - tenured or tenure track
+      - research grants
+    bad_source_patterns:
+      - Syllabi/
+
+  - id: cs_four_year_plan_2019
+    category: advising
+    question: What does the 2019 Computer Science four-year plan recommend?
+    required_sources:
+      - Advising/Information Sheets/2019/CS/2019_CS_4years.pdf
+    acceptable_sources:
+      - Advising/Information Sheets/2020/CS/2020_CS_4years.pdf
+
+  - id: cs_four_year_plan_2021
+    category: advising
+    question: What does the 2021 Computer Science four-year plan recommend?
+    required_sources:
+      - Advising/Information Sheets/2021/CS/2021_CS_4years.pdf
+    acceptable_sources:
+      - Advising/Information Sheets/2020/CS/2020_CS_4years.pdf
+
+  - id: astronomy_globular_clusters
+    category: course_material
+    question: What are globular clusters?
+    required_text_contains:
+      - globular clusters
+
+  - id: astronomy_spiral_arms
+    category: course_material
+    question: What are spiral arms?
+    required_text_contains:
+      - spiral arms
+
+  - id: astronomy_galactic_center
+    category: course_material
+    question: What is at the center of the Milky Way?
+    required_text_contains:
+      - galactic center
+
+  - id: astronomy_distance_ladder
+    category: course_material
+    question: How are Cepheids and RR Lyrae used to measure astronomical distances?
+    required_text_contains:
+      - Cepheid
+      - RR Lyrae
+
+  - id: mentoring_networking
+    category: operations
+    question: What does the event planning spreadsheet say about the Mentoring Networking event?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Mentoring Networking
+
+  - id: uncrewed_expo
+    category: operations
+    question: What does the event planning spreadsheet say about Uncrewed EXPO?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Uncrewed EXPO
+
+  - id: aviation_science_center
+    category: operations
+    question: What does the event planning spreadsheet say about the Virginia Air and Space Science Center Robotics STEM Saturday event?
+    required_sources:
+      - Event Planning spreadsheet.xlsx
+    acceptable_sources:
+      - Copy of Event Planning spreadsheet.xlsx
+    required_text_contains:
+      - Robotics STEM Saturday
+
+  - id: abet_sabbatical
+    category: assessment
+    question: What does the ABET institutional support document say about sabbatical leave?
+    required_text_contains:
+      - sabbatical
+      - research
+
+  - id: abet_professional_development
+    category: assessment
+    question: What professional development support does Criterion 8 describe?
+    required_title_contains:
+      - Criterion_8_InstSupport
+    required_text_contains:
+      - professional
+
+  - id: astronomy_dark_matter_rotation
+    category: course_material
+    question: Why do rotation curves imply dark matter?
+    required_text_contains:
+      - rotation curves
+      - dark matter
+
+  - id: travel_per_diem
+    category: policy
+    question: How are per diem reimbursements calculated for travel?
+    acceptable_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+      - Travel/Faculty Travel Procedures.docx
+    required_text_contains:
+      - per diem
+
+  - id: travel_vehicle
+    category: policy
+    question: How are personal vehicles reimbursed for university travel?
+    acceptable_sources:
+      - Travel/Faculty Travel Procedures.docx
+    required_text_contains:
+      - reimbursed
+      - mile
+
+  - id: astronomy_variable_stars
+    category: course_material
+    question: What are variable stars?
+    required_text_contains:
+      - variable

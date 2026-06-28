@@ -75,9 +75,9 @@ if st.button("Ask", type="primary") and query.strip():
             )
 
         if developer_mode:
-            answer, results, retrieval_report, trace = response
+            answer, results, retrieval_report, trace, profile = response
         else:
-            answer, results = response
+            answer, results, profile = response
             retrieval_report = None
             trace = None
 
@@ -127,6 +127,18 @@ if st.button("Ask", type="primary") and query.strip():
                     st.json(result.metadata)
 
     if developer_mode and trace is not None:
+        st.subheader("Retrieval Timing")
+
+        st.write(
+            {
+                "total_seconds": round(profile.total_seconds, 3),
+                "search_seconds": round(profile.search_seconds, 3),
+                "dedupe_seconds": round(profile.dedupe_seconds, 3),
+                "rerank_seconds": round(profile.rerank_seconds, 3),
+                "threshold_seconds": round(profile.threshold_seconds, 3),
+            }
+        )
+
         st.subheader("Retrieval Diagnostics")
 
         st.write(

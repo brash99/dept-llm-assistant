@@ -68,7 +68,7 @@ def evaluate_case(case, final_results, trace):
         "reranked_rank": find_required_rank(case, trace.reranked_candidates),
         "threshold_rank": find_required_rank(
             case,
-            getattr(trace, "thresholded_candidates", trace.reranked_candidates),
+            trace.thresholded_candidates,
         ),
         "final_rank": find_required_rank(case, final_results),
     }
@@ -141,7 +141,7 @@ def main():
     for case in benchmark["benchmarks"]:
         query = case["question"]
 
-        final_results, report, trace = retrieve(
+        final_results, report, trace, profile = retrieve(
             query=query,
             vector_db_dir=vector_db_dir,
             model_name=embed_cfg.get("model", "BAAI/bge-small-en-v1.5"),
@@ -163,12 +163,13 @@ def main():
             "category": case.get("category"),
             "question": query,
             "evaluation": evaluation,
+            "profile": profile.__dict__,
             "final_sources": serialize_results(final_results),
             "raw_top10": serialize_results(trace.raw_candidates, max_items=10),
             "deduped_top10": serialize_results(trace.deduped_candidates, max_items=10),
             "reranked_top10": serialize_results(trace.reranked_candidates, max_items=10),
             "threshold_top10": serialize_results(
-                getattr(trace, "thresholded_candidates", trace.reranked_candidates),
+                trace.thresholded_candidates,
                 max_items=10,
             ),
             "report": report.__dict__,
@@ -185,6 +186,7 @@ def main():
             f"raw={ranks['raw_rank']} "
             f"dedup={ranks['deduped_rank']} "
             f"rerank={ranks['reranked_rank']} "
+            f"time={profile.total_seconds:.2f}s "
             f"acceptable@5={evaluation['acceptable_count_top5']} "
             f"bad@5={evaluation['bad_count_top5']}"
         )
@@ -203,6 +205,22 @@ def main():
         ),
         "bad_count_top5": sum(
             r["evaluation"]["bad_count_top5"] for r in results_out
+        ),
+        "total_seconds": sum(r["profile"]["total_seconds"] for r in results_out),
+        "average_seconds": (
+            sum(r["profile"]["total_seconds"] for r in results_out)
+            / len(results_out)
+            if results_out else 0.0
+        ),
+        "average_search_seconds": (
+            sum(r["profile"]["search_seconds"] for r in results_out)
+            / len(results_out)
+            if results_out else 0.0
+        ),
+        "average_rerank_seconds": (
+            sum(r["profile"]["rerank_seconds"] for r in results_out)
+            / len(results_out)
+            if results_out else 0.0
         ),
     }
 
@@ -225,6 +243,10 @@ def main():
     print(f"Required Top-5 hits : {summary['required_top5_hits']}")
     print(f"Acceptable@5 total  : {summary['acceptable_count_top5']}")
     print(f"Bad@5 total         : {summary['bad_count_top5']}")
+    print(f"Total time          : {summary['total_seconds']:.2f}s")
+    print(f"Average time/case   : {summary['average_seconds']:.2f}s")
+    print(f"Average search time : {summary['average_search_seconds']:.2f}s")
+    print(f"Average rerank time : {summary['average_rerank_seconds']:.2f}s")
     print(f"Log file            : {outpath}")
 
 

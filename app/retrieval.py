@@ -7,6 +7,7 @@ from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
 
+
 @dataclass
 class RetrievalProfile:
     total_seconds: float
@@ -14,6 +15,7 @@ class RetrievalProfile:
     dedupe_seconds: float
     rerank_seconds: float
     threshold_seconds: float
+
 
 @dataclass
 class RetrievalTrace:
@@ -142,6 +144,9 @@ def retrieve(
     if fetch_k is None:
         fetch_k = max(50, top_k * 10)
 
+    t_total_start = time.perf_counter()
+
+    t0 = time.perf_counter()
     raw_candidates = search_index(
         query=query,
         vector_db_dir=vector_db_dir,
@@ -151,11 +156,13 @@ def retrieve(
         fetch_k=fetch_k,
         dedupe_by=None,
     )
+    t1 = time.perf_counter()
 
     deduped_candidates = dedupe_results(
         raw_candidates,
         dedupe_by=dedupe_by,
     )
+    t2 = time.perf_counter()
 
     if rerank:
         if reranker_model is None:
@@ -172,6 +179,7 @@ def retrieve(
         )
     else:
         reranked_candidates = clone_results(deduped_candidates)
+    t3 = time.perf_counter()
 
     if rerank and min_rerank_score is not None:
         thresholded_candidates = [
@@ -181,8 +189,19 @@ def retrieve(
         ]
     else:
         thresholded_candidates = reranked_candidates
+    t4 = time.perf_counter()
 
     final_results = thresholded_candidates[:top_k]
+
+    t_total_end = time.perf_counter()
+
+    profile = RetrievalProfile(
+        total_seconds=t_total_end - t_total_start,
+        search_seconds=t1 - t0,
+        dedupe_seconds=t2 - t1,
+        rerank_seconds=t3 - t2,
+        threshold_seconds=t4 - t3,
+    )
 
     report = RetrievalReport(
         query=query,
@@ -207,9 +226,9 @@ def retrieve(
             thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )
-        return final_results, report, trace
+        return final_results, report, trace, profile
 
-    return final_results, report
+    return final_results, report, profile
 
 
 def build_context(results: List[RetrievalResult]) -> str:

@@ -53,9 +53,9 @@ def answer_question(
     )
 
     if return_trace:
-        results, retrieval_report, trace = retrieved
+        results, retrieval_report, trace, profile = retrieved
     else:
-        results, retrieval_report = retrieved
+        results, retrieval_report, profile = retrieved
         trace = None
 
     context = build_context(results)
@@ -94,6 +94,6 @@ Answer:
     answer = response.choices[0].message.content
 
     if return_trace:
-        return answer, results, retrieval_report, trace
+        return answer, results, retrieval_report, trace, profile
 
-    return answer, results
+    return answer, results, profile

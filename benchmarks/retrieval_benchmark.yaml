@@ -1,0 +1,31 @@
+benchmarks:
+  - id: travel_policy
+    question: What is the CNU travel reimbursement policy?
+    expected_sources:
+      - Travel/PCSE TRAVEL GUIDE.docx
+    avoid_sources:
+      - Syllabi/Fall 2013/cpsc410 fall 2013 zhang.doc
+      - Syllabi/Fall 2014/CPSC410_Fall14 Zhang.doc
+    notes: Should retrieve the travel guide, not syllabi mentioning financial aid reimbursement.
+
+  - id: cs_machine_learning_physics
+    question: What do the Computer Science four-year plans recommend for students interested in machine learning?
+    expected_title_contains:
+      - Four-Year Plan
+    expected_text_contains:
+      - machine learning
+      - PHYS 201-202
+    notes: Should retrieve CS four-year plan documents.
+
+  - id: serc_events_march
+    question: What outreach events are planned for March?
+    expected_sources:
+      - Event Planning spreadsheet.xlsx
+    notes: Should retrieve the event planning spreadsheet.
+
+  - id: astronomy_rr_lyrae
+    question: What does Chapter 14 say about RR Lyrae variables?
+    expected_text_contains:
+      - RR Lyrae
+      - globular clusters
+    notes: Should retrieve the converted legacy astronomy chapter document.

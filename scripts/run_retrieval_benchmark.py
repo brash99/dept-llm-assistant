@@ -2,6 +2,7 @@ from pathlib import Path
 from datetime import datetime
 import json
 import yaml
+import argparse
 
 from app.config import load_config
 from app.retrieval import retrieve
@@ -117,6 +118,17 @@ def serialize_results(results, max_items=None):
 
 
 def main():
+    
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--benchmark",
+        default="retrieval_benchmark.yaml",
+        help="Benchmark YAML file in benchmarks/",
+    )
+
+    args = parser.parse_args()
+
     config = load_config()
 
     project_root = Path(config["project"]["root"])
@@ -124,7 +136,7 @@ def main():
     logs_dir = project_root / config["storage"]["logs"]
     logs_dir.mkdir(parents=True, exist_ok=True)
 
-    benchmark_path = project_root / "benchmarks" / "retrieval_benchmark.yaml"
+    benchmark_path = project_root / "benchmarks" / args.benchmark
 
     with open(benchmark_path, "r", encoding="utf-8") as f:
         benchmark = yaml.safe_load(f)

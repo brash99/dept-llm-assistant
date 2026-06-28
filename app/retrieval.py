@@ -1,11 +1,19 @@
 from dataclasses import dataclass
 from typing import List, Optional
 import copy
+import time
 
 from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
 
+@dataclass
+class RetrievalProfile:
+    total_seconds: float
+    search_seconds: float
+    dedupe_seconds: float
+    rerank_seconds: float
+    threshold_seconds: float
 
 @dataclass
 class RetrievalTrace:

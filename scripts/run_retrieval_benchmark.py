@@ -11,46 +11,109 @@ def contains_any(text, needles):
     if not needles:
         return False
 
-    text = text.lower()
+    text = (text or "").lower()
     return any(needle.lower() in text for needle in needles)
 
 
-def evaluate_case(case, results):
-    expected_sources = case.get("expected_sources", [])
-    expected_title_contains = case.get("expected_title_contains", [])
-    expected_text_contains = case.get("expected_text_contains", [])
-    avoid_sources = case.get("avoid_sources", [])
+def matches_pattern(path, patterns):
+    if not patterns:
+        return False
 
-    expected_rank = None
-    avoid_hits = []
+    path = path or ""
+    return any(pattern in path for pattern in patterns)
 
+
+def is_required_hit(case, result):
+    citation = result.citation
+    path = citation.get("relative_path", "") or ""
+    title = citation.get("title", "") or ""
+    text = result.text or ""
+
+    required_sources = case.get("required_sources", [])
+    required_title_contains = case.get("required_title_contains", [])
+    required_text_contains = case.get("required_text_contains", [])
+
+    path_hit = path in required_sources
+
+    title_hit = (
+        contains_any(title, required_title_contains)
+        if required_title_contains
+        else False
+    )
+
+    text_hit = (
+        all(needle.lower() in text.lower() for needle in required_text_contains)
+        if required_text_contains
+        else False
+    )
+
+    return path_hit or title_hit or text_hit
+
+
+def find_required_rank(case, results):
     for i, result in enumerate(results, start=1):
-        citation = result.citation
-        path = citation.get("relative_path", "")
-        title = citation.get("title", "")
-        text = result.text or ""
+        if is_required_hit(case, result):
+            return i
 
-        source_hit = path in expected_sources
-        title_hit = contains_any(title, expected_title_contains)
-        text_hit = all(
-            needle.lower() in text.lower()
-            for needle in expected_text_contains
-        ) if expected_text_contains else False
+    return None
 
-        if source_hit or title_hit or text_hit:
-            if expected_rank is None:
-                expected_rank = i
 
-        if path in avoid_sources:
-            avoid_hits.append(path)
+def evaluate_case(case, final_results, trace):
+    acceptable_sources = case.get("acceptable_sources", [])
+    bad_source_patterns = case.get("bad_source_patterns", [])
+
+    stage_ranks = {
+        "raw_rank": find_required_rank(case, trace.raw_candidates),
+        "deduped_rank": find_required_rank(case, trace.deduped_candidates),
+        "reranked_rank": find_required_rank(case, trace.reranked_candidates),
+        "threshold_rank": find_required_rank(
+            case,
+            getattr(trace, "thresholded_candidates", trace.reranked_candidates),
+        ),
+        "final_rank": find_required_rank(case, final_results),
+    }
+
+    acceptable_hits = []
+    bad_hits = []
+
+    for i, result in enumerate(final_results[:5], start=1):
+        path = result.citation.get("relative_path", "") or ""
+
+        if path in acceptable_sources:
+            acceptable_hits.append(path)
+
+        if matches_pattern(path, bad_source_patterns):
+            bad_hits.append(path)
+
+    final_rank = stage_ranks["final_rank"]
 
     return {
-        "top1_hit": expected_rank == 1,
-        "top5_hit": expected_rank is not None and expected_rank <= 5,
-        "expected_rank": expected_rank,
-        "avoid_hits": avoid_hits,
-        "num_avoid_hits": len(avoid_hits),
+        "required_in_top1": final_rank == 1,
+        "required_in_top5": final_rank is not None and final_rank <= 5,
+        "required_rank": final_rank,
+        "stage_ranks": stage_ranks,
+        "acceptable_count_top5": len(acceptable_hits),
+        "acceptable_hits": acceptable_hits,
+        "bad_count_top5": len(bad_hits),
+        "bad_hits": bad_hits,
     }
+
+
+def serialize_results(results, max_items=None):
+    if max_items is not None:
+        results = results[:max_items]
+
+    return [
+        {
+            "rank": i,
+            "title": r.citation.get("title"),
+            "relative_path": r.citation.get("relative_path"),
+            "score": r.score,
+            "faiss_score": r.metadata.get("faiss_score"),
+            "rerank_score": r.metadata.get("rerank_score"),
+        }
+        for i, r in enumerate(results, start=1)
+    ]
 
 
 def main():
@@ -93,39 +156,54 @@ def main():
             return_trace=True,
         )
 
-        evaluation = evaluate_case(case, final_results)
+        evaluation = evaluate_case(case, final_results, trace)
 
         row = {
             "id": case["id"],
+            "category": case.get("category"),
             "question": query,
             "evaluation": evaluation,
-            "final_sources": [
-                {
-                    "rank": i,
-                    "title": r.citation.get("title"),
-                    "relative_path": r.citation.get("relative_path"),
-                    "score": r.score,
-                    "faiss_score": r.metadata.get("faiss_score"),
-                    "rerank_score": r.metadata.get("rerank_score"),
-                }
-                for i, r in enumerate(final_results, start=1)
-            ],
+            "final_sources": serialize_results(final_results),
+            "raw_top10": serialize_results(trace.raw_candidates, max_items=10),
+            "deduped_top10": serialize_results(trace.deduped_candidates, max_items=10),
+            "reranked_top10": serialize_results(trace.reranked_candidates, max_items=10),
+            "threshold_top10": serialize_results(
+                getattr(trace, "thresholded_candidates", trace.reranked_candidates),
+                max_items=10,
+            ),
             "report": report.__dict__,
         }
 
         results_out.append(row)
 
-        status = "PASS" if evaluation["top5_hit"] else "FAIL"
-        rank = evaluation["expected_rank"]
+        status = "PASS" if evaluation["required_in_top5"] else "FAIL"
+        ranks = evaluation["stage_ranks"]
 
-        print(f"{status:4} {case['id']:30} rank={rank}")
+        print(
+            f"{status:4} {case['id']:30} "
+            f"final={ranks['final_rank']} "
+            f"raw={ranks['raw_rank']} "
+            f"dedup={ranks['deduped_rank']} "
+            f"rerank={ranks['reranked_rank']} "
+            f"acceptable@5={evaluation['acceptable_count_top5']} "
+            f"bad@5={evaluation['bad_count_top5']}"
+        )
 
     summary = {
         "timestamp": datetime.now().isoformat(timespec="seconds"),
         "num_cases": len(results_out),
-        "top1_hits": sum(1 for r in results_out if r["evaluation"]["top1_hit"]),
-        "top5_hits": sum(1 for r in results_out if r["evaluation"]["top5_hit"]),
-        "avoid_hits": sum(r["evaluation"]["num_avoid_hits"] for r in results_out),
+        "required_top1_hits": sum(
+            1 for r in results_out if r["evaluation"]["required_in_top1"]
+        ),
+        "required_top5_hits": sum(
+            1 for r in results_out if r["evaluation"]["required_in_top5"]
+        ),
+        "acceptable_count_top5": sum(
+            r["evaluation"]["acceptable_count_top5"] for r in results_out
+        ),
+        "bad_count_top5": sum(
+            r["evaluation"]["bad_count_top5"] for r in results_out
+        ),
     }
 
     output = {
@@ -142,11 +220,12 @@ def main():
     print("-" * 70)
     print("Summary")
     print("-" * 70)
-    print(f"Cases      : {summary['num_cases']}")
-    print(f"Top-1 hits : {summary['top1_hits']}")
-    print(f"Top-5 hits : {summary['top5_hits']}")
-    print(f"Avoid hits : {summary['avoid_hits']}")
-    print(f"Log file   : {outpath}")
+    print(f"Cases               : {summary['num_cases']}")
+    print(f"Required Top-1 hits : {summary['required_top1_hits']}")
+    print(f"Required Top-5 hits : {summary['required_top5_hits']}")
+    print(f"Acceptable@5 total  : {summary['acceptable_count_top5']}")
+    print(f"Bad@5 total         : {summary['bad_count_top5']}")
+    print(f"Log file            : {outpath}")
 
 
 if __name__ == "__main__":

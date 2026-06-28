@@ -1,305 +1,83 @@
-# Institutional Knowledge Framework
 
-> *A reusable software framework for transforming institutional information into structured knowledge that can be searched, retrieved, and reasoned over by modern AI systems.*
+# Institutional Knowledge Framework (IKF)
 
----
+> A modular framework for representing, retrieving, and reasoning over institutional knowledge.
 
 ## Vision
 
-Large Language Models (LLMs) are powerful reasoning engines, but they are not institutional knowledge systems. Their usefulness depends on the quality, organization, provenance, and retrieval of the information supplied to them.
+The Institutional Knowledge Framework (IKF) is **not** a chatbot project.
 
-The **Institutional Knowledge Framework (IKF)** is a modular architecture for building Retrieval-Augmented Generation (RAG) systems over institutional data.
+It is a reusable software architecture for transforming heterogeneous institutional
+information into structured knowledge that can be searched, retrieved, evaluated,
+and reasoned over by modern AI systems.
 
-Rather than viewing an LLM as the application itself, IKF treats it as the **final reasoning component** of a much larger information-processing pipeline.
+The Department Knowledge Assistant is the first reference implementation and serves
+as the experimental platform for developing the framework.
 
-The first reference implementation is a Department Knowledge Assistant built over a shared Google Drive document repository. The long-term vision is much broader: a reusable framework capable of supporting strategic planning, enrollment forecasting, institutional analytics, research knowledge management, and administrative decision support.
+## Current Status
 
----
+The framework currently includes:
 
-# Design Philosophy
-
-The framework is built around several guiding principles.
-
-## Documents are Canonical
-
-Institutional documents remain the authoritative representation of knowledge.
-
-The framework **does not transform documents into embeddings**. Instead, progressively richer semantic representations are derived from a stable canonical document.
-
-```text
-Raw Document
-      │
-      ▼
-   Document
-      │
-      ▼
-    Chunk
-      │
-      ▼
-  Embedding
-```
-
-Documents preserve meaning and provenance.
-
-Embeddings provide a mathematical representation of that meaning for semantic retrieval.
-
----
-
-## Every Stage Has One Responsibility
-
-Each stage performs a single transformation.
-
-| Stage | Responsibility |
-|--------|----------------|
-| Acquisition | Synchronize source data |
-| Inventory | Characterize the corpus |
-| Parsing | Extract text and metadata |
-| Normalization | Produce canonical Documents |
-| Chunking | Create semantic reasoning units |
-| Embedding | Map semantics into vector space |
-| Retrieval | Locate relevant knowledge |
-| Re-ranking | Improve retrieval quality |
-| Reasoning | Generate grounded answers |
-
-Because each stage has a well-defined responsibility, components can evolve independently.
-
----
-
-## Provenance First
-
-Every object produced by the framework records:
-
-- source location
-- parser
-- timestamps
-- metadata
-- content hashes
-
-Every generated answer can therefore be traced back to the original institutional document.
-
----
-
-## Framework Before Application
-
-Applications consume the framework.
-
-The framework itself should remain independent of any particular institution, deployment, or user interface.
-
----
-
-# Architecture
-
-```text
-                     User
-                       │
-                       ▼
-                Streamlit UI
-                       │
-                       ▼
-              Application Layer
-                       │
-                       ▼
-                 Retrieval Engine
-                       │
-         ┌─────────────┴─────────────┐
-         ▼                           ▼
-   Vector Database              Local LLM
-         ▲                           ▲
-         │                           │
-     Embeddings                 Prompt Builder
-         ▲
-         │
-      Chunks
-         ▲
-         │
-    Documents
-         ▲
-         │
-      Parsers
-         ▲
-         │
- Google Drive Mirror
-```
-
----
-
-# Processing Pipeline
-
-```text
-Google Shared Drive
-        │
-        ▼
-   rclone Mirror
-        │
-        ▼
-storage/raw_drive
-        │
-        ▼
- Corpus Inventory
-        │
-        ▼
- Parser Registry
-        │
-        ▼
-Document Normalization
-        │
-        ▼
- Chunk Generation
-        │
-        ▼
-Embedding Generation
-        │
-        ▼
- FAISS Vector Index
-        │
-        ▼
- Semantic Retrieval
-        │
-        ▼
-Cross-Encoder Re-ranking
-        │
-        ▼
- Prompt Construction
-        │
-        ▼
- Local Qwen LLM
-        │
-        ▼
- Grounded Answer
-```
-
-Every intermediate representation is preserved and can be inspected independently.
-
----
-
-# Core Abstractions
-
-The framework is built around a small number of stable abstractions.
-
-| Abstraction | Purpose |
-|-------------|---------|
-| `KnowledgeObject` | Base semantic object |
-| `Document` | Canonical normalized document |
-| `Chunk` | Unit of semantic retrieval |
-| `Parser` | Converts raw files into Documents |
-| `ParserRegistry` | Discovers parser implementations |
-| `Embedder` | Produces semantic vectors |
-| `Retriever` | Performs semantic search |
-| `Reasoner` | Uses retrieved context to answer questions |
-
-Implementations may change over time; these abstractions should remain stable.
-
----
-
-# Current Capabilities
-
-The current implementation includes:
-
-- Google Drive synchronization using `rclone`
-- Corpus inventory and statistics
-- Configurable corpus policy
-- PDF parsing
-- Plain-text parsing
-- Canonical document normalization
+- Google Drive synchronization (`rclone`)
+- Corpus inventory and corpus policy
+- Canonical `Document` normalization
+- Configurable parser registry
 - Chunk generation
 - SentenceTransformer embeddings
-- FAISS vector indexing
-- Semantic retrieval
-- Cross-encoder re-ranking
-- Local inference using vLLM
-- Qwen reasoning model
-- Streamlit web interface
+- FAISS vector database
+- Cross-encoder reranking
+- Local inference using vLLM + Qwen
+- Streamlit interface
+- Rich retrieval diagnostics
+- Configurable retrieval benchmark framework
+- Category-level benchmark reporting
+- Retrieval timing instrumentation
 
-The framework is capable of answering natural-language questions over a departmental corpus while providing citations to the supporting source documents.
+## Architecture
 
----
+Google Drive
+→ Normalized Documents
+→ Chunks
+→ Embeddings
+→ FAISS Retrieval
+→ Cross-Encoder Reranker
+→ Prompt Builder
+→ Local LLM
+→ Grounded Answer
 
-# Repository Layout
+## Recent Milestone
 
-```text
-app/
-    Core framework
+The project has entered a new phase.
 
-scripts/
-    Command-line utilities
+The initial objective was to build a working RAG system.
 
-config/
-    Configuration
+The current objective is to build a **retrieval engineering platform** that enables
+systematic experimentation with:
 
-storage/
-    Runtime data (ignored by Git)
+- embedding models
+- chunking strategies
+- rerankers
+- retrieval thresholds
+- hybrid retrieval
+- heterogeneous retrieval pipelines
 
-docs/
-    Documentation
+Every architectural change is evaluated against a growing benchmark suite rather
+than isolated example queries.
 
-tests/
-    Unit tests
-```
+## Roadmap
 
-The runtime storage hierarchy currently consists of:
+Near-term work includes:
 
-```text
-storage/
-│
-├── raw_drive/
-├── normalized/
-├── chunks/
-├── embeddings/
-├── vector_db/
-├── cache/
-├── logs/
-└── models/
-```
+1. Expand retrieval benchmark corpus.
+2. Compare embedding models (BGE-small, BGE-base, BGE-large).
+3. Evaluate alternative rerankers.
+4. Investigate hybrid dense/BM25 retrieval.
+5. Introduce document-type-specific retrieval pipelines.
+6. Extend the framework toward institution-scale decision support.
 
----
+## Guiding Principle
 
-# Documentation
+The primary deliverable is **not** a chatbot.
 
-Project documentation is divided into two parts.
-
-**Design History**
-
-```
-docs/history/
-```
-
-Documents the evolution of the framework and the reasoning behind major architectural decisions.
-
-**Field Guide** *(planned)*
-
-A concept-oriented guide describing the mature architecture independent of the project's historical development.
-
----
-
-# Long-Term Direction
-
-The Department Knowledge Assistant is intended to be the first validation of a more general architecture.
-
-Future applications include:
-
-- Enrollment forecasting
-- Strategic planning
-- Institutional resource modeling
-- Faculty analytics
-- Research knowledge management
-- Administrative decision support
-
-The long-term objective is to build a reusable framework for institutional knowledge systems rather than a single application.
-
----
-
-# Guiding Principle
-
-> **The purpose of this project is not to build a chatbot.**
->
-> **The purpose of this project is to develop a principled architecture for representing, retrieving, and reasoning over institutional knowledge.**
-
-The language model is simply the final reasoning component of that architecture.
-
----
-
-# Acknowledgments
-
-The Institutional Knowledge Framework is being developed by Edward Brash as an exploration of knowledge representation, retrieval-augmented generation, and institutional AI systems.
-
-The architectural design and documentation have been developed collaboratively through iterative engineering discussions with ChatGPT, emphasizing first-principles reasoning, modular software architecture, and long-term maintainability.
+The primary deliverable is a principled, measurable, and reusable architecture for
+institutional knowledge systems.

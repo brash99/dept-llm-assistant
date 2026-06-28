@@ -246,7 +246,52 @@ def main():
     with open(outpath, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)
 
-    print()
+    
+
+# --------------------------------------------------------------
+# Category summary
+# --------------------------------------------------------------
+from collections import defaultdict
+
+category_stats = defaultdict(lambda: {
+    "cases": 0,
+    "top1": 0,
+    "top5": 0,
+    "acceptable": 0,
+    "bad": 0,
+})
+
+for case, result in zip(benchmarks, results_out):
+    cat = case.get("category", "uncategorized")
+    stats = category_stats[cat]
+    stats["cases"] += 1
+
+    evaluation = result["evaluation"]
+    rank = evaluation.get("required_rank")
+    if rank == 1:
+        stats["top1"] += 1
+    if rank is not None and rank <= 5:
+        stats["top5"] += 1
+
+    stats["acceptable"] += evaluation.get("acceptable_count_top5", 0)
+    stats["bad"] += evaluation.get("bad_count_top5", 0)
+
+print()
+print("-" * 70)
+print("Category Summary")
+print("-" * 70)
+for cat in sorted(category_stats):
+    s = category_stats[cat]
+    print(
+        f"{cat:16} "
+        f"cases={s['cases']:2d} "
+        f"top1={s['top1']:2d} "
+        f"top5={s['top5']:2d} "
+        f"acceptable={s['acceptable']:2d} "
+        f"bad@5={s['bad']:2d}"
+    )
+
+print()
     print("-" * 70)
     print("Summary")
     print("-" * 70)

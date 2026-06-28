@@ -10,6 +10,43 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+
+# ----------------------------------------------------------------------
+# Runtime caches
+# ----------------------------------------------------------------------
+# These prevent benchmark runs and Streamlit sessions from reloading the
+# FAISS index, chunk records, metadata, and embedding model for every query.
+_INDEX_CACHE = {}
+_MODEL_CACHE = {}
+
+
+def get_cached_index(vector_db_dir):
+    cache_key = str(Path(vector_db_dir).resolve())
+
+    if cache_key not in _INDEX_CACHE:
+        _INDEX_CACHE[cache_key] = load_index(vector_db_dir)
+
+    return _INDEX_CACHE[cache_key]
+
+
+def get_cached_model(model_name, device):
+    cache_key = (model_name, device)
+
+    if cache_key not in _MODEL_CACHE:
+        _MODEL_CACHE[cache_key] = SentenceTransformer(
+            model_name,
+            device=device,
+        )
+
+    return _MODEL_CACHE[cache_key]
+
+
+def clear_runtime_caches():
+    """Clear loaded FAISS/model caches. Useful after rebuilding vector_db."""
+    _INDEX_CACHE.clear()
+    _MODEL_CACHE.clear()
+
+
 def text_fingerprint(text, max_chars=1500):
     normalized = re.sub(r"\s+", " ", text.lower()).strip()
     normalized = normalized[:max_chars]
@@ -117,9 +154,9 @@ def search_index(
     fetch_k=None,
     dedupe_by="text",
 ):
-    index, records, metadata = load_index(vector_db_dir)
+    index, records, metadata = get_cached_index(vector_db_dir)
 
-    model = SentenceTransformer(model_name, device=device)
+    model = get_cached_model(model_name, device)
 
     query_vector = model.encode(
         [query],

@@ -12,6 +12,15 @@ from app.embed import embed_chunks
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=20)
+    parser.add_argument(
+        "--embedding-context",
+        choices=["none", "title", "title_path", "metadata"],
+        default="none",
+        help=(
+            "Context prepended only to embedding input text. "
+            "Stored chunk text is unchanged."
+        ),
+    )
     args = parser.parse_args()
 
     config = load_config()

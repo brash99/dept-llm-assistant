@@ -98,6 +98,7 @@ def embed_chunks(
     batch_size=32,
     device="cuda",
     limit=None,
+    embedding_context="none",
 ):
     chunks_dir = Path(chunks_dir)
     embeddings_dir = Path(embeddings_dir)

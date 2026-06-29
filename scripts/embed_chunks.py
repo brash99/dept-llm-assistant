@@ -34,6 +34,7 @@ def main():
     print(f"Embeddings dir : {embeddings_dir}")
     print(f"Model          : {model_name}")
     print(f"Device         : {device}")
+    print(f"Embedding context: {args.embedding_context}")
     print(f"Batch size     : {batch_size}")
     print(f"Limit          : {args.limit}")
     print()
@@ -45,6 +46,7 @@ def main():
         batch_size=batch_size,
         device=device,
         limit=args.limit,
+        embedding_context=args.embedding_context,
     )
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

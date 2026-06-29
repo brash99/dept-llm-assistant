@@ -18,6 +18,79 @@ def embedding_output_path(chunk_file, embeddings_dir):
     return Path(embeddings_dir) / Path(chunk_file).name
 
 
+def _clean_metadata_value(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (str, int, float, bool)):
+        text = str(value).strip()
+        return text or None
+
+    return None
+
+
+def build_embedding_text(chunk, embedding_context="none"):
+    """
+    Build the text sent to the embedding model.
+
+    The stored/displayed chunk text remains unchanged. This function only
+    changes the semantic context seen by the embedding model.
+    """
+    mode = embedding_context or "none"
+
+    if mode == "none":
+        return chunk["text"]
+
+    citation = chunk.get("citation", {}) or {}
+    metadata = chunk.get("metadata", {}) or {}
+
+    title = (
+        citation.get("title")
+        or metadata.get("title")
+        or citation.get("filename")
+        or metadata.get("filename")
+    )
+
+    relative_path = citation.get("relative_path") or metadata.get("relative_path")
+    source_path = citation.get("source_path") or metadata.get("source_path")
+
+    path = relative_path or source_path
+
+    lines = []
+
+    if mode in ("title", "title_path", "metadata") and title:
+        lines.append(f"Document title: {title}")
+
+    if mode in ("title_path", "metadata") and path:
+        lines.append(f"Document path: {path}")
+
+    if mode == "metadata":
+        source_type = (
+            citation.get("source_type")
+            or metadata.get("source_type")
+            or citation.get("parser")
+            or metadata.get("parser")
+        )
+
+        file_type = (
+            citation.get("file_type")
+            or metadata.get("file_type")
+            or citation.get("extension")
+            or metadata.get("extension")
+        )
+
+        if source_type:
+            lines.append(f"Document type: {source_type}")
+
+        if file_type:
+            lines.append(f"File type: {file_type}")
+
+    if not lines:
+        return chunk["text"]
+
+    return "\n".join(lines) + "\n\n" + chunk["text"]
+
+
 def embed_chunks(
     chunks_dir,
     embeddings_dir,
@@ -54,7 +127,13 @@ def embed_chunks(
 
         try:
             chunks = load_chunks_file(path)
-            texts = [chunk["text"] for chunk in chunks]
+            texts = [
+                build_embedding_text(
+                    chunk,
+                    embedding_context=embedding_context,
+                )
+                for chunk in chunks
+            ]
 
             if not texts:
                 vectors = []
@@ -85,6 +164,7 @@ def embed_chunks(
                             "model": model_name,
                             "device": device,
                             "normalized": True,
+                            "embedding_context": embedding_context,
                             "created_at": now_iso(),
                         },
                     }

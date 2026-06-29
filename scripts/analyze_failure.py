@@ -16,7 +16,7 @@ def main():
     bench_path = Path(cfg["project"]["root"]) / "benchmarks" / args.benchmark
     benchmark = yaml.safe_load(bench_path.read_text())
 
-    case = next(c for c in benchmark["cases"] if c["id"] == args.case)
+    case = next(c for c in benchmark["benchmarks"] if c["id"] == args.case)
 
     print("="*70)
     print("Benchmark Case")

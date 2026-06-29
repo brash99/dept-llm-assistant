@@ -239,6 +239,16 @@ def parse_args():
         help="Benchmark YAML file relative to the benchmarks/ directory.",
     )
 
+    parser.add_argument(
+        "--representatives-per-document",
+        type=int,
+        default=1,
+        help=(
+            "Number of FAISS chunks to keep per document before reranking. "
+            "The default of 1 preserves the original behavior."
+        ),
+    )
+
     return parser.parse_args()
 
 
@@ -266,6 +276,8 @@ def main():
     print("=" * 70)
     print("Retrieval Benchmark")
     print("=" * 70)
+    print(f"Representatives/document: {args.representatives_per_document}")
+    print()
 
     for case in benchmark_cases:
         query = case["question"]
@@ -278,6 +290,7 @@ def main():
             top_k=5,
             fetch_k=50,
             dedupe_by="relative_path",
+            representatives_per_document=args.representatives_per_document,
             rerank=rerank_cfg.get("enabled", False),
             reranker_model=rerank_cfg.get("model"),
             reranker_device=rerank_cfg.get("device", "cuda"),
@@ -326,6 +339,7 @@ def main():
     summary = {
         "timestamp": datetime.now().isoformat(timespec="seconds"),
         "benchmark": str(benchmark_path),
+        "representatives_per_document": args.representatives_per_document,
         "num_cases": len(results_out),
         "required_top1_hits": sum(
             1 for r in results_out if r["evaluation"]["required_in_top1"]

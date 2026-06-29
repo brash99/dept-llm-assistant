@@ -39,6 +39,7 @@ class RetrievalReport:
     num_after_threshold: int
     num_results: int
 
+    representatives_per_document: int = 1
     reranking_enabled: bool = False
     reranker_model: Optional[str] = None
     min_rerank_score: Optional[float] = None
@@ -125,6 +126,58 @@ def dedupe_results(
     return deduped
 
 
+
+def limit_representatives_per_document(
+    results: List[RetrievalResult],
+    dedupe_by: Optional[str] = "relative_path",
+    representatives_per_document: int = 1,
+) -> List[RetrievalResult]:
+    """
+    Keep up to N chunks per document-like key while preserving FAISS order.
+
+    This generalizes the old one-representative-per-document behavior:
+    representatives_per_document=1 is equivalent to ordinary document dedupe.
+
+    For values > 1, multiple high-ranking chunks from the same document are
+    allowed to proceed to reranking. After reranking, the pipeline collapses
+    back to one final representative per document.
+    """
+    if representatives_per_document <= 0:
+        raise ValueError("representatives_per_document must be >= 1")
+
+    if dedupe_by is None:
+        return results
+
+    counts = {}
+    limited = []
+
+    for result in results:
+        if dedupe_by == "text":
+            key = result.text.strip()
+
+        elif dedupe_by in ("document", "relative_path"):
+            key = result.citation.get("relative_path")
+
+        elif dedupe_by == "source_path":
+            key = result.citation.get("source_path")
+
+        else:
+            raise ValueError(f"Unknown dedupe_by mode: {dedupe_by}")
+
+        if key is None:
+            key = result.text.strip()
+
+        count = counts.get(key, 0)
+
+        if count >= representatives_per_document:
+            continue
+
+        counts[key] = count + 1
+        limited.append(result)
+
+    return limited
+
+
 def retrieve(
     query: str,
     vector_db_dir,
@@ -133,6 +186,7 @@ def retrieve(
     top_k: int = 5,
     fetch_k: Optional[int] = None,
     dedupe_by: Optional[str] = "text",
+    representatives_per_document: int = 1,
     rerank: bool = False,
     reranker_model: Optional[str] = None,
     reranker_device: str = "cuda",
@@ -158,9 +212,10 @@ def retrieve(
     )
     t1 = time.perf_counter()
 
-    deduped_candidates = dedupe_results(
+    deduped_candidates = limit_representatives_per_document(
         raw_candidates,
         dedupe_by=dedupe_by,
+        representatives_per_document=representatives_per_document,
     )
     t2 = time.perf_counter()
 
@@ -191,7 +246,12 @@ def retrieve(
         thresholded_candidates = reranked_candidates
     t4 = time.perf_counter()
 
-    final_results = thresholded_candidates[:top_k]
+    final_pool = dedupe_results(
+        thresholded_candidates,
+        dedupe_by=dedupe_by,
+    )
+
+    final_results = final_pool[:top_k]
 
     t_total_end = time.perf_counter()
 
@@ -213,6 +273,7 @@ def retrieve(
         num_after_rerank=len(reranked_candidates),
         num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
+        representatives_per_document=representatives_per_document,
         reranking_enabled=rerank,
         reranker_model=reranker_model if rerank else None,
         min_rerank_score=min_rerank_score,

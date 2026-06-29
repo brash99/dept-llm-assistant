@@ -61,6 +61,42 @@ def find_required_rank(case, results):
     return None
 
 
+
+def rank_displacement(before, after):
+    """
+    Positive means reranking moved the required document closer to the top.
+    Negative means reranking moved it farther away.
+    None means the required document was absent from one of the stages.
+    """
+    if before is None or after is None:
+        return None
+    return before - after
+
+
+def score_spread(results, field="score", top_n=5):
+    """
+    Return max-min score spread among the first top_n results.
+
+    field="score" uses the Result.score value.
+    Any other field is read from Result.metadata.
+    """
+    vals = []
+
+    for result in results[:top_n]:
+        if field == "score":
+            value = result.score
+        else:
+            value = result.metadata.get(field)
+
+        if value is not None:
+            vals.append(value)
+
+    if len(vals) < 2:
+        return None
+
+    return max(vals) - min(vals)
+
+
 def evaluate_case(case, final_results, trace):
     acceptable_sources = case.get("acceptable_sources", [])
     bad_source_patterns = case.get("bad_source_patterns", [])
@@ -72,6 +108,35 @@ def evaluate_case(case, final_results, trace):
         "threshold_rank": find_required_rank(case, trace.thresholded_candidates),
         "final_rank": find_required_rank(case, final_results),
     }
+
+    raw_rank = stage_ranks["raw_rank"]
+    reranked_rank = stage_ranks["reranked_rank"]
+
+    reranker_helped = (
+        raw_rank is not None
+        and reranked_rank is not None
+        and reranked_rank < raw_rank
+    )
+
+    reranker_hurt = (
+        raw_rank is not None
+        and reranked_rank is not None
+        and reranked_rank > raw_rank
+    )
+
+    rerank_displacement = rank_displacement(raw_rank, reranked_rank)
+
+    faiss_score_spread_top5 = score_spread(
+        trace.raw_candidates,
+        field="score",
+        top_n=5,
+    )
+
+    rerank_score_spread_top5 = score_spread(
+        trace.reranked_candidates,
+        field="rerank_score",
+        top_n=5,
+    )
 
     acceptable_hits = []
     bad_hits = []
@@ -96,6 +161,11 @@ def evaluate_case(case, final_results, trace):
         "acceptable_hits": acceptable_hits,
         "bad_count_top5": len(bad_hits),
         "bad_hits": bad_hits,
+        "reranker_helped": reranker_helped,
+        "reranker_hurt": reranker_hurt,
+        "rerank_displacement": rerank_displacement,
+        "faiss_score_spread_top5": faiss_score_spread_top5,
+        "rerank_score_spread_top5": rerank_score_spread_top5,
     }
 
 
@@ -124,6 +194,9 @@ def summarize_by_category(results_out):
             "top5": 0,
             "acceptable": 0,
             "bad": 0,
+            "reranker_helped": 0,
+            "reranker_hurt": 0,
+            "reranker_no_change": 0,
             "total_seconds": 0.0,
         }
     )
@@ -144,6 +217,14 @@ def summarize_by_category(results_out):
 
         stats["acceptable"] += evaluation.get("acceptable_count_top5", 0)
         stats["bad"] += evaluation.get("bad_count_top5", 0)
+
+        if evaluation.get("reranker_helped"):
+            stats["reranker_helped"] += 1
+        elif evaluation.get("reranker_hurt"):
+            stats["reranker_hurt"] += 1
+        else:
+            stats["reranker_no_change"] += 1
+
         stats["total_seconds"] += profile.get("total_seconds", 0.0)
 
     return dict(category_stats)
@@ -234,6 +315,7 @@ def main():
             f"raw={ranks['raw_rank']} "
             f"dedup={ranks['deduped_rank']} "
             f"rerank={ranks['reranked_rank']} "
+            f"disp={evaluation['rerank_displacement']} "
             f"time={profile.total_seconds:.2f}s "
             f"acceptable@5={evaluation['acceptable_count_top5']} "
             f"bad@5={evaluation['bad_count_top5']}"
@@ -266,6 +348,33 @@ def main():
         "average_rerank_seconds": (
             sum(r["profile"]["rerank_seconds"] for r in results_out) / len(results_out)
             if results_out else 0.0
+        ),
+        "reranker_helped": sum(
+            1 for r in results_out
+            if r["evaluation"].get("reranker_helped")
+        ),
+        "reranker_hurt": sum(
+            1 for r in results_out
+            if r["evaluation"].get("reranker_hurt")
+        ),
+        "reranker_no_change": sum(
+            1 for r in results_out
+            if not r["evaluation"].get("reranker_helped")
+            and not r["evaluation"].get("reranker_hurt")
+        ),
+        "faiss_only_top5_hits": sum(
+            1 for r in results_out
+            if (
+                r["evaluation"]["stage_ranks"].get("raw_rank") is not None
+                and r["evaluation"]["stage_ranks"].get("raw_rank") <= 5
+            )
+        ),
+        "reranked_top5_hits": sum(
+            1 for r in results_out
+            if (
+                r["evaluation"]["stage_ranks"].get("reranked_rank") is not None
+                and r["evaluation"]["stage_ranks"].get("reranked_rank") <= 5
+            )
         ),
     }
 
@@ -301,6 +410,9 @@ def main():
             f"top5={stats['top5']:2d} "
             f"acceptable={stats['acceptable']:2d} "
             f"bad@5={stats['bad']:2d} "
+            f"helped={stats['reranker_helped']:2d} "
+            f"hurt={stats['reranker_hurt']:2d} "
+            f"same={stats['reranker_no_change']:2d} "
             f"avg_time={average_time:.2f}s"
         )
 
@@ -317,6 +429,17 @@ def main():
     print(f"Average time/case   : {summary['average_seconds']:.2f}s")
     print(f"Average search time : {summary['average_search_seconds']:.2f}s")
     print(f"Average rerank time : {summary['average_rerank_seconds']:.2f}s")
+
+    print()
+    print("-" * 70)
+    print("Reranker Analysis")
+    print("-" * 70)
+    print(f"Helped required rank : {summary['reranker_helped']}")
+    print(f"Hurt required rank   : {summary['reranker_hurt']}")
+    print(f"No change            : {summary['reranker_no_change']}")
+    print(f"FAISS-only Top-5     : {summary['faiss_only_top5_hits']}")
+    print(f"Reranked Top-5       : {summary['reranked_top5_hits']}")
+
     print(f"Log file            : {outpath}")
 
 

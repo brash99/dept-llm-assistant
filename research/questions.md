@@ -1,0 +1,1 @@
+- How much would retrieval improve if chunks embedded title/path/context metadata in addition to body text?

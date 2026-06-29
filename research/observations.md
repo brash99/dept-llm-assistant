@@ -1,0 +1,1 @@
+- `faculty_travel_procedures`: relevant document appeared at raw rank 16 / dedup rank 7 but failed final top_k; likely title/path metadata weakness.

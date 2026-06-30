@@ -4,7 +4,7 @@ from pathlib import Path
 from app.config import load_config
 from app.rag import answer_question
 from app.decision_brief import generate_decision_brief
-from app.observatory.dashboard import render_observatory_assessment
+from app.observatory.dashboard import render_iso_overview, render_observatory_assessment
 
 from app.corpus_observatory import analyze_corpus
 
@@ -38,7 +38,7 @@ with st.expander("Mission", expanded=False):
 
 mode = st.radio(
     "Mode",
-    ["Question Answering", "Decision Brief"],
+    ["Overview", "Question Answering", "Decision Brief"],
     horizontal=True,
 )
 
@@ -47,27 +47,46 @@ query_placeholder = "What is the CNU travel reimbursement policy?"
 button_label = "Ask"
 spinner_text = "Searching documents and generating answer..."
 
-if mode == "Decision Brief":
-    query_label = "Institutional question"
-    query_placeholder = (
-        "What additional resources would be required to establish a "
-        "Mechanical Engineering major?"
-    )
-    button_label = "Generate Decision Brief"
-    spinner_text = "Searching documents and generating decision brief..."
-
-query = st.text_area(
-    query_label,
-    placeholder=query_placeholder,
-    height=100,
-)
-
-if mode == "Decision Brief":
-    top_k = st.slider("Number of retrieved sources", 5, 20, 12)
+if mode == "Overview":
+    query = ""
+    top_k = 0
 else:
-    top_k = st.slider("Number of retrieved sources", 3, 10, 5)
+    if mode == "Decision Brief":
+        query_label = "Institutional question"
+        query_placeholder = (
+            "What additional resources would be required to establish a "
+            "Mechanical Engineering major?"
+        )
+        button_label = "Generate Decision Brief"
+        spinner_text = "Searching documents and generating decision brief..."
+
+    query = st.text_area(
+        query_label,
+        placeholder=query_placeholder,
+        height=100,
+    )
+
+    if mode == "Decision Brief":
+        top_k = st.slider("Number of retrieved sources", 5, 20, 12)
+    else:
+        top_k = st.slider("Number of retrieved sources", 3, 10, 5)
 
 developer_mode = st.checkbox("Developer mode", value=False)
+
+
+if mode == "Overview":
+    config = load_config()
+    project_root = Path(config["project"]["root"])
+    chunks_dir = project_root / config["storage"]["chunks"]
+
+    try:
+        report = analyze_corpus(chunks_dir)
+        render_iso_overview(st, report)
+    except Exception as e:
+        st.error("ISO Overview failed.")
+        st.exception(e)
+
+    st.stop()
 
 if developer_mode:
     with st.expander("🌱 Semantic Ecosystem Observatory", expanded=False):

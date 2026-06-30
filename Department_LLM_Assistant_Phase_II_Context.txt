@@ -1,0 +1,110 @@
+Department LLM Assistant — Phase II Context
+
+We are continuing development of the Department LLM Assistant project.
+
+Project Vision
+
+The goal is not to build a chatbot.
+
+The goal is to build an institutional semantic layer (or “semantic
+ecosystem”) that supports explainable, evidence-based decision support
+for university administration.
+
+The long-term vision is a semantic “digital twin” of the institution.
+
+Core principle: > The AI should assist human decision makers, not
+replace them.
+
+Every conclusion should be traceable back to evidence.
+
+Current Status (end of Phase I)
+
+Phase I is complete and merged into main.
+
+Pipeline:
+
+Google Drive → Normalization → Parsing → Chunking → Embeddings (BGE) →
+FAISS Vector Index → Cross-encoder reranking → LLM answer generation
+
+Implemented: - Parser framework - Corpus policy / exclusion rules -
+Document normalization - Chunk generation - Embedding generation - FAISS
+vector database - Cross-encoder reranking - Retrieval benchmark - Corpus
+Observatory - Streamlit developer mode - Explainable retrieval
+diagnostics - Citations - Performance profiling
+
+Current Corpus
+
+Documents: 15,398 Chunks: 310,097 Mean chunks/document: 20.14 Median
+chunks/document: 7 Gini coefficient: 0.7596
+
+Major cleanup completed: - Removed Faculty Transition archives - Removed
+enormous transaction datasets - Repaired a corrupted spreadsheet
+producing ~50,000 chunks - Reduced corpus from ~5.7 million chunks to
+~310k while improving retrieval performance
+
+Corpus health is now considered a first-class engineering concern.
+
+Retrieval Benchmark
+
+Current benchmark: - Top-1: 23/30 - Top-5: 26/30
+
+Important lesson: “What are we actually measuring?”
+
+Benchmark quality depends as much on benchmark construction as retrieval
+quality.
+
+Corpus Observatory
+
+Developer mode now displays: - Corpus statistics - Chunk distributions -
+Parser usage - File-type distributions - Folder distributions -
+Dominance metrics - Largest documents - Gini coefficient
+
+Current UI
+
+The Streamlit application currently provides: - Question answering -
+Source citations - Retrieval diagnostics - Timing breakdown - Developer
+mode - Corpus Observatory
+
+Immediate Phase II Goals
+
+1.  Update documentation.
+2.  Create the first presentation for the Provost, Carolyn Davis, and
+    Courtney Belmonte-Wright.
+3.  Build the first decision-support prototype.
+4.  Continue expanding the Corpus Observatory.
+
+Decision Support Vision
+
+Move from Question Answering to Decision Briefs.
+
+Representative institutional questions: - What additional resources
+would be required to launch a Mechanical Engineering major? - What are
+the implications of replacing (or not replacing) a retiring faculty
+member? - What departments are most affected under a particular
+enrollment scenario?
+
+The system should retrieve and synthesize evidence regarding: - Faculty
+expertise - Curriculum - Facilities - Laboratory equipment -
+Accreditation - Budget - Strategic planning - Historical documents
+
+The AI should produce an explainable decision brief supported by
+citations.
+
+Design Philosophy
+
+The most intellectually demanding parts of the system are: - Corpus
+quality - Semantic organization - Retrieval quality - Explainability -
+Benchmark design - Evidence synthesis
+
+The LLM performs the final reasoning step rather than providing the
+primary intelligence of the system.
+
+Working Style
+
+Edward is a physicist and computer scientist who prefers: - Quantitative
+evaluation - Benchmarking - Explainability - Careful architectural
+thinking - Understanding why something works rather than simply that it
+works
+
+The project is treated as both an engineering effort and a research
+program.

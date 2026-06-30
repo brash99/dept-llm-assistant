@@ -3,6 +3,7 @@ from pathlib import Path
 
 from app.config import load_config
 from app.rag import answer_question
+from app.decision_brief import generate_decision_brief
 
 from app.corpus_observatory import analyze_corpus
 
@@ -18,13 +19,36 @@ st.caption(
     "Results should be verified against cited sources."
 )
 
+mode = st.radio(
+    "Mode",
+    ["Question Answering", "Decision Brief"],
+    horizontal=True,
+)
+
+query_label = "Ask a question"
+query_placeholder = "What is the CNU travel reimbursement policy?"
+button_label = "Ask"
+spinner_text = "Searching documents and generating answer..."
+
+if mode == "Decision Brief":
+    query_label = "Institutional question"
+    query_placeholder = (
+        "What additional resources would be required to establish a "
+        "Mechanical Engineering major?"
+    )
+    button_label = "Generate Decision Brief"
+    spinner_text = "Searching documents and generating decision brief..."
+
 query = st.text_area(
-    "Ask a question",
-    placeholder="What is the CNU travel reimbursement policy?",
+    query_label,
+    placeholder=query_placeholder,
     height=100,
 )
 
-top_k = st.slider("Number of retrieved sources", 3, 10, 5)
+if mode == "Decision Brief":
+    top_k = st.slider("Number of retrieved sources", 5, 20, 12)
+else:
+    top_k = st.slider("Number of retrieved sources", 3, 10, 5)
 
 developer_mode = st.checkbox("Developer mode", value=False)
 
@@ -80,9 +104,10 @@ dedupe_by = st.selectbox(
     index=0,
 )
 
-fetch_k = st.slider("Fetch candidates", 10, 200, 50)
+default_fetch_k = 100 if mode == "Decision Brief" else 50
+fetch_k = st.slider("Fetch candidates", 10, 200, default_fetch_k)
 
-if st.button("Ask", type="primary") and query.strip():
+if st.button(button_label, type="primary") and query.strip():
     clean_query = query.strip()
 
     config = load_config()
@@ -103,9 +128,8 @@ if st.button("Ask", type="primary") and query.strip():
     min_rerank_score = rerank_cfg.get("min_score", None)
 
     try:
-        with st.spinner("Searching documents and generating answer..."):
-            response = answer_question(
-                query=clean_query,
+        with st.spinner(spinner_text):
+            common_kwargs = dict(
                 vector_db_dir=vector_db_dir,
                 model_name=embed_cfg.get("model", "BAAI/bge-small-en-v1.5"),
                 embedding_device=embed_cfg.get("device", "cuda"),
@@ -121,15 +145,31 @@ if st.button("Ask", type="primary") and query.strip():
                 return_trace=developer_mode,
             )
 
+            if mode == "Decision Brief":
+                response = generate_decision_brief(
+                    question=clean_query,
+                    **common_kwargs,
+                )
+            else:
+                response = answer_question(
+                    query=clean_query,
+                    **common_kwargs,
+                )
+
         if developer_mode:
-            answer, results, retrieval_report, trace, profile = response
+            artifact, results, retrieval_report, trace, profile = response
         else:
-            answer, results, profile = response
+            artifact, results, profile = response
             retrieval_report = None
             trace = None
 
+        if mode == "Decision Brief":
+            answer = artifact.raw_markdown
+        else:
+            answer = artifact
+
     except Exception as e:
-        st.error("The question-answering pipeline failed.")
+        st.error("The pipeline failed.")
         st.exception(e)
         st.stop()
 
@@ -139,7 +179,11 @@ if st.button("Ask", type="primary") and query.strip():
         f"dedupe_by={dedupe_by} | min_rerank_score={min_rerank_score}"
     )
 
-    st.subheader("Answer")
+    if mode == "Decision Brief":
+        st.subheader("Decision Brief")
+    else:
+        st.subheader("Answer")
+
     st.markdown(answer.replace("$", r"\$"))
 
     st.subheader("Sources")
@@ -155,10 +199,18 @@ if st.button("Ask", type="primary") and query.strip():
             start_char = citation.get("start_char")
             end_char = citation.get("end_char")
 
-            with st.expander(
-                f"[Source {i}] {title} — score {result.score:.4f}"
-            ):
+            evidence_class = result.metadata.get("evidence_class")
+            expander_label = f"[Source {i}] {title} — score {result.score:.4f}"
+            if evidence_class:
+                expander_label = f"[Source {i}] [{evidence_class}] {title} — score {result.score:.4f}"
+
+            with st.expander(expander_label):
                 st.write(f"**Path:** `{relative_path}`")
+
+                if result.metadata.get("evidence_class"):
+                    st.write(f"**Evidence Class:** {result.metadata.get("evidence_class")}")
+                    st.write(f"**Evidence Class Confidence:** `{result.metadata.get("evidence_class_confidence")}`")
+                    st.write(f"**Evidence Class Rationale:** {result.metadata.get("evidence_class_rationale")}")
 
                 if start_char is not None and end_char is not None:
                     st.write(f"**Characters:** {start_char}–{end_char}")
@@ -218,6 +270,8 @@ if st.button("Ask", type="primary") and query.strip():
                         f"### {i}. {title} — score {result.score:.4f}"
                     )
                     st.write(f"**Path:** `{path}`")
+                    if metadata.get("evidence_class"):
+                        st.write(f"**Evidence Class:** {metadata.get("evidence_class")}")
                     st.write(
                         f"**Parser:** `{citation.get('parser') or metadata.get('parser')}`"
                     )

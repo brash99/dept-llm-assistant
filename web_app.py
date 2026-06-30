@@ -8,16 +8,32 @@ from app.decision_brief import generate_decision_brief
 from app.corpus_observatory import analyze_corpus
 
 st.set_page_config(
-    page_title="Department Knowledge Assistant",
-    page_icon="🔎",
+    page_title="Institutional Semantic Observatory (ISO)",
+    page_icon="🔭",
     layout="wide",
 )
 
-st.title("🔎 Department Knowledge Assistant")
+st.title("🔭 Institutional Semantic Observatory (ISO)")
+st.markdown("### *Observe. Explain. Illuminate.*")
 st.caption(
-    "Prototype RAG system over the department document repository. "
-    "Results should be verified against cited sources."
+    "ISO is an evidence-driven semantic observatory that constructs an explainable "
+    "digital representation of an institution's knowledge ecosystem."
 )
+
+with st.expander("Mission", expanded=False):
+    st.markdown(
+        """
+        **Observe. Explain. Illuminate.**
+
+        ISO does not replace human judgment.
+
+        ISO synthesizes institutional evidence to support transparent, explainable
+        decision making. Rather than making decisions, ISO observes the institution's
+        semantic ecosystem, identifies relevant evidence, highlights uncertainty,
+        and reveals knowledge gaps so that human decision-makers remain firmly in
+        control.
+        """
+    )
 
 mode = st.radio(
     "Mode",
@@ -53,7 +69,7 @@ else:
 developer_mode = st.checkbox("Developer mode", value=False)
 
 if developer_mode:
-    with st.expander("🌱 Corpus Observatory", expanded=False):
+    with st.expander("🌱 Semantic Ecosystem Observatory", expanded=False):
         config = load_config()
         project_root = Path(config["project"]["root"])
         chunks_dir = project_root / config["storage"]["chunks"]
@@ -109,14 +125,6 @@ fetch_k = st.slider("Fetch candidates", 10, 200, default_fetch_k)
 
 if st.button(button_label, type="primary") and query.strip():
     clean_query = query.strip()
-
-    if mode == "Decision Brief" and clean_query.lower().startswith("you are an ai assistant"):
-        st.error(
-            "The Decision Brief text box should contain only the institutional question, "
-            "not the full reasoning prompt. The long Decision Brief prompt is built inside "
-            "app/decision_brief.py after retrieval."
-        )
-        st.stop()
 
     config = load_config()
 
@@ -188,7 +196,7 @@ if st.button(button_label, type="primary") and query.strip():
     )
 
     if mode == "Decision Brief":
-        st.subheader("Decision Brief")
+        st.subheader("📄 Decision Brief")
     else:
         st.subheader("Answer")
 
@@ -277,16 +285,12 @@ if st.button(button_label, type="primary") and query.strip():
                     st.markdown(
                         f"### {i}. {title} — score {result.score:.4f}"
                     )
-                    
                     st.write(f"**Path:** `{path}`")
-                    
                     if metadata.get("evidence_class"):
                         st.write(f"**Evidence Class:** {metadata.get('evidence_class')}")
-                    
                     st.write(
                         f"**Parser:** `{citation.get('parser') or metadata.get('parser')}`"
                     )
-                    
                     st.write(
                         f"**Chars:** {citation.get('start_char')}–{citation.get('end_char')}"
                     )

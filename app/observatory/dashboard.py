@@ -20,8 +20,14 @@ def render_observatory_assessment(st, assessment: ObservatoryAssessment) -> None
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Decision readiness", f"{assessment.decision_readiness_score:.0f}%")
     c2.metric("Knowledge completeness", f"{assessment.knowledge_completeness_score:.0f}%")
-    c3.metric("Evidence balance", f"{assessment.evidence_balance_score:.0f}%")
+    c3.metric("Topic coverage", f"{assessment.topic_coverage_score:.0f}%")
     c4.metric("Dominant evidence", assessment.dominant_evidence_class)
+
+    st.caption(
+        "Topic coverage measures whether the retrieved evidence touches the expected semantic domains. "
+        "Knowledge completeness is stricter: it is reduced when evidence is planning-heavy, externally dependent, "
+        "or thin in direct institutional evidence."
+    )
 
     st.write("**Evidence class balance**")
     rows = []
@@ -41,10 +47,11 @@ def render_observatory_assessment(st, assessment: ObservatoryAssessment) -> None
     else:
         st.info("No evidence classes available.")
 
-    r1, r2, r3 = st.columns(3)
+    r1, r2, r3, r4 = st.columns(4)
     r1.metric("Institutional evidence", _pct(assessment.institutional_evidence_ratio))
     r2.metric("Planning reliance", _pct(assessment.planning_ratio))
     r3.metric("External dependence", _pct(assessment.external_ratio))
+    r4.metric("Evidence balance", f"{assessment.evidence_balance_score:.0f}%")
 
     with st.expander("Semantic coverage", expanded=False):
         if assessment.covered_topics:

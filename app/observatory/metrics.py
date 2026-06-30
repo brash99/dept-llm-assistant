@@ -24,6 +24,7 @@ class ObservatoryAssessment:
     planning_ratio: float
     external_ratio: float
     evidence_balance_score: float
+    topic_coverage_score: float
     knowledge_completeness_score: float
     decision_readiness_score: float
     covered_topics: List[str] = field(default_factory=list)
@@ -200,9 +201,34 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
 
     balance = _entropy_balance(class_counts.values())
     covered_topics, missing_topics = _topic_coverage(evidence_items)
-    completeness = round(100.0 * len(covered_topics) / len(TOPIC_KEYWORDS), 1)
+    topic_coverage = round(100.0 * len(covered_topics) / len(TOPIC_KEYWORDS), 1)
 
-    # A deliberately transparent v0.1 heuristic. This should evolve into a
+    # Knowledge completeness is intentionally stricter than topic coverage.
+    # Topic coverage asks: did retrieved evidence touch the expected domains?
+    # Knowledge completeness asks: is the evidence landscape strong enough to
+    # support institutional reasoning? Planning-heavy or externally-dependent
+    # evidence lowers completeness even when all expected topics are mentioned.
+    low_institutional_penalty = max(0.0, (0.35 - institutional_ratio) * 80.0)
+    planning_completeness_penalty = max(0.0, (planning_ratio - 0.50) * 45.0)
+    external_completeness_penalty = max(0.0, (external_ratio - 0.20) * 35.0)
+    missing_topic_penalty = 4.0 * len(missing_topics)
+
+    completeness = round(
+        max(
+            0.0,
+            min(
+                100.0,
+                topic_coverage
+                - low_institutional_penalty
+                - planning_completeness_penalty
+                - external_completeness_penalty
+                - missing_topic_penalty,
+            ),
+        ),
+        1,
+    )
+
+    # A deliberately transparent v0.2 heuristic. This should evolve into a
     # calibrated score after we collect more Decision Brief experiments.
     institutional_component = min(100.0, institutional_ratio * 200.0)
     planning_penalty = max(0.0, (planning_ratio - 0.60) * 50.0)
@@ -212,9 +238,10 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
             0.0,
             min(
                 100.0,
-                0.55 * completeness
-                + 0.25 * balance
-                + 0.20 * institutional_component
+                0.45 * completeness
+                + 0.20 * topic_coverage
+                + 0.20 * balance
+                + 0.15 * institutional_component
                 - planning_penalty
                 - external_penalty,
             ),
@@ -255,6 +282,7 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
         planning_ratio=round(planning_ratio, 3),
         external_ratio=round(external_ratio, 3),
         evidence_balance_score=balance,
+        topic_coverage_score=topic_coverage,
         knowledge_completeness_score=completeness,
         decision_readiness_score=readiness,
         covered_topics=covered_topics,

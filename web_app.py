@@ -277,12 +277,16 @@ if st.button(button_label, type="primary") and query.strip():
                     st.markdown(
                         f"### {i}. {title} — score {result.score:.4f}"
                     )
+                    
                     st.write(f"**Path:** `{path}`")
+                    
                     if metadata.get("evidence_class"):
-                        st.write(f"**Evidence Class:** {metadata.get("evidence_class")}")
+                        st.write(f"**Evidence Class:** {metadata.get('evidence_class')}")
+                    
                     st.write(
                         f"**Parser:** `{citation.get('parser') or metadata.get('parser')}`"
                     )
+                    
                     st.write(
                         f"**Chars:** {citation.get('start_char')}–{citation.get('end_char')}"
                     )

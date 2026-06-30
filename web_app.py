@@ -4,6 +4,7 @@ from pathlib import Path
 from app.config import load_config
 from app.rag import answer_question
 from app.decision_brief import generate_decision_brief
+from app.observatory.dashboard import render_observatory_assessment
 
 from app.corpus_observatory import analyze_corpus
 
@@ -194,6 +195,9 @@ if st.button(button_label, type="primary") and query.strip():
         f"fetch_k={fetch_k} | top_k={top_k} | "
         f"dedupe_by={dedupe_by} | min_rerank_score={min_rerank_score}"
     )
+
+    if mode == "Decision Brief" and getattr(artifact, "observatory_assessment", None) is not None:
+        render_observatory_assessment(st, artifact.observatory_assessment)
 
     if mode == "Decision Brief":
         st.subheader("📄 Decision Brief")

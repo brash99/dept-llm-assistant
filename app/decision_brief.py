@@ -5,6 +5,7 @@ from openai import OpenAI
 
 from app.retrieval import retrieve
 from app.vector_index import RetrievalResult
+from app.observatory.metrics import ObservatoryAssessment, build_observatory_assessment
 from app.evidence import (
     Evidence,
     EvidenceClass,
@@ -44,6 +45,7 @@ class DecisionBrief:
     recommended_follow_up: List[str]
     sources: List[RetrievalResult]
     evidence_items: List[Evidence]
+    observatory_assessment: Optional[ObservatoryAssessment]
     raw_markdown: str
 
 
@@ -271,6 +273,7 @@ def generate_decision_brief(
         trace = None
 
     evidence_items = make_evidence(results)
+    observatory_assessment = build_observatory_assessment(evidence_items)
     evidence_context = build_grouped_evidence_context(evidence_items)
     prompt = build_decision_brief_prompt(question, evidence_context)
 
@@ -300,6 +303,7 @@ def generate_decision_brief(
         recommended_follow_up=[],
         sources=results,
         evidence_items=evidence_items,
+        observatory_assessment=observatory_assessment,
         raw_markdown=brief_markdown,
     )
 

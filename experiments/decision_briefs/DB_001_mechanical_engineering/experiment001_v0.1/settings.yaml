@@ -1,0 +1,33 @@
+reference_problem: DB001
+
+experiment: 001
+
+version: 0.1
+
+pipeline: Decision Brief
+
+question: >
+  What additional resources would be required to establish a Mechanical Engineering major?
+
+model: Qwen
+
+retrieval:
+
+  fetch_k: 100
+
+  top_k: 12
+
+  reranking: true
+
+  reranker: cross-encoder/ms-marco-MiniLM-L-6-v2
+
+  dedupe_by: relative_path
+
+corpus:
+
+  baseline: clean_corpus
+
+date:
+
+notes: >
+  First successful Decision Brief experiment.

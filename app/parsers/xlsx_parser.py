@@ -40,10 +40,14 @@ class XLSXParser(Parser):
                     if cell is None:
                         values.append("")
                     else:
-                        values.append(str(cell))
+                        values.append(str(cell).strip())
+
+                # Remove formatted-but-empty trailing cells
+                while values and not values[-1].strip():
+                    values.pop()
 
                 # Skip completely empty rows
-                if any(v.strip() for v in values):
+                if values and any(v.strip() for v in values):
                     lines.append(" | ".join(values))
 
                 max_col = max(max_col, len(values))

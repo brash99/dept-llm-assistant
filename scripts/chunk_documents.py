@@ -11,7 +11,7 @@ from app.chunk import run_chunking
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=20)
+    parser.add_argument("--limit", type=int, default=1000000)
     parser.add_argument("--chunk-size", type=int, default=None)
     parser.add_argument("--overlap", type=int, default=None)
     parser.add_argument("--max-chunks-per-document", type=int, default=None)

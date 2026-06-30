@@ -11,7 +11,7 @@ from app.normalize import normalize_files, normalize_single_file
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=10)
+    parser.add_argument("--limit", type=int, default=1000000)
     parser.add_argument("--file", type=str, help="Normalize a single file.")
     args = parser.parse_args()
 

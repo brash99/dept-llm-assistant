@@ -11,7 +11,7 @@ from app.embed import embed_chunks
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=20)
+    parser.add_argument("--limit", type=int, default=1000000)
     parser.add_argument(
         "--embedding-context",
         choices=["none", "title", "title_path", "metadata"],

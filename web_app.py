@@ -110,6 +110,14 @@ fetch_k = st.slider("Fetch candidates", 10, 200, default_fetch_k)
 if st.button(button_label, type="primary") and query.strip():
     clean_query = query.strip()
 
+    if mode == "Decision Brief" and clean_query.lower().startswith("you are an ai assistant"):
+        st.error(
+            "The Decision Brief text box should contain only the institutional question, "
+            "not the full reasoning prompt. The long Decision Brief prompt is built inside "
+            "app/decision_brief.py after retrieval."
+        )
+        st.stop()
+
     config = load_config()
 
     project_root = Path(config["project"]["root"])
@@ -199,10 +207,18 @@ if st.button(button_label, type="primary") and query.strip():
             start_char = citation.get("start_char")
             end_char = citation.get("end_char")
 
-            with st.expander(
-                f"[Source {i}] {title} — score {result.score:.4f}"
-            ):
+            evidence_class = result.metadata.get("evidence_class")
+            expander_label = f"[Source {i}] {title} — score {result.score:.4f}"
+            if evidence_class:
+                expander_label = f"[Source {i}] [{evidence_class}] {title} — score {result.score:.4f}"
+
+            with st.expander(expander_label):
                 st.write(f"**Path:** `{relative_path}`")
+
+                if result.metadata.get("evidence_class"):
+                    st.write(f"**Evidence Class:** {result.metadata.get('evidence_class')}")
+                    st.write(f"**Evidence Class Confidence:** `{result.metadata.get('evidence_class_confidence')}`")
+                    st.write(f"**Evidence Class Rationale:** {result.metadata.get('evidence_class_rationale')}")
 
                 if start_char is not None and end_char is not None:
                     st.write(f"**Characters:** {start_char}–{end_char}")
@@ -262,6 +278,8 @@ if st.button(button_label, type="primary") and query.strip():
                         f"### {i}. {title} — score {result.score:.4f}"
                     )
                     st.write(f"**Path:** `{path}`")
+                    if metadata.get("evidence_class"):
+                        st.write(f"**Evidence Class:** {metadata.get("evidence_class")}")
                     st.write(
                         f"**Parser:** `{citation.get('parser') or metadata.get('parser')}`"
                     )

@@ -5,6 +5,13 @@ from openai import OpenAI
 
 from app.retrieval import retrieve
 from app.vector_index import RetrievalResult
+from app.evidence import (
+    Evidence,
+    EvidenceClass,
+    evidence_class_guidance,
+    group_evidence_by_class,
+    make_evidence,
+)
 
 
 DEFAULT_EVIDENCE_TOPICS = [
@@ -36,46 +43,128 @@ class DecisionBrief:
     missing_information: List[str]
     recommended_follow_up: List[str]
     sources: List[RetrievalResult]
+    evidence_items: List[Evidence]
     raw_markdown: str
 
 
-def build_numbered_context(results: List[RetrievalResult]) -> str:
+def build_grouped_evidence_context(evidence_items: List[Evidence]) -> str:
+    """Build source context grouped by Evidence Class for the Decision Brief prompt."""
+    grouped = group_evidence_by_class(evidence_items)
     parts = []
 
-    for i, result in enumerate(results, start=1):
-        citation = result.citation
-        parts.append(
-            f"[Source {i}]\n"
-            f"Title: {citation.get('title')}\n"
-            f"Path: {citation.get('relative_path')}\n"
-            f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n"
-            f"Score: {result.score:.4f}\n\n"
-            f"{result.text}"
-        )
+    for evidence_class, items in grouped.items():
+        if not items:
+            continue
 
-    return "\n\n" + ("-" * 70 + "\n\n").join(parts)
+        class_parts = [
+            "=" * 70,
+            evidence_class.value,
+            "=" * 70,
+        ]
+
+        for item in items:
+            result = item.result
+            citation = result.citation
+            class_parts.append(
+                f"[Source {item.source_number}]\n"
+                f"Evidence Class: {item.evidence_class.value}\n"
+                f"Classification Confidence: {item.confidence:.2f}\n"
+                f"Classification Rationale: {item.rationale}\n"
+                f"Title: {citation.get('title')}\n"
+                f"Path: {citation.get('relative_path')}\n"
+                f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n"
+                f"Score: {result.score:.4f}\n\n"
+                f"{result.text}"
+            )
+
+        parts.append("\n\n".join(class_parts))
+
+    return "\n\n" + ("\n\n" + "-" * 70 + "\n\n").join(parts)
 
 
 def build_decision_brief_prompt(
     question: str,
-    context: str,
+    evidence_context: str,
     evidence_topics: Optional[List[str]] = None,
 ) -> str:
+    """
+    Build the reasoning prompt sent to the LLM.
+
+    Important architecture note:
+    - The retriever should receive only the user's institutional question.
+    - This prompt is constructed only after retrieval and evidence classification.
+    - The LLM receives the question plus grouped evidence plus reasoning guidance.
+    """
     if evidence_topics is None:
         evidence_topics = DEFAULT_EVIDENCE_TOPICS
 
     topics = "\n".join(f"- {topic}" for topic in evidence_topics)
 
     return f"""
-You are generating an institutional Decision Brief using only the provided sources.
+You are an AI assistant helping university administrators make evidence-based institutional decisions.
 
-Rules:
-- Use only the provided sources.
-- Cite claims inline using [Source N].
-- Distinguish evidence from inference.
-- Do not invent information that is not in the sources.
-- If evidence is missing, say so explicitly.
-- Be useful to a university decision maker, but do not make the decision.
+Your task is NOT simply to answer the question.
+
+Your task is to synthesize the retrieved evidence into an explainable Decision Brief.
+
+The retrieved evidence has already been organized into Evidence Classes.
+
+Evidence Classes have different purposes and should not be treated as equally authoritative.
+
+Evidence Classes:
+
+• Institutional Evidence
+  Current factual information about this institution, including annual reports, faculty documents, curriculum proposals, policies, budgets, facilities, committee documents, and official university records.
+  Treat this as the primary evidence.
+
+• Institutional Planning
+  Strategic plans, program reviews, major initiatives, budget planning documents, committee recommendations, and planning reports.
+  These describe intended future directions rather than established facts.
+
+• Institutional History
+  Historical documents, archived reports, previous proposals, and institutional precedent.
+  These provide historical context but may no longer reflect current policy.
+
+• External Standards
+  Accreditation standards, SCHEV guidance, SACSCOC requirements, government regulations, and other normative external requirements.
+  These describe constraints or expectations that may apply to the institution.
+
+• External Comparators
+  Reports from peer institutions, self-studies, national surveys, and examples from other universities.
+  These provide context and comparison but do NOT describe this institution.
+
+• Background Knowledge
+  Your own general knowledge.
+  Use this only when necessary, and clearly distinguish it from retrieved evidence.
+
+When synthesizing the evidence:
+
+• Give greatest weight to Institutional Evidence.
+
+• Use Institutional Planning documents to discuss future directions and proposed initiatives.
+
+• Use Institutional History only for historical context.
+
+• Use External Standards to explain requirements that may affect institutional decisions.
+
+• Use External Comparators only as illustrative examples.
+  Never treat comparator evidence as if it describes this institution.
+
+• Clearly distinguish between:
+    - established institutional facts
+    - proposed plans
+    - historical precedent
+    - external requirements
+    - external examples
+    - inferred conclusions
+
+If evidence is missing, incomplete, or conflicting, explicitly identify this.
+
+Do not speculate.
+
+If the available evidence does not support a conclusion, state that additional information would be required.
+
+Use only the retrieved sources below. Cite claims inline using [Source N].
 
 Institutional Question:
 {question}
@@ -83,10 +172,10 @@ Institutional Question:
 Evidence topics to look for:
 {topics}
 
-Sources:
-{context}
+Retrieved evidence grouped by Evidence Class:
+{evidence_context}
 
-Write a Decision Brief with exactly these sections:
+Generate a Decision Brief with the following sections:
 
 # Decision Brief
 
@@ -125,6 +214,8 @@ Write a Decision Brief with exactly these sections:
 ## Recommended Follow-Up
 
 ## Sources Used
+
+Throughout the Decision Brief, explicitly distinguish internal institutional evidence from external standards and external comparator institutions whenever they are discussed.
 """.strip()
 
 
@@ -179,8 +270,9 @@ def generate_decision_brief(
         results, retrieval_report, profile = retrieved
         trace = None
 
-    context = build_numbered_context(results)
-    prompt = build_decision_brief_prompt(question, context)
+    evidence_items = make_evidence(results)
+    evidence_context = build_grouped_evidence_context(evidence_items)
+    prompt = build_decision_brief_prompt(question, evidence_context)
 
     client = OpenAI(
         base_url=llm_base_url,
@@ -207,6 +299,7 @@ def generate_decision_brief(
         missing_information=[],
         recommended_follow_up=[],
         sources=results,
+        evidence_items=evidence_items,
         raw_markdown=brief_markdown,
     )
 

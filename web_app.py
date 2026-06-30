@@ -4,6 +4,7 @@ from pathlib import Path
 from app.config import load_config
 from app.rag import answer_question
 
+from app.corpus_observatory import analyze_corpus
 
 st.set_page_config(
     page_title="Department Knowledge Assistant",
@@ -26,6 +27,52 @@ query = st.text_area(
 top_k = st.slider("Number of retrieved sources", 3, 10, 5)
 
 developer_mode = st.checkbox("Developer mode", value=False)
+
+if developer_mode:
+    with st.expander("🌱 Corpus Observatory", expanded=False):
+        config = load_config()
+        project_root = Path(config["project"]["root"])
+        chunks_dir = project_root / config["storage"]["chunks"]
+
+        try:
+            report = analyze_corpus(chunks_dir)
+
+            c1, c2, c3, c4 = st.columns(4)
+            c1.metric("Documents", f"{report['documents']:,}")
+            c2.metric("Chunks", f"{report['total_chunks']:,}")
+            c3.metric("Median chunks/doc", report["median"])
+            c4.metric("Gini", f"{report['gini']:.3f}")
+
+            st.write("**Corpus dominance**")
+            st.write({
+                f"Top {k}": f"{100 * v:.2f}%"
+                for k, v in report["dominance"].items()
+            })
+
+            st.write("**Largest documents**")
+            st.dataframe(report["largest"], use_container_width=True)
+
+            st.write("**Chunks by file type**")
+            st.dataframe(
+                [{"type": k, "chunks": v} for k, v in report["by_type"][:20]],
+                use_container_width=True,
+            )
+
+            st.write("**Chunks by top folder**")
+            st.dataframe(
+                [{"folder": k, "chunks": v} for k, v in report["by_folder"][:20]],
+                use_container_width=True,
+            )
+
+            st.write("**Chunks by parser**")
+            st.dataframe(
+                [{"parser": k, "chunks": v} for k, v in report["by_parser"]],
+                use_container_width=True,
+            )
+
+        except Exception as e:
+            st.error("Corpus Observatory failed.")
+            st.exception(e)
 
 dedupe_by = st.selectbox(
     "Deduplicate sources by",
@@ -93,7 +140,7 @@ if st.button("Ask", type="primary") and query.strip():
     )
 
     st.subheader("Answer")
-    st.write(answer)
+    st.markdown(answer.replace("$", r"\$"))
 
     st.subheader("Sources")
 

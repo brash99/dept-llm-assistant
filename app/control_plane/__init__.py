@@ -37,3 +37,10 @@ __all__ += [
     "SemanticProgramNeighborhoodService",
     "build_program_semantic_text",
 ]
+
+from app.control_plane.concepts import InstitutionalConcept
+from app.control_plane.orientation import (
+    InstitutionalOrientation,
+    ProgramOrientationService,
+    ProposedProgramConceptExtractor,
+)

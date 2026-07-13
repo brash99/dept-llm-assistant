@@ -178,7 +178,7 @@ Even with unlimited time,
 
 \emph{which ten documents actually matter?}
 
-\vspace{0.5cm}
+\vspace{0.2cm}
 
 \begin{alertblock}{Key Insight}
 The bottleneck is not human intelligence.
@@ -190,15 +190,32 @@ The bottleneck is locating the appropriate evidence.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}{Traditional Retrieval-Augmented Generation (RAG)}
 
-\begin{center}
+\begin{columns}[T]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Left column: flowchart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\column{0.38\textwidth}
+
+\centering
 
 \begin{tikzpicture}[
-node distance=0.55cm,
-every node/.style={draw,rounded corners,minimum width=3.8cm,
-minimum height=0.65cm},
->=Latex]
+node distance=0.42cm,
+every node/.style={
+draw,
+rounded corners,
+minimum width=3.0cm,
+minimum height=0.55cm,
+align=center,
+font=\small
+},
+>=Latex
+]
 
 \node (q) {Question};
 
@@ -220,17 +237,127 @@ minimum height=0.65cm},
 
 \end{tikzpicture}
 
-\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Right column: explanation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vspace{0.3cm}
+\column{0.58\textwidth}
+
+\footnotesize
+
+\begin{itemize}
+
+\item \textbf{Question}:
+The user poses a natural-language question.
+
+\vspace{0.05cm}
+
+\item \textbf{Embedding}:
+The question is converted into a numerical semantic representation.
+
+\vspace{0.05cm}
+
+\item \textbf{Vector Search}:
+The embedding is compared against all document embeddings to locate semantically similar content.
+
+\vspace{0.05cm}
+
+\item \textbf{Top-$k$ Documents}:
+The most relevant document chunks are retrieved as supporting evidence.
+
+\vspace{0.05cm}
+
+\item \textbf{Large Language Model}:
+The LLM synthesizes an answer using the retrieved evidence.
+
+\vspace{0.05cm}
+
+\item \textbf{Answer}:
+A grounded response is returned to the user, ideally with citations.
+
+\end{itemize}
+
+\end{columns}
+
+\vspace{-0.05cm}
 
 \begin{block}{Observation}
-Retrieval-Augmented Generation dramatically improves factual grounding.
 
-However, the document corpus is largely treated as a passive information source rather than as an engineered information environment.
+Retrieval-Augmented Generation dramatically improves factual grounding by
+allowing the LLM to {\bf reason over retrieved evidence} rather than relying
+solely on its internal parameters.
+
 \end{block}
 
 \end{frame}
+
+\begin{frame}{Where is the Engineering?}
+
+\begin{columns}[T]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\column{0.47\textwidth}
+
+\begin{block}{Traditional RAG}
+
+Engineering effort focuses on
+
+\begin{itemize}
+\item embedding models
+\item vector databases
+\item nearest-neighbor search
+\item reranking
+\item prompt engineering
+\item language models
+\end{itemize}
+
+\vspace{0.25cm}
+
+The corpus is largely assumed to already exist.
+
+\end{block}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\column{0.47\textwidth}
+
+\begin{block}{Institutional Semantic Observatory}
+
+Engineering effort additionally focuses on
+
+\begin{itemize}
+\item corpus construction
+\item parser validation
+\item provenance
+\item semantic normalization
+\item knowledge objects
+\item observatories
+\item evidence quality
+\item information health
+\end{itemize}
+
+\vspace{0.25cm}
+
+The information environment becomes an engineered system.
+
+\end{block}
+
+\end{columns}
+
+\vspace{0.45cm}
+
+\begin{alertblock}{The Central Shift}
+
+Traditional AI primarily engineers the reasoning engine.
+
+ISO engineers the information environment in which reasoning occurs.
+
+\end{alertblock}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -401,7 +528,7 @@ In practice, guardrails can be implemented at many layers.
 \item Human approval requirements
 \end{itemize}
 
-\vspace{0.35cm}
+\vspace{0.05cm}
 
 \begin{alertblock}{Design Principle}
 Guardrails should be implemented at the lowest layer where they can
@@ -506,11 +633,15 @@ a conclusion into the source itself.
 
 \end{block}
 
-\vspace{0.35cm}
+\vspace{0.05cm}
 
 \small
 
-Typical fields include
+\begin{columns}[T]
+
+\column{0.48\textwidth}
+
+\begin{block}
 
 \begin{itemize}
 \item source path
@@ -518,6 +649,15 @@ Typical fields include
 \item parser
 \item timestamps
 \item document type
+\end{itemize}
+
+\end{block}
+
+\column{0.48\textwidth}
+
+\begin{block}
+
+\begin{itemize}
 \item normalized text
 \item semantic chunks
 \item provenance
@@ -525,7 +665,11 @@ Typical fields include
 \item quality indicators
 \end{itemize}
 
-\vspace{0.3cm}
+\end{block}
+
+\end{columns}
+
+\vspace{0.05cm}
 
 \begin{alertblock}{Architectural Principle}
 Knowledge objects store facts.
@@ -549,18 +693,35 @@ Services operate over knowledge objects to derive context-dependent meaning.
 
 \small
 
-Examples include
+\begin{columns}[T]
+
+\column{0.48\textwidth}
+
+\begin{block}
 
 \begin{itemize}
 \item retrieval
 \item reranking
 \item evidence synthesis
 \item corpus diagnostics
+\end{itemize}
+
+\end{block}
+
+\column{0.48\textwidth}
+
+\begin{block}
+
+\begin{itemize}
 \item scenario analysis
 \item decision brief generation
 \item conflict detection
 \item confidence assessment
 \end{itemize}
+
+\end{block}
+
+\end{columns}
 
 \vspace{0.3cm}
 
@@ -577,14 +738,14 @@ Services derive meaning.
 \centering
 
 \begin{tikzpicture}[
-node distance=0.38cm,
+node distance=0.36cm,
 every node/.style={
 draw,
 rounded corners,
 minimum width=7.7cm,
-minimum height=0.55cm,
+minimum height=0.48cm,
 align=center,
-font=\small,
+font=\footnotesize,
 inner sep=3pt
 },
 >=Latex
@@ -790,18 +951,14 @@ The current observatory measures global properties of the corpus.
 \centering
 
 \fbox{
-\parbox[c][5.2cm][c]{0.95\linewidth}{
+\parbox[c][6.5cm][c]{0.95\linewidth}{
 \centering
 
 \vspace{1.7cm}
 
-\Large
-Semantic Observatory Screenshot
-
-\vspace{0.25cm}
-
-\normalsize
-Insert corpus-health image here
+\begin{center}
+\includegraphics[width=0.95\textwidth]{semantic_observatory_health.jpg}
+\end{center}
 
 \vspace{1.7cm}
 }
@@ -863,23 +1020,17 @@ It is a diagnostic indicator of corpus structure.
 \begin{frame}{A Real Corpus Pathology}
 
 One spreadsheet initially generated approximately
-
-\vspace{0.2cm}
-
-\begin{center}
 {\Huge 50,000}
-\end{center}
-
 semantic chunks.
 
-\vspace{0.25cm}
+\vspace{0.15cm}
 
 The spreadsheet appeared modest when viewed normally.
 
 However, several corrupted rows extended across thousands of columns
 and repeated the same values many times.
 
-\vspace{0.45cm}
+\vspace{0.25cm}
 
 \begin{block}{What the Observatory Revealed}
 
@@ -946,7 +1097,7 @@ Some regions are densely populated with relevant evidence.
 
 Other regions contain little or no institutional information.
 
-\vspace{0.5cm}
+\vspace{0.2cm}
 
 \begin{columns}[T]
 
@@ -991,10 +1142,11 @@ local information density.
 
 \begin{frame}{Evidence Diversity}
 
+
 Ten retrieved chunks do not necessarily represent ten independent
 pieces of evidence.
 
-\vspace{0.35cm}
+\vspace{0.10cm}
 
 The system may return
 
@@ -1005,23 +1157,20 @@ The system may return
 \item or genuinely diverse evidence from independent sources.
 \end{itemize}
 
-\vspace{0.45cm}
+\vspace{0.10cm}
 
 \begin{block}{Possible Diversity Measures}
 
 \begin{itemize}
-\item Unique documents
-\item Unique folders
-\item Unique document types
-\item Unique authors or offices
-\item Unique years
+\item Unique documents, folders, or types
+\item Unique authors, offices, or years
 \item Semantic entropy
 \item Source-category balance
 \end{itemize}
 
 \end{block}
 
-\vspace{0.35cm}
+\vspace{0.10cm}
 
 Diverse evidence does not guarantee correctness, but it reduces the
 chance that one source silently controls the conclusion.
@@ -1035,18 +1184,16 @@ chance that one source silently controls the conclusion.
 A well-supported question should retrieve similar evidence under small
 changes in wording.
 
-\vspace{0.4cm}
+\vspace{0.15cm}
 
 For example:
 
 \begin{itemize}
-\item Mechanical Engineering major
-\item Mechanical Engineering program
-\item ME degree
-\item New undergraduate engineering program
+\item Mechanical Engineering major vs. Mechanical Engineering program
+\item ME degree vs. New undergraduate engineering program
 \end{itemize}
 
-\vspace{0.45cm}
+\vspace{0.15cm}
 
 \begin{block}{High Stability}
 Small query perturbations retrieve substantially overlapping evidence.
@@ -1056,7 +1203,7 @@ Small query perturbations retrieve substantially overlapping evidence.
 Minor wording changes produce very different retrieval neighborhoods.
 \end{block}
 
-\vspace{0.35cm}
+\vspace{0.15cm}
 
 \begin{alertblock}{Interpretation}
 Low retrieval stability is evidence that the semantic neighborhood is
@@ -1074,25 +1221,43 @@ A strategic question often requires evidence from multiple domains.
 \vspace{0.4cm}
 
 For a proposed academic program, relevant domains may include
+\begin{columns}[T]
+
+\column{0.48\textwidth}
+
+\begin{block}
 
 \begin{itemize}
 \item curriculum
 \item faculty expertise
 \item enrollment demand
 \item budget
+\end{itemize}
+
+\end{block}
+
+\column{0.48\textwidth}
+
+\begin{block}
+
+\begin{itemize}
 \item facilities
 \item equipment
 \item accreditation
 \item strategic alignment
 \end{itemize}
 
-\vspace{0.45cm}
+\end{block}
+
+\end{columns}
+
+\vspace{0.35cm}
 
 \begin{block}{Coverage Question}
 Did retrieval find evidence for all required domains, or only a subset?
 \end{block}
 
-\vspace{0.35cm}
+\vspace{0.25cm}
 
 A high-quality answer may still be impossible when several essential
 evidence domains are missing.
@@ -1163,6 +1328,53 @@ High
 % PART IV BEGINS HERE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ISO homepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{The Institutional Semantic Observatory}
+
+\centering
+
+\includegraphics[
+    width=\textwidth,
+    height=0.82\textheight,
+    keepaspectratio
+]{iso_homepage.jpg}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Global semantic ecosystem health
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Global Semantic Ecosystem Health}
+
+\centering
+
+\includegraphics[
+    width=\textwidth,
+    height=0.82\textheight,
+    keepaspectratio
+]{iso_semantic_health.jpg}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Corpus weaknesses and recommended evidence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Observed Weak Regions and Evidence Gaps}
+
+\centering
+
+\includegraphics[
+    width=\textwidth,
+    height=0.82\textheight,
+    keepaspectratio
+]{iso_semantic_health_evidence.jpg}
+
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1185,7 +1397,7 @@ Should CNU create a Mechanical Engineering major?
 
 \normalsize
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 ISO does not begin by producing an answer.
 
@@ -1198,7 +1410,7 @@ Instead it asks:
 \item How reliable is the evidence?
 \end{itemize}
 
-\vspace{0.4cm}
+\vspace{0.2cm}
 
 \begin{block}{Decision Support}
 ISO assists human decision makers by assembling,
@@ -1206,6 +1418,22 @@ organizing, evaluating, and explaining evidence.
 
 The decision itself remains a human responsibility.
 \end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mechanical Engineering decision brief
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Decision Support: Mechanical Engineering}
+
+\centering
+
+\includegraphics[
+    width=\textwidth,
+    height=0.82\textheight,
+    keepaspectratio
+]{iso_mechanical_engineering.jpg}
 
 \end{frame}
 
@@ -1225,16 +1453,12 @@ Should CNU eliminate the French major?
 
 \normalsize
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 ISO retrieved curriculum documents,
 catalogs,
 planning forms,
-and language placement information.
-
-\vspace{0.3cm}
-
-However, the system explicitly reported missing evidence.
+and language placement information. {\bf However, the system explicitly reported missing evidence.}
 
 \begin{itemize}
 \item Enrollment history
@@ -1244,7 +1468,7 @@ However, the system explicitly reported missing evidence.
 \item Program review
 \end{itemize}
 
-\vspace{0.4cm}
+\vspace{0.1cm}
 
 \begin{alertblock}{Correct Conclusion}
 The available evidence is insufficient to support
@@ -1256,16 +1480,32 @@ Additional information is required.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% French decision brief
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Epistemic Humility: The French Major}
+
+\centering
+
+\includegraphics[
+    width=\textwidth,
+    height=0.82\textheight,
+    keepaspectratio
+]{iso_french.jpg}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{A Scientist, Not a Chatbot}
 
 Traditional chatbots attempt to answer nearly every question.
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 ISO attempts something different.
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \begin{columns}[T]
 
@@ -1299,7 +1539,7 @@ ISO attempts something different.
 
 \end{columns}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \begin{center}
 \Large
@@ -1382,54 +1622,69 @@ not merely of the language model.
 
 \begin{frame}{The Emerging Architecture}
 
+\begin{columns}[T]
+
+\column{0.58\textwidth}
+
+\begin{block}{Institutional Reasoning Pipeline}
+
 \centering
 
 \begin{tikzpicture}[
-node distance=0.45cm,
+node distance=0.35cm,
 every node/.style={
 draw,
 rounded corners,
-minimum width=7cm,
-minimum height=0.55cm,
+minimum width=5.7cm,
+minimum height=0.48cm,
 align=center,
-font=\small
+font=\footnotesize
 },
 >=Latex
 ]
 
-\node (corpus){Institutional Corpus};
+\node (corpus) {Institutional Corpus};
+\node (objects) [below=of corpus] {Knowledge Objects};
+\node (observatory) [below=of objects] {Semantic Observatory};
+\node (retrieval) [below=of observatory] {Evidence Retrieval};
+\node (analysis) [below=of retrieval] {Evidence Analysis};
+\node (reasoning) [below=of analysis] {Reasoning Model};
+\node (support) [below=of reasoning] {Decision Support};
 
-\node (objects)[below=of corpus]{Knowledge Objects};
-
-\node (observatory)[below=of objects]{Semantic Observatory};
-
-\node (retrieval)[below=of observatory]{Evidence Retrieval};
-
-\node (analysis)[below=of retrieval]{Evidence Analysis};
-
-\node (reasoning)[below=of analysis]{Reasoning Model};
-
-\node (support)[below=of reasoning]{Decision Support};
-
-\draw[->,thick](corpus)--(objects);
-\draw[->,thick](objects)--(observatory);
-\draw[->,thick](observatory)--(retrieval);
-\draw[->,thick](retrieval)--(analysis);
-\draw[->,thick](analysis)--(reasoning);
-\draw[->,thick](reasoning)--(support);
+\draw[->,thick] (corpus)--(objects);
+\draw[->,thick] (objects)--(observatory);
+\draw[->,thick] (observatory)--(retrieval);
+\draw[->,thick] (retrieval)--(analysis);
+\draw[->,thick] (analysis)--(reasoning);
+\draw[->,thick] (reasoning)--(support);
 
 \end{tikzpicture}
 
-\vspace{0.45cm}
+\end{block}
+
+\column{0.38\textwidth}
+
+\begin{block}{Central Principle}
+
+\centering
+
+\vspace{1.0cm}
 
 \Large
 
 Engineer the environment.
 
+\vspace{0.7cm}
+
 Reliable reasoning follows.
 
-\end{frame}
+\vspace{1.0cm}
 
+\end{block}
+
+\end{columns}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Summary}

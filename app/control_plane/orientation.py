@@ -96,6 +96,23 @@ class ProposedProgramConceptExtractor:
             should|
             could|
             might|
+            start|
+            starting|
+            create|
+            creating|
+            establish|
+            establishing|
+            launch|
+            launching|
+            add|
+            adding|
+            develop|
+            developing|
+            introduce|
+            introducing|
+            propose|
+            proposing|
+            new|
             university|
             institution
         )\s+

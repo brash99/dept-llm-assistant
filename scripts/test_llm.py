@@ -18,12 +18,17 @@ Usage:
 from openai import OpenAI
 from openai import APIConnectionError, APIStatusError
 
+from app.config import load_config
+
 # ----------------------------------------------------------------------
 # Configuration
 # ----------------------------------------------------------------------
 
-BASE_URL = "http://localhost:8000/v1"
-MODEL = "qwen3-32b-local"
+config = load_config()
+llm_config = config["llm"]
+
+BASE_URL = llm_config["base_url"]
+MODEL = llm_config["model"]
 
 SYSTEM_PROMPT = (
     "Answer directly and concisely. "

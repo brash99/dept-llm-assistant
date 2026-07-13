@@ -7,6 +7,198 @@ from app.decision_brief import generate_decision_brief
 from app.observatory.dashboard import render_iso_overview, render_observatory_assessment
 
 from app.corpus_observatory import analyze_corpus
+from app.control_plane.catalog import ProgramCatalog
+from app.control_plane.resolver import ProgramResolver
+from app.control_plane.semantic_neighbors import (
+    SemanticProgramNeighborhoodService,
+)
+
+
+def find_program_catalog_path(config: dict, project_root: Path) -> Path:
+    """
+    Locate the asserted institutional program catalog.
+
+    A configured path takes precedence. Fallback locations support the
+    current development repository without coupling the control plane
+    permanently to one directory layout.
+    """
+    control_plane_cfg = config.get("control_plane", {})
+    configured_path = control_plane_cfg.get("program_catalog")
+
+    if configured_path:
+        candidate = Path(configured_path)
+
+        if not candidate.is_absolute():
+            candidate = project_root / candidate
+
+        if not candidate.exists():
+            raise FileNotFoundError(
+                f"Configured program catalog does not exist: {candidate}"
+            )
+
+        return candidate
+
+    preferred_candidates = [
+        project_root / "config" / "institutional_programs.yaml",
+        project_root / "config" / "programs.yaml",
+        project_root / "config" / "program_catalog.yaml",
+        project_root / "data" / "programs.yaml",
+        project_root / "data" / "program_catalog.yaml",
+        project_root / "app" / "control_plane" / "programs.yaml",
+        project_root / "app" / "control_plane" / "program_catalog.yaml",
+    ]
+
+    for candidate in preferred_candidates:
+        if candidate.exists():
+            return candidate
+
+    discovered = []
+
+    for pattern in (
+        "**/programs.yaml",
+        "**/program_catalog.yaml",
+        "**/programs.yml",
+        "**/program_catalog.yml",
+    ):
+        discovered.extend(project_root.glob(pattern))
+
+    discovered = sorted(set(discovered))
+
+    if len(discovered) == 1:
+        return discovered[0]
+
+    if not discovered:
+        raise FileNotFoundError(
+            "No program catalog was found. Add "
+            "'control_plane.program_catalog' to settings.yaml."
+        )
+
+    raise RuntimeError(
+        "Multiple possible program catalogs were found. Set "
+        "'control_plane.program_catalog' in settings.yaml. Candidates: "
+        + ", ".join(str(candidate) for candidate in discovered)
+    )
+
+
+@st.cache_resource(show_spinner=False)
+def load_semantic_control_plane(
+    catalog_path: str,
+    model_name: str,
+    device: str,
+):
+    """
+    Load the Sprint 1 catalog, deterministic resolver, and semantic
+    neighborhood service once per Streamlit process.
+    """
+    catalog = ProgramCatalog.from_yaml(Path(catalog_path))
+    resolver = ProgramResolver(catalog)
+
+    neighborhood_service = SemanticProgramNeighborhoodService(
+        programs=catalog.all(),
+        model_name=model_name,
+        device=device,
+    )
+
+    return resolver, neighborhood_service
+
+
+def render_institutional_orientation(
+    question: str,
+    resolver: ProgramResolver,
+    neighborhood_service: SemanticProgramNeighborhoodService,
+    neighbor_limit: int = 5,
+):
+    """
+    Render the Semantic Control Plane's pre-retrieval interpretation.
+
+    Sprint 1 remains advisory: this stage observes and explains the
+    institutional orientation but does not yet modify retrieval.
+    """
+    resolution = resolver.resolve(question)
+
+    if resolution.found:
+        semantic_query = (
+            f"{question}\n"
+            f"Resolved academic program: {resolution.program.name}"
+        )
+        excluded_program_id = resolution.program.id
+    else:
+        semantic_query = question
+        excluded_program_id = None
+
+    neighbors = neighborhood_service.neighbors(
+        query_text=semantic_query,
+        exclude_program_id=excluded_program_id,
+        limit=neighbor_limit,
+    )
+
+    with st.container(border=True):
+        st.subheader("🧭 Institutional Orientation")
+        st.caption(
+            "Semantic Control Plane interpretation generated before "
+            "institutional evidence retrieval."
+        )
+
+        if resolution.found:
+            program = resolution.program
+
+            st.success(f"Resolved program: **{program.name}**")
+
+            details = []
+
+            if program.degree_type:
+                details.append(f"Degree type: {program.degree_type}")
+
+            if program.department:
+                details.append(f"Department: {program.department}")
+
+            if program.school:
+                details.append(f"School: {program.school}")
+
+            if details:
+                st.write(" | ".join(details))
+
+            st.caption(
+                f"Match type: {resolution.match_type} | "
+                f"Matched phrase: {resolution.matched_phrase!r} | "
+                f"Confidence: {resolution.confidence:.2f}"
+            )
+        else:
+            st.info(
+                "No cataloged academic program was explicitly resolved. "
+                "Semantic neighbors are based on the full question."
+            )
+
+        st.markdown("**Semantic program neighborhood**")
+
+        if neighbors:
+            rows = []
+
+            for rank, neighbor in enumerate(neighbors, start=1):
+                program = neighbor.program
+
+                rows.append(
+                    {
+                        "Rank": rank,
+                        "Program": program.name,
+                        "Degree type": program.degree_type or "",
+                        "Department": program.department or "",
+                        "School": program.school or "",
+                        "Similarity": round(neighbor.score, 4),
+                        "Method": neighbor.method,
+                    }
+                )
+
+            st.dataframe(
+                rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.warning("No semantic program neighbors were produced.")
+
+    return resolution, neighbors
+
 
 st.set_page_config(
     page_title="Institutional Semantic Observatory (ISO)",
@@ -154,6 +346,47 @@ if st.button(button_label, type="primary") and query.strip():
     embed_cfg = config.get("embedding", {})
     llm_cfg = config.get("llm", {})
     rerank_cfg = config.get("reranking", {})
+
+    control_plane_cfg = config.get("control_plane", {})
+
+    orientation_enabled = control_plane_cfg.get(
+        "institutional_orientation_enabled",
+        True,
+    )
+
+    orientation_neighbor_limit = int(
+        control_plane_cfg.get("semantic_neighbor_limit", 5)
+    )
+
+    if orientation_enabled:
+        try:
+            program_catalog_path = find_program_catalog_path(
+                config=config,
+                project_root=project_root,
+            )
+
+            program_resolver, neighborhood_service = (
+                load_semantic_control_plane(
+                    catalog_path=str(program_catalog_path),
+                    model_name=embed_cfg.get(
+                        "model",
+                        "BAAI/bge-small-en-v1.5",
+                    ),
+                    device=embed_cfg.get("device", "cuda"),
+                )
+            )
+
+            render_institutional_orientation(
+                question=clean_query,
+                resolver=program_resolver,
+                neighborhood_service=neighborhood_service,
+                neighbor_limit=orientation_neighbor_limit,
+            )
+
+        except Exception as e:
+            st.error("Institutional Orientation failed.")
+            st.exception(e)
+            st.stop()
 
     rerank_enabled = rerank_cfg.get("enabled", False)
 

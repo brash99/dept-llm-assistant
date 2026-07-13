@@ -12,10 +12,6 @@ from app.control_plane.resolver import ProgramResolver
 from app.control_plane.semantic_neighbors import (
     SemanticProgramNeighborhoodService,
 )
-from app.control_plane.orientation import (
-    InstitutionalOrientation,
-    ProgramOrientationService,
-)
 
 
 def find_program_catalog_path(config: dict, project_root: Path) -> Path:
@@ -89,11 +85,10 @@ def load_semantic_control_plane(
     catalog_path: str,
     model_name: str,
     device: str,
-    neighbor_limit: int,
 ):
     """
-    Load the catalog and the Sprint 2 Semantic Control Plane service once
-    per Streamlit process.
+    Load the Sprint 1 catalog, deterministic resolver, and semantic
+    neighborhood service once per Streamlit process.
     """
     catalog = ProgramCatalog.from_yaml(Path(catalog_path))
     resolver = ProgramResolver(catalog)
@@ -104,22 +99,39 @@ def load_semantic_control_plane(
         device=device,
     )
 
-    return ProgramOrientationService(
-        resolver=resolver,
-        neighborhood_service=neighborhood_service,
-        neighbor_limit=neighbor_limit,
-    )
+    return resolver, neighborhood_service
 
 
 def render_institutional_orientation(
-    orientation: InstitutionalOrientation,
-) -> None:
+    question: str,
+    resolver: ProgramResolver,
+    neighborhood_service: SemanticProgramNeighborhoodService,
+    neighbor_limit: int = 5,
+):
     """
-    Render the Semantic Control Plane contract produced before retrieval.
+    Render the Semantic Control Plane's pre-retrieval interpretation.
 
-    This panel is advisory in Sprint 2. It explains the institutional
-    interpretation but does not yet alter retrieval behavior.
+    Sprint 1 remains advisory: this stage observes and explains the
+    institutional orientation but does not yet modify retrieval.
     """
+    resolution = resolver.resolve(question)
+
+    if resolution.found:
+        semantic_query = (
+            f"{question}\n"
+            f"Resolved academic program: {resolution.program.name}"
+        )
+        excluded_program_id = resolution.program.id
+    else:
+        semantic_query = question
+        excluded_program_id = None
+
+    neighbors = neighborhood_service.neighbors(
+        query_text=semantic_query,
+        exclude_program_id=excluded_program_id,
+        limit=neighbor_limit,
+    )
+
     with st.container(border=True):
         st.subheader("🧭 Institutional Orientation")
         st.caption(
@@ -127,63 +139,42 @@ def render_institutional_orientation(
             "institutional evidence retrieval."
         )
 
-        st.markdown("**Resolved institutional entities**")
+        if resolution.found:
+            program = resolution.program
 
-        if orientation.resolved_entities:
-            for entity in orientation.resolved_entities:
-                st.success(f"Existing program: **{entity.name}**")
+            st.success(f"Resolved program: **{program.name}**")
 
-                details = []
+            details = []
 
-                if entity.degree_type:
-                    details.append(f"Degree type: {entity.degree_type}")
+            if program.degree_type:
+                details.append(f"Degree type: {program.degree_type}")
 
-                if entity.department:
-                    details.append(f"Department: {entity.department}")
+            if program.department:
+                details.append(f"Department: {program.department}")
 
-                if entity.school:
-                    details.append(f"School: {entity.school}")
+            if program.school:
+                details.append(f"School: {program.school}")
 
-                if details:
-                    st.write(" | ".join(details))
-
-            resolution = orientation.resolution
+            if details:
+                st.write(" | ".join(details))
 
             st.caption(
                 f"Match type: {resolution.match_type} | "
                 f"Matched phrase: {resolution.matched_phrase!r} | "
-                f"Resolution confidence: {resolution.confidence:.2f}"
+                f"Confidence: {resolution.confidence:.2f}"
             )
         else:
-            st.write("No existing cataloged program was resolved.")
-
-        st.markdown("**Proposed institutional concepts**")
-
-        if orientation.proposed_concepts:
-            for concept in orientation.proposed_concepts:
-                st.info(
-                    f"Proposed academic program: **{concept.name}**\n\n"
-                    "This concept is not asserted as an existing program "
-                    "in the institutional catalog."
-                )
-
-                st.caption(
-                    f"Concept type: {concept.concept_type} | "
-                    f"Extraction method: {concept.extraction_method} | "
-                    f"Confidence: {concept.confidence:.2f}"
-                )
-        else:
-            st.write("No proposed academic-program concept was identified.")
+            st.info(
+                "No cataloged academic program was explicitly resolved. "
+                "Semantic neighbors are based on the full question."
+            )
 
         st.markdown("**Semantic program neighborhood**")
 
-        if orientation.semantic_neighbors:
+        if neighbors:
             rows = []
 
-            for rank, neighbor in enumerate(
-                orientation.semantic_neighbors,
-                start=1,
-            ):
+            for rank, neighbor in enumerate(neighbors, start=1):
                 program = neighbor.program
 
                 rows.append(
@@ -206,16 +197,7 @@ def render_institutional_orientation(
         else:
             st.warning("No semantic program neighbors were produced.")
 
-        if orientation.notes:
-            st.markdown("**Orientation notes**")
-
-            for note in orientation.notes:
-                st.write(f"- {note}")
-
-        st.caption(
-            f"Overall orientation confidence: "
-            f"{orientation.confidence:.2f}"
-        )
+    return resolution, neighbors
 
 
 st.set_page_config(
@@ -383,19 +365,23 @@ if st.button(button_label, type="primary") and query.strip():
                 project_root=project_root,
             )
 
-            orientation_service = load_semantic_control_plane(
-                catalog_path=str(program_catalog_path),
-                model_name=embed_cfg.get(
-                    "model",
-                    "BAAI/bge-small-en-v1.5",
-                ),
-                device=embed_cfg.get("device", "cuda"),
-                neighbor_limit=orientation_neighbor_limit,
+            program_resolver, neighborhood_service = (
+                load_semantic_control_plane(
+                    catalog_path=str(program_catalog_path),
+                    model_name=embed_cfg.get(
+                        "model",
+                        "BAAI/bge-small-en-v1.5",
+                    ),
+                    device=embed_cfg.get("device", "cuda"),
+                )
             )
 
-            orientation = orientation_service.orient(clean_query)
-
-            render_institutional_orientation(orientation)
+            render_institutional_orientation(
+                question=clean_query,
+                resolver=program_resolver,
+                neighborhood_service=neighborhood_service,
+                neighbor_limit=orientation_neighbor_limit,
+            )
 
         except Exception as e:
             st.error("Institutional Orientation failed.")

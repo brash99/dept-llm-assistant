@@ -154,7 +154,18 @@ def load_knowledge_object(input_path: Path) -> KnowledgeObject:
     with input_path.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
-    if data.get("object_type") == "document":
+    object_type = data.get("object_type")
+
+    if object_type == "document":
         return Document(**data)
+
+    if object_type == "constitutional_knowledge":
+        from app.constitution.objects import (
+            ConstitutionalKnowledgeObject,
+        )
+
+        return ConstitutionalKnowledgeObject.from_dict(
+            data
+        )
 
     return KnowledgeObject(**data)

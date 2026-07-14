@@ -216,6 +216,28 @@ It helps institutions examine themselves with greater clarity.
 
 ---
 
+## Institutions Reason in Two Semantic Spaces
+
+Institutions are governed by both evidence and values.
+
+Evidence describes the institution as it exists.
+
+Values describe the institution as it aspires to become.
+
+ISO therefore preserves these as separate semantic spaces.
+
+Knowledge Objects preserve empirical observations.
+
+Constitutional Knowledge Objects preserve institutional values.
+
+Decision Services derive meaning transparently from both.
+
+Neither facts nor values are modified during reasoning.
+
+Human decision-makers remain responsible for institutional decisions.
+
+---
+
 ## Our Commitment
 
 We believe institutions deserve decision-support systems that are as rigorous, transparent, and evidence-driven as the scientific disciplines they support.

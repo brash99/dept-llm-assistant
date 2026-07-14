@@ -57,7 +57,6 @@ class RetrievalResult:
     score: float
     chunk_id: str
     knowledge_object_id: str
-    object_type: str
     chunk_index: int
     text: str
     citation: Dict[str, Any]
@@ -81,7 +80,6 @@ def load_embedding_files(embeddings_dir):
                 {
                     "chunk_id": item["chunk_id"],
                     "knowledge_object_id": item["knowledge_object_id"],
-                    "object_type": item.get("object_type", "document"),
                     "chunk_index": item["chunk_index"],
                     "text": item["text"],
                     "citation": item["citation"],
@@ -205,7 +203,6 @@ def search_index(
                 score=float(score),
                 chunk_id=record["chunk_id"],
                 knowledge_object_id=record["knowledge_object_id"],
-                object_type=record.get("object_type", "document"),
                 chunk_index=record["chunk_index"],
                 text=record["text"],
                 citation=record["citation"],

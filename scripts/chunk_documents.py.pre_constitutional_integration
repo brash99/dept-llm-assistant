@@ -30,20 +30,13 @@ def main():
 
     project_root = Path(config["project"]["root"])
     normalized_dir = project_root / config["storage"]["normalized"]
-    constitutional_dir = project_root / config["storage"]["constitutional"]
-    source_dirs = [
-        normalized_dir,
-        constitutional_dir,
-    ]
     chunks_dir = project_root / config["storage"]["chunks"]
     logs_dir = project_root / config["storage"]["logs"]
 
     print("=" * 70)
     print("Document Chunking")
     print("=" * 70)
-    print("Source dirs:")
-    for source_dir in source_dirs:
-        print(f"  - {source_dir}")
+    print(f"Normalized dir : {normalized_dir}")
     print(f"Chunks dir     : {chunks_dir}")
     print(f"Limit          : {args.limit}")
     print(f"Chunk size     : {chunk_size}")
@@ -52,7 +45,7 @@ def main():
     print()
 
     results = run_chunking(
-        source_dirs=source_dirs,
+        normalized_dir=normalized_dir,
         chunks_dir=chunks_dir,
         limit=args.limit,
         chunk_size=chunk_size,

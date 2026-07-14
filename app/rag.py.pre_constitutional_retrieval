@@ -1,9 +1,22 @@
 from openai import OpenAI
 
-from app.retrieval import (
-    retrieve,
-    build_grouped_context,
-)
+from app.retrieval import retrieve
+
+
+def build_context(results):
+    parts = []
+
+    for i, result in enumerate(results, start=1):
+        citation = result.citation
+        parts.append(
+            f"[Source {i}]\n"
+            f"Title: {citation.get('title')}\n"
+            f"Path: {citation.get('relative_path')}\n"
+            f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n\n"
+            f"{result.text}"
+        )
+
+    return "\n\n" + ("-" * 70 + "\n\n").join(parts)
 
 
 def answer_question(
@@ -45,44 +58,24 @@ def answer_question(
         results, retrieval_report, profile = retrieved
         trace = None
 
-    context = build_grouped_context(results)
+    context = build_context(results)
 
     prompt = f"""
-You are a careful institutional decision-support assistant.
-
-You must reason using two distinct forms of evidence:
-
-1. Institutional Values
-   These are constitutional or normative institutional commitments.
-   They indicate what the institution values, prioritizes, or seeks to
-   become. They do not by themselves establish empirical facts.
-
-2. Empirical Evidence
-   These are observations, reports, policies, data, and other factual
-   sources. They describe what is known about the institution or the
-   external environment.
+You are a careful assistant answering questions using only the provided sources.
 
 Rules:
-- Answer only from the supplied evidence.
-- Clearly distinguish institutional values from empirical claims.
-- Do not present a value statement as though it were an empirical fact.
-- Do not present an empirical observation as though it determines what
-  the institution ought to value.
-- Explain how the empirical evidence relates to the institutional values.
-- If either evidence category is missing or insufficient, say so clearly.
-- Cite constitutional material as [Constitutional Source 1], etc.
-- Cite empirical material as [Empirical Source 1], etc.
+- Answer only from the sources below.
+- If the sources do not contain the answer, say that clearly.
+- Cite sources inline using [Source 1], [Source 2], etc.
 - Be concise but complete.
 
-{context}
-
-Question
-========
-
+Question:
 {query}
 
-Answer
-======
+Sources:
+{context}
+
+Answer:
 """.strip()
 
     client = OpenAI(
@@ -101,12 +94,6 @@ Answer
     answer = response.choices[0].message.content
 
     if return_trace:
-        return (
-            answer,
-            results,
-            retrieval_report,
-            trace,
-            profile,
-        )
+        return answer, results, retrieval_report, trace, profile
 
     return answer, results, profile

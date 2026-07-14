@@ -1,0 +1,450 @@
+from collections import deque
+from dataclasses import dataclass
+from html.parser import HTMLParser
+from pathlib import Path
+from time import perf_counter, sleep
+from typing import Iterable, List, Optional, Set, Tuple
+from urllib.parse import (
+    parse_qsl,
+    urlencode,
+    urljoin,
+    urlparse,
+    urlunparse,
+)
+from urllib.robotparser import RobotFileParser
+
+from app.acquisition.authority import SourceAuthority
+from app.acquisition.manifest import (
+    AcquisitionManifest,
+    AcquisitionStatus,
+)
+from app.acquisition.web import WebAcquisitionService
+
+
+class _LinkExtractor(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.links: List[str] = []
+
+    def handle_starttag(self, tag, attrs) -> None:
+        if tag.casefold() not in {"a", "link"}:
+            return
+
+        attributes = dict(attrs)
+        href = attributes.get("href")
+
+        if href:
+            self.links.append(href)
+
+
+@dataclass(frozen=True)
+class WebCrawlFailure:
+    url: str
+    error_type: str
+    message: str
+
+
+@dataclass(frozen=True)
+class WebCrawlReport:
+    seed_url: str
+    pages_attempted: int
+    pages_acquired: int
+    new_documents: int
+    unchanged_documents: int
+    changed_documents: int
+    duplicate_documents: int
+    robots_denied: int
+    offsite_links_skipped: int
+    non_http_links_skipped: int
+    duplicate_urls_skipped: int
+    failed_pages: int
+    elapsed_seconds: float
+    failures: Tuple[WebCrawlFailure, ...] = ()
+
+    def to_dict(self) -> dict:
+        return {
+            "seed_url": self.seed_url,
+            "pages_attempted": self.pages_attempted,
+            "pages_acquired": self.pages_acquired,
+            "new_documents": self.new_documents,
+            "unchanged_documents": self.unchanged_documents,
+            "changed_documents": self.changed_documents,
+            "duplicate_documents": self.duplicate_documents,
+            "robots_denied": self.robots_denied,
+            "offsite_links_skipped": self.offsite_links_skipped,
+            "non_http_links_skipped": self.non_http_links_skipped,
+            "duplicate_urls_skipped": self.duplicate_urls_skipped,
+            "failed_pages": self.failed_pages,
+            "elapsed_seconds": self.elapsed_seconds,
+            "failures": [
+                {
+                    "url": failure.url,
+                    "error_type": failure.error_type,
+                    "message": failure.message,
+                }
+                for failure in self.failures
+            ],
+        }
+
+
+class WebAcquisitionRunner:
+    """
+    Bounded, same-site, robots-aware breadth-first web acquisition.
+
+    Each acquired page is delegated to WebAcquisitionService and represented
+    as a SourceDocument. The runner does not parse institutional meaning,
+    chunk documents, embed content, or modify the vector database.
+    """
+
+    DEFAULT_IGNORED_SUFFIXES = {
+        ".css",
+        ".js",
+        ".map",
+        ".ico",
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".gif",
+        ".svg",
+        ".webp",
+        ".woff",
+        ".woff2",
+        ".ttf",
+        ".eot",
+        ".mp3",
+        ".mp4",
+        ".mov",
+        ".avi",
+        ".zip",
+        ".tar",
+        ".gz",
+    }
+
+    def __init__(
+        self,
+        *,
+        web_service: WebAcquisitionService,
+        manifest: AcquisitionManifest,
+        request_delay_seconds: float = 0.25,
+    ) -> None:
+        self.web_service = web_service
+        self.manifest = manifest
+        self.request_delay_seconds = max(
+            0.0,
+            request_delay_seconds,
+        )
+
+    def run(
+        self,
+        *,
+        seed_url: str,
+        source_organization: str,
+        authority: SourceAuthority,
+        max_pages: int = 25,
+        max_depth: int = 2,
+        allowed_hosts: Optional[Iterable[str]] = None,
+        allowed_prefixes: Optional[Iterable[str]] = None,
+        respect_robots: bool = True,
+    ) -> WebCrawlReport:
+        if max_pages < 1:
+            raise ValueError("max_pages must be at least 1.")
+
+        if max_depth < 0:
+            raise ValueError("max_depth must be non-negative.")
+
+        started = perf_counter()
+        normalized_seed = self.normalize_url(seed_url)
+
+        seed_parsed = urlparse(normalized_seed)
+
+        effective_hosts = {
+            host.casefold()
+            for host in (
+                allowed_hosts
+                or [seed_parsed.netloc]
+            )
+        }
+
+        effective_prefixes = tuple(
+            self.normalize_url(prefix)
+            for prefix in (
+                allowed_prefixes
+                or [normalized_seed]
+            )
+        )
+
+        if not self._url_matches_prefixes(
+            normalized_seed,
+            effective_prefixes,
+        ):
+            raise ValueError(
+                "Seed URL is outside the configured allowed prefixes."
+            )
+
+        queue = deque([(normalized_seed, 0)])
+        queued_urls = {normalized_seed}
+        visited_urls: Set[str] = set()
+
+        robots_by_origin = {}
+
+        counts = {
+            AcquisitionStatus.NEW: 0,
+            AcquisitionStatus.UNCHANGED: 0,
+            AcquisitionStatus.CHANGED: 0,
+            AcquisitionStatus.DUPLICATE_CONTENT: 0,
+        }
+
+        pages_attempted = 0
+        pages_acquired = 0
+        robots_denied = 0
+        offsite_links_skipped = 0
+        non_http_links_skipped = 0
+        duplicate_urls_skipped = 0
+        failures: List[WebCrawlFailure] = []
+
+        while queue and pages_attempted < max_pages:
+            current_url, depth = queue.popleft()
+
+            if current_url in visited_urls:
+                duplicate_urls_skipped += 1
+                continue
+
+            visited_urls.add(current_url)
+
+            if respect_robots:
+                robot_parser = self._robots_for_url(
+                    current_url,
+                    robots_by_origin,
+                )
+
+                if not robot_parser.can_fetch(
+                    self.web_service.user_agent,
+                    current_url,
+                ):
+                    robots_denied += 1
+                    continue
+
+            pages_attempted += 1
+
+            try:
+                document = self.web_service.acquire(
+                    url=current_url,
+                    source_organization=source_organization,
+                    authority=authority,
+                )
+
+                decision = self.manifest.record(document)
+                counts[decision.status] += 1
+                pages_acquired += 1
+
+                if (
+                    depth < max_depth
+                    and document.media_type
+                    in {
+                        "text/html",
+                        "application/xhtml+xml",
+                    }
+                ):
+                    saved_path = (
+                        self.web_service.storage_root
+                        / document.relative_path
+                    )
+
+                    for discovered_url in self._extract_links(
+                        saved_path=saved_path,
+                        base_url=document.source_url or current_url,
+                    ):
+                        parsed = urlparse(discovered_url)
+
+                        if parsed.scheme not in {"http", "https"}:
+                            non_http_links_skipped += 1
+                            continue
+
+                        if parsed.netloc.casefold() not in effective_hosts:
+                            offsite_links_skipped += 1
+                            continue
+
+                        if self._ignored_by_suffix(parsed.path):
+                            continue
+
+                        normalized = self.normalize_url(discovered_url)
+
+                        if not self._url_matches_prefixes(
+                            normalized,
+                            effective_prefixes,
+                        ):
+                            offsite_links_skipped += 1
+                            continue
+
+                        if (
+                            normalized in visited_urls
+                            or normalized in queued_urls
+                        ):
+                            duplicate_urls_skipped += 1
+                            continue
+
+                        queue.append((normalized, depth + 1))
+                        queued_urls.add(normalized)
+
+            except Exception as error:
+                failures.append(
+                    WebCrawlFailure(
+                        url=current_url,
+                        error_type=type(error).__name__,
+                        message=str(error),
+                    )
+                )
+
+            if self.request_delay_seconds:
+                sleep(self.request_delay_seconds)
+
+        elapsed = perf_counter() - started
+
+        return WebCrawlReport(
+            seed_url=normalized_seed,
+            pages_attempted=pages_attempted,
+            pages_acquired=pages_acquired,
+            new_documents=counts[AcquisitionStatus.NEW],
+            unchanged_documents=counts[
+                AcquisitionStatus.UNCHANGED
+            ],
+            changed_documents=counts[
+                AcquisitionStatus.CHANGED
+            ],
+            duplicate_documents=counts[
+                AcquisitionStatus.DUPLICATE_CONTENT
+            ],
+            robots_denied=robots_denied,
+            offsite_links_skipped=offsite_links_skipped,
+            non_http_links_skipped=non_http_links_skipped,
+            duplicate_urls_skipped=duplicate_urls_skipped,
+            failed_pages=len(failures),
+            elapsed_seconds=elapsed,
+            failures=tuple(failures),
+        )
+
+    def _robots_for_url(
+        self,
+        url: str,
+        cache: dict,
+    ) -> RobotFileParser:
+        parsed = urlparse(url)
+        origin = f"{parsed.scheme}://{parsed.netloc}"
+
+        if origin in cache:
+            return cache[origin]
+
+        robots_url = f"{origin}/robots.txt"
+        parser = RobotFileParser()
+        parser.set_url(robots_url)
+
+        try:
+            parser.read()
+        except Exception:
+            # If robots.txt cannot be retrieved, permit acquisition but
+            # retain conservative page and depth limits.
+            parser.parse(["User-agent: *", "Allow: /"])
+
+        cache[origin] = parser
+        return parser
+
+    @classmethod
+    def normalize_url(cls, url: str) -> str:
+        parsed = urlparse(url)
+
+        if parsed.scheme not in {"http", "https"}:
+            raise ValueError(
+                f"Unsupported web URL scheme: {parsed.scheme!r}"
+            )
+
+        scheme = parsed.scheme.casefold()
+        netloc = parsed.netloc.casefold()
+
+        path = parsed.path or "/"
+        path = cls._normalize_path(path)
+
+        normalized_query = urlencode(
+            sorted(
+                parse_qsl(
+                    parsed.query,
+                    keep_blank_values=True,
+                )
+            )
+        )
+
+        return urlunparse(
+            (
+                scheme,
+                netloc,
+                path,
+                "",
+                normalized_query,
+                "",
+            )
+        )
+
+    @staticmethod
+    def _normalize_path(path: str) -> str:
+        while "//" in path:
+            path = path.replace("//", "/")
+
+        if not path.startswith("/"):
+            path = "/" + path
+
+        return path
+
+    @classmethod
+    def _extract_links(
+        cls,
+        *,
+        saved_path: Path,
+        base_url: str,
+    ) -> List[str]:
+        content = saved_path.read_text(
+            encoding="utf-8",
+            errors="replace",
+        )
+
+        parser = _LinkExtractor()
+        parser.feed(content)
+
+        links = []
+
+        for href in parser.links:
+            href = href.strip()
+
+            if not href:
+                continue
+
+            if href.startswith(
+                (
+                    "#",
+                    "mailto:",
+                    "tel:",
+                    "javascript:",
+                    "data:",
+                )
+            ):
+                continue
+
+            links.append(urljoin(base_url, href))
+
+        return links
+
+    @staticmethod
+    def _url_matches_prefixes(
+        url: str,
+        prefixes: Tuple[str, ...],
+    ) -> bool:
+        """
+        Return True only when a URL remains within an approved observer scope.
+        """
+        return any(
+            url.startswith(prefix)
+            for prefix in prefixes
+        )
+
+    @classmethod
+    def _ignored_by_suffix(cls, path: str) -> bool:
+        suffix = Path(path).suffix.casefold()
+        return suffix in cls.DEFAULT_IGNORED_SUFFIXES

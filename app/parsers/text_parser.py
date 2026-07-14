@@ -14,8 +14,6 @@ class TextParser(Parser):
         ".log",
         ".json",
         ".xml",
-        ".html",
-        ".htm",
     }
 
     def parse(self, path, root_path):

@@ -27,5 +27,26 @@ __all__ = [
     "FilesystemAcquisitionService",
     "ManifestDecision",
     "SourceAuthority",
+    "ObserverAuthorization",
     "SourceDocument",
+    "WebAcquisitionService",
+    "WebAcquisitionRunner",
+    "WebCrawlFailure",
+    "WebCrawlReport",
+    "WebObserver",
+    "WebObserverCatalog",
 ]
+
+from app.acquisition.web import WebAcquisitionService
+
+from app.acquisition.web_crawler import (
+    WebAcquisitionRunner,
+    WebCrawlFailure,
+    WebCrawlReport,
+)
+
+from app.acquisition.observers import (
+    ObserverAuthorization,
+    WebObserver,
+    WebObserverCatalog,
+)

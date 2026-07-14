@@ -16,6 +16,7 @@ from app.control_plane.orientation import (
     InstitutionalOrientation,
     ProgramOrientationService,
 )
+from app.acquisition import AcquisitionManifest
 
 
 def find_program_catalog_path(config: dict, project_root: Path) -> Path:
@@ -218,6 +219,287 @@ def render_institutional_orientation(
         )
 
 
+def render_acquisition_overview(
+    manifest_path: Path,
+) -> None:
+    """
+    Render acquisition-manifest telemetry for Institutional Memory.
+
+    This observes acquired source records only. It does not modify the
+    manifest, ingestion pipeline, vector index, or retrieval behavior.
+    """
+    st.subheader("📚 Institutional Memory Acquisition")
+    st.caption(
+        "Auditable source acquisition records currently available to ISO."
+    )
+
+    if not manifest_path.exists():
+        st.info(
+            "No acquisition manifest has been created yet. "
+            f"Expected path: `{manifest_path}`"
+        )
+        return
+
+    manifest = AcquisitionManifest(manifest_path)
+
+    try:
+        documents = manifest.read_all()
+        latest_documents = manifest.latest_documents()
+    except Exception as error:
+        st.error("The acquisition manifest could not be read.")
+        st.exception(error)
+        return
+
+    latest_by_path = {
+        document.relative_path: document
+        for document in latest_documents
+    }
+
+    versions_by_path = {}
+
+    for document in documents:
+        versions_by_path.setdefault(
+            document.relative_path,
+            [],
+        ).append(document)
+
+    versioned_paths = {
+        relative_path: versions
+        for relative_path, versions in versions_by_path.items()
+        if len(versions) > 1
+    }
+
+    paths_by_hash = {}
+
+    for document in latest_documents:
+        paths_by_hash.setdefault(
+            document.content_hash,
+            [],
+        ).append(document.relative_path)
+
+    duplicate_groups = {
+        content_hash: paths
+        for content_hash, paths in paths_by_hash.items()
+        if len(paths) > 1
+    }
+
+    duplicate_paths = sum(
+        len(paths) - 1
+        for paths in duplicate_groups.values()
+    )
+
+    c1, c2, c3, c4 = st.columns(4)
+
+    c1.metric(
+        "Manifest records",
+        f"{len(documents):,}",
+        help=(
+            "All recorded source versions in the append-only "
+            "acquisition manifest."
+        ),
+    )
+
+    c2.metric(
+        "Current source paths",
+        f"{len(latest_by_path):,}",
+        help=(
+            "The latest recorded SourceDocument for each storage-relative "
+            "path."
+        ),
+    )
+
+    c3.metric(
+        "Duplicate-content paths",
+        f"{duplicate_paths:,}",
+        help=(
+            "Current paths whose bytes are identical to another current "
+            "source path."
+        ),
+    )
+
+    c4.metric(
+        "Versioned paths",
+        f"{len(versioned_paths):,}",
+        help=(
+            "Paths with more than one content version preserved in the "
+            "manifest."
+        ),
+    )
+
+    st.caption(f"Manifest: `{manifest_path}`")
+
+    def count_values(values):
+        counts = {}
+
+        for value in values:
+            label = value or "Unknown"
+            counts[label] = counts.get(label, 0) + 1
+
+        return sorted(
+            counts.items(),
+            key=lambda item: (-item[1], item[0].casefold()),
+        )
+
+    left, right = st.columns(2)
+
+    with left:
+        st.markdown("**Sources by organization**")
+        organization_rows = [
+            {
+                "Organization": label,
+                "Documents": count,
+            }
+            for label, count in count_values(
+                document.source_organization
+                for document in latest_documents
+            )
+        ]
+
+        if organization_rows:
+            st.dataframe(
+                organization_rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.write("No source organizations recorded.")
+
+        st.markdown("**Sources by authority**")
+        authority_rows = [
+            {
+                "Authority": label,
+                "Documents": count,
+            }
+            for label, count in count_values(
+                document.authority.value
+                for document in latest_documents
+            )
+        ]
+
+        if authority_rows:
+            st.dataframe(
+                authority_rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+
+    with right:
+        st.markdown("**Sources by acquisition method**")
+        method_rows = [
+            {
+                "Method": label,
+                "Documents": count,
+            }
+            for label, count in count_values(
+                document.acquisition_method.value
+                for document in latest_documents
+            )
+        ]
+
+        if method_rows:
+            st.dataframe(
+                method_rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+
+        st.markdown("**Sources by media type**")
+        media_rows = [
+            {
+                "Media type": label,
+                "Documents": count,
+            }
+            for label, count in count_values(
+                document.media_type
+                for document in latest_documents
+            )[:20]
+        ]
+
+        if media_rows:
+            st.dataframe(
+                media_rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+
+    with st.expander(
+        "Duplicate-content groups",
+        expanded=False,
+    ):
+        if duplicate_groups:
+            duplicate_rows = []
+
+            for content_hash, paths in sorted(
+                duplicate_groups.items(),
+                key=lambda item: (
+                    -len(item[1]),
+                    item[0],
+                ),
+            )[:100]:
+                duplicate_rows.append(
+                    {
+                        "Copies": len(paths),
+                        "SHA-256": content_hash,
+                        "Paths": "\n".join(sorted(paths)),
+                    }
+                )
+
+            st.dataframe(
+                duplicate_rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+
+            if len(duplicate_groups) > 100:
+                st.caption(
+                    "Showing the 100 largest duplicate-content groups."
+                )
+        else:
+            st.success("No duplicate-content groups were detected.")
+
+    with st.expander(
+        "Version history",
+        expanded=False,
+    ):
+        if versioned_paths:
+            version_rows = []
+
+            for relative_path, versions in sorted(
+                versioned_paths.items(),
+                key=lambda item: (
+                    -len(item[1]),
+                    item[0].casefold(),
+                ),
+            )[:100]:
+                latest = versions[-1]
+
+                version_rows.append(
+                    {
+                        "Path": relative_path,
+                        "Versions": len(versions),
+                        "Latest acquired": (
+                            latest.acquired_at.isoformat()
+                        ),
+                        "Latest SHA-256": latest.content_hash,
+                    }
+                )
+
+            st.dataframe(
+                version_rows,
+                use_container_width=True,
+                hide_index=True,
+            )
+
+            if len(versioned_paths) > 100:
+                st.caption(
+                    "Showing the 100 paths with the most version history."
+                )
+        else:
+            st.info(
+                "No source paths currently have multiple recorded versions."
+            )
+
+
 st.set_page_config(
     page_title="Institutional Semantic Observatory (ISO)",
     page_icon="🔭",
@@ -292,6 +574,19 @@ if mode == "Overview":
     try:
         report = analyze_corpus(chunks_dir)
         render_iso_overview(st, report)
+
+        st.divider()
+
+        acquisition_manifest_path = (
+            project_root
+            / "storage"
+            / "manifests"
+            / "sec_google_drive.jsonl"
+        )
+
+        render_acquisition_overview(
+            acquisition_manifest_path
+        )
     except Exception as e:
         st.error("ISO Overview failed.")
         st.exception(e)

@@ -18,8 +18,8 @@ rm -f storage/embeddings/*.json
 rm -f storage/vector_db/*
 
 echo
-echo "3. Normalize all supported documents"
-python3 -m scripts.normalize_documents --limit 1000000
+echo "3. Normalize all supported documents from all observers"
+python3 -m scripts.normalize_documents --source all --limit 1000000
 
 echo
 echo "4. Chunk all normalized documents"

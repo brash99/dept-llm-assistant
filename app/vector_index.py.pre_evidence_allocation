@@ -155,7 +155,6 @@ def search_index(
     top_k=5,
     fetch_k=None,
     dedupe_by="text",
-    object_type_filter=None,
 ):
     index, records, metadata = get_cached_index(vector_db_dir)
 
@@ -168,12 +167,7 @@ def search_index(
     ).astype("float32")
 
     if fetch_k is None:
-        if object_type_filter is None:
-            fetch_k = max(top_k * 5, top_k)
-        else:
-            # A filtered fallback must search deeply enough to find a rare
-            # object type while continuing to use the same shared index.
-            fetch_k = index.ntotal
+        fetch_k = max(top_k * 5, top_k)
 
     fetch_k = min(fetch_k, index.ntotal)
 
@@ -187,14 +181,6 @@ def search_index(
             continue
 
         record = records[int(idx)]
-
-        if (
-            object_type_filter is not None
-            and record.get("object_type", "document")
-            != object_type_filter
-        ):
-            continue
-
         citation = record["citation"]
 
         if dedupe_by is not None:

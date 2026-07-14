@@ -236,8 +236,6 @@ def generate_decision_brief(
     reranker_device="cuda",
     min_rerank_score=None,
     return_trace=False,
-    constitutional_top_k=2,
-    empirical_top_k=10,
 ):
     """
     Generate a first-pass institutional Decision Brief.
@@ -266,8 +264,6 @@ def generate_decision_brief(
         reranker_device=reranker_device,
         min_rerank_score=min_rerank_score,
         return_trace=return_trace,
-        constitutional_top_k=constitutional_top_k,
-        empirical_top_k=empirical_top_k,
     )
 
     if return_trace:

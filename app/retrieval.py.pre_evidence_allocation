@@ -33,12 +33,6 @@ class RetrievalReport:
     fetch_k: int
     dedupe_by: Optional[str]
 
-    constitutional_top_k: int
-    empirical_top_k: int
-    constitutional_results: int
-    empirical_results: int
-    constitutional_fallback_used: bool
-
     num_candidates: int
     num_after_dedup: int
     num_after_rerank: int
@@ -144,25 +138,11 @@ def retrieve(
     reranker_device: str = "cuda",
     min_rerank_score: Optional[float] = None,
     return_trace: bool = False,
-    constitutional_top_k: int = 2,
-    empirical_top_k: int = 10,
 ):
     query = query.strip()
 
-    if constitutional_top_k < 0:
-        raise ValueError("constitutional_top_k cannot be negative")
-
-    if empirical_top_k < 0:
-        raise ValueError("empirical_top_k cannot be negative")
-
     if fetch_k is None:
-        fetch_k = 200
-
-    requested_total = constitutional_top_k + empirical_top_k
-
-    # Preserve compatibility with callers that still supply only top_k.
-    # Explicit evidence quotas determine the final result count.
-    top_k = requested_total
+        fetch_k = max(50, top_k * 10)
 
     t_total_start = time.perf_counter()
 
@@ -176,38 +156,6 @@ def retrieve(
         fetch_k=fetch_k,
         dedupe_by=None,
     )
-    constitutional_in_initial_pool = sum(
-        1
-        for result in raw_candidates
-        if result.object_type == "constitutional_knowledge"
-    )
-
-    constitutional_fallback_used = (
-        constitutional_in_initial_pool < constitutional_top_k
-    )
-
-    if constitutional_fallback_used and constitutional_top_k > 0:
-        fallback_results = search_index(
-            query=query,
-            vector_db_dir=vector_db_dir,
-            model_name=model_name,
-            device=device,
-            top_k=max(constitutional_top_k * 5, constitutional_top_k),
-            fetch_k=None,
-            dedupe_by=None,
-            object_type_filter="constitutional_knowledge",
-        )
-
-        existing_chunk_ids = {
-            result.chunk_id
-            for result in raw_candidates
-        }
-
-        for result in fallback_results:
-            if result.chunk_id not in existing_chunk_ids:
-                raw_candidates.append(result)
-                existing_chunk_ids.add(result.chunk_id)
-
     t1 = time.perf_counter()
 
     deduped_candidates = dedupe_results(
@@ -243,30 +191,7 @@ def retrieve(
         thresholded_candidates = reranked_candidates
     t4 = time.perf_counter()
 
-    constitutional_candidates = [
-        result
-        for result in thresholded_candidates
-        if result.object_type == "constitutional_knowledge"
-    ]
-
-    empirical_candidates = [
-        result
-        for result in thresholded_candidates
-        if result.object_type != "constitutional_knowledge"
-    ]
-
-    selected_constitutional = constitutional_candidates[
-        :constitutional_top_k
-    ]
-
-    selected_empirical = empirical_candidates[
-        :empirical_top_k
-    ]
-
-    final_results = (
-        selected_constitutional
-        + selected_empirical
-    )
+    final_results = thresholded_candidates[:top_k]
 
     t_total_end = time.perf_counter()
 
@@ -283,11 +208,6 @@ def retrieve(
         requested_top_k=top_k,
         fetch_k=fetch_k,
         dedupe_by=dedupe_by,
-        constitutional_top_k=constitutional_top_k,
-        empirical_top_k=empirical_top_k,
-        constitutional_results=len(selected_constitutional),
-        empirical_results=len(selected_empirical),
-        constitutional_fallback_used=constitutional_fallback_used,
         num_candidates=len(raw_candidates),
         num_after_dedup=len(deduped_candidates),
         num_after_rerank=len(reranked_candidates),

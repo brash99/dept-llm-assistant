@@ -976,25 +976,6 @@ if st.button(button_label, type="primary") and query.strip():
 
     rerank_enabled = rerank_cfg.get("enabled", False)
 
-    retrieval_cfg = config.get("retrieval", {})
-    constitutional_top_k = retrieval_cfg.get(
-        "constitutional_top_k",
-        2,
-    )
-    empirical_top_k = retrieval_cfg.get(
-        "empirical_top_k",
-        10,
-    )
-    configured_fetch_k = retrieval_cfg.get(
-        "fetch_k",
-        200,
-    )
-
-    # The constitutional retrieval policy is configuration-driven.
-    # Use the configured broad candidate pool rather than the older UI
-    # fetch value when evidence allocation is active.
-    fetch_k = configured_fetch_k
-
     # Keep this optional while calibrating. In settings.yaml, use:
     # reranking:
     #   min_score: null
@@ -1017,8 +998,6 @@ if st.button(button_label, type="primary") and query.strip():
                 reranker_device=rerank_cfg.get("device", "cuda"),
                 min_rerank_score=min_rerank_score,
                 return_trace=developer_mode,
-                constitutional_top_k=constitutional_top_k,
-                empirical_top_k=empirical_top_k,
             )
 
             if mode == "Decision Brief":
@@ -1051,11 +1030,8 @@ if st.button(button_label, type="primary") and query.strip():
 
     st.caption(
         f"Reranking: {'enabled' if rerank_enabled else 'disabled'} | "
-        f"fetch_k={fetch_k} | "
-        f"constitutional_k={constitutional_top_k} | "
-        f"empirical_k={empirical_top_k} | "
-        f"dedupe_by={dedupe_by} | "
-        f"min_rerank_score={min_rerank_score}"
+        f"fetch_k={fetch_k} | top_k={top_k} | "
+        f"dedupe_by={dedupe_by} | min_rerank_score={min_rerank_score}"
     )
 
     if mode == "Decision Brief" and getattr(artifact, "observatory_assessment", None) is not None:

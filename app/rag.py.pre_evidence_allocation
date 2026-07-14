@@ -21,8 +21,6 @@ def answer_question(
     reranker_device="cuda",
     min_rerank_score=None,
     return_trace=False,
-    constitutional_top_k=2,
-    empirical_top_k=10,
 ):
     query = query.strip()
 
@@ -39,8 +37,6 @@ def answer_question(
         reranker_device=reranker_device,
         min_rerank_score=min_rerank_score,
         return_trace=return_trace,
-        constitutional_top_k=constitutional_top_k,
-        empirical_top_k=empirical_top_k,
     )
 
     if return_trace:

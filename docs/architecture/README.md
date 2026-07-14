@@ -29,6 +29,7 @@ It explains how ISO observes institutions, preserves Institutional Memory, organ
 - [Architecture FAQ](ArchitectureFAQ.md)
 - [ISO Manifesto](../ISO_Manifesto.md)
 - [Research Agenda](../ResearchAgenda.md)
+- [Glossary](../reference/glossary.md)
 
 ## Central Architectural Principle
 
@@ -65,3 +66,4 @@ Begin with:
 - [Semantic Ecosystem Observatory](07_semantic_ecosystem_observatory.md)
 - [Semantic Control Plane](08_semantic_control_plane.md)
 - [Research Agenda](../ResearchAgenda.md)
+- [Glossary](../reference/glossary.md)

@@ -27,3 +27,8 @@ __all__ = [
     "SemanticProgramNeighbor",
     "SemanticProgramNeighborhoodService",
 ]
+
+from app.control_plane.dual_orientation import (
+    SemanticControlPlaneResult,
+    SemanticControlPlaneService,
+)

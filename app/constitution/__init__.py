@@ -5,6 +5,11 @@ from app.constitution.objects import (
     ConstitutionalKnowledgeObject,
     ConstitutionalType,
 )
+from app.constitution.orientation import (
+    ConstitutionalOrientation,
+    ConstitutionalOrientationService,
+    ConstitutionalPrincipleMatch,
+)
 from app.constitution.observer import (
     ConstitutionalObservationRequest,
     ConstitutionalObserver,
@@ -16,6 +21,9 @@ from app.constitution.retrieval import (
 )
 
 __all__ = [
+    "ConstitutionalOrientation",
+    "ConstitutionalOrientationService",
+    "ConstitutionalPrincipleMatch",
     "ConstitutionalCatalog",
     "ConstitutionalKnowledgeObject",
     "ConstitutionalObservationRequest",

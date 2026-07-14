@@ -5,11 +5,6 @@ from app.config import load_config
 from app.rag import answer_question
 from app.decision_brief import generate_decision_brief
 from app.observatory.dashboard import render_iso_overview, render_observatory_assessment
-from app.constitution import (
-    ConstitutionalCatalog,
-    ConstitutionalOrientation,
-    ConstitutionalOrientationService,
-)
 
 from app.corpus_observatory import analyze_corpus
 from app.control_plane.catalog import ProgramCatalog
@@ -20,10 +15,6 @@ from app.control_plane.semantic_neighbors import (
 from app.control_plane.orientation import (
     InstitutionalOrientation,
     ProgramOrientationService,
-)
-from app.control_plane.dual_orientation import (
-    SemanticControlPlaneResult,
-    SemanticControlPlaneService,
 )
 from app.acquisition import (
     AcquisitionManifest,
@@ -121,41 +112,6 @@ def load_semantic_control_plane(
         resolver=resolver,
         neighborhood_service=neighborhood_service,
         neighbor_limit=neighbor_limit,
-    )
-
-
-@st.cache_resource(show_spinner=False)
-def load_dual_semantic_control_plane(
-    *,
-    catalog_path: str,
-    model_name: str,
-    device: str,
-    neighbor_limit: int,
-    constitutional_dir: str,
-) -> SemanticControlPlaneService:
-    """
-    Load both empirical and constitutional orientation services once.
-    """
-    institutional_service = load_semantic_control_plane(
-        catalog_path=catalog_path,
-        model_name=model_name,
-        device=device,
-        neighbor_limit=neighbor_limit,
-    )
-
-    constitutional_service = (
-        load_constitutional_orientation_service(
-            constitutional_dir
-        )
-    )
-
-    return SemanticControlPlaneService(
-        institutional_service=(
-            institutional_service
-        ),
-        constitutional_service=(
-            constitutional_service
-        ),
     )
 
 
@@ -641,117 +597,6 @@ def render_acquisition_overview(
             )
 
 
-@st.cache_resource(show_spinner=False)
-def load_constitutional_orientation_service(
-    constitutional_dir: str,
-) -> ConstitutionalOrientationService:
-    """
-    Load the curated Institutional Constitution once per Streamlit process.
-    """
-    catalog = ConstitutionalCatalog.from_directory(
-        Path(constitutional_dir)
-    )
-
-    return ConstitutionalOrientationService(
-        catalog=catalog,
-    )
-
-
-def render_constitutional_orientation(
-    orientation: ConstitutionalOrientation,
-) -> None:
-    """
-    Render potentially relevant institutional values.
-
-    This performs orientation only. It does not determine whether a proposal
-    aligns or conflicts with an institutional principle.
-    """
-    with st.container(border=True):
-        st.subheader("🧭 Constitutional Orientation")
-
-        st.caption(
-            "Institutional values and strategic directions "
-            "that may be relevant to the question. "
-            "This is orientation, not an alignment judgment."
-        )
-
-        if orientation.matches:
-            for rank, match in enumerate(
-                orientation.matches,
-                start=1,
-            ):
-                st.markdown(
-                    f"**{rank}. {match.principle}**"
-                )
-
-                st.caption(
-                    f"Relevance score: {match.score:.2f} | "
-                    f"Source: {match.constitutional_object_title} | "
-                    f"Type: {match.constitutional_type}"
-                )
-
-                if match.matched_terms:
-                    st.write(
-                        "**Matched concepts:** "
-                        + ", ".join(
-                            match.matched_terms
-                        )
-                    )
-        else:
-            st.info(
-                "No constitutional principle exceeded "
-                "the current relevance threshold."
-            )
-
-        if orientation.notes:
-            st.markdown("**Orientation notes**")
-
-            for note in orientation.notes:
-                st.write(f"- {note}")
-
-        st.caption(
-            "Overall constitutional orientation confidence: "
-            f"{orientation.confidence:.2f}"
-        )
-
-
-def render_constitutional_orientation_for_question(
-    *,
-    question: str,
-    project_root: Path,
-    config: dict,
-) -> None:
-    """
-    Orient a question against the curated Institutional Constitution.
-    """
-    constitutional_dir = (
-        project_root
-        / config["storage"].get(
-            "constitutional",
-            "storage/constitutional",
-        )
-    )
-
-    if not constitutional_dir.exists():
-        st.warning(
-            "The Institutional Constitution has not "
-            "been built yet."
-        )
-        return
-
-    service = load_constitutional_orientation_service(
-        str(constitutional_dir)
-    )
-
-    orientation = service.orient(
-        question
-    )
-
-    render_constitutional_orientation(
-        orientation
-    )
-
-
 st.set_page_config(
     page_title="Institutional Semantic Observatory (ISO)",
     page_icon="🔭",
@@ -923,51 +768,19 @@ if st.button(button_label, type="primary") and query.strip():
                 project_root=project_root,
             )
 
-            constitutional_dir = (
-                project_root
-                / config["storage"].get(
-                    "constitutional",
-                    "storage/constitutional",
-                )
+            orientation_service = load_semantic_control_plane(
+                catalog_path=str(program_catalog_path),
+                model_name=embed_cfg.get(
+                    "model",
+                    "BAAI/bge-small-en-v1.5",
+                ),
+                device=embed_cfg.get("device", "cuda"),
+                neighbor_limit=orientation_neighbor_limit,
             )
 
-            control_plane_service = (
-                load_dual_semantic_control_plane(
-                    catalog_path=str(
-                        program_catalog_path
-                    ),
-                    model_name=embed_cfg.get(
-                        "model",
-                        "BAAI/bge-small-en-v1.5",
-                    ),
-                    device=embed_cfg.get(
-                        "device",
-                        "cuda",
-                    ),
-                    neighbor_limit=(
-                        orientation_neighbor_limit
-                    ),
-                    constitutional_dir=str(
-                        constitutional_dir
-                    ),
-                )
-            )
+            orientation = orientation_service.orient(clean_query)
 
-            control_plane_result = (
-                control_plane_service.orient(
-                    clean_query
-                )
-            )
-
-            render_institutional_orientation(
-                control_plane_result
-                .institutional_orientation
-            )
-
-            render_constitutional_orientation(
-                control_plane_result
-                .constitutional_orientation
-            )
+            render_institutional_orientation(orientation)
 
         except Exception as e:
             st.error("Institutional Orientation failed.")

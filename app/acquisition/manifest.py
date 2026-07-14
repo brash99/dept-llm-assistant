@@ -31,26 +31,38 @@ class ManifestDecision:
 
     @property
     def should_append(self) -> bool:
-        """
-        Append only records that add new acquisition history.
-
-        An unchanged file does not create another manifest entry.
-        """
         return self.status is not AcquisitionStatus.UNCHANGED
 
 
 class AcquisitionManifest:
     """
-    Append-only JSONL manifest for SourceDocument acquisition records.
+    Append-only JSONL manifest with in-memory lookup indexes.
 
-    The manifest preserves acquisition history while providing efficient
-    lookup by storage-relative path and by content hash.
+    The manifest is read once, on first use. Subsequent classifications use
+    dictionaries maintained in memory, avoiding an O(N^2) full-manifest scan
+    during large directory acquisitions.
     """
 
     def __init__(self, path: Path) -> None:
         self.path = Path(path)
 
-    def read_all(self) -> List[SourceDocument]:
+        self._loaded = False
+        self._documents: List[SourceDocument] = []
+        self._latest_by_path_index: Dict[str, SourceDocument] = {}
+        self._documents_by_hash_index: Dict[
+            str,
+            List[SourceDocument],
+        ] = {}
+
+    def _ensure_loaded(self) -> None:
+        if self._loaded:
+            return
+
+        self._documents = self._read_from_disk()
+        self._rebuild_indexes()
+        self._loaded = True
+
+    def _read_from_disk(self) -> List[SourceDocument]:
         if not self.path.exists():
             return []
 
@@ -65,29 +77,55 @@ class AcquisitionManifest:
 
                 try:
                     payload = json.loads(stripped)
-                    documents.append(SourceDocument.from_dict(payload))
+                    document = SourceDocument.from_dict(payload)
                 except Exception as error:
                     raise ValueError(
-                        f"Invalid acquisition manifest record at "
+                        "Invalid acquisition manifest record at "
                         f"{self.path}:{line_number}"
                     ) from error
 
+                documents.append(document)
+
         return documents
+
+    def _rebuild_indexes(self) -> None:
+        self._latest_by_path_index = {}
+        self._documents_by_hash_index = {}
+
+        for document in self._documents:
+            self._index_document(document)
+
+    def _index_document(
+        self,
+        document: SourceDocument,
+    ) -> None:
+        self._latest_by_path_index[
+            document.relative_path
+        ] = document
+
+        self._documents_by_hash_index.setdefault(
+            document.content_hash,
+            [],
+        ).append(document)
+
+    def read_all(self) -> List[SourceDocument]:
+        self._ensure_loaded()
+        return list(self._documents)
 
     def classify(
         self,
         document: SourceDocument,
     ) -> ManifestDecision:
-        existing_documents = self.read_all()
+        self._ensure_loaded()
 
-        latest_by_path = self._latest_by_path(existing_documents)
-        documents_by_hash = self._documents_by_hash(existing_documents)
-
-        previous_document = latest_by_path.get(document.relative_path)
+        previous_document = self._latest_by_path_index.get(
+            document.relative_path
+        )
 
         if (
             previous_document is not None
-            and previous_document.content_hash == document.content_hash
+            and previous_document.content_hash
+            == document.content_hash
         ):
             return ManifestDecision(
                 status=AcquisitionStatus.UNCHANGED,
@@ -104,7 +142,7 @@ class AcquisitionManifest:
 
         duplicate_documents = tuple(
             existing
-            for existing in documents_by_hash.get(
+            for existing in self._documents_by_hash_index.get(
                 document.content_hash,
                 [],
             )
@@ -127,9 +165,6 @@ class AcquisitionManifest:
         self,
         document: SourceDocument,
     ) -> ManifestDecision:
-        """
-        Classify a document and append it when it adds acquisition history.
-        """
         decision = self.classify(document)
 
         if decision.should_append:
@@ -138,6 +173,8 @@ class AcquisitionManifest:
         return decision
 
     def append(self, document: SourceDocument) -> None:
+        self._ensure_loaded()
+
         self.path.parent.mkdir(
             parents=True,
             exist_ok=True,
@@ -152,16 +189,29 @@ class AcquisitionManifest:
             handle.write(serialized)
             handle.write("\n")
 
+        self._documents.append(document)
+        self._index_document(document)
+
     def latest_documents(self) -> List[SourceDocument]:
-        """
-        Return the most recently recorded version of each relative path.
-        """
-        latest = self._latest_by_path(self.read_all())
+        self._ensure_loaded()
 
         return sorted(
-            latest.values(),
+            self._latest_by_path_index.values(),
             key=lambda document: document.relative_path,
         )
+
+    def reload(self) -> None:
+        """
+        Explicitly discard cached state and reread the manifest from disk.
+
+        This is useful only when another process may have modified the same
+        manifest while this object remained alive.
+        """
+        self._loaded = False
+        self._documents = []
+        self._latest_by_path_index = {}
+        self._documents_by_hash_index = {}
+        self._ensure_loaded()
 
     @staticmethod
     def _latest_by_path(

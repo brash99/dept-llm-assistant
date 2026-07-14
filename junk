@@ -1,0 +1,1027 @@
+
+================================================================================
+FILE: app/chunk.py
+================================================================================
+from dataclasses import dataclass, asdict
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Any
+import hashlib
+import json
+from collections import Counter
+
+from app.knowledge import load_knowledge_object
+
+
+@dataclass
+class Chunk:
+    id: str
+    knowledge_object_id: str
+    object_type: str
+    chunk_index: int
+    text: str
+    start_char: int
+    end_char: int
+    citation: Dict[str, Any]
+    metadata: Dict[str, Any]
+
+
+def now_iso():
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def make_chunk_id(knowledge_object_id, chunk_index, start_char, end_char):
+    base = f"{knowledge_object_id}:{chunk_index}:{start_char}:{end_char}"
+    return hashlib.sha256(base.encode("utf-8")).hexdigest()
+
+
+def chunk_text(text, chunk_size=3000, overlap=300):
+    chunks = []
+
+    if not text.strip():
+        return chunks
+
+    start = 0
+    text_len = len(text)
+
+    while start < text_len:
+        end = min(start + chunk_size, text_len)
+        chunk = text[start:end].strip()
+
+        if chunk:
+            chunks.append((chunk, start, end))
+
+        if end == text_len:
+            break
+
+        start = end - overlap
+
+    return chunks
+
+
+def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
+    raw_chunks = chunk_text(
+        document.text,
+        chunk_size=chunk_size,
+        overlap=overlap,
+    )
+
+    chunks = []
+
+    for i, (text, start, end) in enumerate(raw_chunks):
+        if max_chunks is not None and len(chunks) >= max_chunks:
+            break
+
+        chunk_id = make_chunk_id(document.id, i, start, end)
+
+        citation = {
+            "title": document.title,
+            "relative_path": document.relative_path,
+            "source_path": document.source_path,
+            "file_type": document.file_type,
+            "parser": document.parser,
+            "start_char": start,
+            "end_char": end,
+        }
+
+        chunks.append(
+            Chunk(
+                id=chunk_id,
+                knowledge_object_id=document.id,
+                object_type=document.object_type,
+                chunk_index=i,
+                text=text,
+                start_char=start,
+                end_char=end,
+                citation=citation,
+                metadata={
+                    "document_title": document.title,
+                    "relative_path": document.relative_path,
+                    "parser": document.parser,
+                    "file_type": document.file_type,
+                    "chunk_size": chunk_size,
+                    "overlap": overlap,
+                    "max_chunks_per_document": max_chunks,
+                    "created_at": now_iso(),
+                },
+            )
+        )
+
+    truncated = max_chunks is not None and len(raw_chunks) > len(chunks)
+
+    for chunk in chunks:
+        chunk.metadata["document_truncated"] = truncated
+        chunk.metadata["original_chunk_count"] = len(raw_chunks)
+        chunk.metadata["indexed_chunk_count"] = len(chunks)
+
+    return chunks
+
+
+def save_chunks(chunks, output_path):
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    data = [asdict(chunk) for chunk in chunks]
+
+    with output_path.open("w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+
+def chunk_output_path(document, chunks_dir):
+    safe_hash = hashlib.sha256(document.relative_path.encode("utf-8")).hexdigest()
+    return Path(chunks_dir) / f"{safe_hash}.json"
+
+
+def run_chunking(
+    normalized_dir,
+    chunks_dir,
+    limit=None,
+    chunk_size=3000,
+    overlap=300,
+    max_chunks_per_document=None,
+):
+    normalized_dir = Path(normalized_dir)
+    chunks_dir = Path(chunks_dir)
+
+    results = {
+        "attempted": 0,
+        "succeeded": 0,
+        "failed": 0,
+        "documents_with_zero_chunks": 0,
+        "total_chunks": 0,
+        "max_chunks_per_document_setting": max_chunks_per_document,
+        "truncated_documents": 0,
+        "errors": [],
+        "outputs": [],
+        "chunk_size": chunk_size,
+        "overlap": overlap,
+        "chunk_lengths": [],
+        "chunks_per_document": [],
+        "largest_documents": [],
+        "chunk_distribution": {},
+    }
+
+    for path in normalized_dir.glob("*.json"):
+        if limit is not None and results["attempted"] >= limit:
+            break
+
+        results["attempted"] += 1
+
+        try:
+            document = load_knowledge_object(path)
+
+            chunks = chunk_document(
+                document,
+                chunk_size=chunk_size,
+                overlap=overlap,
+                max_chunks=max_chunks_per_document,
+            )
+
+            chunk_count = len(chunks)
+            chunk_lengths = [len(chunk.text) for chunk in chunks]
+
+            if chunks and chunks[0].metadata.get("document_truncated"):
+                results["truncated_documents"] += 1
+
+            results["chunks_per_document"].append(chunk_count)
+            results["chunk_lengths"].extend(chunk_lengths)
+
+            results["largest_documents"].append(
+                {
+                    "relative_path": document.relative_path,
+                    "title": document.title,
+                    "num_chunks": chunk_count,
+                    "text_length": len(document.text),
+                    "truncated": (
+                        chunks[0].metadata.get("document_truncated")
+                        if chunks
+                        else False
+                    ),
+                }
+            )
+
+            if len(chunks) == 0:
+                results["documents_with_zero_chunks"] += 1
+
+            outpath = chunk_output_path(document, chunks_dir)
+            save_chunks(chunks, outpath)
+
+            results["succeeded"] += 1
+            results["total_chunks"] += len(chunks)
+            results["outputs"].append(str(outpath))
+
+            print(f"[OK] {len(chunks):4d} chunks  {document.relative_path}")
+
+        except Exception as exc:
+            results["failed"] += 1
+            results["errors"].append(
+                {
+                    "path": str(path),
+                    "error": str(exc),
+                }
+            )
+            print(f"[FAIL] {path}: {exc}")
+
+    chunks_per_doc = results["chunks_per_document"]
+    chunk_lengths = results["chunk_lengths"]
+
+    results["chunk_distribution"] = dict(Counter(chunks_per_doc).most_common())
+
+    results["average_chunks_per_document"] = (
+        sum(chunks_per_doc) / len(chunks_per_doc)
+        if chunks_per_doc
+        else 0
+    )
+
+    results["max_chunks_per_document"] = max(chunks_per_doc) if chunks_per_doc else 0
+
+    results["average_chunk_length"] = (
+        sum(chunk_lengths) / len(chunk_lengths)
+        if chunk_lengths
+        else 0
+    )
+
+    results["min_chunk_length"] = min(chunk_lengths) if chunk_lengths else 0
+    results["max_chunk_length"] = max(chunk_lengths) if chunk_lengths else 0
+
+    results["largest_documents"] = sorted(
+        results["largest_documents"],
+        key=lambda item: item["num_chunks"],
+        reverse=True,
+    )[:10]
+
+    return results
+
+================================================================================
+FILE: app/embed.py
+================================================================================
+from pathlib import Path
+from datetime import datetime
+import json
+
+from sentence_transformers import SentenceTransformer
+
+
+def now_iso():
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def load_chunks_file(path):
+    with Path(path).open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def embedding_output_path(chunk_file, embeddings_dir):
+    return Path(embeddings_dir) / Path(chunk_file).name
+
+
+def _clean_metadata_value(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (str, int, float, bool)):
+        text = str(value).strip()
+        return text or None
+
+    return None
+
+
+def build_embedding_text(chunk, embedding_context="none"):
+    """
+    Build the text sent to the embedding model.
+
+    The stored/displayed chunk text remains unchanged. This function only
+    changes the semantic context seen by the embedding model.
+    """
+    mode = embedding_context or "none"
+
+    if mode == "none":
+        return chunk["text"]
+
+    citation = chunk.get("citation", {}) or {}
+    metadata = chunk.get("metadata", {}) or {}
+
+    title = (
+        citation.get("title")
+        or metadata.get("title")
+        or citation.get("filename")
+        or metadata.get("filename")
+    )
+
+    relative_path = citation.get("relative_path") or metadata.get("relative_path")
+    source_path = citation.get("source_path") or metadata.get("source_path")
+
+    path = relative_path or source_path
+
+    lines = []
+
+    if mode in ("title", "title_path", "metadata") and title:
+        lines.append(f"Document title: {title}")
+
+    if mode in ("title_path", "metadata") and path:
+        lines.append(f"Document path: {path}")
+
+    if mode == "metadata":
+        source_type = (
+            citation.get("source_type")
+            or metadata.get("source_type")
+            or citation.get("parser")
+            or metadata.get("parser")
+        )
+
+        file_type = (
+            citation.get("file_type")
+            or metadata.get("file_type")
+            or citation.get("extension")
+            or metadata.get("extension")
+        )
+
+        if source_type:
+            lines.append(f"Document type: {source_type}")
+
+        if file_type:
+            lines.append(f"File type: {file_type}")
+
+    if not lines:
+        return chunk["text"]
+
+    return "\n".join(lines) + "\n\n" + chunk["text"]
+
+
+def embed_chunks(
+    chunks_dir,
+    embeddings_dir,
+    model_name,
+    batch_size=32,
+    device="cuda",
+    limit=None,
+    embedding_context="none",
+):
+    chunks_dir = Path(chunks_dir)
+    embeddings_dir = Path(embeddings_dir)
+    embeddings_dir.mkdir(parents=True, exist_ok=True)
+
+    model = SentenceTransformer(model_name, device=device)
+
+    results = {
+        "embedding_time": now_iso(),
+        "model": model_name,
+        "device": device,
+        "batch_size": batch_size,
+        "attempted_files": 0,
+        "succeeded_files": 0,
+        "failed_files": 0,
+        "total_chunks": 0,
+        "embedding_dimension": None,
+        "outputs": [],
+        "errors": [],
+    }
+
+    for path in chunks_dir.glob("*.json"):
+        if limit is not None and results["attempted_files"] >= limit:
+            break
+
+        results["attempted_files"] += 1
+
+        try:
+            chunks = load_chunks_file(path)
+            texts = [
+                build_embedding_text(
+                    chunk,
+                    embedding_context=embedding_context,
+                )
+                for chunk in chunks
+            ]
+
+            if not texts:
+                vectors = []
+            else:
+                vectors = model.encode(
+                    texts,
+                    batch_size=batch_size,
+                    normalize_embeddings=True,
+                    show_progress_bar=False,
+                ).tolist()
+
+            embedded_chunks = []
+
+            for chunk, vector in zip(chunks, vectors):
+                if results["embedding_dimension"] is None:
+                    results["embedding_dimension"] = len(vector)
+
+                embedded_chunks.append(
+                    {
+                        "chunk_id": chunk["id"],
+                        "knowledge_object_id": chunk["knowledge_object_id"],
+                        "chunk_index": chunk["chunk_index"],
+                        "text": chunk["text"],
+                        "citation": chunk["citation"],
+                        "metadata": chunk["metadata"],
+                        "embedding": vector,
+                        "embedding_metadata": {
+                            "model": model_name,
+                            "device": device,
+                            "normalized": True,
+                            "embedding_context": embedding_context,
+                            "created_at": now_iso(),
+                        },
+                    }
+                )
+
+            outpath = embedding_output_path(path, embeddings_dir)
+
+            with outpath.open("w", encoding="utf-8") as f:
+                json.dump(embedded_chunks, f)
+
+            results["succeeded_files"] += 1
+            results["total_chunks"] += len(embedded_chunks)
+            results["outputs"].append(str(outpath))
+
+            print(f"[OK] {len(embedded_chunks):4d} embeddings  {path.name}")
+
+        except Exception as exc:
+            results["failed_files"] += 1
+            results["errors"].append(
+                {
+                    "path": str(path),
+                    "error": str(exc),
+                }
+            )
+            print(f"[FAIL] {path}: {exc}")
+
+    return results
+
+================================================================================
+FILE: app/vector_index.py
+================================================================================
+from dataclasses import dataclass, asdict
+from pathlib import Path
+from typing import Dict, Any, List
+import json
+import pickle
+import re
+import hashlib
+
+import faiss
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+
+# ----------------------------------------------------------------------
+# Runtime caches
+# ----------------------------------------------------------------------
+# These prevent benchmark runs and Streamlit sessions from reloading the
+# FAISS index, chunk records, metadata, and embedding model for every query.
+_INDEX_CACHE = {}
+_MODEL_CACHE = {}
+
+
+def get_cached_index(vector_db_dir):
+    cache_key = str(Path(vector_db_dir).resolve())
+
+    if cache_key not in _INDEX_CACHE:
+        _INDEX_CACHE[cache_key] = load_index(vector_db_dir)
+
+    return _INDEX_CACHE[cache_key]
+
+
+def get_cached_model(model_name, device):
+    cache_key = (model_name, device)
+
+    if cache_key not in _MODEL_CACHE:
+        _MODEL_CACHE[cache_key] = SentenceTransformer(
+            model_name,
+            device=device,
+        )
+
+    return _MODEL_CACHE[cache_key]
+
+
+def clear_runtime_caches():
+    """Clear loaded FAISS/model caches. Useful after rebuilding vector_db."""
+    _INDEX_CACHE.clear()
+    _MODEL_CACHE.clear()
+
+
+def text_fingerprint(text, max_chars=1500):
+    normalized = re.sub(r"\s+", " ", text.lower()).strip()
+    normalized = normalized[:max_chars]
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+@dataclass
+class RetrievalResult:
+    score: float
+    chunk_id: str
+    knowledge_object_id: str
+    chunk_index: int
+    text: str
+    citation: Dict[str, Any]
+    metadata: Dict[str, Any]
+
+
+def load_embedding_files(embeddings_dir):
+    embeddings_dir = Path(embeddings_dir)
+
+    vectors = []
+    records = []
+
+    for path in embeddings_dir.glob("*.json"):
+        with path.open("r", encoding="utf-8") as f:
+            embedded_chunks = json.load(f)
+
+        for item in embedded_chunks:
+            vectors.append(item["embedding"])
+
+            records.append(
+                {
+                    "chunk_id": item["chunk_id"],
+                    "knowledge_object_id": item["knowledge_object_id"],
+                    "chunk_index": item["chunk_index"],
+                    "text": item["text"],
+                    "citation": item["citation"],
+                    "metadata": item["metadata"],
+                    "embedding_metadata": item["embedding_metadata"],
+                }
+            )
+
+    if not vectors:
+        raise RuntimeError(f"No embeddings found in {embeddings_dir}")
+
+    matrix = np.array(vectors, dtype="float32")
+
+    return matrix, records
+
+
+def build_faiss_index(embeddings_dir, vector_db_dir):
+    vector_db_dir = Path(vector_db_dir)
+    vector_db_dir.mkdir(parents=True, exist_ok=True)
+
+    matrix, records = load_embedding_files(embeddings_dir)
+
+    dimension = matrix.shape[1]
+
+    # Embeddings are already normalized, so inner product == cosine similarity.
+    index = faiss.IndexFlatIP(dimension)
+    index.add(matrix)
+
+    index_path = vector_db_dir / "index.faiss"
+    records_path = vector_db_dir / "records.pkl"
+    metadata_path = vector_db_dir / "metadata.json"
+
+    faiss.write_index(index, str(index_path))
+
+    with records_path.open("wb") as f:
+        pickle.dump(records, f)
+
+    metadata = {
+        "num_vectors": int(matrix.shape[0]),
+        "dimension": int(dimension),
+        "index_type": "IndexFlatIP",
+        "distance": "cosine_similarity_via_inner_product",
+        "index_path": str(index_path),
+        "records_path": str(records_path),
+    }
+
+    with metadata_path.open("w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2)
+
+    return metadata
+
+
+def load_index(vector_db_dir):
+    vector_db_dir = Path(vector_db_dir)
+
+    index = faiss.read_index(str(vector_db_dir / "index.faiss"))
+
+    with (vector_db_dir / "records.pkl").open("rb") as f:
+        records = pickle.load(f)
+
+    with (vector_db_dir / "metadata.json").open("r", encoding="utf-8") as f:
+        metadata = json.load(f)
+
+    return index, records, metadata
+
+def search_index(
+    query,
+    vector_db_dir,
+    model_name,
+    device="cuda",
+    top_k=5,
+    fetch_k=None,
+    dedupe_by="text",
+):
+    index, records, metadata = get_cached_index(vector_db_dir)
+
+    model = get_cached_model(model_name, device)
+
+    query_vector = model.encode(
+        [query],
+        normalize_embeddings=True,
+        show_progress_bar=False,
+    ).astype("float32")
+
+    if fetch_k is None:
+        fetch_k = max(top_k * 5, top_k)
+
+    fetch_k = min(fetch_k, index.ntotal)
+
+    scores, indices = index.search(query_vector, fetch_k)
+
+    results = []
+    seen = set()
+
+    for score, idx in zip(scores[0], indices[0]):
+        if idx < 0:
+            continue
+
+        record = records[int(idx)]
+        citation = record["citation"]
+
+        if dedupe_by is not None:
+            if dedupe_by == "relative_path":
+                key = citation.get("relative_path")
+            elif dedupe_by == "title":
+                key = citation.get("title")
+            elif dedupe_by == "knowledge_object_id":
+                key = record.get("knowledge_object_id")
+            elif dedupe_by == "text":
+                key = text_fingerprint(record["text"])
+            else:
+                key = citation.get(dedupe_by) or record.get(dedupe_by)
+
+            if key in seen:
+                continue
+
+            seen.add(key)
+
+        results.append(
+            RetrievalResult(
+                score=float(score),
+                chunk_id=record["chunk_id"],
+                knowledge_object_id=record["knowledge_object_id"],
+                chunk_index=record["chunk_index"],
+                text=record["text"],
+                citation=record["citation"],
+                metadata=record["metadata"],
+            )
+        )
+
+        if len(results) >= top_k:
+            break
+
+    return results
+
+================================================================================
+FILE: app/retrieval.py
+================================================================================
+from dataclasses import dataclass
+from typing import List, Optional
+import copy
+import time
+
+from sentence_transformers import CrossEncoder
+
+from app.vector_index import search_index, RetrievalResult
+
+
+@dataclass
+class RetrievalProfile:
+    total_seconds: float
+    search_seconds: float
+    dedupe_seconds: float
+    rerank_seconds: float
+    threshold_seconds: float
+
+
+@dataclass
+class RetrievalTrace:
+    raw_candidates: List[RetrievalResult]
+    deduped_candidates: List[RetrievalResult]
+    reranked_candidates: List[RetrievalResult]
+    thresholded_candidates: List[RetrievalResult]
+    final_results: List[RetrievalResult]
+
+
+@dataclass
+class RetrievalReport:
+    query: str
+    requested_top_k: int
+    fetch_k: int
+    dedupe_by: Optional[str]
+
+    num_candidates: int
+    num_after_dedup: int
+    num_after_rerank: int
+    num_after_threshold: int
+    num_results: int
+
+    reranking_enabled: bool = False
+    reranker_model: Optional[str] = None
+    min_rerank_score: Optional[float] = None
+
+
+def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
+    """
+    Make shallow independent copies of retrieval results for tracing.
+
+    This prevents reranking from mutating the FAISS-stage objects in-place,
+    so Developer Mode can honestly show raw FAISS scores, deduped results,
+    reranked results, and thresholded results as separate stages.
+    """
+    cloned = []
+
+    for result in results:
+        item = copy.copy(result)
+        item.metadata = dict(result.metadata)
+        item.citation = dict(result.citation)
+        cloned.append(item)
+
+    return cloned
+
+
+def rerank_results(
+    query: str,
+    results: List[RetrievalResult],
+    model_name: str,
+    device: str = "cuda",
+) -> List[RetrievalResult]:
+    if not results:
+        return results
+
+    reranker = CrossEncoder(model_name, device=device)
+
+    pairs = [(query, result.text) for result in results]
+    scores = reranker.predict(pairs)
+
+    reranked = []
+
+    for result, score in zip(results, scores):
+        result.metadata["faiss_score"] = result.score
+        result.metadata["rerank_score"] = float(score)
+        result.score = float(score)
+        reranked.append(result)
+
+    reranked.sort(key=lambda item: item.score, reverse=True)
+
+    return reranked
+
+
+def dedupe_results(
+    results: List[RetrievalResult],
+    dedupe_by: Optional[str] = "text",
+) -> List[RetrievalResult]:
+    if dedupe_by is None:
+        return results
+
+    seen = set()
+    deduped = []
+
+    for result in results:
+        if dedupe_by == "text":
+            key = result.text.strip()
+
+        elif dedupe_by in ("document", "relative_path"):
+            key = result.citation.get("relative_path")
+
+        elif dedupe_by == "source_path":
+            key = result.citation.get("source_path")
+
+        else:
+            raise ValueError(f"Unknown dedupe_by mode: {dedupe_by}")
+
+        if key is None:
+            key = result.text.strip()
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        deduped.append(result)
+
+    return deduped
+
+
+def retrieve(
+    query: str,
+    vector_db_dir,
+    model_name: str,
+    device: str = "cuda",
+    top_k: int = 5,
+    fetch_k: Optional[int] = None,
+    dedupe_by: Optional[str] = "text",
+    rerank: bool = False,
+    reranker_model: Optional[str] = None,
+    reranker_device: str = "cuda",
+    min_rerank_score: Optional[float] = None,
+    return_trace: bool = False,
+):
+    query = query.strip()
+
+    if fetch_k is None:
+        fetch_k = max(50, top_k * 10)
+
+    t_total_start = time.perf_counter()
+
+    t0 = time.perf_counter()
+    raw_candidates = search_index(
+        query=query,
+        vector_db_dir=vector_db_dir,
+        model_name=model_name,
+        device=device,
+        top_k=fetch_k,
+        fetch_k=fetch_k,
+        dedupe_by=None,
+    )
+    t1 = time.perf_counter()
+
+    deduped_candidates = dedupe_results(
+        raw_candidates,
+        dedupe_by=dedupe_by,
+    )
+    t2 = time.perf_counter()
+
+    if rerank:
+        if reranker_model is None:
+            raise ValueError("reranker_model must be provided when rerank=True")
+
+        # Clone so reranking does not mutate raw/deduped trace objects.
+        rerank_input = clone_results(deduped_candidates)
+
+        reranked_candidates = rerank_results(
+            query=query,
+            results=rerank_input,
+            model_name=reranker_model,
+            device=reranker_device,
+        )
+    else:
+        reranked_candidates = clone_results(deduped_candidates)
+    t3 = time.perf_counter()
+
+    if rerank and min_rerank_score is not None:
+        thresholded_candidates = [
+            result
+            for result in reranked_candidates
+            if result.score >= min_rerank_score
+        ]
+    else:
+        thresholded_candidates = reranked_candidates
+    t4 = time.perf_counter()
+
+    final_results = thresholded_candidates[:top_k]
+
+    t_total_end = time.perf_counter()
+
+    profile = RetrievalProfile(
+        total_seconds=t_total_end - t_total_start,
+        search_seconds=t1 - t0,
+        dedupe_seconds=t2 - t1,
+        rerank_seconds=t3 - t2,
+        threshold_seconds=t4 - t3,
+    )
+
+    report = RetrievalReport(
+        query=query,
+        requested_top_k=top_k,
+        fetch_k=fetch_k,
+        dedupe_by=dedupe_by,
+        num_candidates=len(raw_candidates),
+        num_after_dedup=len(deduped_candidates),
+        num_after_rerank=len(reranked_candidates),
+        num_after_threshold=len(thresholded_candidates),
+        num_results=len(final_results),
+        reranking_enabled=rerank,
+        reranker_model=reranker_model if rerank else None,
+        min_rerank_score=min_rerank_score,
+    )
+
+    if return_trace:
+        trace = RetrievalTrace(
+            raw_candidates=raw_candidates,
+            deduped_candidates=deduped_candidates,
+            reranked_candidates=reranked_candidates,
+            thresholded_candidates=thresholded_candidates,
+            final_results=final_results,
+        )
+        return final_results, report, trace, profile
+
+    return final_results, report, profile
+
+
+def build_context(results: List[RetrievalResult]) -> str:
+    parts = []
+
+    for i, result in enumerate(results, start=1):
+        citation = result.citation
+        parts.append(
+            f"[Source {i}]\n"
+            f"Title: {citation.get('title')}\n"
+            f"Path: {citation.get('relative_path')}\n"
+            f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n"
+            f"Score: {result.score:.4f}\n\n"
+            f"{result.text}"
+        )
+
+    return "\n\n" + ("-" * 70 + "\n\n").join(parts)
+
+================================================================================
+FILE: app/rag.py
+================================================================================
+from openai import OpenAI
+
+from app.retrieval import retrieve
+
+
+def build_context(results):
+    parts = []
+
+    for i, result in enumerate(results, start=1):
+        citation = result.citation
+        parts.append(
+            f"[Source {i}]\n"
+            f"Title: {citation.get('title')}\n"
+            f"Path: {citation.get('relative_path')}\n"
+            f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n\n"
+            f"{result.text}"
+        )
+
+    return "\n\n" + ("-" * 70 + "\n\n").join(parts)
+
+
+def answer_question(
+    query,
+    vector_db_dir,
+    model_name,
+    embedding_device,
+    llm_base_url,
+    llm_model,
+    top_k=5,
+    fetch_k=None,
+    dedupe_by="text",
+    rerank=False,
+    reranker_model=None,
+    reranker_device="cuda",
+    min_rerank_score=None,
+    return_trace=False,
+):
+    query = query.strip()
+
+    retrieved = retrieve(
+        query=query,
+        vector_db_dir=vector_db_dir,
+        model_name=model_name,
+        device=embedding_device,
+        top_k=top_k,
+        fetch_k=fetch_k,
+        dedupe_by=dedupe_by,
+        rerank=rerank,
+        reranker_model=reranker_model,
+        reranker_device=reranker_device,
+        min_rerank_score=min_rerank_score,
+        return_trace=return_trace,
+    )
+
+    if return_trace:
+        results, retrieval_report, trace, profile = retrieved
+    else:
+        results, retrieval_report, profile = retrieved
+        trace = None
+
+    context = build_context(results)
+
+    prompt = f"""
+You are a careful assistant answering questions using only the provided sources.
+
+Rules:
+- Answer only from the sources below.
+- If the sources do not contain the answer, say that clearly.
+- Cite sources inline using [Source 1], [Source 2], etc.
+- Be concise but complete.
+
+Question:
+{query}
+
+Sources:
+{context}
+
+Answer:
+""".strip()
+
+    client = OpenAI(
+        base_url=llm_base_url,
+        api_key="not-needed",
+    )
+
+    response = client.chat.completions.create(
+        model=llm_model,
+        messages=[
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.2,
+    )
+
+    answer = response.choices[0].message.content
+
+    if return_trace:
+        return answer, results, retrieval_report, trace, profile
+
+    return answer, results, profile

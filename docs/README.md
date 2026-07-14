@@ -1,253 +1,73 @@
-# Institutional Knowledge Framework (IKF)
-
-> An explainable semantic layer for AI-assisted institutional decision support.
-
----
-
-## Vision
+# Institutional Semantic Observatory Documentation
 
-The Institutional Knowledge Framework (IKF) is **not** a chatbot project.
+## *Observe. Explain. Illuminate.*
 
-It is a software architecture for transforming institutional information into a structured semantic ecosystem that can be searched, evaluated, synthesized, and ultimately used to support evidence-based administrative decision making.
+The Institutional Semantic Observatory is an evidence-driven platform for constructing an explainable, evolving representation of an institution's knowledge ecosystem.
 
-The Department Knowledge Assistant is the first reference implementation of the framework.
+## Start Here
 
-Our long-term vision is an **institutional semantic digital twin** capable of assisting university leaders with complex planning and policy questions while ensuring that every recommendation remains transparent, explainable, and grounded in institutional evidence.
+- [The ISO Manifesto](ISO_Manifesto.md)
+- [ISO Architecture Book](architecture/README.md)
+- [Research Agenda](ResearchAgenda.md)
 
-> **The AI should assist human decision makers—not replace them.**
+## Documentation Areas
 
----
+### Architecture
 
-# Current Status
+The enduring philosophy, abstractions, and design principles of ISO.
 
-The project has completed **Phase I** and is now entering **Phase II**.
+- [Architecture Book](architecture/README.md)
+- [Architecture FAQ](architecture/ArchitectureFAQ.md)
 
-## Phase I — Building the Semantic Layer
+### Engineering
 
-Completed:
+Technical analysis of the current implementation.
 
-- Google Drive synchronization
-- Corpus inventory
-- Corpus policy
-- Parser framework
-- Canonical document model
-- Document normalization
-- Chunk generation
-- SentenceTransformer embeddings
-- FAISS vector database
-- Cross-encoder reranking
-- Local LLM inference (vLLM + Qwen)
-- Explainable citations
-- Retrieval diagnostics
-- Performance profiling
-- Retrieval benchmarking
-- Corpus Observatory
+- [Benchmarking](engineering/benchmarking.md)
+- [Corpus Health](engineering/corpus_health.md)
+- [Corpus Observatory](engineering/corpus_observatory.md)
+- [Retrieval Diagnostics](engineering/retrieval_diagnostics.md)
 
-Current benchmark performance:
+### Developer Reference
 
-- Top-1: **23 / 30**
-- Top-5: **26 / 30**
+Operational guidance for developers and maintainers.
 
-Current corpus:
+- [tmux Quick Reference](developer/tmux_quick_reference.md)
 
-- **15,398 documents**
-- **310,097 chunks**
-- Mean chunks/document: **20.1**
-- Median chunks/document: **7**
-- Gini coefficient: **0.7596**
+### Decision Support
 
----
+Vision documents, examples, and Decision Brief documentation.
 
-# Current Architecture
+- [Decision Support Vision](decision_support/vision.md)
+- [Decision Briefs](decision_support/decision_briefs.md)
+- [Example Decision Brief](decision_support/decision_brief_001.md)
 
-```
-Google Drive
-      │
-      ▼
-Corpus Policy
-      │
-      ▼
-Normalization
-      │
-      ▼
-Canonical Documents
-      │
-      ▼
-Chunk Generation
-      │
-      ▼
-Embeddings (BGE)
-      │
-      ▼
-FAISS Retrieval
-      │
-      ▼
-Cross Encoder Reranking
-      │
-      ▼
-Evidence Selection
-      │
-      ▼
-Local LLM
-      │
-      ▼
-Grounded Answer
-```
+### Presentations
 
-Every answer is traceable back to retrieved institutional evidence.
+Presentation source files, PDFs, and supporting images.
 
----
+- [Presentations Directory](presentations/)
 
-# Engineering Philosophy
+### Development History
 
-The project is intentionally engineered from first principles rather than relying on monolithic RAG frameworks.
+The session notes preserve the project's development history as a laboratory notebook.
 
-Several ideas guide the architecture.
+- [Sessions Directory](sessions/)
 
-## Everything should be measurable.
+## Core Principle
 
-Architectural decisions are benchmark-driven rather than anecdotal.
+> **Knowledge Objects preserve observations. Services derive meaning.**
 
----
+ISO separates institutional facts from their interpretation so that the complete path from observation to recommendation remains transparent, inspectable, and open to challenge.
 
-## Everything should be explainable.
+## Repository Documentation Model
 
-Every retrieval stage is observable:
+The documentation is organized by purpose:
 
-- vector retrieval
-- deduplication
-- reranking
-- prompt construction
-- citations
-
----
-
-## Corpus quality matters.
-
-Retrieval systems cannot outperform their corpus.
-
-Corpus health is therefore treated as a first-class engineering concern.
-
----
-
-## Modular architecture.
-
-Every major component is independently replaceable.
-
-Examples include:
-
-- embedding models
-- rerankers
-- parsers
-- chunking strategies
-- retrieval algorithms
-- language models
-
----
-
-# Corpus Observatory
-
-The framework includes an interactive developer interface for monitoring corpus health.
-
-Current diagnostics include:
-
-- parser usage
-- chunk distributions
-- document distributions
-- folder distributions
-- dominance metrics
-- largest documents
-- Gini coefficient
-- benchmark summaries
-- retrieval timing
-
-The Observatory treats corpus engineering as an ongoing architectural discipline rather than a preprocessing step.
-
----
-
-# Phase II — Institutional Decision Support
-
-The project is now evolving beyond question answering.
-
-The next objective is the generation of **Decision Briefs**.
-
-Representative questions include:
-
-- What resources would be required to launch a Mechanical Engineering major?
-
-- What are the implications of replacing—or not replacing—a retiring faculty member?
-
-- Which departments become most vulnerable under a projected enrollment scenario?
-
-Rather than producing answers, the framework will synthesize evidence across:
-
-- curriculum
-- faculty expertise
-- facilities
-- laboratory equipment
-- accreditation
-- strategic planning
-- budgets
-- historical documents
-
-Every recommendation will remain fully explainable through citations to the supporting evidence.
-
----
-
-# Long-Term Vision
-
-The long-term objective is the creation of an institutional semantic digital twin.
-
-Future capabilities include:
-
-- scenario analysis
-- strategic planning
-- enrollment forecasting
-- hiring analysis
-- curriculum planning
-- resource optimization
-- probabilistic institutional modeling
-
-The emphasis remains on augmenting human judgment through transparent, evidence-based AI.
-
----
-
-# Documentation
-
-The repository documentation is organized into three complementary perspectives.
-
-## Sessions
-
-Chronological design history describing the evolution of the architecture.
-
-```
-docs/sessions/
-```
-
----
-
-## Architecture
-
-Descriptions of the current framework.
-
-```
-docs/architecture/
-```
-
----
-
-## Engineering
-
-Benchmarking, corpus health, retrieval diagnostics, and performance.
-
-```
-docs/engineering/
-```
-
----
-
-# Guiding Principle
-
-The primary deliverable is **not** a chatbot.
-
-The primary deliverable is an explainable, measurable, and reusable architecture for institutional knowledge systems capable of supporting evidence-based decision making.
+- **Manifesto:** why ISO exists
+- **Architecture:** what ISO is
+- **Engineering:** how the current system behaves
+- **Developer reference:** how to operate and extend it
+- **Decision support:** how ISO supports institutional work
+- **Sessions:** how the project evolved
+- **Research agenda:** where the research program may go next

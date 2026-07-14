@@ -1,3 +1,14 @@
+# ISO Research Agenda
+
+## Future Directions for the Institutional Semantic Observatory
+
+This document records evolving research opportunities and future capabilities. Unlike the Architecture Book, it is expected to change as the project develops.
+
+- [Architecture Book](architecture/README.md)
+- [ISO Manifesto](ISO_Manifesto.md)
+
+---
+
 # Institutional Semantic Observatory (ISO)
 
 ## Future Directions

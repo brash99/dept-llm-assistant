@@ -1,0 +1,456 @@
+campaign:
+  key: cnu_public_web_phase_1
+  name: CNU Public Web Observation Campaign — Phase 1
+  description: >
+    A stratified observation campaign based on institutional authority,
+    decision relevance, evidentiary density, website topology, and current
+    semantic-ecosystem coverage.
+  observation_budget: 1000
+  methodology:
+    - Oversample authoritative but compact institutional habitats.
+    - Include PDFs and structured documents where evidentiary density is high.
+    - Cap news archives and directory-like collections.
+    - Preserve each observer in an independent acquisition manifest.
+
+observers:
+  - name: academics
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - academic_programs
+      - curriculum
+      - departments
+    priority_terms:
+      - programs
+      - departments
+      - major
+      - minor
+      - curriculum
+      - degree
+    seed_urls:
+      - https://cnu.edu/academics/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/academics/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_academics_v2.jsonl
+    budget: 260
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: &cnu_authorization
+      mode: institutional_approval
+      approved_by:
+        - Quentin Kidd
+        - Carolyn Davis
+      scope:
+        - https://cnu.edu/
+        - https://my.cnu.edu/
+      notes: >
+        Authorized for the Institutional Semantic Observatory project.
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+
+  - name: institutional_research
+    type: web
+    enabled: true
+    source_organization: CNU Institutional Research
+    authority: institutional_primary
+    purposes:
+      - enrollment
+      - retention
+      - graduation
+      - institutional_statistics
+    priority_terms:
+      - enrollment
+      - retention
+      - graduation
+      - census
+      - common data set
+      - degrees
+    seed_urls:
+      - https://my.cnu.edu/institutionalresearch/
+      - https://cnu.edu/institutionalresearch/
+    allowed_hosts:
+      - my.cnu.edu
+      - cnu.edu
+    allowed_prefixes:
+      - https://my.cnu.edu/institutionalresearch/
+      - https://cnu.edu/institutionalresearch/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_institutional_research_v2.jsonl
+    budget: 140
+    max_depth: 12
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+      follow_text: true
+
+  - name: registrar
+    type: web
+    enabled: true
+    source_organization: CNU Office of the Registrar
+    authority: institutional_primary
+    purposes:
+      - academic_policy
+      - catalog
+      - degree_requirements
+    priority_terms:
+      - catalog
+      - calendar
+      - policy
+      - degree
+      - curriculum
+    seed_urls:
+      - https://cnu.edu/registrar/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/registrar/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_registrar_v2.jsonl
+    budget: 90
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+
+  - name: assessment_planning
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - assessment
+      - accreditation
+      - planning
+      - institutional_effectiveness
+    priority_terms:
+      - assessment
+      - accreditation
+      - planning
+      - effectiveness
+      - outcomes
+    seed_urls:
+      - https://cnu.edu/assessment/
+      - https://cnu.edu/accreditation/
+      - https://cnu.edu/oaa/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/assessment/
+      - https://cnu.edu/accreditation/
+      - https://cnu.edu/oaa/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_assessment_planning_v2.jsonl
+    budget: 90
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+
+  - name: institutional_constitution
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - mission
+      - vision
+      - strategy
+      - leadership
+      - governance
+    priority_terms:
+      - strategic
+      - compass
+      - mission
+      - vision
+      - board
+      - governance
+    seed_urls:
+      - https://cnu.edu/who-we-are/
+      - https://cnu.edu/who-we-are/strategic-compass/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/who-we-are/
+      - https://cnu.edu/whoweare/
+      - https://cnu.edu/strategic-compass/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_constitution_v2.jsonl
+    budget: 70
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+
+  - name: enrollment_pipeline
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - admissions
+      - affordability
+      - financial_aid
+      - tuition
+    priority_terms:
+      - admission
+      - freshman
+      - transfer
+      - financial aid
+      - tuition
+      - scholarship
+    seed_urls:
+      - https://cnu.edu/admission/
+      - https://cnu.edu/financial-aid/
+      - https://cnu.edu/financialaid/
+      - https://cnu.edu/tuition/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/admission/
+      - https://cnu.edu/financial-aid/
+      - https://cnu.edu/financialaid/
+      - https://cnu.edu/tuition/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_enrollment_pipeline_v2.jsonl
+    budget: 100
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+
+  - name: student_experience
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - student_life
+      - student_success
+      - belonging
+      - accessibility
+    priority_terms:
+      - success
+      - belonging
+      - accessibility
+      - counseling
+      - support
+      - retention
+    seed_urls:
+      - https://cnu.edu/life/
+      - https://cnu.edu/academicsuccess/
+      - https://cnu.edu/belonging/
+      - https://cnu.edu/titleixeo/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/life/
+      - https://cnu.edu/academicsuccess/
+      - https://cnu.edu/belonging/
+      - https://cnu.edu/titleixeo/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_student_experience_v2.jsonl
+    budget: 80
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+
+  - name: institutional_operations
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - finance
+      - human_resources
+      - technology
+      - safety
+    priority_terms:
+      - budget
+      - finance
+      - reporting
+      - employment
+      - policy
+      - safety
+    seed_urls:
+      - https://cnu.edu/businessoffice/
+      - https://cnu.edu/business-office/
+      - https://cnu.edu/hr/
+      - https://cnu.edu/its/
+      - https://cnu.edu/police/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/businessoffice/
+      - https://cnu.edu/business-office/
+      - https://cnu.edu/hr/
+      - https://cnu.edu/its/
+      - https://cnu.edu/police/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_operations_v2.jsonl
+    budget: 55
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+
+  - name: research_engagement
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - research
+      - scholarship
+      - regional_engagement
+      - public_service
+    priority_terms:
+      - research
+      - grant
+      - center
+      - institute
+      - community
+      - regional
+    seed_urls:
+      - https://cnu.edu/research/
+      - https://cnu.edu/wasoncenter/
+      - https://cnu.edu/wason/
+      - https://cnu.edu/reiffcenter/
+      - https://cnu.edu/reiff-center/
+      - https://cnu.edu/cerp/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/research/
+      - https://cnu.edu/wasoncenter/
+      - https://cnu.edu/wason/
+      - https://cnu.edu/reiffcenter/
+      - https://cnu.edu/reiff-center/
+      - https://cnu.edu/cerp/
+      - https://cnu.edu/publichistorycenter/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_research_engagement_v2.jsonl
+    budget: 65
+    max_depth: 10
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+
+  - name: institutional_chronology
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - news
+      - announcements
+      - institutional_history
+    priority_terms:
+      - strategic
+      - program
+      - enrollment
+      - research
+      - award
+    seed_urls:
+      - https://cnu.edu/news/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/news/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_news_v2.jsonl
+    budget: 30
+    max_depth: 6
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: false
+
+  - name: faculty_profiles
+    type: web
+    enabled: true
+    source_organization: Christopher Newport University
+    authority: institutional_primary
+    purposes:
+      - faculty_expertise
+      - institutional_roles
+    priority_terms:
+      - faculty
+      - professor
+      - dean
+      - director
+      - expertise
+    seed_urls:
+      - https://cnu.edu/faculty/
+      - https://cnu.edu/people/
+    allowed_hosts:
+      - cnu.edu
+    allowed_prefixes:
+      - https://cnu.edu/faculty/
+      - https://cnu.edu/people/
+    storage_root: storage/raw_web
+    manifest: storage/manifests/cnu_people_v2.jsonl
+    budget: 20
+    max_depth: 6
+    request_delay_seconds: 0.25
+    respect_robots: false
+    authorization: *cnu_authorization
+    media_policy:
+      follow_html: true
+      follow_pdf: false

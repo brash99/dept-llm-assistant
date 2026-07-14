@@ -50,3 +50,21 @@ from app.acquisition.observers import (
     WebObserver,
     WebObserverCatalog,
 )
+
+from app.acquisition.observer_v2 import (
+    MediaPolicy,
+    ObserverV2,
+    ObserverV2Catalog,
+)
+
+from app.acquisition.observer_v2_runner import (
+    ObserverV2Failure,
+    ObserverV2Report,
+    ObserverV2Runner,
+)
+
+from app.acquisition.campaign import (
+    CampaignReport,
+    ObservationCampaign,
+    ObservationCampaignRunner,
+)

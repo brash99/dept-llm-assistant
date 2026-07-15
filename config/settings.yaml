@@ -62,3 +62,39 @@ retrieval:
   constitutional_top_k: 2
   empirical_top_k: 10
   fetch_k: 200
+
+normalization_sources:
+  - key: cnu_website
+    root: storage/raw_web/cnu_website
+    priority: 10
+    description: Curated public Christopher Newport University web corpus
+
+  - key: schev_policy
+    root: storage/raw_web/schev_policy
+    priority: 20
+    description: SCHEV policy, academic-affairs, and program-approval materials
+
+  - key: schev_statistics
+    root: storage/raw_web/schev_statistics
+    priority: 30
+    description: SCHEV research, statistics, enrollment, and institutional data
+
+  - key: virginia_budget
+    root: storage/raw_web/virginia_budget
+    priority: 40
+    description: Virginia state budget and higher-education funding materials
+
+  - key: abet_standards
+    root: storage/raw_web/abet_standards
+    priority: 50
+    description: ABET accreditation criteria and guidance
+
+  - key: sacscoc_standards
+    root: storage/raw_web/sacscoc_standards
+    priority: 60
+    description: SACSCOC accreditation standards and resource materials
+
+  - key: sec_google_drive
+    root: storage/raw_drive
+    priority: 100
+    description: Internal School of Engineering and Computing Google Drive corpus

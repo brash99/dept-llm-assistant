@@ -12,6 +12,85 @@ from app.normalize import (
 )
 
 
+def load_normalization_sources(config, project_root):
+    """
+    Load and validate the configured normalization source registry.
+
+    Lower priority values are normalized first. This determines which source
+    becomes canonical when byte-identical content exists in multiple sources.
+    """
+    configured = config.get("normalization_sources", [])
+
+    if not configured:
+        raise ValueError(
+            "No normalization_sources are configured in "
+            "config/settings.yaml"
+        )
+
+    sources = []
+
+    seen_keys = set()
+    seen_roots = set()
+
+    for item in configured:
+        if not isinstance(item, dict):
+            raise TypeError(
+                "Each normalization_sources entry must be a mapping."
+            )
+
+        key = str(item.get("key", "")).strip()
+        root_value = str(item.get("root", "")).strip()
+
+        if not key:
+            raise ValueError(
+                "Every normalization source requires a non-empty key."
+            )
+
+        if not root_value:
+            raise ValueError(
+                f"Normalization source {key!r} requires a root."
+            )
+
+        if key in seen_keys:
+            raise ValueError(
+                f"Duplicate normalization source key: {key}"
+            )
+
+        root = Path(root_value)
+
+        if not root.is_absolute():
+            root = project_root / root
+
+        root = root.resolve()
+
+        if root in seen_roots:
+            raise ValueError(
+                f"Duplicate normalization source root: {root}"
+            )
+
+        priority = int(item.get("priority", 1000))
+
+        sources.append(
+            {
+                "key": key,
+                "root": root,
+                "priority": priority,
+                "description": item.get("description", ""),
+            }
+        )
+
+        seen_keys.add(key)
+        seen_roots.add(root)
+
+    return sorted(
+        sources,
+        key=lambda source: (
+            source["priority"],
+            source["key"],
+        ),
+    )
+
+
 def main():
     parser = argparse.ArgumentParser()
 
@@ -29,13 +108,18 @@ def main():
 
     parser.add_argument(
         "--source",
-        choices=[
-            "all",
-            "cnu_website",
-            "sec_google_drive",
-        ],
+        type=str,
         default="all",
-        help="Acquisition source to normalize.",
+        help=(
+            "Normalization source key from config/settings.yaml, "
+            "or 'all'."
+        ),
+    )
+
+    parser.add_argument(
+        "--list-sources",
+        action="store_true",
+        help="List configured normalization sources and exit.",
     )
 
     args = parser.parse_args()
@@ -47,19 +131,6 @@ def main():
     )
 
     storage_cfg = config["storage"]
-
-    raw_drive = (
-        project_root
-        / storage_cfg["raw_drive"]
-    )
-
-    raw_web = (
-        project_root
-        / storage_cfg.get(
-            "raw_web",
-            "storage/raw_web",
-        )
-    )
 
     normalized = (
         project_root
@@ -76,44 +147,72 @@ def main():
         exist_ok=True,
     )
 
-    configured_sources = {
-        "cnu_website": raw_web,
-        "sec_google_drive": raw_drive,
+    registry = load_normalization_sources(
+        config,
+        project_root,
+    )
+
+    if args.list_sources:
+        print("Configured normalization sources:")
+        for source in registry:
+            exists = source["root"].exists()
+            print(
+                f"{source['priority']:4d}  "
+                f"{source['key']:24s}  "
+                f"{'present' if exists else 'missing':7s}  "
+                f"{source['root']}"
+            )
+        return
+
+    available_keys = {
+        source["key"]
+        for source in registry
     }
 
-    # Public institutional sources are processed first so that, when
-    # identical bytes occur in multiple observers, the authoritative
-    # public observation becomes the canonical searchable copy.
-    source_order = [
-        "cnu_website",
-        "sec_google_drive",
-    ]
-
     if args.source == "all":
-        selected_keys = source_order
+        selected_sources = registry
     else:
-        selected_keys = [args.source]
+        if args.source not in available_keys:
+            choices = ", ".join(sorted(available_keys))
+            raise SystemExit(
+                f"Unknown source {args.source!r}. "
+                f"Configured sources: {choices}"
+            )
+
+        selected_sources = [
+            source
+            for source in registry
+            if source["key"] == args.source
+        ]
 
     sources = [
         {
-            "key": key,
-            "root": configured_sources[key],
+            "key": source["key"],
+            "root": source["root"],
         }
-        for key in selected_keys
+        for source in selected_sources
     ]
 
     print("=" * 70)
     print("Multi-Source Document Normalization")
     print("=" * 70)
 
-    for source in sources:
+    for source in selected_sources:
+        status = (
+            "present"
+            if source["root"].exists()
+            else "missing"
+        )
+
         print(
-            f"{source['key']:20}: "
+            f"{source['priority']:4d}  "
+            f"{source['key']:24s}  "
+            f"{status:7s}  "
             f"{source['root']}"
         )
 
-    print(f"Normalized dir      : {normalized}")
-    print(f"Limit               : {args.limit}")
+    print(f"Normalized dir : {normalized}")
+    print(f"Limit          : {args.limit}")
     print()
 
     if args.file:
@@ -122,35 +221,31 @@ def main():
         if not file_path.is_absolute():
             file_path = project_root / file_path
 
-        matched_source_key = None
-        matched_source_root = None
+        file_path = file_path.resolve()
 
-        for source in sources:
-            source_root = Path(
-                source["root"]
-            ).resolve()
+        matched_source = None
+
+        for source in selected_sources:
+            source_root = source["root"]
 
             try:
-                file_path.resolve().relative_to(
-                    source_root
-                )
-                matched_source_key = source["key"]
-                matched_source_root = source_root
+                file_path.relative_to(source_root)
+                matched_source = source
                 break
             except ValueError:
                 continue
 
-        if matched_source_key is None:
+        if matched_source is None:
             raise SystemExit(
-                "The requested file is not beneath any "
-                "selected source root."
+                "The requested file is not beneath any selected "
+                "normalization source root."
             )
 
         document, outpath = normalize_single_file(
             path=file_path,
-            raw_drive=matched_source_root,
+            raw_drive=matched_source["root"],
             normalized_dir=normalized,
-            source_key=matched_source_key,
+            source_key=matched_source["key"],
         )
 
         results = {
@@ -161,7 +256,7 @@ def main():
             "skipped": 0,
             "skipped_duplicate_content": 0,
             "source_counts": {
-                matched_source_key: 1,
+                matched_source["key"]: 1,
             },
             "parser_counts": {
                 document.parser: 1,

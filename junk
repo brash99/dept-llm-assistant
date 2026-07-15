@@ -1,0 +1,51 @@
+app/acquisition/observer_v2_runner.py:174:            for seed in self.observer.seed_urls
+app/acquisition/observer_v2.py:144:    seed_urls: Tuple[str, ...]
+app/acquisition/observer_v2.py:167:        if not self.seed_urls:
+app/acquisition/observer_v2.py:272:            seed_urls=tuple(
+app/acquisition/observer_v2.py:273:                payload["seed_urls"]
+app/acquisition/web_crawler.py:49:    seed_url: str
+app/acquisition/web_crawler.py:66:            "seed_url": self.seed_url,
+app/acquisition/web_crawler.py:140:        seed_url: str,
+app/acquisition/web_crawler.py:156:        normalized_seed = self.normalize_url(seed_url)
+app/acquisition/web_crawler.py:304:            seed_url=normalized_seed,
+app/acquisition/campaign.py:17:class ObservationCampaign:
+app/acquisition/campaign.py:241:class ObservationCampaignRunner:
+app/acquisition/observers.py:69:    seed_urls: Tuple[str, ...]
+app/acquisition/observers.py:86:        if not self.seed_urls:
+app/acquisition/observers.py:165:            seed_urls=tuple(payload["seed_urls"]),
+scripts/test_web_acquisition_runner.py:151:        seed_url=f"{crawl_server}/",
+scripts/test_web_acquisition_runner.py:175:        seed_url=f"{crawl_server}/",
+scripts/test_web_acquisition_runner.py:185:        seed_url=f"{crawl_server}/",
+scripts/test_web_acquisition_runner.py:206:        seed_url=f"{crawl_server}/",
+scripts/test_web_acquisition_runner.py:226:        seed_url=f"{crawl_server}/",
+scripts/test_web_acquisition_runner.py:259:            seed_url=f"{crawl_server}/",
+scripts/test_web_acquisition_runner.py:275:        seed_url=f"{crawl_server}/academics/",
+scripts/run_web_observers.py:152:        for seed_url in observer.seed_urls:
+scripts/run_web_observers.py:154:                seed_url=seed_url,
+scripts/run_web_observers.py:182:            print(f"Seed:             {report.seed_url}")
+scripts/test_web_observers.py:23:    seed_urls:
+scripts/test_web_observers.py:81:    seed_urls: [https://example.edu/a/]
+scripts/test_web_observers.py:93:    seed_urls: [https://example.edu/b/]
+scripts/test_web_observers.py:127:    seed_urls: [https://example.edu/research/]
+scripts/test_web_observers.py:163:    seed_urls:
+scripts/test_web_observers.py:219:    seed_urls:
+scripts/test_web_observers.py:265:    seed_urls: [https://example.edu/research/]
+scripts/test_web_observers.py:301:    seed_urls:
+scripts/test_web_observers.py:357:    seed_urls:
+scripts/crawl_website.py:23:    parser.add_argument("seed_url")
+scripts/crawl_website.py:119:            urlparse(args.seed_url).netloc
+scripts/crawl_website.py:123:        seed_url=args.seed_url,
+scripts/crawl_website.py:145:    print(f"Seed URL:              {report.seed_url}")
+scripts/site_map.py:204:    seed_url: str,
+scripts/site_map.py:206:    parsed = urlparse(seed_url)
+scripts/site_map.py:276:    seed_url: str,
+scripts/site_map.py:302:    normalized_seed = normalize_url(seed_url)
+scripts/site_map.py:549:        "seed_url": normalized_seed,
+scripts/site_map.py:635:        f"**Seed URL:** {report['seed_url']}",
+scripts/site_map.py:783:        "seed_url",
+scripts/site_map.py:870:        args.seed_url
+scripts/site_map.py:879:        seed_url=args.seed_url,
+scripts/site_map.py:927:        f"{report['seed_url']}"
+scripts/test_observer_v2_runner.py:133:        seed_urls=(base_url + "/",),
+scripts/test_observer_v2.py:53:    seed_urls:
+scripts/test_observer_v2.py:103:    seed_urls:

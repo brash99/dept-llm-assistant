@@ -20,7 +20,6 @@ class ObservatoryAssessment:
     evidence_class_counts: Dict[str, int]
     evidence_class_percentages: Dict[str, float]
     dominant_evidence_class: str
-    constitutional_evidence_ratio: float
     institutional_evidence_ratio: float
     planning_ratio: float
     external_ratio: float
@@ -169,11 +168,11 @@ def _topic_coverage(evidence_items: List[Evidence]) -> tuple[List[str], List[str
 
 
 def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryAssessment:
-    """Compute a deterministic observatory assessment.
+    """Compute a deterministic v0.1 observatory assessment.
 
-    Constitutional evidence is reported as a separate normative evidence
-    class. Ratios describing institutional, planning, and external dependence
-    are calculated only across empirical evidence.
+    The goal is not to produce final research-grade metrics. The goal is to
+    expose the evidence landscape so the dashboard and Decision Brief can begin
+    distinguishing confidence from knowledge completeness.
     """
     total = len(evidence_items)
 
@@ -189,89 +188,29 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
             for label, count in class_counts.items()
         }
     else:
-        class_percentages = {
-            label: 0.0
-            for label in class_counts
-        }
+        class_percentages = {label: 0.0 for label in class_counts}
 
-    dominant = (
-        max(class_counts.items(), key=lambda item: item[1])[0]
-        if total
-        else "None"
-    )
+    dominant = max(class_counts.items(), key=lambda item: item[1])[0] if total else "None"
 
-    constitutional_count = counter.get(
-        EvidenceClass.CONSTITUTIONAL,
-        0,
-    )
-
-    empirical_items = [
-        item
-        for item in evidence_items
-        if item.evidence_class != EvidenceClass.CONSTITUTIONAL
-    ]
-    empirical_total = len(empirical_items)
-
-    constitutional_ratio = (
-        constitutional_count / total
-        if total
-        else 0.0
-    )
-
-    def empirical_ratio(evidence_class: EvidenceClass) -> float:
-        if empirical_total == 0:
-            return 0.0
-
-        return (
-            sum(
-                1
-                for item in empirical_items
-                if item.evidence_class == evidence_class
-            )
-            / empirical_total
-        )
-
-    institutional_ratio = empirical_ratio(
-        EvidenceClass.INSTITUTIONAL
-    )
-    planning_ratio = empirical_ratio(
-        EvidenceClass.PLANNING
-    )
+    institutional_ratio = class_percentages.get(EvidenceClass.INSTITUTIONAL.value, 0.0)
+    planning_ratio = class_percentages.get(EvidenceClass.PLANNING.value, 0.0)
     external_ratio = (
-        empirical_ratio(EvidenceClass.EXTERNAL_STANDARD)
-        + empirical_ratio(EvidenceClass.EXTERNAL_COMPARATOR)
+        class_percentages.get(EvidenceClass.EXTERNAL_STANDARD.value, 0.0)
+        + class_percentages.get(EvidenceClass.EXTERNAL_COMPARATOR.value, 0.0)
     )
 
-    empirical_class_counts = [
-        counter.get(evidence_class, 0)
-        for evidence_class in EVIDENCE_CLASS_ORDER
-        if evidence_class != EvidenceClass.CONSTITUTIONAL
-    ]
+    balance = _entropy_balance(class_counts.values())
+    covered_topics, missing_topics = _topic_coverage(evidence_items)
+    topic_coverage = round(100.0 * len(covered_topics) / len(TOPIC_KEYWORDS), 1)
 
-    balance = _entropy_balance(empirical_class_counts)
-
-    # Topic coverage describes the factual evidence landscape. Constitutional
-    # values should not make an empirical topic appear covered.
-    covered_topics, missing_topics = _topic_coverage(
-        empirical_items
-    )
-    topic_coverage = round(
-        100.0 * len(covered_topics) / len(TOPIC_KEYWORDS),
-        1,
-    )
-
-    low_institutional_penalty = max(
-        0.0,
-        (0.35 - institutional_ratio) * 80.0,
-    )
-    planning_completeness_penalty = max(
-        0.0,
-        (planning_ratio - 0.50) * 45.0,
-    )
-    external_completeness_penalty = max(
-        0.0,
-        (external_ratio - 0.20) * 35.0,
-    )
+    # Knowledge completeness is intentionally stricter than topic coverage.
+    # Topic coverage asks: did retrieved evidence touch the expected domains?
+    # Knowledge completeness asks: is the evidence landscape strong enough to
+    # support institutional reasoning? Planning-heavy or externally-dependent
+    # evidence lowers completeness even when all expected topics are mentioned.
+    low_institutional_penalty = max(0.0, (0.35 - institutional_ratio) * 80.0)
+    planning_completeness_penalty = max(0.0, (planning_ratio - 0.50) * 45.0)
+    external_completeness_penalty = max(0.0, (external_ratio - 0.20) * 35.0)
     missing_topic_penalty = 4.0 * len(missing_topics)
 
     completeness = round(
@@ -289,19 +228,11 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
         1,
     )
 
-    institutional_component = min(
-        100.0,
-        institutional_ratio * 200.0,
-    )
-    planning_penalty = max(
-        0.0,
-        (planning_ratio - 0.60) * 50.0,
-    )
-    external_penalty = max(
-        0.0,
-        (external_ratio - 0.30) * 40.0,
-    )
-
+    # A deliberately transparent v0.2 heuristic. This should evolve into a
+    # calibrated score after we collect more Decision Brief experiments.
+    institutional_component = min(100.0, institutional_ratio * 200.0)
+    planning_penalty = max(0.0, (planning_ratio - 0.60) * 50.0)
+    external_penalty = max(0.0, (external_ratio - 0.30) * 40.0)
     readiness = round(
         max(
             0.0,
@@ -323,77 +254,31 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
 
     if total == 0:
         warnings.append("No evidence was retrieved.")
-        recommendations.append(
-            "Broaden retrieval or verify corpus availability."
-        )
-
-    if constitutional_count == 0 and total > 0:
-        warnings.append(
-            "No constitutional evidence was included in the evidence set."
-        )
-        recommendations.append(
-            "Retrieve relevant institutional values or strategic commitments."
-        )
-
-    if empirical_total == 0 and total > 0:
-        warnings.append(
-            "Only constitutional evidence was retrieved; no empirical "
-            "evidence is available to assess institutional conditions."
-        )
-        recommendations.append(
-            "Retrieve factual institutional records before making a decision."
-        )
-
+        recommendations.append("Broaden retrieval or verify corpus availability.")
     if planning_ratio >= 0.60:
         warnings.append(
-            "Empirical evidence is dominated by planning documents; "
-            "proposed actions may not be approved institutional facts."
+            "Evidence landscape is dominated by planning documents; proposed actions may not be approved institutional facts."
         )
-        recommendations.append(
-            "Look for approved budgets, finalized policies, or "
-            "implementation records."
-        )
-
-    if institutional_ratio < 0.25 and empirical_total > 0:
-        warnings.append(
-            "Low proportion of direct institutional evidence in the "
-            "empirical evidence set."
-        )
-        recommendations.append(
-            "Search for annual reports, official records, meeting minutes, "
-            "or current policies."
-        )
-
+        recommendations.append("Look for approved budgets, finalized policies, or implementation records.")
+    if institutional_ratio < 0.25 and total > 0:
+        warnings.append("Low proportion of direct institutional evidence in retrieved sources.")
+        recommendations.append("Search for annual reports, official records, meeting minutes, or current policies.")
     if external_ratio > 0.30:
         warnings.append(
-            "External evidence is a substantial part of the empirical "
-            "evidence landscape; use it for standards or comparison only."
+            "External evidence is a substantial part of the retrieved landscape; use it for standards or comparison only."
         )
-
     if missing_topics:
         warnings.append(
-            "Potential knowledge gaps detected: "
-            + ", ".join(missing_topics[:5])
-            + "."
+            "Potential knowledge gaps detected: " + ", ".join(missing_topics[:5]) + "."
         )
-        recommendations.append(
-            "Add or locate empirical evidence for missing semantic domains "
-            "before high-stakes decisions."
-        )
+        recommendations.append("Add or locate evidence for missing semantic domains before high-stakes decisions.")
 
     return ObservatoryAssessment(
         total_sources=total,
         evidence_class_counts=class_counts,
         evidence_class_percentages=class_percentages,
         dominant_evidence_class=dominant,
-        constitutional_evidence_ratio=round(
-            constitutional_ratio,
-            3,
-        ),
-        institutional_evidence_ratio=round(
-            institutional_ratio,
-            3,
-        ),
+        institutional_evidence_ratio=round(institutional_ratio, 3),
         planning_ratio=round(planning_ratio, 3),
         external_ratio=round(external_ratio, 3),
         evidence_balance_score=balance,
@@ -405,4 +290,3 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
         warnings=warnings,
         recommendations=recommendations,
     )
-

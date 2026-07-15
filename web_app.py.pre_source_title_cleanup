@@ -5,7 +5,6 @@ from app.config import load_config
 from app.rag import answer_question
 from app.decision_brief import generate_decision_brief
 from app.observatory.dashboard import render_iso_overview, render_observatory_assessment
-from app.evidence import resolve_source_title
 from app.constitution import (
     ConstitutionalCatalog,
     ConstitutionalOrientation,
@@ -1080,7 +1079,7 @@ if st.button(button_label, type="primary") and query.strip():
         for result in results:
             citation = result.citation
 
-            title = resolve_source_title(result)
+            title = citation.get("title") or "Untitled source"
             relative_path = citation.get("relative_path") or "Unknown path"
             start_char = citation.get("start_char")
             end_char = citation.get("end_char")

@@ -291,9 +291,8 @@ def render_observatory_assessment(st, assessment: ObservatoryAssessment) -> None
 
     st.caption(
         "Topic coverage measures whether the retrieved evidence touches the expected semantic domains. "
-        "Knowledge completeness is stricter: it evaluates the empirical evidence set and is reduced when that "
-        "evidence is planning-heavy, externally dependent, or thin in direct institutional records. "
-        "Constitutional evidence is reported separately as institutional values."
+        "Knowledge completeness is stricter: it is reduced when evidence is planning-heavy, externally dependent, "
+        "or thin in direct institutional evidence."
     )
 
     st.write("**Evidence class balance**")
@@ -314,27 +313,11 @@ def render_observatory_assessment(st, assessment: ObservatoryAssessment) -> None
     else:
         st.info("No evidence classes available.")
 
-    r1, r2, r3, r4, r5 = st.columns(5)
-    r1.metric(
-        "Constitutional evidence",
-        _pct(assessment.constitutional_evidence_ratio),
-    )
-    r2.metric(
-        "Institutional evidence",
-        _pct(assessment.institutional_evidence_ratio),
-    )
-    r3.metric(
-        "Planning reliance",
-        _pct(assessment.planning_ratio),
-    )
-    r4.metric(
-        "External dependence",
-        _pct(assessment.external_ratio),
-    )
-    r5.metric(
-        "Empirical balance",
-        f"{assessment.evidence_balance_score:.0f}%",
-    )
+    r1, r2, r3, r4 = st.columns(4)
+    r1.metric("Institutional evidence", _pct(assessment.institutional_evidence_ratio))
+    r2.metric("Planning reliance", _pct(assessment.planning_ratio))
+    r3.metric("External dependence", _pct(assessment.external_ratio))
+    r4.metric("Evidence balance", f"{assessment.evidence_balance_score:.0f}%")
 
     with st.expander("Semantic coverage", expanded=False):
         if assessment.covered_topics:

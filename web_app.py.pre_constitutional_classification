@@ -5,7 +5,6 @@ from app.config import load_config
 from app.rag import answer_question
 from app.decision_brief import generate_decision_brief
 from app.observatory.dashboard import render_iso_overview, render_observatory_assessment
-from app.evidence import resolve_source_title
 from app.constitution import (
     ConstitutionalCatalog,
     ConstitutionalOrientation,
@@ -1074,48 +1073,18 @@ if st.button(button_label, type="primary") and query.strip():
     if not results:
         st.warning("No sources were returned.")
     else:
-        constitutional_source_number = 0
-        empirical_source_number = 0
-
-        for result in results:
+        for i, result in enumerate(results, start=1):
             citation = result.citation
 
-            title = resolve_source_title(result)
+            title = citation.get("title") or "Untitled source"
             relative_path = citation.get("relative_path") or "Unknown path"
             start_char = citation.get("start_char")
             end_char = citation.get("end_char")
 
             evidence_class = result.metadata.get("evidence_class")
-
-            citation_label = result.metadata.get(
-                "citation_label"
-            )
-
-            if citation_label is None:
-                if result.object_type == "constitutional_knowledge":
-                    constitutional_source_number += 1
-                    citation_label = (
-                        "Constitutional Source "
-                        f"{constitutional_source_number}"
-                    )
-                else:
-                    empirical_source_number += 1
-                    citation_label = (
-                        "Empirical Source "
-                        f"{empirical_source_number}"
-                    )
-
-            expander_label = (
-                f"[{citation_label}] "
-                f"{title} — score {result.score:.4f}"
-            )
-
+            expander_label = f"[Source {i}] {title} — score {result.score:.4f}"
             if evidence_class:
-                expander_label = (
-                    f"[{citation_label}] "
-                    f"[{evidence_class}] "
-                    f"{title} — score {result.score:.4f}"
-                )
+                expander_label = f"[Source {i}] [{evidence_class}] {title} — score {result.score:.4f}"
 
             with st.expander(expander_label):
                 st.write(f"**Path:** `{relative_path}`")

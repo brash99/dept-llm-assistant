@@ -1,8 +1,6 @@
 from dataclasses import dataclass
-from pathlib import PurePosixPath
 from typing import List, Optional
 import copy
-import re
 import time
 
 from sentence_transformers import CrossEncoder
@@ -98,71 +96,6 @@ def rerank_results(
     return reranked
 
 
-CROSS_FORMAT_EXTENSIONS = {
-    ".pdf",
-    ".doc",
-    ".docx",
-    ".odt",
-    ".rtf",
-    ".txt",
-    ".html",
-    ".htm",
-    ".xls",
-    ".xlsx",
-    ".csv",
-    ".ppt",
-    ".pptx",
-}
-
-
-def canonical_document_key(result: RetrievalResult) -> str:
-    """
-    Return a stable cross-format identity for one retrieved document.
-
-    Files such as report.docx and report.pdf are treated as representations
-    of the same underlying document when they occupy the same source path.
-    The original path and citation remain unchanged.
-    """
-    citation = result.citation or {}
-
-    raw_path = (
-        citation.get("relative_path")
-        or citation.get("source_path")
-        or ""
-    )
-
-    normalized_path = (
-        str(raw_path)
-        .strip()
-        .replace("\\", "/")
-        .lower()
-    )
-
-    if not normalized_path:
-        return result.knowledge_object_id
-
-    source_path = PurePosixPath(normalized_path)
-    suffix = source_path.suffix.lower()
-
-    if suffix in CROSS_FORMAT_EXTENSIONS:
-        source_path = source_path.with_suffix("")
-
-    # Normalize minor separator differences without merging substantively
-    # different filenames.
-    normalized_stem = re.sub(
-        r"[\s_-]+",
-        " ",
-        source_path.name,
-    ).strip()
-
-    parent = str(source_path.parent)
-
-    if parent == ".":
-        return normalized_stem
-
-    return f"{parent}/{normalized_stem}"
-
-
 def dedupe_results(
     results: List[RetrievalResult],
     dedupe_by: Optional[str] = "text",
@@ -178,7 +111,7 @@ def dedupe_results(
             key = result.text.strip()
 
         elif dedupe_by in ("document", "relative_path"):
-            key = canonical_document_key(result)
+            key = result.citation.get("relative_path")
 
         elif dedupe_by == "source_path":
             key = result.citation.get("source_path")

@@ -75,7 +75,10 @@ def build_grouped_evidence_context(
     ]
 
     if constitutional_items:
-        for item in constitutional_items:
+        for constitutional_number, item in enumerate(
+            constitutional_items,
+            start=1,
+        ):
             result = item.result
             citation = result.citation
             metadata = result.metadata
@@ -91,14 +94,14 @@ def build_grouped_evidence_context(
             )
 
             constitutional_parts.append(
-                f"[{item.citation_label}]\n"
+                f"[Constitutional Source {constitutional_number}]\n"
                 f"Original Source Number: {item.source_number}\n"
                 f"Constitutional Type: "
                 f"{metadata.get('constitutional_type')}\n"
                 f"Institutional Scope: "
                 f"{metadata.get('institutional_scope')}\n"
                 f"Principles:\n{principle_text}\n"
-                f"Title: {item.title}\n"
+                f"Title: {citation.get('title')}\n"
                 f"Path: {citation.get('relative_path')}\n"
                 f"Chars: {citation.get('start_char')}–"
                 f"{citation.get('end_char')}\n"
@@ -118,6 +121,8 @@ def build_grouped_evidence_context(
         "=" * 70,
     ]
 
+    empirical_source_number = 0
+
     for evidence_class in empirical_classes:
         items = grouped[evidence_class]
 
@@ -133,16 +138,17 @@ def build_grouped_evidence_context(
         )
 
         for item in items:
+            empirical_source_number += 1
             result = item.result
             citation = result.citation
 
             empirical_parts.append(
-                f"[{item.citation_label}]\n"
+                f"[Empirical Source {empirical_source_number}]\n"
                 f"Original Source Number: {item.source_number}\n"
                 f"Evidence Class: {item.evidence_class.value}\n"
                 f"Classification Confidence: {item.confidence:.2f}\n"
                 f"Classification Rationale: {item.rationale}\n"
-                f"Title: {item.title}\n"
+                f"Title: {citation.get('title')}\n"
                 f"Path: {citation.get('relative_path')}\n"
                 f"Chars: {citation.get('start_char')}–"
                 f"{citation.get('end_char')}\n"
@@ -150,10 +156,7 @@ def build_grouped_evidence_context(
                 f"{result.text}"
             )
 
-    if not any(
-        grouped[evidence_class]
-        for evidence_class in empirical_classes
-    ):
+    if empirical_source_number == 0:
         empirical_parts.append(
             "No empirical evidence was retrieved."
         )

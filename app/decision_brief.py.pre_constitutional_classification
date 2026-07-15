@@ -49,120 +49,39 @@ class DecisionBrief:
     raw_markdown: str
 
 
-def build_grouped_evidence_context(
-    evidence_items: List[Evidence],
-) -> str:
-    """Build Decision Brief context with values and facts separated."""
+def build_grouped_evidence_context(evidence_items: List[Evidence]) -> str:
+    """Build source context grouped by Evidence Class for the Decision Brief prompt."""
     grouped = group_evidence_by_class(evidence_items)
+    parts = []
 
-    constitutional_items = grouped.get(
-        EvidenceClass.CONSTITUTIONAL,
-        [],
-    )
-
-    empirical_classes = [
-        evidence_class
-        for evidence_class in grouped
-        if evidence_class != EvidenceClass.CONSTITUTIONAL
-    ]
-
-    sections = []
-
-    constitutional_parts = [
-        "=" * 70,
-        "Institutional Values",
-        "=" * 70,
-    ]
-
-    if constitutional_items:
-        for item in constitutional_items:
-            result = item.result
-            citation = result.citation
-            metadata = result.metadata
-
-            principles = metadata.get("principles") or []
-            principle_text = (
-                "\n".join(
-                    f"- {principle}"
-                    for principle in principles
-                )
-                if principles
-                else "Not specified"
-            )
-
-            constitutional_parts.append(
-                f"[{item.citation_label}]\n"
-                f"Original Source Number: {item.source_number}\n"
-                f"Constitutional Type: "
-                f"{metadata.get('constitutional_type')}\n"
-                f"Institutional Scope: "
-                f"{metadata.get('institutional_scope')}\n"
-                f"Principles:\n{principle_text}\n"
-                f"Title: {item.title}\n"
-                f"Path: {citation.get('relative_path')}\n"
-                f"Chars: {citation.get('start_char')}–"
-                f"{citation.get('end_char')}\n"
-                f"Score: {result.score:.4f}\n\n"
-                f"{result.text}"
-            )
-    else:
-        constitutional_parts.append(
-            "No constitutional evidence was retrieved."
-        )
-
-    sections.append("\n\n".join(constitutional_parts))
-
-    empirical_parts = [
-        "=" * 70,
-        "Empirical Evidence",
-        "=" * 70,
-    ]
-
-    for evidence_class in empirical_classes:
-        items = grouped[evidence_class]
-
+    for evidence_class, items in grouped.items():
         if not items:
             continue
 
-        empirical_parts.extend(
-            [
-                "",
-                evidence_class.value,
-                "-" * 70,
-            ]
-        )
+        class_parts = [
+            "=" * 70,
+            evidence_class.value,
+            "=" * 70,
+        ]
 
         for item in items:
             result = item.result
             citation = result.citation
-
-            empirical_parts.append(
-                f"[{item.citation_label}]\n"
-                f"Original Source Number: {item.source_number}\n"
+            class_parts.append(
+                f"[Source {item.source_number}]\n"
                 f"Evidence Class: {item.evidence_class.value}\n"
                 f"Classification Confidence: {item.confidence:.2f}\n"
                 f"Classification Rationale: {item.rationale}\n"
-                f"Title: {item.title}\n"
+                f"Title: {citation.get('title')}\n"
                 f"Path: {citation.get('relative_path')}\n"
-                f"Chars: {citation.get('start_char')}–"
-                f"{citation.get('end_char')}\n"
+                f"Chars: {citation.get('start_char')}–{citation.get('end_char')}\n"
                 f"Score: {result.score:.4f}\n\n"
                 f"{result.text}"
             )
 
-    if not any(
-        grouped[evidence_class]
-        for evidence_class in empirical_classes
-    ):
-        empirical_parts.append(
-            "No empirical evidence was retrieved."
-        )
+        parts.append("\n\n".join(class_parts))
 
-    sections.append("\n\n".join(empirical_parts))
-
-    return "\n\n" + ("\n\n" + "=" * 70 + "\n\n").join(
-        sections
-    )
+    return "\n\n" + ("\n\n" + "-" * 70 + "\n\n").join(parts)
 
 
 def build_decision_brief_prompt(
@@ -190,24 +109,11 @@ Your task is NOT simply to answer the question.
 
 Your task is to synthesize the retrieved evidence into an explainable Decision Brief.
 
-The retrieved material has been organized into two distinct semantic categories:
+The retrieved evidence has already been organized into Evidence Classes.
 
-1. Institutional Values
-   Constitutional evidence expresses institutional commitments, mission,
-   values, and strategic directions. It informs what the institution ought
-   to prioritize, but it does not by itself establish empirical facts.
+Evidence Classes have different purposes and should not be treated as equally authoritative.
 
-2. Empirical Evidence
-   Empirical sources describe institutional conditions, plans, history,
-   external requirements, comparators, or background information.
-
-Never treat an institutional value as though it were an empirical fact.
-Never imply that empirical evidence alone determines institutional values.
-Explain explicitly how empirical evidence relates to institutional values.
-
-Empirical Evidence Classes have different purposes and should not be treated as equally authoritative.
-
-Empirical Evidence Classes:
+Evidence Classes:
 
 • Institutional Evidence
   Current factual information about this institution, including annual reports, faculty documents, curriculum proposals, policies, budgets, facilities, committee documents, and official university records.
@@ -260,11 +166,7 @@ Do not speculate.
 
 If the available evidence does not support a conclusion, state that additional information would be required.
 
-Use only the retrieved sources below.
-
-Cite institutional values as [Constitutional Source N].
-Cite factual or documentary claims as [Empirical Source N].
-Do not use the internal "Original Source Number" in the written brief.
+Use only the retrieved sources below. Cite claims inline using [Source N].
 
 Institutional Question:
 {question}
@@ -272,7 +174,7 @@ Institutional Question:
 Evidence topics to look for:
 {topics}
 
-Retrieved constitutional and empirical evidence:
+Retrieved evidence grouped by Evidence Class:
 {evidence_context}
 
 Generate a Decision Brief with the following sections:
@@ -315,11 +217,7 @@ Generate a Decision Brief with the following sections:
 
 ## Sources Used
 
-Throughout the Decision Brief:
-
-- Explicitly distinguish institutional values from empirical evidence.
-- Explain how empirical findings support, complicate, or fail to address the institutional values.
-- Explicitly distinguish internal institutional evidence from external standards and external comparator institutions.
+Throughout the Decision Brief, explicitly distinguish internal institutional evidence from external standards and external comparator institutions whenever they are discussed.
 """.strip()
 
 

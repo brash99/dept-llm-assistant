@@ -1,0 +1,142 @@
+campaign:
+  key: schev_public_phase_1
+  name: SCHEV Public Observation Campaign — Phase 1
+  description: >
+    A governed pilot campaign observing authoritative SCHEV policy,
+    academic-program approval, statewide higher-education statistics,
+    enrollment, degree, funding, and institutional-performance materials.
+  observation_budget: 125
+  methodology:
+    - Separate policy and statistical habitats into independent observers.
+    - Preserve state-authority provenance in independent manifests.
+    - Include high-value PDFs, Office documents, spreadsheets, CSV files, and text.
+    - Respect robots.txt and use a conservative request interval.
+    - Use a limited pilot budget before expanding the observation frontier.
+
+observers:
+  - name: schev_policy
+    type: web
+    enabled: true
+
+    source_organization: State Council of Higher Education for Virginia
+    authority: state_authority
+
+    purposes:
+      - higher_education_policy
+      - academic_program_approval
+      - degree_program_productivity
+      - institutional_governance
+      - finance_and_facilities
+      - state_requirements
+
+    priority_terms:
+      - academic program
+      - program approval
+      - degree
+      - certificate
+      - productivity
+      - viability
+      - mission
+      - organizational change
+      - policy
+      - procedure
+      - finance
+      - facilities
+
+    seed_urls:
+      - https://www.schev.edu/institutions/policies-guidelines/
+      - https://www.schev.edu/institutions/policies-guidelines/academic-affairs-policy/
+      - https://www.schev.edu/institutions/policies-guidelines/academic-affairs-policy/approval-of-program-actions-at-public-institutions
+      - https://www.schev.edu/institutions/planning-performance/
+
+    allowed_hosts:
+      - www.schev.edu
+      - schev.edu
+
+    allowed_prefixes:
+      - https://www.schev.edu/institutions/policies-guidelines/
+      - https://www.schev.edu/institutions/planning-performance/
+      - https://schev.edu/institutions/policies-guidelines/
+      - https://schev.edu/institutions/planning-performance/
+
+    storage_root: storage/raw_web/schev_policy
+    manifest: storage/manifests/state_schev_policy.jsonl
+
+    budget: 50
+    max_depth: 10
+    request_delay_seconds: 0.75
+    respect_robots: true
+
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+      follow_text: true
+
+  - name: schev_statistics
+    type: web
+    enabled: true
+
+    source_organization: State Council of Higher Education for Virginia
+    authority: state_authority
+
+    purposes:
+      - institutional_statistics
+      - enrollment
+      - degree_inventory
+      - degrees_awarded
+      - retention
+      - graduation
+      - financial_aid
+      - funding_and_spending
+      - post_completion_outcomes
+      - institutional_comparison
+
+    priority_terms:
+      - enrollment
+      - degree inventory
+      - degrees awarded
+      - retention
+      - graduation
+      - financial aid
+      - funding
+      - spending
+      - institution profile
+      - productivity
+      - wages
+      - student debt
+      - projections
+      - program
+
+    seed_urls:
+      - https://www.schev.edu/research-publications/research-statistics
+      - https://research.schev.edu/browse-reports
+      - https://research.schev.edu/Resolutions
+
+    allowed_hosts:
+      - www.schev.edu
+      - schev.edu
+      - research.schev.edu
+
+    allowed_prefixes:
+      - https://www.schev.edu/research-publications/
+      - https://schev.edu/research-publications/
+      - https://research.schev.edu/
+
+    storage_root: storage/raw_web/schev_statistics
+    manifest: storage/manifests/state_schev_statistics.jsonl
+
+    budget: 75
+    max_depth: 10
+    request_delay_seconds: 0.75
+    respect_robots: true
+
+    media_policy:
+      follow_html: true
+      follow_pdf: true
+      follow_docx: true
+      follow_xlsx: true
+      follow_csv: true
+      follow_text: true

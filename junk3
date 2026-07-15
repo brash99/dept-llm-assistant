@@ -1,0 +1,149 @@
+app/normalize.py:51:    source_key: str,
+app/normalize.py:66:        Path(source_key) / local_relative_path
+app/normalize.py:84:            "source_key": source_key,
+app/normalize.py:101:            "source_key": source_key,
+app/normalize.py:159:        source_key = str(source["key"])
+app/normalize.py:166:                f"[SKIP SOURCE] {source_key}: "
+app/normalize.py:187:                    source_key
+app/normalize.py:196:                    source_key
+app/normalize.py:208:                source_key
+app/normalize.py:226:                        source_key
+app/normalize.py:236:                    source_key=source_key,
+app/normalize.py:255:                    source_key
+app/normalize.py:265:                    f"{source_key:18} "
+app/normalize.py:275:                        "source_key": source_key,
+app/normalize.py:283:                    f"{source_key} "
+app/normalize.py:331:    source_key="sec_google_drive",
+app/normalize.py:354:        source_key=source_key,
+app/normalize.py:370:        f"{source_key:18} "
+app/acquisition/observer_v2_runner.py:174:            for seed in self.observer.seed_urls
+app/acquisition/observer_v2.py:144:    seed_urls: Tuple[str, ...]
+app/acquisition/observer_v2.py:157:    authorization: Optional[
+app/acquisition/observer_v2.py:167:        if not self.seed_urls:
+app/acquisition/observer_v2.py:199:            and self.authorization is None
+app/acquisition/observer_v2.py:204:                "authorization metadata."
+app/acquisition/observer_v2.py:240:        authorization_payload = payload.get(
+app/acquisition/observer_v2.py:241:            "authorization"
+app/acquisition/observer_v2.py:244:        authorization = (
+app/acquisition/observer_v2.py:246:                authorization_payload
+app/acquisition/observer_v2.py:248:            if authorization_payload
+app/acquisition/observer_v2.py:272:            seed_urls=tuple(
+app/acquisition/observer_v2.py:273:                payload["seed_urls"]
+app/acquisition/observer_v2.py:316:            authorization=authorization,
+app/acquisition/source_document.py:15:    SourceDocument stores identity and provenance facts. It deliberately does
+app/acquisition/observers.py:13:    Governance provenance for an institutional observer.
+app/acquisition/observers.py:36:                "Observer authorization mode must not be empty."
+app/acquisition/observers.py:69:    seed_urls: Tuple[str, ...]
+app/acquisition/observers.py:78:    authorization: Optional[ObserverAuthorization] = None
+app/acquisition/observers.py:86:        if not self.seed_urls:
+app/acquisition/observers.py:101:        if not self.respect_robots and self.authorization is None:
+app/acquisition/observers.py:104:                "only with explicit authorization metadata."
+app/acquisition/observers.py:107:        if self.authorization is not None:
+app/acquisition/observers.py:108:            unauthorized_prefixes = [
+app/acquisition/observers.py:114:                    for scope in self.authorization.scope
+app/acquisition/observers.py:118:            if unauthorized_prefixes:
+app/acquisition/observers.py:121:                    "outside its authorization scope: "
+app/acquisition/observers.py:122:                    + ", ".join(unauthorized_prefixes)
+app/acquisition/observers.py:147:        authorization_payload = payload.get("authorization")
+app/acquisition/observers.py:149:        authorization = (
+app/acquisition/observers.py:151:                authorization_payload
+app/acquisition/observers.py:153:            if authorization_payload
+app/acquisition/observers.py:165:            seed_urls=tuple(payload["seed_urls"]),
+app/acquisition/observers.py:183:            authorization=authorization,
+app/constitution/observer.py:31:    The observer preserves the source text and provenance. It assigns a
+scripts/run_web_observers.py:89:                observer.authorization.mode
+scripts/run_web_observers.py:90:                if observer.authorization is not None
+scripts/run_web_observers.py:152:        for seed_url in observer.seed_urls:
+scripts/normalize_documents.py:125:        matched_source_key = None
+scripts/normalize_documents.py:137:                matched_source_key = source["key"]
+scripts/normalize_documents.py:143:        if matched_source_key is None:
+scripts/normalize_documents.py:153:            source_key=matched_source_key,
+scripts/normalize_documents.py:164:                matched_source_key: 1,
+scripts/test_multi_source_normalization.py:62:        assert document.metadata["source_key"] in {
+scripts/test_multi_source_normalization.py:67:        assert document.source["source_key"] in {
+scripts/test_web_observers.py:23:    seed_urls:
+scripts/test_web_observers.py:81:    seed_urls: [https://example.edu/a/]
+scripts/test_web_observers.py:93:    seed_urls: [https://example.edu/b/]
+scripts/test_web_observers.py:113:def test_disabling_robots_requires_authorization(
+scripts/test_web_observers.py:121:  - name: unauthorized
+scripts/test_web_observers.py:127:    seed_urls: [https://example.edu/research/]
+scripts/test_web_observers.py:141:        match="explicit authorization",
+scripts/test_web_observers.py:163:    seed_urls:
+scripts/test_web_observers.py:172:    authorization:
+scripts/test_web_observers.py:195:    assert observer.authorization is not None
+scripts/test_web_observers.py:196:    assert observer.authorization.mode == (
+scripts/test_web_observers.py:199:    assert observer.authorization.approved_by == (
+scripts/test_web_observers.py:205:def test_authorization_scope_must_cover_allowed_prefixes(
+scripts/test_web_observers.py:219:    seed_urls:
+scripts/test_web_observers.py:229:    authorization:
+scripts/test_web_observers.py:243:        match="outside its authorization scope",
+scripts/test_web_observers.py:251:def test_disabling_robots_requires_authorization(
+scripts/test_web_observers.py:259:  - name: unauthorized
+scripts/test_web_observers.py:265:    seed_urls: [https://example.edu/research/]
+scripts/test_web_observers.py:279:        match="explicit authorization",
+scripts/test_web_observers.py:301:    seed_urls:
+scripts/test_web_observers.py:310:    authorization:
+scripts/test_web_observers.py:333:    assert observer.authorization is not None
+scripts/test_web_observers.py:334:    assert observer.authorization.mode == (
+scripts/test_web_observers.py:337:    assert observer.authorization.approved_by == (
+scripts/test_web_observers.py:343:def test_authorization_scope_must_cover_allowed_prefixes(
+scripts/test_web_observers.py:357:    seed_urls:
+scripts/test_web_observers.py:367:    authorization:
+scripts/test_web_observers.py:381:        match="outside its authorization scope",
+scripts/run_observation_campaign.py:189:    runner = ObservationCampaignRunner(
+scripts/test_source_document.py:36:def test_source_document_preserves_provenance_facts():
+scripts/site_map.py:284:    authorization_note: Optional[str],
+scripts/site_map.py:296:    if not respect_robots and not authorization_note:
+scripts/site_map.py:299:            "--authorization-note."
+scripts/site_map.py:556:        "authorization_note": (
+scripts/site_map.py:557:            authorization_note
+scripts/site_map.py:644:        f"{report.get('authorization_note') or 'None'}",
+scripts/site_map.py:829:        "--authorized",
+scripts/site_map.py:833:            "authorization rather than public "
+scripts/site_map.py:839:        "--authorization-note",
+scripts/site_map.py:842:            "Required when --authorized is used."
+scripts/site_map.py:850:            "(authorized institutional topology survey)"
+scripts/site_map.py:861:        args.authorized
+scripts/site_map.py:862:        and not args.authorization_note
+scripts/site_map.py:865:            "--authorized requires "
+scripts/site_map.py:866:            "--authorization-note."
+scripts/site_map.py:886:        respect_robots=not args.authorized,
+scripts/site_map.py:887:        authorization_note=(
+scripts/site_map.py:888:            args.authorization_note
+scripts/test_observer_v2_runner.py:133:        seed_urls=(base_url + "/",),
+scripts/test_observer_v2_runner.py:146:        authorization=ObserverAuthorization(
+scripts/test_observer_v2_runner.py:150:            notes="Offline test authorization.",
+scripts/test_observer_v2.py:53:    seed_urls:
+scripts/test_observer_v2.py:91:def test_robots_override_requires_authorization(
+scripts/test_observer_v2.py:99:  - name: unauthorized
+scripts/test_observer_v2.py:103:    seed_urls:
+scripts/test_observer_v2.py:118:        match="authorization",
+config/institutional_constitution.yaml:6:  from those sources without substituting external values or obscuring the provenance
+config/institutional_constitution.yaml:16:    source_key: cnu_website
+config/observers_v2.yaml:32:    seed_urls:
+config/observers_v2.yaml:44:    authorization: &cnu_authorization
+config/observers_v2.yaml:78:    seed_urls:
+config/observers_v2.yaml:93:    authorization: *cnu_authorization
+config/observers_v2.yaml:117:    seed_urls:
+config/observers_v2.yaml:129:    authorization: *cnu_authorization
+config/observers_v2.yaml:153:    seed_urls:
+config/observers_v2.yaml:169:    authorization: *cnu_authorization
+config/observers_v2.yaml:195:    seed_urls:
+config/observers_v2.yaml:210:    authorization: *cnu_authorization
+config/observers_v2.yaml:233:    seed_urls:
+config/observers_v2.yaml:251:    authorization: *cnu_authorization
+config/observers_v2.yaml:276:    seed_urls:
+config/observers_v2.yaml:294:    authorization: *cnu_authorization
+config/observers_v2.yaml:317:    seed_urls:
+config/observers_v2.yaml:337:    authorization: *cnu_authorization
+config/observers_v2.yaml:362:    seed_urls:
+config/observers_v2.yaml:385:    authorization: *cnu_authorization
+config/observers_v2.yaml:408:    seed_urls:
+config/observers_v2.yaml:420:    authorization: *cnu_authorization
+config/observers_v2.yaml:439:    seed_urls:
+config/observers_v2.yaml:453:    authorization: *cnu_authorization
+config/web_observers.yaml:12:  seed_urls:
+config/web_observers.yaml:27:  authorization:
+config/web_observers.yaml:47:  seed_urls:
+config/web_observers.yaml:69:  seed_urls:
+config/web_observers.yaml:91:  seed_urls:

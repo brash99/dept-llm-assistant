@@ -1,0 +1,37 @@
+catalog:
+  key: provost_curated_resources
+  name: CNU Office of the Provost Curated Resource Catalog
+  description: 'Manually supplied institutional documents authorized for ISO internal
+    decision-support use.
+
+    '
+  source_organization: CNU Office of the Provost
+  authority: institutional_primary
+  storage_root: storage/raw_private/provost
+  manifest: storage/manifests/provost_curated_resources.jsonl
+  report: storage/campaigns/provost_curated_resources.json
+resources:
+- key: iso_manual_intake_test
+  title: ISO Manual Intake Test Document
+  filename: iso_manual_intake_test.txt
+  publication_date: '2026-07-15'
+  topics:
+  - manual_intake
+  - system_test
+  source:
+    type: local
+    file: intake/provost/iso_manual_intake_test.txt
+  authorization:
+    mode: project_test
+    supplied_by: Edward Brash
+    authorized_for:
+    - Institutional Semantic Observatory
+    scope:
+    - internal system testing
+  access:
+    classification: internal
+    audience:
+    - project_team
+    allow_external_citation: false
+    allow_verbatim_quote: false
+  notes: Non-confidential test document used to validate manual intake.

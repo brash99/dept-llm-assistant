@@ -1,0 +1,707 @@
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+from datetime import date, datetime, timezone
+import json
+from pathlib import Path
+import shutil
+import ssl
+import time
+from typing import Any, Dict, Optional
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
+
+import certifi
+import yaml
+
+from app.acquisition.authority import SourceAuthority
+from app.acquisition.filesystem import FilesystemAcquisitionService
+from app.acquisition.manifest import AcquisitionManifest
+from app.acquisition.method import AcquisitionMethod
+
+
+USER_AGENT = (
+    "InstitutionalSemanticObservatory/1.0 "
+    "(governed curated-resource acquisition)"
+)
+
+
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def parse_publication_date(value):
+    """
+    Convert YAML/string publication dates into date objects expected by
+    SourceDocument. Preserve existing date and datetime values.
+    """
+    if value is None:
+        return None
+
+    if isinstance(value, datetime):
+        return value.date()
+
+    if isinstance(value, date):
+        return value
+
+    if isinstance(value, str):
+        value = value.strip()
+
+        if not value:
+            return None
+
+        return date.fromisoformat(value)
+
+    raise TypeError(
+        "publication_date must be an ISO date string, date, "
+        f"datetime, or null; received {type(value).__name__}"
+    )
+
+
+def json_default(value):
+    if isinstance(value, (date, datetime)):
+        return value.isoformat()
+
+    if isinstance(value, Path):
+        return str(value)
+
+    raise TypeError(
+        f"Object of type {type(value).__name__} "
+        "is not JSON serializable"
+    )
+
+
+def resolve_path(
+    project_root: Path,
+    value: str,
+) -> Path:
+    path = Path(value)
+
+    if not path.is_absolute():
+        path = project_root / path
+
+    return path.resolve()
+
+
+def normalize_source(resource: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Return the generic source block.
+
+    Backward compatibility is retained for catalogs that still use a
+    top-level `url` field.
+    """
+    source = resource.get("source")
+
+    if source is not None:
+        if not isinstance(source, dict):
+            raise TypeError(
+                f"Resource {resource.get('key')!r} "
+                "source must be a mapping."
+            )
+
+        return dict(source)
+
+    legacy_url = resource.get("url")
+
+    if legacy_url:
+        return {
+            "type": "url",
+            "url": legacy_url,
+        }
+
+    raise ValueError(
+        f"Resource {resource.get('key')!r} "
+        "requires a source mapping."
+    )
+
+
+def validate_resource(
+    resource: Dict[str, Any],
+) -> None:
+    key = str(resource.get("key", "")).strip()
+    title = str(resource.get("title", "")).strip()
+
+    if not key:
+        raise ValueError(
+            "Every curated resource requires a key."
+        )
+
+    if not title:
+        raise ValueError(
+            f"Resource {key!r} requires a title."
+        )
+
+    source = normalize_source(resource)
+    source_type = str(
+        source.get("type", "")
+    ).strip().casefold()
+
+    if source_type not in {"url", "local"}:
+        raise ValueError(
+            f"Resource {key!r} has unsupported "
+            f"source type {source_type!r}."
+        )
+
+    if source_type == "url":
+        if not source.get("url"):
+            raise ValueError(
+                f"URL resource {key!r} requires source.url."
+            )
+
+        if not resource.get("filename"):
+            raise ValueError(
+                f"URL resource {key!r} requires filename."
+            )
+
+    if source_type == "local":
+        if not source.get("file"):
+            raise ValueError(
+                f"Local resource {key!r} requires source.file."
+            )
+
+        if not resource.get("filename"):
+            source_file = Path(str(source["file"]))
+            resource["filename"] = source_file.name
+
+
+def download_url_resource(
+    *,
+    url: str,
+    destination: Path,
+    timeout_seconds: int,
+) -> Dict[str, Any]:
+    request = Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": (
+                "application/pdf,"
+                "application/vnd.openxmlformats-officedocument."
+                "wordprocessingml.document,"
+                "application/vnd.openxmlformats-officedocument."
+                "spreadsheetml.sheet,"
+                "text/csv,text/plain,*/*;q=0.5"
+            ),
+            "Accept-Language": "en-US,en;q=0.9",
+        },
+    )
+
+    context = ssl.create_default_context(
+        cafile=certifi.where()
+    )
+
+    temporary = destination.with_suffix(
+        destination.suffix + ".part"
+    )
+
+    temporary.unlink(missing_ok=True)
+
+    try:
+        with urlopen(
+            request,
+            timeout=timeout_seconds,
+            context=context,
+        ) as response:
+            with temporary.open("wb") as handle:
+                shutil.copyfileobj(
+                    response,
+                    handle,
+                    length=1024 * 1024,
+                )
+
+            content_type = (
+                response.headers.get(
+                    "Content-Type",
+                    "",
+                )
+                .split(";", 1)[0]
+                .strip()
+                .casefold()
+            )
+
+            last_modified = response.headers.get(
+                "Last-Modified"
+            )
+
+    except (
+        HTTPError,
+        URLError,
+        TimeoutError,
+        OSError,
+    ) as error:
+        temporary.unlink(missing_ok=True)
+
+        return {
+            "status": "failed",
+            "error_type": type(error).__name__,
+            "error": str(error),
+        }
+
+    if not temporary.exists():
+        return {
+            "status": "failed",
+            "error_type": "MissingTemporaryFile",
+            "error": "Download created no temporary file.",
+        }
+
+    if temporary.stat().st_size == 0:
+        temporary.unlink(missing_ok=True)
+
+        return {
+            "status": "failed",
+            "error_type": "EmptyDownload",
+            "error": "Downloaded resource was empty.",
+        }
+
+    temporary.replace(destination)
+
+    return {
+        "status": "downloaded",
+        "content_type": content_type or None,
+        "size_bytes": destination.stat().st_size,
+        "last_modified": last_modified,
+    }
+
+
+def import_local_resource(
+    *,
+    project_root: Path,
+    source_file_value: str,
+    destination: Path,
+) -> Dict[str, Any]:
+    source_file = resolve_path(
+        project_root,
+        source_file_value,
+    )
+
+    if not source_file.exists():
+        return {
+            "status": "failed",
+            "error_type": "FileNotFoundError",
+            "error": (
+                f"Local resource does not exist: "
+                f"{source_file}"
+            ),
+        }
+
+    if not source_file.is_file():
+        return {
+            "status": "failed",
+            "error_type": "ValueError",
+            "error": (
+                f"Local resource is not a file: "
+                f"{source_file}"
+            ),
+        }
+
+    try:
+        if source_file != destination:
+            shutil.copy2(
+                source_file,
+                destination,
+            )
+    except OSError as error:
+        return {
+            "status": "failed",
+            "error_type": type(error).__name__,
+            "error": str(error),
+        }
+
+    return {
+        "status": "imported",
+        "source_file": str(source_file),
+        "size_bytes": destination.stat().st_size,
+        "last_modified": datetime.fromtimestamp(
+            destination.stat().st_mtime,
+            timezone.utc,
+        ).isoformat(),
+    }
+
+
+def manifest_method(
+    source_type: str,
+) -> AcquisitionMethod:
+    if source_type == "url":
+        return AcquisitionMethod.DIRECT_DOWNLOAD
+
+    if source_type == "local":
+        return AcquisitionMethod.MANUAL_UPLOAD
+
+    raise ValueError(
+        f"Unsupported source type: {source_type}"
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Run a governed ISO curated-resource catalog."
+        )
+    )
+
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=Path(
+            "config/curated_resources/schev.yaml"
+        ),
+    )
+
+    parser.add_argument(
+        "--resource",
+        action="append",
+        default=None,
+        help=(
+            "Run only the named resource key. "
+            "May be supplied more than once."
+        ),
+    )
+
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+    )
+
+    args = parser.parse_args()
+
+    project_root = Path.cwd().resolve()
+
+    config_path = args.config
+
+    if not config_path.is_absolute():
+        config_path = project_root / config_path
+
+    payload = yaml.safe_load(
+        config_path.read_text(encoding="utf-8")
+    ) or {}
+
+    catalog = payload.get("catalog") or {}
+    resources = payload.get("resources") or []
+
+    if not catalog:
+        raise SystemExit(
+            "Catalog configuration is missing."
+        )
+
+    for resource in resources:
+        validate_resource(resource)
+
+    selected_keys = (
+        set(args.resource)
+        if args.resource
+        else None
+    )
+
+    if selected_keys is not None:
+        known_keys = {
+            str(resource["key"])
+            for resource in resources
+        }
+
+        unknown = selected_keys - known_keys
+
+        if unknown:
+            raise SystemExit(
+                "Unknown resource keys: "
+                + ", ".join(sorted(unknown))
+            )
+
+        resources = [
+            resource
+            for resource in resources
+            if resource["key"] in selected_keys
+        ]
+
+    storage_root = resolve_path(
+        project_root,
+        catalog["storage_root"],
+    )
+
+    manifest_path = resolve_path(
+        project_root,
+        catalog["manifest"],
+    )
+
+    report_path = resolve_path(
+        project_root,
+        catalog["report"],
+    )
+
+    storage_root.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    manifest_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    report_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    authority = SourceAuthority(
+        catalog["authority"]
+    )
+
+    print("=" * 76)
+    print(catalog["name"])
+    print("=" * 76)
+    print(f"Catalog key  : {catalog['key']}")
+    print(f"Resources    : {len(resources)}")
+    print(f"Authority    : {authority.value}")
+    print(f"Storage root : {storage_root}")
+    print(f"Manifest     : {manifest_path}")
+    print()
+
+    for resource in resources:
+        source = normalize_source(resource)
+
+        location = (
+            source.get("url")
+            if source["type"] == "url"
+            else source.get("file")
+        )
+
+        print(
+            f"{resource['key']:42} "
+            f"{source['type']:8} "
+            f"{location}"
+        )
+
+    if args.dry_run:
+        print()
+        print("Dry run complete.")
+        return
+
+    filesystem = FilesystemAcquisitionService(
+        storage_root
+    )
+
+    manifest = AcquisitionManifest(
+        manifest_path
+    )
+
+    timeout = int(
+        catalog.get(
+            "download_timeout_seconds",
+            120,
+        )
+    )
+
+    delay = float(
+        catalog.get(
+            "request_delay_seconds",
+            0.5,
+        )
+    )
+
+    records = []
+    counts = Counter()
+
+    for index, resource in enumerate(
+        resources,
+        start=1,
+    ):
+        source = normalize_source(resource)
+        source_type = str(
+            source["type"]
+        ).casefold()
+
+        destination = (
+            storage_root
+            / str(resource["filename"])
+        )
+
+        destination.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        print()
+        print(
+            f"[{index}/{len(resources)}] "
+            f"{resource['key']} "
+            f"({source_type})"
+        )
+
+        if source_type == "url":
+            acquisition_result = (
+                download_url_resource(
+                    url=str(source["url"]),
+                    destination=destination,
+                    timeout_seconds=timeout,
+                )
+            )
+
+            source_url: Optional[str] = str(
+                source["url"]
+            )
+
+        elif source_type == "local":
+            acquisition_result = (
+                import_local_resource(
+                    project_root=project_root,
+                    source_file_value=str(
+                        source["file"]
+                    ),
+                    destination=destination,
+                )
+            )
+
+            source_url = resource.get(
+                "source_url"
+            )
+
+        else:
+            raise RuntimeError(
+                f"Unsupported source type: "
+                f"{source_type}"
+            )
+
+        if acquisition_result["status"] not in {
+            "downloaded",
+            "imported",
+        }:
+            counts[
+                acquisition_result["status"]
+            ] += 1
+
+            record = {
+                **resource,
+                "source": source,
+                **acquisition_result,
+                "observed_at": now_iso(),
+            }
+
+            records.append(record)
+
+            print(
+                f"  [FAIL] "
+                f"{acquisition_result['status']}: "
+                f"{acquisition_result.get('error', '')}"
+            )
+
+            continue
+
+        acquisition_method = manifest_method(
+            source_type
+        )
+
+        source_document = filesystem.acquire(
+            source_file=destination,
+            title=str(resource["title"]),
+            source_organization=str(
+                resource.get(
+                    "source_organization",
+                    catalog["source_organization"],
+                )
+            ),
+            authority=SourceAuthority(
+                resource.get(
+                    "authority",
+                    authority.value,
+                )
+            ),
+            acquisition_method=acquisition_method,
+            source_url=source_url,
+            publication_date=parse_publication_date(
+                resource.get("publication_date")
+            ),
+            media_type=resource.get(
+                "media_type"
+            )
+            or acquisition_result.get(
+                "content_type"
+            ),
+        )
+
+        decision = manifest.record(
+            source_document
+        )
+
+        status = decision.status.value
+        counts[status] += 1
+
+        record = {
+            **resource,
+            "source": source,
+            **acquisition_result,
+            "status": status,
+            "relative_path": (
+                source_document.relative_path
+            ),
+            "content_hash": (
+                source_document.content_hash
+            ),
+            "authority": (
+                source_document.authority.value
+            ),
+            "acquisition_method": (
+                source_document
+                .acquisition_method
+                .value
+            ),
+            "source_organization": (
+                source_document
+                .source_organization
+            ),
+            "observed_at": now_iso(),
+        }
+
+        records.append(record)
+
+        print(
+            f"  [{status.upper()}] "
+            f"{source_document.relative_path}"
+        )
+
+        if index < len(resources):
+            time.sleep(delay)
+
+    report = {
+        "catalog_key": catalog["key"],
+        "catalog_name": catalog["name"],
+        "description": catalog.get(
+            "description",
+            "",
+        ),
+        "completed_at": now_iso(),
+        "resource_count": len(resources),
+        "status_counts": dict(counts),
+        "resources": records,
+    }
+
+    report_path.write_text(
+        json.dumps(
+            report,
+            indent=2,
+            sort_keys=True,
+            default=json_default,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    print()
+    print("=" * 76)
+    print("Results")
+    print("=" * 76)
+
+    for status, count in sorted(
+        counts.items()
+    ):
+        print(f"{status:24} {count:6d}")
+
+    print()
+    print(f"Report:   {report_path}")
+    print(f"Manifest: {manifest_path}")
+
+
+if __name__ == "__main__":
+    main()

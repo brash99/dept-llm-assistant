@@ -1,773 +1,119 @@
-
-================================================================================
-FILE: app/acquisition/source_document.py
-================================================================================
-from dataclasses import dataclass
-from datetime import date, datetime, timezone
+import hashlib
+import mimetypes
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Optional
 
 from app.acquisition.authority import SourceAuthority
 from app.acquisition.method import AcquisitionMethod
+from app.acquisition.source_document import SourceDocument
 
 
-@dataclass(frozen=True)
-class SourceDocument:
+class FilesystemAcquisitionService:
     """
-    Stable acquisition contract for one source artifact.
+    Create SourceDocument records for files already present on disk.
 
-    SourceDocument stores identity and provenance facts. It deliberately does
-    not contain parsed text, chunks, embeddings, evidence classifications, or
-    semantic interpretations.
+    Version 0.1:
+    - validates the source file,
+    - computes a SHA-256 content hash,
+    - derives a stable document id,
+    - detects the media type,
+    - returns a SourceDocument.
+
+    It does not copy, move, parse, chunk, or embed the file.
     """
 
-    id: str
-    title: str
-    source_organization: str
-    authority: SourceAuthority
-    acquisition_method: AcquisitionMethod
-    relative_path: str
-    content_hash: str
-    acquired_at: datetime
-    source_url: Optional[str] = None
-    publication_date: Optional[date] = None
-    media_type: Optional[str] = None
+    def __init__(self, storage_root: Path) -> None:
+        self.storage_root = Path(storage_root).resolve()
 
-    def __post_init__(self) -> None:
-        if not self.id.strip():
-            raise ValueError("SourceDocument.id must not be empty.")
-
-        if not self.title.strip():
-            raise ValueError("SourceDocument.title must not be empty.")
-
-        if not self.source_organization.strip():
-            raise ValueError(
-                "SourceDocument.source_organization must not be empty."
+        if not self.storage_root.exists():
+            raise FileNotFoundError(
+                f"Acquisition storage root does not exist: "
+                f"{self.storage_root}"
             )
 
-        if not self.relative_path.strip():
-            raise ValueError(
-                "SourceDocument.relative_path must not be empty."
+        if not self.storage_root.is_dir():
+            raise NotADirectoryError(
+                f"Acquisition storage root is not a directory: "
+                f"{self.storage_root}"
             )
 
-        if not self.content_hash.strip():
-            raise ValueError(
-                "SourceDocument.content_hash must not be empty."
-            )
-
-        if self.acquired_at.tzinfo is None:
-            raise ValueError(
-                "SourceDocument.acquired_at must be timezone-aware."
-            )
-
-        normalized_path = Path(self.relative_path)
-
-        if normalized_path.is_absolute():
-            raise ValueError(
-                "SourceDocument.relative_path must be relative."
-            )
-
-    def to_dict(self) -> Dict[str, Any]:
-        """
-        Return a JSON-compatible representation suitable for a manifest.
-        """
-        return {
-            "id": self.id,
-            "title": self.title,
-            "source_organization": self.source_organization,
-            "authority": self.authority.value,
-            "acquisition_method": self.acquisition_method.value,
-            "relative_path": self.relative_path,
-            "content_hash": self.content_hash,
-            "acquired_at": self.acquired_at.isoformat(),
-            "source_url": self.source_url,
-            "publication_date": (
-                self.publication_date.isoformat()
-                if self.publication_date is not None
-                else None
-            ),
-            "media_type": self.media_type,
-        }
-
-    @classmethod
-    def from_dict(cls, payload: Dict[str, Any]) -> "SourceDocument":
-        """
-        Reconstruct a SourceDocument from a manifest record.
-        """
-        publication_date_value = payload.get("publication_date")
-
-        return cls(
-            id=payload["id"],
-            title=payload["title"],
-            source_organization=payload["source_organization"],
-            authority=SourceAuthority(payload["authority"]),
-            acquisition_method=AcquisitionMethod(
-                payload["acquisition_method"]
-            ),
-            relative_path=payload["relative_path"],
-            content_hash=payload["content_hash"],
-            acquired_at=datetime.fromisoformat(payload["acquired_at"]),
-            source_url=payload.get("source_url"),
-            publication_date=(
-                date.fromisoformat(publication_date_value)
-                if publication_date_value
-                else None
-            ),
-            media_type=payload.get("media_type"),
-        )
-
-    @classmethod
-    def acquired_now(
-        cls,
+    def acquire(
+        self,
         *,
-        id: str,
+        source_file: Path,
         title: str,
         source_organization: str,
         authority: SourceAuthority,
         acquisition_method: AcquisitionMethod,
-        relative_path: str,
-        content_hash: str,
         source_url: Optional[str] = None,
-        publication_date: Optional[date] = None,
+        publication_date=None,
         media_type: Optional[str] = None,
-    ) -> "SourceDocument":
-        """
-        Convenience constructor for acquisition services.
-        """
-        return cls(
-            id=id,
+    ) -> SourceDocument:
+        source_file = Path(source_file).resolve()
+
+        self._validate_source_file(source_file)
+
+        relative_path = source_file.relative_to(
+            self.storage_root
+        ).as_posix()
+
+        content_hash = self.compute_sha256(source_file)
+
+        detected_media_type = (
+            media_type
+            or mimetypes.guess_type(source_file.name)[0]
+            or "application/octet-stream"
+        )
+
+        return SourceDocument.acquired_now(
+            id=f"sha256:{content_hash}",
             title=title,
             source_organization=source_organization,
             authority=authority,
             acquisition_method=acquisition_method,
             relative_path=relative_path,
             content_hash=content_hash,
-            acquired_at=datetime.now(timezone.utc),
             source_url=source_url,
             publication_date=publication_date,
-            media_type=media_type,
+            media_type=detected_media_type,
         )
 
-================================================================================
-FILE: app/acquisition/web.py
-================================================================================
-import hashlib
-import re
-from html.parser import HTMLParser
-from pathlib import Path
-import ssl
-
-import certifi
-from typing import Optional
-from urllib.parse import parse_qsl, urlencode, urlparse
-from urllib.request import Request, urlopen
-
-from app.acquisition.authority import SourceAuthority
-from app.acquisition.filesystem import FilesystemAcquisitionService
-from app.acquisition.method import AcquisitionMethod
-from app.acquisition.source_document import SourceDocument
-
-
-class _HTMLTitleParser(HTMLParser):
-    def __init__(self) -> None:
-        super().__init__()
-        self._inside_title = False
-        self._parts = []
-
-    def handle_starttag(self, tag, attrs) -> None:
-        if tag.casefold() == "title":
-            self._inside_title = True
-
-    def handle_endtag(self, tag) -> None:
-        if tag.casefold() == "title":
-            self._inside_title = False
-
-    def handle_data(self, data) -> None:
-        if self._inside_title:
-            self._parts.append(data)
-
-    @property
-    def title(self) -> Optional[str]:
-        value = " ".join(" ".join(self._parts).split())
-        return value or None
-
-
-class WebAcquisitionService:
-    """
-    Acquire one public web resource as a SourceDocument.
-
-    Responsibilities:
-    - issue one HTTP GET request,
-    - preserve the response bytes,
-    - derive a deterministic storage-relative path,
-    - delegate hashing and MIME handling to FilesystemAcquisitionService,
-    - return a SourceDocument.
-
-    This service does not crawl links, parse institutional meaning, chunk,
-    embed, or modify the vector database.
-    """
-
-    def __init__(
-        self,
-        storage_root: Path,
-        *,
-        timeout_seconds: float = 30.0,
-        user_agent: str = (
-            "InstitutionalSemanticObservatory/0.1 "
-            "(institutional research acquisition)"
-        ),
-    ) -> None:
-        self.storage_root = Path(storage_root).resolve()
-        self.storage_root.mkdir(parents=True, exist_ok=True)
-
-        self.timeout_seconds = timeout_seconds
-        self.user_agent = user_agent
-
-        self.filesystem_service = FilesystemAcquisitionService(
-            self.storage_root
-        )
-
-    def acquire(
-        self,
-        *,
-        url: str,
-        source_organization: str,
-        authority: SourceAuthority,
-        title: Optional[str] = None,
-    ) -> SourceDocument:
-        request = Request(
-            url,
-            headers={
-                "User-Agent": self.user_agent,
-                "Accept": (
-                    "text/html,application/xhtml+xml,"
-                    "application/pdf,text/plain,*/*;q=0.8"
-                ),
-            },
-        )
-
-        ssl_context = ssl.create_default_context(
-            cafile=certifi.where()
-        )
-
-        with urlopen(
-            request,
-            timeout=self.timeout_seconds,
-            context=ssl_context,
-        ) as response:
-            content = response.read()
-            final_url = response.geturl()
-
-            content_type_header = (
-                response.headers.get_content_type()
-                or "application/octet-stream"
+    def _validate_source_file(self, source_file: Path) -> None:
+        if not source_file.exists():
+            raise FileNotFoundError(
+                f"Source file does not exist: {source_file}"
             )
 
-            charset = response.headers.get_content_charset()
-
-        relative_path = self.storage_path_for_url(
-            final_url,
-            media_type=content_type_header,
-        )
-
-        destination = self.storage_root / relative_path
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.write_bytes(content)
-
-        resolved_title = (
-            title
-            or self._extract_title(
-                content=content,
-                media_type=content_type_header,
-                charset=charset,
-            )
-            or self._fallback_title(final_url)
-        )
-
-        return self.filesystem_service.acquire(
-            source_file=destination,
-            title=resolved_title,
-            source_organization=source_organization,
-            authority=authority,
-            acquisition_method=AcquisitionMethod.WEB_CRAWL,
-            source_url=final_url,
-            media_type=content_type_header,
-        )
-
-    @staticmethod
-    def storage_path_for_url(
-        url: str,
-        *,
-        media_type: Optional[str] = None,
-    ) -> Path:
-        parsed = urlparse(url)
-
-        if parsed.scheme not in {"http", "https"}:
+        if not source_file.is_file():
             raise ValueError(
-                f"Unsupported web URL scheme: {parsed.scheme!r}"
+                f"Source path is not a regular file: {source_file}"
             )
 
-        if not parsed.netloc:
-            raise ValueError("Web URL must contain a hostname.")
-
-        host = parsed.netloc.casefold()
-        path = parsed.path or "/"
-
-        if path.endswith("/"):
-            path += "index.html"
-
-        path_object = Path(path.lstrip("/"))
-
-        if not path_object.name:
-            path_object = path_object / "index.html"
-
-        if "." not in path_object.name:
-            suffix = WebAcquisitionService._suffix_for_media_type(
-                media_type
-            )
-            path_object = path_object.with_name(
-                path_object.name + suffix
-            )
-
-        if parsed.query:
-            normalized_query = urlencode(
-                sorted(parse_qsl(parsed.query, keep_blank_values=True))
-            )
-            query_hash = hashlib.sha256(
-                normalized_query.encode("utf-8")
-            ).hexdigest()[:12]
-
-            path_object = path_object.with_name(
-                f"{path_object.stem}__query_{query_hash}"
-                f"{path_object.suffix}"
-            )
-
-        safe_parts = [
-            WebAcquisitionService._safe_path_part(part)
-            for part in path_object.parts
-            if part not in {"", ".", ".."}
-        ]
-
-        return Path(
-            WebAcquisitionService._safe_path_part(host),
-            *safe_parts,
-        )
+        try:
+            source_file.relative_to(self.storage_root)
+        except ValueError as error:
+            raise ValueError(
+                "Source file must be located beneath the acquisition "
+                f"storage root: {self.storage_root}"
+            ) from error
 
     @staticmethod
-    def _suffix_for_media_type(
-        media_type: Optional[str],
+    def compute_sha256(
+        source_file: Path,
+        block_size: int = 1024 * 1024,
     ) -> str:
-        mapping = {
-            "text/html": ".html",
-            "application/xhtml+xml": ".html",
-            "application/pdf": ".pdf",
-            "text/plain": ".txt",
-            "application/json": ".json",
-        }
+        """
+        Compute a file hash without loading the entire file into memory.
+        """
+        digest = hashlib.sha256()
 
-        return mapping.get(
-            (media_type or "").casefold(),
-            ".bin",
-        )
+        with Path(source_file).open("rb") as handle:
+            while True:
+                block = handle.read(block_size)
 
-    @staticmethod
-    def _safe_path_part(value: str) -> str:
-        value = re.sub(r"[^A-Za-z0-9._-]+", "_", value)
-        value = value.strip("._")
-        return value or "index"
+                if not block:
+                    break
 
-    @staticmethod
-    def _extract_title(
-        *,
-        content: bytes,
-        media_type: str,
-        charset: Optional[str],
-    ) -> Optional[str]:
-        if media_type.casefold() not in {
-            "text/html",
-            "application/xhtml+xml",
-        }:
-            return None
+                digest.update(block)
 
-        encoding = charset or "utf-8"
-        text = content.decode(encoding, errors="replace")
-
-        parser = _HTMLTitleParser()
-        parser.feed(text)
-        return parser.title
-
-    @staticmethod
-    def _fallback_title(url: str) -> str:
-        parsed = urlparse(url)
-        path = parsed.path.rstrip("/")
-
-        if path:
-            name = Path(path).name
-            if name:
-                return name
-
-        return parsed.netloc
-
-================================================================================
-FILE: app/acquisition/observer_v2_runner.py
-================================================================================
-from collections import Counter, deque
-from dataclasses import dataclass
-from html.parser import HTMLParser
-from pathlib import Path
-from time import perf_counter, sleep
-from typing import Dict, List, Set, Tuple
-from urllib.parse import urljoin, urlparse
-from urllib.robotparser import RobotFileParser
-
-from app.acquisition.manifest import (
-    AcquisitionManifest,
-    AcquisitionStatus,
-)
-from app.acquisition.observer_v2 import ObserverV2
-from app.acquisition.web import WebAcquisitionService
-
-
-class _LinkExtractor(HTMLParser):
-    def __init__(self) -> None:
-        super().__init__()
-        self.links: List[str] = []
-
-    def handle_starttag(self, tag, attrs) -> None:
-        if tag.casefold() not in {"a", "link"}:
-            return
-
-        href = dict(attrs).get("href")
-
-        if href:
-            self.links.append(href)
-
-
-@dataclass(frozen=True)
-class ObserverV2Failure:
-    url: str
-    error_type: str
-    message: str
-
-
-@dataclass(frozen=True)
-class ObserverV2Report:
-    observer_name: str
-    budget: int
-    observations_attempted: int
-    observations_acquired: int
-    new_documents: int
-    unchanged_documents: int
-    changed_documents: int
-    duplicate_documents: int
-    robots_denied: int
-    offsite_links_skipped: int
-    outside_scope_links_skipped: int
-    unsupported_links_skipped: int
-    duplicate_urls_skipped: int
-    failed_resources: int
-    media_counts: Dict[str, int]
-    elapsed_seconds: float
-    failures: Tuple[ObserverV2Failure, ...] = ()
-
-    @property
-    def completion(self) -> float:
-        if not self.budget:
-            return 0.0
-
-        return min(
-            1.0,
-            self.observations_acquired / self.budget,
-        )
-
-    def to_dict(self) -> dict:
-        return {
-            "observer_name": self.observer_name,
-            "budget": self.budget,
-            "observations_attempted": (
-                self.observations_attempted
-            ),
-            "observations_acquired": (
-                self.observations_acquired
-            ),
-            "completion": self.completion,
-            "new_documents": self.new_documents,
-            "unchanged_documents": (
-                self.unchanged_documents
-            ),
-            "changed_documents": (
-                self.changed_documents
-            ),
-            "duplicate_documents": (
-                self.duplicate_documents
-            ),
-            "robots_denied": self.robots_denied,
-            "offsite_links_skipped": (
-                self.offsite_links_skipped
-            ),
-            "outside_scope_links_skipped": (
-                self.outside_scope_links_skipped
-            ),
-            "unsupported_links_skipped": (
-                self.unsupported_links_skipped
-            ),
-            "duplicate_urls_skipped": (
-                self.duplicate_urls_skipped
-            ),
-            "failed_resources": self.failed_resources,
-            "media_counts": dict(self.media_counts),
-            "elapsed_seconds": self.elapsed_seconds,
-            "failures": [
-                {
-                    "url": failure.url,
-                    "error_type": failure.error_type,
-                    "message": failure.message,
-                }
-                for failure in self.failures
-            ],
-        }
-
-
-class ObserverV2Runner:
-    """
-    Execute one policy-driven institutional observer.
-
-    HTML resources may produce additional observations. Permitted non-HTML
-    resources are acquired as terminal SourceDocuments.
-    """
-
-    IGNORED_SUFFIXES = {
-        ".css",
-        ".js",
-        ".map",
-        ".ico",
-        ".png",
-        ".jpg",
-        ".jpeg",
-        ".gif",
-        ".svg",
-        ".webp",
-        ".woff",
-        ".woff2",
-        ".ttf",
-        ".eot",
-        ".mp3",
-        ".mp4",
-        ".mov",
-        ".avi",
-        ".zip",
-        ".tar",
-        ".gz",
-        ".7z",
-        ".rar",
-    }
-
-    def __init__(
-        self,
-        observer: ObserverV2,
-    ) -> None:
-        self.observer = observer
-
-        self.web_service = WebAcquisitionService(
-            observer.storage_root
-        )
-
-        self.manifest = AcquisitionManifest(
-            observer.manifest_path
-        )
-
-    def run(self) -> ObserverV2Report:
-        started = perf_counter()
-
-        queue = deque(
-            (
-                self._normalize_url(seed),
-                0,
-            )
-            for seed in self.observer.seed_urls
-        )
-
-        queued_urls = {
-            url
-            for url, _ in queue
-        }
-
-        visited_urls: Set[str] = set()
-        robots_by_origin = {}
-
-        status_counts = Counter()
-        media_counts = Counter()
-
-        attempted = 0
-        acquired = 0
-        robots_denied = 0
-        offsite_skipped = 0
-        outside_scope_skipped = 0
-        unsupported_skipped = 0
-        duplicate_skipped = 0
-        failures = []
-
-        while (
-            queue
-            and acquired < self.observer.budget
-        ):
-            current_url, depth = queue.popleft()
-
-            if current_url in visited_urls:
-                duplicate_skipped += 1
-                continue
-
-            visited_urls.add(current_url)
-
-            if not self._host_allowed(current_url):
-                offsite_skipped += 1
-                continue
-
-            if not self._scope_allowed(current_url):
-                outside_scope_skipped += 1
-                continue
-
-            if not self._url_type_allowed(current_url):
-                unsupported_skipped += 1
-                continue
-
-            if self.observer.respect_robots:
-                robots = self._robots_for_url(
-                    current_url,
-                    robots_by_origin,
-                )
-
-                if not robots.can_fetch(
-                    self.web_service.user_agent,
-                    current_url,
-                ):
-                    robots_denied += 1
-                    continue
-
-            attempted += 1
-
-            try:
-                document = self.web_service.acquire(
-                    url=current_url,
-                    source_organization=(
-                        self.observer
-                        .source_organization
-                    ),
-                    authority=self.observer.authority,
-                )
-
-                if not (
-                    self.observer
-                    .media_policy
-                    .accepts_media_type(
-                        document.media_type
-                    )
-                ):
-                    unsupported_skipped += 1
-                    continue
-
-                decision = self.manifest.record(
-                    document
-                )
-
-                status_counts[
-                    decision.status
-                ] += 1
-
-                acquired += 1
-
-                media_counts[
-                    document.media_type
-                    or "application/octet-stream"
-                ] += 1
-
-                if (
-                    depth < self.observer.max_depth
-                    and self.observer.media_policy.is_html(
-                        document.media_type
-                    )
-                ):
-                    saved_path = (
-                        self.web_service.storage_root
-                        / document.relative_path
-                    )
-
-                    discovered = self._extract_links(
-                        saved_path=saved_path,
-                        base_url=(
-                            document.source_url
-                            or current_url
-                        ),
-                    )
-
-                    discovered.sort(
-                        key=self._priority_key
-                    )
-
-                    for discovered_url in discovered:
-                        if (
-                            discovered_url in queued_urls
-                            or discovered_url
-                            in visited_urls
-                        ):
-                            duplicate_skipped += 1
-                            continue
-
-                        if not self._host_allowed(
-                            discovered_url
-                        ):
-                            offsite_skipped += 1
-                            continue
-
-                        if not self._scope_allowed(
-                            discovered_url
-                        ):
-                            outside_scope_skipped += 1
-                            continue
-
-                        if not self._url_type_allowed(
-                            discovered_url
-                        ):
-                            unsupported_skipped += 1
-                            continue
-
-                        queue.append(
-                            (
-                                discovered_url,
-                                depth + 1,
-                            )
-                        )
-
-                        queued_urls.add(
-                            discovered_url
-                        )
-
-            except Exception as error:
-                failures.append(
-                    ObserverV2Failure(
-                        url=current_url,
-                        error_type=type(
-                            error
-                        ).__name__,
-                        message=str(error),
-                    )
-                )
-
-            if (
-                self.observer
-                .request_delay_seconds
-                > 0
-            ):
-                sleep(
-                    self.observer
-                    .request_delay_seconds
-                )
-
-        return ObserverV2Report(
-            observer_name=self.observer.name,
-            budget=self.observer.budget,
-            observations_attempted=attempted,
-            observations_acquired=acquired,
-            new_documents=status_counts[
-                AcquisitionStatus.NEW
-            ],
+        return digest.hexdigest()

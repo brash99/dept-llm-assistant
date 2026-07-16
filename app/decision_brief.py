@@ -6,6 +6,7 @@ from openai import OpenAI
 from app.retrieval import retrieve
 from app.vector_index import RetrievalResult
 from app.observatory.metrics import ObservatoryAssessment, build_observatory_assessment
+from app.observatory.evidence_fitness import EvidenceFitnessService
 from app.evidence import (
     Evidence,
     EvidenceClass,
@@ -46,6 +47,7 @@ class DecisionBrief:
     sources: List[RetrievalResult]
     evidence_items: List[Evidence]
     observatory_assessment: Optional[ObservatoryAssessment]
+    evidence_fitness: object
     raw_markdown: str
 
 
@@ -452,6 +454,10 @@ def generate_decision_brief(
 
     evidence_items = make_evidence(results)
     observatory_assessment = build_observatory_assessment(evidence_items)
+    evidence_fitness = EvidenceFitnessService.evaluate(
+        question,
+        evidence_items,
+    )
     evidence_context = build_grouped_evidence_context(evidence_items)
     prompt = build_decision_brief_prompt(question, evidence_context)
 
@@ -482,6 +488,7 @@ def generate_decision_brief(
         sources=results,
         evidence_items=evidence_items,
         observatory_assessment=observatory_assessment,
+        evidence_fitness=evidence_fitness,
         raw_markdown=brief_markdown,
     )
 

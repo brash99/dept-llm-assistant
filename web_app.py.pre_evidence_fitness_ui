@@ -4,11 +4,7 @@ from pathlib import Path
 from app.config import load_config
 from app.rag import answer_question
 from app.decision_brief import generate_decision_brief
-from app.observatory.dashboard import (
-    render_iso_overview,
-    render_observatory_assessment,
-    render_evidence_fitness,
-)
+from app.observatory.dashboard import render_iso_overview, render_observatory_assessment
 from app.evidence import resolve_source_title
 from app.constitution import (
     ConstitutionalCatalog,
@@ -1063,26 +1059,8 @@ if st.button(button_label, type="primary") and query.strip():
         f"min_rerank_score={min_rerank_score}"
     )
 
-    if mode == "Decision Brief":
-        if getattr(
-            artifact,
-            "observatory_assessment",
-            None,
-        ) is not None:
-            render_observatory_assessment(
-                st,
-                artifact.observatory_assessment,
-            )
-
-        if getattr(
-            artifact,
-            "evidence_fitness",
-            None,
-        ) is not None:
-            render_evidence_fitness(
-                st,
-                artifact.evidence_fitness,
-            )
+    if mode == "Decision Brief" and getattr(artifact, "observatory_assessment", None) is not None:
+        render_observatory_assessment(st, artifact.observatory_assessment)
 
     if mode == "Decision Brief":
         st.subheader("📄 Decision Brief")

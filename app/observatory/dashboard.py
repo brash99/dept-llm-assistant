@@ -355,3 +355,97 @@ def render_observatory_assessment(st, assessment: ObservatoryAssessment) -> None
         with st.expander("Recommended evidence improvements", expanded=False):
             for recommendation in assessment.recommendations:
                 st.write(f"- {recommendation}")
+
+
+def render_evidence_fitness(st, assessment) -> None:
+    """
+    Render the question-aware Evidence Fitness assessment.
+
+    This panel evaluates whether the retrieved evidence is appropriate for
+    the specific decision or institutional question being considered.
+    """
+    st.subheader("🧭 Evidence Fitness")
+
+    st.caption(
+        "A deterministic, question-aware assessment of whether the "
+        "retrieved evidence is appropriate for the decision being considered."
+    )
+
+    st.write(
+        f"**Decision type:** {assessment.decision_type_label}"
+    )
+
+    st.caption(
+        f"Classification confidence: "
+        f"{assessment.decision_type_confidence:.0%}"
+    )
+
+    c1, c2, c3, c4 = st.columns(4)
+
+    c1.metric(
+        "Overall fitness",
+        f"{assessment.fitness_score:.0f}%",
+    )
+
+    c2.metric(
+        "Domain coverage",
+        f"{assessment.topic_coverage_score:.0f}%",
+    )
+
+    c3.metric(
+        "Authority fit",
+        f"{assessment.authority_fit_score:.0f}%",
+    )
+
+    c4.metric(
+        "Evidence-role fit",
+        f"{assessment.evidence_role_fit_score:.0f}%",
+    )
+
+    with st.expander(
+        "Evidence Fitness profile",
+        expanded=True,
+    ):
+        if assessment.covered_topics:
+            st.write("**Covered evidence domains**")
+
+            for topic in assessment.covered_topics:
+                st.write(f"✓ {topic}")
+
+        if assessment.missing_topics:
+            st.write("**Missing or weak evidence domains**")
+
+            for topic in assessment.missing_topics:
+                st.write(f"- {topic}")
+
+        if (
+            not assessment.covered_topics
+            and not assessment.missing_topics
+        ):
+            st.info(
+                "No evidence-domain assessment is available."
+            )
+
+    if assessment.strengths:
+        with st.expander(
+            "Evidence strengths",
+            expanded=False,
+        ):
+            for strength in assessment.strengths:
+                st.success(strength)
+
+    if assessment.weaknesses:
+        with st.expander(
+            "Evidence limitations",
+            expanded=True,
+        ):
+            for weakness in assessment.weaknesses:
+                st.warning(weakness)
+
+    if assessment.recommendations:
+        with st.expander(
+            "Recommended evidence improvements",
+            expanded=False,
+        ):
+            for recommendation in assessment.recommendations:
+                st.write(f"- {recommendation}")

@@ -429,75 +429,24 @@ def render_evidence_fitness(st, assessment) -> None:
         "Evidence Fitness profile",
         expanded=True,
     ):
-        grade_rows = []
+        if assessment.covered_topics:
+            st.write("**Covered evidence domains**")
 
-        for topic, grade in (
-            assessment.topic_grades.items()
-        ):
-            support = assessment.topic_support.get(
-                topic,
-                {},
-            )
-
-            grade_rows.append(
-                {
-                    "Evidence domain": topic,
-                    "Fitness": grade.title(),
-                    "Supporting sources": support.get(
-                        "sources",
-                        0,
-                    ),
-                    "Keyword breadth": support.get(
-                        "keywords",
-                        0,
-                    ),
-                    "Support score": (
-                        f"{100 * support.get('score', 0):.0f}%"
-                    ),
-                }
-            )
-
-        if grade_rows:
-            st.dataframe(
-                pd.DataFrame(grade_rows),
-                use_container_width=True,
-                hide_index=True,
-            )
-        else:
-            st.info(
-                "No evidence-domain assessment is available."
-            )
-
-        if assessment.strong_topics:
-            st.write(
-                "**Strong:** "
-                + ", ".join(
-                    assessment.strong_topics
-                )
-            )
-
-        if assessment.partial_topics:
-            st.write(
-                "**Partial:** "
-                + ", ".join(
-                    assessment.partial_topics
-                )
-            )
-
-        if assessment.weak_topics:
-            st.warning(
-                "**Weak:** "
-                + ", ".join(
-                    assessment.weak_topics
-                )
-            )
+            for topic in assessment.covered_topics:
+                st.write(f"✓ {topic}")
 
         if assessment.missing_topics:
-            st.error(
-                "**Missing:** "
-                + ", ".join(
-                    assessment.missing_topics
-                )
+            st.write("**Missing or weak evidence domains**")
+
+            for topic in assessment.missing_topics:
+                st.write(f"- {topic}")
+
+        if (
+            not assessment.covered_topics
+            and not assessment.missing_topics
+        ):
+            st.info(
+                "No evidence-domain assessment is available."
             )
 
     if assessment.strengths:

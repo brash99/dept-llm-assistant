@@ -37,19 +37,8 @@ class EvidenceFitnessAssessment:
     topic_coverage_score: float
     authority_fit_score: float
     evidence_role_fit_score: float
-    # Backward-compatible summaries used by the adaptive prompt.
     covered_topics: List[str] = field(default_factory=list)
     missing_topics: List[str] = field(default_factory=list)
-
-    # Graded domain fitness.
-    strong_topics: List[str] = field(default_factory=list)
-    partial_topics: List[str] = field(default_factory=list)
-    weak_topics: List[str] = field(default_factory=list)
-    topic_grades: Dict[str, str] = field(default_factory=dict)
-    topic_support: Dict[str, Dict[str, object]] = field(
-        default_factory=dict
-    )
-
     strengths: List[str] = field(default_factory=list)
     weaknesses: List[str] = field(default_factory=list)
     recommendations: List[str] = field(default_factory=list)
@@ -102,15 +91,6 @@ ACADEMIC_PROGRAM_TOPICS = {
         "cost",
         "allocation",
         "biennium",
-        "$",
-        "per year",
-        "annual expense",
-        "annual cost",
-        "salary",
-        "faculty line",
-        "staff position",
-        "financial",
-        "revenue",
     ),
     "Enrollment / Demand": (
         "enrollment",
@@ -465,132 +445,6 @@ def _source_text(item: Evidence) -> str:
     return " ".join(parts).lower()
 
 
-
-EVIDENCE_CLASS_STRENGTH = {
-    EvidenceClass.CONSTITUTIONAL: 0.55,
-    EvidenceClass.INSTITUTIONAL: 1.00,
-    EvidenceClass.PLANNING: 0.65,
-    EvidenceClass.HISTORICAL: 0.60,
-    EvidenceClass.EXTERNAL_STANDARD: 0.90,
-    EvidenceClass.EXTERNAL_COMPARATOR: 0.55,
-    EvidenceClass.BACKGROUND: 0.30,
-}
-
-
-def _grade_topic(
-    keywords: Tuple[str, ...],
-    evidence_items: List[Evidence],
-) -> tuple[str, float, Dict[str, object]]:
-    """
-    Grade one evidence domain using three inspectable signals:
-
-    1. keyword breadth;
-    2. number of distinct supporting sources;
-    3. strength of the supporting evidence classes.
-
-    This measures evidentiary support, not merely whether a word appears.
-    """
-    supporting_items = []
-    matched_keywords = set()
-
-    for item in evidence_items:
-        text = _source_text(item)
-
-        item_matches = {
-            keyword
-            for keyword in keywords
-            if keyword in text
-        }
-
-        if not item_matches:
-            continue
-
-        supporting_items.append(item)
-        matched_keywords.update(item_matches)
-
-    source_count = len(supporting_items)
-    keyword_count = len(matched_keywords)
-
-    if not supporting_items:
-        return (
-            "missing",
-            0.0,
-            {
-                "sources": 0,
-                "keywords": 0,
-                "best_class_strength": 0.0,
-                "mean_class_strength": 0.0,
-            },
-        )
-
-    strengths = [
-        EVIDENCE_CLASS_STRENGTH.get(
-            item.evidence_class,
-            0.30,
-        )
-        for item in supporting_items
-    ]
-
-    best_strength = max(strengths)
-    mean_strength = sum(strengths) / len(strengths)
-
-    # Breadth reaches full credit after three distinct keyword concepts.
-    breadth_score = min(
-        1.0,
-        keyword_count / 3.0,
-    )
-
-    # Source corroboration reaches full credit after three distinct sources.
-    source_score = min(
-        1.0,
-        source_count / 3.0,
-    )
-
-    class_score = (
-        0.60 * best_strength
-        + 0.40 * mean_strength
-    )
-
-    support_score = (
-        0.35 * breadth_score
-        + 0.35 * source_score
-        + 0.30 * class_score
-    )
-
-    # Prevent one passing mention from being graded as adequate.
-    if source_count == 1 and keyword_count == 1:
-        support_score = min(
-            support_score,
-            0.34,
-        )
-
-    if support_score >= 0.78:
-        grade = "strong"
-    elif support_score >= 0.52:
-        grade = "partial"
-    elif support_score > 0:
-        grade = "weak"
-    else:
-        grade = "missing"
-
-    return (
-        grade,
-        round(support_score, 3),
-        {
-            "sources": source_count,
-            "keywords": keyword_count,
-            "best_class_strength": round(
-                best_strength,
-                3,
-            ),
-            "mean_class_strength": round(
-                mean_strength,
-                3,
-            ),
-        },
-    )
-
-
 class EvidenceFitnessService:
     @classmethod
     def expected_topics(
@@ -756,64 +610,29 @@ class EvidenceFitnessService:
 
         empirical_total = len(empirical_items)
 
-        strong_topics = []
-        partial_topics = []
-        weak_topics = []
+        combined_text = "\n".join(
+            _source_text(item)
+            for item in empirical_items
+        )
+
+        covered_topics = []
         missing_topics = []
-
-        topic_grades = {}
-        topic_support = {}
-
-        grade_values = {
-            "strong": 1.00,
-            "partial": 0.65,
-            "weak": 0.30,
-            "missing": 0.00,
-        }
-
-        topic_score_total = 0.0
 
         for topic, keywords in (
             profile.topic_keywords.items()
         ):
-            (
-                grade,
-                support_score,
-                support_details,
-            ) = _grade_topic(
-                keywords,
-                empirical_items,
-            )
-
-            topic_grades[topic] = grade
-            topic_support[topic] = {
-                "score": support_score,
-                **support_details,
-            }
-
-            topic_score_total += grade_values[grade]
-
-            if grade == "strong":
-                strong_topics.append(topic)
-            elif grade == "partial":
-                partial_topics.append(topic)
-            elif grade == "weak":
-                weak_topics.append(topic)
+            if any(
+                keyword in combined_text
+                for keyword in keywords
+            ):
+                covered_topics.append(topic)
             else:
                 missing_topics.append(topic)
-
-        # Preserve backward compatibility:
-        # strong and partial domains are considered covered;
-        # weak domains remain visible as limitations rather than disappearing.
-        covered_topics = (
-            strong_topics
-            + partial_topics
-        )
 
         if profile.topic_keywords:
             topic_coverage = (
                 100.0
-                * topic_score_total
+                * len(covered_topics)
                 / len(profile.topic_keywords)
             )
         else:
@@ -950,7 +769,7 @@ class EvidenceFitnessService:
 
         if missing_topics:
             weaknesses.append(
-                "Missing evidence domains: "
+                "Material evidence gaps remain: "
                 + ", ".join(missing_topics)
                 + "."
             )
@@ -958,26 +777,6 @@ class EvidenceFitnessService:
             recommendations.append(
                 "Acquire or retrieve evidence for: "
                 + ", ".join(missing_topics)
-                + "."
-            )
-
-        if weak_topics:
-            weaknesses.append(
-                "Weakly supported evidence domains: "
-                + ", ".join(weak_topics)
-                + "."
-            )
-
-            recommendations.append(
-                "Strengthen direct evidence for: "
-                + ", ".join(weak_topics)
-                + "."
-            )
-
-        if partial_topics:
-            weaknesses.append(
-                "Partially supported evidence domains: "
-                + ", ".join(partial_topics)
                 + "."
             )
 
@@ -1029,11 +828,6 @@ class EvidenceFitnessService:
             ),
             covered_topics=covered_topics,
             missing_topics=missing_topics,
-            strong_topics=strong_topics,
-            partial_topics=partial_topics,
-            weak_topics=weak_topics,
-            topic_grades=topic_grades,
-            topic_support=topic_support,
             strengths=strengths,
             weaknesses=weaknesses,
             recommendations=recommendations,

@@ -275,109 +275,86 @@ def render_iso_overview(st, report: Dict[str, Any]) -> None:
         )
 
 
-def render_observatory_assessment(
-    st,
-    assessment: ObservatoryAssessment,
-) -> None:
-    """
-    Render a descriptive view of the retrieved evidence landscape.
-
-    This panel reports what evidence was retrieved and how it is distributed.
-    It does not judge whether that evidence is adequate for the question.
-    Question-aware adequacy belongs exclusively to Evidence Fitness.
-    """
-    st.subheader("🔭 Evidence Landscape")
+def render_observatory_assessment(st, assessment: ObservatoryAssessment) -> None:
+    """Render a lightweight per-question Observatory panel in Streamlit."""
+    st.subheader("🔭 Observatory Assessment")
 
     st.caption(
-        "A deterministic description of the retrieved evidence set: "
-        "its classes, composition, concentration, and semantic provenance. "
-        "This panel describes the evidence landscape; it does not assess "
-        "whether the evidence is fit for the question."
+        "A deterministic summary of the retrieved evidence landscape before the LLM writes the Decision Brief."
     )
 
-    c1, c2 = st.columns(2)
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Decision readiness", f"{assessment.decision_readiness_score:.0f}%")
+    c2.metric("Knowledge completeness", f"{assessment.knowledge_completeness_score:.0f}%")
+    c3.metric("Topic coverage", f"{assessment.topic_coverage_score:.0f}%")
+    c4.metric("Dominant evidence", assessment.dominant_evidence_class)
 
-    c1.metric(
-        "Retrieved sources",
-        f"{assessment.total_sources:,}",
+    st.caption(
+        "Topic coverage measures whether the retrieved evidence touches the expected semantic domains. "
+        "Knowledge completeness is stricter: it evaluates the empirical evidence set and is reduced when that "
+        "evidence is planning-heavy, externally dependent, or thin in direct institutional records. "
+        "Constitutional evidence is reported separately as institutional values."
     )
 
-    c2.metric(
-        "Dominant evidence class",
-        assessment.dominant_evidence_class,
-    )
-
-    st.write("**Evidence class composition**")
-
+    st.write("**Evidence class balance**")
     rows = []
-
-    for label, count in (
-        assessment.evidence_class_counts.items()
-    ):
+    for label, count in assessment.evidence_class_counts.items():
         if count == 0:
             continue
-
         rows.append(
             {
                 "Evidence class": label,
                 "Sources": count,
-                "Share": _pct(
-                    assessment
-                    .evidence_class_percentages[label]
-                ),
+                "Share": _pct(assessment.evidence_class_percentages[label]),
             }
         )
 
     if rows:
-        st.dataframe(
-            pd.DataFrame(rows),
-            use_container_width=True,
-            hide_index=True,
-        )
+        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
     else:
         st.info("No evidence classes available.")
 
     r1, r2, r3, r4, r5 = st.columns(5)
-
     r1.metric(
-        "Constitutional",
-        _pct(
-            assessment.constitutional_evidence_ratio
-        ),
+        "Constitutional evidence",
+        _pct(assessment.constitutional_evidence_ratio),
     )
-
     r2.metric(
-        "Institutional",
-        _pct(
-            assessment.institutional_evidence_ratio
-        ),
+        "Institutional evidence",
+        _pct(assessment.institutional_evidence_ratio),
     )
-
     r3.metric(
-        "Planning",
-        _pct(
-            assessment.planning_ratio
-        ),
+        "Planning reliance",
+        _pct(assessment.planning_ratio),
     )
-
     r4.metric(
-        "External",
-        _pct(
-            assessment.external_ratio
-        ),
+        "External dependence",
+        _pct(assessment.external_ratio),
     )
-
     r5.metric(
-        "Empirical diversity",
+        "Empirical balance",
         f"{assessment.evidence_balance_score:.0f}%",
     )
 
-    st.caption(
-        "Empirical diversity describes how broadly the empirical sources "
-        "are distributed across evidence classes. A low value may simply "
-        "indicate that one appropriate evidence class dominates the answer; "
-        "it is not, by itself, a deficiency."
-    )
+    with st.expander("Semantic coverage", expanded=False):
+        if assessment.covered_topics:
+            st.write("**Covered topics**")
+            st.write(", ".join(assessment.covered_topics))
+        if assessment.missing_topics:
+            st.write("**Potential gaps**")
+            st.warning(", ".join(assessment.missing_topics))
+        if not assessment.covered_topics and not assessment.missing_topics:
+            st.info("No topic coverage analysis available.")
+
+    if assessment.warnings:
+        with st.expander("Observatory warnings", expanded=True):
+            for warning in assessment.warnings:
+                st.warning(warning)
+
+    if assessment.recommendations:
+        with st.expander("Recommended evidence improvements", expanded=False):
+            for recommendation in assessment.recommendations:
+                st.write(f"- {recommendation}")
 
 
 def render_evidence_fitness(st, assessment) -> None:

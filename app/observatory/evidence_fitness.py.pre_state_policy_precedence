@@ -447,40 +447,11 @@ def _source_text(item: Evidence) -> str:
 
 class EvidenceFitnessService:
     @classmethod
-    def expected_topics(
-        cls,
-        decision_type: DecisionType,
-    ) -> List[str]:
-        """Return the ordered evidence domains for a decision type."""
-        profile = PROFILES[decision_type]
-        return list(profile.topic_keywords.keys())
-
-    @classmethod
     def classify_decision_type(
         cls,
         question: str,
     ) -> tuple[DecisionType, float]:
         text = question.casefold()
-
-        explicit_state_policy_phrases = (
-            "what does schev",
-            "what do recent schev",
-            "what do schev reports",
-            "schev reports indicate",
-            "according to schev",
-            "what does the general assembly",
-            "according to the general assembly",
-            "what does the commonwealth",
-        )
-
-        if any(
-            phrase in text
-            for phrase in explicit_state_policy_phrases
-        ):
-            return (
-                DecisionType.STATE_POLICY,
-                0.95,
-            )
 
         rules = [
             (

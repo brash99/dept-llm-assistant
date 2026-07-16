@@ -170,7 +170,6 @@ def build_grouped_evidence_context(
 def build_decision_brief_prompt(
     question: str,
     evidence_context: str,
-    evidence_fitness=None,
     evidence_topics: Optional[List[str]] = None,
 ) -> str:
     """
@@ -182,38 +181,9 @@ def build_decision_brief_prompt(
     - The LLM receives the question plus grouped evidence plus reasoning guidance.
     """
     if evidence_topics is None:
-        if evidence_fitness is not None:
-            evidence_topics = (
-                EvidenceFitnessService.expected_topics(
-                    evidence_fitness.decision_type
-                )
-            )
-        else:
-            evidence_topics = DEFAULT_EVIDENCE_TOPICS
+        evidence_topics = DEFAULT_EVIDENCE_TOPICS
 
-    topics = "\n".join(
-        f"- {topic}"
-        for topic in evidence_topics
-    )
-
-    supporting_sections = "\n\n".join(
-        f"### {topic}"
-        for topic in evidence_topics
-    )
-
-    decision_type_guidance = ""
-
-    if evidence_fitness is not None:
-        decision_type_guidance = (
-            f"Decision type: "
-            f"{evidence_fitness.decision_type_label}\n"
-            f"Evidence Fitness score: "
-            f"{evidence_fitness.fitness_score:.0f}%\n"
-            f"Covered domains: "
-            f"{', '.join(evidence_fitness.covered_topics) or 'None'}\n"
-            f"Missing domains: "
-            f"{', '.join(evidence_fitness.missing_topics) or 'None'}"
-        )
+    topics = "\n".join(f"- {topic}" for topic in evidence_topics)
 
     return f"""
 You are an AI assistant helping university administrators make evidence-based institutional decisions.
@@ -361,10 +331,7 @@ Do not use the internal "Original Source Number" in the written brief.
 Institutional Question:
 {question}
 
-Question-aware Evidence Fitness guidance:
-{decision_type_guidance}
-
-Evidence domains appropriate to this question:
+Evidence topics to look for:
 {topics}
 
 Retrieved constitutional and empirical evidence:
@@ -382,7 +349,21 @@ Generate a Decision Brief with the following sections:
 
 ## Supporting Evidence
 
-{supporting_sections}
+### Curriculum
+
+### Faculty Expertise
+
+### Facilities and Laboratory Space
+
+### Laboratory Equipment
+
+### Accreditation
+
+### Budget and Staffing
+
+### Strategic Planning and Enrollment
+
+### Historical Precedent
 
 ## Areas of Agreement
 
@@ -478,11 +459,7 @@ def generate_decision_brief(
         evidence_items,
     )
     evidence_context = build_grouped_evidence_context(evidence_items)
-    prompt = build_decision_brief_prompt(
-        question,
-        evidence_context,
-        evidence_fitness=evidence_fitness,
-    )
+    prompt = build_decision_brief_prompt(question, evidence_context)
 
     client = OpenAI(
         base_url=llm_base_url,

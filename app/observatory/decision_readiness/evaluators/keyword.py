@@ -10,6 +10,9 @@ from app.observatory.decision_readiness.base import (
     DomainEvaluator,
     DomainEvaluatorSpec,
 )
+from app.observatory.decision_readiness.context import (
+    DecisionContext,
+)
 
 
 EVIDENCE_CLASS_STRENGTH: Dict[
@@ -70,6 +73,7 @@ class KeywordDomainEvaluator(DomainEvaluator):
     def evaluate(
         self,
         evidence_items: Sequence[Evidence],
+        context: DecisionContext,
     ) -> DomainAssessment:
         supporting_items: List[Evidence] = []
         matched_keywords: Set[str] = set()

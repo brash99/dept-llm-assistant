@@ -2,10 +2,14 @@ from pathlib import Path
 
 from app.config import load_config
 from app.evidence import EvidenceClass, make_evidence
+from app.observatory.decision_readiness.context import (
+    DecisionContext,
+)
 from app.observatory.decision_readiness.registry import (
     registry,
 )
 from app.observatory.evidence_fitness import (
+    DecisionType,
     EvidenceFitnessService,
 )
 from app.retrieval import retrieve
@@ -119,9 +123,15 @@ def main() -> None:
     print("Academic Program evaluator migration")
     print("=" * 96)
 
+    context = DecisionContext(
+        question=QUESTION,
+        decision_type=DecisionType.ACADEMIC_PROGRAM,
+    )
+
     for evaluator in evaluators:
         framework = evaluator.evaluate(
-            empirical_items
+            empirical_items,
+            context,
         )
 
         topic = evaluator.spec.name

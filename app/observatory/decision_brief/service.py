@@ -1,0 +1,514 @@
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from typing import List, Optional
+
+from openai import OpenAI
+
+from app.evidence import (
+    Evidence,
+    EvidenceClass,
+    group_evidence_by_class,
+)
+from app.observatory.evidence_fitness import (
+    EvidenceFitnessAssessment,
+    EvidenceFitnessService,
+)
+from app.observatory.metrics import (
+    ObservatoryAssessment,
+    build_observatory_assessment,
+)
+from app.vector_index import RetrievalResult
+
+
+@dataclass
+class EvidenceGroup:
+    topic: str
+    summary: str
+    source_numbers: List[int] = field(default_factory=list)
+
+
+@dataclass
+class DecisionBrief:
+    question: str
+    executive_summary: str
+    evidence_groups: List[EvidenceGroup]
+    areas_of_uncertainty: List[str]
+    missing_information: List[str]
+    recommended_follow_up: List[str]
+    sources: List[RetrievalResult]
+    evidence_items: List[Evidence]
+    observatory_assessment: Optional[ObservatoryAssessment]
+    evidence_fitness: object
+    raw_markdown: str
+
+
+def build_grouped_evidence_context(
+    evidence_items: List[Evidence],
+) -> str:
+    """Build Decision Brief context with values and facts separated."""
+    grouped = group_evidence_by_class(evidence_items)
+
+    constitutional_items = grouped.get(
+        EvidenceClass.CONSTITUTIONAL,
+        [],
+    )
+
+    empirical_classes = [
+        evidence_class
+        for evidence_class in grouped
+        if evidence_class != EvidenceClass.CONSTITUTIONAL
+    ]
+
+    sections = []
+
+    constitutional_parts = [
+        "=" * 70,
+        "Institutional Values",
+        "=" * 70,
+    ]
+
+    if constitutional_items:
+        for item in constitutional_items:
+            result = item.result
+            citation = result.citation
+            metadata = result.metadata
+
+            principles = metadata.get("principles") or []
+            principle_text = (
+                "\n".join(
+                    f"- {principle}"
+                    for principle in principles
+                )
+                if principles
+                else "Not specified"
+            )
+
+            constitutional_parts.append(
+                f"[{item.citation_label}]\n"
+                f"Original Source Number: {item.source_number}\n"
+                f"Constitutional Type: "
+                f"{metadata.get('constitutional_type')}\n"
+                f"Institutional Scope: "
+                f"{metadata.get('institutional_scope')}\n"
+                f"Principles:\n{principle_text}\n"
+                f"Title: {item.title}\n"
+                f"Path: {citation.get('relative_path')}\n"
+                f"Chars: {citation.get('start_char')}–"
+                f"{citation.get('end_char')}\n"
+                f"Score: {result.score:.4f}\n\n"
+                f"{result.text}"
+            )
+    else:
+        constitutional_parts.append(
+            "No constitutional evidence was retrieved."
+        )
+
+    sections.append("\n\n".join(constitutional_parts))
+
+    empirical_parts = [
+        "=" * 70,
+        "Empirical Evidence",
+        "=" * 70,
+    ]
+
+    for evidence_class in empirical_classes:
+        items = grouped[evidence_class]
+
+        if not items:
+            continue
+
+        empirical_parts.extend(
+            [
+                "",
+                evidence_class.value,
+                "-" * 70,
+            ]
+        )
+
+        for item in items:
+            result = item.result
+            citation = result.citation
+
+            empirical_parts.append(
+                f"[{item.citation_label}]\n"
+                f"Original Source Number: {item.source_number}\n"
+                f"Evidence Class: {item.evidence_class.value}\n"
+                f"Classification Confidence: {item.confidence:.2f}\n"
+                f"Classification Rationale: {item.rationale}\n"
+                f"Title: {item.title}\n"
+                f"Path: {citation.get('relative_path')}\n"
+                f"Chars: {citation.get('start_char')}–"
+                f"{citation.get('end_char')}\n"
+                f"Score: {result.score:.4f}\n\n"
+                f"{result.text}"
+            )
+
+    if not any(
+        grouped[evidence_class]
+        for evidence_class in empirical_classes
+    ):
+        empirical_parts.append(
+            "No empirical evidence was retrieved."
+        )
+
+    sections.append("\n\n".join(empirical_parts))
+
+    return "\n\n" + ("\n\n" + "=" * 70 + "\n\n").join(
+        sections
+    )
+
+
+def build_decision_brief_prompt(
+    question: str,
+    evidence_context: str,
+    evidence_fitness=None,
+    evidence_topics: Optional[List[str]] = None,
+) -> str:
+    """
+    Build the reasoning prompt sent to the LLM.
+
+    Important architecture note:
+    - The retriever should receive only the user's institutional question.
+    - This prompt is constructed only after retrieval and evidence classification.
+    - The LLM receives the question plus grouped evidence plus reasoning guidance.
+    """
+    if evidence_topics is None:
+        if evidence_fitness is not None:
+            evidence_topics = (
+                EvidenceFitnessService.expected_topics(
+                    evidence_fitness.decision_type
+                )
+            )
+        else:
+            evidence_topics = DEFAULT_EVIDENCE_TOPICS
+
+    topics = "\n".join(
+        f"- {topic}"
+        for topic in evidence_topics
+    )
+
+    supporting_sections = "\n\n".join(
+        f"### {topic}"
+        for topic in evidence_topics
+    )
+
+    decision_type_guidance = ""
+
+    if evidence_fitness is not None:
+        decision_type_guidance = (
+            f"Decision type: "
+            f"{evidence_fitness.decision_type_label}\n"
+            f"Evidence Fitness score: "
+            f"{evidence_fitness.fitness_score:.0f}%\n"
+            f"Covered domains: "
+            f"{', '.join(evidence_fitness.covered_topics) or 'None'}\n"
+            f"Missing domains: "
+            f"{', '.join(evidence_fitness.missing_topics) or 'None'}"
+        )
+
+    return f"""
+You are an AI assistant helping university administrators make evidence-based institutional decisions.
+
+Your task is NOT simply to answer the question.
+
+Your task is to synthesize the retrieved evidence into an explainable Decision Brief.
+
+The retrieved material has been organized into two distinct semantic categories:
+
+1. Institutional Values
+   Constitutional evidence expresses institutional commitments, mission,
+   values, and strategic directions. It informs what the institution ought
+   to prioritize, but it does not by itself establish empirical facts.
+
+2. Empirical Evidence
+   Empirical sources describe institutional conditions, plans, history,
+   external requirements, comparators, or background information.
+
+Never treat an institutional value as though it were an empirical fact.
+Never imply that empirical evidence alone determines institutional values.
+Explain explicitly how empirical evidence relates to institutional values.
+
+Claim-strength and language policy:
+
+- Constitutional Evidence may support statements such as:
+  "The institution values...", "The Strategic Compass prioritizes...",
+  or "This proposal may align with..."
+  Constitutional evidence does not establish that a proposal is approved,
+  funded, implemented, feasible, or successful.
+
+- Institutional Evidence may support statements such as:
+  "Meeting minutes report...", "The annual report records...",
+  or "Current institutional records indicate..."
+  Do not strengthen the claim beyond what the source explicitly establishes.
+
+- Planning Documents may support statements such as:
+  "The document proposes...", "The plan identifies...",
+  "The draft anticipates...", "The minutes record an intended timeline...",
+  or "Planning materials include a proposed allocation..."
+  Do NOT convert planning language into established fact.
+
+  In particular, avoid unsupported phrases such as:
+  "has been allocated"
+  "is scheduled"
+  "has been approved"
+  "will launch"
+  "the institution has committed"
+
+  unless a current authoritative institutional source explicitly establishes
+  the allocation, schedule, approval, launch, or commitment.
+
+- Historical Documents may support statements such as:
+  "Earlier records indicate...", "Historically...", or
+  "A previous proposal recommended..."
+  Do not imply that historical conditions remain current.
+
+- External Standards may support statements such as:
+  "The standard requires...", "The accreditor specifies...", or
+  "State guidance expects..."
+  Do not imply that the institution presently satisfies the requirement
+  unless institutional evidence confirms that it does.
+
+- External Comparators may support statements such as:
+  "A peer institution provides an example..." or
+  "Comparator evidence suggests..."
+  Never treat comparator evidence as evidence about CNU itself.
+
+- Background Knowledge must be clearly identified as general context or an
+  inference. It must not be presented as retrieved institutional evidence.
+
+When sources conflict, differ in authority, or use tentative language,
+preserve that uncertainty in the Decision Brief.
+
+Empirical Evidence Classes have different purposes and should not be treated as equally authoritative.
+
+Empirical Evidence Classes:
+
+• Institutional Evidence
+  Current factual information about this institution, including annual reports, faculty documents, curriculum proposals, policies, budgets, facilities, committee documents, and official university records.
+  Treat this as the primary evidence.
+
+• Institutional Planning
+  Strategic plans, program reviews, major initiatives, budget planning documents, committee recommendations, and planning reports.
+  These describe intended future directions rather than established facts.
+
+• Institutional History
+  Historical documents, archived reports, previous proposals, and institutional precedent.
+  These provide historical context but may no longer reflect current policy.
+
+• External Standards
+  Accreditation standards, SCHEV guidance, SACSCOC requirements, government regulations, and other normative external requirements.
+  These describe constraints or expectations that may apply to the institution.
+
+• External Comparators
+  Reports from peer institutions, self-studies, national surveys, and examples from other universities.
+  These provide context and comparison but do NOT describe this institution.
+
+• Background Knowledge
+  Your own general knowledge.
+  Use this only when necessary, and clearly distinguish it from retrieved evidence.
+
+When synthesizing the evidence:
+
+• Give greatest weight to Institutional Evidence.
+
+• Use Institutional Planning documents to discuss future directions and proposed initiatives.
+
+• Use Institutional History only for historical context.
+
+• Use External Standards to explain requirements that may affect institutional decisions.
+
+• Use External Comparators only as illustrative examples.
+  Never treat comparator evidence as if it describes this institution.
+
+• Clearly distinguish between:
+    - established institutional facts
+    - proposed plans
+    - historical precedent
+    - external requirements
+    - external examples
+    - inferred conclusions
+
+If evidence is missing, incomplete, tentative, or conflicting,
+explicitly identify this.
+
+Before writing each factual claim, determine:
+
+1. Which source supports the claim?
+2. What evidence class does that source belong to?
+3. What is the strongest wording justified by that class and the source text?
+4. Does the wording distinguish proposal, intention, approval,
+   implementation, and observed outcome?
+
+Do not speculate.
+
+If the available evidence does not support a conclusion, state that additional information would be required.
+
+Use only the retrieved sources below.
+
+Cite institutional values as [Constitutional Source N].
+Cite factual or documentary claims as [Empirical Source N].
+Do not use the internal "Original Source Number" in the written brief.
+
+Institutional Question:
+{question}
+
+Question-aware Evidence Fitness guidance:
+{decision_type_guidance}
+
+Evidence domains appropriate to this question:
+{topics}
+
+Retrieved constitutional and empirical evidence:
+{evidence_context}
+
+Generate a Decision Brief with the following sections:
+
+# Decision Brief
+
+## Executive Summary
+
+## Institutional Question
+
+## Evidence Summary
+
+## Supporting Evidence
+
+{supporting_sections}
+
+## Areas of Agreement
+
+## Areas of Uncertainty
+
+## Missing Information
+
+## Strategic Considerations
+
+## Recommended Follow-Up
+
+## Sources Used
+
+Throughout the Decision Brief:
+
+- Explicitly distinguish institutional values from empirical evidence.
+- Explain how empirical findings support, complicate, or fail to address the institutional values.
+- Explicitly distinguish internal institutional evidence from external standards and external comparator institutions.
+- Preserve the source's epistemic status: proposed, recommended, intended,
+  requested, budgeted in planning, approved, implemented, or observed.
+- Prefer precise attribution over unqualified institutional claims.
+  For example, write:
+  "A budget-planning document proposes $500,000 per year"
+  rather than:
+  "CNU has allocated $500,000 per year."
+- Write:
+  "Meeting minutes record an intended Fall 2027 launch"
+  rather than:
+  "The program is scheduled to begin in Fall 2027,"
+  unless authoritative evidence confirms a formal schedule.
+""".strip()
+
+
+class DecisionBriefService:
+    """
+    Synthesize retrieved evidence into a governed institutional
+    Decision Brief.
+
+    This service begins after retrieval. It is responsible for:
+
+    - assessing the retrieved evidence;
+    - measuring evidence fitness;
+    - constructing the governed reasoning prompt;
+    - invoking the configured language model; and
+    - assembling the DecisionBrief knowledge product.
+
+    Retrieval configuration and retrieval tracing remain the
+    responsibility of the calling application layer.
+    """
+
+    @staticmethod
+    def generate(
+        question: str,
+        evidence_items: List[Evidence],
+        sources: List[RetrievalResult],
+        llm_base_url: str,
+        llm_model: str,
+        observatory_assessment: Optional[
+            ObservatoryAssessment
+        ] = None,
+        evidence_fitness: Optional[
+            EvidenceFitnessAssessment
+        ] = None,
+        evidence_topics: Optional[List[str]] = None,
+        temperature: float = 0.2,
+    ) -> DecisionBrief:
+        question = question.strip()
+
+        if not question:
+            raise ValueError(
+                "Decision Brief question must not be empty."
+            )
+
+        if observatory_assessment is None:
+            observatory_assessment = (
+                build_observatory_assessment(
+                    evidence_items
+                )
+            )
+
+        if evidence_fitness is None:
+            evidence_fitness = (
+                EvidenceFitnessService.evaluate(
+                    question,
+                    evidence_items,
+                )
+            )
+
+        evidence_context = (
+            build_grouped_evidence_context(
+                evidence_items
+            )
+        )
+
+        prompt = build_decision_brief_prompt(
+            question,
+            evidence_context,
+            evidence_fitness=evidence_fitness,
+            evidence_topics=evidence_topics,
+        )
+
+        client = OpenAI(
+            base_url=llm_base_url,
+            api_key="not-needed",
+        )
+
+        response = client.chat.completions.create(
+            model=llm_model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+            temperature=temperature,
+        )
+
+        brief_markdown = (
+            response.choices[0].message.content
+            or ""
+        )
+
+        return DecisionBrief(
+            question=question,
+            executive_summary="",
+            evidence_groups=[],
+            areas_of_uncertainty=[],
+            missing_information=[],
+            recommended_follow_up=[],
+            sources=sources,
+            evidence_items=evidence_items,
+            observatory_assessment=(
+                observatory_assessment
+            ),
+            evidence_fitness=evidence_fitness,
+            raw_markdown=brief_markdown,
+        )

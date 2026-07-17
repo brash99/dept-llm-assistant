@@ -2,6 +2,9 @@ from pathlib import Path
 
 from app.config import load_config
 from app.evidence import EvidenceClass, make_evidence
+from app.observatory.decision_readiness.context import (
+    DecisionContext,
+)
 from app.observatory.decision_readiness.evaluators import (
     FacilitiesEvaluator,
 )
@@ -87,8 +90,14 @@ def main() -> None:
         evidence_items,
     )
 
+    context = DecisionContext(
+        question=QUESTION,
+        decision_type=legacy.decision_type,
+    )
+
     framework = FacilitiesEvaluator.evaluate(
-        empirical_items
+        empirical_items,
+        context,
     )
 
     legacy_support = legacy.topic_support[

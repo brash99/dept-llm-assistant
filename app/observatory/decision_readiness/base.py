@@ -8,6 +8,9 @@ from app.evidence import Evidence
 from app.observatory.decision_readiness.assessment import (
     DomainAssessment,
 )
+from app.observatory.decision_readiness.context import (
+    DecisionContext,
+)
 
 
 @dataclass(frozen=True)
@@ -30,6 +33,9 @@ class DomainEvaluatorSpec:
 class DomainEvaluator(ABC):
     """
     Contract implemented by every Decision Readiness domain evaluator.
+
+    Evaluators receive both the evidence collection and the context of the
+    institutional decision being assessed.
     """
 
     spec: DomainEvaluatorSpec
@@ -38,5 +44,6 @@ class DomainEvaluator(ABC):
     def evaluate(
         self,
         evidence_items: Sequence[Evidence],
+        context: DecisionContext,
     ) -> DomainAssessment:
         raise NotImplementedError

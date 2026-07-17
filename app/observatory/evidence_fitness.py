@@ -741,11 +741,23 @@ class EvidenceFitnessService:
         question: str,
         evidence_items: List[Evidence],
     ) -> EvidenceFitnessAssessment:
+        # Local import prevents a circular dependency during
+        # module initialization. DecisionReadinessService currently
+        # depends on the decision classification definitions here.
+        from app.observatory.decision_readiness.service import (
+            DecisionReadinessService,
+        )
+
         decision_type, confidence = (
             cls.classify_decision_type(question)
         )
 
         profile = PROFILES[decision_type]
+
+        readiness = DecisionReadinessService().evaluate(
+            question,
+            evidence_items,
+        )
 
         empirical_items = [
             item
@@ -773,32 +785,43 @@ class EvidenceFitnessService:
 
         topic_score_total = 0.0
 
-        for topic, keywords in (
-            profile.topic_keywords.items()
-        ):
-            (
-                grade,
-                support_score,
-                support_details,
-            ) = _grade_topic(
-                keywords,
-                empirical_items,
+        for domain in readiness.domains:
+
+            topic = domain.name
+            grade = domain.status
+
+            support_score = (
+                domain.score / 100.0
             )
 
+            support_details = {
+                "sources":
+                    domain.supporting_sources,
+                "keywords":
+                    domain.keyword_breadth,
+                **domain.metadata,
+            }
+
             topic_grades[topic] = grade
+
             topic_support[topic] = {
                 "score": support_score,
                 **support_details,
             }
 
-            topic_score_total += grade_values[grade]
+            topic_score_total += (
+                grade_values[grade]
+            )
 
             if grade == "strong":
                 strong_topics.append(topic)
+
             elif grade == "partial":
                 partial_topics.append(topic)
+
             elif grade == "weak":
                 weak_topics.append(topic)
+
             else:
                 missing_topics.append(topic)
 

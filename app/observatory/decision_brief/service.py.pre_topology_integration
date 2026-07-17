@@ -18,14 +18,6 @@ from app.observatory.metrics import (
     ObservatoryAssessment,
     build_observatory_assessment,
 )
-from app.observatory.topology.bootstrap import build_bootstrap_catalog
-from app.observatory.topology.catalog import InstitutionalTopologyCatalog
-from app.observatory.topology.entity import InstitutionalEntity
-from app.observatory.topology.impact import (
-    ImpactSummary,
-    InstitutionalImpactService,
-)
-from app.observatory.topology.query import InstitutionalTopologyQuery
 from app.vector_index import RetrievalResult
 
 
@@ -48,8 +40,6 @@ class DecisionBrief:
     evidence_items: List[Evidence]
     observatory_assessment: Optional[ObservatoryAssessment]
     evidence_fitness: object
-    topology_entity_id: Optional[str]
-    topology_impact: Optional[ImpactSummary]
     raw_markdown: str
 
 
@@ -169,112 +159,11 @@ def build_grouped_evidence_context(
     )
 
 
-def resolve_topology_entity(
-    question: str,
-    catalog: InstitutionalTopologyCatalog,
-    entity_query: Optional[str] = None,
-) -> Optional[InstitutionalEntity]:
-    """Resolve one unambiguous topology entity for a Decision Brief.
-
-    An explicit entity_query takes precedence. Otherwise, entity names are
-    matched deterministically against the institutional question. Ambiguous
-    questions do not receive topology context.
-    """
-    query_service = InstitutionalTopologyQuery(catalog)
-
-    if entity_query:
-        return query_service.find_entity(entity_query)
-
-    normalized_question = question.casefold()
-
-    matches = [
-        entity
-        for entity in catalog.entities
-        if entity.name.casefold() in normalized_question
-    ]
-
-    if not matches:
-        return None
-
-    matches.sort(
-        key=lambda entity: len(entity.name),
-        reverse=True,
-    )
-
-    longest_length = len(matches[0].name)
-    longest_matches = [
-        entity
-        for entity in matches
-        if len(entity.name) == longest_length
-    ]
-
-    if len(longest_matches) != 1:
-        return None
-
-    return longest_matches[0]
-
-
-def build_topology_context(
-    impact: Optional[ImpactSummary],
-) -> str:
-    """Render deterministic topology facts for the governed LLM prompt."""
-    if impact is None:
-        return ""
-
-    def render_items(items) -> str:
-        if not items:
-            return "- None represented in the current topology"
-
-        return "\n".join(
-            f"- {item}"
-            for item in items
-        )
-
-    return f"""
-======================================================================
-Institutional Topology Assessment
-======================================================================
-
-Entity:
-{impact.entity.name}
-
-Supports:
-{render_items(impact.supports)}
-
-Contributes To:
-{render_items(impact.contributes_to)}
-
-Supported By:
-{render_items(impact.supported_by)}
-
-Receives Contributions From:
-{render_items(impact.contributed_to_by)}
-
-Institutional Reach:
-- {impact.total_relationships} direct institutional relationship{
-    "" if impact.total_relationships == 1 else "s"
-  }
-
-Deterministic Assessment:
-{impact.narrative()}
-
-Topology Scope Notice:
-- This topology is a small, manually curated model of institutional
-  relationships.
-- It represents only relationships currently encoded in the catalog.
-- Absence of a relationship does not establish absence of a real-world
-  institutional connection.
-- These structural facts are derived from the institutional topology, not
-  retrieved documentary evidence.
-""".strip()
-
-
 def build_decision_brief_prompt(
     question: str,
     evidence_context: str,
     evidence_fitness=None,
     evidence_topics: Optional[List[str]] = None,
-    topology_context: Optional[str] = None,
 ) -> str:
     """
     Build the reasoning prompt sent to the LLM.
@@ -317,30 +206,6 @@ def build_decision_brief_prompt(
             f"Missing domains: "
             f"{', '.join(evidence_fitness.missing_topics) or 'None'}"
         )
-
-    topology_context = topology_context or ""
-
-    if topology_context:
-        topology_guidance = """
-A deterministic Institutional Topology Assessment is provided below.
-
-Treat it as structural context derived from the institutional topology:
-
-- Do not describe topology relationships as documentary findings.
-- Do not assign constitutional or empirical citations to topology facts.
-- Do not invent relationships that are absent from the supplied assessment.
-- Preserve the topology scope notice and acknowledge that the current graph
-  is deliberately incomplete.
-- Include a section titled "## Institutional Topology Assessment".
-- Explain how represented relationships broaden the scope of the decision.
-"""
-    else:
-        topology_guidance = """
-No unambiguous institutional topology entity was resolved for this question.
-
-Do not include an Institutional Topology Assessment section and do not infer
-graph relationships from general knowledge.
-"""
 
     return f"""
 You are an AI assistant helping university administrators make evidence-based institutional decisions.
@@ -497,12 +362,6 @@ Evidence domains appropriate to this question:
 Retrieved constitutional and empirical evidence:
 {evidence_context}
 
-Institutional topology guidance:
-{topology_guidance}
-
-Deterministic institutional topology context:
-{topology_context or "No topology context was supplied."}
-
 Generate a Decision Brief with the following sections:
 
 # Decision Brief
@@ -525,10 +384,6 @@ Generate a Decision Brief with the following sections:
 
 ## Strategic Considerations
 
-If deterministic topology context was supplied:
-
-## Institutional Topology Assessment
-
 ## Recommended Follow-Up
 
 ## Sources Used
@@ -537,8 +392,6 @@ Throughout the Decision Brief:
 
 - Explicitly distinguish institutional values from empirical evidence.
 - Explain how empirical findings support, complicate, or fail to address the institutional values.
-- Keep deterministic topology facts distinct from both constitutional and
-  empirical evidence; topology describes represented institutional structure.
 - Explicitly distinguish internal institutional evidence from external standards and external comparator institutions.
 - Preserve the source's epistemic status: proposed, recommended, intended,
   requested, budgeted in planning, approved, implemented, or observed.
@@ -586,10 +439,6 @@ class DecisionBriefService:
             EvidenceFitnessAssessment
         ] = None,
         evidence_topics: Optional[List[str]] = None,
-        topology_entity_query: Optional[str] = None,
-        topology_catalog: Optional[
-            InstitutionalTopologyCatalog
-        ] = None,
         temperature: float = 0.2,
     ) -> DecisionBrief:
         question = question.strip()
@@ -620,32 +469,11 @@ class DecisionBriefService:
             )
         )
 
-        if topology_catalog is None:
-            topology_catalog = build_bootstrap_catalog()
-
-        topology_entity = resolve_topology_entity(
-            question=question,
-            catalog=topology_catalog,
-            entity_query=topology_entity_query,
-        )
-
-        topology_impact = None
-
-        if topology_entity is not None:
-            topology_impact = InstitutionalImpactService(
-                topology_catalog
-            ).summarize(topology_entity.id)
-
-        topology_context = build_topology_context(
-            topology_impact
-        )
-
         prompt = build_decision_brief_prompt(
             question,
             evidence_context,
             evidence_fitness=evidence_fitness,
             evidence_topics=evidence_topics,
-            topology_context=topology_context,
         )
 
         client = OpenAI(
@@ -682,11 +510,5 @@ class DecisionBriefService:
                 observatory_assessment
             ),
             evidence_fitness=evidence_fitness,
-            topology_entity_id=(
-                topology_entity.id
-                if topology_entity is not None
-                else None
-            ),
-            topology_impact=topology_impact,
             raw_markdown=brief_markdown,
         )

@@ -18,9 +18,6 @@ from app.observatory.metrics import (
     ObservatoryAssessment,
     build_observatory_assessment,
 )
-from app.observatory.decision_brief.renderer import (
-    render_decision_brief,
-)
 from app.observatory.topology.bootstrap import build_bootstrap_catalog
 from app.observatory.topology.catalog import InstitutionalTopologyCatalog
 from app.observatory.topology.entity import InstitutionalEntity
@@ -272,87 +269,6 @@ Topology Scope Notice:
 """.strip()
 
 
-def render_topology_markdown(
-    impact: Optional[ImpactSummary],
-) -> str:
-    """Render the authoritative topology section of a Decision Brief."""
-    if impact is None:
-        return ""
-
-    def bullets(items) -> str:
-        if not items:
-            return "- None represented in the current topology"
-
-        return "\n".join(
-            f"- {item}"
-            for item in items
-        )
-
-    relationship_word = (
-        "relationship"
-        if impact.total_relationships == 1
-        else "relationships"
-    )
-
-    return f"""
-## Institutional Topology Assessment
-
-**Entity:** {impact.entity.name}
-
-### Supports
-
-{bullets(impact.supports)}
-
-### Contributes To
-
-{bullets(impact.contributes_to)}
-
-### Supported By
-
-{bullets(impact.supported_by)}
-
-### Receives Contributions From
-
-{bullets(impact.contributed_to_by)}
-
-### Institutional Reach
-
-The current institutional topology records **{impact.total_relationships} direct institutional {relationship_word}** for {impact.entity.name}.
-
-### Deterministic Assessment
-
-{impact.narrative()}
-
-> **Topology scope notice:** This is a small, manually curated model of
-> institutional relationships. It represents only relationships currently
-> encoded in the catalog. Absence of a represented relationship does not
-> establish absence of a real-world institutional connection. These structural
-> facts are derived from the institutional topology, not from retrieved
-> documentary evidence.
-""".strip()
-
-
-def assemble_decision_brief_markdown(
-    synthesis_markdown: str,
-    topology_impact: Optional[ImpactSummary] = None,
-) -> str:
-    """Assemble LLM synthesis and deterministic service products."""
-    sections = [synthesis_markdown.strip()]
-
-    topology_markdown = render_topology_markdown(
-        topology_impact
-    )
-
-    if topology_markdown:
-        sections.append(topology_markdown)
-
-    return "\n\n".join(
-        section
-        for section in sections
-        if section
-    ).strip()
-
-
 def build_decision_brief_prompt(
     question: str,
     evidence_context: str,
@@ -413,19 +329,17 @@ Treat it as structural context derived from the institutional topology:
 - Do not describe topology relationships as documentary findings.
 - Do not assign constitutional or empirical citations to topology facts.
 - Do not invent relationships that are absent from the supplied assessment.
-- The application will append the authoritative topology section after LLM
-  synthesis.
-- Do not create an "Institutional Topology Assessment" section yourself.
-- Use the topology only to explain structural implications in the Executive
-  Summary and Strategic Considerations.
-- Make clear when an implication is an inference from represented topology
-  rather than a documentary finding.
+- Preserve the topology scope notice and acknowledge that the current graph
+  is deliberately incomplete.
+- Include a section titled "## Institutional Topology Assessment".
+- Explain how represented relationships broaden the scope of the decision.
 """
     else:
         topology_guidance = """
 No unambiguous institutional topology entity was resolved for this question.
 
-Do not infer graph relationships from general knowledge.
+Do not include an Institutional Topology Assessment section and do not infer
+graph relationships from general knowledge.
 """
 
     return f"""
@@ -611,6 +525,10 @@ Generate a Decision Brief with the following sections:
 
 ## Strategic Considerations
 
+If deterministic topology context was supplied:
+
+## Institutional Topology Assessment
+
 ## Recommended Follow-Up
 
 ## Sources Used
@@ -746,17 +664,9 @@ class DecisionBriefService:
             temperature=temperature,
         )
 
-        synthesis_markdown = (
+        brief_markdown = (
             response.choices[0].message.content
             or ""
-        )
-
-        brief_markdown = render_decision_brief(
-            question=question,
-            synthesis_markdown=synthesis_markdown,
-            observatory_assessment=observatory_assessment,
-            evidence_fitness=evidence_fitness,
-            topology_impact=topology_impact,
         )
 
         return DecisionBrief(

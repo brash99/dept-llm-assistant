@@ -54,6 +54,7 @@ def generate_decision_brief(
     return_trace=False,
     constitutional_top_k=2,
     empirical_top_k=10,
+    topology_entity_query=None,
 ):
     """
     Generate a first-pass institutional Decision Brief.
@@ -100,6 +101,7 @@ def generate_decision_brief(
         sources=results,
         llm_base_url=llm_base_url,
         llm_model=llm_model,
+        topology_entity_query=topology_entity_query,
     )
 
     if return_trace:

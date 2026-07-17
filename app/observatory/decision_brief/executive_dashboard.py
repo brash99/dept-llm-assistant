@@ -1,0 +1,241 @@
+from __future__ import annotations
+
+from typing import Any, Optional
+
+from app.observatory.topology.impact import ImpactSummary
+
+
+def _get_value(
+    obj: Any,
+    *names: str,
+    default: Any = None,
+) -> Any:
+    """Read the first available attribute from an object."""
+    if obj is None:
+        return default
+
+    for name in names:
+        if hasattr(obj, name):
+            value = getattr(obj, name)
+
+            if value is not None:
+                return value
+
+    return default
+
+
+def _percentage(value: Any) -> Optional[float]:
+    """Normalize a numeric score to a percentage."""
+    if value is None:
+        return None
+
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+
+    if 0.0 <= number <= 1.0:
+        number *= 100.0
+
+    return max(0.0, min(100.0, number))
+
+
+def _progress_bar(
+    value: Optional[float],
+    width: int = 10,
+) -> str:
+    if value is None:
+        return "Unavailable"
+
+    filled = round(width * value / 100.0)
+    empty = width - filled
+
+    return (
+        f"{'█' * filled}"
+        f"{'░' * empty}"
+        f" {value:.0f}%"
+    )
+
+
+def _score_label(
+    value: Optional[float],
+) -> str:
+    if value is None:
+        return "Unavailable"
+
+    if value >= 85:
+        return "Strong"
+
+    if value >= 70:
+        return "Good"
+
+    if value >= 50:
+        return "Developing"
+
+    return "Limited"
+
+
+def _status_symbol(
+    label: str,
+) -> str:
+    normalized = label.casefold()
+
+    if normalized in {
+        "strong",
+        "high",
+        "good",
+        "available",
+    }:
+        return "✓"
+
+    if normalized in {
+        "developing",
+        "moderate",
+        "partial",
+    }:
+        return "⚠"
+
+    return "○"
+
+
+def _topology_status(
+    impact: Optional[ImpactSummary],
+) -> tuple[str, str]:
+    if impact is None:
+        return "Unavailable", (
+            "No unambiguous topology entity was resolved."
+        )
+
+    reach = impact.total_relationships
+
+    if reach >= 7:
+        label = "High Reach"
+    elif reach >= 3:
+        label = "Moderate Reach"
+    else:
+        label = "Focused Reach"
+
+    detail = (
+        f"{reach} direct institutional "
+        f"{'relationship' if reach == 1 else 'relationships'}"
+    )
+
+    return label, detail
+
+
+def render_executive_dashboard(
+    question: str,
+    observatory_assessment: Any = None,
+    evidence_fitness: Any = None,
+    topology_impact: Optional[ImpactSummary] = None,
+) -> str:
+    """Render the deterministic first-page instrument panel."""
+
+    fitness_score = _percentage(
+        _get_value(
+            evidence_fitness,
+            "fitness_score",
+            "score",
+        )
+    )
+
+    readiness_score = _percentage(
+        _get_value(
+            observatory_assessment,
+            "decision_readiness_score",
+            "readiness_score",
+            "overall_score",
+            "score",
+        )
+    )
+
+    if readiness_score is None:
+        readiness_score = fitness_score
+
+    readiness_label = _score_label(
+        readiness_score
+    )
+
+    fitness_label = _score_label(
+        fitness_score
+    )
+
+    topology_label, topology_detail = (
+        _topology_status(topology_impact)
+    )
+
+    covered_topics = _get_value(
+        evidence_fitness,
+        "covered_topics",
+        default=[],
+    ) or []
+
+    missing_topics = _get_value(
+        evidence_fitness,
+        "missing_topics",
+        default=[],
+    ) or []
+
+    evidence_detail = (
+        f"{len(covered_topics)} covered evidence "
+        f"{'domain' if len(covered_topics) == 1 else 'domains'}"
+    )
+
+    if missing_topics:
+        evidence_detail += (
+            f"; {len(missing_topics)} missing"
+        )
+
+    dashboard_lines = [
+        "# Institutional Decision Brief",
+        "",
+        "## Decision",
+        "",
+        question,
+        "",
+        "---",
+        "",
+        "## Executive Instrument Panel",
+        "",
+        "| Observatory Measure | Status | Assessment |",
+        "|---|---:|---|",
+        (
+            "| Decision Readiness "
+            f"| {_progress_bar(readiness_score)} "
+            f"| {_status_symbol(readiness_label)} "
+            f"{readiness_label} |"
+        ),
+        (
+            "| Evidence Fitness "
+            f"| {_progress_bar(fitness_score)} "
+            f"| {_status_symbol(fitness_label)} "
+            f"{fitness_label} |"
+        ),
+        (
+            "| Evidence Landscape "
+            f"| {_status_symbol(fitness_label)} "
+            f"{fitness_label} "
+            f"| {evidence_detail} |"
+        ),
+        (
+            "| Institutional Topology "
+            f"| {_status_symbol(topology_label)} "
+            f"{topology_label} "
+            f"| {topology_detail} |"
+        ),
+        (
+            "| Operational State "
+            "| ○ Unavailable "
+            "| No operational-state service is connected yet. |"
+        ),
+        "",
+        "> **Interpretation:** These indicators are generated by "
+        "deterministic Observatory services. They summarize the "
+        "current evidence and structural context available to the "
+        "Decision Brief; they are not generated conclusions from "
+        "the language model.",
+        "",
+        "---",
+    ]
+
+    return "\n".join(dashboard_lines).strip()

@@ -18,9 +18,6 @@ from app.observatory.metrics import (
     ObservatoryAssessment,
     build_observatory_assessment,
 )
-from app.observatory.decision_brief.renderer import (
-    render_decision_brief,
-)
 from app.observatory.topology.bootstrap import build_bootstrap_catalog
 from app.observatory.topology.catalog import InstitutionalTopologyCatalog
 from app.observatory.topology.entity import InstitutionalEntity
@@ -751,11 +748,8 @@ class DecisionBriefService:
             or ""
         )
 
-        brief_markdown = render_decision_brief(
-            question=question,
+        brief_markdown = assemble_decision_brief_markdown(
             synthesis_markdown=synthesis_markdown,
-            observatory_assessment=observatory_assessment,
-            evidence_fitness=evidence_fitness,
             topology_impact=topology_impact,
         )
 

@@ -26,6 +26,7 @@ class ExecutiveDashboardV2:
         observatory_assessment: Any = None,
         evidence_fitness: Any = None,
         topology_impact: Optional[ImpactSummary] = None,
+        evidence_count: int | None = None,
         generated_at: datetime | None = None,
     ) -> str:
         sections = [
@@ -45,6 +46,7 @@ class ExecutiveDashboardV2:
             self.ecosystem.render(
                 observatory_assessment=observatory_assessment,
                 evidence_fitness=evidence_fitness,
+                evidence_count=evidence_count,
             ),
             (
                 "> **Observatory note:** All displayed measurements are "

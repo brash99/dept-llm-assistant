@@ -14,6 +14,7 @@ class EcosystemPanel:
         self,
         observatory_assessment: Any = None,
         evidence_fitness: Any = None,
+        evidence_count: int | None = None,
     ) -> str:
         covered = as_list(
             get_value(
@@ -35,13 +36,14 @@ class EcosystemPanel:
             )
         )
 
-        evidence_count = get_value(
-            observatory_assessment,
-            "evidence_count",
-            "retrieved_evidence_count",
-            "source_count",
-            "document_count",
-        )
+        if evidence_count is None:
+            evidence_count = get_value(
+                observatory_assessment,
+                "evidence_count",
+                "retrieved_evidence_count",
+                "source_count",
+                "document_count",
+            )
 
         lines = [
             "## Knowledge Ecosystem",

@@ -78,6 +78,7 @@ def render_decision_brief(
     observatory_assessment: Any = None,
     evidence_fitness: Any = None,
     topology_impact: Optional[ImpactSummary] = None,
+    evidence_count: int | None = None,
 ) -> str:
     """Assemble the complete Decision Brief 2.0 knowledge product."""
 
@@ -86,6 +87,7 @@ def render_decision_brief(
         observatory_assessment=observatory_assessment,
         evidence_fitness=evidence_fitness,
         topology_impact=topology_impact,
+        evidence_count=evidence_count,
     )
 
     sections = [

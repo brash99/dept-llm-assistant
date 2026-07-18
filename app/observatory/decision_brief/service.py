@@ -757,6 +757,7 @@ class DecisionBriefService:
             observatory_assessment=observatory_assessment,
             evidence_fitness=evidence_fitness,
             topology_impact=topology_impact,
+            evidence_count=len(evidence_items),
         )
 
         return DecisionBrief(

@@ -66,5 +66,14 @@ def register_default_evaluators() -> None:
         ACADEMIC_PROGRAM_EVALUATORS,
     )
 
+    # General institutional questions currently use the same
+    # deterministic domain suite as academic-program questions.
+    # More specialized evaluator collections can be introduced
+    # as additional decision types mature.
+    registry.register(
+        "general_institutional",
+        ACADEMIC_PROGRAM_EVALUATORS,
+    )
+
 
 register_default_evaluators()

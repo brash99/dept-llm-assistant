@@ -834,6 +834,15 @@ class EvidenceFitnessService:
         topic_grades = {}
         topic_support = {}
 
+        grade_values = {
+            "strong": 1.00,
+            "partial": 0.65,
+            "weak": 0.30,
+            "missing": 0.00,
+        }
+
+        topic_score_total = 0.0
+
         for domain in readiness.domains:
 
             topic = domain.name
@@ -858,6 +867,10 @@ class EvidenceFitnessService:
                 **support_details,
             }
 
+            topic_score_total += (
+                grade_values[grade]
+            )
+
             if grade == "strong":
                 strong_topics.append(topic)
 
@@ -878,11 +891,14 @@ class EvidenceFitnessService:
             + partial_topics
         )
 
-        # DecisionReadinessService is authoritative for domain scoring.
-        # Reuse its normalized 0-100 score rather than recalculating with
-        # the expectation profile's topic count, which may differ from the
-        # number of registered domain evaluators.
-        topic_coverage = readiness.domain_score
+        if profile.topic_keywords:
+            topic_coverage = (
+                100.0
+                * topic_score_total
+                / len(profile.topic_keywords)
+            )
+        else:
+            topic_coverage = 0.0
 
         class_counts = {
             evidence_class: sum(

@@ -214,8 +214,12 @@ def render_institutional_orientation(
 
         if orientation.proposed_concepts:
             for concept in orientation.proposed_concepts:
+                structure_label = concept.concept_type.removeprefix(
+                    "academic_"
+                ).replace("_", " ").capitalize()
+
                 st.info(
-                    f"Proposed academic program: **{concept.name}**\n\n"
+                    f"Proposed {structure_label}: **{concept.name}**\n\n"
                     "This concept is not asserted as an existing program "
                     "in the institutional catalog."
                 )
@@ -226,7 +230,7 @@ def render_institutional_orientation(
                     f"Confidence: {concept.confidence:.2f}"
                 )
         else:
-            st.write("No proposed academic-program concept was identified.")
+            st.write("No proposed academic-structure concept was identified.")
 
         st.markdown("**Semantic program neighborhood**")
 

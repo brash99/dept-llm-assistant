@@ -82,7 +82,7 @@ class ProposedProgramConceptExtractor:
             ){0,6}
         )
         \s+
-        (?:program|major|concentration|certificate|track|specialization|pathway)\b
+        (?P<structure>program|major|concentration|certificate|track|specialization|pathway)\b
         """,
         flags=re.IGNORECASE | re.VERBOSE,
     )
@@ -150,6 +150,16 @@ class ProposedProgramConceptExtractor:
 
         for match in self._PROGRAM_PATTERN.finditer(question):
             raw_name = match.group("name")
+            structure = match.group("structure").casefold()
+            concept_type = {
+                "program": "academic_program",
+                "major": "academic_program",
+                "concentration": "academic_concentration",
+                "certificate": "academic_certificate",
+                "track": "academic_track",
+                "specialization": "academic_specialization",
+                "pathway": "academic_pathway",
+            }[structure]
             cleaned_name = self._clean_name(raw_name)
 
             if not cleaned_name:
@@ -158,10 +168,10 @@ class ProposedProgramConceptExtractor:
             concepts.append(
                 InstitutionalConcept(
                     name=cleaned_name,
-                    concept_type="academic_program",
+                    concept_type=concept_type,
                     asserted=False,
                     confidence=0.85,
-                    extraction_method="explicit_proposed_program_v0.4",
+                    extraction_method="explicit_academic_structure_v0.5",
                 )
             )
 
@@ -303,8 +313,11 @@ class ProgramOrientationService:
             parts.append(f"Resolved existing academic program: {entity.name}.")
 
         for concept in proposed_concepts:
+            structure_label = concept.concept_type.removeprefix(
+                "academic_"
+            ).replace("_", " ")
             parts.append(
-                f"Proposed academic program concept: {concept.name}."
+                f"Proposed {structure_label} concept: {concept.name}."
             )
 
         return "\n".join(parts)

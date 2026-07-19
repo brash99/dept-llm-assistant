@@ -82,7 +82,7 @@ class ProposedProgramConceptExtractor:
             ){0,6}
         )
         \s+
-        (?:program|major)\b
+        (?:program|major|concentration|certificate|track|specialization|pathway)\b
         """,
         flags=re.IGNORECASE | re.VERBOSE,
     )
@@ -142,8 +142,6 @@ class ProposedProgramConceptExtractor:
         question: str,
         resolution: ProgramResolution,
     ) -> List[InstitutionalConcept]:
-        if resolution.found:
-            return []
 
         if not self._contains_proposal_language(question):
             return []
@@ -163,7 +161,7 @@ class ProposedProgramConceptExtractor:
                     concept_type="academic_program",
                     asserted=False,
                     confidence=0.85,
-                    extraction_method="explicit_proposed_program_v0.3",
+                    extraction_method="explicit_proposed_program_v0.4",
                 )
             )
 

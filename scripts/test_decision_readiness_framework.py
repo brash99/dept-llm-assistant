@@ -4,6 +4,12 @@ from app.evidence import EvidenceClass
 from app.observatory.decision_readiness import (
     DomainEvaluatorSpec,
 )
+from app.observatory.decision_readiness.context import (
+    DecisionContext,
+)
+from app.observatory.evidence_fitness import (
+    DecisionType,
+)
 from app.observatory.decision_readiness.evaluators import (
     KeywordDomainEvaluator,
 )
@@ -64,7 +70,13 @@ def test_keyword_domain_evaluator():
                     EvidenceClass.INSTITUTIONAL
                 ),
             ),
-        ]
+        ],
+        DecisionContext(
+            question=(
+                "Should CNU establish an academic program?"
+            ),
+            decision_type=DecisionType.ACADEMIC_PROGRAM,
+        ),
     )
 
     assert assessment.name == "Facilities"

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import replace
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
+import json
 from pathlib import Path
 from types import SimpleNamespace
 from urllib.error import HTTPError
@@ -244,6 +245,31 @@ def test_stage_validation_and_promotion_preserve_provenance(tmp_path: Path) -> N
     assert evidence_class is EvidenceClass.EXTERNAL_STANDARD
     assert confidence == 0.98
     assert "Curated external provenance" in rationale
+
+
+def test_sidecar_serializes_native_date_provenance_as_iso_8601(tmp_path: Path) -> None:
+    complete_registry = ExternalSourceRegistry.from_yaml(REGISTRY_PATH)
+    registry = ExternalSourceRegistry((complete_registry.source("doe"),))
+    _, resource = registry.resource("doe_health_physics_training")
+    assert resource.version == date(2023, 5, 30)
+
+    acquisition = ExternalEvidenceAcquisitionService(
+        registry=registry,
+        staging_dir=tmp_path / "external_staging",
+        normalized_dir=tmp_path / "normalized",
+        fetcher=FixtureFetcher(),
+    )
+    plan = EvidenceAcquisitionPlanner(registry).plan(
+        assessment("Historical Precedent")
+    )
+
+    record = acquisition.stage(plan)[0]
+    sidecar = (
+        acquisition.staging_dir / record.source_document.relative_path
+    ).with_suffix(".html.provenance.json")
+    payload = json.loads(sidecar.read_text(encoding="utf-8"))
+
+    assert payload["external_provenance"]["version"] == "2023-05-30"
 
 
 def test_duplicate_content_is_not_promoted(tmp_path: Path) -> None:

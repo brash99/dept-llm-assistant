@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -323,11 +323,18 @@ class ExternalEvidenceAcquisitionService:
                     "source_document": record.source_document.to_dict(),
                     "external_provenance": record.provenance(),
                 },
+                default=self._json_default,
                 indent=2,
                 sort_keys=True,
             ),
             encoding="utf-8",
         )
+
+    @staticmethod
+    def _json_default(value):
+        if isinstance(value, (date, datetime)):
+            return value.isoformat()
+        raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
 
     @staticmethod
     def _relative_path(source_key: str, resource_id: str, artifact: FetchedArtifact) -> Path:

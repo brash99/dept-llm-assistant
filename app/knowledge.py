@@ -1,9 +1,15 @@
 from dataclasses import dataclass, field, asdict
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
 import hashlib
 import json
+
+
+def _json_default(value: Any):
+    if isinstance(value, (date, datetime)):
+        return value.isoformat()
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
 
 
 @dataclass
@@ -28,7 +34,7 @@ class KnowledgeObject:
         return asdict(self)
 
     def to_json(self, indent: int = 2) -> str:
-        return json.dumps(self.to_dict(), indent=indent)
+        return json.dumps(self.to_dict(), default=_json_default, indent=indent)
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]):
@@ -145,7 +151,7 @@ def save_knowledge_object(obj: KnowledgeObject, output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with output_path.open("w", encoding="utf-8") as f:
-        json.dump(obj.to_dict(), f, indent=2)
+        json.dump(obj.to_dict(), f, default=_json_default, indent=2)
 
 
 def load_knowledge_object(input_path: Path) -> KnowledgeObject:

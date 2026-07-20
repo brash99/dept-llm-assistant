@@ -271,6 +271,12 @@ def test_sidecar_serializes_native_date_provenance_as_iso_8601(tmp_path: Path) -
 
     assert payload["external_provenance"]["version"] == "2023-05-30"
 
+    validations = acquisition.validate((record,))
+    promoted = acquisition.promote((record,), validations)
+    normalized = load_knowledge_object(promoted[record.resource_id])
+
+    assert normalized.metadata["external_provenance"]["version"] == "2023-05-30"
+
 
 def test_duplicate_content_is_not_promoted(tmp_path: Path) -> None:
     fetcher = FixtureFetcher(duplicate_content=True)

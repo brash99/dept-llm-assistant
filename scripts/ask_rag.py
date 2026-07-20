@@ -4,15 +4,24 @@ from pathlib import Path
 import argparse
 
 from app.config import load_config
-from app.rag import answer_question
 
 
-def main():
+def main(answer_question_func=None):
+    if answer_question_func is None:
+        from app.rag import answer_question
+
+        answer_question_func = answer_question
+
     parser = argparse.ArgumentParser()
     parser.add_argument("query", type=str)
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--fetch-k", type=int, default=None)
     parser.add_argument("--no-dedupe", action="store_true")
+    parser.add_argument(
+        "--diagnostics",
+        action="store_true",
+        help="Display retrieval counts and timing diagnostics.",
+    )
     args = parser.parse_args()
 
     config = load_config()
@@ -25,7 +34,7 @@ def main():
 
     rerank_cfg = config.get("reranking", {})
 
-    answer, results = answer_question(
+    response = answer_question_func(
         query=args.query,
         vector_db_dir=vector_db_dir,
         model_name=embed_cfg.get("model", "BAAI/bge-small-en-v1.5"),
@@ -38,7 +47,15 @@ def main():
         rerank=rerank_cfg.get("enabled", False),
         reranker_model=rerank_cfg.get("model"),
         reranker_device=rerank_cfg.get("device", "cuda"),
+        return_trace=args.diagnostics,
     )
+
+    if args.diagnostics:
+        answer, results, retrieval_report, trace, profile = response
+    else:
+        answer, results, profile = response
+        retrieval_report = None
+        trace = None
 
     print("=" * 70)
     print("Answer")
@@ -56,6 +73,29 @@ def main():
         print(f"Title: {citation.get('title')}")
         print(f"Path : {citation.get('relative_path')}")
         print()
+
+    if args.diagnostics:
+        print("=" * 70)
+        print("Retrieval Diagnostics")
+        print("=" * 70)
+        print(f"Raw candidates       : {retrieval_report.num_candidates}")
+        print(f"After exact dedupe   : {retrieval_report.num_after_dedup}")
+        print(f"After reranking      : {retrieval_report.num_after_rerank}")
+        print(
+            "After family diversity: "
+            f"{retrieval_report.num_after_family_diversity}"
+        )
+        print(f"After threshold      : {retrieval_report.num_after_threshold}")
+        print(f"Final results        : {retrieval_report.num_results}")
+        print(f"Trace final results  : {len(trace.final_results)}")
+        print()
+        print("Retrieval Timing")
+        print(f"Total            : {profile.total_seconds:.3f}s")
+        print(f"Search           : {profile.search_seconds:.3f}s")
+        print(f"Dedupe           : {profile.dedupe_seconds:.3f}s")
+        print(f"Rerank           : {profile.rerank_seconds:.3f}s")
+        print(f"Family diversity : {profile.family_diversity_seconds:.3f}s")
+        print(f"Threshold        : {profile.threshold_seconds:.3f}s")
 
 
 if __name__ == "__main__":

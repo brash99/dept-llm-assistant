@@ -24,6 +24,12 @@ def answer_question(
     constitutional_top_k=2,
     empirical_top_k=10,
 ):
+    """Answer a question and return retrieval artifacts.
+
+    The canonical return contract is ``(answer, results, profile)``. When
+    ``return_trace`` is true, it is ``(answer, results, retrieval_report,
+    trace, profile)``. This mirrors the Decision Brief reasoning entry point.
+    """
     query = query.strip()
 
     retrieved = retrieve(

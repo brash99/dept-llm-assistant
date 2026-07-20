@@ -7,6 +7,7 @@ import yaml
 
 from app.acquisition.authority import SourceAuthority
 from app.acquisition.external.contracts import (
+    AcquisitionMode,
     ExternalResourceDefinition,
     ExternalSourceDefinition,
 )
@@ -46,6 +47,11 @@ class ExternalSourceRegistry:
                     effective_period=item.get("effective_period"),
                     version=item.get("version"),
                     geographic_scope=str(item.get("geographic_scope", "United States")),
+                    acquisition_mode=(
+                        AcquisitionMode(item["acquisition_mode"])
+                        if item.get("acquisition_mode")
+                        else None
+                    ),
                 )
                 for item in raw_source.get("resources", [])
             )
@@ -61,6 +67,9 @@ class ExternalSourceRegistry:
                 max_age_days=int(raw_source["max_age_days"]),
                 expected_extraction_method=str(raw_source["expected_extraction_method"]),
                 resources=resources,
+                acquisition_mode=AcquisitionMode(
+                    raw_source.get("acquisition_mode", AcquisitionMode.LIVE_WEB.value)
+                ),
             )
             cls._validate(source)
             sources.append(source)
@@ -94,4 +103,3 @@ class ExternalSourceRegistry:
 
     def resource(self, resource_id: str) -> Tuple[ExternalSourceDefinition, ExternalResourceDefinition]:
         return self._resources[resource_id]
-

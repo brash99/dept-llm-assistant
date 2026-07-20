@@ -65,12 +65,19 @@ def main() -> None:
         normalized_dir=project_root / storage["normalized"],
     )
     outcome = service.acquire_validate_promote(plan)
-    validations = outcome["validations"]
     print()
-    print(f"Staged: {len(outcome['staged'])}")
-    print(f"Validated: {sum(item.valid for item in validations)}")
-    print(f"Promoted: {len(outcome['promoted'])}")
-    for validation in validations:
+    print(f"Planned resources: {outcome.planned_resources}")
+    print(f"Staged: {len(outcome.staged)}")
+    print(f"Validated: {outcome.validated}")
+    print(f"Promoted: {len(outcome.promoted)}")
+    print(f"Skipped: {len(outcome.skipped)}")
+    print(f"Failed: {len(outcome.failed)}")
+    print(f"Invalid: {outcome.invalid}")
+    for item in outcome.skipped:
+        print(f"SKIPPED {item.resource_id}: {item.reason}")
+    for item in outcome.failed:
+        print(f"FAILED {item.resource_id} [{item.error_type}]: {item.reason}")
+    for validation in outcome.validations:
         if not validation.valid:
             print(f"INVALID {validation.resource_id}: {'; '.join(validation.errors)}")
 

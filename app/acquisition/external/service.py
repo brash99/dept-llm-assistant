@@ -8,13 +8,19 @@ from pathlib import Path
 import re
 import ssl
 from typing import Dict, Iterable, Optional
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 import certifi
 
 from app.acquisition.external.contracts import (
+    AcquisitionFailure,
+    AcquisitionMode,
     AcquisitionPlan,
+    AcquisitionSkip,
+    ExternalAcquisitionReport,
+    StagingResult,
     StagedExternalDocument,
     ValidationResult,
 )
@@ -91,8 +97,14 @@ class ExternalEvidenceAcquisitionService:
         )
 
     def stage(self, plan: AcquisitionPlan) -> tuple[StagedExternalDocument, ...]:
+        """Stage fetchable resources, preserving the pilot's tuple return contract."""
+        return self.stage_with_report(plan).staged
+
+    def stage_with_report(self, plan: AcquisitionPlan) -> StagingResult:
         self.staging_dir.mkdir(parents=True, exist_ok=True)
         staged = []
+        skipped = []
+        failed = []
         seen_resources = set()
 
         for item in plan.items:
@@ -100,7 +112,34 @@ class ExternalEvidenceAcquisitionService:
                 continue
             seen_resources.add(item.resource_id)
             source, resource = self.registry.resource(item.resource_id)
-            artifact = self.fetcher.fetch(resource.canonical_url)
+            mode = resource.acquisition_mode or source.acquisition_mode
+            if mode is AcquisitionMode.CORPUS_ONLY:
+                skipped.append(
+                    AcquisitionSkip(
+                        resource_id=resource.id,
+                        source_key=source.key,
+                        canonical_url=resource.canonical_url,
+                        reason=(
+                            "corpus_only: evidence already maintained through "
+                            "curated corpus ingestion"
+                        ),
+                    )
+                )
+                continue
+
+            try:
+                artifact = self.fetcher.fetch(resource.canonical_url)
+            except (HTTPError, URLError, TimeoutError, ssl.SSLError, ConnectionError, OSError) as error:
+                failed.append(
+                    AcquisitionFailure(
+                        resource_id=resource.id,
+                        source_key=source.key,
+                        canonical_url=resource.canonical_url,
+                        error_type=type(error).__name__,
+                        reason=str(error),
+                    )
+                )
+                continue
             relative_path = self._relative_path(source.key, resource.id, artifact)
             destination = self.staging_dir / relative_path
             destination.parent.mkdir(parents=True, exist_ok=True)
@@ -140,7 +179,11 @@ class ExternalEvidenceAcquisitionService:
             )
             self._write_sidecar(record)
             staged.append(record)
-        return tuple(staged)
+        return StagingResult(
+            staged=tuple(staged),
+            skipped=tuple(skipped),
+            failed=tuple(failed),
+        )
 
     def validate(
         self,
@@ -258,11 +301,18 @@ class ExternalEvidenceAcquisitionService:
             outputs[record.resource_id] = Path(output_path)
         return outputs
 
-    def acquire_validate_promote(self, plan: AcquisitionPlan) -> Dict[str, object]:
-        staged = self.stage(plan)
-        validations = self.validate(staged)
-        promoted = self.promote(staged, validations)
-        return {"staged": staged, "validations": validations, "promoted": promoted}
+    def acquire_validate_promote(self, plan: AcquisitionPlan) -> ExternalAcquisitionReport:
+        staging = self.stage_with_report(plan)
+        validations = self.validate(staging.staged)
+        promoted = self.promote(staging.staged, validations)
+        return ExternalAcquisitionReport(
+            plan=plan,
+            staged=staging.staged,
+            validations=validations,
+            promoted=promoted,
+            skipped=staging.skipped,
+            failed=staging.failed,
+        )
 
     def _write_sidecar(self, record: StagedExternalDocument) -> None:
         source_path = self.staging_dir / record.source_document.relative_path

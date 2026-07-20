@@ -1,10 +1,17 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from enum import Enum
+from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
 from app.acquisition.authority import SourceAuthority
 from app.acquisition.source_document import SourceDocument
+
+
+class AcquisitionMode(str, Enum):
+    LIVE_WEB = "live_web"
+    CORPUS_ONLY = "corpus_only"
 
 
 @dataclass(frozen=True)
@@ -17,6 +24,7 @@ class ExternalResourceDefinition:
     effective_period: Optional[str] = None
     version: Optional[str] = None
     geographic_scope: str = "United States"
+    acquisition_mode: Optional[AcquisitionMode] = None
 
 
 @dataclass(frozen=True)
@@ -32,6 +40,7 @@ class ExternalSourceDefinition:
     max_age_days: int
     expected_extraction_method: str
     resources: Tuple[ExternalResourceDefinition, ...]
+    acquisition_mode: AcquisitionMode = AcquisitionMode.LIVE_WEB
 
 
 @dataclass(frozen=True)
@@ -44,6 +53,7 @@ class AcquisitionPlanItem:
     issuing_authority: str
     authority_class: str
     evidence_role: str
+    acquisition_mode: str
 
 
 @dataclass(frozen=True)
@@ -121,3 +131,52 @@ class ValidationResult:
     duplicate: bool = False
     fresh: bool = True
 
+
+@dataclass(frozen=True)
+class AcquisitionSkip:
+    resource_id: str
+    source_key: str
+    canonical_url: str
+    reason: str
+
+
+@dataclass(frozen=True)
+class AcquisitionFailure:
+    resource_id: str
+    source_key: str
+    canonical_url: str
+    error_type: str
+    reason: str
+
+
+@dataclass(frozen=True)
+class StagingResult:
+    staged: Tuple[StagedExternalDocument, ...]
+    skipped: Tuple[AcquisitionSkip, ...]
+    failed: Tuple[AcquisitionFailure, ...]
+
+
+@dataclass(frozen=True)
+class ExternalAcquisitionReport:
+    plan: AcquisitionPlan
+    staged: Tuple[StagedExternalDocument, ...]
+    validations: Tuple[ValidationResult, ...]
+    promoted: Dict[str, Path]
+    skipped: Tuple[AcquisitionSkip, ...]
+    failed: Tuple[AcquisitionFailure, ...]
+
+    @property
+    def planned_resources(self) -> int:
+        return self.plan.estimated_documents
+
+    @property
+    def validated(self) -> int:
+        return sum(item.valid for item in self.validations)
+
+    @property
+    def invalid(self) -> int:
+        return sum(not item.valid for item in self.validations)
+
+    def __getitem__(self, key: str):
+        """Preserve the initial pilot report's dictionary-style access."""
+        return getattr(self, key)

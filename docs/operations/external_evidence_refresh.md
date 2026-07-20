@@ -11,6 +11,19 @@ mkdir -p storage/logs
 
 The Health Physics pilot uses 13 explicit registry resources across ABET,
 ORISE, BLS, O*NET, NRC, DOE, and SCHEV. It performs no search or crawling.
+Authorities remain visible in the plan based on their evidentiary relevance,
+independently of how their evidence enters the corpus.
+
+The registry supports two acquisition modes:
+
+- `live_web` (the default) retrieves the explicitly registered URL.
+- `corpus_only` records the resource as relevant but does not request its URL.
+
+SCHEV is `corpus_only` because Akamai rejects automated requests to its two
+registered URLs and the ISO already maintains approximately 62 manually
+curated SCHEV documents through the established corpus-ingestion workflow.
+Those normalized documents remain available to chunking, indexing, retrieval,
+and reasoning; skipping the registry URLs does not remove or invalidate them.
 
 ## 1. Review the deterministic plan
 
@@ -59,8 +72,25 @@ Inspect it with:
 less storage/logs/health_physics_external_acquisition.log
 ```
 
-Review `Staged`, `Validated`, `Promoted`, and every `INVALID` line. A repeated
-unchanged acquisition is intentionally not promoted again.
+Review every summary count and detail line:
+
+- `Planned resources` is the number of unique registry resources in the plan.
+- `Staged` counts resources successfully downloaded and written with provenance.
+- `Validated` counts staged resources that passed extraction, provenance,
+  freshness, and duplicate checks.
+- `Promoted` counts validated resources written as normalized Knowledge Objects.
+- `Skipped` counts deliberately unfetched resources, including `corpus_only`
+  resources; these are not network failures.
+- `Failed` counts expected retrieval failures such as HTTP errors, timeouts,
+  URL errors, and SSL failures, with an operator-facing reason for each URL.
+- `Invalid` counts staged resources that failed validation, including duplicate
+  or unchanged content.
+
+Retrieval failure is isolated per resource. Later resources continue through
+staging, validation, and promotion, so a partial-success run is fully reported
+rather than aborted. Unexpected storage or normalization errors remain visible
+and are not broadly suppressed. A repeated unchanged acquisition is
+intentionally invalid for promotion and does not overwrite the existing object.
 
 ## 3. Inspect staging and provenance
 
@@ -112,7 +142,8 @@ timestamp.
 
 ## 5. Clear derived outputs for a complete rebuild
 
-Promotion changes `storage/normalized` only. Chunk, embedding, and vector-index
+Promotion changes `storage/normalized` only. A partial-success promotion has
+the same boundary. Chunk, embedding, and vector-index
 rebuilds are manual. Newly promoted evidence cannot participate in retrieval
 until all three have completed.
 

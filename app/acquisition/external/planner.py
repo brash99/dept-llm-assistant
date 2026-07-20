@@ -43,6 +43,9 @@ class EvidenceAcquisitionPlanner:
                             issuing_authority=source.issuing_authority,
                             authority_class=source.authority_class.value,
                             evidence_role=source.evidence_role,
+                            acquisition_mode=(
+                                resource.acquisition_mode or source.acquisition_mode
+                            ).value,
                         )
                     )
 

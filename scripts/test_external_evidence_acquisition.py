@@ -4,9 +4,11 @@ from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace
+from urllib.error import HTTPError
 
 from app.acquisition.external import (
     EvidenceAcquisitionPlanner,
+    AcquisitionMode,
     ExternalEvidenceAcquisitionService,
     ExternalSourceRegistry,
     FetchedArtifact,
@@ -21,12 +23,15 @@ REGISTRY_PATH = Path("config/external_evidence_sources.yaml")
 
 
 class FixtureFetcher:
-    def __init__(self, *, duplicate_content: bool = False) -> None:
+    def __init__(self, *, duplicate_content: bool = False, failures=None) -> None:
         self.duplicate_content = duplicate_content
+        self.failures = dict(failures or {})
         self.urls = []
 
     def fetch(self, url: str) -> FetchedArtifact:
         self.urls.append(url)
+        if url in self.failures:
+            raise self.failures[url]
         marker = "same fixture" if self.duplicate_content else url
         return FetchedArtifact(
             content=(
@@ -93,6 +98,68 @@ def test_plan_is_deterministic_and_maps_authorities() -> None:
     accreditation = [item.source_key for item in first.items if item.evidence_domain == "Accreditation"]
     assert accreditation == ["abet", "abet"]
     assert "Validation Status\n\nPending" in planner.render_dry_run(first)
+    assert registry.source("abet").acquisition_mode is AcquisitionMode.LIVE_WEB
+    assert registry.source("schev").acquisition_mode is AcquisitionMode.CORPUS_ONLY
+
+
+def test_http_failure_is_reported_while_later_resource_is_promoted(tmp_path: Path) -> None:
+    registry = ExternalSourceRegistry.from_yaml(REGISTRY_PATH)
+    plan = EvidenceAcquisitionPlanner(registry).plan(assessment("Accreditation"))
+    first_url = plan.items[0].canonical_url
+    fetcher = FixtureFetcher(
+        failures={
+            first_url: HTTPError(first_url, 403, "Forbidden", hdrs=None, fp=None),
+        }
+    )
+    acquisition = ExternalEvidenceAcquisitionService(
+        registry=registry,
+        staging_dir=tmp_path / "external_staging",
+        normalized_dir=tmp_path / "normalized",
+        fetcher=fetcher,
+    )
+
+    report = acquisition.acquire_validate_promote(plan)
+
+    assert report.planned_resources == 2
+    assert len(fetcher.urls) == 2
+    assert len(report.failed) == 1
+    assert report.failed[0].resource_id == plan.items[0].resource_id
+    assert report.failed[0].error_type == "HTTPError"
+    assert "403" in report.failed[0].reason
+    assert len(report.staged) == 1
+    assert report.validated == 1
+    assert report.invalid == 0
+    assert len(report.promoted) == 1
+
+
+def test_corpus_only_authority_is_relevant_but_skipped_without_fetch(tmp_path: Path) -> None:
+    complete_registry = ExternalSourceRegistry.from_yaml(REGISTRY_PATH)
+    registry = ExternalSourceRegistry((complete_registry.source("schev"),))
+    plan = EvidenceAcquisitionPlanner(registry).plan(
+        assessment("Budget", "Historical Precedent")
+    )
+    fetcher = FixtureFetcher()
+    acquisition = ExternalEvidenceAcquisitionService(
+        registry=registry,
+        staging_dir=tmp_path / "external_staging",
+        normalized_dir=tmp_path / "normalized",
+        fetcher=fetcher,
+    )
+
+    report = acquisition.acquire_validate_promote(plan)
+
+    assert plan.candidate_authorities == (
+        "State Council of Higher Education for Virginia",
+    )
+    assert plan.estimated_documents == 2
+    assert all(item.acquisition_mode == "corpus_only" for item in plan.items)
+    assert fetcher.urls == []
+    assert len(report.skipped) == 2
+    assert report.failed == ()
+    assert report.staged == ()
+    assert report.validated == 0
+    assert len(report.promoted) == 0
+    assert all(item.reason.startswith("corpus_only:") for item in report.skipped)
 
 
 def test_unknown_decision_type_does_not_weaken_registry_scope() -> None:

@@ -12,9 +12,15 @@ class WorkforceDecisionFrameworkPanel:
     """Render the deterministic Academic Workforce Planning framework."""
 
     @staticmethod
-    def _evidence_required(grade: str) -> str:
+    def _evidence_required(grade: str, support: dict[str, Any]) -> str:
+        limitation = str(support.get("scope_limitation") or "").strip()
+        if limitation:
+            return limitation
         requirements = {
-            "strong": "No additional evidence indicated by the current grade.",
+            "strong": (
+                "Current support is strong; confirm recency, unit-level coverage, "
+                "and decision-specific completeness."
+            ),
             "partial": "Additional corroborating evidence to reach strong support.",
             "weak": "Additional direct sources and broader evidence coverage.",
             "missing": "Direct evidence for this domain.",
@@ -52,9 +58,16 @@ class WorkforceDecisionFrameworkPanel:
             "topic_support",
             default={},
         ) or {}
+        scope_label = get_value(
+            evidence_fitness,
+            "question_scope_label",
+            default="Scope Unresolved",
+        )
 
         lines = [
             "## Executive Workforce Decision Framework",
+            "",
+            f"**Question Scope:** {scope_label}",
             "",
             (
                 "This panel reports the current evidence available for the "
@@ -76,6 +89,7 @@ class WorkforceDecisionFrameworkPanel:
             score = percentage(support.get("score"))
             sources = support.get("sources", 0)
             keywords = support.get("keywords", 0)
+            families = support.get("unique_document_families")
             score_text = (
                 f"{score:.0f}%"
                 if score is not None
@@ -91,13 +105,16 @@ class WorkforceDecisionFrameworkPanel:
                 f"{score_text}; {sources} {source_word}; "
                 f"{keywords} {keyword_word}"
             )
+            if families is not None:
+                family_word = "document family" if families == 1 else "document families"
+                support_text += f"; {families} {family_word}"
             grade_label = grade.replace("_", " ").title()
 
             lines.append(
                 f"| {domain} "
                 f"| {status_symbol(grade)} {grade_label} "
                 f"| {support_text} "
-                f"| {self._evidence_required(grade)} |"
+                f"| {self._evidence_required(grade, support)} |"
             )
 
         return "\n".join(lines)

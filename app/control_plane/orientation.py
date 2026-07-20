@@ -1,5 +1,5 @@
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional, Sequence, Tuple
 
 from app.control_plane.concepts import InstitutionalConcept
@@ -9,6 +9,7 @@ from app.control_plane.semantic_neighbors import (
     SemanticProgramNeighbor,
     SemanticProgramNeighborhoodService,
 )
+from app.question_scope import QuestionScopeAssessment, classify_question_scope
 
 
 @dataclass(frozen=True)
@@ -27,6 +28,9 @@ class InstitutionalOrientation:
     resolution: ProgramResolution
     confidence: float
     notes: Tuple[str, ...]
+    question_scope: QuestionScopeAssessment = field(
+        default_factory=lambda: classify_question_scope("")
+    )
 
     @property
     def has_resolved_entities(self) -> bool:
@@ -143,6 +147,9 @@ class ProposedProgramConceptExtractor:
         resolution: ProgramResolution,
     ) -> List[InstitutionalConcept]:
 
+        if resolution.found:
+            return []
+
         if not self._contains_proposal_language(question):
             return []
 
@@ -253,6 +260,7 @@ class ProgramOrientationService:
             raise ValueError("Question must not be empty.")
 
         resolution = self.resolver.resolve(clean_question)
+        question_scope = classify_question_scope(clean_question)
 
         resolved_entities: List[ProgramEntity] = []
         if resolution.found and resolution.program is not None:
@@ -297,6 +305,7 @@ class ProgramOrientationService:
             proposed_concepts=tuple(proposed_concepts),
             semantic_neighbors=tuple(neighbors),
             resolution=resolution,
+            question_scope=question_scope,
             confidence=confidence,
             notes=tuple(notes),
         )
@@ -317,7 +326,7 @@ class ProgramOrientationService:
                 "academic_"
             ).replace("_", " ")
             parts.append(
-                f"Proposed {structure_label} concept: {concept.name}."
+                f"Proposed academic {structure_label} concept: {concept.name}."
             )
 
         return "\n".join(parts)

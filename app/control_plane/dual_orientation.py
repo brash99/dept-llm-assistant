@@ -9,6 +9,7 @@ from app.control_plane.orientation import (
     InstitutionalOrientation,
     ProgramOrientationService,
 )
+from app.question_scope import classify_question_scope
 
 
 @dataclass(frozen=True)
@@ -51,6 +52,8 @@ class SemanticControlPlaneResult:
 
     def to_dict(self) -> Dict[str, Any]:
         institutional = self.institutional_orientation
+        question_scope = getattr(institutional, "question_scope", None)
+        resolution = getattr(institutional, "resolution", None)
 
         return {
             "question": self.question,
@@ -84,6 +87,19 @@ class SemanticControlPlaneResult:
                     }
                     for neighbor in institutional.semantic_neighbors
                 ],
+                "question_scope": (
+                    {
+                        "value": question_scope.scope.value,
+                        "label": question_scope.label,
+                        "rationale": question_scope.rationale,
+                        "indicators": list(question_scope.indicators),
+                    }
+                    if question_scope is not None
+                    else None
+                ),
+                "resolution_diagnostics": list(
+                    getattr(resolution, "diagnostics", ())
+                ),
                 "notes": list(institutional.notes),
                 "confidence": institutional.confidence,
             },
@@ -135,6 +151,11 @@ class SemanticControlPlaneService:
                 question
             )
         )
+        question_scope = getattr(
+            institutional,
+            "question_scope",
+            classify_question_scope(question),
+        )
 
         return SemanticControlPlaneResult(
             question=question,
@@ -143,5 +164,9 @@ class SemanticControlPlaneService:
             notes=(
                 "Dual-space interpretation completed "
                 "before institutional evidence retrieval.",
+                (
+                    "Question scope: "
+                    f"{question_scope.label}."
+                ),
             ),
         )

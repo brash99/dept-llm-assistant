@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 from app.observatory.decision_brief.dashboard_v2 import (
     ExecutiveDashboardV2,
 )

@@ -10,6 +10,7 @@ from app.observatory.dashboard import (
     render_evidence_fitness,
 )
 from app.evidence import resolve_source_title
+from app.source_presentation import executive_source_label
 from app.constitution import (
     ConstitutionalCatalog,
     ConstitutionalOrientation,
@@ -180,11 +181,22 @@ def render_institutional_orientation(
             "institutional evidence retrieval."
         )
 
+        st.markdown(
+            f"**Question Scope:** {orientation.question_scope.label}"
+        )
+        st.caption(orientation.question_scope.rationale)
+
         st.markdown("**Resolved institutional entities**")
 
         if orientation.resolved_entities:
             for entity in orientation.resolved_entities:
-                st.success(f"Existing program: **{entity.name}**")
+                scope_value = orientation.question_scope.scope.value
+                prefix = (
+                    "Contextual program reference"
+                    if scope_value in {"institution_wide", "multi_entity"}
+                    else "Existing program"
+                )
+                st.success(f"{prefix}: **{entity.name}**")
 
                 details = []
 
@@ -209,6 +221,11 @@ def render_institutional_orientation(
             )
         else:
             st.write("No existing cataloged program was resolved.")
+
+        if orientation.resolution.diagnostics:
+            st.markdown("**Resolution diagnostics**")
+            for diagnostic in orientation.resolution.diagnostics:
+                st.caption(diagnostic)
 
         st.markdown("**Proposed institutional concepts**")
 
@@ -1131,17 +1148,11 @@ if st.button(button_label, type="primary") and query.strip():
                         f"{empirical_source_number}"
                     )
 
-            expander_label = (
-                f"[{citation_label}] "
-                f"{title} — score {result.score:.4f}"
+            expander_label = executive_source_label(
+                citation_label,
+                title,
+                evidence_class,
             )
-
-            if evidence_class:
-                expander_label = (
-                    f"[{citation_label}] "
-                    f"[{evidence_class}] "
-                    f"{title} — score {result.score:.4f}"
-                )
 
             with st.expander(expander_label):
                 st.write(f"**Path:** `{relative_path}`")
@@ -1173,6 +1184,9 @@ if st.button(button_label, type="primary") and query.strip():
                 "search_seconds": round(profile.search_seconds, 3),
                 "dedupe_seconds": round(profile.dedupe_seconds, 3),
                 "rerank_seconds": round(profile.rerank_seconds, 3),
+                "family_diversity_seconds": round(
+                    profile.family_diversity_seconds, 3
+                ),
                 "threshold_seconds": round(profile.threshold_seconds, 3),
             }
         )
@@ -1188,6 +1202,15 @@ if st.button(button_label, type="primary") and query.strip():
                 "raw_candidates": retrieval_report.num_candidates,
                 "after_dedup": retrieval_report.num_after_dedup,
                 "after_rerank": retrieval_report.num_after_rerank,
+                "after_document_family_diversity": (
+                    retrieval_report.num_after_family_diversity
+                ),
+                "removed_by_document_family_diversity": (
+                    retrieval_report.num_removed_by_family_diversity
+                ),
+                "max_per_document_family": (
+                    retrieval_report.max_per_document_family
+                ),
                 "after_threshold": retrieval_report.num_after_threshold,
                 "final_results": retrieval_report.num_results,
                 "reranking_enabled": retrieval_report.reranking_enabled,
@@ -1231,9 +1254,17 @@ if st.button(button_label, type="primary") and query.strip():
         show_trace_section("1. Raw FAISS Candidates", trace.raw_candidates)
         show_trace_section("2. After Deduplication", trace.deduped_candidates)
         show_trace_section("3. After Reranking", trace.reranked_candidates)
-        show_trace_section("4. After Threshold", trace.thresholded_candidates)
         show_trace_section(
-            "5. Final Results Sent to LLM",
+            "4. After Document-Family Diversity",
+            trace.family_diversified_candidates,
+        )
+        show_trace_section(
+            "5. Removed by Document-Family Diversity",
+            trace.family_removed_candidates,
+        )
+        show_trace_section("6. After Threshold", trace.thresholded_candidates)
+        show_trace_section(
+            "7. Final Results Sent to LLM",
             trace.final_results,
             max_items=top_k,
         )

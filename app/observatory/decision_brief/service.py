@@ -8,8 +8,10 @@ from openai import OpenAI
 from app.evidence import (
     Evidence,
     EvidenceClass,
+    evidence_role_label,
     group_evidence_by_class,
 )
+from app.question_scope import QuestionScope, classify_question_scope
 from app.observatory.evidence_fitness import (
     EvidenceFitnessAssessment,
     EvidenceFitnessService,
@@ -102,6 +104,7 @@ def build_grouped_evidence_context(
                 f"Original Source Number: {item.source_number}\n"
                 f"Constitutional Type: "
                 f"{metadata.get('constitutional_type')}\n"
+                f"Evidence Role: {evidence_role_label(item)}\n"
                 f"Institutional Scope: "
                 f"{metadata.get('institutional_scope')}\n"
                 f"Principles:\n{principle_text}\n"
@@ -109,7 +112,6 @@ def build_grouped_evidence_context(
                 f"Path: {citation.get('relative_path')}\n"
                 f"Chars: {citation.get('start_char')}–"
                 f"{citation.get('end_char')}\n"
-                f"Score: {result.score:.4f}\n\n"
                 f"{result.text}"
             )
     else:
@@ -147,13 +149,13 @@ def build_grouped_evidence_context(
                 f"[{item.citation_label}]\n"
                 f"Original Source Number: {item.source_number}\n"
                 f"Evidence Class: {item.evidence_class.value}\n"
+                f"Evidence Role: {evidence_role_label(item)}\n"
                 f"Classification Confidence: {item.confidence:.2f}\n"
                 f"Classification Rationale: {item.rationale}\n"
                 f"Title: {item.title}\n"
                 f"Path: {citation.get('relative_path')}\n"
                 f"Chars: {citation.get('start_char')}–"
                 f"{citation.get('end_char')}\n"
-                f"Score: {result.score:.4f}\n\n"
                 f"{result.text}"
             )
 
@@ -184,6 +186,10 @@ def resolve_topology_entity(
     questions do not receive topology context.
     """
     query_service = InstitutionalTopologyQuery(catalog)
+
+    scope = classify_question_scope(question).scope
+    if scope in {QuestionScope.INSTITUTION_WIDE, QuestionScope.MULTI_ENTITY}:
+        return None
 
     if entity_query:
         return query_service.find_entity(entity_query)
@@ -391,15 +397,31 @@ def build_decision_brief_prompt(
     decision_type_guidance = ""
 
     if evidence_fitness is not None:
+        scope_label = getattr(
+            evidence_fitness,
+            "question_scope_label",
+            "Scope Unresolved",
+        )
+        domain_lines = []
+        for topic, grade in evidence_fitness.topic_grades.items():
+            support = evidence_fitness.topic_support.get(topic, {}) or {}
+            limitation = support.get("scope_limitation")
+            detail = f"- {topic}: {grade}"
+            if limitation:
+                detail += f" — {limitation}"
+            domain_lines.append(detail)
         decision_type_guidance = (
             f"Decision type: "
             f"{evidence_fitness.decision_type_label}\n"
+            f"Question scope: {scope_label}\n"
             f"Evidence Fitness score: "
             f"{evidence_fitness.fitness_score:.0f}%\n"
             f"Covered domains: "
             f"{', '.join(evidence_fitness.covered_topics) or 'None'}\n"
             f"Missing domains: "
-            f"{', '.join(evidence_fitness.missing_topics) or 'None'}"
+            f"{', '.join(evidence_fitness.missing_topics) or 'None'}\n"
+            "Scope-aware domain support:\n"
+            + "\n".join(domain_lines)
         )
 
     topology_context = topology_context or ""
@@ -451,6 +473,15 @@ Never imply that empirical evidence alone determines institutional values.
 Explain explicitly how empirical evidence relates to institutional values.
 
 Claim-strength and language policy:
+
+- Use each source's explicit Evidence Role. Distinguish a formal requirement,
+  local institutional statement, self-study assertion, observed practice, and
+  analyst inference; do not substitute one role for another.
+- A statement in a self-study or departmental report must not be generalized
+  into a universal accreditation requirement unless a retrieved Formal
+  External Standard supports that claim.
+- When a requirement's institutional or unit-level applicability is not
+  established, say so explicitly and use uncertainty language.
 
 - Constitutional Evidence may support statements such as:
   "The institution values...", "The Strategic Compass prioritizes...",

@@ -1,6 +1,7 @@
 from app.control_plane.contracts import (
     SemanticControlPlaneResult,
 )
+from app.question_scope import classify_question_scope
 
 
 class SemanticControlPlane:
@@ -19,6 +20,11 @@ class SemanticControlPlane:
         institutional = self.institutional.orient(question)
 
         constitutional = self.constitutional.orient(question)
+        question_scope = getattr(
+            institutional,
+            "question_scope",
+            classify_question_scope(question),
+        )
 
         return SemanticControlPlaneResult(
 
@@ -30,5 +36,9 @@ class SemanticControlPlane:
 
             notes=(
                 "Control Plane interpretation completed before retrieval.",
+                (
+                    "Question scope: "
+                    f"{question_scope.label}."
+                ),
             ),
         )

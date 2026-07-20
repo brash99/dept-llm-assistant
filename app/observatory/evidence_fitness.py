@@ -5,6 +5,8 @@ from enum import Enum
 from typing import Dict, List, Tuple
 
 from app.evidence import Evidence, EvidenceClass
+from app.question_scope import classify_question_scope
+from app.document_family import document_family_key
 
 
 class DecisionType(str, Enum):
@@ -54,6 +56,8 @@ class EvidenceFitnessAssessment:
     strengths: List[str] = field(default_factory=list)
     weaknesses: List[str] = field(default_factory=list)
     recommendations: List[str] = field(default_factory=list)
+    question_scope: str = "unresolved"
+    question_scope_label: str = "Scope Unresolved"
 
 
 ACADEMIC_PROGRAM_TOPICS = {
@@ -990,6 +994,7 @@ class EvidenceFitnessService:
         decision_type, confidence = (
             cls.classify_decision_type(question)
         )
+        scope_assessment = classify_question_scope(question)
 
         profile = PROFILES[decision_type]
 
@@ -1005,7 +1010,22 @@ class EvidenceFitnessService:
             != EvidenceClass.CONSTITUTIONAL
         ]
 
-        empirical_total = len(empirical_items)
+        role_items = evidence_items
+        if decision_type == DecisionType.ACADEMIC_WORKFORCE_PLANNING:
+            seen_families = set()
+            role_items = []
+            for item in evidence_items:
+                family = document_family_key(item.result)
+                if family in seen_families:
+                    continue
+                seen_families.add(family)
+                role_items.append(item)
+
+        empirical_total = sum(
+            1
+            for item in role_items
+            if item.evidence_class != EvidenceClass.CONSTITUTIONAL
+        )
 
         strong_topics = []
         partial_topics = []
@@ -1014,6 +1034,7 @@ class EvidenceFitnessService:
 
         topic_grades = {}
         topic_support = {}
+        scope_limitations = []
 
         for domain in readiness.domains:
 
@@ -1031,6 +1052,24 @@ class EvidenceFitnessService:
                     domain.keyword_breadth,
                 **domain.metadata,
             }
+
+            if decision_type == DecisionType.ACADEMIC_WORKFORCE_PLANNING:
+                from app.observatory.workforce_evidence_scope import (
+                    qualify_workforce_domain,
+                )
+
+                grade, support_score, qualification = qualify_workforce_domain(
+                    topic=topic,
+                    keywords=profile.topic_keywords[topic],
+                    evidence_items=empirical_items,
+                    question_scope=scope_assessment.scope,
+                    grade=grade,
+                    score=support_score,
+                )
+                support_details.update(qualification)
+                limitation = qualification.get("scope_limitation")
+                if limitation:
+                    scope_limitations.append(str(limitation))
 
             topic_grades[topic] = grade
 
@@ -1063,12 +1102,23 @@ class EvidenceFitnessService:
         # Reuse its normalized 0-100 score rather than recalculating with
         # the expectation profile's topic count, which may differ from the
         # number of registered domain evaluators.
-        topic_coverage = readiness.domain_score
+        grade_values = {
+            "strong": 1.0,
+            "partial": 0.65,
+            "weak": 0.30,
+            "missing": 0.0,
+        }
+        topic_coverage = (
+            100.0 * sum(grade_values[grade] for grade in topic_grades.values())
+            / len(topic_grades)
+            if topic_grades
+            else 0.0
+        )
 
         class_counts = {
             evidence_class: sum(
                 1
-                for item in evidence_items
+                for item in role_items
                 if item.evidence_class
                 == evidence_class
             )
@@ -1088,8 +1138,8 @@ class EvidenceFitnessService:
         evidence_role_fit = (
             100.0
             * preferred_count
-            / len(evidence_items)
-            if evidence_items
+            / len(role_items)
+            if role_items
             else 0.0
         )
 
@@ -1175,6 +1225,8 @@ class EvidenceFitnessService:
         strengths = []
         weaknesses = []
         recommendations = []
+
+        weaknesses.extend(dict.fromkeys(scope_limitations))
 
         if topic_coverage >= 75:
             strengths.append(
@@ -1283,4 +1335,6 @@ class EvidenceFitnessService:
             strengths=strengths,
             weaknesses=weaknesses,
             recommendations=recommendations,
+            question_scope=scope_assessment.scope.value,
+            question_scope_label=scope_assessment.label,
         )

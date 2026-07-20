@@ -124,10 +124,25 @@ class AcademicWorkforceEvidenceMapPanel:
         if keywords is not None:
             details.append(_count_text(keywords, "keyword concept", "keyword concepts"))
 
+        families = support.get("unique_document_families")
+        if families is not None:
+            details.append(_count_text(families, "document family", "document families"))
+
+        scope = support.get("evidence_scope")
+        if scope:
+            details.append(f"scope: {scope}")
+
+        directness = support.get("directness")
+        if directness:
+            details.append(f"directness: {directness}")
+
         return "; ".join(details) if details else "No support counts reported."
 
     @staticmethod
-    def _required_text(grade: str, domain: str) -> str:
+    def _required_text(grade: str, domain: str, support: dict[str, Any]) -> str:
+        limitation = str(support.get("scope_limitation") or "").strip()
+        if limitation:
+            return limitation
         required = ACADEMIC_WORKFORCE_EVIDENCE_MAP[domain]["required"]
 
         if grade.casefold() == "strong":
@@ -186,7 +201,7 @@ class AcademicWorkforceEvidenceMapPanel:
                     ),
                     (
                         "- **Evidence Still Required:** "
-                        f"{self._required_text(grade, domain)}"
+                        f"{self._required_text(grade, domain, support)}"
                     ),
                     "",
                 ]

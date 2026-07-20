@@ -290,7 +290,29 @@ class InstitutionalParticipationProfilePanel:
             return ""
 
         profile = participation_profile or _topology_profile(topology_impact)
-        unit = profile.academic_unit or "Not Yet Available"
+        question_scope = str(
+            get_value(evidence_fitness, "question_scope", default="unresolved")
+            or "unresolved"
+        ).casefold()
+        comparative_scope = question_scope in {"institution_wide", "multi_entity"}
+        scope_label = str(
+            get_value(
+                evidence_fitness,
+                "question_scope_label",
+                default=(
+                    "Multi-Entity Comparison"
+                    if question_scope == "multi_entity"
+                    else "Institution-Wide Academic Workforce Planning"
+                ),
+            )
+        )
+        if comparative_scope and participation_profile is None:
+            profile = InstitutionalParticipationProfile()
+        unit = (
+            "Not applicable — comparative multi-unit analysis required"
+            if comparative_scope
+            else profile.academic_unit or "Not Yet Available"
+        )
         topic_grades = get_value(
             evidence_fitness,
             "topic_grades",
@@ -307,6 +329,19 @@ class InstitutionalParticipationProfilePanel:
             "",
             f"**Selected Academic Unit:** {unit}",
             "",
+            *(
+                [
+                    f"**Question Scope:** {scope_label}",
+                    "",
+                    (
+                        "Institution-wide comparison required. Unit-level "
+                        "participation profiles are not yet available."
+                    ),
+                    "",
+                ]
+                if comparative_scope
+                else []
+            ),
             (
                 "This profile describes evidenced and unresolved institutional "
                 "participation. It does not score the academic unit, rank "

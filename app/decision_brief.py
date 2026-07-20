@@ -55,6 +55,7 @@ def generate_decision_brief(
     constitutional_top_k=2,
     empirical_top_k=10,
     topology_entity_query=None,
+    max_per_document_family=2,
 ):
     """
     Generate a first-pass institutional Decision Brief.
@@ -85,6 +86,7 @@ def generate_decision_brief(
         return_trace=return_trace,
         constitutional_top_k=constitutional_top_k,
         empirical_top_k=empirical_top_k,
+        max_per_document_family=max_per_document_family,
     )
 
     if return_trace:

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import PurePosixPath
 from typing import List, Optional
 import copy
@@ -8,6 +8,7 @@ import time
 from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
+from app.document_family import document_family_key
 
 
 @dataclass
@@ -17,6 +18,7 @@ class RetrievalProfile:
     dedupe_seconds: float
     rerank_seconds: float
     threshold_seconds: float
+    family_diversity_seconds: float = 0.0
 
 
 @dataclass
@@ -26,6 +28,8 @@ class RetrievalTrace:
     reranked_candidates: List[RetrievalResult]
     thresholded_candidates: List[RetrievalResult]
     final_results: List[RetrievalResult]
+    family_diversified_candidates: List[RetrievalResult] = field(default_factory=list)
+    family_removed_candidates: List[RetrievalResult] = field(default_factory=list)
 
 
 @dataclass
@@ -50,6 +54,9 @@ class RetrievalReport:
     reranking_enabled: bool = False
     reranker_model: Optional[str] = None
     min_rerank_score: Optional[float] = None
+    max_per_document_family: Optional[int] = None
+    num_after_family_diversity: int = 0
+    num_removed_by_family_diversity: int = 0
 
 
 def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
@@ -198,6 +205,31 @@ def dedupe_results(
     return deduped
 
 
+def diversify_document_families(
+    results: List[RetrievalResult],
+    max_per_family: Optional[int],
+) -> tuple[List[RetrievalResult], List[RetrievalResult]]:
+    """Preserve rank while limiting revision-heavy document families."""
+    if max_per_family is not None and max_per_family < 1:
+        raise ValueError("max_per_document_family must be at least 1 or None")
+
+    kept = []
+    removed = []
+    counts = {}
+
+    for result in results:
+        key = document_family_key(result)
+        result.metadata["document_family_key"] = key
+        count = counts.get(key, 0)
+        if max_per_family is not None and count >= max_per_family:
+            removed.append(result)
+            continue
+        counts[key] = count + 1
+        kept.append(result)
+
+    return kept, removed
+
+
 def retrieve(
     query: str,
     vector_db_dir,
@@ -213,6 +245,7 @@ def retrieve(
     return_trace: bool = False,
     constitutional_top_k: int = 2,
     empirical_top_k: int = 10,
+    max_per_document_family: Optional[int] = None,
 ):
     query = query.strip()
 
@@ -300,14 +333,23 @@ def retrieve(
         reranked_candidates = clone_results(deduped_candidates)
     t3 = time.perf_counter()
 
+    (
+        family_diversified_candidates,
+        family_removed_candidates,
+    ) = diversify_document_families(
+        reranked_candidates,
+        max_per_family=max_per_document_family,
+    )
+    t_family = time.perf_counter()
+
     if rerank and min_rerank_score is not None:
         thresholded_candidates = [
             result
-            for result in reranked_candidates
+            for result in family_diversified_candidates
             if result.score >= min_rerank_score
         ]
     else:
-        thresholded_candidates = reranked_candidates
+        thresholded_candidates = family_diversified_candidates
     t4 = time.perf_counter()
 
     constitutional_candidates = [
@@ -342,7 +384,8 @@ def retrieve(
         search_seconds=t1 - t0,
         dedupe_seconds=t2 - t1,
         rerank_seconds=t3 - t2,
-        threshold_seconds=t4 - t3,
+        family_diversity_seconds=t_family - t3,
+        threshold_seconds=t4 - t_family,
     )
 
     report = RetrievalReport(
@@ -358,11 +401,14 @@ def retrieve(
         num_candidates=len(raw_candidates),
         num_after_dedup=len(deduped_candidates),
         num_after_rerank=len(reranked_candidates),
+        num_after_family_diversity=len(family_diversified_candidates),
+        num_removed_by_family_diversity=len(family_removed_candidates),
         num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
         reranker_model=reranker_model if rerank else None,
         min_rerank_score=min_rerank_score,
+        max_per_document_family=max_per_document_family,
     )
 
     if return_trace:
@@ -370,6 +416,8 @@ def retrieve(
             raw_candidates=raw_candidates,
             deduped_candidates=deduped_candidates,
             reranked_candidates=reranked_candidates,
+            family_diversified_candidates=family_diversified_candidates,
+            family_removed_candidates=family_removed_candidates,
             thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )

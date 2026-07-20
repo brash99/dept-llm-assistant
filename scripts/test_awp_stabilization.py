@@ -1,0 +1,260 @@
+import sys
+import types
+from pathlib import Path
+
+import pytest
+
+
+try:
+    import faiss  # noqa: F401
+except (ImportError, OSError):
+    sys.modules["faiss"] = types.ModuleType("faiss")
+
+try:
+    import sentence_transformers  # noqa: F401
+except (ImportError, OSError):
+    module = types.ModuleType("sentence_transformers")
+    module.SentenceTransformer = object
+    module.CrossEncoder = object
+    sys.modules["sentence_transformers"] = module
+
+
+from app.control_plane.catalog import ProgramCatalog
+from app.control_plane.resolver import ProgramResolver
+from app.document_family import document_family_key
+from app.evidence import make_evidence
+from app.observatory.decision_brief.service import (
+    build_decision_brief_prompt,
+    build_grouped_evidence_context,
+    resolve_topology_entity,
+)
+from app.observatory.decision_brief.dashboard_v2.participation import (
+    InstitutionalParticipationProfilePanel,
+)
+from app.observatory.decision_brief.dashboard_v2.workforce import (
+    WorkforceDecisionFrameworkPanel,
+)
+from app.observatory.decision_brief.dashboard_v2.evidence_map import (
+    AcademicWorkforceEvidenceMapPanel,
+)
+from app.observatory.evidence_fitness import EvidenceFitnessService
+from app.observatory.topology.bootstrap import build_bootstrap_catalog
+from app.observatory.topology.entity import EntityType, InstitutionalEntity
+from app.observatory.topology.impact import ImpactSummary
+from app.question_scope import QuestionScope, classify_question_scope
+from app.retrieval import (
+    RetrievalProfile,
+    RetrievalReport,
+    RetrievalTrace,
+    diversify_document_families,
+)
+import app.retrieval as retrieval_module
+from app.source_presentation import executive_source_label
+from app.vector_index import RetrievalResult
+
+
+QUENTIN_QUESTION = (
+    "CNU currently employs approximately 275 full-time faculty members. "
+    "Suppose the university determines that this number must be reduced to "
+    "approximately 250 through attrition. Which departments should those 25 "
+    "faculty reductions come from, and why is that appropriate? Liberal "
+    "Learning Core obligations remain relevant."
+)
+
+
+def _result(path: str, text: str, score: float = 1.0) -> RetrievalResult:
+    return RetrievalResult(
+        score=score,
+        chunk_id=path + ":0",
+        knowledge_object_id=path,
+        object_type="document",
+        chunk_index=0,
+        text=text,
+        citation={"title": Path(path).stem, "relative_path": path},
+        metadata={},
+    )
+
+
+def test_high_risk_program_aliases_require_case_and_academic_context() -> None:
+    resolver = ProgramResolver(
+        ProgramCatalog.from_yaml(Path("config/institutional_programs.yaml"))
+    )
+    assert not resolver.resolve("Why is that appropriate?").found
+    assert not resolver.resolve("IS especially important here?").found
+    assert resolver.resolve("Review the IS program.").program.name == "Information Science"
+    assert resolver.resolve("students majoring in IS need advising").program.name == "Information Science"
+    assert resolver.resolve("Review the Information Science major.").program.name == "Information Science"
+    assert resolver.resolve("Review Computer Science.").program.name == "Computer Science"
+
+
+def test_scope_classifier_and_topology_selection_are_comparison_safe() -> None:
+    assert classify_question_scope(QUENTIN_QUESTION).scope == QuestionScope.INSTITUTION_WIDE
+    assert classify_question_scope("Assess the Physics Department").scope == QuestionScope.SINGLE_ENTITY
+    assert classify_question_scope("Compare Physics and Chemistry").scope == QuestionScope.MULTI_ENTITY
+    catalog = build_bootstrap_catalog()
+    assert resolve_topology_entity(QUENTIN_QUESTION, catalog) is None
+    assert resolve_topology_entity("Assess the Physics Department", catalog).name == "Physics"
+
+    fitness = types.SimpleNamespace(
+        decision_type="academic_workforce_planning",
+        question_scope="institution_wide",
+        question_scope_label="Institution-Wide Academic Workforce Planning",
+        topic_grades={},
+        topic_support={},
+    )
+    markdown = InstitutionalParticipationProfilePanel().render(
+        evidence_fitness=fitness
+    )
+    assert "comparative multi-unit analysis required" in markdown
+    assert "Unit-level participation profiles are not yet available" in markdown
+
+
+def test_document_family_variants_diversify_without_collapsing_criteria() -> None:
+    variants = [
+        _result("ABET/Criterion 5 FinalDraft V03 2024-03-01.pdf", "a", 0.9),
+        _result("ABET/Criterion 5 Final V04 2024-04-01.docx", "b", 0.8),
+        _result("ABET/Criterion 6 Draft V03.pdf", "c", 0.7),
+        _result("Reports/Physics Annual Report.pdf", "d", 0.6),
+        _result("Reports/Chemistry Annual Report.pdf", "e", 0.5),
+    ]
+    assert document_family_key(variants[0]) == document_family_key(variants[1])
+    assert document_family_key(variants[0]) != document_family_key(variants[2])
+    kept, removed = diversify_document_families(variants, max_per_family=1)
+    assert kept[0] is variants[0]
+    assert variants[1] in removed
+    assert variants[2] in kept
+    assert variants[3] in kept and variants[4] in kept
+    kept_two, removed_two = diversify_document_families(variants, max_per_family=2)
+    assert not removed_two
+    assert len(kept_two) == len(variants)
+
+
+def test_retrieval_family_diagnostics_are_accurate(monkeypatch: pytest.MonkeyPatch) -> None:
+    candidates = [
+        _result("ABET/Criterion 5 Final V03.pdf", "a", 0.9),
+        _result("ABET/Criterion 5 Draft V04.pdf", "b", 0.8),
+        _result("CNU/Physics Annual Report.pdf", "c", 0.7),
+    ]
+    monkeypatch.setattr(
+        retrieval_module,
+        "search_index",
+        lambda **kwargs: list(candidates),
+    )
+    results, report, trace, _profile = retrieval_module.retrieve(
+        query="faculty capacity",
+        vector_db_dir="unused",
+        model_name="unused",
+        fetch_k=3,
+        dedupe_by=None,
+        rerank=False,
+        return_trace=True,
+        constitutional_top_k=0,
+        empirical_top_k=3,
+        max_per_document_family=1,
+    )
+    assert len(results) == 2
+    assert report.num_after_rerank == 3
+    assert report.num_after_family_diversity == 2
+    assert report.num_removed_by_family_diversity == 1
+    assert report.max_per_document_family == 1
+    assert trace.family_removed_candidates[0].citation["relative_path"].endswith("V04.pdf")
+    assert all(item.metadata.get("document_family_key") for item in results)
+
+
+def test_retrieval_contracts_preserve_legacy_constructor_defaults() -> None:
+    profile = RetrievalProfile(1.0, 0.2, 0.2, 0.3, 0.3)
+    trace = RetrievalTrace([], [], [], [], [])
+    report = RetrievalReport(
+        "query", 12, 200, "relative_path", 2, 10, 2, 10, False,
+        200, 100, 100, 12, 12,
+    )
+
+    assert profile.family_diversity_seconds == 0.0
+    assert trace.family_diversified_candidates == []
+    assert trace.family_removed_candidates == []
+    assert report.max_per_document_family is None
+    assert report.num_after_family_diversity == 0
+    assert report.num_removed_by_family_diversity == 0
+
+
+def test_institution_wide_fitness_does_not_inflate_narrow_source_families() -> None:
+    results = [
+        _result(
+            "CNU/PCSE Department Annual Report.pdf",
+            "The department has 12 faculty members, faculty lines, teaching load, "
+            "a budget for travel, and financial resources.",
+        ),
+        *[
+            _result(
+                f"ABET/Program Self-Study Final V0{version}.pdf",
+                "The self-study discusses ABET accreditation, faculty qualifications, "
+                "institutional support, and financial resources.",
+            )
+            for version in range(3, 7)
+        ],
+        _result(
+            "CNU/Strategic Compass.pdf",
+            "The Strategic Compass describes institutional mission, student success, "
+            "and strategic financial sustainability.",
+        ),
+    ]
+    assessment = EvidenceFitnessService.evaluate(QUENTIN_QUESTION, make_evidence(results))
+    assert assessment.question_scope == "institution_wide"
+    assert assessment.topic_grades["Faculty Capacity"] != "strong"
+    assert assessment.topic_grades["Financial Implications"] != "strong"
+    assert assessment.topic_grades["Instructional Demand"] == "missing"
+    assert assessment.topic_grades["Enrollment Trends"] == "missing"
+    accreditation = assessment.topic_support["Accreditation and External Constraints"]
+    assert accreditation["unique_document_families"] == 1
+    assert "current unit-level compliance" in accreditation["scope_limitation"]
+    framework = WorkforceDecisionFrameworkPanel().render(assessment)
+    evidence_map = AcademicWorkforceEvidenceMapPanel().render(assessment)
+    assert "Evidence is direct but limited to one academic unit" in framework
+    assert "no decision-specific cost evidence" in evidence_map
+    assert "No additional evidence" not in framework
+
+
+def _impact(incoming: int, outgoing: int) -> ImpactSummary:
+    entity = InstitutionalEntity("entity.test", "Test Unit", EntityType.DEPARTMENT)
+    return ImpactSummary(
+        entity=entity,
+        supports=("Program",) if outgoing else (),
+        contributes_to=(),
+        supported_by=("College",) if incoming else (),
+        contributed_to_by=(),
+        outgoing_relationships=outgoing,
+        incoming_relationships=incoming,
+        total_relationships=incoming + outgoing,
+    )
+
+
+def test_topology_narrative_counts_relationship_directions() -> None:
+    assert "1 represented incoming relationship and no represented outgoing" in _impact(1, 0).narrative()
+    assert "no represented incoming relationships and 1 represented outgoing" in _impact(0, 1).narrative()
+    assert "1 represented incoming relationship and 1 represented outgoing" in _impact(1, 1).narrative()
+    assert "no direct relationships" in _impact(0, 0).narrative()
+
+
+def test_prompt_serializes_evidence_roles_and_claim_safety() -> None:
+    items = make_evidence([
+        _result(
+            "ABET/Computer Science Self-Study.pdf",
+            "Our program normally assigns two faculty members for course coverage.",
+        )
+    ])
+    context = build_grouped_evidence_context(items)
+    prompt = build_decision_brief_prompt(
+        "Assess staffing", context, evidence_topics=["Faculty Capacity"]
+    )
+    assert "Evidence Role: Institutional Self-Study" in context
+    assert "must not be generalized" in prompt
+    assert "Formal" in prompt and "External Standard" in prompt
+    assert "uncertainty language" in prompt
+
+
+def test_executive_source_label_omits_uncalibrated_score() -> None:
+    label = executive_source_label(
+        "Empirical Source 1", "Department Report", "Institutional Evidence"
+    )
+    assert label == "[Empirical Source 1] [Institutional Evidence] Department Report"
+    assert "score" not in label.casefold()

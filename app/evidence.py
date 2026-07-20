@@ -1,9 +1,12 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import PurePosixPath
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 
-from app.vector_index import RetrievalResult
+if TYPE_CHECKING:
+    from app.vector_index import RetrievalResult
 
 
 class EvidenceClass(Enum):
@@ -97,6 +100,29 @@ class Evidence:
     @property
     def score(self) -> float:
         return self.result.score
+
+
+def evidence_role_label(item: "Evidence") -> str:
+    """Return a claim-safe, deterministic role more specific than class."""
+    text = _normalized_source_text(item.result)
+
+    if item.evidence_class == EvidenceClass.CONSTITUTIONAL:
+        return "Strategic / Constitutional Document"
+    if "self-study" in text or "self study" in text:
+        return "Institutional Self-Study"
+    if item.evidence_class == EvidenceClass.EXTERNAL_STANDARD:
+        return "Formal External Standard"
+    if item.evidence_class == EvidenceClass.EXTERNAL_COMPARATOR:
+        return "Contextual Reference"
+    if item.evidence_class == EvidenceClass.PLANNING:
+        return "Planning Document"
+    if item.evidence_class == EvidenceClass.INSTITUTIONAL:
+        if any(term in text for term in ("department", "annual report", "pcse")):
+            return "Departmental Report"
+        return "Institutional Operating Record"
+    if item.evidence_class == EvidenceClass.HISTORICAL:
+        return "Contextual Reference"
+    return "Contextual Reference"
 
 
 def _normalized_source_text(result: RetrievalResult) -> str:
@@ -251,6 +277,8 @@ def make_evidence(
         result.metadata["evidence_class"] = evidence_class.value
         result.metadata["evidence_class_confidence"] = confidence
         result.metadata["evidence_class_rationale"] = rationale
+        # This narrower role is serialized into the governed prompt so the
+        # model cannot silently generalize a local narrative into a standard.
         result.metadata["source_kind"] = source_kind
         result.metadata["display_source_number"] = (
             display_source_number
@@ -269,6 +297,10 @@ def make_evidence(
                 confidence=confidence,
                 rationale=rationale,
             )
+        )
+
+        result.metadata["evidence_role"] = evidence_role_label(
+            evidence_items[-1]
         )
 
     return evidence_items

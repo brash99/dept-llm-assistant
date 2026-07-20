@@ -1,8 +1,10 @@
 from app.observatory.decision_brief.dashboard_v2 import (
     ExecutiveDashboardV2,
 )
-from app.observatory.decision_brief.dashboard_v2.workforce import (
+from app.observatory.decision_brief.dashboard_v2.contracts import (
     ACADEMIC_WORKFORCE_PLANNING_DOMAINS,
+)
+from app.observatory.decision_brief.dashboard_v2.workforce import (
     WorkforceDecisionFrameworkPanel,
 )
 from app.observatory.evidence_fitness import (

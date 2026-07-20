@@ -3,17 +3,8 @@ from __future__ import annotations
 from typing import Any
 
 from .common import get_value, percentage, status_symbol
-
-
-ACADEMIC_WORKFORCE_PLANNING_DOMAINS = (
-    "Instructional Demand",
-    "Faculty Capacity",
-    "Service Teaching Dependence",
-    "Accreditation and External Constraints",
-    "Enrollment Trends",
-    "Financial Implications",
-    "Strategic Priority Alignment",
-    "One-Line Loss Scenario",
+from .contracts import (
+    ACADEMIC_WORKFORCE_PLANNING_DOMAINS,
 )
 
 

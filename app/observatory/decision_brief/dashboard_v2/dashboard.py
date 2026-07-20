@@ -6,6 +6,7 @@ from typing import Any, Optional
 from app.observatory.topology.impact import ImpactSummary
 
 from .ecosystem import EcosystemPanel
+from .evidence_map import AcademicWorkforceEvidenceMapPanel
 from .header import HeaderPanel
 from .observatory import ObservatoryPanel
 from .readiness import ReadinessPanel
@@ -21,6 +22,7 @@ class ExecutiveDashboardV2:
         self.observatory = ObservatoryPanel()
         self.ecosystem = EcosystemPanel()
         self.workforce = WorkforceDecisionFrameworkPanel()
+        self.workforce_evidence_map = AcademicWorkforceEvidenceMapPanel()
 
     def render(
         self,
@@ -51,6 +53,9 @@ class ExecutiveDashboardV2:
                 evidence_count=evidence_count,
             ),
             self.workforce.render(
+                evidence_fitness=evidence_fitness,
+            ),
+            self.workforce_evidence_map.render(
                 evidence_fitness=evidence_fitness,
             ),
             (

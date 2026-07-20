@@ -33,6 +33,7 @@ def main(answer_question_func=None):
     llm_cfg = config.get("llm", {})
 
     rerank_cfg = config.get("reranking", {})
+    retrieval_cfg = config.get("retrieval", {})
 
     response = answer_question_func(
         query=args.query,
@@ -43,11 +44,15 @@ def main(answer_question_func=None):
         llm_model=llm_cfg["model"],
         top_k=args.top_k,
         fetch_k=args.fetch_k,
-        dedupe_by=None if args.no_dedupe else "relative_path",
+        dedupe_by=None if args.no_dedupe else "text",
         rerank=rerank_cfg.get("enabled", False),
         reranker_model=rerank_cfg.get("model"),
         reranker_device=rerank_cfg.get("device", "cuda"),
         return_trace=args.diagnostics,
+        max_per_document_family=retrieval_cfg.get(
+            "max_per_document_family",
+            2,
+        ),
     )
 
     if args.diagnostics:
@@ -88,6 +93,10 @@ def main(answer_question_func=None):
         print(f"After threshold      : {retrieval_report.num_after_threshold}")
         print(f"Final results        : {retrieval_report.num_results}")
         print(f"Trace final results  : {len(trace.final_results)}")
+        print(
+            "Excluded by allocation: "
+            f"{retrieval_report.num_removed_by_evidence_allocation}"
+        )
         print()
         print("Retrieval Timing")
         print(f"Total            : {profile.total_seconds:.3f}s")
@@ -96,6 +105,42 @@ def main(answer_question_func=None):
         print(f"Rerank           : {profile.rerank_seconds:.3f}s")
         print(f"Family diversity : {profile.family_diversity_seconds:.3f}s")
         print(f"Threshold        : {profile.threshold_seconds:.3f}s")
+        print()
+        print("Final Evidence Selection")
+        for result in trace.final_results:
+            citation = result.citation or {}
+            metadata = result.metadata or {}
+            authority = (
+                metadata.get("issuing_authority")
+                or citation.get("source_organization")
+                or metadata.get("source_organization")
+                or "Unknown"
+            )
+            print(f"[{metadata.get('final_evidence_rank')}] {citation.get('title')}")
+            print(f"  Path: {citation.get('relative_path')}")
+            print(f"  Object type: {result.object_type}")
+            print(f"  Authority: {authority}")
+            print(f"  FAISS score: {metadata.get('faiss_score', result.score)}")
+            print(f"  Reranker score: {metadata.get('rerank_score')}")
+            print(f"  Document family: {metadata.get('document_family_key')}")
+            print(f"  Evidence role: {metadata.get('evidence_role')}")
+            print(f"  Reason selected: {metadata.get('evidence_selection_reason')}")
+            print(
+                "  Constitutional fallback: "
+                f"{metadata.get('constitutional_fallback', False)}"
+            )
+
+        excluded = (
+            list(trace.family_removed_candidates)
+            + list(trace.allocation_removed_candidates)
+        )
+        if excluded:
+            print()
+            print("Excluded Candidates")
+            for result in excluded:
+                citation = result.citation or {}
+                print(f"- {citation.get('title')}: "
+                      f"{result.metadata.get('evidence_exclusion_reason')}")
 
 
 if __name__ == "__main__":

@@ -388,9 +388,11 @@ def test_retrieval_contracts_preserve_legacy_constructor_defaults() -> None:
     assert profile.family_diversity_seconds == 0.0
     assert trace.family_diversified_candidates == []
     assert trace.family_removed_candidates == []
+    assert trace.allocation_removed_candidates == []
     assert report.max_per_document_family is None
     assert report.num_after_family_diversity == 0
     assert report.num_removed_by_family_diversity == 0
+    assert report.num_removed_by_evidence_allocation == 0
 
 
 def test_institution_wide_fitness_does_not_inflate_narrow_source_families() -> None:

@@ -23,6 +23,7 @@ def answer_question(
     return_trace=False,
     constitutional_top_k=2,
     empirical_top_k=10,
+    max_per_document_family=2,
 ):
     """Answer a question and return retrieval artifacts.
 
@@ -47,6 +48,7 @@ def answer_question(
         return_trace=return_trace,
         constitutional_top_k=constitutional_top_k,
         empirical_top_k=empirical_top_k,
+        max_per_document_family=max_per_document_family,
     )
 
     if return_trace:

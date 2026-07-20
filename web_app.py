@@ -1016,6 +1016,10 @@ if st.button(button_label, type="primary") and query.strip():
         "fetch_k",
         200,
     )
+    max_per_document_family = retrieval_cfg.get(
+        "max_per_document_family",
+        2,
+    )
 
     # The constitutional retrieval policy is configuration-driven.
     # Use the configured broad candidate pool rather than the older UI
@@ -1046,6 +1050,7 @@ if st.button(button_label, type="primary") and query.strip():
                 return_trace=developer_mode,
                 constitutional_top_k=constitutional_top_k,
                 empirical_top_k=empirical_top_k,
+                max_per_document_family=max_per_document_family,
             )
 
             if mode == "Decision Brief":
@@ -1214,6 +1219,9 @@ if st.button(button_label, type="primary") and query.strip():
                 "removed_by_document_family_diversity": (
                     retrieval_report.num_removed_by_family_diversity
                 ),
+                "removed_by_evidence_allocation": (
+                    retrieval_report.num_removed_by_evidence_allocation
+                ),
                 "max_per_document_family": (
                     retrieval_report.max_per_document_family
                 ),
@@ -1253,6 +1261,40 @@ if st.button(button_label, type="primary") and query.strip():
                     if metadata.get("rerank_score") is not None:
                         st.write(f"**Rerank score:** `{metadata.get('rerank_score')}`")
 
+                    if metadata.get("document_family_key"):
+                        st.write(
+                            "**Document family:** "
+                            f"`{metadata.get('document_family_key')}`"
+                        )
+
+                    authority = (
+                        metadata.get("issuing_authority")
+                        or citation.get("source_organization")
+                        or metadata.get("source_organization")
+                    )
+                    if authority:
+                        st.write(f"**Source authority:** {authority}")
+
+                    if metadata.get("evidence_role"):
+                        st.write(f"**Evidence role:** {metadata.get('evidence_role')}")
+
+                    if metadata.get("evidence_selection_reason"):
+                        st.write(
+                            "**Selection reason:** "
+                            f"{metadata.get('evidence_selection_reason')}"
+                        )
+
+                    if metadata.get("evidence_exclusion_reason"):
+                        st.write(
+                            "**Exclusion reason:** "
+                            f"{metadata.get('evidence_exclusion_reason')}"
+                        )
+
+                    st.write(
+                        "**Constitutional fallback:** "
+                        f"{metadata.get('constitutional_fallback', False)}"
+                    )
+
                     st.write("**Chunk preview:**")
                     st.write(result.text[:1500])
                     st.divider()
@@ -1270,7 +1312,11 @@ if st.button(button_label, type="primary") and query.strip():
         )
         show_trace_section("6. After Threshold", trace.thresholded_candidates)
         show_trace_section(
-            "7. Final Results Sent to LLM",
+            "7. Removed by Evidence Allocation",
+            trace.allocation_removed_candidates,
+        )
+        show_trace_section(
+            "8. Final Results Sent to LLM",
             trace.final_results,
             max_items=top_k,
         )

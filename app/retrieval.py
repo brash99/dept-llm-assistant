@@ -30,6 +30,7 @@ class RetrievalTrace:
     final_results: List[RetrievalResult]
     family_diversified_candidates: List[RetrievalResult] = field(default_factory=list)
     family_removed_candidates: List[RetrievalResult] = field(default_factory=list)
+    allocation_removed_candidates: List[RetrievalResult] = field(default_factory=list)
 
 
 @dataclass
@@ -57,6 +58,7 @@ class RetrievalReport:
     max_per_document_family: Optional[int] = None
     num_after_family_diversity: int = 0
     num_removed_by_family_diversity: int = 0
+    num_removed_by_evidence_allocation: int = 0
 
 
 def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
@@ -222,9 +224,16 @@ def diversify_document_families(
         result.metadata["document_family_key"] = key
         count = counts.get(key, 0)
         if max_per_family is not None and count >= max_per_family:
+            result.metadata["evidence_exclusion_reason"] = (
+                "Excluded by document-family diversity cap "
+                f"({max_per_family} per family)."
+            )
             removed.append(result)
             continue
         counts[key] = count + 1
+        result.metadata["evidence_selection_reason"] = (
+            "Retained in reranker order within the document-family cap."
+        )
         kept.append(result)
 
     return kept, removed
@@ -281,6 +290,8 @@ def retrieve(
         for result in raw_candidates
         if result.object_type == "constitutional_knowledge"
     )
+    for result in raw_candidates:
+        result.metadata["constitutional_fallback"] = False
 
     constitutional_fallback_used = (
         constitutional_in_initial_pool < constitutional_top_k
@@ -305,6 +316,7 @@ def retrieve(
 
         for result in fallback_results:
             if result.chunk_id not in existing_chunk_ids:
+                result.metadata["constitutional_fallback"] = True
                 raw_candidates.append(result)
                 existing_chunk_ids.add(result.chunk_id)
 
@@ -372,6 +384,30 @@ def retrieve(
         :empirical_top_k
     ]
 
+    for rank, result in enumerate(selected_constitutional, start=1):
+        result.metadata["final_evidence_rank"] = rank
+        result.metadata["evidence_selection_reason"] = (
+            "Selected for the constitutional evidence quota after separate "
+            "constitutional ranking."
+        )
+
+    for offset, result in enumerate(selected_empirical, start=1):
+        result.metadata["final_evidence_rank"] = len(selected_constitutional) + offset
+        result.metadata["evidence_selection_reason"] = (
+            "Selected for the empirical evidence quota in diversified "
+            "reranker order."
+        )
+
+    allocation_removed_candidates = (
+        constitutional_candidates[constitutional_top_k:]
+        + empirical_candidates[empirical_top_k:]
+    )
+    for result in allocation_removed_candidates:
+        result.metadata["evidence_exclusion_reason"] = (
+            "Excluded after the applicable constitutional or empirical "
+            "evidence quota was filled."
+        )
+
     final_results = (
         selected_constitutional
         + selected_empirical
@@ -403,6 +439,7 @@ def retrieve(
         num_after_rerank=len(reranked_candidates),
         num_after_family_diversity=len(family_diversified_candidates),
         num_removed_by_family_diversity=len(family_removed_candidates),
+        num_removed_by_evidence_allocation=len(allocation_removed_candidates),
         num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
@@ -418,6 +455,7 @@ def retrieve(
             reranked_candidates=reranked_candidates,
             family_diversified_candidates=family_diversified_candidates,
             family_removed_candidates=family_removed_candidates,
+            allocation_removed_candidates=allocation_removed_candidates,
             thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )

@@ -9,6 +9,7 @@ from .ecosystem import EcosystemPanel
 from .header import HeaderPanel
 from .observatory import ObservatoryPanel
 from .readiness import ReadinessPanel
+from .workforce import WorkforceDecisionFrameworkPanel
 
 
 class ExecutiveDashboardV2:
@@ -19,6 +20,7 @@ class ExecutiveDashboardV2:
         self.readiness = ReadinessPanel()
         self.observatory = ObservatoryPanel()
         self.ecosystem = EcosystemPanel()
+        self.workforce = WorkforceDecisionFrameworkPanel()
 
     def render(
         self,
@@ -47,6 +49,9 @@ class ExecutiveDashboardV2:
                 observatory_assessment=observatory_assessment,
                 evidence_fitness=evidence_fitness,
                 evidence_count=evidence_count,
+            ),
+            self.workforce.render(
+                evidence_fitness=evidence_fitness,
             ),
             (
                 "> **Observatory note:** All displayed measurements are "

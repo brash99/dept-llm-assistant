@@ -19,6 +19,11 @@ CANONICAL_BENCHMARK = (
     "those 25 faculty reductions come from, and why?"
 )
 
+HEALTH_PHYSICS_BENCHMARK = (
+    "Should CNU develop a Health Physics academic program as part of "
+    "its strategic planning?"
+)
+
 
 EXPECTED_DOMAINS = [
     "Instructional Demand",
@@ -62,9 +67,19 @@ def main() -> None:
 
     # Guard against collisions with other established decision types.
     classification_cases = {
+        HEALTH_PHYSICS_BENCHMARK: DecisionType.ACADEMIC_PROGRAM,
         (
             "Should CNU create a new mechanical engineering "
             "degree program?"
+        ): DecisionType.ACADEMIC_PROGRAM,
+        (
+            "Should CNU evaluate the Chemistry major for continuation?"
+        ): DecisionType.ACADEMIC_PROGRAM,
+        (
+            "Should CNU expand the Data Science minor?"
+        ): DecisionType.ACADEMIC_PROGRAM,
+        (
+            "Should CNU close the existing certificate program?"
         ): DecisionType.ACADEMIC_PROGRAM,
         (
             "What do recent SCHEV reports indicate about "
@@ -86,6 +101,9 @@ def main() -> None:
             "What happens if one faculty line is removed from "
             "the Physics department?"
         ): DecisionType.ACADEMIC_WORKFORCE_PLANNING,
+        (
+            "How should CNU revise its institutional strategic plan?"
+        ): DecisionType.STRATEGIC_PLANNING,
     }
 
     for question, expected in classification_cases.items():
@@ -100,6 +118,18 @@ def main() -> None:
     readiness = EvidenceFitnessService.evaluate(
         question=CANONICAL_BENCHMARK,
         evidence_items=[],
+    )
+
+    health_physics_readiness = EvidenceFitnessService.evaluate(
+        question=HEALTH_PHYSICS_BENCHMARK,
+        evidence_items=[],
+    )
+
+    assert health_physics_readiness.decision_type == (
+        DecisionType.ACADEMIC_PROGRAM
+    )
+    assert list(health_physics_readiness.topic_grades) == list(
+        PROFILES[DecisionType.ACADEMIC_PROGRAM].topic_keywords
     )
 
     assert readiness.decision_type == (

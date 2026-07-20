@@ -777,9 +777,13 @@ ACADEMIC_WORKFORCE_OBJECTS = (
 ACADEMIC_PROGRAM_ACTIONS = (
     "start",
     "create",
+    "develop",
     "launch",
     "establish",
     "offer",
+    "evaluate",
+    "assess",
+    "review",
     "expand",
     "close",
     "discontinue",

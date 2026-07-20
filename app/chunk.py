@@ -18,6 +18,17 @@ CONSTITUTIONAL_METADATA_FIELDS = (
     "source_knowledge_object_id",
 )
 
+EXTERNAL_PROVENANCE_FIELDS = (
+    "external_provenance",
+    "issuing_authority",
+    "authority_class",
+    "evidence_role",
+    "decision_types",
+    "evidence_domains",
+    "canonical_url",
+    "geographic_scope",
+)
+
 
 @dataclass
 class Chunk:
@@ -117,6 +128,11 @@ def _document_metadata(document) -> Dict[str, Any]:
         if value is None:
             value = source_metadata.get(field)
 
+        if value is not None:
+            metadata[field] = value
+
+    for field in EXTERNAL_PROVENANCE_FIELDS:
+        value = source_metadata.get(field)
         if value is not None:
             metadata[field] = value
 

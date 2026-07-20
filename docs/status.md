@@ -14,6 +14,10 @@ Status as of July 2026. This file describes the current codebase; research and s
 - Retrieval with exact/path deduplication, optional cross-encoder reranking, optional thresholding, constitutional/empirical quotas, and trace diagnostics.
 - Conservative document-family normalization and post-rerank diversity limits. ABET self-study revisions and criterion-response filename variants are grouped without merging distinct criteria or identified programs.
 - Deterministic evidence classes and finer evidence roles, including Institutional Self-Study, Formal External Standard, Departmental Report, Planning Document, External Comparator, and Constitutional Evidence.
+- Decision-driven external evidence acquisition pilot with a seven-authority
+  curated registry, deterministic Evidence Fitness gap planning, dry-run
+  reports, staged validation, provenance-enriched Knowledge Objects, and
+  promotion through the existing normalization path.
 
 ### Semantic Layer
 

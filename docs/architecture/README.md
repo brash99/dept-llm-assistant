@@ -27,7 +27,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 10. [Decision Briefs](09_decision_briefs.md)
 11. [Design Principles](10_design_principles.md)
 12. [Constitutional Reasoning](11_constitutional_reasoning.md)
-13. [Architecture FAQ](ArchitectureFAQ.md)
+13. [Decision-Driven External Evidence Acquisition](12_decision_driven_evidence_acquisition.md)
+14. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

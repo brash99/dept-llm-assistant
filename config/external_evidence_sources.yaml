@@ -1,0 +1,191 @@
+schema_version: 1
+description: Curated authoritative external sources for decision-driven evidence acquisition.
+
+sources:
+  - key: abet
+    name: ABET
+    issuing_authority: ABET
+    authority_class: accreditation_authority
+    evidence_role: Formal External Standard
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Curriculum, Faculty, Facilities, Equipment, Accreditation]
+    refresh_policy: annual
+    max_age_days: 550
+    expected_extraction_method: html
+    resources:
+      - id: abet_ansac_criteria_current
+        title: Criteria for Accrediting Applied and Natural Science Programs
+        canonical_url: https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-applied-and-natural-science-programs-2026-2027/
+        document_type: accreditation_criteria
+        evidence_domains: [Curriculum, Faculty, Facilities, Equipment, Accreditation]
+        effective_period: 2026-2027
+        version: 2026-2027
+        geographic_scope: United States
+      - id: abet_self_study_templates
+        title: ABET Applied and Natural Science Self-Study Templates
+        canonical_url: https://www.abet.org/accreditation/accreditation-criteria/self-study-templates/
+        document_type: accreditation_guidance
+        evidence_domains: [Curriculum, Faculty, Facilities, Equipment, Accreditation]
+        effective_period: current
+        version: web-current
+        geographic_scope: United States
+
+  - key: orise
+    name: ORISE
+    issuing_authority: Oak Ridge Institute for Science and Education
+    authority_class: federal_authority
+    evidence_role: Federal Workforce Study
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Enrollment Demand, Workforce Demand, Historical Precedent]
+    refresh_policy: annual
+    max_age_days: 730
+    expected_extraction_method: pdf
+    resources:
+      - id: orise_health_physics_enrollments
+        title: Health Physics Enrollments and Degrees Survey
+        canonical_url: https://orise.orau.gov/stem/workforce-studies/reports/hp-brief-85-2022-data.pdf
+        document_type: workforce_enrollment_survey
+        evidence_domains: [Enrollment Demand, Workforce Demand, Historical Precedent]
+        effective_period: 2021-2022 survey cycle
+        version: current-published-survey
+        geographic_scope: United States
+      - id: orise_health_physics_trends
+        title: Health Physics Enrollments and Degrees Trend Resources
+        canonical_url: https://orise.orau.gov/stem/workforce-studies/reports/hp-assessment-2017.pdf
+        document_type: historical_trend_index
+        evidence_domains: [Enrollment Demand, Historical Precedent]
+        effective_period: 1966-current-published
+        version: web-current
+        geographic_scope: United States
+
+  - key: bls
+    name: U.S. Bureau of Labor Statistics
+    issuing_authority: U.S. Bureau of Labor Statistics
+    authority_class: federal_authority
+    evidence_role: Federal Labor-Market Statistic
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Workforce Demand, Enrollment / Demand]
+    refresh_policy: annual
+    max_age_days: 550
+    expected_extraction_method: html
+    resources:
+      - id: bls_physicists_ooh
+        title: Occupational Outlook Handbook — Physicists and Astronomers
+        canonical_url: https://www.bls.gov/ooh/life-physical-and-social-science/physicists-and-astronomers.htm
+        document_type: occupational_outlook
+        evidence_domains: [Workforce Demand, Enrollment / Demand]
+        effective_period: 2024-2034 projections
+        version: web-current
+        geographic_scope: United States
+      - id: bls_occupational_projections
+        title: Occupational Projections and Worker Characteristics
+        canonical_url: https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.htm
+        document_type: occupational_projection_table
+        evidence_domains: [Workforce Demand, Enrollment / Demand]
+        effective_period: 2024-2034 projections
+        version: web-current
+        geographic_scope: United States
+
+  - key: onet
+    name: O*NET OnLine
+    issuing_authority: U.S. Department of Labor O*NET Program
+    authority_class: federal_authority
+    evidence_role: Federal Occupational Profile
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Workforce Demand, Enrollment / Demand]
+    refresh_policy: annual
+    max_age_days: 550
+    expected_extraction_method: html
+    resources:
+      - id: onet_physicists
+        title: O*NET 19-2012.00 Physicists
+        canonical_url: https://www.onetonline.org/link/summary/19-2012.00
+        document_type: occupational_profile
+        evidence_domains: [Workforce Demand, Enrollment / Demand]
+        effective_period: current
+        version: web-current
+        geographic_scope: United States
+
+  - key: nrc
+    name: U.S. Nuclear Regulatory Commission
+    issuing_authority: U.S. Nuclear Regulatory Commission
+    authority_class: federal_authority
+    evidence_role: Federal Regulatory and Workforce Source
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Curriculum, Faculty, Facilities, Equipment, Workforce Demand, Enrollment / Demand]
+    refresh_policy: annual
+    max_age_days: 550
+    expected_extraction_method: html
+    resources:
+      - id: nrc_health_physicist
+        title: NRC Health Physicist Career Profile
+        canonical_url: https://www.nrc.gov/about-nrc/employment/careerpaths/explore-careers/health-physicist
+        document_type: federal_career_profile
+        evidence_domains: [Curriculum, Faculty, Workforce Demand, Enrollment / Demand]
+        effective_period: current
+        version: web-current
+        geographic_scope: United States
+      - id: nrc_authorized_individuals
+        title: NRC Authorized Individuals and Training Requirements
+        canonical_url: https://www.nrc.gov/materials/miau/med-use-toolkit/auth-individuals
+        document_type: regulatory_training_guidance
+        evidence_domains: [Curriculum, Faculty, Facilities, Equipment]
+        effective_period: current
+        version: web-current
+        geographic_scope: United States
+
+  - key: doe
+    name: U.S. Department of Energy
+    issuing_authority: U.S. Department of Energy
+    authority_class: federal_authority
+    evidence_role: Federal Operating and Workforce Context
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Facilities, Equipment, Workforce Demand, Enrollment / Demand, Historical Precedent]
+    refresh_policy: annual
+    max_age_days: 730
+    expected_extraction_method: html
+    resources:
+      - id: doe_radiation_protection_office
+        title: Office of Health Programs and Environmental Radiation Protection
+        canonical_url: https://www.energy.gov/ehss/office-health-programs-environmental-radiation-protection
+        document_type: federal_program_description
+        evidence_domains: [Facilities, Equipment, Workforce Demand, Enrollment / Demand]
+        effective_period: current
+        version: web-current
+        geographic_scope: United States
+      - id: doe_health_physics_training
+        title: Hanford Health Physics Workforce Training
+        canonical_url: https://www.energy.gov/em/articles/hanford-site-contractor-training-next-generation-radiation-protection-workers
+        document_type: federal_workforce_case
+        evidence_domains: [Workforce Demand, Enrollment / Demand, Historical Precedent]
+        effective_period: 2023
+        version: 2023-05-30
+        geographic_scope: United States — Hanford Site
+
+  - key: schev
+    name: SCHEV
+    issuing_authority: State Council of Higher Education for Virginia
+    authority_class: state_authority
+    evidence_role: State Academic-Program Authority
+    supported_decision_types: [academic_program]
+    supported_evidence_domains: [Budget, Enrollment Demand, Historical Precedent, Strategic Planning]
+    refresh_policy: annual
+    max_age_days: 550
+    expected_extraction_method: html
+    resources:
+      - id: schev_program_approval
+        title: Approval of Degree and Certificate Program Actions at Public Institutions
+        canonical_url: https://www.schev.edu/institutions/policies-guidelines/academic-affairs-policy/approval-of-program-actions-at-public-institutions
+        document_type: state_program_approval_policy
+        evidence_domains: [Budget, Enrollment Demand, Strategic Planning]
+        effective_period: current
+        version: web-current
+        geographic_scope: Virginia
+      - id: schev_academic_common_market
+        title: SCHEV Academic Common Market
+        canonical_url: https://www.schev.edu/financial-aid/academic-common-market
+        document_type: state_program_comparator_context
+        evidence_domains: [Enrollment Demand, Historical Precedent]
+        effective_period: current
+        version: web-current
+        geographic_scope: Virginia and SREB states

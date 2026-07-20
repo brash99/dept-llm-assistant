@@ -9,6 +9,12 @@ project:
 
 Do not commit a macOS path as the project root.
 
+`storage.external_staging` is the quarantine area for decision-driven external
+acquisition. The curated authority/resource registry is
+`config/external_evidence_sources.yaml`; changing it changes eligible external
+sources, not Decision Brief behavior. Each entry must retain explicit authority,
+role, domain, refresh, extraction, version, and geographic metadata.
+
 ## Storage
 
 `storage` entries are relative to `project.root` unless a script documents otherwise. Important derived directories are `normalized`, `constitutional`, `chunks`, `embeddings`, `vector_db`, `cache`, and `logs`. Repository storage placeholders are not production data.

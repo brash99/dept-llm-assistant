@@ -7,9 +7,11 @@ This directory separates current authoritative guidance from enduring design ess
 - [Current status](status.md) — implemented, partial, planned, and aspirational capabilities.
 - [Architecture overview](architecture/01_architecture_overview.md) — authoritative six-layer model.
 - [A100 operations](operations/a100.md) — server launch, monitoring, ingestion, indexing, and benchmarking.
+- [External evidence refresh runbook](operations/external_evidence_refresh.md) — standard curated acquisition and rebuild workflow.
 - [macOS development](operations/macos.md) — local editing and lightweight validation.
 - [Testing](operations/testing.md) — focused and repository-level checks.
 - [Configuration](operations/configuration.md) — current settings and registries.
+- [Decision-driven external acquisition](architecture/12_decision_driven_evidence_acquisition.md) — curated Evidence Fitness gap planning and staging.
 - [Glossary](reference/glossary.md) — canonical terminology.
 
 ## Architecture

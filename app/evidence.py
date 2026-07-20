@@ -105,6 +105,10 @@ class Evidence:
 
 def evidence_role_label(item: "Evidence") -> str:
     """Return a claim-safe, deterministic role more specific than class."""
+    explicit_role = item.result.metadata.get("evidence_role")
+    if explicit_role:
+        return str(explicit_role)
+
     text = _normalized_source_text(item.result)
 
     if item.evidence_class == EvidenceClass.CONSTITUTIONAL:
@@ -190,6 +194,25 @@ def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, st
         constitutional_type = result.metadata.get(
             "constitutional_type",
             "unspecified",
+        )
+
+    authority_class = str(result.metadata.get("authority_class") or "")
+    explicit_role = str(result.metadata.get("evidence_role") or "")
+    if authority_class and explicit_role:
+        normative_role = any(
+            marker in explicit_role.casefold()
+            for marker in ("standard", "regulatory", "program authority")
+        )
+        evidence_class = (
+            EvidenceClass.EXTERNAL_STANDARD
+            if normative_role
+            else EvidenceClass.EXTERNAL_COMPARATOR
+        )
+        return (
+            evidence_class,
+            0.98,
+            "Curated external provenance explicitly identifies authority "
+            f"{authority_class!r} and evidence role {explicit_role!r}.",
         )
         return (
             EvidenceClass.CONSTITUTIONAL,

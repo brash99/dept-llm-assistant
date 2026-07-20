@@ -1,13 +1,16 @@
-import importlib.util
 import sys
 import types
 from types import SimpleNamespace
 
 
-if importlib.util.find_spec("faiss") is None:
+try:
+    import faiss  # noqa: F401
+except (ImportError, OSError):
     sys.modules["faiss"] = types.ModuleType("faiss")
 
-if importlib.util.find_spec("sentence_transformers") is None:
+try:
+    import sentence_transformers  # noqa: F401
+except (ImportError, OSError):
     sentence_transformers = types.ModuleType(
         "sentence_transformers"
     )

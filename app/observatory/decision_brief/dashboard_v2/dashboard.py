@@ -9,6 +9,7 @@ from .ecosystem import EcosystemPanel
 from .evidence_map import AcademicWorkforceEvidenceMapPanel
 from .header import HeaderPanel
 from .observatory import ObservatoryPanel
+from .participation import InstitutionalParticipationProfilePanel
 from .readiness import ReadinessPanel
 from .workforce import WorkforceDecisionFrameworkPanel
 
@@ -23,6 +24,7 @@ class ExecutiveDashboardV2:
         self.ecosystem = EcosystemPanel()
         self.workforce = WorkforceDecisionFrameworkPanel()
         self.workforce_evidence_map = AcademicWorkforceEvidenceMapPanel()
+        self.participation = InstitutionalParticipationProfilePanel()
 
     def render(
         self,
@@ -32,6 +34,7 @@ class ExecutiveDashboardV2:
         topology_impact: Optional[ImpactSummary] = None,
         evidence_count: int | None = None,
         generated_at: datetime | None = None,
+        participation_profile: Any = None,
     ) -> str:
         sections = [
             self.header.render(
@@ -57,6 +60,11 @@ class ExecutiveDashboardV2:
             ),
             self.workforce_evidence_map.render(
                 evidence_fitness=evidence_fitness,
+            ),
+            self.participation.render(
+                evidence_fitness=evidence_fitness,
+                topology_impact=topology_impact,
+                participation_profile=participation_profile,
             ),
             (
                 "> **Observatory note:** All displayed measurements are "

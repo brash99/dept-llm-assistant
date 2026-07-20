@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Dependency-free presentation contracts for Dashboard V2."""
 
 from dataclasses import dataclass, field

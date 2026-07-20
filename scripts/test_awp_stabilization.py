@@ -22,7 +22,7 @@ except (ImportError, OSError):
 from app.control_plane.catalog import ProgramCatalog
 from app.control_plane.resolver import ProgramResolver
 from app.document_family import document_family_key
-from app.evidence import make_evidence
+from app.evidence import EvidenceClass, evidence_role_label, make_evidence
 from app.observatory.decision_brief.service import (
     build_decision_brief_prompt,
     build_grouped_evidence_context,
@@ -129,6 +129,46 @@ def test_document_family_variants_diversify_without_collapsing_criteria() -> Non
     assert len(kept_two) == len(variants)
 
 
+def test_production_abet_titles_form_stable_semantic_families() -> None:
+    criterion_8_a = _result("ABET/08_Criterion_8_InstSupport_Final.pdf", "a")
+    criterion_8_b = _result("ABET/Criterion_8_InstSupport_FinalDraft.docx", "b")
+    generic_a = _result("ABET/ABET Self-Study Report.pdf", "c")
+    generic_b = _result("ABET/ABET_SelfStudy_V04.pdf", "d")
+    ce_a = _result("ABET/SelfStudyReport_CE_All_In_One.pdf", "e")
+    ce_b = _result("ABET/CE_SelfStudyReport_2021.pdf", "f")
+    ee = _result("ABET/EE_ABET_SelfStudy.pdf", "g")
+    criterion_6 = _result("ABET/06_Criterion_6_Faculty_ECE.pdf", "h")
+
+    assert document_family_key(criterion_8_a) == document_family_key(criterion_8_b)
+    assert document_family_key(generic_a) == document_family_key(generic_b)
+    assert document_family_key(ce_a) == document_family_key(ce_b)
+    assert document_family_key(ce_a) != document_family_key(ee)
+    assert document_family_key(criterion_8_a) != document_family_key(criterion_6)
+
+
+def test_self_studies_are_institutional_but_formal_criteria_remain_external() -> None:
+    results = [
+        _result("ABET/ABET Self-Study Report.pdf", "local accreditation narrative"),
+        _result("ABET/08_Criterion_8_InstSupport_Final.pdf", "local response"),
+        _result(
+            "raw_web/abet_standards/2025 Criteria for Accrediting Engineering Programs.pdf",
+            "formal accreditation criteria",
+        ),
+        _result("ABET/Purdue ABET Self-Study Sample.pdf", "peer example"),
+        _result("ABET/ABET Criterion 5 Curriculum.pdf", "formal criterion text"),
+    ]
+    evidence = make_evidence(results)
+
+    assert evidence[0].evidence_class == EvidenceClass.INSTITUTIONAL
+    assert evidence_role_label(evidence[0]) == "Institutional Self-Study"
+    assert evidence[1].evidence_class == EvidenceClass.INSTITUTIONAL
+    assert evidence_role_label(evidence[1]) == "Institutional Self-Study"
+    assert evidence[2].evidence_class == EvidenceClass.EXTERNAL_STANDARD
+    assert evidence_role_label(evidence[2]) == "Formal External Standard"
+    assert evidence[3].evidence_class == EvidenceClass.EXTERNAL_COMPARATOR
+    assert evidence[4].evidence_class == EvidenceClass.EXTERNAL_STANDARD
+
+
 def test_retrieval_family_diagnostics_are_accurate(monkeypatch: pytest.MonkeyPatch) -> None:
     candidates = [
         _result("ABET/Criterion 5 Final V03.pdf", "a", 0.9),
@@ -212,6 +252,41 @@ def test_institution_wide_fitness_does_not_inflate_narrow_source_families() -> N
     assert "Evidence is direct but limited to one academic unit" in framework
     assert "no decision-specific cost evidence" in evidence_map
     assert "No additional evidence" not in framework
+
+
+def test_enrollment_snapshot_is_not_graded_as_a_trend() -> None:
+    snapshot = make_evidence([
+        _result(
+            "CNU/PCSE Program Review.pdf",
+            "Major enrollment was 533 students in 2021. Six percent were "
+            "out-of-state and many transferred from community colleges.",
+        ),
+        _result(
+            "CNU/PCSE Demographic Profile.pdf",
+            "The majors include in-state and out-of-state students in 2021.",
+        ),
+    ])
+    assessment = EvidenceFitnessService.evaluate(QUENTIN_QUESTION, snapshot)
+    assert assessment.topic_grades["Enrollment Trends"] == "weak"
+    support = assessment.topic_support["Enrollment Trends"]
+    assert support["score"] <= 0.30
+    assert "snapshot or demographic context" in support["scope_limitation"]
+
+
+def test_multi_year_enrollment_evidence_can_be_partial() -> None:
+    temporal = make_evidence([
+        _result(
+            "CNU/PCSE Multi-Year Enrollment.pdf",
+            "Major enrollment changed from 420 students in 2019 to 533 students "
+            "in 2021, with year-over-year completion data.",
+        ),
+    ])
+    assessment = EvidenceFitnessService.evaluate(QUENTIN_QUESTION, temporal)
+    assert assessment.topic_grades["Enrollment Trends"] == "partial"
+    assert (
+        assessment.topic_support["Enrollment Trends"]["directness"]
+        == "direct temporal enrollment evidence"
+    )
 
 
 def _impact(incoming: int, outgoing: int) -> ImpactSummary:

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Sequence
 
 from app.document_family import document_family_key
@@ -21,6 +22,11 @@ _FINANCIAL_DECISION_TERMS = (
 _DIRECT_FACULTY_TERMS = (
     "faculty headcount", "faculty fte", "faculty roster", "faculty members",
     "faculty lines", "staffing level", "teaching load",
+)
+_TEMPORAL_ENROLLMENT_TERMS = (
+    "multi-year", "multiyear", "year-over-year", "year over year",
+    "historical enrollment", "enrollment history", "over the past",
+    "over the last", "five-year", "three-year", "ten-year",
 )
 
 
@@ -43,6 +49,15 @@ def _supporting_items(
         item for item in evidence_items
         if any(keyword.casefold() in _text(item) for keyword in keywords)
     ]
+
+
+def _has_temporal_enrollment_evidence(text: str) -> bool:
+    if not any(term in text for term in ("enrollment", "majors", "degrees awarded", "completions")):
+        return False
+    if any(term in text for term in _TEMPORAL_ENROLLMENT_TERMS):
+        return True
+    years = set(re.findall(r"\b(?:19|20)\d{2}\b", text))
+    return len(years) >= 2
 
 
 def qualify_workforce_domain(
@@ -85,7 +100,26 @@ def qualify_workforce_domain(
             "unique_document_families": len(families),
         }
 
-    if topic == "Faculty Capacity":
+    if topic == "Enrollment Trends":
+        temporal = [text for text in texts if _has_temporal_enrollment_evidence(text)]
+        if temporal:
+            directness = "direct temporal enrollment evidence"
+            if grade in {"missing", "weak"}:
+                grade, score = "partial", max(score, 0.52)
+            if not broad_items:
+                grade, score = "partial", 0.52
+                limitation = (
+                    "Temporal enrollment evidence is present but limited to one "
+                    "academic unit or incomplete comparative coverage."
+                )
+        elif items:
+            grade, score = "weak", min(score, 0.30)
+            limitation = (
+                "Enrollment is described only as a snapshot or demographic context; "
+                "no genuine multi-year trend evidence was retrieved."
+            )
+
+    elif topic == "Faculty Capacity":
         direct = [text for text in texts if any(term in text for term in _DIRECT_FACULTY_TERMS)]
         directness = "direct quantitative or staffing evidence" if direct else directness
         if not broad_items:
@@ -108,7 +142,7 @@ def qualify_workforce_domain(
         formal = [item for item in items if evidence_role_label(item) == "Formal External Standard"]
         local = [item for item in items if item.evidence_class == EvidenceClass.INSTITUTIONAL]
         directness = "direct qualitative external constraint evidence" if formal else directness
-        if items and (not formal or not local):
+        if items and (not formal or not local or not broad_items):
             grade, score = "partial", min(score, 0.65)
             limitation = (
                 "Sources establish an external constraint but not current unit-level compliance, "

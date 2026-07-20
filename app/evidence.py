@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import PurePosixPath
+import re
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 if TYPE_CHECKING:
@@ -108,7 +109,7 @@ def evidence_role_label(item: "Evidence") -> str:
 
     if item.evidence_class == EvidenceClass.CONSTITUTIONAL:
         return "Strategic / Constitutional Document"
-    if "self-study" in text or "self study" in text:
+    if _is_institutional_self_study(text):
         return "Institutional Self-Study"
     if item.evidence_class == EvidenceClass.EXTERNAL_STANDARD:
         return "Formal External Standard"
@@ -131,8 +132,47 @@ def _normalized_source_text(result: RetrievalResult) -> str:
         citation.get("relative_path") or "",
         citation.get("source_path") or "",
         citation.get("title") or "",
+        result.metadata.get("source_collection") or "",
+        result.metadata.get("collection") or "",
     ]
     return " ".join(parts).lower()
+
+
+_EXTERNAL_COMPARATOR_MARKERS = (
+    "sample", "purdue", "self-study report (purdue",
+)
+_FORMAL_ABET_STANDARD_MARKERS = (
+    "abet_standards",
+    "criteria for accrediting",
+    "accreditation criteria",
+    "general criteria",
+    "program criteria",
+    "formal standard",
+)
+
+
+def _is_institutional_self_study(text: str) -> bool:
+    normalized = re.sub(r"[^a-z0-9]+", " ", text.casefold())
+    if any(marker.replace("_", " ") in normalized for marker in _FORMAL_ABET_STANDARD_MARKERS):
+        return False
+    if any(marker in text for marker in _EXTERNAL_COMPARATOR_MARKERS):
+        return False
+    if "self study" in normalized or "selfstudy" in text:
+        return True
+    # Locally authored criterion-response exports may omit "self-study" but
+    # normally retain both a response topic and either a local program code or
+    # draft/final workflow marker. A bare "ABET Criterion 5 Curriculum" title
+    # is therefore not silently reclassified as an institutional response.
+    criterion_response = re.search(
+        r"\bcriterion\s*\d+\b.*\b(?:faculty|inst(?:itutional)?\s*support|"
+        r"curriculum|students|facilities)\b",
+        normalized,
+    )
+    local_marker = re.search(
+        r"\b(?:ce|cpe|cpen|cs|cpsc|ece|ee|final|finaldraft|draft)\b",
+        normalized,
+    )
+    return bool(criterion_response and local_marker)
 
 
 def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, str]:
@@ -170,19 +210,32 @@ def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, st
         )
 
     if "abet" in text:
-        # ABET criteria are standards; ABET self-studies from other institutions
-        # can also function as comparators. In v0.1, keep ABET under standards
-        # unless the path clearly signals a sample from another institution.
-        if any(term in text for term in ["sample", "purdue", "self-study report (purdue"]):
+        if any(term in text for term in _EXTERNAL_COMPARATOR_MARKERS):
             return (
                 EvidenceClass.EXTERNAL_COMPARATOR,
                 0.80,
                 "Path/title indicates an ABET self-study sample from another institution.",
             )
+        if _is_institutional_self_study(text):
+            return (
+                EvidenceClass.INSTITUTIONAL,
+                0.90,
+                (
+                    "Path/title identifies a locally authored ABET self-study "
+                    "or institutional criterion-response section."
+                ),
+            )
         return (
             EvidenceClass.EXTERNAL_STANDARD,
             0.85,
-            "Path/title references ABET accreditation material.",
+            "Path/title references ABET accreditation criteria or formal material.",
+        )
+
+    if _is_institutional_self_study(text):
+        return (
+            EvidenceClass.INSTITUTIONAL,
+            0.85,
+            "Path/title identifies an institutional self-study or criterion response.",
         )
 
     # Planning documents: intended future state, program review, strategic/budget planning.

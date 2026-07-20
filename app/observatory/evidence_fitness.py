@@ -9,6 +9,7 @@ from app.evidence import Evidence, EvidenceClass
 
 class DecisionType(str, Enum):
     ACADEMIC_PROGRAM = "academic_program"
+    ACADEMIC_WORKFORCE_PLANNING = "academic_workforce_planning"
     ENROLLMENT_PLANNING = "enrollment_planning"
     BUDGET_FINANCE = "budget_finance"
     STATE_POLICY = "state_policy"
@@ -132,6 +133,129 @@ ACADEMIC_PROGRAM_TOPICS = {
         "precedent",
         "previous proposal",
         "does not currently offer",
+    ),
+}
+
+
+ACADEMIC_WORKFORCE_PLANNING_TOPICS = {
+    "Instructional Demand": (
+        "instructional demand",
+        "student credit hour",
+        "student credit hours",
+        "credit hour production",
+        "course enrollment",
+        "course enrollments",
+        "section enrollment",
+        "sections taught",
+        "class size",
+        "teaching demand",
+        "instructional workload",
+    ),
+    "Faculty Capacity": (
+        "faculty capacity",
+        "faculty fte",
+        "faculty full-time equivalent",
+        "faculty headcount",
+        "faculty members",
+        "faculty lines",
+        "faculty line",
+        "teaching load",
+        "course load",
+        "staffing level",
+        "instructional capacity",
+        "adjunct",
+        "overload",
+    ),
+    "Service Teaching Dependence": (
+        "service teaching",
+        "service course",
+        "service courses",
+        "general education",
+        "core curriculum",
+        "liberal learning core",
+        "required course",
+        "required courses",
+        "prerequisite",
+        "prerequisites",
+        "cross-department",
+        "cross department",
+        "non-major enrollment",
+    ),
+    "Accreditation and External Constraints": (
+        "accreditation",
+        "accreditation standard",
+        "accreditation standards",
+        "abet",
+        "sacscoc",
+        "licensure",
+        "certification",
+        "regulatory requirement",
+        "external regulation",
+        "minimum faculty",
+        "faculty qualification",
+        "faculty qualifications",
+    ),
+    "Enrollment Trends": (
+        "enrollment trend",
+        "enrollment trends",
+        "major enrollment",
+        "majors",
+        "declared majors",
+        "student headcount",
+        "degree production",
+        "degrees awarded",
+        "graduation trend",
+        "completion trend",
+        "applications",
+        "yield",
+        "retention",
+    ),
+    "Financial Implications": (
+        "financial implications",
+        "financial impact",
+        "budget",
+        "cost",
+        "cost per student credit hour",
+        "cost per credit hour",
+        "instructional cost",
+        "faculty salary",
+        "salary savings",
+        "revenue",
+        "net revenue",
+        "resource allocation",
+        "operating expense",
+    ),
+    "Strategic Priority Alignment": (
+        "strategic priority",
+        "strategic priorities",
+        "strategic alignment",
+        "strategic compass",
+        "institutional mission",
+        "institutional priority",
+        "academic master plan",
+        "liberal arts",
+        "student success",
+        "regional workforce",
+        "state workforce",
+    ),
+    "One-Line Loss Scenario": (
+        "one faculty line",
+        "one line disappears",
+        "lose one faculty line",
+        "loss of one faculty line",
+        "remove one faculty line",
+        "faculty reduction",
+        "faculty reductions",
+        "position reduction",
+        "position reductions",
+        "reduce faculty",
+        "reduce staffing",
+        "course coverage",
+        "schedule disruption",
+        "program viability",
+        "replacement hiring",
+        "retirement",
+        "attrition",
     ),
 }
 
@@ -406,6 +530,27 @@ PROFILES = {
         acceptable_external_ratio=0.45,
         minimum_institutional_ratio=0.20,
     ),
+    DecisionType.ACADEMIC_WORKFORCE_PLANNING: EvidenceExpectationProfile(
+        decision_type=DecisionType.ACADEMIC_WORKFORCE_PLANNING,
+        label="Academic Workforce Planning",
+        description=(
+            "Institution-wide analysis of academic staffing, faculty "
+            "capacity, instructional demand, departmental dependence, "
+            "and the consequences of adding, removing, or reallocating "
+            "faculty positions."
+        ),
+        topic_keywords=ACADEMIC_WORKFORCE_PLANNING_TOPICS,
+        preferred_classes=(
+            EvidenceClass.INSTITUTIONAL,
+            EvidenceClass.PLANNING,
+            EvidenceClass.HISTORICAL,
+            EvidenceClass.EXTERNAL_STANDARD,
+            EvidenceClass.EXTERNAL_COMPARATOR,
+            EvidenceClass.CONSTITUTIONAL,
+        ),
+        acceptable_external_ratio=0.45,
+        minimum_institutional_ratio=0.35,
+    ),
     DecisionType.GENERAL_INSTITUTIONAL: EvidenceExpectationProfile(
         decision_type=DecisionType.GENERAL_INSTITUTIONAL,
         label="General Institutional Question",
@@ -595,6 +740,36 @@ def _grade_topic(
 # Deterministic decision-intent classification
 # ---------------------------------------------------------------------------
 
+ACADEMIC_WORKFORCE_ACTIONS = (
+    "reduce",
+    "reduction",
+    "cut",
+    "decrease",
+    "eliminate",
+    "remove",
+    "reallocate",
+    "redistribute",
+    "downsize",
+    "shrink",
+    "add",
+    "hire",
+    "replace",
+)
+
+ACADEMIC_WORKFORCE_OBJECTS = (
+    "faculty member",
+    "faculty members",
+    "faculty position",
+    "faculty positions",
+    "faculty line",
+    "faculty lines",
+    "faculty fte",
+    "academic workforce",
+    "department staffing",
+    "departments",
+)
+
+
 ACADEMIC_PROGRAM_ACTIONS = (
     "start",
     "create",
@@ -619,6 +794,12 @@ ACADEMIC_PROGRAM_OBJECTS = (
 )
 
 DECISION_INTENT_RULES = (
+    (
+        DecisionType.ACADEMIC_WORKFORCE_PLANNING,
+        ACADEMIC_WORKFORCE_ACTIONS,
+        ACADEMIC_WORKFORCE_OBJECTS,
+        0.99,
+    ),
     (
         DecisionType.ACADEMIC_PROGRAM,
         ACADEMIC_PROGRAM_ACTIONS,

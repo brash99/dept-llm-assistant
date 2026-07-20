@@ -59,11 +59,17 @@ def register_default_evaluators() -> None:
     """
     from app.observatory.decision_readiness.evaluators import (
         ACADEMIC_PROGRAM_EVALUATORS,
+        ACADEMIC_WORKFORCE_PLANNING_EVALUATORS,
     )
 
     registry.register(
         "academic_program",
         ACADEMIC_PROGRAM_EVALUATORS,
+    )
+
+    registry.register(
+        "academic_workforce_planning",
+        ACADEMIC_WORKFORCE_PLANNING_EVALUATORS,
     )
 
     # General institutional questions currently use the same

@@ -9,6 +9,7 @@ from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
 from app.document_family import document_family_key
+from app.evidence_roles import allocate_empirical_by_role
 
 
 @dataclass
@@ -31,6 +32,8 @@ class RetrievalTrace:
     family_diversified_candidates: List[RetrievalResult] = field(default_factory=list)
     family_removed_candidates: List[RetrievalResult] = field(default_factory=list)
     allocation_removed_candidates: List[RetrievalResult] = field(default_factory=list)
+    role_removed_candidates: List[RetrievalResult] = field(default_factory=list)
+    insufficient_relevance_candidates: List[RetrievalResult] = field(default_factory=list)
 
 
 @dataclass
@@ -59,6 +62,14 @@ class RetrievalReport:
     num_after_family_diversity: int = 0
     num_removed_by_family_diversity: int = 0
     num_removed_by_evidence_allocation: int = 0
+    num_removed_by_role_allocation: int = 0
+    num_removed_for_insufficient_relevance: int = 0
+    evidence_roles_represented: tuple = ()
+    evidence_role_counts: dict = field(default_factory=dict)
+    expected_evidence_roles: tuple = ()
+    missing_evidence_roles: tuple = ()
+    concentrated_evidence_roles: tuple = ()
+    role_aware_allocation_changed_order: bool = False
 
 
 def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
@@ -255,6 +266,9 @@ def retrieve(
     constitutional_top_k: int = 2,
     empirical_top_k: int = 10,
     max_per_document_family: Optional[int] = None,
+    decision_type: Optional[str] = None,
+    max_per_evidence_role: Optional[int] = None,
+    evidence_role_relevance_margin: float = 0.5,
 ):
     query = query.strip()
 
@@ -380,9 +394,14 @@ def retrieve(
         :constitutional_top_k
     ]
 
-    selected_empirical = empirical_candidates[
-        :empirical_top_k
-    ]
+    role_allocation = allocate_empirical_by_role(
+        empirical_candidates,
+        limit=empirical_top_k,
+        decision_type=decision_type,
+        max_per_role=max_per_evidence_role,
+        relevance_margin=evidence_role_relevance_margin,
+    )
+    selected_empirical = list(role_allocation.selected)
 
     for rank, result in enumerate(selected_constitutional, start=1):
         result.metadata["final_evidence_rank"] = rank
@@ -393,14 +412,19 @@ def retrieve(
 
     for offset, result in enumerate(selected_empirical, start=1):
         result.metadata["final_evidence_rank"] = len(selected_constitutional) + offset
-        result.metadata["evidence_selection_reason"] = (
-            "Selected for the empirical evidence quota in diversified "
-            "reranker order."
-        )
+        if result.metadata.get("evidence_role_added_new_coverage"):
+            reason = "Selected in eligible reranker order and added a new evidence role."
+        elif result.metadata.get("evidence_role_fallback_selection"):
+            reason = "Selected in reranker order through low-confidence role fallback."
+        else:
+            reason = "Selected in eligible reranker order within the evidence-role cap."
+        result.metadata["evidence_selection_reason"] = reason
 
+    role_removed_candidates = list(role_allocation.role_excluded)
+    insufficient_relevance_candidates = list(role_allocation.insufficient_relevance)
     allocation_removed_candidates = (
         constitutional_candidates[constitutional_top_k:]
-        + empirical_candidates[empirical_top_k:]
+        + list(role_allocation.quota_excluded)
     )
     for result in allocation_removed_candidates:
         result.metadata["evidence_exclusion_reason"] = (
@@ -440,6 +464,14 @@ def retrieve(
         num_after_family_diversity=len(family_diversified_candidates),
         num_removed_by_family_diversity=len(family_removed_candidates),
         num_removed_by_evidence_allocation=len(allocation_removed_candidates),
+        num_removed_by_role_allocation=len(role_removed_candidates),
+        num_removed_for_insufficient_relevance=len(insufficient_relevance_candidates),
+        evidence_roles_represented=role_allocation.roles_represented,
+        evidence_role_counts=role_allocation.role_counts,
+        expected_evidence_roles=role_allocation.expected_roles,
+        missing_evidence_roles=role_allocation.missing_roles,
+        concentrated_evidence_roles=role_allocation.concentrated_roles,
+        role_aware_allocation_changed_order=role_allocation.changed_baseline_order,
         num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
@@ -456,6 +488,8 @@ def retrieve(
             family_diversified_candidates=family_diversified_candidates,
             family_removed_candidates=family_removed_candidates,
             allocation_removed_candidates=allocation_removed_candidates,
+            role_removed_candidates=role_removed_candidates,
+            insufficient_relevance_candidates=insufficient_relevance_candidates,
             thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )

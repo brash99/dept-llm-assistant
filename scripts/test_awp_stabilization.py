@@ -389,10 +389,20 @@ def test_retrieval_contracts_preserve_legacy_constructor_defaults() -> None:
     assert trace.family_diversified_candidates == []
     assert trace.family_removed_candidates == []
     assert trace.allocation_removed_candidates == []
+    assert trace.role_removed_candidates == []
+    assert trace.insufficient_relevance_candidates == []
     assert report.max_per_document_family is None
     assert report.num_after_family_diversity == 0
     assert report.num_removed_by_family_diversity == 0
     assert report.num_removed_by_evidence_allocation == 0
+    assert report.num_removed_by_role_allocation == 0
+    assert report.num_removed_for_insufficient_relevance == 0
+    assert report.evidence_roles_represented == ()
+    assert report.evidence_role_counts == {}
+    assert report.expected_evidence_roles == ()
+    assert report.missing_evidence_roles == ()
+    assert report.concentrated_evidence_roles == ()
+    assert not report.role_aware_allocation_changed_order
 
 
 def test_institution_wide_fitness_does_not_inflate_narrow_source_families() -> None:

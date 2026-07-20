@@ -53,6 +53,11 @@ def main(answer_question_func=None):
             "max_per_document_family",
             2,
         ),
+        max_per_evidence_role=retrieval_cfg.get("max_per_evidence_role", 4),
+        evidence_role_relevance_margin=retrieval_cfg.get(
+            "evidence_role_relevance_margin",
+            0.5,
+        ),
     )
 
     if args.diagnostics:
@@ -97,6 +102,17 @@ def main(answer_question_func=None):
             "Excluded by allocation: "
             f"{retrieval_report.num_removed_by_evidence_allocation}"
         )
+        print(f"Excluded by role control: {retrieval_report.num_removed_by_role_allocation}")
+        print(
+            "Excluded for insufficient relevance: "
+            f"{retrieval_report.num_removed_for_insufficient_relevance}"
+        )
+        print(f"Roles represented    : {', '.join(retrieval_report.evidence_roles_represented) or 'None'}")
+        print(f"Role counts          : {retrieval_report.evidence_role_counts}")
+        print(f"Expected roles       : {', '.join(retrieval_report.expected_evidence_roles) or 'Not configured'}")
+        print(f"Missing roles        : {', '.join(retrieval_report.missing_evidence_roles) or 'None'}")
+        print(f"Concentrated roles   : {', '.join(retrieval_report.concentrated_evidence_roles) or 'None'}")
+        print(f"Role allocation changed baseline: {retrieval_report.role_aware_allocation_changed_order}")
         print()
         print("Retrieval Timing")
         print(f"Total            : {profile.total_seconds:.3f}s")
@@ -124,6 +140,17 @@ def main(answer_question_func=None):
             print(f"  Reranker score: {metadata.get('rerank_score')}")
             print(f"  Document family: {metadata.get('document_family_key')}")
             print(f"  Evidence role: {metadata.get('evidence_role')}")
+            print(f"  Derived role: {metadata.get('derived_evidence_role')}")
+            print(f"  Role source: {metadata.get('evidence_role_source')}")
+            print(f"  Role confidence: {metadata.get('evidence_role_confidence')}")
+            print(
+                "  Added role coverage: "
+                f"{metadata.get('evidence_role_added_new_coverage', False)}"
+            )
+            print(
+                "  Role fallback selection: "
+                f"{metadata.get('evidence_role_fallback_selection', False)}"
+            )
             print(f"  Reason selected: {metadata.get('evidence_selection_reason')}")
             print(
                 "  Constitutional fallback: "
@@ -132,6 +159,8 @@ def main(answer_question_func=None):
 
         excluded = (
             list(trace.family_removed_candidates)
+            + list(trace.role_removed_candidates)
+            + list(trace.insufficient_relevance_candidates)
             + list(trace.allocation_removed_candidates)
         )
         if excluded:

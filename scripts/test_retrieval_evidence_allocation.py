@@ -81,6 +81,42 @@ def test_complementary_chunks_from_one_report_can_survive(monkeypatch) -> None:
     assert trace.family_removed_candidates[0].chunk_index == 2
 
 
+def test_family_and_role_diversity_operate_together(monkeypatch) -> None:
+    institutional = {"evidence_role": "Institutional Self-Study"}
+    workforce = {
+        "evidence_role": "Federal Labor-Market Statistic",
+        "document_type": "occupational_outlook",
+    }
+    candidates = [
+        _result("ABET/Criterion_1_Students_Final.pdf", "variant final", 1.0, metadata=institutional),
+        _result("ABET/Criterion_1_Students_Draft.pdf", "variant draft", 0.99, metadata=institutional),
+        _result("ABET/Criterion_1_Students_V03.pdf", "variant v03", 0.98, metadata=institutional),
+        _result("Institution/SelfStudy.pdf", "another self study", 0.97, metadata=institutional),
+        _result("External/LaborMarket.pdf", "labor demand", 0.90, metadata=workforce),
+    ]
+
+    results, report, trace, _ = _retrieve(
+        monkeypatch,
+        candidates,
+        empirical_top_k=3,
+        max_per_document_family=2,
+        decision_type="academic_program",
+        max_per_evidence_role=2,
+        evidence_role_relevance_margin=0.5,
+    )
+
+    assert [item.text for item in results] == [
+        "variant final",
+        "variant draft",
+        "labor demand",
+    ]
+    assert report.num_removed_by_family_diversity == 1
+    assert report.num_removed_by_role_allocation == 1
+    assert trace.family_removed_candidates[0].text == "variant v03"
+    assert any(item.text == "another self study" for item in trace.role_removed_candidates)
+    assert report.role_aware_allocation_changed_order
+
+
 def test_constitutional_fallback_remains_separate(monkeypatch) -> None:
     constitutional = _result(
         "Constitution/Strategic Compass.json",
@@ -106,7 +142,7 @@ def test_constitutional_fallback_remains_separate(monkeypatch) -> None:
     assert report.constitutional_fallback_used
     assert results[0].metadata["constitutional_fallback"] is True
     assert "constitutional evidence quota" in results[0].metadata["evidence_selection_reason"]
-    assert "empirical evidence quota" in results[1].metadata["evidence_selection_reason"]
+    assert "eligible reranker order" in results[1].metadata["evidence_selection_reason"]
 
 
 def test_retrieval_non_trace_contract_remains_three_values(monkeypatch) -> None:

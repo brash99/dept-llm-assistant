@@ -1020,6 +1020,11 @@ if st.button(button_label, type="primary") and query.strip():
         "max_per_document_family",
         2,
     )
+    max_per_evidence_role = retrieval_cfg.get("max_per_evidence_role", 4)
+    evidence_role_relevance_margin = retrieval_cfg.get(
+        "evidence_role_relevance_margin",
+        0.5,
+    )
 
     # The constitutional retrieval policy is configuration-driven.
     # Use the configured broad candidate pool rather than the older UI
@@ -1051,6 +1056,8 @@ if st.button(button_label, type="primary") and query.strip():
                 constitutional_top_k=constitutional_top_k,
                 empirical_top_k=empirical_top_k,
                 max_per_document_family=max_per_document_family,
+                max_per_evidence_role=max_per_evidence_role,
+                evidence_role_relevance_margin=evidence_role_relevance_margin,
             )
 
             if mode == "Decision Brief":
@@ -1222,6 +1229,24 @@ if st.button(button_label, type="primary") and query.strip():
                 "removed_by_evidence_allocation": (
                     retrieval_report.num_removed_by_evidence_allocation
                 ),
+                "removed_by_evidence_role_control": (
+                    retrieval_report.num_removed_by_role_allocation
+                ),
+                "removed_for_insufficient_relevance": (
+                    retrieval_report.num_removed_for_insufficient_relevance
+                ),
+                "evidence_roles_represented": (
+                    retrieval_report.evidence_roles_represented
+                ),
+                "evidence_role_counts": retrieval_report.evidence_role_counts,
+                "expected_evidence_roles": retrieval_report.expected_evidence_roles,
+                "missing_evidence_roles": retrieval_report.missing_evidence_roles,
+                "concentrated_evidence_roles": (
+                    retrieval_report.concentrated_evidence_roles
+                ),
+                "role_allocation_changed_baseline": (
+                    retrieval_report.role_aware_allocation_changed_order
+                ),
                 "max_per_document_family": (
                     retrieval_report.max_per_document_family
                 ),
@@ -1278,6 +1303,17 @@ if st.button(button_label, type="primary") and query.strip():
                     if metadata.get("evidence_role"):
                         st.write(f"**Evidence role:** {metadata.get('evidence_role')}")
 
+                    if metadata.get("derived_evidence_role"):
+                        st.write(
+                            "**Derived evidence role:** "
+                            f"{metadata.get('derived_evidence_role')}"
+                        )
+                        st.write(
+                            "**Role source / confidence:** "
+                            f"{metadata.get('evidence_role_source')} / "
+                            f"{metadata.get('evidence_role_confidence')}"
+                        )
+
                     if metadata.get("evidence_selection_reason"):
                         st.write(
                             "**Selection reason:** "
@@ -1316,7 +1352,15 @@ if st.button(button_label, type="primary") and query.strip():
             trace.allocation_removed_candidates,
         )
         show_trace_section(
-            "8. Final Results Sent to LLM",
+            "8. Removed by Evidence-Role Control",
+            trace.role_removed_candidates,
+        )
+        show_trace_section(
+            "9. Removed for Insufficient Relevance",
+            trace.insufficient_relevance_candidates,
+        )
+        show_trace_section(
+            "10. Final Results Sent to LLM",
             trace.final_results,
             max_items=top_k,
         )

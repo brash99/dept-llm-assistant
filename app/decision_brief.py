@@ -57,6 +57,9 @@ def generate_decision_brief(
     topology_entity_query=None,
     max_per_document_family=2,
     constitutional_orientation=None,
+    decision_type=None,
+    max_per_evidence_role=4,
+    evidence_role_relevance_margin=0.5,
 ):
     """
     Generate an institutional Decision Brief knowledge product.
@@ -72,6 +75,11 @@ def generate_decision_brief(
     scope until explicit scenario services and adequate evidence exist.
     """
     question = question.strip()
+    if decision_type is None:
+        from app.observatory.evidence_fitness import EvidenceFitnessService
+
+        classified_type, _ = EvidenceFitnessService.classify_decision_type(question)
+        decision_type = classified_type.value
 
     retrieved = retrieve(
         query=question,
@@ -89,6 +97,9 @@ def generate_decision_brief(
         constitutional_top_k=constitutional_top_k,
         empirical_top_k=empirical_top_k,
         max_per_document_family=max_per_document_family,
+        decision_type=decision_type,
+        max_per_evidence_role=max_per_evidence_role,
+        evidence_role_relevance_margin=evidence_role_relevance_margin,
     )
 
     if return_trace:

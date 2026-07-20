@@ -67,11 +67,21 @@ def test_cli_uses_five_value_trace_contract_for_diagnostics(monkeypatch, capsys)
         num_after_threshold=12,
         num_results=5,
         num_removed_by_evidence_allocation=3,
+        num_removed_by_role_allocation=2,
+        num_removed_for_insufficient_relevance=1,
+        evidence_roles_represented=("external_landscape_trends",),
+        evidence_role_counts={"external_landscape_trends": 2},
+        expected_evidence_roles=("external_landscape_trends", "workforce_labor_demand"),
+        missing_evidence_roles=("workforce_labor_demand",),
+        concentrated_evidence_roles=(),
+        role_aware_allocation_changed_order=True,
     )
     trace = SimpleNamespace(
         final_results=[_result()] * 5,
         family_removed_candidates=[],
         allocation_removed_candidates=[],
+        role_removed_candidates=[],
+        insufficient_relevance_candidates=[],
     )
 
     def fake_answer_question(**kwargs):

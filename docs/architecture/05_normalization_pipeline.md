@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Evidence Layer subsystem note. Future observer examples are directional; current commands and source configuration are documented in [A100 Operations](../operations/a100.md).
+
 ## Normalization Pipeline
 
 **Version 0.1**
@@ -104,7 +106,7 @@ A parser is not responsible for:
 - classification
 - retrieval
 
-Those belong to later architectural layers.
+Those belong to downstream Evidence, Semantic, Reasoning, or Evidence Fitness services.
 
 ---
 
@@ -252,4 +254,3 @@ Normalization performs one essential task:
 **It transforms institutional observations into canonical institutional memory.**
 
 By separating acquisition from normalization, ISO creates a stable semantic foundation upon which every higher-level capability of the observatory is built.
-

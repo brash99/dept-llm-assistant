@@ -1,223 +1,79 @@
-# Institutional Semantic Observatory (ISO)
+# Retrieval Pipeline
 
-## Retrieval Pipeline
+Retrieval is an Evidence Layer subsystem. It identifies relevant Knowledge Object chunks while preserving source identity, provenance, object type, and engineering diagnostics. It does not answer the institutional question or determine evidence sufficiency.
 
-**Version 0.1**
+## Current pipeline
 
----
+```text
+Question
+  → FAISS candidate search
+  → constitutional fallback when its quota is under-filled
+  → exact/text/path deduplication
+  → optional cross-encoder reranking
+  → document-family diversification
+  → optional reranker threshold
+  → constitutional and empirical quotas
+  → final evidence set
+```
 
-# Introduction
+Configuration is read from `config/settings.yaml`. The production defaults use a sentence-transformer embedding model, GPU execution, cross-encoder reranking, and separate constitutional/empirical quotas.
 
-Retrieval transforms Institutional Memory into evidence.
+## Exact deduplication
 
-Its purpose is not to answer questions.
+`dedupe_by=relative_path` uses a cross-format canonical document key. It removes duplicate representations such as PDF and DOCX versions of the same source path. This behavior remains separate from document-family diversity.
 
-Its purpose is to identify observations that may be relevant to answering questions.
+## Reranking
 
-This distinction is central to ISO.
+When enabled, a cross-encoder evaluates each `(question, chunk)` pair. The original FAISS score is retained in metadata and the reranker output becomes the ranking value. Cross-encoder logits are uncalibrated engineering values; they are not executive confidence percentages.
 
-Reasoning occurs later.
+## Document-family diversity
 
-Retrieval simply constructs an evidence set.
+After reranking, ISO derives a conservative family key from existing provenance and filenames. Normalization removes obvious version, draft/final, date, punctuation, and duplicated-extension noise. It also groups recognized ABET self-study packages and criterion-response variants while preserving identified programs and distinct criterion numbers.
 
----
+The configured maximum is applied in ranked order, so the highest-ranked members survive. Removed candidates and their family keys remain visible in retrieval traces.
 
-# From Memory to Evidence
+Family grouping is deliberately heuristic. It does not run an additional embedding model or claim two documents are semantically identical.
 
-Institutional Memory may contain millions of observations.
+## Threshold and evidence allocation
 
-Only a tiny fraction will be relevant to any particular question.
+An optional minimum reranker score is applied after family diversification. The final stage selects constitutional and empirical results independently. Constitutional fallback can add constitutional candidates when ordinary vector search does not satisfy the requested constitutional quota.
 
-The Retrieval Pipeline identifies those observations while preserving:
+## Diagnostics
 
-- provenance
-- authority
-- diversity
-- explainability
+`RetrievalReport`, `RetrievalTrace`, and `RetrievalProfile` expose:
 
-The output is an evidence set rather than a ranked list of documents.
+- raw candidate count;
+- exact-deduped candidates;
+- reranked candidates;
+- family-diversified and family-removed candidates;
+- thresholded candidates;
+- final results;
+- family keys and configured maximum;
+- FAISS and reranker scores; and
+- timing by stage.
 
----
+Streamlit Developer Mode renders these stages. The executive source list omits raw logits.
 
-# Internal Processing
+## Evidence roles after retrieval
 
-The current implementation performs several internal stages.
+Selected results are classified after retrieval. Important distinctions include:
 
-These include:
+- Institutional Evidence;
+- Institutional Self-Study;
+- Planning Document;
+- Formal External Standard;
+- External Comparator;
+- Constitutional Evidence; and
+- Contextual Reference.
 
-- document chunking
-- embedding generation
-- vector indexing
-- semantic similarity search
-- deduplication
-- reranking
-- thresholding
+An ABET self-study or local criterion response is institutional evidence about what a program reports. It is not automatically the formal ABET standard. Conversely, formal criteria do not prove current local compliance.
 
-These are implementation details rather than architectural layers.
+## Known limitations
 
-Future retrieval systems may implement these stages differently while preserving the same external behavior.
+- FAISS similarity and cross-encoder relevance do not establish factual truth.
+- Filename/metadata family rules cannot detect every semantic duplicate.
+- Corpus concentration can still limit evidence diversity when no alternative relevant sources exist.
+- Retrieval presence is not Evidence Fitness.
+- The current benchmark script does not serialize the family-diversity stage as a separate top-results list, although its report includes the new fields and Streamlit exposes the stage.
 
----
-
-# Chunking
-
-Long observations are divided into manageable semantic units.
-
-Chunking improves retrieval precision while leaving the original observation unchanged.
-
-Chunks are derived artifacts.
-
-They are never considered canonical institutional memory.
-
----
-
-# Embeddings
-
-Each chunk is transformed into a semantic vector representation.
-
-Embeddings enable similarity search across institutional memory.
-
-Like chunks, embeddings are derived products.
-
-They may be regenerated whenever embedding technology improves.
-
----
-
-# Vector Index
-
-Embeddings are organized into a searchable vector index.
-
-The index exists solely to accelerate retrieval.
-
-It is disposable.
-
-If lost, it can always be rebuilt from Institutional Memory.
-
----
-
-# Candidate Retrieval
-
-Similarity search identifies candidate observations.
-
-At this stage retrieval favors recall over precision.
-
-The goal is to avoid missing potentially relevant institutional evidence.
-
----
-
-# Deduplication
-
-Institutions frequently store identical information in multiple locations.
-
-Deduplication reduces unnecessary repetition while preserving provenance.
-
-Different deduplication strategies may be appropriate depending upon the application.
-
----
-
-# Reranking
-
-Candidate evidence is evaluated using a cross-encoder.
-
-Reranking emphasizes semantic relevance rather than vector similarity alone.
-
-This significantly improves evidence quality before reasoning begins.
-
----
-
-# Thresholding
-
-Thresholding removes evidence that fails minimum relevance criteria.
-
-Thresholds may vary according to application.
-
-Decision support may tolerate broader evidence than direct question answering.
-
----
-
-# Retrieval Diagnostics
-
-ISO records retrieval diagnostics for every query.
-
-Examples include:
-
-- retrieval latency
-- reranking latency
-- candidate counts
-- deduplication statistics
-- threshold statistics
-- final evidence counts
-
-These diagnostics make retrieval itself observable.
-
----
-
-# Evidence, Not Answers
-
-The Retrieval Pipeline does not answer institutional questions.
-
-It produces evidence.
-
-Reasoning systems consume that evidence.
-
-This separation keeps retrieval deterministic, explainable, and independently testable.
-
----
-
-# Relationship to the Semantic Control Plane
-
-Retrieval does not operate in isolation.
-
-Before retrieval begins, the Semantic Control Plane establishes institutional orientation.
-
-This interpretation guides retrieval without altering Institutional Memory.
-
-Consequently, retrieval becomes institution-aware rather than purely semantic.
-
----
-
-# Relationship to Observatory Assessment
-
-Retrieval produces evidence.
-
-The Observatory Assessment evaluates that evidence.
-
-These are separate architectural responsibilities.
-
-Retrieval asks:
-
-"What observations appear relevant?"
-
-The Observatory asks:
-
-"How trustworthy and complete is this evidence?"
-
----
-
-# Looking Ahead
-
-Future retrieval implementations may replace vector search with:
-
-- semantic graphs
-- knowledge networks
-- hybrid symbolic retrieval
-- multimodal retrieval
-- temporal retrieval
-- agent-assisted retrieval
-
-These changes would not alter the architectural role of retrieval.
-
-Only its implementation would evolve.
-
----
-
-# Closing Statement
-
-The Retrieval Pipeline performs one essential task:
-
-**It transforms institutional memory into institutional evidence.**
-
-Everything beyond retrieval reasons about evidence.
-
-Everything before retrieval preserves observations.
-
+Operational commands are maintained in [A100 Operations](../operations/a100.md) and [Benchmarking](../engineering/benchmarking.md).

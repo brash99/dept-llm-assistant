@@ -29,10 +29,11 @@ class ProgramResolver:
     """
     Resolve program names and aliases explicitly mentioned in a question.
 
-    Version 0.1 is deliberately deterministic:
+    Resolution is deliberately deterministic:
     - exact canonical-name match,
     - exact alias match,
-    - longest matching phrase wins.
+    - longest matching phrase wins,
+    - high-risk short/common-word aliases require case and academic context.
     """
 
     def __init__(self, catalog: ProgramCatalog):

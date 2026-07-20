@@ -58,16 +58,17 @@ def generate_decision_brief(
     max_per_document_family=2,
 ):
     """
-    Generate a first-pass institutional Decision Brief.
+    Generate an institutional Decision Brief knowledge product.
 
     This is intentionally parallel to app.rag.answer_question(), but separate
     from it. The QA pipeline remains optimized for concise grounded answers.
     The Decision Brief pipeline retrieves a broader evidence set and asks the
     LLM to organize the evidence into decision-support sections.
 
-    Version 0.1 deliberately does not attempt clustering, scenario modeling,
-    confidence scoring, or structured JSON extraction. Those should be added
-    after DB-001 reveals the next real bottlenecks.
+    Retrieval, evidence classification, Evidence Fitness, governed synthesis,
+    and deterministic Dashboard V2 rendering are connected here. Scenario
+    Modeling and department-level recommendation remain intentionally out of
+    scope until explicit scenario services and adequate evidence exist.
     """
     question = question.strip()
 

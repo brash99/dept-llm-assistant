@@ -1,5 +1,7 @@
 # Session 7 — From Prototype to Engineering
 
+> **Archive notice:** Historical laboratory note. Current architecture, status, and commands are documented in [the session archive index](README.md).
+
 *Project Design History*
 
 ---

@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Evidence Layer design note. Complete append-only temporal institutional memory is a design objective and is not fully implemented across every source.
+
 ## Institutional Memory
 
 **Version 0.1**
@@ -282,4 +284,3 @@ Institutional Memory is founded on a simple principle:
 **Institutions should remember what they observed, not merely what they currently believe.**
 
 By preserving observations together with provenance, authority, and time, ISO creates a durable institutional memory capable of supporting both present-day decision making and historical understanding.
-

@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Evidence-landscape design note spanning the Evidence and Semantic layers. Current observatory metrics describe retrieved evidence; they are distinct from question-aware Evidence Fitness.
+
 ## Semantic Ecosystem Observatory
 
 **Version 0.1**
@@ -219,4 +221,3 @@ The Semantic Ecosystem Observatory embodies one of the central ideas of ISO:
 **Before asking what an institution knows, we should understand the health of the knowledge ecosystem from which that understanding will emerge.**
 
 Observation therefore applies not only to institutions, but also to institutional memory itself.
-

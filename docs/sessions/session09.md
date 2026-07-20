@@ -1,5 +1,7 @@
 # Session 9 — Corpus Health as an Engineering Discipline
 
+> **Archive notice:** Historical laboratory note. Current architecture, status, and commands are documented in [the session archive index](README.md).
+
 *Project Design History*
 
 ---

@@ -1,231 +1,77 @@
-# Retrieval Benchmarking
+# Benchmarking
 
-> Engineering retrieval systems through measurement rather than intuition.
+Benchmarks are regression instruments for retrieval and decision-support behavior. They do not prove factual correctness or institutional decision readiness.
 
----
+## Retrieval benchmarks
 
-# Introduction
+Current benchmark definitions live under:
 
-Retrieval-Augmented Generation (RAG) systems are often evaluated using anecdotal examples.
+```text
+benchmarks/retrieval/v1.yaml
+benchmarks/retrieval/v2.yaml
+```
 
-A handful of successful queries may demonstrate that a system works, but they provide little evidence that architectural changes actually improve retrieval quality.
+Run the current suite on the A100 production index:
 
-The Institutional Knowledge Framework adopts a different philosophy.
+```bash
+cd /work/brash/dept-llm-assistant
+.venv/bin/python -m scripts.run_retrieval_benchmark --benchmark retrieval/v2.yaml
+```
 
-Retrieval quality should be measured systematically using repeatable benchmark experiments.
+The argument is relative to `benchmarks/`; the script’s legacy default filename does not match the current subdirectory layout, so pass it explicitly.
 
-Every significant architectural modification—including embedding models, chunking strategies, rerankers, retrieval thresholds, and corpus policy—is evaluated against a stable benchmark suite.
+Inspect one case:
 
-Benchmarking therefore serves as the primary engineering tool for guiding development.
+```bash
+.venv/bin/python -m scripts.analyze_failure \
+  --benchmark retrieval/v2.yaml \
+  --case CASE_ID \
+  --fetch-k 200
+```
 
----
+Benchmark output records required-source ranks, acceptable and bad results, reranker displacement, stage top results, timing, and the retrieval report. JSON logs are written under `storage/logs/`.
 
-# Why Benchmark?
+## Academic Workforce Planning regression
 
-Modern retrieval systems contain numerous configurable components.
+The canonical benchmark concerns reducing approximately 275 full-time faculty positions to approximately 250 and asks which departments should supply reductions. A safe result must:
 
-Examples include:
+- classify Academic Workforce Planning;
+- classify institution-wide scope;
+- avoid resolving lowercase `is` as Information Science;
+- avoid selecting one academic unit or LLC node;
+- treat self-studies as local institutional evidence rather than formal standards;
+- prevent document-family repetition from inflating confidence;
+- reject snapshots as Enrollment Trends;
+- expose missing institution-wide staffing, demand, finance, and dependency evidence; and
+- refuse departmental recommendations when evidence is insufficient.
 
-- embedding models
-- chunk sizes
-- overlap strategies
-- vector databases
-- rerankers
-- retrieval thresholds
-- prompt construction
+Focused deterministic tests are listed in [Testing](../operations/testing.md).
 
-Without a benchmark, evaluating these choices becomes subjective.
+## What to compare
 
-A benchmark transforms architectural development into an experimental science.
+For retrieval changes compare:
 
-Rather than asking
+- raw, exact-deduped, reranked, diversified, thresholded, and final counts;
+- required-source rank at each stage;
+- document-family keys and removals;
+- constitutional/empirical composition;
+- evidence classes and roles; and
+- latency by stage.
 
-> "Does this seem better?"
+For Evidence Fitness changes compare:
 
-the project asks
+- decision type and scope;
+- eight canonical workforce domain grades;
+- support score, source count, keyword breadth, and unique families;
+- directness, scope, authority role, and coverage breadth;
+- explicit limitations; and
+- consistency between deterministic panels and narrative guidance.
 
-> "Does the benchmark demonstrate improvement?"
+## Interpretation
 
----
-
-# Engineering Philosophy
-
-Several principles guide benchmark development.
-
-## Measure before modifying
-
-Architectural changes should be evaluated rather than assumed to be improvements.
-
----
-
-## Optimize the system
-
-Benchmarks evaluate the complete retrieval pipeline.
-
-Performance depends upon the interaction between multiple components rather than any individual algorithm.
-
----
-
-## Measure retrieval—not language generation
-
-The benchmark evaluates evidence retrieval.
-
-Language-model performance is considered separately.
-
-This distinction helps isolate failures originating in retrieval from those originating in reasoning.
-
----
-
-## Failures are informative
-
-Poor benchmark performance is valuable.
-
-Failures often reveal opportunities for improving:
-
-- retrieval
-- corpus policy
-- parser behavior
-- benchmark design
-
----
-
-# Benchmark Construction
-
-Each benchmark question consists of several components.
-
-## Question
-
-A representative institutional question.
-
----
-
-## Required Documents
-
-Documents that should appear among the retrieved results.
-
-These represent the primary evidence supporting the answer.
-
----
-
-## Acceptable Documents
-
-Alternative documents containing substantially equivalent information.
-
-These acknowledge that institutional knowledge is often redundant.
-
----
-
-## Undesirable Documents
-
-Documents that should not dominate retrieval.
-
-Including undesirable documents helps identify misleading retrieval behavior.
-
----
-
-## Category
-
-Each benchmark belongs to one or more categories.
-
-Examples include:
-
-- advising
-- curriculum
-- policy
-- operations
-- astronomy
-- ABET
-- administration
-
-Category summaries reveal strengths and weaknesses across different portions of the corpus.
-
----
-
-# Retrieval Diagnostics
-
-The benchmark records every stage of retrieval.
-
-Current diagnostics include:
-
-- vector search candidates
-- post-deduplication candidates
-- reranked candidates
-- final language-model context
-- retrieval latency
-
-These diagnostics make retrieval failures explainable.
-
----
-
-# Interpreting Results
-
-Benchmark scores should not be interpreted as absolute measures of system quality.
-
-Instead, they provide a stable reference against which architectural modifications can be compared.
-
-Examples include:
-
-- comparing embedding models
-- evaluating rerankers
-- testing chunking strategies
-- measuring corpus policy changes
-
-The benchmark therefore serves as an engineering instrument rather than a performance contest.
-
----
-
-# Current Baseline
-
-The current benchmark consists of:
-
-- 30 representative questions
-- multiple institutional domains
-- category-level summaries
-- retrieval diagnostics
-- timing instrumentation
-
-Current retrieval performance:
-
-- Top-1: 23 / 30
-- Top-5: 26 / 30
-
-This baseline establishes the reference point for future experimentation.
-
----
-
-# Benchmark Evolution
-
-The benchmark is expected to grow continuously.
-
-Future additions may include:
-
-- more institutional domains
-- decision-support questions
-- multi-document synthesis tasks
-- temporal reasoning
-- quantitative reasoning
-- scenario-analysis questions
-
-As the framework evolves, the benchmark should evolve alongside it.
-
----
-
-# Relationship to Corpus Engineering
-
-Benchmarking and corpus engineering are complementary disciplines.
-
-Corpus engineering improves the semantic ecosystem.
-
-Benchmarking measures the effects of those improvements.
-
-Neither discipline is sufficient in isolation.
-
-Together they provide a rigorous methodology for engineering institutional retrieval systems.
-
----
-
-# Guiding Principle
-
-The objective is not to maximize benchmark scores.
-
-The objective is to build an explainable retrieval system whose improvements can be demonstrated through reproducible experiments.
+- A higher source count is not automatically better.
+- Multiple files in one family are not independent evidence.
+- A reranker improvement can still produce a poor evidence-role mix.
+- A retrieved external standard can establish a constraint without establishing local compliance.
+- One unit’s report cannot establish institution-wide comparative fitness.
+- Full production validation requires the A100 environment, installed retrieval dependencies, and populated index.

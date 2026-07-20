@@ -1,382 +1,139 @@
-# Institutional Semantic Observatory (ISO)
+# Architecture Overview
 
-## Architecture Overview
+This is the authoritative architecture description for the Institutional Semantic Observatory. ISO uses six permanent layers. Acquisition, normalization, retrieval, dashboards, and topology are subsystems within these layers—not additional layers or replacement phase models.
 
-**Version 0.1**
+> Knowledge Objects store facts. Services derive meaning.
 
----
+## 1. Evidence Layer
 
-# Introduction
+The Evidence Layer preserves observations and makes relevant evidence retrievable.
 
-The Institutional Semantic Observatory (ISO) is an evidence-driven software platform for constructing an explainable digital representation of an institution.
+### Implemented
 
-Rather than centering its architecture around Large Language Models, ISO is organized around a continuously evolving institutional knowledge ecosystem.
+- governed acquisition services and append-oriented source manifests;
+- parser registry and multi-source normalization;
+- Knowledge Objects with content, source identity, provenance, and metadata;
+- Constitutional Knowledge Objects built from identified normalized sources;
+- chunking of normalized and constitutional objects;
+- sentence-transformer embeddings and FAISS indexing;
+- vector retrieval, exact/path deduplication, cross-encoder reranking, optional thresholds, and constitutional/empirical quotas;
+- deterministic document-family keys and post-rerank family diversity; and
+- retrieval traces retaining raw FAISS and reranker diagnostics.
 
-Artificial intelligence is one consumer of that ecosystem—not its foundation.
+Document-family diversity is distinct from exact deduplication. Exact deduplication removes identical/path-equivalent representations. Family diversity limits drafts, revisions, self-study packages, and naming variants after ranking so they do not masquerade as independent evidence.
 
-The architecture is designed to support:
+### Partial
 
-- institutional memory
-- semantic search
-- decision support
-- strategic planning
-- observatory analytics
-- digital twins
-- future autonomous services
+- family identity is metadata/filename-based rather than semantic;
+- corpus coverage is broad but incomplete and uneven across institutional domains; and
+- production data exists on the A100, not in the repository’s placeholder storage directories.
 
-without requiring changes to the underlying institutional memory.
+## 2. Semantic Layer
 
----
+The Semantic Layer identifies institutional meaning without deciding the answer.
 
-# High-Level Architecture
+### Implemented
 
-```
-                    Distributed Institutional Observation
-                              │
-                              ▼
-                    Institutional Memory
-                              │
-                    Knowledge Objects
-                              │
-         ┌────────────────────┴─────────────────────┐
-         ▼                                          ▼
-Semantic Ecosystem Observatory          Semantic Control Plane
-         │                                          │
-         └────────────────────┬─────────────────────┘
-                              ▼
-                     Evidence Retrieval
-                              ▼
-                 Observatory Assessment
-                              ▼
-                    Decision Support
-```
+- program catalog and ProgramResolver;
+- guarded high-risk aliases requiring case, token boundaries, and academic context;
+- deterministic question scope: single entity, multi-entity, institution-wide, or unresolved;
+- institutional and constitutional orientation before retrieval;
+- evidence classes and claim-safe evidence roles;
+- separation of institutional self-studies, formal external standards, external comparators, planning documents, operating records, and constitutional evidence; and
+- a small institutional topology with directionally accurate relationship summaries.
 
-Each layer has a single responsibility.
+For institution-wide Academic Workforce Planning, contextual entities do not become the selected unit. The question remains a comparative multi-unit request.
 
-Together they create an explainable pipeline from institutional observation to human decision support.
+### Partial
 
----
+- program and topology catalogs are curated and incomplete;
+- evidence-role classification uses deterministic metadata/path/title heuristics; and
+- topology does not encode the complete course, program, Liberal Learning Core, facility, personnel, partnership, or governance network.
 
-# Architectural Layers
+## 3. Reasoning Layer
 
-## 1. Distributed Institutional Observation
+The Reasoning Layer organizes evidence and derived service outputs into explainable knowledge products.
 
-Observation is the foundation of ISO.
+### Implemented
 
-Institutions produce information through many independent systems:
+- grounded question answering;
+- Decision Brief generation through an OpenAI-compatible local LLM endpoint;
+- stable constitutional and empirical citation namespaces;
+- governed prompt instructions for evidence authority, planning language, self-study claims, external requirements, comparators, uncertainty, and topology inference;
+- deterministic Dashboard V2 panels assembled with narrative synthesis; and
+- explicit refusal to infer unsupported relationships or recommendations.
 
-- Google Drive
-- institutional websites
-- databases
-- APIs
-- shared file systems
-- accreditation repositories
-- document management systems
-- future enterprise systems
+The LLM synthesizes supplied evidence. It does not create Evidence Fitness grades, topology relationships, question scope, document families, or participation facts.
 
-Each source is observed independently through governed observers.
+### Partial
 
-Observers acquire information while preserving provenance, timestamps, authority, and acquisition metadata.
+- generated prose still requires human review;
+- arbitrary prose cannot be completely guaranteed by prompt tests; and
+- the Decision Brief data model retains several legacy empty summary fields while `raw_markdown` is the primary rendered product.
 
-The observatory intentionally separates observation from interpretation.
+## 4. Evidence Fitness
 
-Observers simply record what exists.
+Evidence Fitness asks whether the retrieved evidence is adequate for the classified decision—not merely whether keywords are present.
 
----
+### Implemented
 
-## 2. Institutional Memory
+- deterministic decision-type classification;
+- canonical evidence-domain profiles;
+- graded Strong, Partial, Weak, and Missing support;
+- topic coverage, authority fit, evidence-role fit, strengths, limitations, and acquisition recommendations;
+- Academic Workforce Planning qualification for directness, institutional scope, authority/role, coverage breadth, and independent document families;
+- explicit distinction between evidence presence and decision sufficiency;
+- temporal requirements for Enrollment Trends; and
+- consistent propagation into dashboards and prompt guidance.
 
-Institutional Memory is the permanent record of institutional observations.
+A departmental self-study may provide direct evidence about one unit without providing institution-wide comparative fitness. A formal standard may establish a constraint without establishing local compliance or staffing margin. Financial vocabulary is not a decision-specific cost model.
 
-It is not a vector database.
+## 5. Scenario Modeling
 
-It is not an embedding store.
+### Planned
 
-It is not an LLM context window.
+Scenario Modeling will compare explicit alternatives and assumptions. It is required for credible workforce-change analysis but is not implemented as a production service.
 
-Institutional Memory preserves normalized observations exactly as they were acquired.
+Planned inputs include unit staffing, instructional demand, enrollment trajectories, service dependencies, accreditation constraints, financial assumptions, one-line-loss effects, institutional capabilities, and function-level alternative providers.
 
-Every observation includes provenance sufficient to reconstruct:
+The current system does not calculate which departments should lose positions.
 
-- where it came from
-- when it was observed
-- who published it
-- how it was acquired
-- why it should be trusted
-
-Institutional Memory is designed to outlive every AI model currently in existence.
-
----
-
-## 3. Knowledge Objects
-
-Knowledge Objects are the canonical semantic representation used throughout ISO.
-
-Examples include:
-
-- documents
-- webpages
-- database records
-- policies
-- course descriptions
-- faculty records
-- budgets
-- assessment reports
-
-Knowledge Objects store facts.
-
-They do not store interpretations.
-
-Derived information is produced by services.
-
----
-
-## 4. Semantic Ecosystem Observatory
-
-The Observatory continuously evaluates the health of institutional memory.
-
-Rather than answering questions, it measures the quality of institutional knowledge itself.
-
-Metrics include:
-
-- corpus coverage
-- semantic diversity
-- document balance
-- evidence dominance
-- institutional completeness
-- knowledge gaps
-- decision readiness
-
-This transforms the corpus itself into an observable system.
-
----
-
-## 5. Semantic Control Plane
-
-Before retrieval begins, ISO interprets the institutional meaning of a question.
-
-The Semantic Control Plane identifies:
-
-- existing institutional entities
-- proposed entities
-- semantic neighborhoods
-- institutional orientation
-- organizational context
-
-This occurs before retrieval.
-
-The goal is not to answer the question, but to understand what the institution believes the question is about.
-
----
-
-## 6. Evidence Retrieval
-
-Only after institutional orientation is established does evidence retrieval begin.
-
-Retrieval combines:
-
-- semantic similarity
-- reranking
-- provenance
-- deduplication
-- institutional authority
-
-The result is an evidence set rather than a collection of search results.
-
----
-
-## 7. Observatory Assessment
-
-Before an LLM generates any explanation, ISO evaluates the retrieved evidence.
-
-The assessment estimates:
-
-- evidence balance
-- institutional evidence
-- external dependence
-- planning reliance
-- knowledge completeness
-- topic coverage
-- uncertainty
-
-This creates an explainable assessment of evidence quality independent of the language model.
-
----
-
-## 8. Decision Support
-
-Decision Support is the final consumer of the observatory.
-
-Applications may include:
-
-- Question Answering
-- Decision Briefs
-- Strategic Planning
-- Scenario Analysis
-- Institutional Forecasting
-- Executive Dashboards
-- Future Digital Twins
-
-These applications consume evidence rather than constructing evidence.
-
----
-
-# Data Flow
-
-ISO follows a unidirectional flow of information.
-
-```
-Observation
-      ↓
-Institutional Memory
-      ↓
-Knowledge Objects
-      ↓
-Normalization
-      ↓
-Chunking
-      ↓
-Embeddings
-      ↓
-Vector Index
-      ↓
-Retrieval
-      ↓
-Evidence
-      ↓
-Assessment
-      ↓
-Decision Support
+## 6. Institutional Digital Twin
+
+### Aspirational
+
+The long-term Institutional Digital Twin would be a temporal, evidence-backed representation of entities, capabilities, dependencies, constraints, and change. It is not a single vector database, dashboard, topology graph, or LLM.
+
+Current foundations include Knowledge Objects, observation manifests, semantic orientation, topology contracts, and the Institutional Participation Profile. These are precursors, not a completed twin.
+
+## End-to-end Decision Brief flow
+
+```text
+User question
+  → deterministic institutional and constitutional orientation
+  → deterministic question-scope classification
+  → FAISS candidate retrieval and constitutional fallback
+  → exact/path deduplication
+  → cross-encoder reranking
+  → document-family diversification
+  → optional threshold
+  → constitutional/empirical selection
+  → evidence class and evidence-role assignment
+  → Decision Readiness domain evaluation
+  → scope-aware Evidence Fitness
+  → topology resolution only when scope permits one entity
+  → governed LLM synthesis
+  → deterministic Dashboard V2 and topology rendering
+  → final Decision Brief Markdown
 ```
 
-Each stage derives information from the previous stage.
+Raw reranker logits remain diagnostics and are omitted from the executive source list.
 
-Canonical observations remain unchanged.
+## Architectural boundaries
 
-Derived representations may be rebuilt at any time.
-
----
-
-# Architectural Principles
-
-Several principles guide the architecture.
-
-## Observation precedes reasoning.
-
-Reasoning should never invent observations.
-
----
-
-## Provenance is preserved forever.
-
-Every observation retains its origin.
-
----
-
-## Canonical observations are immutable.
-
-Derived representations may change.
-
-Observed facts do not.
-
----
-
-## Knowledge Objects store facts.
-
-Services derive meaning.
-
----
-
-## Explainability is mandatory.
-
-Every conclusion should be traceable to institutional evidence.
-
----
-
-## Human judgment remains authoritative.
-
-ISO informs decisions.
-
-It does not make them.
-
----
-
-# Beyond Retrieval-Augmented Generation
-
-Traditional Retrieval-Augmented Generation (RAG) systems typically follow a straightforward pipeline:
-
-```
-Documents
-    ↓
-Chunks
-    ↓
-Embeddings
-    ↓
-Vector Database
-    ↓
-LLM
-```
-
-ISO incorporates this pipeline but treats it as only one subsystem within a much larger architecture.
-
-Retrieval is important.
-
-Observation is foundational.
-
-Institutional memory is foundational.
-
-Evidence assessment is foundational.
-
-The observatory exists independently of any particular language model.
-
-Consequently, ISO is better understood as an institutional knowledge platform than as a RAG application.
-
----
-
-# An Operating System for Institutional Knowledge
-
-ISO provides foundational services upon which many institutional applications can be built.
-
-Examples include:
-
-- semantic search
-- strategic planning
-- accreditation support
-- enrollment forecasting
-- institutional analytics
-- executive decision support
-- autonomous institutional agents
-- digital twins
-
-These applications share the same institutional memory and observatory infrastructure.
-
-Just as multiple applications run on a common operating system, multiple institutional capabilities can run on ISO.
-
----
-
-# Looking Ahead
-
-The current architecture represents only the first stage of the Institutional Semantic Observatory.
-
-Future architectural layers are expected to include:
-
-- temporal institutional memory
-- observation planning
-- semantic evolution analysis
-- evidence forecasting
-- institutional simulation
-- digital twins
-- autonomous observation scheduling
-
-Because ISO is layered, these capabilities can be added without redesigning the underlying observatory.
-
----
-
-# Closing Statement
-
-ISO is designed around a simple architectural idea:
-
-**Observation is the primitive operation from which institutional understanding emerges.**
-
-By separating observation, memory, retrieval, assessment, and decision support into independent architectural layers, ISO provides a transparent, extensible, and explainable foundation for the next generation of institutional intelligence systems.
-
+- Knowledge Objects store asserted observations and provenance.
+- Services classify, compare, assess, and derive meaning.
+- Presentation components render supplied contracts and deterministic explanatory metadata.
+- Constitutional values and empirical facts remain separate semantic spaces.
+- Missing evidence is reported as Missing, Weak, Partial, Unknown, Unavailable, or Not Assessed—not invented as zero or treated as proof of absence.
+- Scenario and Digital Twin aspirations must not be described as current production capability.

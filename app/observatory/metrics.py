@@ -10,7 +10,7 @@ from app.evidence import Evidence, EvidenceClass, EVIDENCE_CLASS_ORDER
 
 @dataclass
 class ObservatoryAssessment:
-    """Version 0.1 observatory assessment for one retrieval/decision run.
+    """Evidence-landscape assessment for one retrieval/decision run.
 
     These metrics are intentionally simple and deterministic. They summarize
     the retrieved evidence landscape before the LLM writes the Decision Brief.
@@ -405,4 +405,3 @@ def build_observatory_assessment(evidence_items: List[Evidence]) -> ObservatoryA
         warnings=warnings,
         recommendations=recommendations,
     )
-

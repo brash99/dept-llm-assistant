@@ -1,5 +1,7 @@
 # From Question Answering to Institutional Decision Support
 
+> **Status:** Historical/directional vision. Its Phase I–III structure is superseded for architecture and status purposes by the permanent [six-layer architecture](../architecture/01_architecture_overview.md). Scenario Modeling is planned; the Institutional Digital Twin is aspirational.
+
 > Building an explainable semantic layer for evidence-based university decision making.
 
 ---

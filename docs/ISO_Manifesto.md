@@ -1,5 +1,7 @@
 # The ISO Manifesto
 
+> **Status:** Design values and aspirations, not an implementation inventory. See [Current Status](status.md) for present capabilities.
+
 ## Institutions Should Be Able to Observe Themselves
 
 Institutions are among the most complex systems created by human beings.

@@ -179,9 +179,10 @@ def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, st
     """
     Classify a retrieved result by evidence role.
 
-    Version 0.1 is intentionally deterministic and path/title based. This keeps
-    evidence-class assignment inspectable and reproducible while the Phase II
-    reasoning pipeline is being developed.
+    Classification is deterministic and uses object type, path, title, and
+    existing source metadata. It distinguishes local institutional self-studies
+    and criterion responses from formal external standards and comparators
+    without adding an LLM call.
     """
     # Constitutional objects carry institutional values and commitments.
     # This semantic identity takes precedence over path/title heuristics.

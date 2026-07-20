@@ -1,20 +1,23 @@
-# Institutional Semantic Observatory
+# ISO Architecture Book
 
-## Architecture
+The Architecture Book records enduring design principles and subsystem details. The chapter sequence is editorial; it is not a list of architectural layers.
 
-### *Observe. Explain. Illuminate.*
+The permanent architecture is:
 
-**Version 0.1**
+1. Evidence Layer
+2. Semantic Layer
+3. Reasoning Layer
+4. Evidence Fitness
+5. Scenario Modeling
+6. Institutional Digital Twin
 
-The ISO Architecture Book describes the enduring ideas and structural commitments of the Institutional Semantic Observatory.
+Read [Architecture Overview](01_architecture_overview.md) first. It is authoritative when older prose uses different phase or layer language.
 
-It explains how ISO observes institutions, preserves Institutional Memory, organizes evidence, evaluates the health of the semantic ecosystem, and supports transparent human decision-making.
-
-## Contents
+## Chapters
 
 1. [Design Philosophy](00_design_philosophy.md)
 2. [Architecture Overview](01_architecture_overview.md)
-3. [Distributed Institutional Observation](02_distributed_observation.md)
+3. [Distributed Observation](02_distributed_observation.md)
 4. [Institutional Memory](03_institutional_memory.md)
 5. [Knowledge Objects](04_knowledge_objects.md)
 6. [Normalization Pipeline](05_normalization_pipeline.md)
@@ -24,47 +27,14 @@ It explains how ISO observes institutions, preserves Institutional Memory, organ
 10. [Decision Briefs](09_decision_briefs.md)
 11. [Design Principles](10_design_principles.md)
 12. [Constitutional Reasoning](11_constitutional_reasoning.md)
+13. [Architecture FAQ](ArchitectureFAQ.md)
 
-## Additional Reference
+## Reading status
 
-- [Architecture FAQ](ArchitectureFAQ.md)
-- [ISO Manifesto](../ISO_Manifesto.md)
-- [Research Agenda](../ResearchAgenda.md)
-- [Glossary](../reference/glossary.md)
+- Chapters 00, 02–05, 07, and 10 are enduring design essays. Statements about possible observers or future temporal memory are directional unless confirmed in [Current Status](../status.md).
+- Chapter 06 describes the implemented retrieval subsystem and its current limitations.
+- Chapter 08 describes the implemented Semantic Control Plane; semantic-neighbor output remains advisory.
+- Chapter 09 describes the implemented Decision Brief product plus explicitly labeled future extensions.
+- Chapter 11 describes constitutional separation; the catalog/orientation path is implemented, while complete normative judgment is not.
 
-## Central Architectural Principle
-
-> **Knowledge Objects preserve observations. Services derive meaning.**
-
-ISO intentionally separates institutional observations from their interpretation.
-
-This allows the observatory to show exactly which facts were considered, how they were interpreted, which assumptions shaped the analysis, and how the analysis contributed to a recommendation.
-
-## Reading Paths
-
-### Executive and institutional leadership
-
-Begin with:
-
-1. [ISO Manifesto](../ISO_Manifesto.md)
-2. [Design Philosophy](00_design_philosophy.md)
-3. [Architecture Overview](01_architecture_overview.md)
-4. [Design Principles](10_design_principles.md)
-
-### Developers and technical collaborators
-
-Read the complete Architecture Book, then continue to:
-
-- [Engineering Documentation](../engineering/)
-- [Developer Documentation](../developer/)
-
-### Researchers
-
-Begin with:
-
-- [Distributed Institutional Observation](02_distributed_observation.md)
-- [Institutional Memory](03_institutional_memory.md)
-- [Semantic Ecosystem Observatory](07_semantic_ecosystem_observatory.md)
-- [Semantic Control Plane](08_semantic_control_plane.md)
-- [Research Agenda](../ResearchAgenda.md)
-- [Glossary](../reference/glossary.md)
+> Knowledge Objects store facts. Services derive meaning.

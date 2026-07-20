@@ -45,7 +45,7 @@ class ProposedProgramConceptExtractor:
     """
     Deterministically identify proposed academic-program concepts.
 
-    Version 0.1 intentionally recognizes only explicit proposal language.
+    The extractor intentionally recognizes only explicit proposal language.
     It does not use an LLM and does not fabricate ProgramEntity records.
     """
 
@@ -233,7 +233,7 @@ class ProposedProgramConceptExtractor:
 
 class ProgramOrientationService:
     """
-    Produce an InstitutionalOrientation from the Sprint 1 program services.
+    Produce an InstitutionalOrientation from catalog and semantic services.
 
     This service remains advisory. It executes before retrieval but does not
     yet modify the retrieval query or ranking.

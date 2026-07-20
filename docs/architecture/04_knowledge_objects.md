@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Evidence Layer subsystem note. Knowledge Objects store facts and provenance; services derive meaning. Consult [Current Status](../status.md) for implemented object types.
+
 ## Knowledge Objects
 
 **Version 0.1**
@@ -260,4 +262,3 @@ Knowledge Objects embody one of the central architectural principles of ISO:
 **Services derive meaning.**
 
 By preserving this separation, ISO creates an institutional memory that remains stable, explainable, and trustworthy while allowing reasoning systems to improve continuously over time.
-

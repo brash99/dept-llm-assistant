@@ -1,126 +1,55 @@
-# tmux Quick Reference
+# tmux Quick Reference for the A100
 
-## 1. Start a new tmux session
+Use tmux for long-running server processes under the canonical checkout:
 
-``` bash
-tmux new -s rag
-```
-
-You can replace `rag` with any session name.
-
-------------------------------------------------------------------------
-
-## 2. Activate your environment
-
-``` bash
-cd ~/dept-llm-assistant
+```bash
+cd /work/brash/dept-llm-assistant
+tmux new -s iso
 source .venv/bin/activate
 ```
 
-------------------------------------------------------------------------
+## Suggested windows
 
-## 3. Start the long-running job
+- Window 0: deployment-managed LLM server
+- Window 1: `streamlit run web_app.py`
+- Window 2: `nvidia-smi` or `nvidia-smi dmon`
+- Window 3: ingestion, chunking, embeddings, or index builds
+- Window 4: tests and Git inspection
 
-``` bash
-python scripts/build_vector_db.py --limit 1000000
+Create and navigate windows:
+
+```text
+Ctrl-b c        create window
+Ctrl-b n        next window
+Ctrl-b p        previous window
+Ctrl-b 0..9     select window
 ```
 
-or
+Detach without stopping processes:
 
-``` bash
-streamlit run web_app.py
-```
-
-------------------------------------------------------------------------
-
-## 4. Detach
-
-Press:
-
-1.  `Ctrl-b`
-2.  Then `d`
-
-The process keeps running.
-
-------------------------------------------------------------------------
-
-## 5. Disconnect
-
-You can safely log out. The tmux session continues to run.
-
-------------------------------------------------------------------------
-
-## 6. List sessions
-
-``` bash
-tmux ls
-```
-
-------------------------------------------------------------------------
-
-## 7. Reattach
-
-``` bash
-tmux attach -t rag
-```
-
-or
-
-``` bash
-tmux a -t rag
-```
-
-------------------------------------------------------------------------
-
-## 8. Multiple windows
-
-Create a new window:
-
-    Ctrl-b c
-
-Next / previous:
-
-    Ctrl-b n
-    Ctrl-b p
-
-Jump directly:
-
-    Ctrl-b 0
-    Ctrl-b 1
-    Ctrl-b 2
-
-Example layout:
-
-    Window 0: build_vector_db.py
-    Window 1: htop
-    Window 2: nvidia-smi
-    Window 3: git
-    Window 4: testing
-
-------------------------------------------------------------------------
-
-## 9. End the session
-
-Inside tmux:
-
-``` bash
-exit
-```
-
-Or outside:
-
-``` bash
-tmux kill-session -t rag
-```
-
-------------------------------------------------------------------------
-
-# Everyday Commands
-
-``` bash
-tmux new -s rag
+```text
 Ctrl-b d
-tmux ls
-tmux a -t rag
-tmux kill-session -t rag
 ```
+
+List and reattach:
+
+```bash
+tmux ls
+tmux attach -t iso
+```
+
+Stop a session intentionally:
+
+```bash
+tmux kill-session -t iso
+```
+
+Use the current individual pipeline stages:
+
+```bash
+.venv/bin/python -m scripts.chunk_documents --limit 1000000
+.venv/bin/python -m scripts.embed_chunks --limit 1000000 --embedding-context title_path
+.venv/bin/python -m scripts.build_vector_index
+```
+
+See [A100 Operations](../operations/a100.md) for ordering and safety notes.

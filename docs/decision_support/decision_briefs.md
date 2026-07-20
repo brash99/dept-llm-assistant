@@ -1,280 +1,75 @@
-# Decision Briefs
+# Decision Brief Product Guide
 
-> The primary output of the Institutional Knowledge Framework.
+Decision Briefs are explainable, citation-grounded decision-support products. They describe what the retrieved evidence supports, what remains unresolved, how institutional values may be relevant, and what evidence should be acquired next.
 
----
+They do not replace executive, faculty, accreditation, legal, financial, or human judgment.
 
-# Introduction
+## Product contract
 
-Traditional Retrieval-Augmented Generation (RAG) systems answer questions.
+A current brief combines:
 
-The Institutional Knowledge Framework is evolving toward a different objective.
+- the institutional question and generation time;
+- deterministic Decision Readiness and Observatory panels;
+- question-aware Evidence Fitness;
+- an LLM-generated synthesis constrained to retrieved evidence;
+- stable constitutional and empirical citations;
+- an authoritative topology section when one entity is validly resolved; and
+- a source list with evidence classes but without raw reranker logits.
 
-Rather than generating isolated answers, the framework will produce **Decision Briefs** that synthesize institutional evidence relevant to a strategic question.
+Expected narrative sections include Executive Summary, Institutional Question, Evidence Summary, Supporting Evidence, Areas of Agreement, Areas of Uncertainty, Missing Information, Strategic Considerations, Recommended Follow-Up, and Sources Used.
 
-A Decision Brief is intended to support—not replace—human decision making.
+## Evidence interpretation
 
-It organizes evidence, identifies uncertainty, highlights missing information, and provides a transparent foundation upon which institutional leaders can exercise their own judgment.
+- **Constitutional Evidence** establishes identified institutional values and commitments, not operational facts.
+- **Institutional Evidence** describes internal records or reports.
+- **Institutional Self-Study** reports local assertions, practices, and accreditation narratives; it is not itself the formal external standard.
+- **Planning Documents** describe proposed or intended states.
+- **Formal External Standards** establish requirements or constraints, not current local compliance.
+- **External Comparators** describe other institutions or examples.
+- **Topology Context** describes only relationships encoded in the curated topology.
 
----
+## Evidence Fitness
 
-# Motivation
+Strong support means the current corpus strongly supports a domain under the implemented rubric. It does not mean the evidence inventory is complete or the decision is ready. Recency, unit coverage, decision-specific completeness, and human constraints must still be confirmed.
 
-Many important institutional questions cannot be answered by a single document.
+Document quantity is not diversity. Drafts, revisions, repeated chunks, and one self-study family do not provide independent corroboration.
 
-For example,
+## Academic Workforce Planning
 
-- Should a retiring faculty member be replaced?
-- Should a new academic program be introduced?
-- How would a proposed curriculum change affect other departments?
-- What facilities are required for a new laboratory?
-- Which strategic initiatives are best aligned with institutional priorities?
+Academic Workforce Planning is implemented as a decision type and dashboard presentation path. It is decision support, not a recommendation engine.
 
-Answering these questions requires integrating evidence from numerous sources.
+The current brief can:
 
-The objective is therefore not information retrieval.
+- detect institution-wide scope;
+- show the eight required evidence domains;
+- expose scope and directness limitations;
+- distinguish local self-studies from formal accreditation standards;
+- identify that enrollment snapshots are not trends;
+- describe unit participation when supported; and
+- refuse recommendations when institution-wide comparative evidence is absent.
 
-The objective is evidence synthesis.
+It cannot yet:
 
----
+- compare complete department profiles;
+- model alternative reduction scenarios;
+- calculate financial savings or replacement costs;
+- infer excess capacity;
+- assess function-level substitution without supplied evidence; or
+- recommend departmental or individual reductions.
 
-# Design Principles
+## Scenario Modeling status
 
-Every Decision Brief should satisfy five fundamental principles.
+Scenario sections in older examples and vision documents are specifications for Layer 5, not current runtime behavior. Scenario Modeling remains planned. When implemented, scenarios must expose assumptions, inputs, missing evidence, and consequences without converting them into an automatic preferred action.
 
-## Evidence-Based
+## Review checklist
 
-Every statement should be supported by retrieved institutional evidence whenever possible.
+Before relying on a brief, verify:
 
----
-
-## Explainable
-
-Every conclusion should be traceable to one or more supporting documents.
-
----
-
-## Transparent
-
-The system should distinguish clearly between:
-
-- retrieved evidence
-- synthesized observations
-- inferred conclusions
-- recommendations
-
----
-
-## Honest About Uncertainty
-
-Missing information should be identified explicitly rather than hidden.
-
-The system should acknowledge when evidence is incomplete or conflicting.
-
----
-
-## Human-Centered
-
-Decision Briefs support institutional leaders.
-
-They do not make decisions on their behalf.
-
----
-
-# Proposed Structure
-
-Each Decision Brief should contain the following sections.
-
----
-
-## Executive Summary
-
-A concise overview of the question being considered together with the principal findings.
-
-This section should be understandable without reading the remainder of the report.
-
----
-
-## Institutional Question
-
-The question posed by the user.
-
-Examples include:
-
-- What resources would be required to launch a Mechanical Engineering major?
-
-- Should Department X replace a retiring faculty member?
-
----
-
-## Evidence Summary
-
-A synthesis of the information retrieved from the institutional knowledge base.
-
-Rather than listing documents individually, this section organizes evidence into coherent themes.
-
----
-
-## Supporting Evidence
-
-Evidence grouped by topic.
-
-Typical categories might include:
-
-- curriculum
-- faculty expertise
-- accreditation
-- facilities
-- laboratory equipment
-- staffing
-- strategic planning
-- historical precedent
-- budget
-- enrollment
-
-Each section should include citations to supporting documents.
-
----
-
-## Areas of Agreement
-
-Institutional evidence frequently converges.
-
-This section summarizes conclusions that are consistently supported across multiple sources.
-
----
-
-## Areas of Uncertainty
-
-Institutional evidence is rarely complete.
-
-This section identifies:
-
-- conflicting information
-- ambiguous documents
-- outdated policies
-- missing records
-
-Understanding uncertainty is often as valuable as understanding certainty.
-
----
-
-## Missing Information
-
-Some questions cannot be answered from the available corpus.
-
-Examples include:
-
-- unavailable budget information
-- missing facilities inventories
-- absent accreditation documents
-- incomplete historical records
-
-Rather than speculating, the framework should identify what additional information would improve the analysis.
-
----
-
-## Strategic Considerations
-
-Institutional decisions frequently involve considerations extending beyond factual evidence.
-
-Examples include:
-
-- alignment with institutional mission
-- long-term sustainability
-- interdisciplinary opportunities
-- strategic priorities
-- potential risks
-
-These observations should be presented as considerations rather than recommendations.
-
----
-
-## Possible Scenarios
-
-Where appropriate, the framework should summarize multiple plausible outcomes.
-
-For example:
-
-- replacing a faculty member
-- delaying replacement
-- creating a new position
-- restructuring responsibilities
-
-The objective is to support scenario analysis rather than prescribe a single course of action.
-
----
-
-## Recommended Follow-Up
-
-Decision Briefs should conclude by suggesting additional investigations that would improve confidence.
-
-Examples include:
-
-- collecting missing data
-- consulting specific committees
-- obtaining updated enrollment projections
-- reviewing accreditation requirements
-- conducting financial analysis
-
----
-
-## Sources
-
-Every Decision Brief concludes with complete citations to all supporting documents.
-
-Transparency is essential.
-
----
-
-# Future Enhancements
-
-Future versions of Decision Briefs may incorporate:
-
-- probabilistic forecasting
-- scenario simulation
-- confidence estimates
-- interactive evidence exploration
-- semantic relationship graphs
-- quantitative decision metrics
-
-These capabilities will build upon the same explainable evidence foundation.
-
----
-
-# Relationship to Question Answering
-
-Question answering remains an important capability.
-
-However, it becomes only one component of a larger reasoning process.
-
-```
-Institutional Question
-           │
-           ▼
-Evidence Retrieval
-           │
-           ▼
-Evidence Clustering
-           │
-           ▼
-Evidence Synthesis
-           │
-           ▼
-Decision Brief
-           │
-           ▼
-Human Judgment
-```
-
-Question answering retrieves information.
-
-Decision Briefs organize institutional knowledge.
-
----
-
-# Guiding Principle
-
-The objective is not to tell university leaders what decision to make.
-
-The objective is to ensure that every important decision begins with the best available institutional evidence.
+- citations support the wording used;
+- self-study claims are not generalized into formal rules;
+- formal standards are not presented as proof of current compliance;
+- constitutional values are not presented as operational facts;
+- domain grades match the displayed limitations;
+- institution-wide claims have institution-wide or appropriately qualified evidence;
+- missing evidence is explicit; and
+- any recommendation is genuinely supported rather than inferred from source volume.

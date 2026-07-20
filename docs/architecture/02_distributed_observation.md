@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Evidence Layer design note. Listed observer types include implemented, planned, and aspirational examples; see [Current Status](../status.md).
+
 ## Distributed Institutional Observation
 
 **Version 0.1**
@@ -282,4 +284,3 @@ Distributed Institutional Observation recognizes a simple truth:
 **Institutions are observed, not downloaded.**
 
 By modeling observation as an explicit architectural layer, ISO transforms institutional knowledge acquisition from a collection of import scripts into a governed, explainable, and continuously evolving scientific process.
-

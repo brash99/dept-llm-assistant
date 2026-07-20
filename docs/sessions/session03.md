@@ -1,5 +1,7 @@
 # Session 3 — From Files to Knowledge
 
+> **Archive notice:** Historical laboratory note. Current architecture, status, and commands are documented in [the session archive index](README.md).
+
 *Project Design History*
 
 ---

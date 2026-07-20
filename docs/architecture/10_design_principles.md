@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Enduring design principles. The permanent architecture and current capability boundaries are defined in [Architecture Overview](01_architecture_overview.md) and [Current Status](../status.md).
+
 ## Design Principles
 
 **Version 0.1**

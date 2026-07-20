@@ -47,6 +47,15 @@ Status as of July 2026. This file describes the current codebase; research and s
 - **Constitutional reasoning:** Strategic Compass orientation and citation separation are implemented; constitutional alignment is not a final normative judgment.
 - **Decision readiness:** evidence sufficiency is assessed, but operational, financial, enrollment, and scenario services shown in the dashboard are not connected.
 
+## Recorded technical debt
+
+- Importing `app.control_plane` eagerly imports `sentence-transformers` through
+  semantic-neighbor components, even when callers need only lightweight
+  catalog, resolver, or orientation contracts. Dependency-light tests currently
+  use a localized optional-dependency fixture. Decoupling that import path is a
+  separate change and is intentionally not addressed by the Health Physics
+  integration patch.
+
 ## Planned
 
 ### Scenario Modeling

@@ -941,6 +941,7 @@ if st.button(button_label, type="primary") and query.strip():
     orientation_neighbor_limit = int(
         control_plane_cfg.get("semantic_neighbor_limit", 5)
     )
+    control_plane_result = None
 
     if orientation_enabled:
         try:
@@ -1050,6 +1051,11 @@ if st.button(button_label, type="primary") and query.strip():
             if mode == "Decision Brief":
                 response = generate_decision_brief(
                     question=clean_query,
+                    constitutional_orientation=(
+                        control_plane_result.constitutional_orientation
+                        if control_plane_result is not None
+                        else None
+                    ),
                     **common_kwargs,
                 )
             else:

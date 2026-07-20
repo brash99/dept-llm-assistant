@@ -20,12 +20,18 @@ except (ImportError, OSError):
 
 
 from app.control_plane.catalog import ProgramCatalog
+from app.control_plane.orientation import ProgramOrientationService
 from app.control_plane.resolver import ProgramResolver
+from app.constitution.orientation import (
+    ConstitutionalOrientation,
+    ConstitutionalPrincipleMatch,
+)
 from app.document_family import document_family_key
 from app.evidence import EvidenceClass, evidence_role_label, make_evidence
 from app.observatory.decision_brief.service import (
     build_decision_brief_prompt,
     build_grouped_evidence_context,
+    build_constitutional_orientation_context,
     resolve_topology_entity,
 )
 from app.observatory.decision_brief.dashboard_v2.participation import (
@@ -51,6 +57,8 @@ from app.retrieval import (
 import app.retrieval as retrieval_module
 from app.source_presentation import executive_source_label
 from app.vector_index import RetrievalResult
+import app.decision_brief as decision_brief_entrypoint
+import app.observatory.decision_brief.service as decision_brief_service
 
 
 QUENTIN_QUESTION = (
@@ -60,6 +68,174 @@ QUENTIN_QUESTION = (
     "faculty reductions come from, and why is that appropriate? Liberal "
     "Learning Core obligations remain relevant."
 )
+
+HEALTH_PHYSICS_BENCHMARK = """Prepare an Institutional Decision Brief addressing the following question.
+
+Institutional Question
+
+Christopher Newport University has been approached about the possibility of developing a Health Physics academic program. Evaluate whether pursuing such a program would be strategically advisable for the university.
+
+Your analysis should be based only on available institutional evidence and relevant external evidence. Consider, where supported by the evidence:
+
+• Alignment with Christopher Newport University's mission, Strategic Compass, and institutional priorities.
+• Existing academic strengths that could support such a program.
+• Student demand and enrollment considerations.
+• Workforce demand and regional or national employment outlook.
+• Potential partnerships (for example, Jefferson Lab, regional healthcare organizations, government agencies, or industry), but only where supported by evidence.
+• Resource requirements, including faculty expertise, facilities, accreditation, laboratory needs, and long-term sustainability.
+• Financial opportunities and risks.
+• Significant uncertainties, missing evidence, or assumptions that limit the analysis.
+
+If the available evidence is insufficient to support a confident recommendation, explicitly identify the missing evidence rather than speculating.
+
+Produce a complete Institutional Decision Brief using the Observatory's standard format, including Evidence Fitness, constitutional alignment, and a clearly justified recommendation."""
+
+
+class _NoNeighbors:
+    def neighbors(self, **kwargs):
+        return []
+
+
+def _constitutional_orientation(question: str) -> ConstitutionalOrientation:
+    match = ConstitutionalPrincipleMatch(
+        constitutional_object_id="strategic-compass",
+        constitutional_object_title="Strategic Compass",
+        constitutional_type="strategic_compass",
+        principle=(
+            "advance the power and promise of an education embedded in "
+            "the liberal arts"
+        ),
+        score=0.4,
+        matched_terms=("academic", "program"),
+    )
+    return ConstitutionalOrientation(
+        question=question,
+        matches=(match,),
+        confidence=0.4,
+    )
+
+
+def test_health_physics_preserves_existing_and_proposed_semantics() -> None:
+    catalog = ProgramCatalog.from_yaml(
+        Path("config/institutional_programs.yaml")
+    )
+    orientation = ProgramOrientationService(
+        resolver=ProgramResolver(catalog),
+        neighborhood_service=_NoNeighbors(),
+    ).orient(HEALTH_PHYSICS_BENCHMARK)
+
+    assert [entity.name for entity in orientation.resolved_entities] == [
+        "Physics"
+    ]
+    assert [
+        (concept.name, concept.concept_type)
+        for concept in orientation.proposed_concepts
+    ] == [("Health Physics", "academic_program")]
+
+    decision_type, _ = EvidenceFitnessService.classify_decision_type(
+        HEALTH_PHYSICS_BENCHMARK
+    )
+    assert decision_type.value == "academic_program"
+
+
+def test_health_physics_orientation_reaches_narrative_prompt() -> None:
+    orientation = _constitutional_orientation(HEALTH_PHYSICS_BENCHMARK)
+    evidence_context = build_grouped_evidence_context(
+        [],
+        constitutional_orientation=orientation,
+    )
+    orientation_context = build_constitutional_orientation_context(
+        orientation
+    )
+    evidence_fitness = EvidenceFitnessService.evaluate(
+        HEALTH_PHYSICS_BENCHMARK,
+        [],
+    )
+    prompt = build_decision_brief_prompt(
+        HEALTH_PHYSICS_BENCHMARK,
+        evidence_context,
+        evidence_fitness=evidence_fitness,
+        constitutional_orientation_context=orientation_context,
+    )
+
+    assert evidence_fitness.decision_type.value == "academic_program"
+    assert orientation.matches
+    assert "Strategic Compass" not in evidence_context
+    assert "Strategic Compass" in orientation_context
+    assert "Deterministic Constitutional Orientation" in prompt
+    assert "Strategic Compass" in prompt
+    assert "No constitutional evidence was retrieved." not in prompt
+    assert "not a retrieved empirical source" in prompt
+    normalized_prompt = " ".join(prompt.split())
+    assert (
+        "do not say that no constitutional evidence or orientation was "
+        "available"
+    ) in normalized_prompt
+
+
+def test_health_physics_complete_decision_brief_pipeline(
+    monkeypatch,
+) -> None:
+    orientation = _constitutional_orientation(HEALTH_PHYSICS_BENCHMARK)
+    captured = {}
+
+    class _Completions:
+        def create(self, **kwargs):
+            captured["prompt"] = kwargs["messages"][0]["content"]
+            return types.SimpleNamespace(
+                choices=[
+                    types.SimpleNamespace(
+                        message=types.SimpleNamespace(
+                            content=(
+                                "# Decision Brief\n\n"
+                                "Constitutional orientation was supplied "
+                                "separately from empirical evidence."
+                            )
+                        )
+                    )
+                ]
+            )
+
+    class _OpenAI:
+        def __init__(self, **kwargs):
+            self.chat = types.SimpleNamespace(
+                completions=_Completions()
+            )
+
+    monkeypatch.setattr(
+        decision_brief_entrypoint,
+        "retrieve",
+        lambda **kwargs: ([], None, None),
+    )
+    monkeypatch.setattr(
+        decision_brief_service,
+        "OpenAI",
+        _OpenAI,
+    )
+
+    brief, results, profile = (
+        decision_brief_entrypoint.generate_decision_brief(
+            question=HEALTH_PHYSICS_BENCHMARK,
+            vector_db_dir=Path("unused-test-index"),
+            model_name="unused-test-model",
+            embedding_device="cpu",
+            llm_base_url="http://unused.test/v1",
+            llm_model="test-model",
+            constitutional_orientation=orientation,
+        )
+    )
+
+    assert results == []
+    assert profile is None
+    assert brief.evidence_fitness.decision_type.value == "academic_program"
+    assert "# Decision Brief" in brief.raw_markdown
+    assert HEALTH_PHYSICS_BENCHMARK in brief.raw_markdown
+
+    prompt = captured["prompt"]
+    assert "Deterministic Constitutional Orientation" in prompt
+    assert "Strategic Compass" in prompt
+    assert "No constitutional evidence was retrieved." not in prompt
+    assert "not a retrieved empirical source" in prompt
 
 
 def _result(path: str, text: str, score: float = 1.0) -> RetrievalResult:

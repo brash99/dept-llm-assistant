@@ -19,10 +19,26 @@ CANONICAL_BENCHMARK = (
     "those 25 faculty reductions come from, and why?"
 )
 
-HEALTH_PHYSICS_BENCHMARK = (
-    "Should CNU develop a Health Physics academic program as part of "
-    "its strategic planning?"
-)
+HEALTH_PHYSICS_BENCHMARK = """Prepare an Institutional Decision Brief addressing the following question.
+
+Institutional Question
+
+Christopher Newport University has been approached about the possibility of developing a Health Physics academic program. Evaluate whether pursuing such a program would be strategically advisable for the university.
+
+Your analysis should be based only on available institutional evidence and relevant external evidence. Consider, where supported by the evidence:
+
+• Alignment with Christopher Newport University's mission, Strategic Compass, and institutional priorities.
+• Existing academic strengths that could support such a program.
+• Student demand and enrollment considerations.
+• Workforce demand and regional or national employment outlook.
+• Potential partnerships (for example, Jefferson Lab, regional healthcare organizations, government agencies, or industry), but only where supported by evidence.
+• Resource requirements, including faculty expertise, facilities, accreditation, laboratory needs, and long-term sustainability.
+• Financial opportunities and risks.
+• Significant uncertainties, missing evidence, or assumptions that limit the analysis.
+
+If the available evidence is insufficient to support a confident recommendation, explicitly identify the missing evidence rather than speculating.
+
+Produce a complete Institutional Decision Brief using the Observatory's standard format, including Evidence Fitness, constitutional alignment, and a clearly justified recommendation."""
 
 
 EXPECTED_DOMAINS = [

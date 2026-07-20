@@ -5,6 +5,7 @@ from typing import List, Optional
 
 from openai import OpenAI
 
+from app.constitution.orientation import ConstitutionalOrientation
 from app.evidence import (
     Evidence,
     EvidenceClass,
@@ -60,6 +61,9 @@ class DecisionBrief:
 
 def build_grouped_evidence_context(
     evidence_items: List[Evidence],
+    constitutional_orientation: Optional[
+        ConstitutionalOrientation
+    ] = None,
 ) -> str:
     """Build Decision Brief context with values and facts separated."""
     grouped = group_evidence_by_class(evidence_items)
@@ -114,6 +118,15 @@ def build_grouped_evidence_context(
                 f"{citation.get('end_char')}\n"
                 f"{result.text}"
             )
+    elif (
+        constitutional_orientation is not None
+        and constitutional_orientation.matches
+    ):
+        constitutional_parts.append(
+            "No constitutional source excerpts were retrieved in the evidence "
+            "set. Deterministic Constitutional Orientation was supplied "
+            "separately below."
+        )
     else:
         constitutional_parts.append(
             "No constitutional evidence was retrieved."
@@ -172,6 +185,40 @@ def build_grouped_evidence_context(
     return "\n\n" + ("\n\n" + "=" * 70 + "\n\n").join(
         sections
     )
+
+
+def build_constitutional_orientation_context(
+    orientation: Optional[ConstitutionalOrientation],
+) -> str:
+    """Serialize orientation without relabeling it as retrieved evidence."""
+    if orientation is None or not orientation.matches:
+        return ""
+
+    matches = []
+    for match in orientation.matches:
+        terms = ", ".join(match.matched_terms) or "None"
+        matches.append(
+            f"- Principle: {match.principle}\n"
+            f"  Source catalog object: {match.constitutional_object_title}\n"
+            f"  Constitutional type: {match.constitutional_type}\n"
+            f"  Relevance score: {match.score:.2f}\n"
+            f"  Matched terms: {terms}"
+        )
+
+    return """
+======================================================================
+Deterministic Constitutional Orientation
+======================================================================
+
+This is pre-retrieval semantic orientation, not a retrieved empirical source
+and not an institutional-alignment judgment. It identifies potentially
+relevant declared principles. Do not claim that constitutional context is
+absent when using these matches. If source excerpts were not retrieved, say
+that source-level constitutional evidence was not retrieved; do not say that
+no constitutional evidence or orientation was available.
+
+{matches}
+""".format(matches="\n".join(matches)).strip()
 
 
 def resolve_topology_entity(
@@ -365,6 +412,7 @@ def build_decision_brief_prompt(
     evidence_fitness=None,
     evidence_topics: Optional[List[str]] = None,
     topology_context: Optional[str] = None,
+    constitutional_orientation_context: Optional[str] = None,
 ) -> str:
     """
     Build the reasoning prompt sent to the LLM.
@@ -425,6 +473,9 @@ def build_decision_brief_prompt(
         )
 
     topology_context = topology_context or ""
+    constitutional_orientation_context = (
+        constitutional_orientation_context or ""
+    )
 
     if topology_context:
         topology_guidance = """
@@ -614,6 +665,9 @@ Evidence domains appropriate to this question:
 Retrieved constitutional and empirical evidence:
 {evidence_context}
 
+Pre-retrieval constitutional orientation:
+{constitutional_orientation_context or "No constitutional orientation was supplied."}
+
 Institutional topology guidance:
 {topology_guidance}
 
@@ -704,6 +758,9 @@ class DecisionBriefService:
             InstitutionalTopologyCatalog
         ] = None,
         temperature: float = 0.2,
+        constitutional_orientation: Optional[
+            ConstitutionalOrientation
+        ] = None,
     ) -> DecisionBrief:
         question = question.strip()
 
@@ -729,7 +786,16 @@ class DecisionBriefService:
 
         evidence_context = (
             build_grouped_evidence_context(
-                evidence_items
+                evidence_items,
+                constitutional_orientation=(
+                    constitutional_orientation
+                ),
+            )
+        )
+
+        constitutional_orientation_context = (
+            build_constitutional_orientation_context(
+                constitutional_orientation
             )
         )
 
@@ -759,6 +825,9 @@ class DecisionBriefService:
             evidence_fitness=evidence_fitness,
             evidence_topics=evidence_topics,
             topology_context=topology_context,
+            constitutional_orientation_context=(
+                constitutional_orientation_context
+            ),
         )
 
         client = OpenAI(

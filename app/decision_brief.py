@@ -56,6 +56,7 @@ def generate_decision_brief(
     empirical_top_k=10,
     topology_entity_query=None,
     max_per_document_family=2,
+    constitutional_orientation=None,
 ):
     """
     Generate an institutional Decision Brief knowledge product.
@@ -105,6 +106,7 @@ def generate_decision_brief(
         llm_base_url=llm_base_url,
         llm_model=llm_model,
         topology_entity_query=topology_entity_query,
+        constitutional_orientation=constitutional_orientation,
     )
 
     if return_trace:

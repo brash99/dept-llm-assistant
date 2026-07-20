@@ -83,9 +83,10 @@ class ProposedProgramConceptExtractor:
         (?P<name>
             [A-Za-z][A-Za-z&/\-]*(?:
                 \s+[A-Za-z][A-Za-z&/\-]*
-            ){0,6}
+            ){0,6}?
         )
         \s+
+        (?:academic\s+)?
         (?P<structure>program|major|concentration|certificate|track|specialization|pathway)\b
         """,
         flags=re.IGNORECASE | re.VERBOSE,
@@ -147,9 +148,6 @@ class ProposedProgramConceptExtractor:
         resolution: ProgramResolution,
     ) -> List[InstitutionalConcept]:
 
-        if resolution.found:
-            return []
-
         if not self._contains_proposal_language(question):
             return []
 
@@ -172,17 +170,35 @@ class ProposedProgramConceptExtractor:
             if not cleaned_name:
                 continue
 
-            concepts.append(
-                InstitutionalConcept(
-                    name=cleaned_name,
-                    concept_type=concept_type,
-                    asserted=False,
-                    confidence=0.85,
-                    extraction_method="explicit_academic_structure_v0.5",
-                )
+            concept = InstitutionalConcept(
+                name=cleaned_name,
+                concept_type=concept_type,
+                asserted=False,
+                confidence=0.85,
+                extraction_method="explicit_academic_structure_v0.5",
             )
 
+            if self._duplicates_resolved_entity(concept, resolution):
+                continue
+
+            concepts.append(concept)
+
         return self._deduplicate(concepts)
+
+    @staticmethod
+    def _duplicates_resolved_entity(
+        concept: InstitutionalConcept,
+        resolution: ProgramResolution,
+    ) -> bool:
+        """Avoid relabeling the resolved catalog entity as a proposal."""
+        if not resolution.found or resolution.program is None:
+            return False
+
+        asserted_names = {
+            resolution.program.name.casefold(),
+            *(alias.casefold() for alias in resolution.program.aliases),
+        }
+        return concept.name.casefold() in asserted_names
 
     def _contains_proposal_language(self, question: str) -> bool:
         return any(
@@ -336,21 +352,22 @@ class ProgramOrientationService:
         resolution: ProgramResolution,
         proposed_concepts: Sequence[InstitutionalConcept],
     ) -> List[str]:
+        notes: List[str] = []
+
         if resolution.found and resolution.program is not None:
-            return [
-                (
-                    "The question explicitly references an existing program "
-                    "in the asserted institutional catalog."
-                )
-            ]
+            notes.append(
+                "The question explicitly references an existing program "
+                "in the asserted institutional catalog."
+            )
 
         if proposed_concepts:
-            return [
-                (
-                    "The question references a proposed academic program that "
-                    "is not asserted as an existing program in the catalog."
-                )
-            ]
+            notes.append(
+                "The question references a proposed academic program that "
+                "is not asserted as an existing program in the catalog."
+            )
+
+        if notes:
+            return notes
 
         return [
             (

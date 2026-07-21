@@ -30,7 +30,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 13. [Decision-Driven External Evidence Acquisition](12_decision_driven_evidence_acquisition.md)
 14. [Semantic Scope Architecture](13_semantic_scope_architecture.md)
 15. [Knowledge Object Semantic Identity](14_knowledge_object_semantic_identity.md)
-16. [Architecture FAQ](ArchitectureFAQ.md)
+16. [Semantic Classification Framework](15_semantic_classification_framework.md)
+17. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

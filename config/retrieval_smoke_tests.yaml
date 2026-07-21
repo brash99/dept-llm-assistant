@@ -1,0 +1,118 @@
+version: 1
+defaults:
+  top_k: 12
+  fetch_k: 100
+  constitutional_top_k: 2
+  empirical_top_k: 10
+
+cases:
+  - id: faculty_edward_brash
+    family: faculty_directory
+    query: Edward Brash Professor Physics
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Edward, Brash, Physics]
+      expected_object_types_any: [faculty_observation]
+      expected_semantic_spaces_any: [institutional_people]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: faculty_pcse_department
+    family: faculty_directory
+    query: faculty in the Department of Physics Computer Science and Engineering
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_any: [Physics, Computer Science, Engineering]
+      expected_object_types_any: [faculty_observation]
+      expected_semantic_spaces_any: [institutional_people]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_communication_roster_2021
+    family: academic_catalog
+    query: Department of Communication faculty 2021-22
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Communication, 2021-22]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_biology_oenb
+    family: academic_catalog
+    query: Biology Organismal and Environmental
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Biology, Organismal, Environmental]
+      expected_object_types_any:
+        - academic_unit_observation
+        - department_faculty_roster_observation
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_emeriti_roster
+    family: academic_catalog
+    query: faculty roster Emeriti
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [faculty, Emeriti]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_mechanical_engineering_faculty
+    family: academic_catalog
+    query: Mechanical Engineering faculty catalog
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Mechanical, Engineering]
+      expected_object_types_any:
+        - catalog_faculty_observation
+        - department_faculty_roster_observation
+        - academic_unit_observation
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: constitutional_student_success
+    family: constitutional
+    query: Strategic Compass student success
+    constitutional_top_k: 2
+    empirical_top_k: 0
+    expectations:
+      expected_terms_any: [student, success, Strategic Compass]
+      expected_object_types_any: [constitutional_knowledge]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 2
+
+  - id: constitutional_liberal_arts_belonging
+    family: constitutional
+    query: CNU liberal arts community inclusion belonging
+    constitutional_top_k: 2
+    empirical_top_k: 0
+    expectations:
+      expected_terms_any: [liberal arts, community, inclusion, belonging]
+      expected_object_types_any: [constitutional_knowledge]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 2
+
+  - id: schedule_physics_offering
+    family: schedule
+    query: scheduled course offering Physics PHYS Fall 2026
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_any: [PHYS, Physics]
+      expected_object_types_any: [course_offering_observation]
+      expected_semantic_spaces_any: [institutional_operations]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10

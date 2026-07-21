@@ -112,7 +112,7 @@ duplicate_ids = len(ids) - len(set(ids))
 assert duplicate_ids == 0, f"Duplicate Knowledge Object IDs: {duplicate_ids}"
 
 source = root / config["schedule_ingestion"]["canonical_source"]
-expected_hash = "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+expected_hash = "f48ae97b2ae57831c6f387af0d049b01d4b2b44aed40df231f7e6f3705211542"
 source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
 assert source_hash == expected_hash, f"Unexpected canonical schedule hash: {source_hash}"
 

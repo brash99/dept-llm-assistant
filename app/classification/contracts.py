@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field as dataclass_field
 from enum import Enum
 from typing import Any, Dict, Mapping, Optional, Tuple
 
@@ -53,6 +53,7 @@ class EvidenceCitation:
     chunk_id: Optional[str] = None
     text_excerpt: Optional[str] = None
     page_reference: Optional[str] = None
+    attributes: Mapping[str, Any] = dataclass_field(default_factory=dict)
 
     def __post_init__(self) -> None:
         if not self.source_kind.strip():
@@ -68,8 +69,9 @@ class EvidenceCitation:
                 "chunk_id": self.chunk_id,
                 "text_excerpt": self.text_excerpt,
                 "page_reference": self.page_reference,
+                "attributes": dict(self.attributes),
             }.items()
-            if value is not None
+            if value is not None and value != {}
         }
 
     @classmethod
@@ -81,6 +83,7 @@ class EvidenceCitation:
             chunk_id=value.get("chunk_id"),
             text_excerpt=value.get("text_excerpt"),
             page_reference=value.get("page_reference"),
+            attributes=dict(value.get("attributes") or {}),
         )
 
 
@@ -220,6 +223,7 @@ class ClassificationResult:
     proposal: ClassificationProposal
     applied: bool = False
     automatically_accepted: bool = False
+    policy_decision: Optional[Any] = None
 
 
 __all__ = [

@@ -244,25 +244,35 @@ def test_service_optionally_accepts_and_applies_without_changing_object_id():
     }
 
 
-def test_service_leaves_lower_confidence_proposal_for_review():
-    class ManualClassifier:
-        method = ClassificationMethod.MANUAL
+def test_service_leaves_lower_confidence_llm_proposal_for_review():
+    class LLMClassifier:
+        method = ClassificationMethod.LLM
 
         def supports(self, obj):
             return True
 
         def classify(self, obj):
             return ClassificationProposal(
-                obj.id, (_assertion(score=0.6),), "manual_classifier"
+                obj.id,
+                (
+                    _assertion(
+                        score=0.8,
+                        method=ClassificationMethod.LLM,
+                    ),
+                ),
+                "llm_classifier",
             )
 
     obj = _object("faculty_observation")
-    service = SemanticClassificationService(classifiers=(ManualClassifier(),))
+    service = SemanticClassificationService(classifiers=(LLMClassifier(),))
 
     result = service.classify(obj)
 
     assert result.proposal.stage == ProposalStage.PROPOSED
-    assert result.proposal.requires_review() is True
+    assert (
+        result.policy_decision.assertion_decisions[0].disposition.value
+        == "review"
+    )
     assert obj.semantic_identity is None
     assert service.metrics.number_requiring_review == 1
     assert service.metrics.number_automatically_accepted == 0

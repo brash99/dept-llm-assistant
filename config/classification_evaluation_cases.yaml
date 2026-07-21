@@ -1,0 +1,171 @@
+version: 1
+description: >-
+  Small reviewed fixtures for deterministic Semantic Classification Framework
+  policy and evaluation. These are not corpus records.
+
+cases:
+  - case_id: constitutional_strategic_compass
+    notes: Constitutional scope and principles are copied from structured fields.
+    fixture:
+      object_type: constitutional_knowledge
+      constitutional_type: strategic_compass
+      institutional_scope: [Christopher Newport University]
+      principles: [build a foundation to thrive]
+      effective_from: "2023"
+      effective_until: null
+    expected_classifier_method: adapter
+    expected_assertions:
+      - field_name: object_type
+        value: constitutional_knowledge
+      - field_name: institutional_entities
+        value:
+          - entity_type: institution
+            entity_id: "published_institution:Christopher Newport University"
+            published_name: Christopher Newport University
+      - field_name: temporal_scope
+        value:
+          effective_from: "2023"
+      - field_name: institutional_relevance
+        value:
+          constitutional_type: strategic_compass
+          principles: [build a foundation to thrive]
+    forbidden_assertions:
+      - field_name: decision_domains
+        value: [academic_workforce_planning]
+
+  - case_id: faculty_directory_observation
+    fixture:
+      object_type: faculty_observation
+      display_name: Ada Example
+      published_department: Department of Examples
+      snapshot_date: "2026-07-21"
+    expected_classifier_method: adapter
+    expected_assertions:
+      - field_name: object_type
+        value: faculty_observation
+      - field_name: institutional_entities
+        value:
+          - entity_type: faculty
+            entity_id: "faculty_observation:fixture:faculty_directory_observation"
+            published_name: Ada Example
+          - entity_type: department
+            entity_id: "published_academic_unit:Department of Examples"
+            published_name: Department of Examples
+      - field_name: temporal_scope
+        value:
+          as_of: "2026-07-21"
+          published_label: "2026-07-21"
+    forbidden_assertions:
+      - field_name: authority
+        value:
+          issuing_authority: Department of Examples
+
+  - case_id: course_offering_observation
+    fixture:
+      object_type: course_offering_observation
+      course_code: EXM 201
+      section: "01"
+      academic_term: Fall 2026
+    expected_classifier_method: adapter
+    expected_assertions:
+      - field_name: object_type
+        value: course_offering_observation
+      - field_name: institutional_entities
+        value:
+          - entity_type: course_offering
+            entity_id: "course_offering:fixture:course_offering_observation"
+            published_name: EXM 201 01
+      - field_name: temporal_scope
+        value:
+          academic_term: Fall 2026
+          published_label: Fall 2026
+    forbidden_assertions:
+      - field_name: institutional_relevance
+        value:
+          instructional_demand: high
+
+  - case_id: catalog_publication
+    fixture:
+      object_type: catalog_observation
+      catalog_year: "2025-26"
+      publication_title: Christopher Newport University Catalog
+    expected_classifier_method: adapter
+    expected_assertions:
+      - field_name: object_type
+        value: catalog_observation
+      - field_name: temporal_scope
+        value:
+          published_label: "2025-26"
+
+  - case_id: academic_unit_catalog_observation
+    fixture:
+      object_type: academic_unit_observation
+      catalog_year: "2025-26"
+      published_name: Department of Examples
+    expected_classifier_method: adapter
+    expected_assertions:
+      - field_name: object_type
+        value: academic_unit_observation
+      - field_name: institutional_entities
+        value:
+          - entity_type: academic_unit
+            entity_id: "published_academic_unit:Department of Examples"
+            published_name: Department of Examples
+      - field_name: temporal_scope
+        value:
+          published_label: "2025-26"
+
+  - case_id: department_faculty_roster
+    fixture:
+      object_type: department_faculty_roster_observation
+      catalog_year: "2025-26"
+      academic_unit: Department of Examples
+    expected_classifier_method: adapter
+    expected_assertions:
+      - field_name: object_type
+        value: department_faculty_roster_observation
+      - field_name: institutional_entities
+        value:
+          - entity_type: academic_unit
+            entity_id: "published_academic_unit:Department of Examples"
+            published_name: Department of Examples
+      - field_name: temporal_scope
+        value:
+          published_label: "2025-26"
+
+  - case_id: unsupported_incomplete_document
+    notes: Unsupported generic documents abstain rather than acquiring invented identity.
+    fixture:
+      object_type: document
+    expected_abstentions: [unsupported_object_type]
+
+  - case_id: existing_department_conflict
+    notes: A new published department conflicts with an already accepted department identity.
+    fixture:
+      object_type: faculty_observation
+      display_name: Ada Example
+      published_department: Department of Physics
+      snapshot_date: "2026-07-21"
+      existing_semantic_identity:
+        object_type: faculty_observation
+        institutional_entities:
+          - entity_type: department
+            entity_id: department:english
+            published_name: Department of English
+    expected_classifier_method: adapter
+    expected_conflict_fields: [institutional_entities]
+    expected_assertions:
+      - field_name: object_type
+        value: faculty_observation
+      - field_name: institutional_entities
+        value:
+          - entity_type: faculty
+            entity_id: "faculty_observation:fixture:existing_department_conflict"
+            published_name: Ada Example
+          - entity_type: department
+            entity_id: "published_academic_unit:Department of Physics"
+            published_name: Department of Physics
+      - field_name: temporal_scope
+        value:
+          as_of: "2026-07-21"
+          published_label: "2026-07-21"

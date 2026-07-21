@@ -31,9 +31,14 @@ def main():
     project_root = Path(config["project"]["root"])
     normalized_dir = project_root / config["storage"]["normalized"]
     constitutional_dir = project_root / config["storage"]["constitutional"]
+    schedule_observations_dir = project_root / config["storage"].get(
+        "schedule_observations",
+        "data/normalized/schedules",
+    )
     source_dirs = [
         normalized_dir,
         constitutional_dir,
+        schedule_observations_dir,
     ]
     chunks_dir = project_root / config["storage"]["chunks"]
     logs_dir = project_root / config["storage"]["logs"]

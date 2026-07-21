@@ -37,7 +37,11 @@ COLUMN_ALIASES = {
     "instructional_method": ("Type", "Instructional Method", "Method"),
     "meeting_days": ("Days", "Meeting Days"),
     "meeting_time": ("Time", "Meeting Time"),
+    "meeting_date_range": ("Date Range", "Meeting Dates"),
+    "start_date": ("Start Date", "Meeting Start Date"),
+    "end_date": ("End Date", "Meeting End Date"),
     "location": ("Location", "Meeting Location"),
+    "modality": ("Modality", "Instructional Modality"),
     "instructor": ("Instructor", "Instructor Name"),
     "seats_available": ("Seats Still Available", "Seats Available"),
     "status": ("STATUS", "Status"),
@@ -245,6 +249,9 @@ class CourseOfferingObservation(KnowledgeObject):
     meeting_time_raw: Optional[str] = None
     start_time: Optional[str] = None
     end_time: Optional[str] = None
+    meeting_date_range_raw: Optional[str] = None
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
     location_raw: Optional[str] = None
     building: Optional[str] = None
     room: Optional[str] = None
@@ -263,6 +270,7 @@ class CourseOfferingObservation(KnowledgeObject):
     unreserved: Optional[int] = None
     unreserved_available: Optional[int] = None
     low_cost_textbook_raw: Optional[str] = None
+    modality: Optional[str] = None
     provenance: Dict[str, Any] = field(default_factory=dict)
     raw_record: Dict[str, Any] = field(default_factory=dict)
 
@@ -496,6 +504,11 @@ class ScheduleCSVAdapter:
                     meeting_time_raw=time_raw or None,
                     start_time=start_time,
                     end_time=end_time,
+                    meeting_date_range_raw=(
+                        self._value(row, columns, "meeting_date_range") or None
+                    ),
+                    start_date=self._value(row, columns, "start_date") or None,
+                    end_date=self._value(row, columns, "end_date") or None,
                     location_raw=location_raw or None,
                     building=building,
                     room=room,
@@ -516,6 +529,7 @@ class ScheduleCSVAdapter:
                     low_cost_textbook_raw=(
                         self._value(row, columns, "low_cost_textbook") or None
                     ),
+                    modality=self._value(row, columns, "modality") or None,
                     provenance=provenance,
                     raw_record=raw_record,
                 )

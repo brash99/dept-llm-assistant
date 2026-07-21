@@ -29,6 +29,9 @@ EXTERNAL_PROVENANCE_FIELDS = (
     "geographic_scope",
 )
 
+SCHEDULE_OBJECT_TYPE = "course_offering_observation"
+SCHEDULE_SEMANTIC_SPACE = "institutional_operations"
+
 
 @dataclass
 class Chunk:
@@ -147,7 +150,155 @@ def _document_metadata(document) -> Dict[str, Any]:
     return metadata
 
 
+def _present(value) -> bool:
+    return value is not None and value != ""
+
+
+def _schedule_value(observation, field, default=None):
+    value = getattr(observation, field, None)
+    return value if _present(value) else default
+
+
+def render_course_offering_observation(observation) -> str:
+    """Render one schedule observation as concise factual retrieval text."""
+    term = _schedule_value(observation, "academic_term")
+    course_code = _schedule_value(observation, "course_code")
+    title = _schedule_value(observation, "course_title")
+
+    heading = "Scheduled course offering"
+    if term:
+        heading += f" for {term}"
+    lines = [f"{heading}."]
+
+    if course_code:
+        course = course_code
+        if title:
+            course += f" — {title}"
+        lines.append(f"Course: {course}.")
+
+    credits = _schedule_value(
+        observation,
+        "credits_raw",
+        _schedule_value(observation, "credits"),
+    )
+    for label, value in (
+        ("Section", _schedule_value(observation, "section")),
+        ("CRN", _schedule_value(observation, "crn")),
+        ("Credits", credits),
+        ("Instructor", _schedule_value(observation, "instructor_raw")),
+        (
+            "Instructional method",
+            _schedule_value(observation, "instructional_method"),
+        ),
+        ("Modality", _schedule_value(observation, "modality")),
+        ("Meeting days", _schedule_value(observation, "meeting_days")),
+        ("Meeting time", _schedule_value(observation, "meeting_time_raw")),
+        (
+            "Meeting date range",
+            _schedule_value(observation, "meeting_date_range_raw"),
+        ),
+        ("Start date", _schedule_value(observation, "start_date")),
+        ("End date", _schedule_value(observation, "end_date")),
+        ("Location", _schedule_value(observation, "location_raw")),
+        ("Campus", _schedule_value(observation, "campus")),
+        ("Enrollment", _schedule_value(observation, "enrollment")),
+        ("Capacity", _schedule_value(observation, "capacity")),
+        (
+            "Seats available",
+            _schedule_value(observation, "seats_available"),
+        ),
+        ("Waitlist", _schedule_value(observation, "waitlist")),
+        ("Status", _schedule_value(observation, "status")),
+        (
+            "Liberal Learning Core designation",
+            _schedule_value(observation, "llc_area_raw"),
+        ),
+        ("Notes", _schedule_value(observation, "notes")),
+    ):
+        if _present(value):
+            lines.append(f"{label}: {value}.")
+
+    return "\n".join(lines)
+
+
+def _schedule_metadata(observation) -> Dict[str, Any]:
+    source = getattr(observation, "source", {}) or {}
+    provenance = getattr(observation, "provenance", {}) or {}
+    source_path = (
+        _mapping_value(provenance, "source_path")
+        or _mapping_value(source, "path")
+    )
+    source_type = _mapping_value(source, "kind")
+
+    values = {
+        "document_title": observation.title,
+        "knowledge_object_id": observation.id,
+        "knowledge_object_type": observation.object_type,
+        "semantic_space": SCHEDULE_SEMANTIC_SPACE,
+        "term": _schedule_value(observation, "academic_term"),
+        "subject": _schedule_value(observation, "subject"),
+        "course_number": _schedule_value(observation, "course_number"),
+        "course_code": _schedule_value(observation, "course_code"),
+        "section": _schedule_value(observation, "section"),
+        "crn": _schedule_value(observation, "crn"),
+        "instructor_text": _schedule_value(observation, "instructor_raw"),
+        "source_type": source_type,
+        "source_path": source_path,
+        "relative_path": source_path,
+        "source_row": _schedule_value(observation, "source_row"),
+        "source_sha256": _mapping_value(provenance, "source_sha256"),
+        "adapter": _mapping_value(provenance, "adapter"),
+        "adapter_version": _mapping_value(provenance, "adapter_version"),
+        "normalized_at": getattr(observation, "normalized_at", None),
+    }
+    return {key: value for key, value in values.items() if _present(value)}
+
+
+def chunk_course_offering_observation(observation):
+    """Produce exactly one deterministic primary chunk for one section."""
+    text = render_course_offering_observation(observation)
+    metadata = {
+        **_schedule_metadata(observation),
+        "chunk_size": None,
+        "overlap": 0,
+        "max_chunks_per_document": 1,
+        "document_truncated": False,
+        "original_chunk_count": 1,
+        "indexed_chunk_count": 1,
+    }
+    source_path = metadata.get("source_path")
+    citation = {
+        "title": observation.title,
+        "relative_path": source_path,
+        "source_path": source_path,
+        "source_type": metadata.get("source_type"),
+        "source_row": metadata.get("source_row"),
+        "crn": metadata.get("crn"),
+        "start_char": 0,
+        "end_char": len(text),
+    }
+    citation = {
+        key: value for key, value in citation.items() if _present(value)
+    }
+    return [
+        Chunk(
+            id=make_chunk_id(observation.id, 0, 0, len(text)),
+            knowledge_object_id=observation.id,
+            object_type=observation.object_type,
+            chunk_index=0,
+            text=text,
+            start_char=0,
+            end_char=len(text),
+            citation=citation,
+            metadata=metadata,
+        )
+    ]
+
+
 def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
+    if document.object_type == SCHEDULE_OBJECT_TYPE:
+        return chunk_course_offering_observation(document)
+
     raw_chunks = chunk_text(
         document.text,
         chunk_size=chunk_size,
@@ -311,7 +462,7 @@ def run_chunking(
             print(f"[WARN] Source directory does not exist: {source_dir}")
             continue
 
-        for path in sorted(source_dir.glob("*.json")):
+        for path in sorted(source_dir.rglob("*.json")):
             if limit is not None and results["attempted"] >= limit:
                 break
 

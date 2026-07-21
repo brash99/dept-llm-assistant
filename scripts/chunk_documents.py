@@ -35,10 +35,15 @@ def main():
         "schedule_observations",
         "data/normalized/schedules",
     )
+    faculty_observations_dir = project_root / config["storage"].get(
+        "faculty_observations",
+        "data/normalized/faculty",
+    )
     source_dirs = [
         normalized_dir,
         constitutional_dir,
         schedule_observations_dir,
+        faculty_observations_dir,
     ]
     chunks_dir = project_root / config["storage"]["chunks"]
     logs_dir = project_root / config["storage"]["logs"]

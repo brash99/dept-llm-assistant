@@ -31,6 +31,8 @@ EXTERNAL_PROVENANCE_FIELDS = (
 
 SCHEDULE_OBJECT_TYPE = "course_offering_observation"
 SCHEDULE_SEMANTIC_SPACE = "institutional_operations"
+FACULTY_OBJECT_TYPE = "faculty_observation"
+FACULTY_SEMANTIC_SPACE = "institutional_people"
 
 
 @dataclass
@@ -154,16 +156,16 @@ def _present(value) -> bool:
     return value is not None and value != ""
 
 
-def _schedule_value(observation, field, default=None):
+def _object_value(observation, field, default=None):
     value = getattr(observation, field, None)
     return value if _present(value) else default
 
 
 def render_course_offering_observation(observation) -> str:
     """Render one schedule observation as concise factual retrieval text."""
-    term = _schedule_value(observation, "academic_term")
-    course_code = _schedule_value(observation, "course_code")
-    title = _schedule_value(observation, "course_title")
+    term = _object_value(observation, "academic_term")
+    course_code = _object_value(observation, "course_code")
+    title = _object_value(observation, "course_title")
 
     heading = "Scheduled course offering"
     if term:
@@ -176,44 +178,44 @@ def render_course_offering_observation(observation) -> str:
             course += f" — {title}"
         lines.append(f"Course: {course}.")
 
-    credits = _schedule_value(
+    credits = _object_value(
         observation,
         "credits_raw",
-        _schedule_value(observation, "credits"),
+        _object_value(observation, "credits"),
     )
     for label, value in (
-        ("Section", _schedule_value(observation, "section")),
-        ("CRN", _schedule_value(observation, "crn")),
+        ("Section", _object_value(observation, "section")),
+        ("CRN", _object_value(observation, "crn")),
         ("Credits", credits),
-        ("Instructor", _schedule_value(observation, "instructor_raw")),
+        ("Instructor", _object_value(observation, "instructor_raw")),
         (
             "Instructional method",
-            _schedule_value(observation, "instructional_method"),
+            _object_value(observation, "instructional_method"),
         ),
-        ("Modality", _schedule_value(observation, "modality")),
-        ("Meeting days", _schedule_value(observation, "meeting_days")),
-        ("Meeting time", _schedule_value(observation, "meeting_time_raw")),
+        ("Modality", _object_value(observation, "modality")),
+        ("Meeting days", _object_value(observation, "meeting_days")),
+        ("Meeting time", _object_value(observation, "meeting_time_raw")),
         (
             "Meeting date range",
-            _schedule_value(observation, "meeting_date_range_raw"),
+            _object_value(observation, "meeting_date_range_raw"),
         ),
-        ("Start date", _schedule_value(observation, "start_date")),
-        ("End date", _schedule_value(observation, "end_date")),
-        ("Location", _schedule_value(observation, "location_raw")),
-        ("Campus", _schedule_value(observation, "campus")),
-        ("Enrollment", _schedule_value(observation, "enrollment")),
-        ("Capacity", _schedule_value(observation, "capacity")),
+        ("Start date", _object_value(observation, "start_date")),
+        ("End date", _object_value(observation, "end_date")),
+        ("Location", _object_value(observation, "location_raw")),
+        ("Campus", _object_value(observation, "campus")),
+        ("Enrollment", _object_value(observation, "enrollment")),
+        ("Capacity", _object_value(observation, "capacity")),
         (
             "Seats available",
-            _schedule_value(observation, "seats_available"),
+            _object_value(observation, "seats_available"),
         ),
-        ("Waitlist", _schedule_value(observation, "waitlist")),
-        ("Status", _schedule_value(observation, "status")),
+        ("Waitlist", _object_value(observation, "waitlist")),
+        ("Status", _object_value(observation, "status")),
         (
             "Liberal Learning Core designation",
-            _schedule_value(observation, "llc_area_raw"),
+            _object_value(observation, "llc_area_raw"),
         ),
-        ("Notes", _schedule_value(observation, "notes")),
+        ("Notes", _object_value(observation, "notes")),
     ):
         if _present(value):
             lines.append(f"{label}: {value}.")
@@ -235,17 +237,17 @@ def _schedule_metadata(observation) -> Dict[str, Any]:
         "knowledge_object_id": observation.id,
         "knowledge_object_type": observation.object_type,
         "semantic_space": SCHEDULE_SEMANTIC_SPACE,
-        "term": _schedule_value(observation, "academic_term"),
-        "subject": _schedule_value(observation, "subject"),
-        "course_number": _schedule_value(observation, "course_number"),
-        "course_code": _schedule_value(observation, "course_code"),
-        "section": _schedule_value(observation, "section"),
-        "crn": _schedule_value(observation, "crn"),
-        "instructor_text": _schedule_value(observation, "instructor_raw"),
+        "term": _object_value(observation, "academic_term"),
+        "subject": _object_value(observation, "subject"),
+        "course_number": _object_value(observation, "course_number"),
+        "course_code": _object_value(observation, "course_code"),
+        "section": _object_value(observation, "section"),
+        "crn": _object_value(observation, "crn"),
+        "instructor_text": _object_value(observation, "instructor_raw"),
         "source_type": source_type,
         "source_path": source_path,
         "relative_path": source_path,
-        "source_row": _schedule_value(observation, "source_row"),
+        "source_row": _object_value(observation, "source_row"),
         "source_sha256": _mapping_value(provenance, "source_sha256"),
         "adapter": _mapping_value(provenance, "adapter"),
         "adapter_version": _mapping_value(provenance, "adapter_version"),
@@ -295,9 +297,169 @@ def chunk_course_offering_observation(observation):
     ]
 
 
+def render_faculty_observation(observation) -> str:
+    """Render only factual, profile-scoped faculty directory content."""
+    lines = ["Faculty directory observation"]
+
+    def add(label, value) -> None:
+        if _present(value):
+            lines.append(f"{label}: {value}")
+
+    add("Name", _object_value(observation, "display_name"))
+    titles = tuple(getattr(observation, "published_titles", ()) or ())
+    add("Published title", "; ".join(titles) if titles else None)
+    add(
+        "Published department or organizational unit",
+        _object_value(observation, "published_department"),
+    )
+    add("Published college", _object_value(observation, "published_college"))
+    add("Email", _object_value(observation, "email"))
+    add("Phone", _object_value(observation, "phone"))
+    add("Office", _object_value(observation, "office"))
+    add("Profile URL", _object_value(observation, "profile_url"))
+
+    education = tuple(getattr(observation, "education_entries", ()) or ())
+    if education:
+        add("Education", "; ".join(education))
+    add("Teaching", _object_value(observation, "teaching_interests"))
+    add("Research", _object_value(observation, "research_interests"))
+    add("Biography", _object_value(observation, "biography"))
+
+    for label, field in (
+        ("Publications", "publications"),
+        ("Professional experience", "professional_experience"),
+        ("Awards and honors", "awards_honors"),
+        ("Service", "service"),
+        ("Courses or areas taught", "courses_or_areas_taught"),
+    ):
+        values = tuple(getattr(observation, field, ()) or ())
+        if values:
+            add(label, "; ".join(values))
+
+    for label, values in sorted(
+        (getattr(observation, "other_labeled_sections", {}) or {}).items()
+    ):
+        values = tuple(values or ())
+        if values:
+            add(label, "; ".join(values))
+
+    snapshot = _object_value(observation, "snapshot_date")
+    if snapshot:
+        lines.append(
+            "This information was published in the CNU faculty directory "
+            f"and acquired in the {snapshot} snapshot."
+        )
+    return "\n".join(lines)
+
+
+def _faculty_metadata(observation) -> Dict[str, Any]:
+    source = getattr(observation, "source", {}) or {}
+    provenance = getattr(observation, "provenance", {}) or {}
+    titles = tuple(getattr(observation, "published_titles", ()) or ())
+    values = {
+        "document_title": observation.title,
+        "knowledge_object_id": observation.id,
+        "knowledge_object_type": observation.object_type,
+        "semantic_space": FACULTY_SEMANTIC_SPACE,
+        "display_name": _object_value(observation, "display_name"),
+        "family_name": _object_value(observation, "family_name"),
+        "published_title": "; ".join(titles) if titles else None,
+        "published_department": _object_value(
+            observation, "published_department"
+        ),
+        "published_college": _object_value(observation, "published_college"),
+        "email": _object_value(observation, "email"),
+        "profile_url": _object_value(observation, "profile_url"),
+        "snapshot_date": _object_value(observation, "snapshot_date"),
+        "source_type": (
+            _mapping_value(provenance, "source_type")
+            or _mapping_value(source, "kind")
+        ),
+        "relative_path": _object_value(
+            observation, "relative_source_path"
+        ),
+        "source_path": _object_value(observation, "relative_source_path"),
+        "source_sha256": (
+            _mapping_value(provenance, "source_sha256")
+            or _object_value(observation, "raw_acquisition_hash")
+        ),
+        "adapter": _mapping_value(provenance, "adapter"),
+        "adapter_version": _mapping_value(provenance, "adapter_version"),
+        "acquisition_timestamp": _mapping_value(
+            provenance, "acquisition_timestamp"
+        ),
+        "structural_variant": _object_value(
+            observation, "structural_variant"
+        ),
+        "normalized_at": getattr(observation, "normalized_at", None),
+    }
+    return {key: value for key, value in values.items() if _present(value)}
+
+
+def chunk_faculty_observation(
+    observation,
+    *,
+    chunk_size=3000,
+    overlap=300,
+    max_chunks=None,
+):
+    """Chunk deterministic factual faculty text using the shared size policy."""
+    text = render_faculty_observation(observation)
+    raw_chunks = chunk_text(text, chunk_size=chunk_size, overlap=overlap)
+    inherited = _faculty_metadata(observation)
+    chunks = []
+    for index, (chunk_value, start, end) in enumerate(raw_chunks):
+        if max_chunks is not None and len(chunks) >= max_chunks:
+            break
+        citation = {
+            "title": observation.title,
+            "relative_path": inherited.get("relative_path"),
+            "source_path": inherited.get("source_path"),
+            "source_type": inherited.get("source_type"),
+            "profile_url": inherited.get("profile_url"),
+            "start_char": start,
+            "end_char": end,
+        }
+        citation = {
+            key: value for key, value in citation.items() if _present(value)
+        }
+        chunks.append(
+            Chunk(
+                id=make_chunk_id(observation.id, index, start, end),
+                knowledge_object_id=observation.id,
+                object_type=observation.object_type,
+                chunk_index=index,
+                text=chunk_value,
+                start_char=start,
+                end_char=end,
+                citation=citation,
+                metadata={
+                    **inherited,
+                    "chunk_size": chunk_size,
+                    "overlap": overlap,
+                    "max_chunks_per_document": max_chunks,
+                },
+            )
+        )
+
+    truncated = max_chunks is not None and len(raw_chunks) > len(chunks)
+    for chunk in chunks:
+        chunk.metadata["document_truncated"] = truncated
+        chunk.metadata["original_chunk_count"] = len(raw_chunks)
+        chunk.metadata["indexed_chunk_count"] = len(chunks)
+    return chunks
+
+
 def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
     if document.object_type == SCHEDULE_OBJECT_TYPE:
         return chunk_course_offering_observation(document)
+    if document.object_type == FACULTY_OBJECT_TYPE:
+        return chunk_faculty_observation(
+            document,
+            chunk_size=chunk_size,
+            overlap=overlap,
+            max_chunks=max_chunks,
+        )
 
     raw_chunks = chunk_text(
         document.text,

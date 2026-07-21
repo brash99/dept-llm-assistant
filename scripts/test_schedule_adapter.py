@@ -93,8 +93,10 @@ def test_adapter_reports_duplicates_and_missing_required_values(tmp_path: Path) 
     assert result.rows_processed == 3
     assert len(result.observations) == 1
     assert result.duplicate_observations == 1
-    assert result.rows_skipped == 2
+    assert result.rows_skipped == 1
     assert result.missing_required_fields == {"course_code": 1}
+    assert result.observations[0].source_rows == (2, 3)
+    assert len(result.observations[0].raw_records) == 2
 
 
 def test_complex_values_remain_raw_when_not_safely_parseable(tmp_path: Path) -> None:

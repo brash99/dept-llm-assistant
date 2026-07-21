@@ -21,7 +21,7 @@ from app.knowledge import KnowledgeObject, save_knowledge_object
 
 
 ADAPTER_NAME = "schedule_csv_adapter"
-ADAPTER_VERSION = "0.1"
+ADAPTER_VERSION = "0.2"
 OBJECT_TYPE = "course_offering_observation"
 
 
@@ -43,6 +43,7 @@ COLUMN_ALIASES = {
     "location": ("Location", "Meeting Location"),
     "modality": ("Modality", "Instructional Modality"),
     "instructor": ("Instructor", "Instructor Name"),
+    "instructor_type": ("Instructor Type",),
     "seats_available": ("Seats Still Available", "Seats Available"),
     "status": ("STATUS", "Status"),
     "enrollment": ("Enrolled", "Enrollment"),
@@ -56,6 +57,7 @@ COLUMN_ALIASES = {
     "notes": ("Notes", "Comments"),
     "low_cost_textbook": ("Low Cost Textbook",),
     "acquisition_date": ("Acquisition Date", "Acquired At"),
+    "academic_term": ("Term", "Academic Term"),
 }
 
 REQUIRED_LOGICAL_FIELDS = ("course_code", "section")
@@ -92,6 +94,46 @@ def _term_from_filename(path: Path) -> Tuple[str, Optional[str]]:
     ):
         return term, None
     return term, "academic_term_unrecognized_filename_pattern"
+
+
+def normalize_academic_term(published_value: str) -> Tuple[str, Optional[str]]:
+    """Normalize a published term label without discarding that label."""
+    value = published_value.strip()
+    patterns = (
+        (r"Fall Semester (\d{4})", "{year}_fall"),
+        (r"Spring Semester (\d{4})", "{year}_spring"),
+        (r"May Term (\d{4})", "{year}_may"),
+        (r"Summer Term (?:I|1) (\d{4})", "{year}_summer_1"),
+        (r"Summer Term (?:II|2) (\d{4})", "{year}_summer_2"),
+        (r"Extended Summer(?: Term)? (\d{4})", "{year}_extended_summer"),
+    )
+    for pattern, template in patterns:
+        match = re.fullmatch(pattern, value, flags=re.IGNORECASE)
+        if match:
+            return template.format(year=match.group(1)), None
+    return value, "academic_term_unrecognized_published_label"
+
+
+def normalize_instructor_type(published_values: Sequence[str]) -> Dict[str, Any]:
+    """Preserve section-level source assertions and normalize conservatively."""
+    values = tuple(dict.fromkeys(str(value) for value in published_values))
+    nonblank = tuple(value for value in values if value.strip())
+    mappings = {"full time": "full_time", "adjunct": "adjunct"}
+    normalized = {
+        mappings.get(value.strip().casefold(), "unknown") for value in nonblank
+    }
+    normalized_value = (
+        next(iter(normalized))
+        if len(normalized) == 1 and "unknown" not in normalized
+        else "unknown"
+    )
+    return {
+        "published_value": nonblank[0] if len(nonblank) == 1 else None,
+        "published_values": list(nonblank),
+        "normalized_value": normalized_value,
+        "has_blank_value": any(not value.strip() for value in values) or not values,
+        "conflicting": len(nonblank) > 1,
+    }
 
 
 def _split_course_code(raw_value: str) -> Tuple[Optional[str], Optional[str]]:
@@ -201,7 +243,6 @@ def _observation_id(
     crn: str,
     course_code: str,
     section: str,
-    raw_record: Dict[str, Any],
 ) -> str:
     """Create a stable identity, preferring term plus institutional CRN."""
     if crn.strip():
@@ -214,9 +255,9 @@ def _observation_id(
             "academic_term": academic_term,
             "course_code": course_code,
             "section": section,
-            # Preserve uniqueness when the source lacks its normal section ID.
-            "raw_record": raw_record,
         }
+    identity["course_code"] = course_code.strip()
+    identity["section"] = section.strip()
     payload = json.dumps(
         identity,
         ensure_ascii=False,
@@ -235,6 +276,7 @@ class CourseOfferingObservation(KnowledgeObject):
     source_row: int = 0
     acquisition_date: Optional[str] = None
     academic_term: str = ""
+    academic_term_published: Optional[str] = None
     subject: Optional[str] = None
     course_number: Optional[str] = None
     course_code: str = ""
@@ -243,6 +285,7 @@ class CourseOfferingObservation(KnowledgeObject):
     crn: Optional[str] = None
     instructor_name: Optional[str] = None
     instructor_raw: Optional[str] = None
+    instructor_type: Dict[str, Any] = field(default_factory=dict)
     instructional_method: Optional[str] = None
     meeting_pattern: Optional[str] = None
     meeting_days: Optional[str] = None
@@ -273,6 +316,9 @@ class CourseOfferingObservation(KnowledgeObject):
     modality: Optional[str] = None
     provenance: Dict[str, Any] = field(default_factory=dict)
     raw_record: Dict[str, Any] = field(default_factory=dict)
+    source_rows: Tuple[int, ...] = field(default_factory=tuple)
+    raw_records: Tuple[Dict[str, Any], ...] = field(default_factory=tuple)
+    published_field_variants: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         if self.object_type != OBJECT_TYPE:
@@ -287,6 +333,12 @@ class CourseOfferingObservation(KnowledgeObject):
             raise ValueError("course_code is required")
         if not self.section:
             raise ValueError("section is required")
+        self.source_rows = tuple(self.source_rows or ((self.source_row,) if self.source_row else ()))
+        self.raw_records = tuple(dict(value) for value in (self.raw_records or ((self.raw_record,) if self.raw_record else ())))
+        self.published_field_variants = {
+            str(name): tuple(values)
+            for name, values in self.published_field_variants.items()
+        }
 
 
 @dataclass
@@ -345,9 +397,8 @@ class ScheduleCSVAdapter:
             raise ValueError("Schedule adaptation timestamp must be timezone-aware")
 
         result = ScheduleAdaptationResult()
-        academic_term, term_warning = _term_from_filename(self.source_path)
         source_hash = _source_sha256(self.source_path)
-        seen_ids = set()
+        grouped_rows: Dict[str, list[Tuple[int, Dict[Optional[str], Any], str, str]]] = {}
 
         with self.source_path.open("r", encoding="utf-8-sig", newline="") as handle:
             reader = csv.DictReader(handle)
@@ -366,9 +417,6 @@ class ScheduleCSVAdapter:
 
             for source_row, row in enumerate(reader, start=2):
                 result.rows_processed += 1
-                raw_record = _raw_record(row)
-                row_warnings: Counter[str] = Counter()
-
                 course_code_raw = self._value(row, columns, "course_code")
                 section_raw = self._value(row, columns, "section")
                 missing_in_row = False
@@ -385,55 +433,108 @@ class ScheduleCSVAdapter:
                     continue
 
                 crn_raw = self._value(row, columns, "crn")
+                term_raw = self._value(row, columns, "academic_term")
+                if columns.get("academic_term") is None:
+                    term_raw, term_warning = _term_from_filename(self.source_path)
+                elif not term_raw.strip():
+                    term_raw, term_warning = _term_from_filename(self.source_path)
+                    term_warning = "academic_term_blank_used_filename_fallback"
+                else:
+                    term_warning = None
+                academic_term, normalized_term_warning = normalize_academic_term(term_raw)
+                if normalized_term_warning and columns.get("academic_term") is None:
+                    # Legacy filename-derived values are already stable term IDs.
+                    if re.fullmatch(r"\d{4}_(?:spring|fall|summer\d*|maymester|winter)", academic_term.casefold()):
+                        normalized_term_warning = None
                 observation_id = _observation_id(
                     academic_term=academic_term,
                     crn=crn_raw,
                     course_code=course_code_raw,
                     section=section_raw,
-                    raw_record=raw_record,
                 )
-                if observation_id in seen_ids:
+                if observation_id in grouped_rows:
                     result.duplicate_observations += 1
-                    result.rows_skipped += 1
-                    continue
-                seen_ids.add(observation_id)
+                grouped_rows.setdefault(observation_id, []).append(
+                    (source_row, row, term_raw, term_warning or normalized_term_warning or "")
+                )
+
+            for observation_id, items in grouped_rows.items():
+                source_rows = tuple(item[0] for item in items)
+                rows = tuple(item[1] for item in items)
+                raw_records = tuple(_raw_record(row) for row in rows)
+                row_warnings: Counter[str] = Counter(
+                    warning for *_, warning in items if warning
+                )
+
+                def distinct_values(logical_name: str, *, include_blank: bool = False) -> Tuple[str, ...]:
+                    values = tuple(dict.fromkeys(
+                        self._value(row, columns, logical_name) for row in rows
+                    ))
+                    return values if include_blank else tuple(value for value in values if value != "")
+
+                variants: Dict[str, Tuple[str, ...]] = {}
+                for logical_name in COLUMN_ALIASES:
+                    values = distinct_values(logical_name, include_blank=True)
+                    if len(values) > 1:
+                        variants[logical_name] = values
+                        row_warnings[f"{logical_name}_conflicting_source_values"] += 1
+
+                def first_value(logical_name: str) -> str:
+                    values = distinct_values(logical_name)
+                    return values[0] if values else ""
+
+                course_code_raw = first_value("course_code")
+                section_raw = first_value("section")
+                crn_raw = first_value("crn")
+                term_published = items[0][2]
+                academic_term, _ = normalize_academic_term(term_published)
 
                 subject, course_number = _split_course_code(course_code_raw)
                 if course_number is None:
                     row_warnings["course_code_could_not_split_preserved_raw"] += 1
 
-                credits_raw = self._value(row, columns, "credits")
+                credit_values = distinct_values("credits")
+                credits_raw = " | ".join(credit_values)
                 credits = _parse_scalar_number(
                     credits_raw,
                     field_name="credits",
                     warnings=row_warnings,
                 )
 
-                time_raw = self._value(row, columns, "meeting_time")
+                time_raw = " | ".join(distinct_values("meeting_time"))
                 start_time, end_time = _parse_meeting_time(time_raw, row_warnings)
-                days_raw = self._value(row, columns, "meeting_days")
+                days_raw = " | ".join(distinct_values("meeting_days"))
                 meeting_pattern = " ".join(
                     value for value in (days_raw, time_raw) if value
                 ) or None
 
-                location_raw = self._value(row, columns, "location")
+                location_raw = " | ".join(distinct_values("location"))
                 building, room = _parse_location(location_raw, row_warnings)
 
-                numeric_values = {
-                    name: _parse_integer(
-                        self._value(row, columns, name),
+                numeric_values = {}
+                for name in INTEGER_FIELDS:
+                    values = distinct_values(name)
+                    numeric_values[name] = _parse_integer(
+                        values[0] if len(values) == 1 else "",
                         field_name=name,
                         warnings=row_warnings,
                     )
-                    for name in INTEGER_FIELDS
-                }
+                    if len(values) > 1:
+                        row_warnings[f"{name}_conflict_not_reduced"] += 1
 
-                instructor_raw = self._value(row, columns, "instructor")
-                acquisition_date_raw = self._value(
-                    row, columns, "acquisition_date"
+                instructor_values = distinct_values("instructor")
+                instructor_raw = instructor_values[0] if len(instructor_values) == 1 else " | ".join(instructor_values)
+                instructor_type = normalize_instructor_type(
+                    distinct_values("instructor_type", include_blank=True)
                 )
-                if term_warning:
-                    row_warnings[term_warning] += 1
+                if (
+                    not instructor_type["conflicting"]
+                    and
+                    columns.get("instructor_type") is not None
+                    and instructor_type["normalized_value"] == "unknown"
+                ):
+                    row_warnings["instructor_type_unknown"] += 1
+                acquisition_date_raw = first_value("acquisition_date")
 
                 result.parsing_warnings.update(row_warnings)
                 normalized_at = timestamp.isoformat()
@@ -441,7 +542,9 @@ class ScheduleCSVAdapter:
                 provenance = {
                     "source_filename": source_filename,
                     "source_path": str(self.source_path),
-                    "source_row": source_row,
+                    "source_row": source_rows[0],
+                    "source_rows": list(source_rows),
+                    "source_row_count": len(source_rows),
                     "ingested_at": normalized_at,
                     "source_sha256": source_hash,
                     "adapter": ADAPTER_NAME,
@@ -449,7 +552,7 @@ class ScheduleCSVAdapter:
                     "source_headers": headers,
                 }
 
-                course_title = self._value(row, columns, "course_title")
+                course_title = first_value("course_title")
                 factual_lines = [
                     f"Academic term: {academic_term}",
                     f"Course: {course_code_raw}",
@@ -478,16 +581,17 @@ class ScheduleCSVAdapter:
                         "kind": "institutional_schedule_csv",
                         "path": str(self.source_path),
                         "filename": source_filename,
-                        "row": source_row,
+                        "row": source_rows[0],
                         "content_hash": source_hash,
                     },
                     created_at=None,
                     normalized_at=normalized_at,
                     observation_id=observation_id,
                     source_file=source_filename,
-                    source_row=source_row,
+                    source_row=source_rows[0],
                     acquisition_date=acquisition_date_raw or None,
                     academic_term=academic_term,
+                    academic_term_published=term_published,
                     subject=subject,
                     course_number=course_number,
                     course_code=course_code_raw,
@@ -496,8 +600,9 @@ class ScheduleCSVAdapter:
                     crn=crn_raw or None,
                     instructor_name=instructor_raw or None,
                     instructor_raw=instructor_raw or None,
+                    instructor_type=instructor_type,
                     instructional_method=(
-                        self._value(row, columns, "instructional_method") or None
+                        first_value("instructional_method") or None
                     ),
                     meeting_pattern=meeting_pattern,
                     meeting_days=days_raw or None,
@@ -505,10 +610,10 @@ class ScheduleCSVAdapter:
                     start_time=start_time,
                     end_time=end_time,
                     meeting_date_range_raw=(
-                        self._value(row, columns, "meeting_date_range") or None
+                        first_value("meeting_date_range") or None
                     ),
-                    start_date=self._value(row, columns, "start_date") or None,
-                    end_date=self._value(row, columns, "end_date") or None,
+                    start_date=first_value("start_date") or None,
+                    end_date=first_value("end_date") or None,
                     location_raw=location_raw or None,
                     building=building,
                     room=room,
@@ -518,20 +623,23 @@ class ScheduleCSVAdapter:
                     capacity=numeric_values["capacity"],
                     waitlist=numeric_values["waitlist"],
                     seats_available=numeric_values["seats_available"],
-                    status=self._value(row, columns, "status") or None,
-                    campus=self._value(row, columns, "campus") or None,
-                    notes=self._value(row, columns, "notes") or None,
-                    llc_area_raw=self._value(row, columns, "llc_area") or None,
+                    status=first_value("status") or None,
+                    campus=first_value("campus") or None,
+                    notes=first_value("notes") or None,
+                    llc_area_raw=first_value("llc_area") or None,
                     reserved=numeric_values["reserved"],
                     reserved_available=numeric_values["reserved_available"],
                     unreserved=numeric_values["unreserved"],
                     unreserved_available=numeric_values["unreserved_available"],
                     low_cost_textbook_raw=(
-                        self._value(row, columns, "low_cost_textbook") or None
+                        first_value("low_cost_textbook") or None
                     ),
-                    modality=self._value(row, columns, "modality") or None,
+                    modality=first_value("modality") or None,
                     provenance=provenance,
-                    raw_record=raw_record,
+                    raw_record=raw_records[0],
+                    source_rows=source_rows,
+                    raw_records=raw_records,
+                    published_field_variants=variants,
                 )
                 result.observations.append(observation)
 

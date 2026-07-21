@@ -17,6 +17,29 @@ storage:
   cache: storage/cache
   logs: storage/logs
 
+schedule_ingestion:
+  canonical_source: data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv
+  encoding: utf-8-sig
+  expected_header:
+    - CRN
+    - Course
+    - Section
+    - Title
+    - Hours
+    - Area of LLC
+    - Type
+    - Days
+    - Time
+    - Location
+    - Instructor
+    - Seats Still Available
+    - Status
+    - Low Cost Textbook
+    - Capacity
+    - Enrolled
+    - Instructor Type
+    - Term
+
 llm:
   base_url: http://localhost:8001/v1
   model: qwen3-32b-local

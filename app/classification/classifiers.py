@@ -310,12 +310,20 @@ class CourseOfferingObservationClassifier(SemanticClassifier):
             )
         term = getattr(obj, "academic_term", None)
         if term:
+            published_term = getattr(obj, "academic_term_published", None) or term
             assertions.append(
                 _assertion(
                     obj,
                     "temporal_scope",
-                    TemporalScope(academic_term=term, published_label=term).to_dict(),
-                    "academic_term",
+                    TemporalScope(
+                        academic_term=term,
+                        published_label=published_term,
+                    ).to_dict(),
+                    (
+                        ("academic_term", "academic_term_published")
+                        if getattr(obj, "academic_term_published", None)
+                        else "academic_term"
+                    ),
                 )
             )
         authority = _explicit_authority(obj)

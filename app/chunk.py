@@ -214,11 +214,18 @@ def render_course_offering_observation(observation) -> str:
         "credits_raw",
         _object_value(observation, "credits"),
     )
+    instructor_type = _object_value(observation, "instructor_type", {}) or {}
+    instructor_type_published = (
+        instructor_type.get("published_value")
+        if isinstance(instructor_type, dict)
+        else None
+    )
     for label, value in (
         ("Section", _object_value(observation, "section")),
         ("CRN", _object_value(observation, "crn")),
         ("Credits", credits),
         ("Instructor", _object_value(observation, "instructor_raw")),
+        ("Published instructor type", instructor_type_published),
         (
             "Instructional method",
             _object_value(observation, "instructional_method"),
@@ -269,12 +276,18 @@ def _schedule_metadata(observation) -> Dict[str, Any]:
         "knowledge_object_type": observation.object_type,
         "semantic_space": SCHEDULE_SEMANTIC_SPACE,
         "term": _object_value(observation, "academic_term"),
+        "term_published": _object_value(observation, "academic_term_published"),
         "subject": _object_value(observation, "subject"),
         "course_number": _object_value(observation, "course_number"),
         "course_code": _object_value(observation, "course_code"),
         "section": _object_value(observation, "section"),
         "crn": _object_value(observation, "crn"),
         "instructor_text": _object_value(observation, "instructor_raw"),
+        "instructor_type": (
+            _object_value(observation, "instructor_type", {}).get("normalized_value")
+            if isinstance(_object_value(observation, "instructor_type", {}), dict)
+            else None
+        ),
         "source_type": source_type,
         "source_path": source_path,
         "relative_path": source_path,

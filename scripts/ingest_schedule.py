@@ -14,6 +14,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.adapters.schedule_adapter import ScheduleCSVAdapter, write_observations
+from app.config import load_config
 
 
 DEFAULT_OUTPUT_ROOT = Path("data/normalized/schedules")
@@ -26,12 +27,25 @@ def parse_args() -> argparse.Namespace:
             "CourseOfferingObservation Knowledge Object per scheduled section."
         )
     )
-    parser.add_argument("source_csv", type=Path)
+    parser.add_argument(
+        "source_csv",
+        type=Path,
+        nargs="?",
+        help="Source CSV; defaults to schedule_ingestion.canonical_source.",
+    )
     parser.add_argument(
         "--output-root",
         type=Path,
         default=DEFAULT_OUTPUT_ROOT,
         help=f"Output root (default: {DEFAULT_OUTPUT_ROOT})",
+    )
+    parser.add_argument(
+        "--output-directory",
+        type=Path,
+        help=(
+            "Exact destination directory. When omitted, output is written "
+            "beneath --output-root using the source filename stem."
+        ),
     )
     return parser.parse_args()
 
@@ -45,17 +59,35 @@ def _print_counter(label: str, values: Counter[str]) -> None:
 
 def main() -> int:
     args = parse_args()
-    adapter = ScheduleCSVAdapter(args.source_csv)
+    config = load_config()
+    configured_root = Path(config["project"]["root"])
+    project_root = configured_root if configured_root.exists() else PROJECT_ROOT
+    canonical_source = project_root / config["schedule_ingestion"]["canonical_source"]
+    source_csv = args.source_csv
+    if source_csv is None:
+        source_csv = canonical_source
+    adapter = ScheduleCSVAdapter(source_csv)
     result = adapter.adapt()
+    expected_header = config["schedule_ingestion"].get("expected_header") or []
+    if (
+        source_csv.resolve() == canonical_source.resolve()
+        and expected_header
+        and result.source_headers != expected_header
+    ):
+        raise SystemExit("Canonical schedule CSV header does not match configuration")
 
-    output_directory = args.output_root / args.source_csv.stem
+    output_directory = (
+        args.output_directory
+        if args.output_directory is not None
+        else args.output_root / source_csv.stem
+    )
     observations_created = write_observations(
         result.observations,
         output_directory,
     )
 
     print("Schedule CSV ingestion")
-    print(f"Source: {args.source_csv}")
+    print(f"Source: {source_csv}")
     print(f"Output: {output_directory}")
     print(f"Rows processed: {result.rows_processed}")
     print(f"Observations created: {observations_created}")

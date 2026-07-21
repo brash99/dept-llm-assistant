@@ -562,16 +562,23 @@ only explicitly registered resources.
 ### Rebuild chunks, embeddings, and FAISS
 
 ```bash
-.venv/bin/python -m scripts.chunk_documents --limit 1000000
-.venv/bin/python -m scripts.embed_chunks \
-  --limit 1000000 --embedding-context title_path
-.venv/bin/python -m scripts.build_vector_index
+PYTHONPATH="$PWD" .venv/bin/python scripts/semantic_pipeline.py status
+PYTHONPATH="$PWD" .venv/bin/python scripts/semantic_pipeline.py rebuild --dry-run
+PYTHONPATH="$PWD" .venv/bin/python scripts/semantic_pipeline.py rebuild
+PYTHONPATH="$PWD" .venv/bin/python scripts/semantic_pipeline.py verify
 ```
 
 Promotion into `storage/normalized` does not automatically rebuild chunks,
 embeddings, or FAISS. Newly acquired evidence cannot participate in retrieval
 until all three derived stages complete. Stop or restart long-lived processes
 after rebuilding so they do not retain the old in-memory index.
+
+The pipeline command stages and verifies all three outputs before promotion and
+retains the immediately previous build. The lower-level chunk, embedding, and
+index scripts remain implementation entry points and diagnostic tools; do not
+use them for routine in-place production replacement. See
+`docs/operations/semantic_pipeline.md` for manifests, status semantics,
+failure handling, and rollback guidance.
 
 For destructive cache/output clearing, Google Drive synchronization, external
 acquisition, and production monitoring, follow the reviewed commands in

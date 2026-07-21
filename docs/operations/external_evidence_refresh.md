@@ -142,6 +142,8 @@ timestamp.
 
 ## 5. Clear derived outputs for a complete rebuild
 
+The deletion-based commands in this section describe the legacy manual workflow. For an ordinary complete normalized-to-vector refresh, use the staged and rollback-protected [`semantic_pipeline.py` workflow](semantic_pipeline.md) instead. Do not clear known-good artifacts before a replacement build when the safe pipeline command is available.
+
 Promotion changes `storage/normalized` only. A partial-success promotion has
 the same boundary. Chunk, embedding, and vector-index
 rebuilds are manual. Newly promoted evidence cannot participate in retrieval

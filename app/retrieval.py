@@ -10,6 +10,7 @@ from sentence_transformers import CrossEncoder
 from app.vector_index import search_index, RetrievalResult
 from app.document_family import document_family_key
 from app.evidence_roles import allocate_empirical_by_role
+from app.semantic_scope import resolve_retrieval_profile
 
 
 @dataclass
@@ -70,6 +71,10 @@ class RetrievalReport:
     missing_evidence_roles: tuple = ()
     concentrated_evidence_roles: tuple = ()
     role_aware_allocation_changed_order: bool = False
+    retrieval_profile: Optional[str] = None
+    selected_semantic_scope: Optional[str] = None
+    eligible_semantic_memberships: tuple = ()
+    semantic_scope_filter_applied: bool = False
 
 
 def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
@@ -269,8 +274,21 @@ def retrieve(
     decision_type: Optional[str] = None,
     max_per_evidence_role: Optional[int] = None,
     evidence_role_relevance_margin: float = 0.5,
+    profile=None,
+    department: Optional[str] = None,
+    scope_registry=None,
 ):
     query = query.strip()
+
+    resolved_profile = None
+    eligible_memberships = None
+    if profile is not None:
+        resolved_profile = resolve_retrieval_profile(
+            profile,
+            department=department,
+            registry=scope_registry,
+        )
+        eligible_memberships = resolved_profile.eligible_memberships
 
     if constitutional_top_k < 0:
         raise ValueError("constitutional_top_k cannot be negative")
@@ -298,6 +316,7 @@ def retrieve(
         top_k=fetch_k,
         fetch_k=fetch_k,
         dedupe_by=None,
+        semantic_memberships_filter=eligible_memberships,
     )
     constitutional_in_initial_pool = sum(
         1
@@ -321,6 +340,7 @@ def retrieve(
             fetch_k=None,
             dedupe_by=None,
             object_type_filter="constitutional_knowledge",
+            semantic_memberships_filter=eligible_memberships,
         )
 
         existing_chunk_ids = {
@@ -439,7 +459,7 @@ def retrieve(
 
     t_total_end = time.perf_counter()
 
-    profile = RetrievalProfile(
+    timing_profile = RetrievalProfile(
         total_seconds=t_total_end - t_total_start,
         search_seconds=t1 - t0,
         dedupe_seconds=t2 - t1,
@@ -472,6 +492,14 @@ def retrieve(
         missing_evidence_roles=role_allocation.missing_roles,
         concentrated_evidence_roles=role_allocation.concentrated_roles,
         role_aware_allocation_changed_order=role_allocation.changed_baseline_order,
+        retrieval_profile=(
+            resolved_profile.profile.name if resolved_profile else None
+        ),
+        selected_semantic_scope=(
+            resolved_profile.selected_scope.id if resolved_profile else None
+        ),
+        eligible_semantic_memberships=(eligible_memberships or ()),
+        semantic_scope_filter_applied=resolved_profile is not None,
         num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
@@ -493,9 +521,9 @@ def retrieve(
             thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )
-        return final_results, report, trace, profile
+        return final_results, report, trace, timing_profile
 
-    return final_results, report, profile
+    return final_results, report, timing_profile
 
 
 def build_context(results: List[RetrievalResult]) -> str:

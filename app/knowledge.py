@@ -30,6 +30,81 @@ class KnowledgeObject:
     created_at: Optional[str] = None
     normalized_at: Optional[str] = None
 
+    @property
+    def semantic_identity(self):
+        """Return the authoritative factual identity, when one is recorded."""
+        value = self.metadata.get("semantic_identity")
+        if value is None:
+            return None
+        from app.semantic_identity import SemanticIdentity
+
+        identity = (
+            value
+            if isinstance(value, SemanticIdentity)
+            else SemanticIdentity.from_dict(value)
+        )
+        if identity.object_type != self.object_type:
+            raise ValueError(
+                "Semantic identity object_type must match Knowledge Object object_type"
+            )
+        return identity
+
+    def set_semantic_identity(self, identity) -> None:
+        """Validate and store factual identity without changing object identity."""
+        from app.semantic_identity import SemanticIdentity
+
+        if not isinstance(identity, SemanticIdentity):
+            raise TypeError("identity must be a SemanticIdentity")
+        if identity.object_type != self.object_type:
+            raise ValueError(
+                "Semantic identity object_type must match Knowledge Object object_type"
+            )
+        self.metadata["semantic_identity"] = identity.to_dict()
+
+    @property
+    def semantic_memberships(self):
+        """Logical perspectives in which this factual object participates."""
+        return tuple(self.metadata.get("semantic_memberships") or ())
+
+    @property
+    def organizational_relationships(self):
+        identity = self.semantic_identity
+        if identity is not None:
+            return tuple(
+                relationship.to_dict()
+                for relationship in identity.organizational_relationships
+            )
+        return tuple(self.metadata.get("organizational_relationships") or ())
+
+    @property
+    def decision_domains(self):
+        identity = self.semantic_identity
+        if identity is not None:
+            return identity.decision_domains
+        return tuple(self.metadata.get("decision_domains") or ())
+
+    @property
+    def institutional_relevance(self):
+        identity = self.semantic_identity
+        if identity is not None:
+            return identity.institutional_relevance
+        return self.metadata.get("institutional_relevance")
+
+    @property
+    def institutional_entities(self):
+        identity = self.semantic_identity
+        return identity.institutional_entities if identity is not None else ()
+
+    @property
+    def authority(self):
+        identity = self.semantic_identity
+        return identity.authority if identity is not None else None
+
+    @property
+    def temporal_scope(self):
+        identity = self.semantic_identity
+        return identity.temporal_scope if identity is not None else None
+
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 

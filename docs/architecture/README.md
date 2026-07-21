@@ -28,7 +28,9 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 11. [Design Principles](10_design_principles.md)
 12. [Constitutional Reasoning](11_constitutional_reasoning.md)
 13. [Decision-Driven External Evidence Acquisition](12_decision_driven_evidence_acquisition.md)
-14. [Architecture FAQ](ArchitectureFAQ.md)
+14. [Semantic Scope Architecture](13_semantic_scope_architecture.md)
+15. [Knowledge Object Semantic Identity](14_knowledge_object_semantic_identity.md)
+16. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

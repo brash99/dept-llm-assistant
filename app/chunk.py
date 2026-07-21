@@ -39,6 +39,13 @@ CATALOG_OBJECT_TYPES = {
     "department_faculty_roster_observation",
     "catalog_faculty_observation",
 }
+SEMANTIC_SCOPE_METADATA_FIELDS = (
+    "semantic_identity",
+    "semantic_memberships",
+    "organizational_relationships",
+    "decision_domains",
+    "institutional_relevance",
+)
 
 
 @dataclass
@@ -151,11 +158,25 @@ def _document_metadata(document) -> Dict[str, Any]:
     if semantic_space is not None:
         metadata["semantic_space"] = semantic_space
 
+    metadata.update(_semantic_scope_metadata(document))
+
     constitutional_notes = source_metadata.get("constitutional_notes")
     if constitutional_notes is not None:
         metadata["constitutional_notes"] = constitutional_notes
 
     return metadata
+
+
+def _semantic_scope_metadata(observation) -> Dict[str, Any]:
+    source_metadata = getattr(observation, "metadata", {}) or {}
+    inherited = {}
+    for field in SEMANTIC_SCOPE_METADATA_FIELDS:
+        value = source_metadata.get(field)
+        if value is None:
+            value = getattr(observation, field, None)
+        if value is not None and value != () and value != [] and value != {}:
+            inherited[field] = value
+    return inherited
 
 
 def _present(value) -> bool:
@@ -263,7 +284,10 @@ def _schedule_metadata(observation) -> Dict[str, Any]:
         "adapter_version": _mapping_value(provenance, "adapter_version"),
         "normalized_at": getattr(observation, "normalized_at", None),
     }
-    return {key: value for key, value in values.items() if _present(value)}
+    return {
+        **{key: value for key, value in values.items() if _present(value)},
+        **_semantic_scope_metadata(observation),
+    }
 
 
 def chunk_course_offering_observation(observation):
@@ -403,7 +427,10 @@ def _faculty_metadata(observation) -> Dict[str, Any]:
         ),
         "normalized_at": getattr(observation, "normalized_at", None),
     }
-    return {key: value for key, value in values.items() if _present(value)}
+    return {
+        **{key: value for key, value in values.items() if _present(value)},
+        **_semantic_scope_metadata(observation),
+    }
 
 
 def chunk_faculty_observation(
@@ -533,7 +560,10 @@ def _catalog_metadata(observation) -> Dict[str, Any]:
         "adapter_version": _mapping_value(provenance, "adapter_version"),
         "normalized_at": getattr(observation, "normalized_at", None),
     }
-    return {key: value for key, value in values.items() if _present(value)}
+    return {
+        **{key: value for key, value in values.items() if _present(value)},
+        **_semantic_scope_metadata(observation),
+    }
 
 
 def chunk_catalog_observation(observation, *, chunk_size=3000, overlap=300, max_chunks=None):

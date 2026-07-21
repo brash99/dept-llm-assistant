@@ -18,8 +18,48 @@
         },
         {
           "entity_type": "department",
-          "entity_id": "published_academic_unit:Music, Theatre and Dance",
-          "published_name": "Music, Theatre and Dance"
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
         }
       ],
       "temporal_scope": {
@@ -108,6 +148,161 @@
           }
         ],
         "decision_fingerprint": "4b0b5b26091e8005e46db877c429b0507188acdc7c8cc965ff70fd7f8915258d"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed",
+                "published_name": "Maxwell Tfirn"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "29b6cc3350a06b4fb511bac3872c4e8a9f3f35ac147614eec6ea1fa9414f87ed"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "fe00ba90b14c475dbcde7abe568836c151974b3d62d547f7f761ff3fd41202c8"
       }
     ]
   },

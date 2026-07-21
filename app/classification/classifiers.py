@@ -13,7 +13,10 @@ from app.classification.contracts import (
     EvidenceCitation,
 )
 from app.knowledge import KnowledgeObject
-from app.semantic_identity import Authority, InstitutionalEntity, TemporalScope
+from app.institutional_units import AcademicUnitDefinition, AcademicUnitRegistry
+from app.semantic_identity import (
+    Authority, InstitutionalEntity, OrganizationalRelationship, TemporalScope,
+)
 
 
 def _citation(obj: KnowledgeObject, field: str, excerpt: Optional[str] = None) -> EvidenceCitation:
@@ -53,6 +56,66 @@ def _assertion(
             )
         ),
     )
+
+
+def _registry_assertion(obj, field_name, value, published_label, unit, registry):
+    return ClassificationAssertion(
+        field_name=field_name,
+        value=value,
+        confidence=ClassificationConfidence(
+            score=1.0,
+            rationale="Unique exact alias match in the reviewed institutional-unit registry.",
+        ),
+        classification_method=ClassificationMethod.REGISTRY_LOOKUP,
+        supporting_evidence=(EvidenceCitation(
+            source_kind="institutional_unit_registry",
+            field="published_academic_unit",
+            knowledge_object_id=obj.id,
+            attributes={
+                "unique_match": True,
+                "canonical_entity_exists": True,
+                "competing_match_above_threshold": False,
+                "registry_version": registry.version,
+                "unit_id": unit.unit_id,
+                "published_label": published_label,
+                "supersedes_entity_ids": [f"published_academic_unit:{published_label}"],
+            },
+        ),),
+    )
+
+
+def _unit_entities_and_relationships(obj, published_label, unit, registry, *, faculty_entity_id=None, catalog_listing=False):
+    entities = [unit.to_entity().to_dict()]
+    relationships = []
+    parent = registry.parent_of(unit)
+    if parent:
+        entities.append(parent.to_entity().to_dict())
+        relationships.append(OrganizationalRelationship(
+            relationship_type="belongs_to", source=unit.unit_id,
+            target=parent.unit_id, published_label=f"{unit.published_name} belongs to {parent.published_name}",
+            evidence_reference=f"institutional_unit_registry:{registry.version}",
+        ).to_dict())
+    if faculty_entity_id:
+        relationships.append(OrganizationalRelationship(
+            relationship_type=("faculty_listed_in_catalog_unit" if catalog_listing else "faculty_member_of_unit"),
+            source=faculty_entity_id, target=unit.unit_id,
+            published_label=published_label, evidence_reference="published_academic_unit",
+        ).to_dict())
+    return entities, relationships
+
+
+def _unresolved_published_unit(label, *, default_entity_type="department"):
+    normalized = str(label).casefold()
+    entity_type = (
+        "academic_unit"
+        if any(word in normalized for word in ("school", "college", "faculty"))
+        else default_entity_type
+    )
+    return InstitutionalEntity(
+        entity_type=entity_type,
+        entity_id=f"published_academic_unit:{label}",
+        published_name=label,
+    ).to_dict()
 
 
 def _base_assertions(obj: KnowledgeObject) -> list[ClassificationAssertion]:
@@ -162,6 +225,9 @@ class FacultyObservationClassifier(SemanticClassifier):
     method = ClassificationMethod.ADAPTER
     supported_object_types = ("faculty_observation",)
 
+    def __init__(self, unit_registry=None):
+        self.unit_registry = unit_registry or AcademicUnitRegistry.load()
+
     def classify(self, obj: KnowledgeObject) -> ClassificationProposal:
         assertions = _base_assertions(obj)
         entities = []
@@ -175,30 +241,33 @@ class FacultyObservationClassifier(SemanticClassifier):
                 ).to_dict()
             )
         department = getattr(obj, "published_department", None)
-        if department:
-            entities.append(
-                InstitutionalEntity(
-                    entity_type="department",
-                    entity_id=f"published_academic_unit:{department}",
-                    published_name=department,
-                ).to_dict()
+        unit = self.unit_registry.resolve(department)
+        relationships = []
+        if unit:
+            unit_entities, relationships = _unit_entities_and_relationships(
+                obj, department, unit, self.unit_registry,
+                faculty_entity_id=f"faculty_observation:{obj.id}",
             )
+            entities.extend(unit_entities)
+        elif department:
+            entities.append(_unresolved_published_unit(department))
         if entities:
-            assertions.append(
+            assertion = (
+                _registry_assertion(obj, "institutional_entities", entities, department, unit, self.unit_registry)
+                if unit else
                 _assertion(
-                    obj,
-                    "institutional_entities",
-                    entities,
-                    tuple(
-                        field
-                        for field, value in (
-                            ("display_name", display_name),
-                            ("published_department", department),
-                        )
-                        if value
-                    ),
+                    obj, "institutional_entities", entities,
+                    tuple(field for field, value in (("display_name", display_name), ("published_department", department)) if value),
                 )
             )
+            assertions.append(
+                assertion
+            )
+        if relationships:
+            assertions.append(_registry_assertion(
+                obj, "organizational_relationships", relationships,
+                department, unit, self.unit_registry,
+            ))
         snapshot = getattr(obj, "snapshot_date", None)
         if snapshot:
             assertions.append(
@@ -265,59 +334,65 @@ class CatalogObservationClassifier(SemanticClassifier):
         "catalog_faculty_observation",
     )
 
+    def __init__(self, unit_registry=None):
+        self.unit_registry = unit_registry or AcademicUnitRegistry.load()
+
     def classify(self, obj: KnowledgeObject) -> ClassificationProposal:
         assertions = _base_assertions(obj)
         entities = []
+        relationships = []
         unit = getattr(obj, "academic_unit", None)
+        published_label = None
+        faculty_entity_id = None
         if obj.object_type == "academic_unit_observation":
             published_name = getattr(obj, "published_name", None)
             if published_name:
-                entities.append(
-                    InstitutionalEntity(
-                        entity_type="academic_unit",
-                        entity_id=f"published_academic_unit:{published_name}",
-                        published_name=published_name,
-                    ).to_dict()
-                )
+                published_label = published_name
         elif obj.object_type == "department_faculty_roster_observation" and unit:
-            entities.append(
-                InstitutionalEntity(
-                    entity_type="academic_unit",
-                    entity_id=f"published_academic_unit:{unit}",
-                    published_name=unit,
-                ).to_dict()
-            )
+            published_label = unit
         elif obj.object_type == "catalog_faculty_observation":
             name = getattr(obj, "published_name", None)
             if name:
+                faculty_entity_id = f"catalog_faculty_observation:{obj.id}"
                 entities.append(
                     InstitutionalEntity(
                         entity_type="faculty",
-                        entity_id=f"catalog_faculty_observation:{obj.id}",
+                        entity_id=faculty_entity_id,
                         published_name=name,
                     ).to_dict()
                 )
             if unit:
-                entities.append(
-                    InstitutionalEntity(
-                        entity_type="academic_unit",
-                        entity_id=f"published_academic_unit:{unit}",
-                        published_name=unit,
-                    ).to_dict()
-                )
+                published_label = unit
+        resolved_unit = self.unit_registry.resolve(published_label)
+        if resolved_unit:
+            unit_entities, relationships = _unit_entities_and_relationships(
+                obj, published_label, resolved_unit, self.unit_registry,
+                faculty_entity_id=faculty_entity_id, catalog_listing=True,
+            )
+            entities.extend(unit_entities)
+        elif published_label:
+            entities.append(_unresolved_published_unit(
+                published_label, default_entity_type="academic_unit",
+            ))
         if entities:
-            assertions.append(
+            assertion = (
+                _registry_assertion(
+                    obj, "institutional_entities", entities,
+                    published_label, resolved_unit, self.unit_registry,
+                ) if resolved_unit else
                 _assertion(
-                    obj,
-                    "institutional_entities",
-                    entities,
-                    tuple(
-                        field
-                        for field in ("published_name", "academic_unit")
-                        if getattr(obj, field, None)
-                    ),
+                    obj, "institutional_entities", entities,
+                    tuple(field for field in ("published_name", "academic_unit") if getattr(obj, field, None)),
                 )
             )
+            assertions.append(
+                assertion
+            )
+        if relationships:
+            assertions.append(_registry_assertion(
+                obj, "organizational_relationships", relationships,
+                published_label, resolved_unit, self.unit_registry,
+            ))
         year = getattr(obj, "catalog_year", None)
         if year:
             assertions.append(

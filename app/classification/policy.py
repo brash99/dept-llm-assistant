@@ -10,6 +10,7 @@ from enum import Enum
 from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple
 
 from app.classification.classifiers import ClassificationAbstained, SemanticClassifier
+from app.institutional_units import is_department_workforce_entity
 from app.classification.contracts import (
     ClassificationAssertion,
     ClassificationMethod,
@@ -31,7 +32,7 @@ IDENTITY_FIELDS = (
     "document_type",
     "institutional_role",
 )
-POLICY_VERSION = "2"
+POLICY_VERSION = "3"
 MULTIVALUE_FIELDS = {
     "institutional_entities",
     "organizational_relationships",
@@ -195,7 +196,12 @@ class ClassificationDecision:
         for assertion in accepted:
             field_name = assertion.field_name
             value = assertion.value
-            if field_name in MULTIVALUE_FIELDS:
+            if field_name == "institutional_entities":
+                current[field_name] = _merge_institutional_entities(
+                    current.get(field_name) or (), value or (),
+                    _superseded_entity_ids(assertion),
+                )
+            elif field_name in MULTIVALUE_FIELDS:
                 existing_values = list(current.get(field_name) or ())
                 proposed_values = list(value or ())
                 current[field_name] = _stable_union(existing_values, proposed_values)
@@ -477,8 +483,15 @@ class ClassificationPolicy:
                         "Proposal object type disagrees with its Knowledge Object.",
                     )
                 )
+            existing_value = current.get(assertion.field_name)
+            if assertion.field_name == "institutional_entities":
+                superseded = _superseded_entity_ids(assertion)
+                existing_value = [
+                    item for item in (existing_value or ())
+                    if item.get("entity_id") not in superseded
+                ]
             if assertion.field_name in current and _values_conflict(
-                assertion.field_name, assertion.value, current[assertion.field_name]
+                assertion.field_name, assertion.value, existing_value
             ):
                 conflicts.append(
                     ClassificationConflict(
@@ -743,12 +756,12 @@ def _values_conflict(field_name: str, left: Any, right: Any) -> bool:
         left_departments = {
             item.get("entity_id")
             for item in left or ()
-            if item.get("entity_type") == "department"
+            if is_department_workforce_entity(item)
         }
         right_departments = {
             item.get("entity_id")
             for item in right or ()
-            if item.get("entity_type") == "department"
+            if is_department_workforce_entity(item)
         }
         return bool(left_departments and right_departments and left_departments != right_departments)
     if field_name == "organizational_relationships":
@@ -782,6 +795,29 @@ def _stable_union(existing: Sequence[Any], proposed: Sequence[Any]) -> list[Any]
             seen.add(marker)
             values.append(item)
     return values
+
+
+def _superseded_entity_ids(assertion: ClassificationAssertion) -> set[str]:
+    return {
+        str(entity_id)
+        for citation in assertion.supporting_evidence
+        for entity_id in citation.attributes.get("supersedes_entity_ids") or ()
+    }
+
+
+def _merge_institutional_entities(existing, proposed, superseded) -> list[Any]:
+    proposed_ids = {
+        item.get("entity_id") for item in proposed if isinstance(item, Mapping)
+    }
+    values = [
+        item for item in existing
+        if not isinstance(item, Mapping)
+        or (
+            item.get("entity_id") not in superseded
+            and item.get("entity_id") not in proposed_ids
+        )
+    ]
+    return _stable_union(values, proposed)
 
 
 def _audit_fraction(seed: str, key: str) -> float:

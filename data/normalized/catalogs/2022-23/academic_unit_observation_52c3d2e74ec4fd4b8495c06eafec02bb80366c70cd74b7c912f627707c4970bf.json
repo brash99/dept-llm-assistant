@@ -9,9 +9,42 @@
       "object_type": "academic_unit_observation",
       "institutional_entities": [
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Department of Fine Art and Art History",
-          "published_name": "Department of Fine Art and Art History"
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_fine_art_art_history",
+          "published_name": "Department of Fine Art and Art History",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_fine_art_art_history",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
         }
       ],
       "temporal_scope": {
@@ -91,6 +124,150 @@
           }
         ],
         "decision_fingerprint": "0f0ddf571c0c3d48e683fdb5146dbddc3784ebc74716ae807a88f29fb79b3b09"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "academic_unit_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "52c3d2e74ec4fd4b8495c06eafec02bb80366c70cd74b7c912f627707c4970bf",
+                "page_reference": "120"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_fine_art_art_history",
+                "published_name": "Department of Fine Art and Art History",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "52c3d2e74ec4fd4b8495c06eafec02bb80366c70cd74b7c912f627707c4970bf",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Department of Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Department of Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_fine_art_art_history",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "52c3d2e74ec4fd4b8495c06eafec02bb80366c70cd74b7c912f627707c4970bf",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Department of Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Department of Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2022-23"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "52c3d2e74ec4fd4b8495c06eafec02bb80366c70cd74b7c912f627707c4970bf",
+                "page_reference": "120"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "8d66944df5308b768f21c64f54dc99fa629c8915c1a7fbc43927538be09183ac"
       }
     ]
   },

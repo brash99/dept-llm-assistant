@@ -14,9 +14,29 @@
           "published_name": "ASHLEY FOURNET"
         },
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Luter School of Business",
-          "published_name": "Luter School of Business"
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Luter School of Business",
+          "evidence_reference": "published_academic_unit"
         }
       ],
       "temporal_scope": {
@@ -107,6 +127,142 @@
           }
         ],
         "decision_fingerprint": "76988a607926cadda678639b7672c9b427e04cdcc811876580632381f4ca8d97"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+                "page_reference": "311"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+                "published_name": "ASHLEY FOURNET"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:luter_school_business",
+                  "published_label": "Luter School of Business",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Luter School of Business"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Luter School of Business",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:luter_school_business",
+                  "published_label": "Luter School of Business",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Luter School of Business"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2024-25"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "b8ff848adf0298ba84518751f8b8b6e4cab6a89196d1ba9517e69203152185f7",
+                "page_reference": "311"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "de7888507ef278c2bf5ffdf3c3e00c6c4ba10588d2d1e1e429be3c084073be25"
       }
     ]
   },

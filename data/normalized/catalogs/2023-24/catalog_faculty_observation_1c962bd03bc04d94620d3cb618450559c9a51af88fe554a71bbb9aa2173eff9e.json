@@ -14,9 +14,51 @@
           "published_name": "EMRE KIRAC"
         },
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Management and Marketing",
-          "published_name": "Management and Marketing"
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_management_marketing",
+          "published_name": "Department of Management and Marketing",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_management_marketing",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Management and Marketing belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+          "target": "academic_unit:department_management_marketing",
+          "published_label": "Management and Marketing",
+          "evidence_reference": "published_academic_unit"
         }
       ],
       "temporal_scope": {
@@ -107,6 +149,164 @@
           }
         ],
         "decision_fingerprint": "badad9ad64335288aa0caa1ce71a427cb43e8fd8202b375344d27f2c62c760ba"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+                "page_reference": "304"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+                "published_name": "EMRE KIRAC"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_management_marketing",
+                "published_name": "Department of Management and Marketing",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_management_marketing",
+                  "published_label": "Management and Marketing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Management and Marketing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_management_marketing",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Management and Marketing belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+                "target": "academic_unit:department_management_marketing",
+                "published_label": "Management and Marketing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_management_marketing",
+                  "published_label": "Management and Marketing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Management and Marketing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2023-24"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "1c962bd03bc04d94620d3cb618450559c9a51af88fe554a71bbb9aa2173eff9e",
+                "page_reference": "304"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "38eecbeb6f2ca0d888eebe1ec1c963fcb4f840d704dc96e9bfd26c0f7ccfd169"
       }
     ]
   },

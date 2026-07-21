@@ -9,9 +9,20 @@
       "object_type": "academic_unit_observation",
       "institutional_entities": [
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Joseph W. Luter, III School of Business",
-          "published_name": "Joseph W. Luter, III School of Business"
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
         }
       ],
       "temporal_scope": {
@@ -91,6 +102,101 @@
           }
         ],
         "decision_fingerprint": "793c2faa57aabbbf05e322be51fbc86071549a4d4924584eac0ebb330a656b64"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "academic_unit_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5ec7730fa59ff7863fd98ca24f8b58cc7a52bd66945131a8e1460c507c58dfc5",
+                "page_reference": "78"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "5ec7730fa59ff7863fd98ca24f8b58cc7a52bd66945131a8e1460c507c58dfc5",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:luter_school_business",
+                  "published_label": "Joseph W. Luter, III School of Business",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Joseph W. Luter, III School of Business"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2025-26"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "5ec7730fa59ff7863fd98ca24f8b58cc7a52bd66945131a8e1460c507c58dfc5",
+                "page_reference": "78"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a6b39c8b8cad2b69cf942e3baa4cca8daaabd381989272f0b5c1f48a349e01a7"
       }
     ]
   },

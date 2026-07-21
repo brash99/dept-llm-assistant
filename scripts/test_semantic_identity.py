@@ -106,6 +106,22 @@ def test_institutional_entity_types_are_extensible_not_closed_taxonomy():
     assert tuple(entity.entity_type for entity in identity.institutional_entities) == types
 
 
+def test_academic_unit_organizational_fields_round_trip_without_affecting_legacy_entities():
+    entity = InstitutionalEntity(
+        entity_type="school", entity_id="academic_unit:sec",
+        published_name="School of Engineering and Computing",
+        formal_unit_type="dependent_school",
+        operational_roles=("department_equivalent", "faculty_home_unit"),
+        parent_unit_id="academic_unit:cnbs", governance_level="department_equivalent",
+        leadership_type="director", has_dean=False,
+        contains_subordinate_departments=False,
+    )
+    assert InstitutionalEntity.from_dict(entity.to_dict()) == entity
+    assert InstitutionalEntity.from_dict({
+        "entity_type": "department", "entity_id": "department:english"
+    }).formal_unit_type is None
+
+
 @pytest.mark.parametrize("provenance", tuple(MembershipProvenance))
 def test_membership_provenance_is_explicit_and_retrieval_compatible(provenance):
     membership = SemanticMembership(

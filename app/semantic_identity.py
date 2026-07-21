@@ -18,12 +18,20 @@ class InstitutionalEntity:
     entity_id: str
     published_name: Optional[str] = None
     identifiers: Mapping[str, str] = field(default_factory=dict)
+    formal_unit_type: Optional[str] = None
+    operational_roles: Tuple[str, ...] = ()
+    parent_unit_id: Optional[str] = None
+    governance_level: Optional[str] = None
+    leadership_type: Optional[str] = None
+    has_dean: Optional[bool] = None
+    contains_subordinate_departments: Optional[bool] = None
 
     def __post_init__(self) -> None:
         if not self.entity_type.strip():
             raise ValueError("Institutional entity type must not be empty")
         if not self.entity_id.strip():
             raise ValueError("Institutional entity id must not be empty")
+        object.__setattr__(self, "operational_roles", tuple(self.operational_roles))
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -33,8 +41,15 @@ class InstitutionalEntity:
                 "entity_id": self.entity_id,
                 "published_name": self.published_name,
                 "identifiers": dict(self.identifiers),
+                "formal_unit_type": self.formal_unit_type,
+                "operational_roles": list(self.operational_roles),
+                "parent_unit_id": self.parent_unit_id,
+                "governance_level": self.governance_level,
+                "leadership_type": self.leadership_type,
+                "has_dean": self.has_dean,
+                "contains_subordinate_departments": self.contains_subordinate_departments,
             }.items()
-            if value is not None and value != {}
+            if value is not None and value != {} and value != []
         }
 
     @classmethod
@@ -44,6 +59,13 @@ class InstitutionalEntity:
             entity_id=str(value["entity_id"]),
             published_name=value.get("published_name"),
             identifiers=dict(value.get("identifiers") or {}),
+            formal_unit_type=value.get("formal_unit_type"),
+            operational_roles=tuple(map(str, value.get("operational_roles") or ())),
+            parent_unit_id=value.get("parent_unit_id"),
+            governance_level=value.get("governance_level"),
+            leadership_type=value.get("leadership_type"),
+            has_dean=value.get("has_dean"),
+            contains_subordinate_departments=value.get("contains_subordinate_departments"),
         )
 
 

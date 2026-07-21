@@ -14,9 +14,51 @@
           "published_name": "XIUQING JI"
         },
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Accounting and Finance",
-          "published_name": "Accounting and Finance"
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
         }
       ],
       "temporal_scope": {
@@ -107,6 +149,164 @@
           }
         ],
         "decision_fingerprint": "ddbc5b95b13d58e31d959179b5f6ba03f12e4a0c6aecd4c6efd7cc408a20901c"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+                "page_reference": "306"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+                "published_name": "XIUQING JI"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2025-26"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "d928f59b89045954076f2eba42c2e327d0dc10b7d40c92538373898cde9943c1",
+                "page_reference": "306"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "03731522e31b91d2b3c4bc7643881689a55083263de40cf30ff74f1decbc91a5"
       }
     ]
   },

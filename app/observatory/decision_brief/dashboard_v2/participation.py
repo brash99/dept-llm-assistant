@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.institutional_units import is_department_workforce_entity
+
 from .common import get_value, percentage, status_symbol
 from .contracts import (
     LLC_AREAS_OF_INQUIRY,
@@ -112,7 +114,7 @@ def _topology_profile(topology_impact: Any) -> InstitutionalParticipationProfile
         entity_type_value or ""
     ).strip().casefold()
 
-    if normalized_entity_type not in {"department", "college"}:
+    if normalized_entity_type not in {"department", "college"} and not is_department_workforce_entity(entity):
         return InstitutionalParticipationProfile()
 
     academic_unit = get_value(entity, "name")

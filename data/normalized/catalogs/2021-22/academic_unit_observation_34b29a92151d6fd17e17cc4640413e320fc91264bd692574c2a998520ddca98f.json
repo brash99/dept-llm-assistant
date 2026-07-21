@@ -9,9 +9,44 @@
       "object_type": "academic_unit_observation",
       "institutional_entities": [
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Management and Marketing Department",
-          "published_name": "Management and Marketing Department"
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_management_marketing",
+          "published_name": "Department of Management and Marketing",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_management_marketing",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Management and Marketing belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
         }
       ],
       "temporal_scope": {
@@ -91,6 +126,152 @@
           }
         ],
         "decision_fingerprint": "8bf7240b5f634f44afa12854bf282a03828909c8cf1ac738d9be6738d31a2f13"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "academic_unit_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "34b29a92151d6fd17e17cc4640413e320fc91264bd692574c2a998520ddca98f",
+                "page_reference": "82"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_management_marketing",
+                "published_name": "Department of Management and Marketing",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "34b29a92151d6fd17e17cc4640413e320fc91264bd692574c2a998520ddca98f",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_management_marketing",
+                  "published_label": "Management and Marketing Department",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Management and Marketing Department"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_management_marketing",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Management and Marketing belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "34b29a92151d6fd17e17cc4640413e320fc91264bd692574c2a998520ddca98f",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_management_marketing",
+                  "published_label": "Management and Marketing Department",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Management and Marketing Department"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2021-22"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "34b29a92151d6fd17e17cc4640413e320fc91264bd692574c2a998520ddca98f",
+                "page_reference": "82"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "47c5e4535a3b19deb0b2aa3505489ba090e51f54320211ed0f37ba1674bfe045"
       }
     ]
   },

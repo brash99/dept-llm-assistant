@@ -95,7 +95,7 @@ def main() -> int:
     )
     parser.add_argument(
         "entity",
-        help="Entity name or ID, such as Physics or department:physics",
+        help="Entity name or ID, such as Physics or academic_unit:sec",
     )
     args = parser.parse_args()
 

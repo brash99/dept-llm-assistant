@@ -9,9 +9,44 @@
       "object_type": "academic_unit_observation",
       "institutional_entities": [
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:School of Engineering and Computing",
-          "published_name": "School of Engineering and Computing"
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
         }
       ],
       "temporal_scope": {
@@ -91,6 +126,152 @@
           }
         ],
         "decision_fingerprint": "5b45c4bd0c5617a90d2ae10815e4ade315d199ec71518eb20623eeadf128e268"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "academic_unit_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "402a851f52cd112f33364f0a7c2817c9cd2a75a09ba33a9f96ea97d2774d5d28",
+                "page_reference": "267"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "402a851f52cd112f33364f0a7c2817c9cd2a75a09ba33a9f96ea97d2774d5d28",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "402a851f52cd112f33364f0a7c2817c9cd2a75a09ba33a9f96ea97d2774d5d28",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2025-26"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "402a851f52cd112f33364f0a7c2817c9cd2a75a09ba33a9f96ea97d2774d5d28",
+                "page_reference": "267"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6ece648830081d4dcef82f8d95f760a691e52615b9cfe06b7bd805c5fe626000"
       }
     ]
   },

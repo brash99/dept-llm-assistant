@@ -14,9 +14,49 @@
           "published_name": "MICHELLE ANN ERHARDT"
         },
         {
-          "entity_type": "academic_unit",
-          "entity_id": "published_academic_unit:Fine Art and Art History",
-          "published_name": "Fine Art and Art History"
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_fine_art_art_history",
+          "published_name": "Department of Fine Art and Art History",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_fine_art_art_history",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+          "target": "academic_unit:department_fine_art_art_history",
+          "published_label": "Fine Art and Art History",
+          "evidence_reference": "published_academic_unit"
         }
       ],
       "temporal_scope": {
@@ -107,6 +147,162 @@
           }
         ],
         "decision_fingerprint": "243fb92c4ff652333b64042fa532387f02c59dbca8df1b000fb25597bf264a3f"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+                "page_reference": "291"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+                "published_name": "MICHELLE ANN ERHARDT"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_fine_art_art_history",
+                "published_name": "Department of Fine Art and Art History",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_fine_art_art_history",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+                "target": "academic_unit:department_fine_art_art_history",
+                "published_label": "Fine Art and Art History",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2021-22"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "1a3a8bdfea04c64b52c6f58aadb179ed736f3f3d30ff9f441099153e573a494c",
+                "page_reference": "291"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "192ba0adcbdf6aed6fdda3e1fa86f69ef63c9941c82667614ba0641d63929abf"
       }
     ]
   },

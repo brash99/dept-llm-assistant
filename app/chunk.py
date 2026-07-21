@@ -33,6 +33,12 @@ SCHEDULE_OBJECT_TYPE = "course_offering_observation"
 SCHEDULE_SEMANTIC_SPACE = "institutional_operations"
 FACULTY_OBJECT_TYPE = "faculty_observation"
 FACULTY_SEMANTIC_SPACE = "institutional_people"
+CATALOG_OBJECT_TYPES = {
+    "catalog_observation",
+    "academic_unit_observation",
+    "department_faculty_roster_observation",
+    "catalog_faculty_observation",
+}
 
 
 @dataclass
@@ -157,7 +163,11 @@ def _present(value) -> bool:
 
 
 def _object_value(observation, field, default=None):
-    value = getattr(observation, field, None)
+    value = (
+        observation.get(field)
+        if isinstance(observation, dict)
+        else getattr(observation, field, None)
+    )
     return value if _present(value) else default
 
 
@@ -450,11 +460,130 @@ def chunk_faculty_observation(
     return chunks
 
 
+def render_catalog_observation(observation) -> str:
+    """Render one catalog fact record without adding interpretation."""
+    object_type = observation.object_type
+    if object_type == "catalog_observation":
+        lines = ["Academic catalog observation"]
+        fields = (
+            ("Publication", _object_value(observation, "publication_title")),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+            ("Publication designation", _object_value(observation, "publication_designation")),
+            ("Publication date", _object_value(observation, "publication_date")),
+            ("Page count", _object_value(observation, "page_count")),
+        )
+    elif object_type == "academic_unit_observation":
+        lines = ["Published academic unit observation"]
+        fields = (
+            ("Academic unit", _object_value(observation, "published_name")),
+            ("Published parent unit", _object_value(observation, "published_parent_unit")),
+            ("Published leadership", "; ".join(getattr(observation, "published_leadership", ()) or ())),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+        )
+    elif object_type == "department_faculty_roster_observation":
+        lines = ["Published department faculty roster observation"]
+        fields = (
+            ("Academic unit", _object_value(observation, "academic_unit")),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+        )
+    else:
+        lines = ["Published university faculty registry observation"]
+        fields = (
+            ("Name", _object_value(observation, "published_name")),
+            ("Published title", _object_value(observation, "published_title")),
+            ("Published academic unit", _object_value(observation, "academic_unit")),
+            ("Education", _object_value(observation, "education")),
+            ("Published appointment year", _object_value(observation, "appointment_year")),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+        )
+    for label, value in fields:
+        if _present(value):
+            lines.append(f"{label}: {value}")
+    if object_type == "department_faculty_roster_observation":
+        for entry in getattr(observation, "entries", ()) or ():
+            name = _object_value(entry, "published_name")
+            category = _object_value(entry, "published_category")
+            if _present(name) and _present(category):
+                lines.append(f"{category}: {name}")
+    return "\n".join(lines)
+
+
+def _catalog_metadata(observation) -> Dict[str, Any]:
+    provenance = getattr(observation, "provenance", {}) or {}
+    academic_unit = (
+        _object_value(observation, "academic_unit")
+        or _object_value(observation, "published_name")
+    )
+    values = {
+        "document_title": observation.title,
+        "knowledge_object_id": observation.id,
+        "knowledge_object_type": observation.object_type,
+        "semantic_space": (
+            "institutional_catalog" if observation.object_type == "catalog_observation"
+            else "institutional_academics"
+        ),
+        "catalog_year": _object_value(observation, "catalog_year"),
+        "academic_unit": academic_unit,
+        "page_numbers": list(getattr(observation, "page_numbers", ()) or ()),
+        "source_type": _mapping_value(provenance, "source_type"),
+        "relative_path": _object_value(observation, "relative_source_path"),
+        "source_path": _object_value(observation, "relative_source_path"),
+        "source_sha256": _object_value(observation, "document_hash"),
+        "adapter": _mapping_value(provenance, "adapter"),
+        "adapter_version": _mapping_value(provenance, "adapter_version"),
+        "normalized_at": getattr(observation, "normalized_at", None),
+    }
+    return {key: value for key, value in values.items() if _present(value)}
+
+
+def chunk_catalog_observation(observation, *, chunk_size=3000, overlap=300, max_chunks=None):
+    text = render_catalog_observation(observation)
+    raw_chunks = chunk_text(text, chunk_size=chunk_size, overlap=overlap)
+    inherited = _catalog_metadata(observation)
+    selected = raw_chunks if max_chunks is None else raw_chunks[:max_chunks]
+    chunks = []
+    for index, (value, start, end) in enumerate(selected):
+        chunks.append(Chunk(
+            id=make_chunk_id(observation.id, index, start, end),
+            knowledge_object_id=observation.id,
+            object_type=observation.object_type,
+            chunk_index=index,
+            text=value,
+            start_char=start,
+            end_char=end,
+            citation={
+                "title": observation.title,
+                "relative_path": inherited.get("relative_path"),
+                "source_path": inherited.get("source_path"),
+                "page_numbers": inherited.get("page_numbers"),
+                "start_char": start,
+                "end_char": end,
+            },
+            metadata={
+                **inherited,
+                "chunk_size": chunk_size,
+                "overlap": overlap,
+                "max_chunks_per_document": max_chunks,
+                "document_truncated": len(selected) < len(raw_chunks),
+                "original_chunk_count": len(raw_chunks),
+                "indexed_chunk_count": len(selected),
+            },
+        ))
+    return chunks
+
+
 def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
     if document.object_type == SCHEDULE_OBJECT_TYPE:
         return chunk_course_offering_observation(document)
     if document.object_type == FACULTY_OBJECT_TYPE:
         return chunk_faculty_observation(
+            document,
+            chunk_size=chunk_size,
+            overlap=overlap,
+            max_chunks=max_chunks,
+        )
+    if document.object_type in CATALOG_OBJECT_TYPES:
+        return chunk_catalog_observation(
             document,
             chunk_size=chunk_size,
             overlap=overlap,

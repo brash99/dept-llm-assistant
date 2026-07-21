@@ -184,4 +184,14 @@ def load_knowledge_object(input_path: Path) -> KnowledgeObject:
 
         return FacultyObservation.from_dict(data)
 
+    if object_type in {
+        "catalog_observation",
+        "academic_unit_observation",
+        "department_faculty_roster_observation",
+        "catalog_faculty_observation",
+    }:
+        from app.adapters.catalog_adapter import catalog_observation_from_dict
+
+        return catalog_observation_from_dict(data)
+
     return KnowledgeObject(**data)

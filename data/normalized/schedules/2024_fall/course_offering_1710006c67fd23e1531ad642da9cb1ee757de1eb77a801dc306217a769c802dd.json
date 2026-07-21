@@ -9,7 +9,99 @@
     "adapter_version": "0.1",
     "parsing_warnings": {
       "location_not_building_room_pair_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1710006c67fd23e1531ad642da9cb1ee757de1eb77a801dc306217a769c802dd",
+          "published_name": "VOIC 130 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "2024_fall"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1710006c67fd23e1531ad642da9cb1ee757de1eb77a801dc306217a769c802dd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1710006c67fd23e1531ad642da9cb1ee757de1eb77a801dc306217a769c802dd",
+                "published_name": "VOIC 130 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1710006c67fd23e1531ad642da9cb1ee757de1eb77a801dc306217a769c802dd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1710006c67fd23e1531ad642da9cb1ee757de1eb77a801dc306217a769c802dd"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "2024_fall"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1710006c67fd23e1531ad642da9cb1ee757de1eb77a801dc306217a769c802dd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d32eed3de721700c6c9487344ddebf1e03f7314b832ebeb81c7a34e58575016c"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -39,6 +131,9 @@
   "meeting_time_raw": null,
   "start_time": null,
   "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "ARR ",
   "building": null,
   "room": null,
@@ -57,6 +152,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2024_fall.csv",
     "source_path": "data/acquisition/schedules/2024_fall.csv",

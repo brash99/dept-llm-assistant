@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments"
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:cb0cf38da76ed04f1e595ce5556577114c10e5cf56a0e8f4c5d73d6d81dcb3fb",
+          "published_name": "Nicole Emmelhainz"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:English",
+          "published_name": "English"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "cb0cf38da76ed04f1e595ce5556577114c10e5cf56a0e8f4c5d73d6d81dcb3fb"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:cb0cf38da76ed04f1e595ce5556577114c10e5cf56a0e8f4c5d73d6d81dcb3fb",
+                "published_name": "Nicole Emmelhainz"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:English",
+                "published_name": "English"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "cb0cf38da76ed04f1e595ce5556577114c10e5cf56a0e8f4c5d73d6d81dcb3fb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "cb0cf38da76ed04f1e595ce5556577114c10e5cf56a0e8f4c5d73d6d81dcb3fb"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "cb0cf38da76ed04f1e595ce5556577114c10e5cf56a0e8f4c5d73d6d81dcb3fb"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a274338f3913d70bf5f11af5364a235d81a6ed689b970552a23942dbdfa04978"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

@@ -10,7 +10,99 @@
     "parsing_warnings": {
       "meeting_time_complex_or_unrecognized_preserved_raw": 1,
       "location_multiple_or_complex_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:999ae9f9b2705aa1a5dd6a96e625eacf15b757315ea9c7bcde7a09670c005df9",
+          "published_name": "MATH 240 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "2025_fall"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "999ae9f9b2705aa1a5dd6a96e625eacf15b757315ea9c7bcde7a09670c005df9"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:999ae9f9b2705aa1a5dd6a96e625eacf15b757315ea9c7bcde7a09670c005df9",
+                "published_name": "MATH 240 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "999ae9f9b2705aa1a5dd6a96e625eacf15b757315ea9c7bcde7a09670c005df9"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "999ae9f9b2705aa1a5dd6a96e625eacf15b757315ea9c7bcde7a09670c005df9"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "2025_fall"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "999ae9f9b2705aa1a5dd6a96e625eacf15b757315ea9c7bcde7a09670c005df9"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "e1bf3054826deb5cba8ff435ec1b79bf46f76761e2b236f48327db6e688a0cae"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -40,6 +132,9 @@
   "meeting_time_raw": "1200-1315; 1200-1250",
   "start_time": null,
   "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FORBES 2070C; FORBES 2070C",
   "building": null,
   "room": null,
@@ -58,6 +153,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2025_fall.csv",
     "source_path": "data/acquisition/schedules/2025_fall.csv",

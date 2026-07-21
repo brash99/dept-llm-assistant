@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:626988454e92ecb969dea89291f15cece787de1627aad61865d3ab3b809e0637",
+          "published_name": "Drew Baird"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Sociology, Social Work and Anthropology",
+          "published_name": "Sociology, Social Work and Anthropology"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "626988454e92ecb969dea89291f15cece787de1627aad61865d3ab3b809e0637"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:626988454e92ecb969dea89291f15cece787de1627aad61865d3ab3b809e0637",
+                "published_name": "Drew Baird"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Sociology, Social Work and Anthropology",
+                "published_name": "Sociology, Social Work and Anthropology"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "626988454e92ecb969dea89291f15cece787de1627aad61865d3ab3b809e0637"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "626988454e92ecb969dea89291f15cece787de1627aad61865d3ab3b809e0637"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "626988454e92ecb969dea89291f15cece787de1627aad61865d3ab3b809e0637"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "1a63fe343f74d105a419833570e51b1e8bf4434f271e62587f3c605d3a4f3a1c"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

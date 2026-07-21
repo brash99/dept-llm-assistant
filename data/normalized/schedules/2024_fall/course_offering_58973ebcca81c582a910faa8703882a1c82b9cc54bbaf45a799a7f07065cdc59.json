@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:58973ebcca81c582a910faa8703882a1c82b9cc54bbaf45a799a7f07065cdc59",
+          "published_name": "ECON 201 4C"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "2024_fall"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "58973ebcca81c582a910faa8703882a1c82b9cc54bbaf45a799a7f07065cdc59"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:58973ebcca81c582a910faa8703882a1c82b9cc54bbaf45a799a7f07065cdc59",
+                "published_name": "ECON 201 4C"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "58973ebcca81c582a910faa8703882a1c82b9cc54bbaf45a799a7f07065cdc59"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "58973ebcca81c582a910faa8703882a1c82b9cc54bbaf45a799a7f07065cdc59"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "2024_fall"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "58973ebcca81c582a910faa8703882a1c82b9cc54bbaf45a799a7f07065cdc59"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d589e7fc0d4606435453d4d9d0f3c6ea9d6aceb39d232ff914c4eef69caadeba"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "1800-2100",
   "start_time": "18:00",
   "end_time": "21:00",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "LUTR 170",
   "building": "LUTR",
   "room": "170",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2024_fall.csv",
     "source_path": "data/acquisition/schedules/2024_fall.csv",

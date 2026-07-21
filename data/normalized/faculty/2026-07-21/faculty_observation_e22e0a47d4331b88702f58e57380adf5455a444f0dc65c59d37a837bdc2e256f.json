@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; no-teaching; no-research; no-accomplishments"
+    "structural_variant": "no-biography; education-h2; no-teaching; no-research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:e22e0a47d4331b88702f58e57380adf5455a444f0dc65c59d37a837bdc2e256f",
+          "published_name": "Dali Wang"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:School of Engineering and Computing",
+          "published_name": "School of Engineering and Computing"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e22e0a47d4331b88702f58e57380adf5455a444f0dc65c59d37a837bdc2e256f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:e22e0a47d4331b88702f58e57380adf5455a444f0dc65c59d37a837bdc2e256f",
+                "published_name": "Dali Wang"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "e22e0a47d4331b88702f58e57380adf5455a444f0dc65c59d37a837bdc2e256f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "e22e0a47d4331b88702f58e57380adf5455a444f0dc65c59d37a837bdc2e256f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "e22e0a47d4331b88702f58e57380adf5455a444f0dc65c59d37a837bdc2e256f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9de31497a09de5b9e97fd6c4c6ceee4a07da812a3218aa564025693c8b8040d2"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

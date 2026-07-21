@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:19667f66d93a9b483216714e0f1679e035c486cee00cc6c4ad1f8ad8e50fcf02",
+          "published_name": "CHEM 103 1R"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "2025_fall"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "19667f66d93a9b483216714e0f1679e035c486cee00cc6c4ad1f8ad8e50fcf02"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:19667f66d93a9b483216714e0f1679e035c486cee00cc6c4ad1f8ad8e50fcf02",
+                "published_name": "CHEM 103 1R"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "19667f66d93a9b483216714e0f1679e035c486cee00cc6c4ad1f8ad8e50fcf02"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "19667f66d93a9b483216714e0f1679e035c486cee00cc6c4ad1f8ad8e50fcf02"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "2025_fall"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "19667f66d93a9b483216714e0f1679e035c486cee00cc6c4ad1f8ad8e50fcf02"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7ffc902f0ab74bd8318297846de941b49151ea602d0629f2d9479ec431398cbb"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "1330-1445",
   "start_time": "13:30",
   "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FERG 201",
   "building": "FERG",
   "room": "201",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2025_fall.csv",
     "source_path": "data/acquisition/schedules/2025_fall.csv",

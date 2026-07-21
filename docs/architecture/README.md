@@ -32,7 +32,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 15. [Knowledge Object Semantic Identity](14_knowledge_object_semantic_identity.md)
 16. [Semantic Classification Framework](15_semantic_classification_framework.md)
 17. [Classification Policy and Evaluation](16_classification_policy_and_evaluation.md)
-18. [Architecture FAQ](ArchitectureFAQ.md)
+18. [Semantic Corpus Population](17_semantic_corpus_population.md)
+19. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

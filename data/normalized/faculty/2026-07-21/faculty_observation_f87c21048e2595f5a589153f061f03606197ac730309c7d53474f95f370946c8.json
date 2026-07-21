@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:f87c21048e2595f5a589153f061f03606197ac730309c7d53474f95f370946c8",
+          "published_name": "Sarah King"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Economics",
+          "published_name": "Economics"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f87c21048e2595f5a589153f061f03606197ac730309c7d53474f95f370946c8"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:f87c21048e2595f5a589153f061f03606197ac730309c7d53474f95f370946c8",
+                "published_name": "Sarah King"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Economics",
+                "published_name": "Economics"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "f87c21048e2595f5a589153f061f03606197ac730309c7d53474f95f370946c8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "f87c21048e2595f5a589153f061f03606197ac730309c7d53474f95f370946c8"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "f87c21048e2595f5a589153f061f03606197ac730309c7d53474f95f370946c8"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c2fcce121c1edd1218b0bd351175f7995207cedb699244154fe8e0f12dce0942"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

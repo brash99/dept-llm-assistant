@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments"
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:ad9fbb11149a56e2dd457b7132e366c7c95d8cb10b10cab4c5cf3f7306d66a8c",
+          "published_name": "David Roach\u00e9"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Communication Studies",
+          "published_name": "Communication Studies"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ad9fbb11149a56e2dd457b7132e366c7c95d8cb10b10cab4c5cf3f7306d66a8c"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:ad9fbb11149a56e2dd457b7132e366c7c95d8cb10b10cab4c5cf3f7306d66a8c",
+                "published_name": "David Roach\u00e9"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Communication Studies",
+                "published_name": "Communication Studies"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "ad9fbb11149a56e2dd457b7132e366c7c95d8cb10b10cab4c5cf3f7306d66a8c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "ad9fbb11149a56e2dd457b7132e366c7c95d8cb10b10cab4c5cf3f7306d66a8c"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "ad9fbb11149a56e2dd457b7132e366c7c95d8cb10b10cab4c5cf3f7306d66a8c"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "204926e1358c45444ab22c49481e3caf6823df155da61192fddee5702d28f522"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

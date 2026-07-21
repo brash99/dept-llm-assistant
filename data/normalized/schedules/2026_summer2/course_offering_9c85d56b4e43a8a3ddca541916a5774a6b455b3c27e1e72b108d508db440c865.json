@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:9c85d56b4e43a8a3ddca541916a5774a6b455b3c27e1e72b108d508db440c865",
+          "published_name": "PHYS 152L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_summer2",
+        "published_label": "2026_summer2"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "9c85d56b4e43a8a3ddca541916a5774a6b455b3c27e1e72b108d508db440c865"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:9c85d56b4e43a8a3ddca541916a5774a6b455b3c27e1e72b108d508db440c865",
+                "published_name": "PHYS 152L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "9c85d56b4e43a8a3ddca541916a5774a6b455b3c27e1e72b108d508db440c865"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "9c85d56b4e43a8a3ddca541916a5774a6b455b3c27e1e72b108d508db440c865"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_summer2",
+              "published_label": "2026_summer2"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "9c85d56b4e43a8a3ddca541916a5774a6b455b3c27e1e72b108d508db440c865"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "8e668fd458cc3eb27677f06c43985bf870a71022a2dd5b9a21d6aa19595ee77e"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "1300-1545",
   "start_time": "13:00",
   "end_time": "15:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "LUTR 306",
   "building": "LUTR",
   "room": "306",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_summer2.csv",
     "source_path": "data/acquisition/schedules/2026_summer2.csv",

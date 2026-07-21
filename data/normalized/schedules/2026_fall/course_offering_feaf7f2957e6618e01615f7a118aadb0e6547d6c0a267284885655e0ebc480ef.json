@@ -10,7 +10,99 @@
     "parsing_warnings": {
       "credits_non_scalar_preserved_raw": 1,
       "location_not_building_room_pair_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:feaf7f2957e6618e01615f7a118aadb0e6547d6c0a267284885655e0ebc480ef",
+          "published_name": "COMM 491 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "2026_fall"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "feaf7f2957e6618e01615f7a118aadb0e6547d6c0a267284885655e0ebc480ef"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:feaf7f2957e6618e01615f7a118aadb0e6547d6c0a267284885655e0ebc480ef",
+                "published_name": "COMM 491 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "feaf7f2957e6618e01615f7a118aadb0e6547d6c0a267284885655e0ebc480ef"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "feaf7f2957e6618e01615f7a118aadb0e6547d6c0a267284885655e0ebc480ef"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "2026_fall"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "feaf7f2957e6618e01615f7a118aadb0e6547d6c0a267284885655e0ebc480ef"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "127fcf2567df0cf7f67da82bbc56678327058ee4fee2c9e9ce9da2fd466e4c7b"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -40,6 +132,9 @@
   "meeting_time_raw": null,
   "start_time": null,
   "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "ARR ",
   "building": null,
   "room": null,
@@ -58,6 +153,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": "Yes",
+  "modality": null,
   "provenance": {
     "source_filename": "2026_fall.csv",
     "source_path": "data/acquisition/schedules/2026_fall.csv",

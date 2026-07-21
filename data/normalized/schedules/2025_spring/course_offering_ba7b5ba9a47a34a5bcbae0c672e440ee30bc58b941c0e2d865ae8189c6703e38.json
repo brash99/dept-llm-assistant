@@ -9,7 +9,99 @@
     "adapter_version": "0.1",
     "parsing_warnings": {
       "location_not_building_room_pair_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:ba7b5ba9a47a34a5bcbae0c672e440ee30bc58b941c0e2d865ae8189c6703e38",
+          "published_name": "BTMG 030 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "2025_spring"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ba7b5ba9a47a34a5bcbae0c672e440ee30bc58b941c0e2d865ae8189c6703e38"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:ba7b5ba9a47a34a5bcbae0c672e440ee30bc58b941c0e2d865ae8189c6703e38",
+                "published_name": "BTMG 030 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "ba7b5ba9a47a34a5bcbae0c672e440ee30bc58b941c0e2d865ae8189c6703e38"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "ba7b5ba9a47a34a5bcbae0c672e440ee30bc58b941c0e2d865ae8189c6703e38"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "2025_spring"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "ba7b5ba9a47a34a5bcbae0c672e440ee30bc58b941c0e2d865ae8189c6703e38"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a7a050a7eaa0cff17a4e95c6a899beb27f6befde184e7f6e5c943d255ba84899"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -39,6 +131,9 @@
   "meeting_time_raw": null,
   "start_time": null,
   "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "ARR ",
   "building": null,
   "room": null,
@@ -57,6 +152,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2025_spring.csv",
     "source_path": "data/acquisition/schedules/2025_spring.csv",

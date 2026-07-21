@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:a97d939f8d7b8cac465fb093ce77a70c928f1dc613e7b35596320c347b12349a",
+          "published_name": "CPSC 215 4"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "2025_spring"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a97d939f8d7b8cac465fb093ce77a70c928f1dc613e7b35596320c347b12349a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:a97d939f8d7b8cac465fb093ce77a70c928f1dc613e7b35596320c347b12349a",
+                "published_name": "CPSC 215 4"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "a97d939f8d7b8cac465fb093ce77a70c928f1dc613e7b35596320c347b12349a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "a97d939f8d7b8cac465fb093ce77a70c928f1dc613e7b35596320c347b12349a"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "2025_spring"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "a97d939f8d7b8cac465fb093ce77a70c928f1dc613e7b35596320c347b12349a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "22ad5021e353075dbbc64c458591e18481e9d5cd2ee7321539c251a006c3fa6d"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "1000-1050",
   "start_time": "10:00",
   "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "LUTR 109",
   "building": "LUTR",
   "room": "109",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2025_spring.csv",
     "source_path": "data/acquisition/schedules/2025_spring.csv",

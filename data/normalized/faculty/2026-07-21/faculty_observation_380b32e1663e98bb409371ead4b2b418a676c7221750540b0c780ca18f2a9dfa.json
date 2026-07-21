@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:380b32e1663e98bb409371ead4b2b418a676c7221750540b0c780ca18f2a9dfa",
+          "published_name": "William Donaldson"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Luter School of Business",
+          "published_name": "Luter School of Business"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "380b32e1663e98bb409371ead4b2b418a676c7221750540b0c780ca18f2a9dfa"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:380b32e1663e98bb409371ead4b2b418a676c7221750540b0c780ca18f2a9dfa",
+                "published_name": "William Donaldson"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Luter School of Business",
+                "published_name": "Luter School of Business"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "380b32e1663e98bb409371ead4b2b418a676c7221750540b0c780ca18f2a9dfa"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "380b32e1663e98bb409371ead4b2b418a676c7221750540b0c780ca18f2a9dfa"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "380b32e1663e98bb409371ead4b2b418a676c7221750540b0c780ca18f2a9dfa"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "17bc8b6f99bced2f600e602a8cb00f25181efe98462968d17438d916c0dfb0a0"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

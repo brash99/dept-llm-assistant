@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:82c2ae6efe411a10c78ac0565ea63b679c6634c3427f69fe383b7ef1eb300663",
+          "published_name": "Elaine Miller"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Modern and Classical Languages and Literatures",
+          "published_name": "Modern and Classical Languages and Literatures"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "82c2ae6efe411a10c78ac0565ea63b679c6634c3427f69fe383b7ef1eb300663"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:82c2ae6efe411a10c78ac0565ea63b679c6634c3427f69fe383b7ef1eb300663",
+                "published_name": "Elaine Miller"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Modern and Classical Languages and Literatures",
+                "published_name": "Modern and Classical Languages and Literatures"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "82c2ae6efe411a10c78ac0565ea63b679c6634c3427f69fe383b7ef1eb300663"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "82c2ae6efe411a10c78ac0565ea63b679c6634c3427f69fe383b7ef1eb300663"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "82c2ae6efe411a10c78ac0565ea63b679c6634c3427f69fe383b7ef1eb300663"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "234f450cba9d950f3e482454657d061bf2f132b67802f1b493d8d6b7ca420159"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

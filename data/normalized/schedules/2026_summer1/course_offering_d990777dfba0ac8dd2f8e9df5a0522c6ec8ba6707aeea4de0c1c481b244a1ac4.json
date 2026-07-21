@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:d990777dfba0ac8dd2f8e9df5a0522c6ec8ba6707aeea4de0c1c481b244a1ac4",
+          "published_name": "PSYC 301L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_summer1",
+        "published_label": "2026_summer1"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d990777dfba0ac8dd2f8e9df5a0522c6ec8ba6707aeea4de0c1c481b244a1ac4"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:d990777dfba0ac8dd2f8e9df5a0522c6ec8ba6707aeea4de0c1c481b244a1ac4",
+                "published_name": "PSYC 301L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "d990777dfba0ac8dd2f8e9df5a0522c6ec8ba6707aeea4de0c1c481b244a1ac4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "d990777dfba0ac8dd2f8e9df5a0522c6ec8ba6707aeea4de0c1c481b244a1ac4"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_summer1",
+              "published_label": "2026_summer1"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "d990777dfba0ac8dd2f8e9df5a0522c6ec8ba6707aeea4de0c1c481b244a1ac4"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "994d85d74fc5a06f071a3430e01b8584a61abc8a031216155d5264931ffcf565"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "1245-1515",
   "start_time": "12:45",
   "end_time": "15:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FORBES 2090",
   "building": "FORBES",
   "room": "2090",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_summer1.csv",
     "source_path": "data/acquisition/schedules/2026_summer1.csv",

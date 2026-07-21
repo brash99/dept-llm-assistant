@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:89b22a5b0f82356c2a1958716aa45a7bd2b6266495461196edfd2ced5ad48f66",
+          "published_name": "CHEM 221L 5"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "2026_spring"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "89b22a5b0f82356c2a1958716aa45a7bd2b6266495461196edfd2ced5ad48f66"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:89b22a5b0f82356c2a1958716aa45a7bd2b6266495461196edfd2ced5ad48f66",
+                "published_name": "CHEM 221L 5"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "89b22a5b0f82356c2a1958716aa45a7bd2b6266495461196edfd2ced5ad48f66"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "89b22a5b0f82356c2a1958716aa45a7bd2b6266495461196edfd2ced5ad48f66"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "2026_spring"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "89b22a5b0f82356c2a1958716aa45a7bd2b6266495461196edfd2ced5ad48f66"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "0cf51905392dab2606bcb1950fc8eb3994b8cc91b12d2343112511b8dfa90e0a"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "0830-1220",
   "start_time": "08:30",
   "end_time": "12:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FORBES 3052",
   "building": "FORBES",
   "room": "3052",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_spring.csv",
     "source_path": "data/acquisition/schedules/2026_spring.csv",

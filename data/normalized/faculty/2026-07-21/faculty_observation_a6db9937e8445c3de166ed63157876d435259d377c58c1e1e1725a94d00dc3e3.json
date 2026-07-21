@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:a6db9937e8445c3de166ed63157876d435259d377c58c1e1e1725a94d00dc3e3",
+          "published_name": "Tatiana Rizova"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Political Science",
+          "published_name": "Political Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a6db9937e8445c3de166ed63157876d435259d377c58c1e1e1725a94d00dc3e3"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:a6db9937e8445c3de166ed63157876d435259d377c58c1e1e1725a94d00dc3e3",
+                "published_name": "Tatiana Rizova"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Political Science",
+                "published_name": "Political Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "a6db9937e8445c3de166ed63157876d435259d377c58c1e1e1725a94d00dc3e3"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "a6db9937e8445c3de166ed63157876d435259d377c58c1e1e1725a94d00dc3e3"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "a6db9937e8445c3de166ed63157876d435259d377c58c1e1e1725a94d00dc3e3"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "cfee78c2ce54f63c44a77557155d09d4b87bbe82c04b06ace113517d32978d10"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

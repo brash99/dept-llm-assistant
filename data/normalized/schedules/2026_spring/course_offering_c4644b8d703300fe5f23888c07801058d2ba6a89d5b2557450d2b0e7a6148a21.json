@@ -9,7 +9,99 @@
     "adapter_version": "0.1",
     "parsing_warnings": {
       "location_not_building_room_pair_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:c4644b8d703300fe5f23888c07801058d2ba6a89d5b2557450d2b0e7a6148a21",
+          "published_name": "NAVS 112 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "2026_spring"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "c4644b8d703300fe5f23888c07801058d2ba6a89d5b2557450d2b0e7a6148a21"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:c4644b8d703300fe5f23888c07801058d2ba6a89d5b2557450d2b0e7a6148a21",
+                "published_name": "NAVS 112 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "c4644b8d703300fe5f23888c07801058d2ba6a89d5b2557450d2b0e7a6148a21"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "c4644b8d703300fe5f23888c07801058d2ba6a89d5b2557450d2b0e7a6148a21"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "2026_spring"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "c4644b8d703300fe5f23888c07801058d2ba6a89d5b2557450d2b0e7a6148a21"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7bf777ae9f46e998a52605e11084301cceaee5c74bdd28ef52b22a63be923c2b"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -39,6 +131,9 @@
   "meeting_time_raw": "0600-0730",
   "start_time": "06:00",
   "end_time": "07:30",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "ARR ",
   "building": null,
   "room": null,
@@ -57,6 +152,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_spring.csv",
     "source_path": "data/acquisition/schedules/2026_spring.csv",

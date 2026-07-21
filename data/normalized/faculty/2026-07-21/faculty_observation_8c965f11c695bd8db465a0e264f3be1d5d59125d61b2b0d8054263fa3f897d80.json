@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:8c965f11c695bd8db465a0e264f3be1d5d59125d61b2b0d8054263fa3f897d80",
+          "published_name": "William Connell"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:History",
+          "published_name": "History"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "8c965f11c695bd8db465a0e264f3be1d5d59125d61b2b0d8054263fa3f897d80"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:8c965f11c695bd8db465a0e264f3be1d5d59125d61b2b0d8054263fa3f897d80",
+                "published_name": "William Connell"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:History",
+                "published_name": "History"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "8c965f11c695bd8db465a0e264f3be1d5d59125d61b2b0d8054263fa3f897d80"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "8c965f11c695bd8db465a0e264f3be1d5d59125d61b2b0d8054263fa3f897d80"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "8c965f11c695bd8db465a0e264f3be1d5d59125d61b2b0d8054263fa3f897d80"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "96df7ddf57a442a3c48f67ff48318fac5c1a96cc27d54385bbc8804cf8396896"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

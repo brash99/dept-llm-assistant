@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:99a41fe1d8faf835e7a776e7a0d22259df407fd368cc64b054721630e1e91f43",
+          "published_name": "Deirdre Harshman"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:History",
+          "published_name": "History"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "99a41fe1d8faf835e7a776e7a0d22259df407fd368cc64b054721630e1e91f43"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:99a41fe1d8faf835e7a776e7a0d22259df407fd368cc64b054721630e1e91f43",
+                "published_name": "Deirdre Harshman"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:History",
+                "published_name": "History"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "99a41fe1d8faf835e7a776e7a0d22259df407fd368cc64b054721630e1e91f43"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "99a41fe1d8faf835e7a776e7a0d22259df407fd368cc64b054721630e1e91f43"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "99a41fe1d8faf835e7a776e7a0d22259df407fd368cc64b054721630e1e91f43"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "546005cdcbf6fa6709faafd5185c65c3e1318094d6d524d3a10fac04600aeeaa"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:253ac4a8f1e62a9976f512ac8fb67ff2e1108ed9d493a98be044ae54a1adf266",
+          "published_name": "Jason Hart"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Psychology",
+          "published_name": "Psychology"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "253ac4a8f1e62a9976f512ac8fb67ff2e1108ed9d493a98be044ae54a1adf266"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:253ac4a8f1e62a9976f512ac8fb67ff2e1108ed9d493a98be044ae54a1adf266",
+                "published_name": "Jason Hart"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Psychology",
+                "published_name": "Psychology"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "253ac4a8f1e62a9976f512ac8fb67ff2e1108ed9d493a98be044ae54a1adf266"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "253ac4a8f1e62a9976f512ac8fb67ff2e1108ed9d493a98be044ae54a1adf266"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "253ac4a8f1e62a9976f512ac8fb67ff2e1108ed9d493a98be044ae54a1adf266"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "ea804b0aa5f8df4a7966a5a52fcbfe588171d02f427d98ba771e05af5da7aac2"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

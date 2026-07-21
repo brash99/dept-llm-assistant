@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; no-teaching; research; no-accomplishments"
+    "structural_variant": "no-biography; education-h2; no-teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:f6f84e2f9e8983c76c411c6f8079b88225a9c904acc2ff82989d3ec981e34888",
+          "published_name": "Peter Monaghan"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:School of Engineering and Computing",
+          "published_name": "School of Engineering and Computing"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f6f84e2f9e8983c76c411c6f8079b88225a9c904acc2ff82989d3ec981e34888"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:f6f84e2f9e8983c76c411c6f8079b88225a9c904acc2ff82989d3ec981e34888",
+                "published_name": "Peter Monaghan"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "f6f84e2f9e8983c76c411c6f8079b88225a9c904acc2ff82989d3ec981e34888"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "f6f84e2f9e8983c76c411c6f8079b88225a9c904acc2ff82989d3ec981e34888"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "f6f84e2f9e8983c76c411c6f8079b88225a9c904acc2ff82989d3ec981e34888"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "cfe6520819807abc486608f9c412d4e59be74ac460d1bdfe28d18d15a466c006"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

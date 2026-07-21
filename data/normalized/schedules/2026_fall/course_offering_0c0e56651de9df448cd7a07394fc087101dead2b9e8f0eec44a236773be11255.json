@@ -9,7 +9,99 @@
     "adapter_version": "0.1",
     "parsing_warnings": {
       "credits_non_scalar_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:0c0e56651de9df448cd7a07394fc087101dead2b9e8f0eec44a236773be11255",
+          "published_name": "THEA 380 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "2026_fall"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "0c0e56651de9df448cd7a07394fc087101dead2b9e8f0eec44a236773be11255"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:0c0e56651de9df448cd7a07394fc087101dead2b9e8f0eec44a236773be11255",
+                "published_name": "THEA 380 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "0c0e56651de9df448cd7a07394fc087101dead2b9e8f0eec44a236773be11255"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "0c0e56651de9df448cd7a07394fc087101dead2b9e8f0eec44a236773be11255"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "2026_fall"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "0c0e56651de9df448cd7a07394fc087101dead2b9e8f0eec44a236773be11255"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "3e263ca5b8c1b7f78c4a3fa9360ac0726f8a67085bc73c870b26949ec78115f6"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -39,6 +131,9 @@
   "meeting_time_raw": "1900-2300",
   "start_time": "19:00",
   "end_time": "23:00",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FERG T107",
   "building": "FERG",
   "room": "T107",
@@ -57,6 +152,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_fall.csv",
     "source_path": "data/acquisition/schedules/2026_fall.csv",

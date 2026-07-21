@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:ac6439f16cd8fce1b5b4ffe37c1dcbe4afd51fdfe41c824998958bff7df24738",
+          "published_name": "Kyle Garton-Gundling"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:English",
+          "published_name": "English"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ac6439f16cd8fce1b5b4ffe37c1dcbe4afd51fdfe41c824998958bff7df24738"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:ac6439f16cd8fce1b5b4ffe37c1dcbe4afd51fdfe41c824998958bff7df24738",
+                "published_name": "Kyle Garton-Gundling"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:English",
+                "published_name": "English"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "ac6439f16cd8fce1b5b4ffe37c1dcbe4afd51fdfe41c824998958bff7df24738"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "ac6439f16cd8fce1b5b4ffe37c1dcbe4afd51fdfe41c824998958bff7df24738"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "ac6439f16cd8fce1b5b4ffe37c1dcbe4afd51fdfe41c824998958bff7df24738"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "501a80afb6b191faa705a4d254d5300550a11bcd5594db498d64473272f7f498"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

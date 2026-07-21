@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:810dcbcbd64774a15ef5d6762d70eeaf8f177a9ffaca23b92c45e60f6e47710d",
+          "published_name": "Chris Kennedy"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Mathematics",
+          "published_name": "Mathematics"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "810dcbcbd64774a15ef5d6762d70eeaf8f177a9ffaca23b92c45e60f6e47710d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:810dcbcbd64774a15ef5d6762d70eeaf8f177a9ffaca23b92c45e60f6e47710d",
+                "published_name": "Chris Kennedy"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Mathematics",
+                "published_name": "Mathematics"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "810dcbcbd64774a15ef5d6762d70eeaf8f177a9ffaca23b92c45e60f6e47710d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "810dcbcbd64774a15ef5d6762d70eeaf8f177a9ffaca23b92c45e60f6e47710d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "810dcbcbd64774a15ef5d6762d70eeaf8f177a9ffaca23b92c45e60f6e47710d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "706c192306cf18a4e08360a1d4fd2f36838ac9a67cc85fe9a0545c98cf0907f9"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

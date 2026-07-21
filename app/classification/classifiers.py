@@ -79,6 +79,7 @@ def _explicit_authority(obj: KnowledgeObject) -> Optional[Authority]:
 
 class SemanticClassifier(ABC):
     name = "semantic_classifier"
+    version = "1"
     method = ClassificationMethod.UNKNOWN
     supported_object_types: Tuple[str, ...] = ()
 

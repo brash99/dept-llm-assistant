@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:6503cf9af01b00ac1ed8b9351489ee1d5af0dd92a1db6b8459786bb9b7a88475",
+          "published_name": "Ronald Quinlan"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Biology, Chemistry and Environmental Science",
+          "published_name": "Biology, Chemistry and Environmental Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "6503cf9af01b00ac1ed8b9351489ee1d5af0dd92a1db6b8459786bb9b7a88475"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:6503cf9af01b00ac1ed8b9351489ee1d5af0dd92a1db6b8459786bb9b7a88475",
+                "published_name": "Ronald Quinlan"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Biology, Chemistry and Environmental Science",
+                "published_name": "Biology, Chemistry and Environmental Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "6503cf9af01b00ac1ed8b9351489ee1d5af0dd92a1db6b8459786bb9b7a88475"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "6503cf9af01b00ac1ed8b9351489ee1d5af0dd92a1db6b8459786bb9b7a88475"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "6503cf9af01b00ac1ed8b9351489ee1d5af0dd92a1db6b8459786bb9b7a88475"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "1186ca6f8fc67ff67aec88720f7dd11367bc263e5859f143604a35a639a5d67e"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

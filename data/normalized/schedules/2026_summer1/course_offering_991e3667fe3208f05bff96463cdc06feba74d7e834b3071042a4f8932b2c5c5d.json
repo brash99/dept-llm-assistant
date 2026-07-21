@@ -9,7 +9,99 @@
     "adapter_version": "0.1",
     "parsing_warnings": {
       "location_not_building_room_pair_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:991e3667fe3208f05bff96463cdc06feba74d7e834b3071042a4f8932b2c5c5d",
+          "published_name": "HIST 499 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_summer1",
+        "published_label": "2026_summer1"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "991e3667fe3208f05bff96463cdc06feba74d7e834b3071042a4f8932b2c5c5d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:991e3667fe3208f05bff96463cdc06feba74d7e834b3071042a4f8932b2c5c5d",
+                "published_name": "HIST 499 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "991e3667fe3208f05bff96463cdc06feba74d7e834b3071042a4f8932b2c5c5d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "991e3667fe3208f05bff96463cdc06feba74d7e834b3071042a4f8932b2c5c5d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_summer1",
+              "published_label": "2026_summer1"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "991e3667fe3208f05bff96463cdc06feba74d7e834b3071042a4f8932b2c5c5d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9e3a4a897c4d9b397675e541fcbcc6424d3c430e60f4358ed4d70fbb0e5b020c"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -39,6 +131,9 @@
   "meeting_time_raw": null,
   "start_time": null,
   "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "ARR ",
   "building": null,
   "room": null,
@@ -57,6 +152,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_summer1.csv",
     "source_path": "data/acquisition/schedules/2026_summer1.csv",

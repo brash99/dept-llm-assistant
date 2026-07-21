@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:b35b496a04b471c49e53a247818ac56ff0d7e40cd421f7802d52ca1e7cdf318f",
+          "published_name": "Benjamin Redekop"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Leadership and American Studies",
+          "published_name": "Leadership and American Studies"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b35b496a04b471c49e53a247818ac56ff0d7e40cd421f7802d52ca1e7cdf318f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b35b496a04b471c49e53a247818ac56ff0d7e40cd421f7802d52ca1e7cdf318f",
+                "published_name": "Benjamin Redekop"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Leadership and American Studies",
+                "published_name": "Leadership and American Studies"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "b35b496a04b471c49e53a247818ac56ff0d7e40cd421f7802d52ca1e7cdf318f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "b35b496a04b471c49e53a247818ac56ff0d7e40cd421f7802d52ca1e7cdf318f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b35b496a04b471c49e53a247818ac56ff0d7e40cd421f7802d52ca1e7cdf318f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "23525ef19cc33f81312150ee1cca01ae1a16055084194ab392c6565ebc38863f"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

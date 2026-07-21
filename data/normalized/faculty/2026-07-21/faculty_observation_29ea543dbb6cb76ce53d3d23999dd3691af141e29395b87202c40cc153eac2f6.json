@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; teaching; research; no-accomplishments"
+    "structural_variant": "no-biography; education-h2; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:29ea543dbb6cb76ce53d3d23999dd3691af141e29395b87202c40cc153eac2f6",
+          "published_name": "Sumie Shima"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Biology, Chemistry and Environmental Science",
+          "published_name": "Biology, Chemistry and Environmental Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "29ea543dbb6cb76ce53d3d23999dd3691af141e29395b87202c40cc153eac2f6"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:29ea543dbb6cb76ce53d3d23999dd3691af141e29395b87202c40cc153eac2f6",
+                "published_name": "Sumie Shima"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Biology, Chemistry and Environmental Science",
+                "published_name": "Biology, Chemistry and Environmental Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "29ea543dbb6cb76ce53d3d23999dd3691af141e29395b87202c40cc153eac2f6"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "29ea543dbb6cb76ce53d3d23999dd3691af141e29395b87202c40cc153eac2f6"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "29ea543dbb6cb76ce53d3d23999dd3691af141e29395b87202c40cc153eac2f6"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f75bc2b641ba2b8dc7368e8a5ef96386fa9c02559b21094de11a78cf74547820"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:8bbcf5fb21485fd97809dd353d8c2cbcc8b9a161b27c3eea287840bd8f23162d",
+          "published_name": "Nicole Guajardo"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Psychology",
+          "published_name": "Psychology"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "8bbcf5fb21485fd97809dd353d8c2cbcc8b9a161b27c3eea287840bd8f23162d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:8bbcf5fb21485fd97809dd353d8c2cbcc8b9a161b27c3eea287840bd8f23162d",
+                "published_name": "Nicole Guajardo"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Psychology",
+                "published_name": "Psychology"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "8bbcf5fb21485fd97809dd353d8c2cbcc8b9a161b27c3eea287840bd8f23162d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "8bbcf5fb21485fd97809dd353d8c2cbcc8b9a161b27c3eea287840bd8f23162d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "8bbcf5fb21485fd97809dd353d8c2cbcc8b9a161b27c3eea287840bd8f23162d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4a5346c7ca4914414874e922387229ba9f1d8630ff7567edac399dcdf8a915df"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

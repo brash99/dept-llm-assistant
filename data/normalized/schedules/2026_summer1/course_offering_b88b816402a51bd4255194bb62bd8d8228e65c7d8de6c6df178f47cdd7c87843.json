@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b88b816402a51bd4255194bb62bd8d8228e65c7d8de6c6df178f47cdd7c87843",
+          "published_name": "NSCI 570 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_summer1",
+        "published_label": "2026_summer1"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b88b816402a51bd4255194bb62bd8d8228e65c7d8de6c6df178f47cdd7c87843"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b88b816402a51bd4255194bb62bd8d8228e65c7d8de6c6df178f47cdd7c87843",
+                "published_name": "NSCI 570 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b88b816402a51bd4255194bb62bd8d8228e65c7d8de6c6df178f47cdd7c87843"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b88b816402a51bd4255194bb62bd8d8228e65c7d8de6c6df178f47cdd7c87843"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_summer1",
+              "published_label": "2026_summer1"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b88b816402a51bd4255194bb62bd8d8228e65c7d8de6c6df178f47cdd7c87843"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6853bab9103a23cf0a7927e7f0675f4a5fb219ba73b647fcb66e2d3e13ab4785"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "0900-1130",
   "start_time": "09:00",
   "end_time": "11:30",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FORBES 2014",
   "building": "FORBES",
   "room": "2014",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2026_summer1.csv",
     "source_path": "data/acquisition/schedules/2026_summer1.csv",

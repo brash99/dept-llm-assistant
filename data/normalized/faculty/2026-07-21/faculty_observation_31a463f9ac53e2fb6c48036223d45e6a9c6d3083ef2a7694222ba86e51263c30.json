@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments"
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:31a463f9ac53e2fb6c48036223d45e6a9c6d3083ef2a7694222ba86e51263c30",
+          "published_name": "Timothy Pressley"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Psychology",
+          "published_name": "Psychology"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "31a463f9ac53e2fb6c48036223d45e6a9c6d3083ef2a7694222ba86e51263c30"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:31a463f9ac53e2fb6c48036223d45e6a9c6d3083ef2a7694222ba86e51263c30",
+                "published_name": "Timothy Pressley"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Psychology",
+                "published_name": "Psychology"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "31a463f9ac53e2fb6c48036223d45e6a9c6d3083ef2a7694222ba86e51263c30"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "31a463f9ac53e2fb6c48036223d45e6a9c6d3083ef2a7694222ba86e51263c30"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "31a463f9ac53e2fb6c48036223d45e6a9c6d3083ef2a7694222ba86e51263c30"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "458d6ba0cfcb643f93b161a447571485e38a711b6db8c9095613185b39666aa3"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

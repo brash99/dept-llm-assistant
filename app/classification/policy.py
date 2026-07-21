@@ -28,6 +28,7 @@ IDENTITY_FIELDS = (
     "temporal_scope",
     "institutional_relevance",
 )
+POLICY_VERSION = "1"
 MULTIVALUE_FIELDS = {
     "institutional_entities",
     "organizational_relationships",
@@ -785,5 +786,6 @@ __all__ = [
     "FieldPolicy",
     "GovernedClassificationResult",
     "PolicyReason",
+    "POLICY_VERSION",
     "default_field_policies",
 ]

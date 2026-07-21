@@ -48,6 +48,14 @@ from app.classification.evaluation import (
     QualityGates,
     load_evaluation_cases,
 )
+from app.classification.corpus import (
+    CorpusClassificationOptions,
+    CorpusClassificationReport,
+    CoverageCounter,
+    SemanticCorpusPopulationService,
+    atomic_save_knowledge_object,
+    discover_knowledge_object_paths,
+)
 
 __all__ = [
     "CatalogObservationClassifier",
@@ -70,7 +78,10 @@ __all__ = [
     "ClassificationPolicy",
     "ClassificationResult",
     "ConstitutionalKnowledgeClassifier",
+    "CorpusClassificationOptions",
+    "CorpusClassificationReport",
     "CourseOfferingObservationClassifier",
+    "CoverageCounter",
     "DeterministicSemanticClassifier",
     "EvidenceCitation",
     "EvaluationCase",
@@ -87,5 +98,8 @@ __all__ = [
     "QualityGates",
     "SemanticClassificationService",
     "SemanticClassifier",
+    "SemanticCorpusPopulationService",
+    "atomic_save_knowledge_object",
+    "discover_knowledge_object_paths",
     "load_evaluation_cases",
 ]

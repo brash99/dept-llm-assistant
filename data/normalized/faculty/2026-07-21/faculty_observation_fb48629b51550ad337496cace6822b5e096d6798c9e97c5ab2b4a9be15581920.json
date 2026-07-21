@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments"
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:fb48629b51550ad337496cace6822b5e096d6798c9e97c5ab2b4a9be15581920",
+          "published_name": "Denise Tombolato-Terzic"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Biology, Chemistry and Environmental Science",
+          "published_name": "Biology, Chemistry and Environmental Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "fb48629b51550ad337496cace6822b5e096d6798c9e97c5ab2b4a9be15581920"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:fb48629b51550ad337496cace6822b5e096d6798c9e97c5ab2b4a9be15581920",
+                "published_name": "Denise Tombolato-Terzic"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Biology, Chemistry and Environmental Science",
+                "published_name": "Biology, Chemistry and Environmental Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "fb48629b51550ad337496cace6822b5e096d6798c9e97c5ab2b4a9be15581920"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "fb48629b51550ad337496cace6822b5e096d6798c9e97c5ab2b4a9be15581920"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "fb48629b51550ad337496cace6822b5e096d6798c9e97c5ab2b4a9be15581920"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "06a0030f3b41236faac97a04c054f9b80234375716f11067ac9244c3a5ac8df2"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

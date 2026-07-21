@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:790fc2633a66e37ad9f6bcf518c846ea11a1e5bf30913a6b179dcf14c258b63d",
+          "published_name": "George Zestos"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Economics",
+          "published_name": "Economics"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "790fc2633a66e37ad9f6bcf518c846ea11a1e5bf30913a6b179dcf14c258b63d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:790fc2633a66e37ad9f6bcf518c846ea11a1e5bf30913a6b179dcf14c258b63d",
+                "published_name": "George Zestos"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Economics",
+                "published_name": "Economics"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "790fc2633a66e37ad9f6bcf518c846ea11a1e5bf30913a6b179dcf14c258b63d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "790fc2633a66e37ad9f6bcf518c846ea11a1e5bf30913a6b179dcf14c258b63d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "790fc2633a66e37ad9f6bcf518c846ea11a1e5bf30913a6b179dcf14c258b63d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a79e753287e48331ec7fb0e3feec3a75085a04e1700083261130ef34c0afa581"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

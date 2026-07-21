@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:5ce7c1f19ac8d9cff46693dbcaacd3886e0f7ed8b4a97c730ea59393d2c554cb",
+          "published_name": "Iordanka Panayotova"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Mathematics",
+          "published_name": "Mathematics"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5ce7c1f19ac8d9cff46693dbcaacd3886e0f7ed8b4a97c730ea59393d2c554cb"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:5ce7c1f19ac8d9cff46693dbcaacd3886e0f7ed8b4a97c730ea59393d2c554cb",
+                "published_name": "Iordanka Panayotova"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Mathematics",
+                "published_name": "Mathematics"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "5ce7c1f19ac8d9cff46693dbcaacd3886e0f7ed8b4a97c730ea59393d2c554cb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "5ce7c1f19ac8d9cff46693dbcaacd3886e0f7ed8b4a97c730ea59393d2c554cb"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "5ce7c1f19ac8d9cff46693dbcaacd3886e0f7ed8b4a97c730ea59393d2c554cb"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5fc2e3afdb97c760a54ef493112ef033c8849c4d0037faffd758c5ed5bf1c98f"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

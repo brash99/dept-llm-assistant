@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+          "published_name": "Ryan Fisher"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:School of Engineering and Computing",
+          "published_name": "School of Engineering and Computing"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+                "published_name": "Ryan Fisher"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "ba45d564a64db0a1b97a1ff4baece295c0046cc26fc6800df8d3eae54d87bb32"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

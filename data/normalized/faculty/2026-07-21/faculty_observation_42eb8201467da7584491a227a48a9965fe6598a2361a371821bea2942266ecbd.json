@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+          "published_name": "Christopher Kreider"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:School of Engineering and Computing",
+          "published_name": "School of Engineering and Computing"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+                "published_name": "Christopher Kreider"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "770cff7a1d021521918aad167993894a71da640d9fa55861a7ea424b0dc5245b"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

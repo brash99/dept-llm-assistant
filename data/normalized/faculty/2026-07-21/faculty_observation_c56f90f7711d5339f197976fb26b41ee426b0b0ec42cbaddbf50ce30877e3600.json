@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:c56f90f7711d5339f197976fb26b41ee426b0b0ec42cbaddbf50ce30877e3600",
+          "published_name": "James Smith"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Communication Studies",
+          "published_name": "Communication Studies"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "c56f90f7711d5339f197976fb26b41ee426b0b0ec42cbaddbf50ce30877e3600"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:c56f90f7711d5339f197976fb26b41ee426b0b0ec42cbaddbf50ce30877e3600",
+                "published_name": "James Smith"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Communication Studies",
+                "published_name": "Communication Studies"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "c56f90f7711d5339f197976fb26b41ee426b0b0ec42cbaddbf50ce30877e3600"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "c56f90f7711d5339f197976fb26b41ee426b0b0ec42cbaddbf50ce30877e3600"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "c56f90f7711d5339f197976fb26b41ee426b0b0ec42cbaddbf50ce30877e3600"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c77779c7bd8cf53c877274a7690f58b71c69d07cccd78a3720efdcac1e03ae9d"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

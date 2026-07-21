@@ -7,7 +7,99 @@
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
     "adapter_version": "0.1",
-    "parsing_warnings": {}
+    "parsing_warnings": {},
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:c82c8a2751a3baf917fdf9b97bb81836c9cdf5b78bb7d71d07356ab410bc81b3",
+          "published_name": "PSYC 490 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_maymester",
+        "published_label": "2025_maymester"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "c82c8a2751a3baf917fdf9b97bb81836c9cdf5b78bb7d71d07356ab410bc81b3"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:c82c8a2751a3baf917fdf9b97bb81836c9cdf5b78bb7d71d07356ab410bc81b3",
+                "published_name": "PSYC 490 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "c82c8a2751a3baf917fdf9b97bb81836c9cdf5b78bb7d71d07356ab410bc81b3"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "c82c8a2751a3baf917fdf9b97bb81836c9cdf5b78bb7d71d07356ab410bc81b3"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_maymester",
+              "published_label": "2025_maymester"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "c82c8a2751a3baf917fdf9b97bb81836c9cdf5b78bb7d71d07356ab410bc81b3"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "29a22ad743c681bceca99fd623ca816822fd3eb873ede5d651a2771a02f4bdb6"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -37,6 +129,9 @@
   "meeting_time_raw": "1300-1615",
   "start_time": "13:00",
   "end_time": "16:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "FORBES 2014",
   "building": "FORBES",
   "room": "2014",
@@ -55,6 +150,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2025_maymester.csv",
     "source_path": "data/acquisition/schedules/2025_maymester.csv",

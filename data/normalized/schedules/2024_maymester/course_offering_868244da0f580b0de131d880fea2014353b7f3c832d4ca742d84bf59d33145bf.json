@@ -9,7 +9,99 @@
     "adapter_version": "0.1",
     "parsing_warnings": {
       "location_not_building_room_pair_preserved_raw": 1
-    }
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:868244da0f580b0de131d880fea2014353b7f3c832d4ca742d84bf59d33145bf",
+          "published_name": "POLS 101 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_maymester",
+        "published_label": "2024_maymester"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "868244da0f580b0de131d880fea2014353b7f3c832d4ca742d84bf59d33145bf"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:868244da0f580b0de131d880fea2014353b7f3c832d4ca742d84bf59d33145bf",
+                "published_name": "POLS 101 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "868244da0f580b0de131d880fea2014353b7f3c832d4ca742d84bf59d33145bf"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "868244da0f580b0de131d880fea2014353b7f3c832d4ca742d84bf59d33145bf"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_maymester",
+              "published_label": "2024_maymester"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "868244da0f580b0de131d880fea2014353b7f3c832d4ca742d84bf59d33145bf"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2405c05e95f1542bcf1cf2d1e2f1c8e438153a80642000fe732422b47917f84b"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_schedule_csv",
@@ -39,6 +131,9 @@
   "meeting_time_raw": "0900-1215",
   "start_time": "09:00",
   "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
   "location_raw": "SYN ",
   "building": null,
   "room": null,
@@ -57,6 +152,7 @@
   "unreserved": null,
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
+  "modality": null,
   "provenance": {
     "source_filename": "2024_maymester.csv",
     "source_path": "data/acquisition/schedules/2024_maymester.csv",

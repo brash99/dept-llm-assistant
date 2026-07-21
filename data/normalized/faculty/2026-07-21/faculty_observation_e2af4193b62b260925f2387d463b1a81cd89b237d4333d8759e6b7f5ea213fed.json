@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:e2af4193b62b260925f2387d463b1a81cd89b237d4333d8759e6b7f5ea213fed",
+          "published_name": "Crystal Shelton"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Political Science",
+          "published_name": "Political Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e2af4193b62b260925f2387d463b1a81cd89b237d4333d8759e6b7f5ea213fed"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:e2af4193b62b260925f2387d463b1a81cd89b237d4333d8759e6b7f5ea213fed",
+                "published_name": "Crystal Shelton"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Political Science",
+                "published_name": "Political Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "e2af4193b62b260925f2387d463b1a81cd89b237d4333d8759e6b7f5ea213fed"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "e2af4193b62b260925f2387d463b1a81cd89b237d4333d8759e6b7f5ea213fed"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "e2af4193b62b260925f2387d463b1a81cd89b237d4333d8759e6b7f5ea213fed"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9243e85f8d2c3195017cfab163d8c97d3d6f32bfb87a7f49a5e3b8949133201c"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

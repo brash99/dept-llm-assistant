@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; teaching; research; accomplishments"
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:ad55e433756a28f988d72285e2e7cb9b27701a40e2cbf32aa3a987452d83f72d",
+          "published_name": "Francesca Parente"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Political Science",
+          "published_name": "Political Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ad55e433756a28f988d72285e2e7cb9b27701a40e2cbf32aa3a987452d83f72d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:ad55e433756a28f988d72285e2e7cb9b27701a40e2cbf32aa3a987452d83f72d",
+                "published_name": "Francesca Parente"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Political Science",
+                "published_name": "Political Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "ad55e433756a28f988d72285e2e7cb9b27701a40e2cbf32aa3a987452d83f72d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "ad55e433756a28f988d72285e2e7cb9b27701a40e2cbf32aa3a987452d83f72d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "ad55e433756a28f988d72285e2e7cb9b27701a40e2cbf32aa3a987452d83f72d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7ae01be409eabd749f60e61360e054f56d40525e05cf37d9db53e3bcd8044665"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

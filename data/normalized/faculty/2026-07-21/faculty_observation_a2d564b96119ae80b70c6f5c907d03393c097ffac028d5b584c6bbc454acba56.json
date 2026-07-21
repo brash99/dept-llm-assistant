@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "no-biography; education-h2; no-teaching; no-research; no-accomplishments"
+    "structural_variant": "no-biography; education-h2; no-teaching; no-research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:a2d564b96119ae80b70c6f5c907d03393c097ffac028d5b584c6bbc454acba56",
+          "published_name": "Cristina Menjivar"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:English",
+          "published_name": "English"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a2d564b96119ae80b70c6f5c907d03393c097ffac028d5b584c6bbc454acba56"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:a2d564b96119ae80b70c6f5c907d03393c097ffac028d5b584c6bbc454acba56",
+                "published_name": "Cristina Menjivar"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:English",
+                "published_name": "English"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "a2d564b96119ae80b70c6f5c907d03393c097ffac028d5b584c6bbc454acba56"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "a2d564b96119ae80b70c6f5c907d03393c097ffac028d5b584c6bbc454acba56"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "a2d564b96119ae80b70c6f5c907d03393c097ffac028d5b584c6bbc454acba56"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5df43bf268670d7fcdb82c333dce09c91fb928c5bcfe774dc5abfa6c7a9e3700"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

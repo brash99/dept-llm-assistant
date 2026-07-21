@@ -7,7 +7,109 @@
     "semantic_layer": "faculty_observation",
     "adapter": "faculty_directory_adapter",
     "adapter_version": "0.1",
-    "structural_variant": "biography; education-h3; no-teaching; no-research; no-accomplishments"
+    "structural_variant": "biography; education-h3; no-teaching; no-research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:2ada11a33e16b478e3dd7f3131bdcd9de8fd5a0a1fcd69766c1ea1e82c481d55",
+          "published_name": "CPT Ian Reddy"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "published_academic_unit:Military Science",
+          "published_name": "Military Science"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2ada11a33e16b478e3dd7f3131bdcd9de8fd5a0a1fcd69766c1ea1e82c481d55"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:2ada11a33e16b478e3dd7f3131bdcd9de8fd5a0a1fcd69766c1ea1e82c481d55",
+                "published_name": "CPT Ian Reddy"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Military Science",
+                "published_name": "Military Science"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "2ada11a33e16b478e3dd7f3131bdcd9de8fd5a0a1fcd69766c1ea1e82c481d55"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "2ada11a33e16b478e3dd7f3131bdcd9de8fd5a0a1fcd69766c1ea1e82c481d55"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "2ada11a33e16b478e3dd7f3131bdcd9de8fd5a0a1fcd69766c1ea1e82c481d55"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b1a939034e641c40b8f9dd447953d2ba1cdd5df4ef217b73996f217327b157df"
+      }
+    ]
   },
   "source": {
     "kind": "institutional_faculty_directory",

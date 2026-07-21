@@ -15,6 +15,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from app.adapters.schedule_adapter import ScheduleCSVAdapter, write_observations
 from app.config import load_config
+from app.schedule_repair import write_repair_reports
 
 
 DEFAULT_OUTPUT_ROOT = Path("data/normalized/schedules")
@@ -46,6 +47,16 @@ def parse_args() -> argparse.Namespace:
             "Exact destination directory. When omitted, output is written "
             "beneath --output-root using the source filename stem."
         ),
+    )
+    parser.add_argument(
+        "--preview",
+        action="store_true",
+        help="Analyze and report repairs without writing normalized observations.",
+    )
+    parser.add_argument(
+        "--repair-report-dir",
+        type=Path,
+        help="Write the repair manifest and summaries to this directory.",
     )
     return parser.parse_args()
 
@@ -81,9 +92,12 @@ def main() -> int:
         if args.output_directory is not None
         else args.output_root / source_csv.stem
     )
-    observations_created = write_observations(
-        result.observations,
-        output_directory,
+    if result.repair_analysis is None:
+        raise SystemExit("Schedule repair analysis was not produced")
+    if args.repair_report_dir:
+        write_repair_reports(result.repair_analysis, args.repair_report_dir)
+    observations_created = 0 if args.preview else write_observations(
+        result.observations, output_directory
     )
 
     print("Schedule CSV ingestion")
@@ -93,6 +107,8 @@ def main() -> int:
     print(f"Observations created: {observations_created}")
     print(f"Rows skipped: {result.rows_skipped}")
     print(f"Duplicate observations detected: {result.duplicate_observations}")
+    print(f"Repair mode: {'preview' if args.preview else 'apply'}")
+    print(f"Repair manifest records: {len(result.repair_analysis.manifest_records)}")
     _print_counter("Missing required fields", result.missing_required_fields)
     _print_counter("Parsing warnings", result.parsing_warnings)
 

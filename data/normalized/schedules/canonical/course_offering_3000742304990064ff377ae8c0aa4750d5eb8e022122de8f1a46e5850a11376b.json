@@ -6,7 +6,9 @@
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "location_not_building_room_pair_preserved_raw": 1
     },
@@ -110,13 +112,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 9588,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "3000742304990064ff377ae8c0aa4750d5eb8e022122de8f1a46e5850a11376b",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 9588,
@@ -138,7 +140,51 @@
     ],
     "normalized_value": "full_time",
     "has_blank_value": false,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Liberal Arts as Journey"
+    ],
+    "normalized_value": "Liberal Arts as Journey",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "MWF 1100-1150",
@@ -168,18 +214,38 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1100-1150",
+      "location_published": "Joseph W. Luter III Hall 131",
+      "source_rows": [
+        9588
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "ee7a4c92065fc0ecb5a289b3181eb09530d445d5aab50add3b0e2c26071098ec",
+    "source_row_hashes": [
+      "ad46b0b18ced1ece0e94002d24d05422aab8a48db35eefc6333f29a7bdd88a96"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 9588,
     "source_rows": [
       9588
     ],
     "source_row_count": 1,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

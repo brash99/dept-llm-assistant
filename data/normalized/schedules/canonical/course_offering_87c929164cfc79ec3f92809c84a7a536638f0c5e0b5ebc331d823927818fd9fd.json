@@ -6,7 +6,9 @@
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "instructor_type_conflicting_source_values": 1,
       "location_not_building_room_pair_preserved_raw": 1
@@ -111,13 +113,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 4002,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "87c929164cfc79ec3f92809c84a7a536638f0c5e0b5ebc331d823927818fd9fd",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 4002,
@@ -140,7 +142,58 @@
     ],
     "normalized_value": "unknown",
     "has_blank_value": false,
-    "conflicting": true
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "ad0ed104b883e5210ae47fadf7848d4a2f6e30575bf0de99b291d85737de401f",
+        "1ae01687c6f1ec5aa8993aeebfccb45d59e0e6d2de2d012db5c0cfc66b925e02",
+        "f46ab464ad21e4bccbc893a6d7f837b4b4c4801a1cf044553edff18f181766ee",
+        "ddab71c2a63a4ce351f60564750a67f7d022c6130236fc7d3f1516cd17787885"
+      ],
+      "supporting_terms": [
+        "2025_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Acting I"
+    ],
+    "normalized_value": "Acting I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "MW 1430-1545",
@@ -170,19 +223,41 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": "YES",
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1430-1545",
+      "location_published": "Ferguson Center for the Arts T107",
+      "source_rows": [
+        4002,
+        17231
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "979b6a83de85262bb2dcc84edbca73f64b4f9bd2fcf5c6774a65f8c7843634ef",
+    "source_row_hashes": [
+      "b45870453a8a646609eaec695e339b575f999303d5fba5c9e43376b2b0940c05",
+      "573af04f8fe8655b3d398600b0440e005b9d4c5679df4edff97b5bc79ae7a35e"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 4002,
     "source_rows": [
       4002,
       17231
     ],
     "source_row_count": 2,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

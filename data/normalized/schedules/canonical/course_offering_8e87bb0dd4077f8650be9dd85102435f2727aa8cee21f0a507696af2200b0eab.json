@@ -2,11 +2,13 @@
   "id": "8e87bb0dd4077f8650be9dd85102435f2727aa8cee21f0a507696af2200b0eab",
   "object_type": "course_offering_observation",
   "title": "Course Offering: PSYC 201 Section ON2 (2021_spring)",
-  "text": "Academic term: 2021_spring\nCourse: PSYC 201\nSection: ON2\nTitle: Inv Biol Bases of Beh & Cogn\nCRN: 9030",
+  "text": "Academic term: 2021_spring\nCourse: PSYC 201\nSection: ON2\nCRN: 9030",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "location_not_building_room_pair_preserved_raw": 1
@@ -111,13 +113,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 9807,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "8e87bb0dd4077f8650be9dd85102435f2727aa8cee21f0a507696af2200b0eab",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 9807,
@@ -127,7 +129,7 @@
   "subject": "PSYC",
   "course_number": "201",
   "course_code": "PSYC 201",
-  "course_title": "Inv Biol Bases of Beh & Cogn",
+  "course_title": null,
   "section": "ON2",
   "crn": "9030",
   "instructor_name": "Shelia Greenlee",
@@ -139,7 +141,59 @@
     ],
     "normalized_value": "full_time",
     "has_blank_value": false,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Inv Biol Bases of Beh & Cogn",
+      "Intro to Psychological Science"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "eb2a61c292acc8a2af4d647739476ab78105166c97cc5e551bee36b6cb8c09d1",
+        "d83ee2d353b4be0edf9b5e7aad49bb21f28e4c5a84a125cc01c0b0111edf7323",
+        "c4db76a0cea4797589905cac1ef34c347ae4d1c65e31cc65c875ccb36eaba70b",
+        "607f4f0d317a0de179ab33a0cc2a630528e1caace31bfedf493a56b9b4257ccc"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "TR 0930-1045",
@@ -169,19 +223,41 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        9807,
+        12426
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "31f07bfc88553b4e14fc55a520482dc545bc9f1103769fbb6a3ff303900960d4",
+    "source_row_hashes": [
+      "2c2815d9dcb200620b7685fb0e630ab1f301dd98cb3ec468396dcaf20d609e62",
+      "7815dd15e7731c07244b4f4c9e64fba1365ae3f7c587e6aabf240d8792c84bc5"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 9807,
     "source_rows": [
       9807,
       12426
     ],
     "source_row_count": 2,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

@@ -2,11 +2,13 @@
   "id": "071b34ae6affe0628df2f54123ae2b5176ccd011664929780fc7e2b5f55cfd3b",
   "object_type": "course_offering_observation",
   "title": "Course Offering: HIST 300 Section 1 (2024_spring)",
-  "text": "Academic term: 2024_spring\nCourse: HIST 300\nSection: 1\nTitle: WI: Hist Mthd, Histor & Career\nCRN: 8939",
+  "text": "Academic term: 2024_spring\nCourse: HIST 300\nSection: 1\nCRN: 8939",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "location_not_building_room_pair_preserved_raw": 1
@@ -111,13 +113,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 4289,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "071b34ae6affe0628df2f54123ae2b5176ccd011664929780fc7e2b5f55cfd3b",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 4289,
@@ -127,7 +129,7 @@
   "subject": "HIST",
   "course_number": "300",
   "course_code": "HIST 300",
-  "course_title": "WI: Hist Mthd, Histor & Career",
+  "course_title": null,
   "section": "1",
   "crn": "8939",
   "instructor_name": "Xiao Xu",
@@ -139,7 +141,57 @@
     ],
     "normalized_value": "full_time",
     "has_blank_value": false,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Hist Mthd, Histor & Career",
+      "WI: Hist Mthd & Historiography"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "3e8e5fa30e1b2e2c5b25a02dad5a67bd5f5a12d517575deaba16b82d40a405ce",
+        "3e92d46f7d45679471227fe8a703c2d2ef539edfac02f1ceea135208663aaffd"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "TR 1100-1215",
@@ -169,19 +221,41 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": "YES",
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Lewis McMurran Hall 316",
+      "source_rows": [
+        4289,
+        9586
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "92b6b98fb1d61c1e1eac812857ad0e8a6ffd03c2ccef9820223c975591a29339",
+    "source_row_hashes": [
+      "12f753f2b158d9720171839068906bf36748fbf72e88f44b3b402eda5dba3b32",
+      "b2b05edc6310ab3653e47e4c7c388400759c0038d223270304421df0067846db"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 4289,
     "source_rows": [
       4289,
       9586
     ],
     "source_row_count": 2,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

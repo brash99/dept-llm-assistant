@@ -2,11 +2,13 @@
   "id": "25c204c915f37da729f5deec169112cb290f40ad75aed63a5c2012db8445608f",
   "object_type": "course_offering_observation",
   "title": "Course Offering: ACCT 201 Section ON5 (2020_fall)",
-  "text": "Academic term: 2020_fall\nCourse: ACCT 201\nSection: ON5\nTitle: Prin of Account I: Financial\nCRN: 8125",
+  "text": "Academic term: 2020_fall\nCourse: ACCT 201\nSection: ON5\nCRN: 8125",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "instructor_type_conflicting_source_values": 1,
@@ -112,13 +114,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 5550,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "25c204c915f37da729f5deec169112cb290f40ad75aed63a5c2012db8445608f",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 5550,
@@ -128,7 +130,7 @@
   "subject": "ACCT",
   "course_number": "201",
   "course_code": "ACCT 201",
-  "course_title": "Prin of Account I: Financial",
+  "course_title": null,
   "section": "ON5",
   "crn": "8125",
   "instructor_name": "Abby Brooks",
@@ -141,7 +143,52 @@
     ],
     "normalized_value": "unknown",
     "has_blank_value": false,
-    "conflicting": true
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No conservative same-term or prior-term evidence resolves the source contradiction."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Prin of Account I: Financial",
+      "Principles of Accounting I"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "MW 1800-1915",
@@ -171,9 +218,35 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1800-1915",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        5550,
+        10847,
+        10848,
+        18767
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "7f0d1080972a4c7c900b09098f7217f0044c8b1cb60d1e2cc53aa17695d6d529",
+    "source_row_hashes": [
+      "b35d5531a11bdb4ae6023c9e3cf84a74373ece82636b556a4f3e9971671b3f57",
+      "89d4d81627d3d4180e6e48209350f7fc90332e898c827424df7b27afc954211b",
+      "7606679659aa09e0e4f1c24f25e748b92aae21b2001022304110b29ef2712b20",
+      "210be16b2ee36f406af61090419227b801cb8ff96456835bb22ced9a9f58cd99"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 5550,
     "source_rows": [
       5550,
@@ -182,10 +255,10 @@
       18767
     ],
     "source_row_count": 4,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

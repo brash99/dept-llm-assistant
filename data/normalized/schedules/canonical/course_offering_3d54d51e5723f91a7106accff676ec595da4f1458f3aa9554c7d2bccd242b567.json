@@ -6,14 +6,14 @@
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "credits_conflicting_source_values": 1,
       "meeting_days_conflicting_source_values": 1,
       "meeting_time_conflicting_source_values": 1,
-      "credits_non_scalar_preserved_raw": 1,
-      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
-      "location_not_building_room_pair_preserved_raw": 1
+      "multiple_meeting_patterns_preserved": 1
     },
     "semantic_identity": {
       "object_type": "course_offering_observation",
@@ -115,13 +115,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 1885,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "3d54d51e5723f91a7106accff676ec595da4f1458f3aa9554c7d2bccd242b567",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 1885,
@@ -143,18 +143,69 @@
     ],
     "normalized_value": "full_time",
     "has_blank_value": false,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Intermediate Calculus"
+    ],
+    "normalized_value": "Intermediate Calculus",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3",
+      "4"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_credit_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "3d0aad443ea83dd31217a4998dfbcfca2b3eba34b33d4e2d10b695477e4f0680",
+        "2ea9eb8825abc6be1264ddc59e5fd1091926dbbb3ff8764c4969f6efea0bc918",
+        "d89b177d9b54fd8b3075c0a6923aeb1dd2fb00ac42e9b79379d868aa27e5fa5f"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
   },
   "instructional_method": "Lec",
-  "meeting_pattern": "F | MW 0800-0850 | 0800-0915",
-  "meeting_days": "F | MW",
-  "meeting_time_raw": "0800-0850 | 0800-0915",
+  "meeting_pattern": null,
+  "meeting_days": null,
+  "meeting_time_raw": null,
   "start_time": null,
   "end_time": null,
   "meeting_date_range_raw": null,
   "start_date": null,
   "end_date": null,
-  "location_raw": "Forbes Hall 2070A",
+  "location_raw": null,
   "building": null,
   "room": null,
   "credits": null,
@@ -173,9 +224,42 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "F",
+      "time_published": "0800-0850",
+      "location_published": "Forbes Hall 2070A",
+      "source_rows": [
+        1885,
+        17646
+      ]
+    },
+    {
+      "days_published": "MW",
+      "time_published": "0800-0915",
+      "location_published": "Forbes Hall 2070A",
+      "source_rows": [
+        20258,
+        20259
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "cf2f261634b821e11191a06c9893320eaab3a82fb5c44052d39f72d66513b736",
+    "source_row_hashes": [
+      "9ee7a97b9725251cdc78f00fbc87c5d1aa02587e536935b914d77d89925c0c38",
+      "d90a928671e23272092b8521d3e727cb2de36894ede8d0977d3cd4e52f269afe",
+      "2199f1d17d69be22a01c5e1cd082ea8617dcb728d19db3a3884c04ebe262dcf0",
+      "529b00de45bc6ceacf38d49620f519a7f804fd8e1e2fb2447a2bed1df2830447"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 1885,
     "source_rows": [
       1885,
@@ -184,10 +268,10 @@
       20259
     ],
     "source_row_count": 4,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

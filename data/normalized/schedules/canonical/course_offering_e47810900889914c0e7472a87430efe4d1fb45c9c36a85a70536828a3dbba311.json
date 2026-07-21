@@ -6,14 +6,14 @@
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "credits_conflicting_source_values": 1,
       "meeting_days_conflicting_source_values": 1,
       "meeting_time_conflicting_source_values": 1,
-      "credits_non_scalar_preserved_raw": 1,
-      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
-      "location_not_building_room_pair_preserved_raw": 1
+      "multiple_meeting_patterns_preserved": 1
     },
     "semantic_identity": {
       "object_type": "course_offering_observation",
@@ -115,13 +115,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 410,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "e47810900889914c0e7472a87430efe4d1fb45c9c36a85a70536828a3dbba311",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 410,
@@ -143,18 +143,70 @@
     ],
     "normalized_value": "full_time",
     "has_blank_value": false,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Calculus and Analytic Geometry"
+    ],
+    "normalized_value": "Calculus and Analytic Geometry",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "4",
+      "3"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_credit_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "48f3e5e93bced25aee912935cfd5c0c5596e78a17bb83c782e614d86b33ec43f",
+        "6b54c3e958065dbae7ea5ad0c6b1aba7088572bb7fc834fdf67666947fe1f5c6",
+        "33839d6a3858067a100285ce51311c38b97c7a8a7269113c9d76704ec2f626f8",
+        "921f8ab007f4d53384944b4091226076c19b648a1b41656b50403911cb9ed6e4"
+      ],
+      "supporting_terms": [
+        "2021_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
   },
   "instructional_method": "Lec",
-  "meeting_pattern": "TR | MWF 0930-1020 | 0900-0950",
-  "meeting_days": "TR | MWF",
-  "meeting_time_raw": "0930-1020 | 0900-0950",
+  "meeting_pattern": null,
+  "meeting_days": null,
+  "meeting_time_raw": null,
   "start_time": null,
   "end_time": null,
   "meeting_date_range_raw": null,
   "start_date": null,
   "end_date": null,
-  "location_raw": "Joseph W. Luter III Hall 376",
+  "location_raw": null,
   "building": null,
   "room": null,
   "credits": null,
@@ -173,9 +225,42 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1020",
+      "location_published": "Joseph W. Luter III Hall 376",
+      "source_rows": [
+        410,
+        18765
+      ]
+    },
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Joseph W. Luter III Hall 376",
+      "source_rows": [
+        10839,
+        13558
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "cd458cfe40fa7b16731d970ab7bf11e6f9f63a6aabc4578e6142418d61d057d9",
+    "source_row_hashes": [
+      "809c011a6c11a84b46fcfe87e525569c6df1d798d4d24f2cb0c28f76ac82d831",
+      "ad6537c59d094c27e5eef2438e5fdd26c7c0d762113ed85956e3f166354ca57e",
+      "61ceb89be4e801b1c9e1759741717cfabca21a0893c05a02f91d5e3cd8594d7d",
+      "446525d69bfdb3e2fbcc3852f29e6fcb50019db66bea1c79d70f4bce86e74139"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 410,
     "source_rows": [
       410,
@@ -184,10 +269,10 @@
       18765
     ],
     "source_row_count": 4,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

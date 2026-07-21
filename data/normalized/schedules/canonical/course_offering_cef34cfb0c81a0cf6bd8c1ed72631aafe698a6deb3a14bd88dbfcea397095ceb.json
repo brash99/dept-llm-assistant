@@ -2,11 +2,13 @@
   "id": "cef34cfb0c81a0cf6bd8c1ed72631aafe698a6deb3a14bd88dbfcea397095ceb",
   "object_type": "course_offering_observation",
   "title": "Course Offering: ACCT 201 Section 1 (2021_spring)",
-  "text": "Academic term: 2021_spring\nCourse: ACCT 201\nSection: 1\nTitle: Principles of Accounting I\nCRN: 8013",
+  "text": "Academic term: 2021_spring\nCourse: ACCT 201\nSection: 1\nCRN: 8013",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "location_not_building_room_pair_preserved_raw": 1
@@ -111,13 +113,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 3061,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "cef34cfb0c81a0cf6bd8c1ed72631aafe698a6deb3a14bd88dbfcea397095ceb",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 3061,
@@ -127,7 +129,7 @@
   "subject": "ACCT",
   "course_number": "201",
   "course_code": "ACCT 201",
-  "course_title": "Principles of Accounting I",
+  "course_title": null,
   "section": "1",
   "crn": "8013",
   "instructor_name": "Alan Witt",
@@ -139,7 +141,64 @@
     ],
     "normalized_value": "full_time",
     "has_blank_value": false,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Principles of Accounting I",
+      "Prin of Account I: Financial"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 9,
+      "supporting_observation_ids": [
+        "0153373167bfd4a1c169f808893da637f088f512b2455f7f21aae64f6254141f",
+        "7b5592bfce07bbe6d58b55d8ee40d9ed01902736130a5c4802fb73c112ef788f",
+        "a1b8e49d411f4fe13d52f1a2abfaf3fd55f2273359e636b153c0405027b58e5b",
+        "cab428d39ae21c6b6efa7ab988a7ea740797988a8824a15467ff194f245c8114",
+        "25c204c915f37da729f5deec169112cb290f40ad75aed63a5c2012db8445608f",
+        "fdcdef15a1033680ab854add0ad05ffd3440fd587c31370eef8653f094b71887",
+        "d673b5488c7955197adbf794a011a88c36ebf0a229bc0ae91df518b24a51b4d3",
+        "322ac99786dca66d73bad19eaea5fc481429a191299603263bb01049e5472b31",
+        "4063d9b8c7ee18e5b27387be5e3cb6710a7967eb1185a6f3ad5386c5e7ae038b"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "TR 1630-1745",
@@ -169,19 +228,41 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1630-1745",
+      "location_published": "Joseph W. Luter III Hall 142",
+      "source_rows": [
+        3061,
+        16292
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "c3e6d015ac5349dc80cc495d183f620c1ff7090e819246df704ba73baa879f55",
+    "source_row_hashes": [
+      "2a58dade2fbba695067849edfde325020c334328ac7baf76f8d958f2c04fb60d",
+      "2e8bd96853be2c9672e982b0ca8767320a519b96c2040b5bcf41bca5db8bfce8"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 3061,
     "source_rows": [
       3061,
       16292
     ],
     "source_row_count": 2,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

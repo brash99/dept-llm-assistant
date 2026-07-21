@@ -2,11 +2,13 @@
   "id": "b4facac8fd93947de3526324a09c985b8b585306b9b6a6ce1b57be012963e51c",
   "object_type": "course_offering_observation",
   "title": "Course Offering: MUSC 116 Section 1 (2021_spring)",
-  "text": "Academic term: 2021_spring\nCourse: MUSC 116\nSection: 1\nTitle: Elementary Keyboard Skills\nCRN: 8881",
+  "text": "Academic term: 2021_spring\nCourse: MUSC 116\nSection: 1\nCRN: 8881",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "instructor_type_conflicting_source_values": 1,
@@ -112,13 +114,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 1448,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "b4facac8fd93947de3526324a09c985b8b585306b9b6a6ce1b57be012963e51c",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 1448,
@@ -128,7 +130,7 @@
   "subject": "MUSC",
   "course_number": "116",
   "course_code": "MUSC 116",
-  "course_title": "Elementary Keyboard Skills",
+  "course_title": null,
   "section": "1",
   "crn": "8881",
   "instructor_name": "Beth Tomassetti",
@@ -141,7 +143,57 @@
     ],
     "normalized_value": "unknown",
     "has_blank_value": false,
-    "conflicting": true
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "af536ec838e3987d455ab19e52b457fb750c2a74b2db82b133541a5262d0eca2",
+        "b68060c8d42cce81fa1d4389e191fde8a46e2adbc1eb2cd78a321e8856124f70"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Elementary Keyboard Skills",
+      "Keyboard Skills II"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lab",
   "meeting_pattern": "TR 0800-0915",
@@ -171,9 +223,35 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0800-0915",
+      "location_published": "Ferguson Center for the Arts 213",
+      "source_rows": [
+        1448,
+        6634,
+        14670,
+        17243
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "642f295ead0784c858444b023983fa5acb4233b6404e89c51e71139636092123",
+    "source_row_hashes": [
+      "259dc0daa2becdedfb9484371c9125f805fa1bbdd9b5b4a407dbdcf9e4e5edb2",
+      "eb8b733546d6343e46ffe717fb42a930b8fafb7a7abdfebebdd65b6ccb468496",
+      "0ac323f74dcb8b371fcf587a753ffbd182f0040af52ae28c2615422dbd0937ba",
+      "2f144c9943e809ff8d36e3674db51ff739876b159ada2810b731096f27753823"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 1448,
     "source_rows": [
       1448,
@@ -182,10 +260,10 @@
       17243
     ],
     "source_row_count": 4,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

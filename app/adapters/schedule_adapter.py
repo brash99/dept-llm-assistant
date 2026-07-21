@@ -18,10 +18,18 @@ import re
 from typing import Any, Dict, Iterable, Optional, Sequence, Tuple
 
 from app.knowledge import KnowledgeObject, save_knowledge_object
+from app.schedule_repair import (
+    REPAIR_ALGORITHM,
+    REPAIR_VERSION,
+    ScheduleRepairAnalysis,
+    ScheduleRepairGroup,
+    ScheduleRepairRow,
+    ScheduleRepairService,
+)
 
 
 ADAPTER_NAME = "schedule_csv_adapter"
-ADAPTER_VERSION = "0.2"
+ADAPTER_VERSION = "0.3"
 OBJECT_TYPE = "course_offering_observation"
 
 
@@ -286,6 +294,8 @@ class CourseOfferingObservation(KnowledgeObject):
     instructor_name: Optional[str] = None
     instructor_raw: Optional[str] = None
     instructor_type: Dict[str, Any] = field(default_factory=dict)
+    course_title_assertion: Dict[str, Any] = field(default_factory=dict)
+    credits_assertion: Dict[str, Any] = field(default_factory=dict)
     instructional_method: Optional[str] = None
     meeting_pattern: Optional[str] = None
     meeting_days: Optional[str] = None
@@ -314,6 +324,8 @@ class CourseOfferingObservation(KnowledgeObject):
     unreserved_available: Optional[int] = None
     low_cost_textbook_raw: Optional[str] = None
     modality: Optional[str] = None
+    meeting_patterns: Tuple[Dict[str, Any], ...] = field(default_factory=tuple)
+    repair: Dict[str, Any] = field(default_factory=dict)
     provenance: Dict[str, Any] = field(default_factory=dict)
     raw_record: Dict[str, Any] = field(default_factory=dict)
     source_rows: Tuple[int, ...] = field(default_factory=tuple)
@@ -335,6 +347,7 @@ class CourseOfferingObservation(KnowledgeObject):
             raise ValueError("section is required")
         self.source_rows = tuple(self.source_rows or ((self.source_row,) if self.source_row else ()))
         self.raw_records = tuple(dict(value) for value in (self.raw_records or ((self.raw_record,) if self.raw_record else ())))
+        self.meeting_patterns = tuple(dict(value) for value in self.meeting_patterns)
         self.published_field_variants = {
             str(name): tuple(values)
             for name, values in self.published_field_variants.items()
@@ -350,6 +363,7 @@ class ScheduleAdaptationResult:
     missing_required_fields: Counter[str] = field(default_factory=Counter)
     parsing_warnings: Counter[str] = field(default_factory=Counter)
     source_headers: list[str] = field(default_factory=list)
+    repair_analysis: Optional[ScheduleRepairAnalysis] = None
 
 
 class ScheduleCSVAdapter:
@@ -458,6 +472,36 @@ class ScheduleCSVAdapter:
                     (source_row, row, term_raw, term_warning or normalized_term_warning or "")
                 )
 
+            repair_groups = []
+            for observation_id, items in grouped_rows.items():
+                first = items[0]
+                academic_term, _ = normalize_academic_term(first[2])
+                logical_rows = tuple(
+                    ScheduleRepairRow(
+                        source_row=source_row,
+                        values={
+                            logical_name: self._value(row, columns, logical_name)
+                            for logical_name in COLUMN_ALIASES
+                        },
+                        raw_record=_raw_record(row),
+                    )
+                    for source_row, row, *_ in items
+                )
+                repair_groups.append(
+                    ScheduleRepairGroup(
+                        observation_id=observation_id,
+                        academic_term=academic_term,
+                        course_code=self._value(first[1], columns, "course_code"),
+                        instructor=self._value(first[1], columns, "instructor"),
+                        rows=logical_rows,
+                    )
+                )
+            result.repair_analysis = ScheduleRepairService(
+                repair_groups,
+                source_sha256=source_hash,
+                allow_later_term_fallback=False,
+            ).analyze()
+
             for observation_id, items in grouped_rows.items():
                 source_rows = tuple(item[0] for item in items)
                 rows = tuple(item[1] for item in items)
@@ -493,23 +537,28 @@ class ScheduleCSVAdapter:
                 if course_number is None:
                     row_warnings["course_code_could_not_split_preserved_raw"] += 1
 
-                credit_values = distinct_values("credits")
+                repair_decision = result.repair_analysis.decisions[observation_id]
+                credit_assertion = repair_decision["credits"]
+                credit_values = tuple(credit_assertion["published_values"])
                 credits_raw = " | ".join(credit_values)
                 credits = _parse_scalar_number(
-                    credits_raw,
+                    credit_assertion["normalized_value"] or "",
                     field_name="credits",
                     warnings=row_warnings,
                 )
 
-                time_raw = " | ".join(distinct_values("meeting_time"))
-                start_time, end_time = _parse_meeting_time(time_raw, row_warnings)
-                days_raw = " | ".join(distinct_values("meeting_days"))
-                meeting_pattern = " ".join(
-                    value for value in (days_raw, time_raw) if value
-                ) or None
-
-                location_raw = " | ".join(distinct_values("location"))
-                building, room = _parse_location(location_raw, row_warnings)
+                meeting_patterns = tuple(repair_decision["meeting_patterns"])
+                if len(meeting_patterns) == 1:
+                    days_raw = meeting_patterns[0]["days_published"] or ""
+                    time_raw = meeting_patterns[0]["time_published"] or ""
+                    location_raw = meeting_patterns[0]["location_published"] or ""
+                    start_time, end_time = _parse_meeting_time(time_raw, row_warnings)
+                    building, room = _parse_location(location_raw, row_warnings)
+                    meeting_pattern = " ".join(value for value in (days_raw, time_raw) if value) or None
+                else:
+                    days_raw = time_raw = location_raw = ""
+                    start_time = end_time = building = room = meeting_pattern = None
+                    row_warnings["multiple_meeting_patterns_preserved"] += 1
 
                 numeric_values = {}
                 for name in INTEGER_FIELDS:
@@ -524,9 +573,7 @@ class ScheduleCSVAdapter:
 
                 instructor_values = distinct_values("instructor")
                 instructor_raw = instructor_values[0] if len(instructor_values) == 1 else " | ".join(instructor_values)
-                instructor_type = normalize_instructor_type(
-                    distinct_values("instructor_type", include_blank=True)
-                )
+                instructor_type = repair_decision["instructor_type"]
                 if (
                     not instructor_type["conflicting"]
                     and
@@ -552,7 +599,8 @@ class ScheduleCSVAdapter:
                     "source_headers": headers,
                 }
 
-                course_title = first_value("course_title")
+                title_assertion = repair_decision["course_title"]
+                course_title = title_assertion["normalized_value"]
                 factual_lines = [
                     f"Academic term: {academic_term}",
                     f"Course: {course_code_raw}",
@@ -575,6 +623,8 @@ class ScheduleCSVAdapter:
                         "semantic_layer": "course_offering_observation",
                         "adapter": ADAPTER_NAME,
                         "adapter_version": ADAPTER_VERSION,
+                        "repair_algorithm": REPAIR_ALGORITHM,
+                        "repair_version": REPAIR_VERSION,
                         "parsing_warnings": dict(row_warnings),
                     },
                     source={
@@ -601,6 +651,8 @@ class ScheduleCSVAdapter:
                     instructor_name=instructor_raw or None,
                     instructor_raw=instructor_raw or None,
                     instructor_type=instructor_type,
+                    course_title_assertion=title_assertion,
+                    credits_assertion=credit_assertion,
                     instructional_method=(
                         first_value("instructional_method") or None
                     ),
@@ -635,6 +687,15 @@ class ScheduleCSVAdapter:
                         first_value("low_cost_textbook") or None
                     ),
                     modality=first_value("modality") or None,
+                    meeting_patterns=meeting_patterns,
+                    repair={
+                        "algorithm": REPAIR_ALGORITHM,
+                        "version": REPAIR_VERSION,
+                        "repair_timestamp": normalized_at,
+                        "source_file_sha256": source_hash,
+                        "decision_fingerprint": repair_decision["decision_fingerprint"],
+                        "source_row_hashes": repair_decision["source_row_hashes"],
+                    },
                     provenance=provenance,
                     raw_record=raw_records[0],
                     source_rows=source_rows,

@@ -2,11 +2,13 @@
   "id": "e53f5b6574af2595e042d13e0c7e915547793152501b796b83e3e92356978ea7",
   "object_type": "course_offering_observation",
   "title": "Course Offering: PSYC 315 Section 1 (2024_fall)",
-  "text": "Academic term: 2024_fall\nCourse: PSYC 315\nSection: 1\nTitle: Psychology-Abnormal Behavior\nCRN: 8362",
+  "text": "Academic term: 2024_fall\nCourse: PSYC 315\nSection: 1\nCRN: 8362",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "instructor_type_conflicting_source_values": 1,
@@ -112,13 +114,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 2638,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "e53f5b6574af2595e042d13e0c7e915547793152501b796b83e3e92356978ea7",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 2638,
@@ -128,7 +130,7 @@
   "subject": "PSYC",
   "course_number": "315",
   "course_code": "PSYC 315",
-  "course_title": "Psychology-Abnormal Behavior",
+  "course_title": null,
   "section": "1",
   "crn": "8362",
   "instructor_name": "Earl Riggins",
@@ -141,7 +143,60 @@
     ],
     "normalized_value": "unknown",
     "has_blank_value": false,
-    "conflicting": true
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "bf8285df3a987ea43eb73f97bfe1635bf2ed1243261e39360fe66a67088e1488"
+      ],
+      "supporting_terms": [
+        "2024_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "bf8285df3a987ea43eb73f97bfe1635bf2ed1243261e39360fe66a67088e1488"
+      ],
+      "supporting_terms": [
+        "2024_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lec",
   "meeting_pattern": "TR 0930-1045",
@@ -171,9 +226,35 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Forbes Hall 2074",
+      "source_rows": [
+        2638,
+        7851,
+        10500,
+        13168
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "1db3d12dbe75ef8e6776f5fb67a5cd689155252a81ce3fdd842a53ba68f0f916",
+    "source_row_hashes": [
+      "838933768f8c315594f2d86134c3bc61726f1d21f03acd7539b688ddd0678032",
+      "b2b33e8b19de0944d182bb7b6e13fc87d29eddc7f804697aa5a9dd6c9022d113",
+      "5fa9b4778c80c9374fbe61f57183957b9334ad8c98ed6821b7727667915d7a4d",
+      "c24ba04873562e3f60fbce58b1cb1eef448dbfd907ce3be623e6a88c139216b7"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 2638,
     "source_rows": [
       2638,
@@ -182,10 +263,10 @@
       13168
     ],
     "source_row_count": 4,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

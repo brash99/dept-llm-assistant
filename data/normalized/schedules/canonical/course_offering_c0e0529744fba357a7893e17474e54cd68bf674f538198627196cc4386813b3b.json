@@ -2,15 +2,17 @@
   "id": "c0e0529744fba357a7893e17474e54cd68bf674f538198627196cc4386813b3b",
   "object_type": "course_offering_observation",
   "title": "Course Offering: MUSC 216 Section ON1 (2021_spring)",
-  "text": "Academic term: 2021_spring\nCourse: MUSC 216\nSection: ON1\nTitle: Advanced Keyboard Skills\nCRN: 8889",
+  "text": "Academic term: 2021_spring\nCourse: MUSC 216\nSection: ON1\nCRN: 8889",
   "metadata": {
     "semantic_layer": "course_offering_observation",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
     "parsing_warnings": {
       "course_title_conflicting_source_values": 1,
       "location_conflicting_source_values": 1,
-      "location_not_building_room_pair_preserved_raw": 1,
+      "multiple_meeting_patterns_preserved": 1,
       "instructor_type_unknown": 1
     },
     "semantic_identity": {
@@ -113,13 +115,13 @@
   },
   "source": {
     "kind": "institutional_schedule_csv",
-    "path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "row": 1960,
     "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
   },
   "created_at": null,
-  "normalized_at": "2026-07-21T20:24:42.580801+00:00",
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
   "observation_id": "c0e0529744fba357a7893e17474e54cd68bf674f538198627196cc4386813b3b",
   "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
   "source_row": 1960,
@@ -129,7 +131,7 @@
   "subject": "MUSC",
   "course_number": "216",
   "course_code": "MUSC 216",
-  "course_title": "Advanced Keyboard Skills",
+  "course_title": null,
   "section": "ON1",
   "crn": "8889",
   "instructor_name": "Seung-Hye Kim",
@@ -139,18 +141,63 @@
     "published_values": [],
     "normalized_value": "unknown",
     "has_blank_value": true,
-    "conflicting": false
+    "conflicting": false,
+    "resolution": {
+      "resolved": false,
+      "method": "unknown_source_value",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Advanced Keyboard Skills",
+      "Advanced Keyboard Skills IV"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
   },
   "instructional_method": "Lab",
-  "meeting_pattern": "TR 1500-1615",
-  "meeting_days": "TR",
-  "meeting_time_raw": "1500-1615",
-  "start_time": "15:00",
-  "end_time": "16:15",
+  "meeting_pattern": null,
+  "meeting_days": null,
+  "meeting_time_raw": null,
+  "start_time": null,
+  "end_time": null,
   "meeting_date_range_raw": null,
   "start_date": null,
   "end_date": null,
-  "location_raw": "Synchronous Online Course  | Ferguson Center for the Arts 213",
+  "location_raw": null,
   "building": null,
   "room": null,
   "credits": 1,
@@ -169,9 +216,42 @@
   "unreserved_available": null,
   "low_cost_textbook_raw": null,
   "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1500-1615",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        1960,
+        15146
+      ]
+    },
+    {
+      "days_published": "TR",
+      "time_published": "1500-1615",
+      "location_published": "Ferguson Center for the Arts 213",
+      "source_rows": [
+        7153,
+        20332
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "2c951f665d6d5c78a8237e47bf89aec92b0c82e894ca44cba14071db74adfa93",
+    "source_row_hashes": [
+      "f1b89606ae2dfa6e23febbef315a6d9f895d4ab4dd2367fea7876efee995c19e",
+      "dce8ae1fb6179bf587aaaf9779a10065690d985583b9645f340aa8cdc018cbd9",
+      "3cc723aaeb8b256ec9df2c01dbdb28fe6f4fa435e01c0a73d76e3e2c8f405bf1",
+      "53b748fcb2c91043d7c4ac9eb9aa91b0fddc68015c411be1c50d7f9ce6a05ae1"
+    ]
+  },
   "provenance": {
     "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
-    "source_path": "data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
     "source_row": 1960,
     "source_rows": [
       1960,
@@ -180,10 +260,10 @@
       20332
     ],
     "source_row_count": 4,
-    "ingested_at": "2026-07-21T20:24:42.580801+00:00",
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
     "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
     "adapter": "schedule_csv_adapter",
-    "adapter_version": "0.2",
+    "adapter_version": "0.3",
     "source_headers": [
       "CRN",
       "Course",

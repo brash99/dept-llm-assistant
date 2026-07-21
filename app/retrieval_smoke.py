@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
+import re
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, TYPE_CHECKING
 
 import yaml
@@ -31,10 +32,12 @@ class SmokeCaseResult:
     case_id: str
     query: str
     passed: bool
+    required: bool = True
     matched_expectations: List[str] = field(default_factory=list)
     failed_expectations: List[str] = field(default_factory=list)
     matching_result_ranks: List[int] = field(default_factory=list)
     result_summaries: List[Dict[str, Any]] = field(default_factory=list)
+    source_scope_diagnostic: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -57,16 +60,31 @@ def load_smoke_test_config(path: Path | str) -> Dict[str, Any]:
         seen.add(case_id)
         if not isinstance(case.get("query"), str) or not case["query"].strip():
             raise ValueError(f"Smoke-test case {case_id} requires a nonempty query")
-        expectations = case.get("expectations", {})
-        if not isinstance(expectations, dict):
-            raise ValueError(f"Smoke-test case {case_id} expectations must be an object")
-        unsupported = set(expectations) - SUPPORTED_EXPECTATIONS
-        if unsupported:
-            raise ValueError(
-                f"Smoke-test case {case_id} has unsupported expectations: "
-                + ", ".join(sorted(unsupported))
-            )
+        for expectation_key in (
+            "expectations", "expectations_no_rerank", "expectations_rerank"
+        ):
+            expectations = case.get(expectation_key, {})
+            if not isinstance(expectations, dict):
+                raise ValueError(
+                    f"Smoke-test case {case_id} {expectation_key} must be an object"
+                )
+            unsupported = set(expectations) - SUPPORTED_EXPECTATIONS
+            if unsupported:
+                raise ValueError(
+                    f"Smoke-test case {case_id} has unsupported expectations: "
+                    + ", ".join(sorted(unsupported))
+                )
     return data
+
+
+def expectations_for_mode(
+    case: Mapping[str, Any], *, reranking_enabled: bool
+) -> Dict[str, Any]:
+    """Merge common expectations with the active retrieval-mode contract."""
+    expectations = dict(case.get("expectations") or {})
+    mode_key = "expectations_rerank" if reranking_enabled else "expectations_no_rerank"
+    expectations.update(case.get(mode_key) or {})
+    return expectations
 
 
 def _contains_any(value: str, terms: Iterable[str]) -> bool:
@@ -134,6 +152,93 @@ def summarize_result(result: RetrievalResult, rank: int) -> Dict[str, Any]:
     }
 
 
+def derive_source_family(result: RetrievalResult) -> str:
+    metadata = result.metadata or {}
+    for key in (
+        "source_family", "normalization_source", "source_key",
+        "issuing_authority", "source_type",
+    ):
+        if metadata.get(key):
+            return str(metadata[key])
+    path = _result_fields(result)["path"].replace("\\", "/").strip("/")
+    return path.split("/", 1)[0] if path else "<missing>"
+
+
+def diagnose_source_scope(
+    results: Sequence[RetrievalResult],
+    *,
+    intended_terms: Sequence[str],
+    intended_source_families: Sequence[str],
+) -> Dict[str, Any]:
+    """Describe intended-institution versus external result concentration."""
+    intended = external = unknown = 0
+    families: Dict[str, int] = {}
+    highest_structured_intended_rank = None
+    highest_external_generic_rank = None
+    normalized_families = {value.casefold() for value in intended_source_families}
+    for rank, result in enumerate(results, start=1):
+        fields = _result_fields(result)
+        metadata = result.metadata or {}
+        family = derive_source_family(result)
+        families[family] = families.get(family, 0) + 1
+        searchable = "\n".join(
+            (
+                fields["combined"],
+                family,
+                str(metadata.get("institution") or ""),
+                str(metadata.get("source_organization") or ""),
+                str(metadata.get("issuing_authority") or ""),
+            )
+        )
+        semantic_space = fields["semantic_space"]
+        is_structured_local = (
+            fields["object_type"] != "document"
+            and semantic_space.startswith("institutional_")
+        ) or fields["object_type"] == "constitutional_knowledge"
+        is_intended = (
+            is_structured_local
+            or family.casefold() in normalized_families
+            or _contains_any(searchable, intended_terms)
+        )
+        has_external_identity = any(
+            metadata.get(key)
+            for key in (
+                "issuing_authority", "authority_class", "geographic_scope",
+                "institution", "source_organization",
+            )
+        ) or bool(
+            re.search(
+                r"\b(?:university|college|institute|laboratory|agency|commission)\b",
+                fields["combined"],
+                flags=re.IGNORECASE,
+            )
+        )
+        if is_intended:
+            intended += 1
+            if fields["object_type"] != "document" and highest_structured_intended_rank is None:
+                highest_structured_intended_rank = rank
+        elif has_external_identity:
+            external += 1
+            if fields["object_type"] == "document" and highest_external_generic_rank is None:
+                highest_external_generic_rank = rank
+        else:
+            unknown += 1
+    outranked = (
+        highest_structured_intended_rank is not None
+        and highest_external_generic_rank is not None
+        and highest_external_generic_rank < highest_structured_intended_rank
+    )
+    return {
+        "intended_results": intended,
+        "external_results": external,
+        "unknown_results": unknown,
+        "source_families": dict(sorted(families.items())),
+        "highest_structured_intended_rank": highest_structured_intended_rank,
+        "highest_external_generic_rank": highest_external_generic_rank,
+        "structured_intended_evidence_outranked": outranked,
+    }
+
+
 def evaluate_smoke_case(
     case: Mapping[str, Any],
     results: Sequence[RetrievalResult],
@@ -174,6 +279,7 @@ def evaluate_smoke_case(
         case_id=str(case["id"]),
         query=str(case["query"]),
         passed=not failed,
+        required=bool(case.get("required", True)),
         matched_expectations=matched,
         failed_expectations=failed,
         matching_result_ranks=ranks,
@@ -185,13 +291,17 @@ def evaluate_smoke_case(
 
 
 def aggregate_passed(results: Sequence[SmokeCaseResult]) -> bool:
-    return bool(results) and all(result.passed for result in results)
+    required = [result for result in results if result.required]
+    return bool(required) and all(result.passed for result in required)
 
 
 __all__ = [
     "SmokeCaseResult",
     "aggregate_passed",
+    "derive_source_family",
+    "diagnose_source_scope",
     "evaluate_smoke_case",
     "load_smoke_test_config",
+    "expectations_for_mode",
     "summarize_result",
 ]

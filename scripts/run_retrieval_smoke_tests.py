@@ -20,7 +20,9 @@ from app.retrieval import retrieve
 from app.retrieval_smoke import (
     SmokeCaseResult,
     aggregate_passed,
+    diagnose_source_scope,
     evaluate_smoke_case,
+    expectations_for_mode,
     load_smoke_test_config,
 )
 
@@ -86,6 +88,10 @@ def main(argv=None) -> int:
     case_reports = []
 
     for case in cases:
+        active_case = dict(case)
+        active_case["expectations"] = expectations_for_mode(
+            case, reranking_enabled=rerank_enabled
+        )
         constitutional_top_k, empirical_top_k = _quotas(case, defaults, args.top_k)
         fetch_k = int(args.fetch_k or case.get("fetch_k") or defaults.get("fetch_k", 100))
         try:
@@ -115,7 +121,19 @@ def main(argv=None) -> int:
                     "evidence_role_relevance_margin", 0.5
                 ),
             )
-            evaluated = evaluate_smoke_case(case, results)
+            evaluated = evaluate_smoke_case(active_case, results)
+            if case.get("source_scope_diagnostic"):
+                evaluated.source_scope_diagnostic = diagnose_source_scope(
+                    results,
+                    intended_terms=case.get(
+                        "intended_institution_terms",
+                        defaults.get("intended_institution_terms", ()),
+                    ),
+                    intended_source_families=case.get(
+                        "intended_source_families",
+                        defaults.get("intended_source_families", ()),
+                    ),
+                )
             case_results.append(evaluated)
             case_reports.append(
                 {
@@ -129,6 +147,28 @@ def main(argv=None) -> int:
                         "thresholded": len(trace.thresholded_candidates),
                         "final": len(trace.final_results),
                     },
+                    "constitutional_stage_counts": {
+                        "raw": sum(
+                            item.object_type == "constitutional_knowledge"
+                            for item in trace.raw_candidates
+                        ),
+                        "deduped": sum(
+                            item.object_type == "constitutional_knowledge"
+                            for item in trace.deduped_candidates
+                        ),
+                        "family_diversified": sum(
+                            item.object_type == "constitutional_knowledge"
+                            for item in trace.family_diversified_candidates
+                        ),
+                        "thresholded": sum(
+                            item.object_type == "constitutional_knowledge"
+                            for item in trace.thresholded_candidates
+                        ),
+                        "final": sum(
+                            item.object_type == "constitutional_knowledge"
+                            for item in trace.final_results
+                        ),
+                    },
                 }
             )
         except Exception as exc:
@@ -136,6 +176,7 @@ def main(argv=None) -> int:
                 case_id=case["id"],
                 query=case["query"],
                 passed=False,
+                required=bool(case.get("required", True)),
                 failed_expectations=[
                     f"Retrieval execution failed: {type(exc).__name__}: {exc}"
                 ],
@@ -151,6 +192,9 @@ def main(argv=None) -> int:
         "cases_run": len(case_results),
         "cases_passed": sum(result.passed for result in case_results),
         "cases_failed": sum(not result.passed for result in case_results),
+        "required_cases_failed": sum(
+            result.required and not result.passed for result in case_results
+        ),
         "results": case_reports,
     }
     if args.json_output:
@@ -164,19 +208,40 @@ def main(argv=None) -> int:
         print(f"Embedding device: {device} | reranking: {rerank_enabled}")
         for item in case_reports:
             case_result = item["case"]
-            print(f"\n[{'PASS' if case_result['passed'] else 'FAIL'}] {case_result['case_id']}")
+            label = "PASS" if case_result["passed"] else "FAIL"
+            if not case_result["required"]:
+                label = "DIAGNOSTIC " + label
+            print(f"\n[{label}] {case_result['case_id']}")
             print(f"Query: {case_result['query']}")
             for failure in case_result["failed_expectations"]:
                 print(f"  FAILED: {failure}")
             if args.verbose:
                 for match in case_result["matched_expectations"]:
                     print(f"  matched: {match}")
+                if item.get("trace_counts"):
+                    print(f"  retrieval stages: {item['trace_counts']}")
+                if item.get("constitutional_stage_counts"):
+                    print(
+                        "  constitutional stages: "
+                        f"{item['constitutional_stage_counts']}"
+                    )
             for result in case_result["result_summaries"][:5]:
                 print(
                     f"  #{result['rank']} {result['score']:.4f} "
                     f"{result['object_type']} [{result['semantic_space'] or '<none>'}] "
                     f"{result['title'] or result['source_path']}"
                 )
+            scope = case_result.get("source_scope_diagnostic") or {}
+            if scope:
+                print(
+                    "  source scope: "
+                    f"intended={scope['intended_results']}, "
+                    f"external={scope['external_results']}, "
+                    f"unknown={scope['unknown_results']}"
+                )
+                print(f"  source families: {scope['source_families']}")
+                if scope["structured_intended_evidence_outranked"]:
+                    print("  WARNING: structured intended-institution evidence was outranked by external generic documents")
     return 0 if passed else 1
 
 

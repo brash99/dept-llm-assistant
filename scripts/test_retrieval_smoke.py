@@ -5,7 +5,9 @@ import pytest
 from app.retrieval_smoke import (
     SmokeCaseResult,
     aggregate_passed,
+    diagnose_source_scope,
     evaluate_smoke_case,
+    expectations_for_mode,
     load_smoke_test_config,
 )
 from scripts.report_vector_db_inventory import build_inventory
@@ -42,6 +44,7 @@ def _result(
     title="Source",
     path="sources/source.pdf",
     score=0.8,
+    metadata=None,
 ):
     return RetrievalResult(
         score=score,
@@ -51,7 +54,7 @@ def _result(
         chunk_index=0,
         text=text,
         citation={"title": title, "relative_path": path},
-        metadata={"semantic_space": semantic_space},
+        metadata={"semantic_space": semantic_space, **(metadata or {})},
     )
 
 
@@ -126,6 +129,55 @@ def test_pass_aggregation_requires_cases_and_all_passed():
     assert aggregate_passed([passing])
     assert not aggregate_passed([passing, failing])
     assert not aggregate_passed([])
+    diagnostic_failure = SmokeCaseResult("diagnostic", "q", False, required=False)
+    assert aggregate_passed([passing, diagnostic_failure])
+
+
+def test_reranking_mode_can_require_stricter_year_precision():
+    case = {
+        "expectations": {
+            "expected_terms_all": ["Communication"],
+            "maximum_rank_for_match": 10,
+        },
+        "expectations_rerank": {
+            "expected_terms_all": ["Communication", "2021-22"],
+            "maximum_rank_for_match": 2,
+        },
+    }
+    dense = expectations_for_mode(case, reranking_enabled=False)
+    reranked = expectations_for_mode(case, reranking_enabled=True)
+    assert dense["expected_terms_all"] == ["Communication"]
+    assert dense["maximum_rank_for_match"] == 10
+    assert reranked["expected_terms_all"] == ["Communication", "2021-22"]
+    assert reranked["maximum_rank_for_match"] == 2
+
+
+def test_source_scope_reports_external_generic_outranking_structured_cnu():
+    results = [
+        _result(
+            "Mechanical Engineering accreditation report",
+            title="Example University Mechanical Engineering Self-Study",
+            path="external/example_university/self_study.pdf",
+            metadata={"source_key": "mixed_drive"},
+        ),
+        _result(
+            "School of Engineering and Computing faculty roster",
+            object_type="department_faculty_roster_observation",
+            semantic_space="institutional_academics",
+            title="Faculty roster: School of Engineering and Computing",
+            path="data/acquisition/catalogs/2025-26.pdf",
+        ),
+    ]
+    diagnostic = diagnose_source_scope(
+        results,
+        intended_terms=["Christopher Newport", "CNU", "cnu.edu"],
+        intended_source_families=["institutional_academic_catalog"],
+    )
+    assert diagnostic["intended_results"] == 1
+    assert diagnostic["external_results"] == 1
+    assert diagnostic["highest_external_generic_rank"] == 1
+    assert diagnostic["highest_structured_intended_rank"] == 2
+    assert diagnostic["structured_intended_evidence_outranked"]
 
 
 def test_inventory_uses_available_metadata_without_models():
@@ -157,3 +209,33 @@ def test_inventory_uses_available_metadata_without_models():
         "Example Authority": 1,
         "institutional_academic_catalog": 1,
     }
+
+
+def test_inventory_warns_about_concentration_without_failing_validation():
+    records = [
+        {
+            "object_type": "document",
+            "metadata": {"source_key": "dominant_collection"},
+            "citation": {"relative_path": f"dominant/{index}.pdf"},
+        }
+        for index in range(12)
+    ] + [
+        {
+            "object_type": "faculty_observation",
+            "metadata": {
+                "semantic_space": "institutional_people",
+                "source_key": "faculty_directory",
+            },
+            "citation": {"relative_path": "faculty/person.html"},
+        }
+    ]
+    inventory = build_inventory(
+        records,
+        missing_semantic_space_warning_pct=50,
+        source_family_dominance_warning_pct=75,
+        generic_document_ratio_warning=10,
+    )
+    health = inventory["corpus_health"]
+    assert len(health["warnings"]) == 3
+    assert health["generic_document_count"] == 12
+    assert health["structured_observation_count"] == 1

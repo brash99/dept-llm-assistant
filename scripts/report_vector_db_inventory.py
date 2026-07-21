@@ -41,7 +41,13 @@ def _source_family(record: Dict[str, Any]) -> str:
     return parts[0] if parts else "<missing>"
 
 
-def build_inventory(records) -> Dict[str, Any]:
+def build_inventory(
+    records,
+    *,
+    missing_semantic_space_warning_pct: float = 50.0,
+    source_family_dominance_warning_pct: float = 75.0,
+    generic_document_ratio_warning: float = 10.0,
+) -> Dict[str, Any]:
     counters = {
         "object_type": Counter(),
         "semantic_space": Counter(),
@@ -61,8 +67,47 @@ def build_inventory(records) -> Dict[str, Any]:
         counters["source_family"][_source_family(record)] += 1
         if metadata.get("catalog_year"):
             counters["catalog_year"][str(metadata["catalog_year"])] += 1
+    total = len(records)
+    missing_semantic = counters["semantic_space"].get("<missing>", 0)
+    dominant_family, dominant_count = (
+        counters["source_family"].most_common(1)[0]
+        if counters["source_family"] else ("<none>", 0)
+    )
+    generic_documents = counters["object_type"].get("document", 0)
+    structured = max(0, total - generic_documents)
+    warnings = []
+    missing_pct = (100.0 * missing_semantic / total) if total else 0.0
+    dominant_pct = (100.0 * dominant_count / total) if total else 0.0
+    generic_ratio = generic_documents / structured if structured else float("inf")
+    if missing_pct > missing_semantic_space_warning_pct:
+        warnings.append(
+            f"{missing_pct:.1f}% of records lack semantic_space metadata "
+            f"(warning threshold {missing_semantic_space_warning_pct:.1f}%)."
+        )
+    if dominant_pct > source_family_dominance_warning_pct:
+        warnings.append(
+            f"Source family {dominant_family!r} contains {dominant_pct:.1f}% of records "
+            f"(warning threshold {source_family_dominance_warning_pct:.1f}%)."
+        )
+    if generic_ratio > generic_document_ratio_warning:
+        ratio_text = "infinite" if structured == 0 else f"{generic_ratio:.1f}:1"
+        warnings.append(
+            f"Generic document records outnumber structured observations by {ratio_text} "
+            f"(warning threshold {generic_document_ratio_warning:.1f}:1)."
+        )
     return {
         "total_records": len(records),
+        "corpus_health": {
+            "missing_semantic_space_count": missing_semantic,
+            "missing_semantic_space_pct": missing_pct,
+            "dominant_source_family": dominant_family,
+            "dominant_source_family_count": dominant_count,
+            "dominant_source_family_pct": dominant_pct,
+            "generic_document_count": generic_documents,
+            "structured_observation_count": structured,
+            "generic_to_structured_ratio": None if structured == 0 else generic_ratio,
+            "warnings": warnings,
+        },
         **{
             name: dict(sorted(counter.items(), key=lambda item: (-item[1], item[0])))
             for name, counter in counters.items()
@@ -75,6 +120,9 @@ def main(argv=None) -> int:
     parser.add_argument("--vector-db", type=Path, default=None)
     parser.add_argument("--json", action="store_true", dest="json_output")
     parser.add_argument("--top", type=int, default=20)
+    parser.add_argument("--missing-semantic-space-warning-pct", type=float, default=50.0)
+    parser.add_argument("--source-family-dominance-warning-pct", type=float, default=75.0)
+    parser.add_argument("--generic-document-ratio-warning", type=float, default=10.0)
     args = parser.parse_args(argv)
     if args.top < 1:
         parser.error("--top must be at least 1")
@@ -94,13 +142,29 @@ def main(argv=None) -> int:
         print("ERROR: records.pkl does not contain a list", file=sys.stderr)
         return 1
 
-    inventory = build_inventory(records)
+    inventory = build_inventory(
+        records,
+        missing_semantic_space_warning_pct=args.missing_semantic_space_warning_pct,
+        source_family_dominance_warning_pct=args.source_family_dominance_warning_pct,
+        generic_document_ratio_warning=args.generic_document_ratio_warning,
+    )
     if args.json_output:
         print(json.dumps(inventory, indent=2, sort_keys=True))
         return 0
 
     print(f"Vector DB inventory: {vector_db}")
     print(f"Total records: {inventory['total_records']:,}")
+    health = inventory["corpus_health"]
+    print(
+        "Corpus health: "
+        f"missing semantic space={health['missing_semantic_space_pct']:.1f}%, "
+        f"dominant family={health['dominant_source_family']} "
+        f"({health['dominant_source_family_pct']:.1f}%), "
+        f"generic documents={health['generic_document_count']:,}, "
+        f"structured observations={health['structured_observation_count']:,}"
+    )
+    for warning in health["warnings"]:
+        print(f"WARNING: {warning}")
     for category in (
         "object_type", "semantic_space", "evidence_role", "source_family", "catalog_year"
     ):

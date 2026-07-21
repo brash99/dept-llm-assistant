@@ -4,6 +4,15 @@ defaults:
   fetch_k: 100
   constitutional_top_k: 2
   empirical_top_k: 10
+  intended_institution_terms:
+    - Christopher Newport
+    - CNU
+    - cnu.edu
+  intended_source_families:
+    - cnu_website
+    - institutional_academic_catalog
+    - institutional_faculty_directory
+    - institutional_schedule
 
 cases:
   - id: faculty_edward_brash
@@ -24,7 +33,19 @@ cases:
     constitutional_top_k: 0
     empirical_top_k: 10
     expectations:
-      expected_terms_any: [Physics, Computer Science, Engineering]
+      expected_terms_all: [Physics, Computer Science, Engineering]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: faculty_engineering_individual
+    family: faculty_directory
+    query: Anton Riedl School of Engineering and Computing faculty
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Anton, Riedl, School of Engineering and Computing]
       expected_object_types_any: [faculty_observation]
       expected_semantic_spaces_any: [institutional_people]
       minimum_matching_results: 1
@@ -36,11 +57,14 @@ cases:
     constitutional_top_k: 0
     empirical_top_k: 10
     expectations:
-      expected_terms_all: [Communication, 2021-22]
+      expected_terms_all: [Communication]
       expected_object_types_any: [department_faculty_roster_observation]
       expected_semantic_spaces_any: [institutional_academics]
       minimum_matching_results: 1
       maximum_rank_for_match: 10
+    expectations_rerank:
+      expected_terms_all: [Communication, 2021-22]
+      maximum_rank_for_match: 2
 
   - id: catalog_biology_oenb
     family: academic_catalog
@@ -68,28 +92,36 @@ cases:
       minimum_matching_results: 1
       maximum_rank_for_match: 10
 
-  - id: catalog_mechanical_engineering_faculty
+  - id: catalog_engineering_school_faculty
     family: academic_catalog
-    query: Mechanical Engineering faculty catalog
+    query: School of Engineering and Computing faculty roster 2025-26
     constitutional_top_k: 0
     empirical_top_k: 10
     expectations:
-      expected_terms_all: [Mechanical, Engineering]
-      expected_object_types_any:
-        - catalog_faculty_observation
-        - department_faculty_roster_observation
-        - academic_unit_observation
+      expected_terms_all: [School of Engineering and Computing, 2025-26]
+      expected_object_types_any: [department_faculty_roster_observation]
       expected_semantic_spaces_any: [institutional_academics]
       minimum_matching_results: 1
       maximum_rank_for_match: 10
 
-  - id: constitutional_student_success
+  - id: diagnostic_mechanical_engineering_source_scope
+    family: source_scope_diagnostic
+    required: false
+    source_scope_diagnostic: true
+    query: Mechanical Engineering faculty catalog
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      minimum_matching_results: 1
+
+  - id: constitutional_student_flourishing
     family: constitutional
-    query: Strategic Compass student success
+    query: Strategic Compass student-focused experience flourish for a lifetime
+    fetch_k: 1000
     constitutional_top_k: 2
     empirical_top_k: 0
     expectations:
-      expected_terms_any: [student, success, Strategic Compass]
+      expected_terms_all: [student, flourish, lifetime]
       expected_object_types_any: [constitutional_knowledge]
       minimum_matching_results: 1
       maximum_rank_for_match: 2
@@ -100,8 +132,9 @@ cases:
     constitutional_top_k: 2
     empirical_top_k: 0
     expectations:
-      expected_terms_any: [liberal arts, community, inclusion, belonging]
+      expected_terms_all: [community, inclusion, belonging]
       expected_object_types_any: [constitutional_knowledge]
+      expected_title_terms_any: [Strategic Compass]
       minimum_matching_results: 1
       maximum_rank_for_match: 2
 

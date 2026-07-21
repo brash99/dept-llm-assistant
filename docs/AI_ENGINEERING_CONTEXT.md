@@ -15,6 +15,31 @@ Local macOS checkouts are useful for editing and deterministic tests, but they
 do not contain the production corpus, FAISS index, GPU runtime, or local LLM by
 default.
 
+### Read these files first
+
+For a new engineering task, use this order rather than reading the repository
+alphabetically:
+
+1. `AGENTS.md` — authoritative working rules, architecture, milestone, and
+   operational safety constraints.
+2. This document — current engineering map and operating model.
+3. `docs/status.md` — implemented, partial, planned, and aspirational capability
+   boundaries.
+4. `docs/architecture/01_architecture_overview.md` and
+   `docs/architecture/10_design_principles.md` — permanent architecture and
+   enduring design decisions.
+5. The owning runtime module and its focused tests. For retrieval work, start
+   with `app/retrieval.py`, `app/evidence_roles.py`, and
+   `scripts/test_retrieval_evidence_allocation.py`; for Decision Brief work,
+   start with `app/decision_brief.py`, `app/observatory/decision_brief/`, and
+   `scripts/test_awp_stabilization.py`.
+6. The relevant operations guide under `docs/operations/` before running any
+   ingestion, synchronization, acquisition, or rebuild command.
+
+Use `rg` to trace every caller of a shared function before changing its return
+contract. Tests live primarily under `scripts/`, not a conventional `tests/`
+directory, and many are ordinary pytest modules despite their location.
+
 ## 1. Project Overview
 
 ISO is an evidence-centered institutional decision-support system for
@@ -44,6 +69,43 @@ requirement drives the architecture toward provenance, explicit uncertainty,
 scope-aware Evidence Fitness, inspectable allocation, and future scenario
 services rather than a single unconstrained RAG prompt.
 
+### Current engineering milestone
+
+The August 1 milestone is not “produce an answer at any cost.” It is to make the
+canonical workforce question run through the permanent architecture and return
+the strongest conclusion justified by available evidence. As of July 2026, the
+pipeline correctly recognizes institution-wide scope, evaluates eight Academic
+Workforce Planning domains, exposes participation and evidence gaps, and
+refuses departmental recommendations when unit-level evidence and scenario
+services are absent. The immediate engineering priority is improving Layer 1
+coverage and Layer 4 sufficiency without weakening that refusal behavior.
+
+Health Physics program-development questions are a second operational
+benchmark. They exercise curated external acquisition, program decision typing,
+constitutional orientation, evidence-family and role diversity, and missing
+workforce/regional/capacity evidence. They are diagnostic cases, not new
+architecture layers.
+
+### Current research questions
+
+Current implementation work is organized around questions such as:
+
+- What evidence is minimally sufficient for an institution-wide workforce
+  decision, and how should scope limitations constrain a grade?
+- How can retrieval preserve complementary evidence roles without promoting
+  weak sources merely to satisfy a category?
+- Which missing evidence should trigger Layer 1 acquisition, and which gaps
+  indicate an incomplete decision-type model?
+- How should document-centered Knowledge Objects evolve toward courses,
+  programs, units, capabilities, relationships, and temporal observations
+  without storing derived judgments as facts?
+- What explicit assumptions and operational data are required before Scenario
+  Modeling can compare workforce alternatives?
+- How should evidence freshness, historical state, and supersession be modeled
+  without rewriting institutional memory?
+
+Longer-term research directions are recorded in `docs/ResearchAgenda.md`.
+
 ## 2. Permanent Architecture
 
 ISO uses a permanent six-layer architecture:
@@ -71,6 +133,13 @@ ISO uses a permanent six-layer architecture:
 
 Do not replace these layers with temporary phase terminology.
 
+The layers describe responsibility and information flow, not a one-to-one
+directory mapping. For example, retrieval mechanics live in `app/retrieval.py`,
+while family and role allocation implement Evidence Fitness concerns in
+dependency-light services. Avoid moving code merely to make package names look
+like the conceptual diagram; change ownership only when the runtime dependency
+direction is genuinely wrong.
+
 ## 3. Repository Layout
 
 | Path | Purpose |
@@ -97,6 +166,28 @@ Do not replace these layers with temporary phase terminology.
 | `web_app.py` | Streamlit integration surface for observatory panels, RAG, Decision Briefs, and Developer Mode diagnostics. |
 
 Historical `.pre_*` and `.bak` files are not the runtime implementation.
+
+### Architecture decision references
+
+The repository does not yet maintain a formal ADR series. Until it does, use
+these documents as the decision record:
+
+- `docs/architecture/00_design_philosophy.md` — observation-centered rationale.
+- `docs/architecture/04_knowledge_objects.md` — current memory abstraction.
+- `docs/architecture/05_normalization_pipeline.md` — source-to-object boundary.
+- `docs/architecture/06_retrieval_pipeline.md` — retrieval stages and limits.
+- `docs/architecture/08_semantic_control_plane.md` — semantic orientation.
+- `docs/architecture/09_decision_briefs.md` — decision-product architecture.
+- `docs/architecture/11_constitutional_reasoning.md` — normative/empirical
+  separation.
+- `docs/architecture/12_decision_driven_evidence_acquisition.md` — curated
+  acquisition design.
+- `docs/architecture/ArchitectureFAQ.md` — recurring boundary questions.
+
+If future work creates `docs/ARCHITECTURE_HISTORY.md` or a formal ADR
+directory, it should record why major contracts changed and link to the commit
+or benchmark that motivated each change. That file does not currently exist;
+do not cite it as an authority until it is intentionally added.
 
 ## 4. Core Architectural Principles
 
@@ -229,6 +320,12 @@ Other important contracts include `config/external_evidence_sources.yaml`,
 registries, and observer definitions. Do not commit local macOS paths into the
 production configuration.
 
+Configuration is loaded directly from YAML; there is no general environment
+override layer in `app/config.py`. A local command can therefore import all
+dependencies successfully and still fail because `project.root` points to the
+A100 path. Prefer a deliberate, uncommitted local configuration strategy over
+editing and accidentally committing production paths.
+
 ## 8. Engineering Workflow
 
 Use CLI tools as the primary engineering interface. They are reproducible,
@@ -247,6 +344,17 @@ Preferred change workflow:
 8. Run A100 retrieval/index/LLM validation when production dependencies matter.
 9. Report limitations precisely; never claim a local placeholder corpus proves
    production behavior.
+
+Before a production retrieval run, verify all three external prerequisites:
+
+```bash
+test -f storage/vector_db/index.faiss
+test -f storage/vector_db/records.pkl
+curl -sS http://localhost:8001/v1/models
+```
+
+The model endpoint command is a connectivity check, not a repository-managed
+startup command. The actual model server is deployment-specific.
 
 Representative engineering commands:
 
@@ -350,6 +458,43 @@ Major remaining work:
 - Do not rebuild large derived artifacts, synchronize drives, commit, push, or
   deploy unless the task explicitly authorizes it.
 
+### Common developer mistakes
+
+- **Treating local and A100 environments as interchangeable.** The committed
+  configuration points to `/work/brash/dept-llm-assistant`; a macOS checkout
+  normally lacks the production index and LLM endpoint.
+- **Changing a tuple return without tracing callers.** `retrieve()`,
+  `answer_question()`, and `generate_decision_brief()` have normal and traced
+  contracts consumed by both CLI and Streamlit code.
+- **Using path dedupe for questions that need complementary chunks.** RAG uses
+  exact text dedupe by default; path dedupe intentionally keeps one document
+  representation and can discard distinct facts from later chunks.
+- **Reading reranker logits as probabilities.** They are uncalibrated and may
+  be negative. Use rank and within-query diagnostics.
+- **Counting chunks or revisions as corroborating sources.** Inspect Knowledge
+  Object IDs, paths, family keys, and authority roles.
+- **Assuming a retrieved self-study statement is an external rule.** A local
+  criterion response is institutional evidence unless the formal standard is
+  separately present.
+- **Confusing acquisition promotion with retrieval availability.** Promotion
+  updates normalized objects only; chunking, embedding, and FAISS must be
+  rebuilt manually.
+- **Forgetting runtime caches.** Long-lived Streamlit processes retain loaded
+  models and indexes. Restart them after a rebuild.
+- **Clearing canonical evidence during a derived-data rebuild.** Never delete
+  `storage/normalized` when the intent is only to regenerate chunks,
+  embeddings, or FAISS. Follow the reviewed operations runbook.
+- **Running destructive convenience scripts casually.** The documented full
+  pipeline and drive synchronization workflows may delete or mirror files.
+  Inspect their implementation and current paths first.
+- **Masking production dependencies in established regression tests.** Prefer
+  dependency-light module boundaries or localized fixtures; a fake FAISS or
+  sentence-transformer module does not validate production retrieval.
+- **Editing historical snapshots.** Runtime behavior comes from active files,
+  not `.pre_*`, `.bak`, session notes, or aspirational research prose.
+- **Overwriting unrelated work.** Always inspect `git status`; untracked files
+  and dirty changes belong to the user unless explicitly placed in scope.
+
 ## 12. Common Entry Points
 
 Run production commands from the canonical A100 checkout:
@@ -432,3 +577,58 @@ For destructive cache/output clearing, Google Drive synchronization, external
 acquisition, and production monitoring, follow the reviewed commands in
 `docs/operations/a100.md` and `docs/operations/external_evidence_refresh.md`
 rather than improvising.
+
+## 13. Glossary and Documentation Map
+
+### Glossary
+
+- **Academic Workforce Planning (AWP)** — Decision type for institution-wide or
+  unit-level faculty-capacity questions. AWP-1 through AWP-4 introduced
+  classification/taxonomy, the Executive Workforce Decision Framework, the
+  Academic Workforce Evidence Map, and Institutional Participation Profile.
+- **Constitutional knowledge** — Identified institutional values, commitments,
+  mission, and strategic direction. It orients judgment but is not empirical
+  proof of current operations.
+- **Decision Brief** — Governed reasoning product with deterministic dashboard
+  panels, evidence assessment, stable citations, and an LLM-generated narrative.
+- **Decision Readiness** — Deterministic domain assessment used to decide
+  whether evidence supports reliable action. It is not Scenario Modeling.
+- **Document family** — Deterministic identity grouping revisions or closely
+  related documents so variants do not dominate retrieval or confidence.
+- **Evidence class** — Broad reasoning category such as Institutional Evidence,
+  Planning Document, External Standard, External Comparator, or Constitutional
+  Evidence.
+- **Evidence role** — Decision function served by evidence, such as external
+  trends, workforce demand, regulatory constraint, institutional capacity, or
+  comparator context. Roles may be explicit, inferred, or fallback.
+- **Evidence Fitness** — Question-aware assessment of relevance, authority,
+  scope, directness, breadth, domain support, concentration, and missing needs.
+- **Institutional Participation Profile** — Deterministic presentation of how
+  an academic unit participates in institutional functions and which
+  relationships remain unknown. It is not a department scorecard.
+- **Knowledge Object** — Canonical normalized fact-bearing object with text,
+  metadata, source identity, and provenance. Chunks and embeddings are derived.
+- **Semantic Control Plane** — Pre-retrieval orientation service for existing
+  programs, proposed concepts, question scope, semantic neighbors, and
+  constitutional context.
+- **Institutional topology** — Current limited representation of entities and
+  directional relationships. Absence from the topology does not prove absence
+  in the institution.
+
+### Documentation map
+
+- Current capabilities: `docs/status.md`
+- Architecture index: `docs/architecture/README.md`
+- A100 operation: `docs/operations/a100.md`
+- macOS development: `docs/operations/macos.md`
+- Testing: `docs/operations/testing.md`
+- External evidence refresh: `docs/operations/external_evidence_refresh.md`
+- Retrieval diagnostics: `docs/engineering/retrieval_diagnostics.md`
+- Benchmarking: `docs/engineering/benchmarking.md`
+- Corpus health: `docs/engineering/corpus_health.md`
+- Terminology: `docs/reference/glossary.md`
+- Long-term research: `docs/ResearchAgenda.md`
+
+When these documents disagree with active code, treat implementation and
+focused regression tests as authoritative, then correct the documentation in a
+separate, explicit change.

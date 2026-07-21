@@ -174,4 +174,9 @@ def load_knowledge_object(input_path: Path) -> KnowledgeObject:
             data
         )
 
+    if object_type == "course_offering_observation":
+        from app.adapters.schedule_adapter import CourseOfferingObservation
+
+        return CourseOfferingObservation.from_dict(data)
+
     return KnowledgeObject(**data)

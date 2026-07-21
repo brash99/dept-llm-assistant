@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple
 
-from app.classification.classifiers import SemanticClassifier
+from app.classification.classifiers import ClassificationAbstained, SemanticClassifier
 from app.classification.contracts import (
     ClassificationAssertion,
     ClassificationMethod,
@@ -27,8 +27,11 @@ IDENTITY_FIELDS = (
     "authority",
     "temporal_scope",
     "institutional_relevance",
+    "source_family",
+    "document_type",
+    "institutional_role",
 )
-POLICY_VERSION = "1"
+POLICY_VERSION = "2"
 MULTIVALUE_FIELDS = {
     "institutional_entities",
     "organizational_relationships",
@@ -273,6 +276,8 @@ def default_field_policies() -> Dict[str, FieldPolicy]:
         "organizational_relationships",
         "decision_domains",
         "institutional_relevance",
+        "document_type",
+        "institutional_role",
     ):
         policies[field_name] = FieldPolicy(
             field_name,
@@ -400,7 +405,10 @@ class ClassificationPolicy:
                 if policy.audit_required
                 or (
                     assertion.field_name == "institutional_entities"
-                    and classifier_name == "constitutional_knowledge_classifier"
+                    and (
+                        classifier_name == "constitutional_knowledge_classifier"
+                        or classifier_name.endswith("_document_classifier")
+                    )
                 )
                 else ClassificationDisposition.AUTO_ACCEPT
             )
@@ -656,7 +664,16 @@ class ClassificationGovernor:
                     ),
                 )
             )
-        proposal = classifier.classify(knowledge_object)
+        try:
+            proposal = classifier.classify(knowledge_object)
+        except ClassificationAbstained as exc:
+            return GovernedClassificationResult(
+                abstention=ClassificationAbstention(
+                    knowledge_object.id,
+                    classifier.name,
+                    (PolicyReason(exc.code, exc.message),),
+                )
+            )
         decision = self.policy.evaluate(
             proposal,
             knowledge_object=knowledge_object,

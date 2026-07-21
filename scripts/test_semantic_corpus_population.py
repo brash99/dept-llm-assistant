@@ -9,6 +9,7 @@ from app.classification.corpus import (
     SemanticCorpusPopulationService,
     discover_knowledge_object_paths,
 )
+from app.classification.policy import POLICY_VERSION
 from app.knowledge import KnowledgeObject, load_knowledge_object, save_knowledge_object
 
 
@@ -107,7 +108,7 @@ def test_dry_run_produces_manifest_queues_and_coverage_without_mutation(tmp_path
     assert faculty_record["classifier_versions"] == {
         "faculty_observation_classifier": "1"
     }
-    assert faculty_record["policy_version"] == "1"
+    assert faculty_record["policy_version"] == POLICY_VERSION
     assert faculty_record["accepted_assertions"]
     assert _jsonl(tmp_path / "reports" / "unsupported_objects.jsonl")[0][
         "knowledge_object_id"

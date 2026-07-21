@@ -1,0 +1,112 @@
+version: "1"
+
+# Source family is acquisition custody, not authorship or authority.
+document_families:
+  - rule_id: external.explicit_provenance.v1
+    classifier: explicit_provenance_document_classifier
+    priority: 100
+    source_keys: [external_abet, external_bls, external_doe, external_nrc, external_orise]
+    source_family: curated_external_evidence
+    institutional_role: external_reference
+    allowed_document_types: [formal_external_standard, external_statistical_source, external_research_report, external_regulatory_source, curated_external_reference]
+    allowed_institutional_roles: [external_reference]
+    audit_required: true
+    notes: Requires complete explicit external provenance; source collection alone is insufficient.
+
+  - rule_id: schev.reports.v1
+    classifier: schev_document_classifier
+    priority: 90
+    source_keys: [schev_reports]
+    source_family: schev_publications
+    institutional_role: external_state_context
+    allowed_institutional_roles: [external_state_context]
+    issuing_authority: State Council of Higher Education for Virginia
+    authority_class: state_higher_education_authority
+    audit_required: true
+    notes: SCHEV identity does not imply a report subtype or decision domain.
+  - rule_id: schev.statistics.v1
+    classifier: schev_document_classifier
+    priority: 91
+    source_keys: [schev_statistics]
+    source_family: schev_publications
+    document_type: state_higher_education_statistical_record
+    institutional_role: external_state_context
+    allowed_document_types: [state_higher_education_statistical_record]
+    allowed_institutional_roles: [external_state_context]
+    issuing_authority: State Council of Higher Education for Virginia
+    authority_class: state_higher_education_authority
+    audit_required: true
+
+  - rule_id: cnu.institutional_research.v1
+    classifier: institutional_research_document_classifier
+    priority: 80
+    source_keys: [cnu_website]
+    path_prefixes: [cnu_website/cnu.edu/institutionalresearch/]
+    source_family: cnu_institutional_research
+    institutional_role: institutional_operating_record
+    allowed_document_types: [common_data_set, degrees_conferred_record, institutional_student_statistics, retention_snapshot, historical_institutional_statistics, enrollment_snapshot, student_profile_snapshot, institutional_research_publication]
+    allowed_institutional_roles: [institutional_operating_record]
+    institutional_entity: {entity_type: institution, entity_id: institution:cnu, published_name: Christopher Newport University}
+    audit_required: true
+
+  - rule_id: sec.statistics.v1
+    classifier: sec_statistics_document_classifier
+    priority: 80
+    source_keys: [sec_google_drive]
+    path_prefixes: [sec_google_drive/sec statistics/]
+    source_family: sec_google_drive
+    document_type: academic_unit_statistical_record
+    institutional_role: academic_unit_operating_record
+    allowed_document_types: [academic_unit_statistical_record]
+    allowed_institutional_roles: [academic_unit_operating_record]
+    institutional_entity: {entity_type: academic_unit, entity_id: academic_unit:sec, published_name: School of Engineering and Computing}
+    audit_required: true
+
+  - rule_id: sec.program_review.v1
+    classifier: program_review_document_classifier
+    priority: 80
+    source_keys: [sec_google_drive]
+    path_prefixes: [sec_google_drive/program review/]
+    source_family: sec_google_drive
+    institutional_role: academic_program_review_evidence
+    allowed_document_types: [program_review_supporting_evidence, external_program_review, program_review_administrative_response, program_review_feedback, program_review_draft, final_program_review, program_review_material]
+    allowed_institutional_roles: [academic_program_review_evidence]
+    institutional_entity: {entity_type: academic_unit, entity_id: academic_unit:sec, published_name: School of Engineering and Computing}
+    audit_required: true
+
+  - rule_id: sec.annual_reports.v1
+    classifier: annual_report_document_classifier
+    priority: 80
+    source_keys: [sec_google_drive]
+    path_prefixes: [sec_google_drive/annual reports/]
+    source_family: sec_google_drive
+    institutional_role: academic_unit_reporting_record
+    allowed_document_types: [academic_unit_annual_report, annual_report_template]
+    allowed_institutional_roles: [academic_unit_reporting_record]
+    institutional_entity: {entity_type: academic_unit, entity_id: academic_unit:sec, published_name: School of Engineering and Computing}
+    audit_required: true
+
+  - rule_id: sec.planning.v1
+    classifier: planning_document_classifier
+    priority: 80
+    source_keys: [sec_google_drive]
+    path_prefixes: [sec_google_drive/planning/]
+    source_family: sec_google_drive
+    institutional_role: academic_unit_planning_material
+    allowed_document_types: [planning_proposal, planning_draft, planning_material]
+    allowed_institutional_roles: [academic_unit_planning_material]
+    institutional_entity: {entity_type: academic_unit, entity_id: academic_unit:sec, published_name: School of Engineering and Computing}
+    audit_required: true
+    notes: Planning custody does not establish approval or implementation.
+
+publishers:
+  - rule_id: publisher.cnu_institutional_research.v1
+    classifier: institutional_research_document_classifier
+    priority: 100
+    source_keys: [cnu_website]
+    path_prefixes: [cnu_website/cnu.edu/institutionalresearch/]
+    domains: []
+    issuing_authority: Christopher Newport University Office of Institutional Research
+    authority_class: institutional_publisher
+    audit_required: true
+    notes: Exact official-site path reviewed; generic cnu.edu custody is not sufficient.

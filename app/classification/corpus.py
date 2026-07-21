@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, Mapping, Optional, Sequence, Tuple
 
 from app.classification.classifiers import DeterministicSemanticClassifier
+from app.classification.document_classifiers import DocumentClassificationRouter
 from app.classification.contracts import (
     ClassificationAssertion,
     ClassificationConfidence,
@@ -49,6 +50,9 @@ IDENTITY_FIELD_NAMES = (
     "temporal_scope",
     "organizational_relationships",
     "institutional_relevance",
+    "source_family",
+    "document_type",
+    "institutional_role",
 )
 
 
@@ -109,16 +113,21 @@ class CorpusClassificationReport:
     by_object_type: Dict[str, Counter] = field(default_factory=dict)
     by_classifier: Dict[str, Counter] = field(default_factory=dict)
     institutional_entities: Counter[str] = field(default_factory=Counter)
+    registry_rules: Counter[str] = field(default_factory=Counter)
+    source_families: Counter[str] = field(default_factory=Counter)
+    document_types: Counter[str] = field(default_factory=Counter)
+    institutional_roles: Counter[str] = field(default_factory=Counter)
+    abstention_reasons: Counter[str] = field(default_factory=Counter)
     audit_selection: Dict[str, Any] = field(default_factory=dict)
     failures: list[Dict[str, str]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
-        classified = self.overall.classified
+        processed = self.overall.processed
         field_metrics = {}
         for name in IDENTITY_FIELD_NAMES:
             counts = Counter(self.field_metrics.get(name, {}))
             counts["coverage"] = (
-                counts.get("present_after", 0) / classified if classified else 0.0
+                counts.get("present_after", 0) / processed if processed else 0.0
             )
             field_metrics[name] = dict(sorted(counts.items()))
         return {
@@ -134,6 +143,11 @@ class CorpusClassificationReport:
             "institutional_entities": dict(
                 sorted(self.institutional_entities.items())
             ),
+            "registry_rules": dict(sorted(self.registry_rules.items())),
+            "source_families": dict(sorted(self.source_families.items())),
+            "document_types": dict(sorted(self.document_types.items())),
+            "institutional_roles": dict(sorted(self.institutional_roles.items())),
+            "abstention_reasons": dict(sorted(self.abstention_reasons.items())),
             "audit_selection": self.audit_selection,
             "failures": self.failures,
         }
@@ -162,13 +176,13 @@ class CorpusClassificationReport:
                 "",
                 "## Semantic Field Coverage",
                 "",
-                "| Field | Present After | Coverage | Auto Accepted | Audit Accepted | Review | Abstain | Conflict |",
-                "|---|---:|---:|---:|---:|---:|---:|---:|",
+                "| Field | Present Before | Present After | Coverage | Auto Accepted | Audit Accepted | Review | Abstain | Conflict |",
+                "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
             ]
         )
         for name, values in payload["field_metrics"].items():
             lines.append(
-                f"| {name} | {values.get('present_after', 0)} | "
+                f"| {name} | {values.get('present_before', 0)} | {values.get('present_after', 0)} | "
                 f"{values.get('coverage', 0.0):.1%} | "
                 f"{values.get('auto_accept', 0)} | "
                 f"{values.get('accept_with_audit', 0)} | "
@@ -191,6 +205,19 @@ class CorpusClassificationReport:
             )
         else:
             lines.append("No institutional entities were represented.")
+        for heading, key in (
+            ("Registry Rules", "registry_rules"),
+            ("Source Families", "source_families"),
+            ("Document Types", "document_types"),
+            ("Institutional Roles", "institutional_roles"),
+            ("Abstention Reasons", "abstention_reasons"),
+        ):
+            lines.extend(["", f"## {heading}", ""])
+            values = payload[key]
+            lines.extend(
+                (f"- `{name}`: {count}" for name, count in values.items())
+                if values else ("None.",)
+            )
         if self.failures:
             lines.extend(["", "## Failures", ""])
             lines.extend(
@@ -211,7 +238,9 @@ class SemanticCorpusPopulationService:
         clock: Optional[Callable[[], datetime]] = None,
     ) -> None:
         classifier = DeterministicSemanticClassifier()
-        self.governor = governor or ClassificationGovernor((classifier,))
+        self.governor = governor or ClassificationGovernor(
+            (classifier, DocumentClassificationRouter())
+        )
         self.audit_policy = audit_policy or AuditPolicy()
         self.clock = clock or (lambda: datetime.now(timezone.utc))
 
@@ -391,10 +420,23 @@ class SemanticCorpusPopulationService:
     def _update_report(self, report, obj, governed, preview, record):
         object_counts = report.by_object_type.setdefault(obj.object_type, Counter())
         object_counts["processed"] += 1
+        before = obj.semantic_identity.to_dict() if obj.semantic_identity else {"object_type": obj.object_type}
+        after = preview.semantic_identity.to_dict() if preview.semantic_identity else {"object_type": preview.object_type}
+        for field_name in IDENTITY_FIELD_NAMES:
+            if _identity_field_present(before, field_name):
+                report.field_metrics[field_name]["present_before"] += 1
+            if _identity_field_present(after, field_name):
+                report.field_metrics[field_name]["present_after"] += 1
         if governed.abstention is not None:
             report.overall.unsupported += 1
             report.overall.abstained += 1
             object_counts["unsupported"] += 1
+            for reason in governed.abstention.reasons:
+                report.abstention_reasons[reason.code] += 1
+            if governed.abstention.classifier_name:
+                report.by_classifier.setdefault(
+                    governed.abstention.classifier_name, Counter()
+                )["abstained"] += 1
             return
         report.overall.classified += 1
         object_counts["classified"] += 1
@@ -424,18 +466,27 @@ class SemanticCorpusPopulationService:
             report.overall.abstained += 1
             object_counts["abstained"] += 1
             classifier_counts["abstained"] += 1
+        rule_ids = set()
         for item in governed.decision.assertion_decisions:
             report.field_metrics[item.assertion.field_name][item.disposition.value] += 1
+            for citation in item.assertion.supporting_evidence:
+                rule_id = citation.attributes.get("rule_id")
+                if rule_id:
+                    rule_ids.add(str(rule_id))
+        for rule_id in rule_ids:
+            report.registry_rules[rule_id] += 1
         identity = preview.semantic_identity
         if identity is not None:
-            serialized = identity.to_dict()
-            for field_name in IDENTITY_FIELD_NAMES:
-                if _identity_field_present(serialized, field_name):
-                    report.field_metrics[field_name]["present_after"] += 1
             for entity in identity.institutional_entities:
                 report.institutional_entities[
                     f"{entity.entity_type}:{entity.entity_id}"
                 ] += 1
+            if identity.source_family:
+                report.source_families[identity.source_family] += 1
+            if identity.document_type:
+                report.document_types[identity.document_type] += 1
+            if identity.institutional_role:
+                report.institutional_roles[identity.institutional_role] += 1
 
     def _write_queues(self, handles, obj, relative_path, governed):
         if governed.abstention is not None:

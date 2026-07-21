@@ -105,6 +105,21 @@ class KnowledgeObject:
         identity = self.semantic_identity
         return identity.temporal_scope if identity is not None else None
 
+    @property
+    def source_family(self):
+        identity = self.semantic_identity
+        return identity.source_family if identity is not None else None
+
+    @property
+    def document_type(self):
+        identity = self.semantic_identity
+        return identity.document_type if identity is not None else None
+
+    @property
+    def institutional_role(self):
+        identity = self.semantic_identity
+        return identity.institutional_role if identity is not None else None
+
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 

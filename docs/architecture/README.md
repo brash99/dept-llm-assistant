@@ -33,7 +33,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 16. [Semantic Classification Framework](15_semantic_classification_framework.md)
 17. [Classification Policy and Evaluation](16_classification_policy_and_evaluation.md)
 18. [Semantic Corpus Population](17_semantic_corpus_population.md)
-19. [Architecture FAQ](ArchitectureFAQ.md)
+19. [Semantic Document Routing and High-Value Classification](18_semantic_document_routing.md)
+20. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

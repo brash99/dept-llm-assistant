@@ -134,6 +134,7 @@ class TemporalScope:
     effective_until: Optional[str] = None
     academic_term: Optional[str] = None
     published_label: Optional[str] = None
+    reporting_period: Optional[str] = None
 
     def __post_init__(self) -> None:
         if not any(
@@ -143,6 +144,7 @@ class TemporalScope:
                 self.effective_until,
                 self.academic_term,
                 self.published_label,
+                self.reporting_period,
             )
         ):
             raise ValueError("Temporal scope must contain at least one factual value")
@@ -156,6 +158,7 @@ class TemporalScope:
                 "effective_until": self.effective_until,
                 "academic_term": self.academic_term,
                 "published_label": self.published_label,
+                "reporting_period": self.reporting_period,
             }.items()
             if value is not None
         }
@@ -168,6 +171,7 @@ class TemporalScope:
             effective_until=value.get("effective_until"),
             academic_term=value.get("academic_term"),
             published_label=value.get("published_label"),
+            reporting_period=value.get("reporting_period"),
         )
 
 
@@ -182,6 +186,9 @@ class SemanticIdentity:
     authority: Optional[Authority] = None
     temporal_scope: Optional[TemporalScope] = None
     institutional_relevance: Mapping[str, Any] = field(default_factory=dict)
+    source_family: Optional[str] = None
+    document_type: Optional[str] = None
+    institutional_role: Optional[str] = None
 
     def __post_init__(self) -> None:
         if not self.object_type.strip():
@@ -228,6 +235,9 @@ class SemanticIdentity:
                     self.temporal_scope.to_dict() if self.temporal_scope else None
                 ),
                 "institutional_relevance": dict(self.institutional_relevance),
+                "source_family": self.source_family,
+                "document_type": self.document_type,
+                "institutional_role": self.institutional_role,
             }.items()
             if value is not None and value != [] and value != {}
         }
@@ -254,6 +264,9 @@ class SemanticIdentity:
                 if value.get("temporal_scope") else None
             ),
             institutional_relevance=dict(value.get("institutional_relevance") or {}),
+            source_family=value.get("source_family"),
+            document_type=value.get("document_type"),
+            institutional_role=value.get("institutional_role"),
         )
 
 

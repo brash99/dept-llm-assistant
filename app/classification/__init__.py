@@ -56,6 +56,12 @@ from app.classification.corpus import (
     atomic_save_knowledge_object,
     discover_knowledge_object_paths,
 )
+from app.classification.document_classifiers import DocumentClassificationRouter
+from app.classification.document_registry import (
+    DocumentFamilyRegistry,
+    InstitutionalPublisherRegistry,
+)
+from app.classification.document_signals import DocumentSignalExtractor, DocumentSignals
 
 __all__ = [
     "CatalogObservationClassifier",
@@ -83,6 +89,10 @@ __all__ = [
     "CourseOfferingObservationClassifier",
     "CoverageCounter",
     "DeterministicSemanticClassifier",
+    "DocumentClassificationRouter",
+    "DocumentFamilyRegistry",
+    "DocumentSignalExtractor",
+    "DocumentSignals",
     "EvidenceCitation",
     "EvaluationCase",
     "EvaluationMetrics",
@@ -90,6 +100,7 @@ __all__ = [
     "ExpectedAssertion",
     "FieldPolicy",
     "FacultyObservationClassifier",
+    "InstitutionalPublisherRegistry",
     "MockLLMSemanticClassifier",
     "MetricBucket",
     "GovernedClassificationResult",

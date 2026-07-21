@@ -91,6 +91,15 @@ class SemanticClassifier(ABC):
         raise NotImplementedError
 
 
+class ClassificationAbstained(Exception):
+    """A supporting classifier deliberately found no safe factual assertion."""
+
+    def __init__(self, code: str, message: str):
+        super().__init__(message)
+        self.code = code
+        self.message = message
+
+
 class ConstitutionalKnowledgeClassifier(SemanticClassifier):
     name = "constitutional_knowledge_classifier"
     method = ClassificationMethod.ADAPTER

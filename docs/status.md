@@ -26,6 +26,10 @@ Status as of July 2026. This file describes the current codebase; research and s
 - Constitutional orientation against the Strategic Compass catalog.
 - Bootstrap institutional topology with incoming/outgoing impact summaries.
 - Institution-wide questions preserve contextual mentions without forcing one selected topology entity.
+- Authoritative Semantic Identity contracts, classification proposals, field-level policy, audit sampling, and dry-run corpus population are implemented for structured Knowledge Objects.
+- Registry-driven generic-document routing is implemented for curated external evidence, SCHEV, CNU Institutional Research, and reviewed SEC Statistics, Program Review, Annual Report, and Planning families. Source family, document type, institutional role, authority, scope, and temporal scope remain separate assertions; unknown and sensitive families abstain.
+- Semantic Document Routing v1 was reviewed and applied to 480 generic documents on July 21, 2026: 162 CNU Institutional Research, 65 SCHEV, 92 SEC Statistics, 70 SEC Program Review, 40 SEC Annual Reports, 41 SEC Planning, and 10 explicitly provenanced curated external documents. Post-application classification is idempotent with zero projected changes, conflicts, reviews, or failures.
+- After application, corpus-wide Semantic Identity coverage is 480 source-family values, 418 document types, 480 institutional roles, 237 authority assertions, 8,951 objects with institutional entities, and 8,770 objects with temporal scope. Decision domains and organizational relationships remain unpopulated by document routing.
 
 ### Reasoning Layer
 
@@ -47,6 +51,8 @@ Status as of July 2026. This file describes the current codebase; research and s
 - **Institutional topology:** a small manually curated graph, not a complete institutional relationship model.
 - **Institutional Participation Profile:** renders supplied profile contracts or validated department/college topology context; institution-wide unit collections are not yet available.
 - **Evidence-role classification:** deterministic path/title/metadata heuristics; it does not inspect source authorship through an LLM.
+- **Generic-document semantic coverage:** high-value reviewed families are supported; broad ABET, assessment, curriculum, syllabi, course materials, student work, presentations, archives, and personnel materials intentionally remain unsupported unless explicit curated provenance applies.
+- **Derived-data propagation:** the generic chunker is capable of inheriting the complete `semantic_identity`, but the existing chunks, embeddings, and FAISS index predate the applied document identities. The new fields are normalized-object facts until a separately reviewed chunk/embedding/index rebuild is performed; no retrieval or scenario conclusion should be attributed to them yet.
 - **Document-family normalization:** deterministic metadata and filename heuristics; no semantic embedding pass is used for family identity.
 - **Constitutional reasoning:** Strategic Compass orientation and citation separation are implemented; constitutional alignment is not a final normative judgment.
 - **Decision readiness:** evidence sufficiency is assessed, but operational, financial, enrollment, and scenario services shown in the dashboard are not connected.

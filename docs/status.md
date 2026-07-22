@@ -47,7 +47,8 @@ Status as of July 2026. This file describes the current codebase; research and s
   `config/institutional_units.yaml` remains authoritative for units, formal
   types, relationships, and operational roles. Mapping is implemented with explicit mapped,
   intentionally grouped, ambiguous, unmapped, and unsupported outcomes. The
-  first reviewed records roll seven SEC subject codes—including PCSE—into SEC as a
+  reviewed records roll six SEC instructional subject codes—PHYS, CPSC, CYBR,
+  CPEN, EENG, and PCSE—into SEC as a
   department-equivalent workforce unit without representing SEC as a formal
   department or inventing specialty departments. Other subjects remain
   unmapped pending reviewed crosswalks.
@@ -60,6 +61,13 @@ Status as of July 2026. This file describes the current codebase; research and s
   normalized schedules without retrieval or LLM dependencies. No additional
   subject mappings were added because the Mac-accessible catalog ontology does
   not publish a governed course-prefix-to-unit crosswalk.
+- Catalog-derived subject-ownership evidence tooling now selects catalog
+  editions by academic year, extracts anchored course-description headers,
+  resolves exact governed section aliases, emits typed exceptions and
+  reviewable candidates, and compares catalog, schedule, and governed prefix
+  sets. Candidates cannot automatically modify governance. IS is intentionally
+  absent from subject ownership while the Information Science/BSIS academic
+  program remains governed in the program registry.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

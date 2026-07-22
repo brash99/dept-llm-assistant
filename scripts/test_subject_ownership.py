@@ -48,7 +48,7 @@ def test_loader_rejects_unknown_institutional_unit(tmp_path):
 
 def test_all_seven_sec_subjects_resolve_without_fictional_departments():
     service = AcademicUnitMappingService()
-    for code in ("PHYS", "CPSC", "CYBR", "IS", "CPEN", "EENG", "PCSE"):
+    for code in ("PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE"):
         result = service.map_subject(code)
         assert result.owning_academic_unit_id == "academic_unit:sec"
         assert result.analytical_academic_unit_id == "academic_unit:sec"
@@ -62,6 +62,7 @@ def test_all_seven_sec_subjects_resolve_without_fictional_departments():
         any(name in unit.published_name.casefold() for name in ("physics", "computer science", "cybersecurity"))
         for unit in units
     )
+    assert service.map_subject("IS").status == "unmapped"
 
 
 def test_pcse_remains_subject_group_and_rolls_up_to_sec_deterministically():

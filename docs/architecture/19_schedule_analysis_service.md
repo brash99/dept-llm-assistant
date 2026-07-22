@@ -69,18 +69,20 @@ result but must not recompute its numbers.
 
 ## Governed academic-unit mapping
 
-`AcademicUnitMappingService` resolves subject codes only through reviewed rules
-in `config/institutional_units.yaml`. Results explicitly distinguish mapped,
+`AcademicUnitMappingService` resolves subject codes through governed ownership
+records in `config/subject_ownership.yaml` and unit facts in
+`config/institutional_units.yaml`. Results explicitly distinguish mapped,
 intentionally grouped, ambiguous, unmapped, and unsupported subjects. Each
 mapped result identifies its registry rule, source, confidence, formal unit
 type, and operational roles.
 
-The initial production rules are deliberately narrow. PHYS, CPSC, CYBR, IS,
-CPEN, and EENG roll up to the School of Engineering and Computing because the
+The initial production rules are deliberately narrow. PHYS, CPSC, CYBR,
+CPEN, EENG, and PCSE roll up to the School of Engineering and Computing because the
 governed registry identifies SEC as their department-equivalent faculty-home
 and workforce-allocation unit. SEC remains formally a dependent school; the
 mapping does not create Physics, Computer Science, Engineering, or
-Cybersecurity departments. Other subjects remain unmapped until a reviewed
+Cybersecurity departments. Information Science/BSIS remains an academic
+program; IS is not treated as an instructional subject prefix. Other subjects remain unmapped until a reviewed
 crosswalk is added.
 
 ## Trend analysis and Evidence Fitness

@@ -20,7 +20,7 @@ from app.subject_ownership import (
 )
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-SEC_SUBJECTS = ("PHYS", "CPSC", "CYBR", "IS", "CPEN", "EENG", "PCSE")
+SEC_SUBJECTS = ("PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE")
 
 
 @dataclass(frozen=True)

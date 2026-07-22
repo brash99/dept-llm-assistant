@@ -16,7 +16,7 @@ subject only through an explicit, reviewed registry rule.
 Every rule keeps formal organizational classification separate from operational
 analytical role. For example, the School of Engineering and Computing is
 formally a dependent school and operationally a department-equivalent
-workforce unit. Its PHYS, CPSC, CYBR, IS, CPEN, EENG, and PCSE subjects are
+workforce unit. Its PHYS, CPSC, CYBR, CPEN, EENG, and PCSE subjects are
 intentionally grouped into SEC; they are not converted into fictional
 departments.
 
@@ -62,7 +62,7 @@ The initial review inspected only repository-controlled evidence:
 | `storage/normalized/catalogs` on the Mac | Five catalog snapshots containing 102 academic-unit observations and 97 faculty-roster observations, including many published department names | Catalog Phase 1 deliberately excluded courses, so these objects do not assert course-prefix-to-unit relationships |
 | `app/adapters/catalog_adapter.py` | Provenance and schema interpretation for those catalog objects | It cannot supply relationships that Phase 1 did not extract |
 
-Consequently, the evidence supports seven SEC subject records but does not
+Consequently, the evidence supports six SEC subject records but does not
 yet support adding Arts, Business, Nursing, Teacher Preparation, or other
 subject mappings. Their prefixes remain unresolved pending an authoritative
 course-prefix crosswalk or later catalog-course Semantic Layer increment.

@@ -260,7 +260,7 @@ sec_subjects = Counter()
 temporal = Counter()
 schedule_objects = {}
 selected_terms = {"2021_fall", "2022_fall", "2023_fall", "2024_fall", "2025_fall"}
-sec_prefixes = {"PHYS", "CPSC", "CYBR", "IS", "CPEN", "EENG", "PCSE"}
+sec_prefixes = {"PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE"}
 
 def term_key(term):
     year, label = term.split("_", 1)

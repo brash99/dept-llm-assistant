@@ -28,7 +28,9 @@ VALID_MAPPING_STATUSES = {
 VALID_RELATIONSHIP_TYPES = {
     "owns_instructional_subject", "analytically_assigned_to",
     "interdisciplinary_coordination", "service_subject_provision",
-    "non_workforce_subject",
+    "non_workforce_subject", "centrally_administered_subject",
+    "interdisciplinary_subject", "service_subject", "cross_unit_subject",
+    "unresolved",
 }
 VALID_REVIEW_STATUSES = {"governed", "provisional", "requires_review"}
 VALID_EVIDENCE_TYPES = {

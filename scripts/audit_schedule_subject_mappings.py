@@ -33,7 +33,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--csv", action="store_true", help="Print subject inventory as CSV.")
     parser.add_argument("--compare", nargs=2, type=Path, metavar=("OLD_REPORT", "NEW_REPORT"))
     parser.add_argument("--subject", action="append", help="Show one governed or observed subject (repeatable).")
-    parser.add_argument("--sec", action="store_true", help="Show the seven governed SEC subject prefixes.")
+    parser.add_argument("--sec", action="store_true", help="Show the six governed SEC instructional subject prefixes.")
     return parser.parse_args()
 
 

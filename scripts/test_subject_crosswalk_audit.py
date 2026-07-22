@@ -38,7 +38,7 @@ def test_default_registry_is_valid_stable_and_governs_all_sec_subjects():
     second = SubjectCrosswalkAuditService().audit(reversed_registry)
     assert first.valid
     assert first.registry_fingerprint == second.registry_fingerprint
-    assert set(first.governed_subjects) == {"PHYS", "CPSC", "CYBR", "IS", "CPEN", "EENG", "PCSE"}
+    assert set(first.governed_subjects) == {"PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE"}
     for code in first.governed_subjects:
         result = AcademicUnitMappingService().map_subject(code)
         assert result.academic_unit_id == "academic_unit:sec"

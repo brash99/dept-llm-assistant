@@ -167,6 +167,7 @@ class CatalogCoursePrefixExtractor:
                 len(codes), "catalog_course_description_header_v1", 1.0,
                 tuple(f"page:{page}" for page in pages), tuple(data["headers"][:5]),
                 {"source_sha256": edition.source_sha256, "algorithm_version": ALGORITHM_VERSION,
+                 "catalog_kind": edition.catalog_kind,
                  "section_program_designations": sorted(section_designations.get(section, ()))},
                 created, digest,
             ))

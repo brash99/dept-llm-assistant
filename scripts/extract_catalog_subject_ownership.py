@@ -20,6 +20,7 @@ from app.catalog_subject_ownership import (
     build_catalog_subject_report, compare_catalog_subject_reports,
 )
 from app.subject_ownership import SubjectOwnershipRegistry
+from app.semantic_discrepancy import SemanticDiscrepancyAnalyzer
 
 
 def parse_args(argv=None):
@@ -36,6 +37,7 @@ def parse_args(argv=None):
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--csv", action="store_true")
     parser.add_argument("--compare", nargs=2, type=Path, metavar=("OLD_REPORT", "NEW_REPORT"))
+    parser.add_argument("--explain-discrepancies", action="store_true", help="Explain catalog, schedule, and governance differences deterministically.")
     return parser.parse_args(argv)
 
 
@@ -64,7 +66,13 @@ def build_report(args):
     resolver = CatalogSectionAcademicUnitResolver()
     governed = SubjectOwnershipRegistry.load()
     candidates = CatalogSubjectOwnershipCandidateService().generate(observations, resolver, governed)
-    return build_catalog_subject_report(selection, observations, malformed, candidates, governed, _schedule_subjects(args.schedule_root))
+    report = build_catalog_subject_report(selection, observations, malformed, candidates, governed, _schedule_subjects(args.schedule_root))
+    if args.explain_discrepancies:
+        report["discrepancy_dashboard"] = SemanticDiscrepancyAnalyzer().analyze(
+            governed, report["catalog_observations"], report["candidates"],
+            report["schedule_subject_inventory"],
+        ).to_dict()
+    return report
 
 
 def _filtered(report, args):
@@ -93,6 +101,13 @@ def _markdown(report, rows):
     selected = report["selection"]["selected"]; fitness = report["evidence_fitness"]
     lines = ["# Catalog Subject-Ownership Candidate Report", "", f"- Catalog: {selected['catalog_title']} (`{selected['catalog_id']}`)", f"- Academic year: {selected['academic_year']}", f"- Extracted prefixes: {fitness['extracted_unique_prefix_count']}", f"- Course descriptions: {fitness['extracted_course_description_count']}", f"- Deterministic fingerprint: `{report['deterministic_report_fingerprint']}`", "", "| Subject | Status | Proposed unit | Courses | Sections |", "|---|---|---|---:|---:|"]
     for row in rows: lines.append(f"| {row['subject_code']} | {row['candidate_status']} | {row['proposed_analytical_academic_unit_id'] or ''} | {len(row['observed_course_codes'])} | {len(row['source_sections'])} |")
+    if report.get("discrepancy_dashboard"):
+        dashboard = report["discrepancy_dashboard"]
+        lines += ["", "## Semantic discrepancies", "", "| Prefix | Found in | Category | Confidence | Priority | Action |", "|---|---|---|---:|---|---|"]
+        for item in dashboard["records"]:
+            evidence = item["evidence"]
+            found = ", ".join(name for name, present in (("governance", evidence["governed"]), ("catalog", evidence["current_catalog"]), ("schedule", evidence["production_schedule"])) if present)
+            lines.append(f"| {item['prefix']} | {found} | {item['category']} | {item['confidence']:.2f} | {item['review_priority']} | {item['suggested_next_action']} |")
     lines += ["", "Candidates are review artifacts and are never written automatically to the governed registry.", ""]
     return "\n".join(lines)
 
@@ -108,6 +123,13 @@ def write_outputs(report, rows, output_dir):
     (output_dir / "catalog_subject_ownership.md").write_text(_markdown(report, rows), encoding="utf-8")
     (output_dir / "catalog_subject_candidates.review.yaml").write_text(yaml.safe_dump(_review_yaml(rows), sort_keys=False), encoding="utf-8")
     with (output_dir / "catalog_subject_review_queue.csv").open("w", encoding="utf-8", newline="") as handle: _write_csv(report["review_queue"], handle)
+    if report.get("discrepancy_dashboard"):
+        with (output_dir / "semantic_discrepancies.csv").open("w", encoding="utf-8", newline="") as handle:
+            flat = []
+            for item in report["discrepancy_dashboard"]["records"]:
+                evidence = item["evidence"]
+                flat.append({"prefix": item["prefix"], "found_in_governance": evidence["governed"], "found_in_catalog": evidence["current_catalog"], "found_in_schedule": evidence["production_schedule"], "category": item["category"], "rationale": item["rationale"], "confidence": item["confidence"], "suggested_action": item["suggested_next_action"], "review_priority": item["review_priority"]})
+            _write_csv(flat, handle)
 
 
 def main(argv=None):
@@ -125,6 +147,10 @@ def main(argv=None):
         print(f"Course descriptions: {report['evidence_fitness']['extracted_course_description_count']}")
         print(f"Unique prefixes: {report['evidence_fitness']['extracted_unique_prefix_count']}")
         print(f"Candidates shown: {len(rows)}")
+        if report.get("discrepancy_dashboard"):
+            dashboard = report["discrepancy_dashboard"]
+            print(f"Discrepancies: {dashboard['overall_counts']['discrepancies']}")
+            print(f"Discrepancy fingerprint: {dashboard['deterministic_fingerprint']}")
         print(f"Fingerprint: {report['deterministic_report_fingerprint']}")
         if args.output_dir: print(f"Reports: {args.output_dir}")
     return 0

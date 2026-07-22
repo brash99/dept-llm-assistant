@@ -37,7 +37,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 20. [Deterministic Schedule Analysis](19_schedule_analysis_service.md)
 21. [Governed Subject-to-Academic-Unit Crosswalk](20_governed_subject_crosswalk.md)
 22. [Catalog-Derived Subject-Ownership Evidence](21_catalog_subject_ownership_evidence.md)
-23. [Architecture FAQ](ArchitectureFAQ.md)
+23. [Semantic Discrepancy Analysis](22_semantic_discrepancy_analysis.md)
+24. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

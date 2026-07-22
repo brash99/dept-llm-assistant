@@ -15,6 +15,7 @@ from app.catalog_subject_ownership import (
 from app.control_plane.catalog import ProgramCatalog
 from app.reasoning import AcademicUnitMappingService
 from app.subject_ownership import SubjectOwnershipRegistry
+from app.semantic_discrepancy import SemanticDiscrepancyAnalyzer
 from scripts.extract_catalog_subject_ownership import _filtered, parse_args, write_outputs
 
 
@@ -182,11 +183,16 @@ def test_report_outputs_and_filters_never_write_governed_registry(tmp_path):
     report = build_catalog_subject_report(selection, observations, (), candidates, SubjectOwnershipRegistry.load())
     args = parse_args(["--exceptions-only"]); rows = _filtered(report, args)
     assert [x["subject_code"] for x in rows] == ["COLL"]
+    report["discrepancy_dashboard"] = SemanticDiscrepancyAnalyzer().analyze(
+        SubjectOwnershipRegistry.load(), report["catalog_observations"],
+        report["candidates"], {"COLL": {"offering_count": 3}},
+    ).to_dict()
     write_outputs(report, rows, tmp_path)
-    assert {p.name for p in tmp_path.iterdir()} == {"catalog_subject_ownership.json", "catalog_subject_candidates.csv", "catalog_subject_ownership.md", "catalog_subject_candidates.review.yaml", "catalog_subject_review_queue.csv"}
+    assert {p.name for p in tmp_path.iterdir()} == {"catalog_subject_ownership.json", "catalog_subject_candidates.csv", "catalog_subject_ownership.md", "catalog_subject_candidates.review.yaml", "catalog_subject_review_queue.csv", "semantic_discrepancies.csv"}
     review = yaml.safe_load((tmp_path / "catalog_subject_candidates.review.yaml").read_text())
     assert review["candidates"][0]["review_status"] == "requires_review"
     assert not hasattr(parse_args([]), "write_governed_registry")
+    assert parse_args(["--explain-discrepancies"]).explain_discrepancies
 
 
 def test_catalog_report_comparison_is_timestamp_independent():

@@ -68,6 +68,11 @@ Status as of July 2026. This file describes the current codebase; research and s
   sets. Candidates cannot automatically modify governance. IS is intentionally
   absent from subject ownership while the Information Science/BSIS academic
   program remains governed in the program registry.
+- Deterministic semantic discrepancy analysis explains catalog, schedule, and
+  governance differences with exactly one primary category per investigated
+  prefix. Its dashboard reports confidence, engineering review priority, and
+  catalog/schedule/governance/parser completeness as Evidence Fitness. It does
+  not infer mappings or promote candidates.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

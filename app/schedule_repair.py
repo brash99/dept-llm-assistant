@@ -14,6 +14,8 @@ import json
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Optional, Sequence
 
+from app.academic_terms import academic_term_sort_key
+
 
 REPAIR_ALGORITHM = "schedule_source_repair"
 REPAIR_VERSION = "1.0"
@@ -36,20 +38,9 @@ def _person_key(value: str) -> str:
 
 def _term_key(value: str) -> tuple[int, int, str]:
     """Sort normalized terms chronologically without asserting calendar dates."""
-    try:
-        year_text, label = value.split("_", 1)
-        year = int(year_text)
-    except (ValueError, AttributeError):
-        return (0, 0, value)
-    order = {
-        "spring": 10,
-        "may": 20,
-        "summer_1": 30,
-        "extended_summer": 35,
-        "summer_2": 40,
-        "fall": 50,
-    }
-    return (year, order.get(label, 0), label)
+    key = academic_term_sort_key(value)
+    # Retain the historical three-element private helper contract.
+    return key[1:] if key[0] == 0 else (0, 0, str(value))
 
 
 def _fingerprint(value: Any) -> str:

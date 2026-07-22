@@ -101,3 +101,42 @@ def test_cli_uses_five_value_trace_contract_for_diagnostics(monkeypatch, capsys)
     assert "Raw candidates       : 20" in output
     assert "Trace final results  : 5" in output
     assert "Family diversity : 0.200s" in output
+
+
+def test_cli_routes_schedule_aggregation_without_calling_retrieval(monkeypatch, capsys) -> None:
+    monkeypatch.setattr(ask_rag, "load_config", _config)
+    monkeypatch.setattr(
+        "sys.argv", ["ask_rag", "How many adjunct course offerings were there by term?"]
+    )
+    calls = {"retrieval": 0}
+
+    def forbidden_retrieval(**kwargs):
+        calls["retrieval"] += 1
+        raise AssertionError("analytical request must not invoke retrieval")
+
+    analytical = SimpleNamespace(
+        analytical_result={
+            "metric": "course_offerings",
+            "grouped_results": [{"academic_term": "2024_fall", "value": 12}],
+            "deterministic_result_fingerprint": "fixture-fingerprint",
+        },
+        retrieved_evidence_request=None,
+    )
+    ask_rag.main(forbidden_retrieval, lambda request: analytical)
+    output = capsys.readouterr().out
+    assert calls["retrieval"] == 0
+    assert "Deterministic Analytical Output" in output
+    assert "fixture-fingerprint" in output
+
+
+def test_cli_refuses_unsupported_analytical_fallback(monkeypatch, capsys) -> None:
+    monkeypatch.setattr(ask_rag, "load_config", _config)
+    monkeypatch.setattr("sys.argv", ["ask_rag", "Average class size by subject"])
+
+    def forbidden_retrieval(**kwargs):
+        raise AssertionError("unsupported analysis must not invoke retrieval")
+
+    ask_rag.main(forbidden_retrieval)
+    output = capsys.readouterr().out
+    assert "Unsupported Analysis" in output
+    assert "will not substitute a top-k retrieval answer" in output

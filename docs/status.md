@@ -38,13 +38,26 @@ Status as of July 2026. This file describes the current codebase; research and s
 ### Reasoning Layer
 
 - Deterministic schedule analysis operates directly over normalized schedule
-  Knowledge Objects for distinct-instructor and course-offering counts by term
-  and normalized Instructor Type. It preserves unresolved, repaired, unknown,
-  and missing-status categories and produces provenance-bearing fingerprints.
+  Knowledge Objects for distinct-instructor counts, course-offering counts, and
+  explicit offering-share denominators by term, Instructor Type, subject, and
+  governed academic unit. It preserves unresolved, repaired, unknown, and
+  missing-status categories and produces provenance-bearing fingerprints.
+- Governed schedule subject mapping is implemented with explicit mapped,
+  intentionally grouped, ambiguous, unmapped, and unsupported outcomes. The
+  first reviewed rules roll six SEC subject codes into SEC as a
+  department-equivalent workforce unit without representing SEC as a formal
+  department or inventing specialty departments. Other subjects remain
+  unmapped pending reviewed crosswalks.
+- Narrow schedule trend analysis uses chronological normalized terms and
+  reports endpoint changes, missing terms, zero denominators, and
+  comparability limitations. Schedule Evidence Fitness explicitly rejects
+  official employment-history, workload/FTE, and staffing-recommendation uses.
 - Deterministic execution typing and routing distinguish selective retrieval,
   structured aggregation, comparison, trend analysis, scenario modeling, and
-  unsupported requests. Descriptive schedule questions no longer receive an
-  automatic constitutional retrieval quota.
+  unsupported requests. `scripts/ask_rag.py` routes supported schedule
+  analytics before retrieval and refuses top-k fallback for unsupported
+  analytics. Descriptive schedule questions do not request constitutional
+  evidence; normative hybrids represent that request separately.
 - Grounded question answering through a configured OpenAI-compatible local endpoint.
 - Governed Decision Brief prompt with stable empirical/constitutional citations, evidence-role serialization, and self-study claim-safety instructions.
 - Decision Brief Dashboard V2 with deterministic readiness, observatory, workforce framework, evidence map, and participation panels.

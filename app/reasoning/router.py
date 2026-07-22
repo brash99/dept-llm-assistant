@@ -13,7 +13,13 @@ from app.reasoning.query import (
 
 
 _SUPPORTED_SCHEDULE_ANALYSIS = re.compile(
-    r"\b(?:instructors?|sections?|course offerings?)\b",
+    r"\b(?:instructors?|sections?|offerings?|subjects?|academic units?|"
+    r"adjunct dependence)\b",
+    flags=re.IGNORECASE,
+)
+_ANALYTICAL_INTENT = re.compile(
+    r"\b(?:count|average|mean|median|total|share|percentage|rate|trend|"
+    r"compare|comparison|over time|how many|how much|highest|lowest)\b",
     flags=re.IGNORECASE,
 )
 
@@ -43,6 +49,8 @@ class ReasoningRouter:
             service = "retrieval"
         elif assessment.query_type == QueryType.SCENARIO_MODELING:
             service = "scenario_modeling"
+        elif assessment.query_type == QueryType.UNSUPPORTED and not _ANALYTICAL_INTENT.search(request):
+            service = "retrieval"
         else:
             service = "unsupported"
         return ReasoningRoute(

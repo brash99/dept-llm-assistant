@@ -2,16 +2,16 @@
 
 from pathlib import Path
 import argparse
+import json
 
 from app.config import load_config
+from app.reasoning import ReasoningRouter, ScheduleAnalysisService, ScheduleReasoningService
 
 
-def main(answer_question_func=None):
-    if answer_question_func is None:
-        from app.rag import answer_question
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-        answer_question_func = answer_question
 
+def main(answer_question_func=None, schedule_reasoning_func=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("query", type=str)
     parser.add_argument("--top-k", type=int, default=5)
@@ -25,6 +25,36 @@ def main(answer_question_func=None):
     args = parser.parse_args()
 
     config = load_config()
+
+    route = ReasoningRouter().route(args.query)
+    if route.execution_service == "schedule_analysis":
+        if schedule_reasoning_func is None:
+            configured = Path(config["schedule_ingestion"]["normalized_output"])
+            schedule_root = configured if configured.is_absolute() else PROJECT_ROOT / configured
+            schedule_reasoning_func = ScheduleReasoningService(
+                ScheduleAnalysisService(schedule_root)
+            ).execute
+        analytical = schedule_reasoning_func(args.query)
+        print("=" * 70)
+        print("Deterministic Analytical Output")
+        print("=" * 70)
+        print(json.dumps(analytical.analytical_result, indent=2, sort_keys=True))
+        if not analytical.retrieved_evidence_request:
+            return
+        print()
+        print("Contextual constitutional evidence requested separately.")
+    elif route.execution_service in {"scenario_modeling", "unsupported"}:
+        print("=" * 70)
+        print("Unsupported Analysis")
+        print("=" * 70)
+        print(route.rationale)
+        print("ISO will not substitute a top-k retrieval answer for this analysis.")
+        return
+
+    if answer_question_func is None:
+        from app.rag import answer_question
+
+        answer_question_func = answer_question
 
     project_root = Path(config["project"]["root"])
     vector_db_dir = project_root / config["storage"]["vector_db"]

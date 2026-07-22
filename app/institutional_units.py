@@ -59,8 +59,24 @@ class AcademicUnitDefinition:
         return self.formal_unit_type == "department" or "department_equivalent" in self.operational_roles
 
 
+@dataclass(frozen=True)
+class SubjectAcademicUnitRule:
+    rule_id: str
+    subject_codes: Tuple[str, ...]
+    unit_id: str
+    mapping_source: str
+    confidence: float
+    rationale: str
+    intentionally_grouped: bool = False
+
+
 class AcademicUnitRegistry:
-    def __init__(self, units: Iterable[AcademicUnitDefinition], version: str = "1"):
+    def __init__(
+        self,
+        units: Iterable[AcademicUnitDefinition],
+        version: str = "1",
+        subject_rules: Iterable[SubjectAcademicUnitRule] = (),
+    ):
         self.version = version
         self._units = {unit.unit_id: unit for unit in units}
         aliases = {}
@@ -80,12 +96,24 @@ class AcademicUnitRegistry:
             if unknown:
                 raise ValueError(f"Unknown subordinate units for {unit.unit_id}: {sorted(unknown)}")
         self._aliases = aliases
+        self._subject_rules = tuple(subject_rules)
+        for rule in self._subject_rules:
+            if rule.unit_id not in self._units:
+                raise ValueError(
+                    f"Unknown academic unit {rule.unit_id!r} in {rule.rule_id}"
+                )
+            if not 0.0 <= rule.confidence <= 1.0:
+                raise ValueError(f"Invalid confidence in {rule.rule_id}")
 
     @classmethod
     def load(cls, path: Path = DEFAULT_REGISTRY) -> "AcademicUnitRegistry":
         payload = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
         units = tuple(_unit_from_dict(value) for value in payload.get("units") or ())
-        return cls(units, str(payload.get("version", "1")))
+        rules = tuple(
+            _subject_rule_from_dict(value)
+            for value in payload.get("subject_mappings") or ()
+        )
+        return cls(units, str(payload.get("version", "1")), rules)
 
     def get(self, unit_id: str) -> AcademicUnitDefinition:
         return self._units[unit_id]
@@ -102,6 +130,16 @@ class AcademicUnitRegistry:
     @property
     def units(self) -> Tuple[AcademicUnitDefinition, ...]:
         return tuple(self._units.values())
+
+    @property
+    def subject_rules(self) -> Tuple[SubjectAcademicUnitRule, ...]:
+        return self._subject_rules
+
+    def rules_for_subject(self, subject_code: str) -> Tuple[SubjectAcademicUnitRule, ...]:
+        normalized = str(subject_code or "").strip().upper()
+        return tuple(
+            rule for rule in self._subject_rules if normalized in rule.subject_codes
+        )
 
 
 def is_department_workforce_entity(value: Any) -> bool:
@@ -138,4 +176,23 @@ def _unit_from_dict(value: Mapping[str, Any]) -> AcademicUnitDefinition:
     )
 
 
-__all__ = ["AcademicUnitDefinition", "AcademicUnitRegistry", "is_department_workforce_entity"]
+def _subject_rule_from_dict(value: Mapping[str, Any]) -> SubjectAcademicUnitRule:
+    return SubjectAcademicUnitRule(
+        rule_id=str(value["rule_id"]),
+        subject_codes=tuple(
+            dict.fromkeys(str(code).strip().upper() for code in value["subject_codes"])
+        ),
+        unit_id=str(value["unit_id"]),
+        mapping_source=str(value["mapping_source"]),
+        confidence=float(value.get("confidence", 1.0)),
+        rationale=str(value["rationale"]),
+        intentionally_grouped=bool(value.get("intentionally_grouped", False)),
+    )
+
+
+__all__ = [
+    "AcademicUnitDefinition",
+    "AcademicUnitRegistry",
+    "SubjectAcademicUnitRule",
+    "is_department_workforce_entity",
+]

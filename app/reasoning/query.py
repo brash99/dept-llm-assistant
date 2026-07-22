@@ -26,8 +26,8 @@ class QueryTypeAssessment:
 _SCENARIO_PATTERNS = (
     r"\bscenario\b",
     r"\bwhat (?:would|will) happen if\b",
-    r"\bif .+\b(?:reduce|remove|reassign|eliminate|add)\b",
-    r"\bshould .+\b(?:lose|gain|reduce|remove|reassign)\b",
+    r"\bif .+\b(?:reduce[sd]?|remove[sd]?|reassign(?:s|ed)?|eliminate[sd]?|add[sd]?)\b",
+    r"\bshould(?: .+)?\b(?:lose|gain|reduce|remove|reassign)\b",
     r"\bmodel (?:the )?(?:effect|impact|consequence)\b",
 )
 _TREND_PATTERNS = (
@@ -51,13 +51,19 @@ _AGGREGATION_PATTERNS = (
     r"\bdistinct instructors?\b",
     r"\bunique instructors?\b",
     r"\btotal(?:s)? by\b",
+    r"\b(?:share|percentage|rate) (?:of|by)\b",
+    r"\badjunct (?:offering )?(?:share|dependence)\b",
+    r"\bwhich .+ (?:highest|greatest|lowest)\b",
 )
 _SELECTIVE_PATTERNS = (
     r"\bwho (?:taught|teaches|instructed)\b",
     r"\bwhat does .+ say\b",
     r"\bwhich (?:instructor|faculty member|course|section|document)\b",
     r"\bfind (?:the )?(?:course|section|document|evidence|faculty)\b",
+    r"\bfind .+\b(?:course offering|section)\b",
     r"\bwhat evidence\b",
+    r"\bwhat was .+\b(?:course|section|crn)\b",
+    r"\bwhat was .+\b[a-z]{2,4}\s*\d{3}\b",
 )
 
 

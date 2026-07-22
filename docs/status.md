@@ -103,6 +103,11 @@ Status as of July 2026. This file describes the current codebase; research and s
   statuses, units, source paths, identity links, limitations, and deterministic
   fingerprints are auditable, while current employment, tenure, faculty home,
   appointment FTE, denominator eligibility, and SCH remain unimplemented.
+- An authoritative faculty-roster ingestion contract now defines configurable
+  CSV columns, effective/snapshot dates, explicit appointment and FTE facts,
+  deterministic identity/unit linkage, quarantine rules, Evidence Fitness, and
+  denominator-readiness reporting. No authoritative production roster is
+  asserted to exist, and no active population or denominator is calculated.
 - Governed academic-unit normalization now resolves canonical names, explicit
   aliases, status-qualified labels, and bounded contaminated labels while
   rejecting ambiguous or common-word matches. Missing semantic-scope

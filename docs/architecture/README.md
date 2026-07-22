@@ -41,7 +41,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 24. [Institutional Metric Readiness Audit](23_metric_readiness_audit.md)
 25. [Faculty Identity](24_faculty_identity.md)
 26. [Faculty Appointment Observations](25_faculty_appointment_observations.md)
-27. [Architecture FAQ](ArchitectureFAQ.md)
+27. [Authoritative Faculty Roster Contract](26_authoritative_faculty_roster.md)
+28. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

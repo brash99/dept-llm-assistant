@@ -60,6 +60,18 @@ def test_governed_school_types_roles_and_hierarchy():
     assert "department_equivalent" not in luter.operational_roles
     assert len(luter.subordinate_unit_ids) == 2
     assert not luter.is_department_workforce_unit
+    assert luter.valid_analytical_rollup_unit
+    assert luter.formal_unit_type == "independent_school"
+
+    arts_college = registry.resolve("College of Arts and Humanities")
+    natural_college = registry.resolve("College of Natural and Behavioral Sciences")
+    social_college = registry.resolve("College of Social Sciences")
+    assert all(unit.formal_unit_type == "college" for unit in (
+        arts_college, natural_college, social_college,
+    ))
+    assert all(unit.valid_analytical_rollup_unit for unit in (
+        arts_college, natural_college, social_college,
+    ))
 
     arts = registry.resolve("School of the Arts")
     assert arts.formal_unit_type == "dependent_school"
@@ -223,18 +235,109 @@ def test_emeritus_is_preserved_resolved_and_excluded_from_active_workforce():
     )
 
 
-def test_common_words_and_competing_embedded_units_are_not_guessed():
+def test_common_words_are_not_guessed_and_historical_luter_is_not_ambiguous():
     registry = AcademicUnitRegistry.load()
     assert registry.resolve_published_label("Art").resolution_method == "unresolved"
-    ambiguous = registry.resolve_published_label(
+    historical = registry.resolve_published_label(
         "Accounting, Finance, Management & Marketing. B.B.A, University of Notre Dame;"
     )
-    assert ambiguous.resolution_method == "ambiguous"
-    assert ambiguous.unit is None
-    assert set(ambiguous.competing_unit_ids) == {
+    assert historical.unit_id == "academic_unit:department_luter_combined_historical"
+    assert historical.classification == "historical_unit"
+    assert historical.unit.deprecated
+    assert historical.unit.parent_unit_id == "academic_unit:luter_school_business"
+    assert historical.unit.successor_unit_ids == (
         "academic_unit:department_accounting_finance",
         "academic_unit:department_management_marketing",
+    )
+    assert historical.unit_id not in {
+        "academic_unit:department_accounting_finance",
+        "academic_unit:department_management_marketing",
+        "academic_unit:luter_school_business",
     }
+
+
+def test_governed_graduate_role_prefixes_preserve_role_and_program_identity():
+    registry = AcademicUnitRegistry.load()
+    expected = {
+        "Environmental Science": "academic_unit:graduate_program_environmental_science",
+        "Master of Financial Analysis": "academic_unit:graduate_program_master_financial_analysis",
+        "Physics and Computer Science": "academic_unit:graduate_program_physics_computer_science",
+        "Teacher Preparation": "academic_unit:graduate_program_teacher_preparation",
+    }
+    for label, unit_id in expected.items():
+        result = registry.resolve_published_label(f"Graduate Program Director - {label}")
+        assert result.unit_id == unit_id
+        assert result.role_title == "Graduate Program Director"
+        assert result.cleaned_label == label
+        assert result.resolution_method == "governed_role_prefix"
+        assert result.classification == "administrative_role_with_governed_program"
+        assert result.unit.formal_unit_type == "academic_program"
+        assert result.unit.valid_curriculum_ownership_unit
+        assert not result.unit.valid_faculty_home_unit
+        assert not result.unit.valid_conventional_denominator_unit
+    assert registry.resolve_published_label(
+        "Graduate Program Director - Environmental Science"
+    ).unit_id != "academic_unit:department_biology_chemistry_environmental_science"
+    assert registry.resolve_published_label(
+        "Graduate Program Director - Physics and Computer Science"
+    ).unit_id != "academic_unit:sec"
+
+
+def test_honors_and_graduate_studies_have_non_department_semantics():
+    registry = AcademicUnitRegistry.load()
+    honors = registry.resolve("Honors Program")
+    assert honors.formal_unit_type == "academic_program"
+    assert "university_wide_program" in honors.operational_roles
+    assert honors.valid_curriculum_ownership_unit
+    assert not honors.valid_faculty_home_unit
+    assert not honors.valid_conventional_denominator_unit
+    assert not honors.valid_analytical_rollup_unit
+    assert not honors.is_department_workforce_unit
+
+    graduate_studies = registry.resolve("Graduate Studies")
+    assert graduate_studies.formal_unit_type == "university_unit"
+    assert "academic_coordination" in graduate_studies.operational_roles
+    assert not graduate_studies.is_department_workforce_unit
+
+
+def test_historical_arts_and_biology_units_remain_distinct_from_current_units():
+    registry = AcademicUnitRegistry.load()
+    current_music = registry.resolve("Music, Theatre, and Dance")
+    for label in (
+        "Department of Music", "Department of Performing Arts",
+        "Department of Theater and Dance",
+    ):
+        historical = registry.resolve_published_label(label).unit
+        assert historical.deprecated
+        assert historical.unit_id != current_music.unit_id
+        assert historical.successor_unit_ids == (current_music.unit_id,)
+    current_bces = registry.resolve("Biology, Chemistry, and Environmental Science")
+    for label in (
+        "Biology, Organismal and Environmental",
+        "Department of Molecular Biology and Chemistry",
+        "Department of Organismal and Environmental Biology",
+    ):
+        historical = registry.resolve_published_label(label).unit
+        assert historical.deprecated
+        assert historical.unit_id != current_bces.unit_id
+        assert historical.successor_unit_ids == (current_bces.unit_id,)
+    # No dated local registry evidence establishes this plural form as current
+    # or historical, so it remains explicit rather than guessed.
+    assert registry.resolve_published_label("Fine Arts and Art History").unit is None
+    assert registry.resolve_published_label("Finance").unit is None
+
+
+def test_unresolved_emeritus_is_excluded_without_inventing_a_unit():
+    registry = AcademicUnitRegistry.load()
+    for label in (
+        "Education, Emerita", "Information Science, Emeritus",
+        "Leisure Studies and Physical Education, Emeritus",
+    ):
+        result = registry.resolve_published_label(label)
+        assert result.unit is None
+        assert result.classification == "excluded_emeritus"
+        assert not result.active_workforce_eligible
+        assert result.cleaned_label not in {"", label}
 
 
 def test_historical_pcse_is_distinct_from_current_sec_and_new_units_load():
@@ -275,3 +378,23 @@ def test_academic_unit_parent_hierarchy_rejects_cycles():
     )
     with pytest.raises(ValueError, match="contains a cycle"):
         AcademicUnitRegistry((left, right))
+
+
+def test_competing_embedded_units_remain_ambiguous_and_typos_are_not_fuzzy_matched():
+    source = AcademicUnitRegistry.load()
+    left = replace(
+        source.get("academic_unit:department_english"),
+        aliases=("Alpha Studies",),
+    )
+    right = replace(
+        source.get("academic_unit:department_history"),
+        aliases=("Beta Studies",),
+    )
+    registry = AcademicUnitRegistry((left, right))
+    ambiguous = registry.resolve_published_label(
+        "Administrative note for Alpha Studies and Beta Studies"
+    )
+    assert ambiguous.resolution_method == "ambiguous"
+    assert ambiguous.unit is None
+    assert set(ambiguous.competing_unit_ids) == {left.unit_id, right.unit_id}
+    assert registry.resolve_published_label("Alfa Studiez").unit is None

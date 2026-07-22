@@ -28,7 +28,8 @@ VALID_OPERATIONAL_ROLES = {
     "faculty_home_unit", "workforce_allocation_unit", "dean_level_unit",
     "parent_academic_unit", "budgetary_rollup_unit",
     "intermediate_academic_unit", "interdisciplinary", "service_subject",
-    "non_workforce_unit", "unresolved",
+    "non_workforce_unit", "academic_coordination", "curriculum_ownership_unit",
+    "university_wide_program", "unresolved",
 }
 
 
@@ -43,6 +44,9 @@ _CONTAMINATION = re.compile(
     r"ph\.?\s*(?:d|b)|ed\.?\s*d|j\.?\s*d)\b|\b(?:university|college)\b",
     re.IGNORECASE,
 )
+_GOVERNED_ROLE_PREFIX = re.compile(
+    r"^(Graduate Program Director)\s*-\s*(.+)$", re.IGNORECASE,
+)
 
 
 @dataclass(frozen=True)
@@ -56,6 +60,7 @@ class AcademicUnitResolution:
     exclusion_reason: str | None = None
     parser_contamination_detected: bool = False
     competing_unit_ids: Tuple[str, ...] = ()
+    role_title: str | None = None
 
     @property
     def resolved(self) -> bool:
@@ -111,6 +116,12 @@ class AcademicUnitDefinition:
     abbreviation: Optional[str] = None
     specialties: Tuple[str, ...] = ()
     deprecated: bool = False
+    successor_unit_ids: Tuple[str, ...] = ()
+    active_current_unit: bool = True
+    valid_curriculum_ownership_unit: bool = False
+    valid_faculty_home_unit: bool = False
+    valid_conventional_denominator_unit: bool = False
+    valid_analytical_rollup_unit: bool = False
 
     def to_entity(self) -> InstitutionalEntity:
         return InstitutionalEntity(
@@ -165,6 +176,11 @@ class AcademicUnitRegistry:
             unknown = set(unit.subordinate_unit_ids) - set(self._units)
             if unknown:
                 raise ValueError(f"Unknown subordinate units for {unit.unit_id}: {sorted(unknown)}")
+            unknown_successors = set(unit.successor_unit_ids) - set(self._units)
+            if unknown_successors:
+                raise ValueError(
+                    f"Unknown successor units for {unit.unit_id}: {sorted(unknown_successors)}"
+                )
         self._validate_acyclic()
         self._canonical = canonical
         self._aliases = aliases
@@ -196,19 +212,40 @@ class AcademicUnitRegistry:
                 original, original, None, "unresolved", "genuinely_unresolved",
                 eligible, exclusion,
             )
+        role_match = _GOVERNED_ROLE_PREFIX.fullmatch(original)
+        if role_match:
+            role_title = " ".join(role_match.group(1).split())
+            program_label = " ".join(role_match.group(2).split())
+            program = self._resolve_program_label(program_label)
+            if program:
+                return AcademicUnitResolution(
+                    original, program_label, program, "governed_role_prefix",
+                    "excluded_emeritus" if emeritus else
+                    "administrative_role_with_governed_program",
+                    eligible, exclusion, False, (), role_title,
+                )
+            return AcademicUnitResolution(
+                original, program_label, None, "unresolved_role_prefix",
+                "excluded_emeritus" if emeritus else "genuinely_unresolved",
+                eligible, exclusion, False, (), role_title,
+            )
         key = _normalize_label(original)
         if key in self._canonical:
             unit = self._units[self._canonical[key]]
             return AcademicUnitResolution(
                 original, original, unit, "canonical_exact",
-                "excluded_emeritus" if emeritus else "canonical_exact",
+                "excluded_emeritus" if emeritus else (
+                    "historical_unit" if unit.deprecated else "canonical_exact"
+                ),
                 eligible, exclusion,
             )
         if key in self._aliases:
             unit = self._units[self._aliases[key]]
             return AcademicUnitResolution(
                 original, original, unit, "governed_alias",
-                "excluded_emeritus" if emeritus else "governed_alias",
+                "excluded_emeritus" if emeritus else (
+                    "historical_unit" if unit.deprecated else "governed_alias"
+                ),
                 eligible, exclusion,
             )
         cleaned, contaminated = _clean_published_unit_label(original)
@@ -218,6 +255,7 @@ class AcademicUnitRegistry:
             return AcademicUnitResolution(
                 original, cleaned, unit, "cleaned_canonical",
                 "excluded_emeritus" if emeritus else (
+                    "historical_unit" if unit.deprecated else
                     "parser_contamination" if contaminated else "status_qualified"
                 ), eligible, exclusion, contaminated,
             )
@@ -226,6 +264,7 @@ class AcademicUnitRegistry:
             return AcademicUnitResolution(
                 original, cleaned, unit, "cleaned_governed_alias",
                 "excluded_emeritus" if emeritus else (
+                    "historical_unit" if unit.deprecated else
                     "parser_contamination" if contaminated else "status_qualified"
                 ), eligible, exclusion, contaminated,
             )
@@ -235,18 +274,36 @@ class AcademicUnitRegistry:
             return AcademicUnitResolution(
                 original, cleaned, unit, "embedded_governed_unit",
                 "excluded_emeritus" if emeritus else (
+                    "historical_unit" if unit.deprecated else
                     "parser_contamination" if contaminated else "embedded_governed_unit"
                 ), eligible, exclusion, contaminated,
             )
         if len(candidates) > 1:
             return AcademicUnitResolution(
-                original, cleaned, None, "ambiguous", "ambiguous",
+                original, cleaned, None, "ambiguous",
+                "excluded_emeritus" if emeritus else "ambiguous",
                 eligible, exclusion, contaminated, tuple(candidates),
             )
         return AcademicUnitResolution(
-            original, cleaned, None, "unresolved", "genuinely_unresolved",
+            original, cleaned, None, "unresolved",
+            "excluded_emeritus" if emeritus else "genuinely_unresolved",
             eligible, exclusion, contaminated,
         )
+
+    def _resolve_program_label(self, label: str) -> AcademicUnitDefinition | None:
+        key = _normalize_label(label)
+        candidates = {
+            unit.unit_id
+            for unit in self._units.values()
+            if unit.formal_unit_type in {"academic_program", "interdisciplinary_program"}
+            and key in {
+                _normalize_label(unit.published_name),
+                *(_normalize_label(alias) for alias in unit.aliases),
+            }
+        }
+        if len(candidates) != 1:
+            return None
+        return self._units[next(iter(candidates))]
 
     def _embedded_candidates(self, normalized_label: str) -> list[str]:
         matches: list[tuple[int, str]] = []
@@ -332,6 +389,27 @@ def _unit_from_dict(value: Mapping[str, Any]) -> AcademicUnitDefinition:
         abbreviation=value.get("abbreviation"),
         specialties=tuple(map(str, value.get("specialties") or ())),
         deprecated=bool(value.get("deprecated", False)),
+        successor_unit_ids=tuple(map(str, value.get("successor_unit_ids") or ())),
+        active_current_unit=bool(value.get("active_current_unit", not value.get("deprecated", False))),
+        valid_curriculum_ownership_unit=bool(value.get(
+            "valid_curriculum_ownership_unit",
+            value.get("formal_unit_type") in {"department", "academic_program", "interdisciplinary_program"},
+        )),
+        valid_faculty_home_unit=bool(value.get(
+            "valid_faculty_home_unit",
+            "faculty_home_unit" in (value.get("operational_roles") or ()),
+        )),
+        valid_conventional_denominator_unit=bool(value.get(
+            "valid_conventional_denominator_unit",
+            not value.get("deprecated", False) and (
+                value.get("formal_unit_type") == "department"
+                or "department_equivalent" in (value.get("operational_roles") or ())
+            ),
+        )),
+        valid_analytical_rollup_unit=bool(value.get(
+            "valid_analytical_rollup_unit",
+            "college_equivalent" in (value.get("operational_roles") or ()),
+        )),
     )
 
 

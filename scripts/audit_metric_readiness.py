@@ -43,25 +43,33 @@ def _markdown(report: dict, integrity: dict) -> str:
         f"- Normalized objects inspected: {report['provenance']['normalized_object_count']}",
         f"- Invalid JSON: {integrity['invalid_json_count']}",
         f"- Governed academic units: {units['governed_unit_count']}",
+        f"- Current college-level units: {len(units['unit_semantic_categories']['current_college_level_units'])}",
+        f"- Historical departments: {len(units['unit_semantic_categories']['historical_departments'])}",
+        f"- Program-level units: {len(units['unit_semantic_categories']['program_level_units'])}",
         f"- Referenced but not governed unit IDs: {len(units['referenced_but_not_governed'])}",
         f"- Unresolved published unit labels: {len(units['unresolved_published_unit_labels'])}",
         f"- Published unit-label observations: {resolution['total_published_unit_label_observations']}",
         f"- Workforce mapping before cleaning: {resolution['workforce_mapping_coverage_before_percent']}%",
         f"- Workforce mapping after cleaning: {resolution['workforce_mapping_coverage_after_percent']}%",
         f"- Emeritus/emerita observations excluded: {eligibility['emeritus_emerita_observations_excluded']}",
+        f"- Excluded emeritus with resolved underlying unit: {resolution['excluded_emeritus_with_resolved_underlying_unit']}",
+        f"- Excluded emeritus with unresolved underlying unit: {resolution['excluded_emeritus_with_unresolved_underlying_unit']}",
         f"- Schedule observations: {sch['schedule_observation_count']}",
         f"- SCH readiness: {sch['readiness_status']}",
         "",
         "## Institutional units",
         "",
-        "| Unit | Formal type | Parent | Operational roles |",
-        "|---|---|---|---|",
+        "| Unit | Formal type | Parent | Operational roles | Eligibility |",
+        "|---|---|---|---|---|",
     ]
     for unit in units["governed_academic_units"]:
         lines.append(
             f"| {unit['published_name']} (`{unit['unit_id']}`) | "
             f"{unit['formal_unit_type']} | {unit['parent_unit_id'] or ''} | "
-            f"{', '.join(unit['operational_roles'])} |"
+            f"{', '.join(unit['operational_roles'])} | "
+            f"current={unit['active_current_unit']}; curriculum={unit['valid_curriculum_ownership_unit']}; "
+            f"faculty-home={unit['valid_faculty_home_unit']}; denominator={unit['valid_conventional_denominator_unit']}; "
+            f"rollup={unit['valid_analytical_rollup_unit']} |"
         )
     lines += ["", "## Published unit-label resolution", "", "| Method | Observations |", "|---|---:|"]
     for method, count in resolution["resolution_method_counts"].items():
@@ -132,6 +140,8 @@ def main(argv=None) -> int:
             "workforce_mapping_coverage_before_percent": report["institutional_units"]["published_label_resolution"]["workforce_mapping_coverage_before_percent"],
             "workforce_mapping_coverage_after_percent": report["institutional_units"]["published_label_resolution"]["workforce_mapping_coverage_after_percent"],
             "emeritus_emerita_excluded": report["faculty_observation"]["active_workforce_eligibility"]["emeritus_emerita_observations_excluded"],
+            "emeritus_underlying_resolved": report["institutional_units"]["published_label_resolution"]["excluded_emeritus_with_resolved_underlying_unit"],
+            "emeritus_underlying_unresolved": report["institutional_units"]["published_label_resolution"]["excluded_emeritus_with_unresolved_underlying_unit"],
             "schedule_observations": report["sch_readiness"]["schedule_observation_count"],
             "sch_readiness": report["sch_readiness"]["readiness_status"],
             "invalid_json": integrity["invalid_json_count"],

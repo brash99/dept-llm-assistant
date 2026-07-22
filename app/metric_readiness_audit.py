@@ -26,7 +26,7 @@ from app.subject_ownership import SubjectOwnershipRegistry
 
 
 AUDIT_ALGORITHM = "iso_metric_readiness_audit"
-AUDIT_VERSION = "1.1"
+AUDIT_VERSION = "1.2"
 
 
 FACULTY_CAPABILITIES: Mapping[str, Mapping[str, str]] = {
@@ -278,10 +278,11 @@ class MetricReadinessAuditService:
                         "cleaned_label": resolution.cleaned_label,
                         "parser_contamination_detected": resolution.parser_contamination_detected,
                         "competing_unit_ids": list(resolution.competing_unit_ids),
+                        "role_title": resolution.role_title,
                     })
                     if resolution.unit:
                         references[resolution.unit.unit_id].add(f"normalized:{object_type}:{field}")
-                    else:
+                    elif resolution.classification != "excluded_emeritus":
                         unresolved_labels[label] += 1
         governed = []
         for unit in sorted(units.values(), key=lambda item: item.unit_id):
@@ -295,6 +296,12 @@ class MetricReadinessAuditService:
                 "abbreviation": unit.abbreviation,
                 "operational_roles": list(unit.operational_roles),
                 "deprecated": unit.deprecated,
+                "successor_unit_ids": list(unit.successor_unit_ids),
+                "active_current_unit": unit.active_current_unit,
+                "valid_curriculum_ownership_unit": unit.valid_curriculum_ownership_unit,
+                "valid_faculty_home_unit": unit.valid_faculty_home_unit,
+                "valid_conventional_denominator_unit": unit.valid_conventional_denominator_unit,
+                "valid_analytical_rollup_unit": unit.valid_analytical_rollup_unit,
                 "effective_start": None,
                 "effective_end": None,
             })
@@ -305,16 +312,18 @@ class MetricReadinessAuditService:
         methods = Counter(item["resolution_method"] for item in label_occurrences)
         classifications = Counter(item["classification"] for item in label_occurrences)
         exact_workforce = sum(
-            bool(item["exact_unit_id"] and units[item["exact_unit_id"]].is_department_workforce_unit)
+            bool(item["active_workforce_eligible"] and item["exact_unit_id"] and units[item["exact_unit_id"]].is_department_workforce_unit)
             for item in label_occurrences
         )
         resolved_workforce = sum(
-            bool(item["resolved_unit_id"] and units[item["resolved_unit_id"]].is_department_workforce_unit)
+            bool(item["active_workforce_eligible"] and item["resolved_unit_id"] and units[item["resolved_unit_id"]].is_department_workforce_unit)
             for item in label_occurrences
         )
         unresolved_details: dict[str, dict[str, Any]] = {}
         for item in label_occurrences:
             if item["resolution_method"] not in {"unresolved", "ambiguous"}:
+                continue
+            if item["classification"] == "excluded_emeritus":
                 continue
             detail = unresolved_details.setdefault(item["published_label"], {
                 "published_label": item["published_label"], "observation_count": 0,
@@ -337,11 +346,57 @@ class MetricReadinessAuditService:
             for _, detail in sorted(unresolved_details.items())
         ]
         total_labels = len(label_occurrences)
+        active_workforce_labels = sum(
+            item["active_workforce_eligible"] for item in label_occurrences
+        )
+        emeritus_occurrences = [
+            item for item in label_occurrences
+            if item["classification"] == "excluded_emeritus"
+        ]
+        historical_units = [unit for unit in units.values() if unit.deprecated]
+        program_units = [
+            unit for unit in units.values()
+            if unit.formal_unit_type in {"academic_program", "interdisciplinary_program"}
+        ]
+        college_level = [
+            unit for unit in units.values()
+            if unit.active_current_unit and (
+                unit.formal_unit_type == "college"
+                or "college_equivalent" in unit.operational_roles
+            )
+        ]
         return {
             "governed_academic_units": governed,
             "governed_unit_count": len(governed),
             "governed_counts_by_formal_type": dict(sorted(formal_types.items())),
             "governed_counts_by_operational_role": dict(sorted(roles.items())),
+            "unit_semantic_categories": {
+                "current_college_level_units": sorted(unit.unit_id for unit in college_level),
+                "current_departments": sorted(
+                    unit.unit_id for unit in units.values()
+                    if unit.formal_unit_type == "department" and unit.active_current_unit
+                ),
+                "historical_departments": sorted(
+                    unit.unit_id for unit in historical_units
+                    if unit.formal_unit_type == "department"
+                ),
+                "program_level_units": sorted(unit.unit_id for unit in program_units),
+                "university_wide_programs": sorted(
+                    unit.unit_id for unit in program_units
+                    if "university_wide_program" in unit.operational_roles
+                ),
+                "administrative_coordination_units": sorted(
+                    unit.unit_id for unit in units.values()
+                    if "academic_coordination" in unit.operational_roles
+                ),
+            },
+            "unit_eligibility_counts": {
+                "active_current_unit": sum(unit.active_current_unit for unit in units.values()),
+                "valid_curriculum_ownership_unit": sum(unit.valid_curriculum_ownership_unit for unit in units.values()),
+                "valid_faculty_home_unit": sum(unit.valid_faculty_home_unit for unit in units.values()),
+                "valid_conventional_denominator_unit": sum(unit.valid_conventional_denominator_unit for unit in units.values()),
+                "valid_analytical_rollup_unit": sum(unit.valid_analytical_rollup_unit for unit in units.values()),
+            },
             "reference_sources_by_unit": {
                 unit_id: sorted(sources) for unit_id, sources in sorted(references.items())
             },
@@ -362,8 +417,19 @@ class MetricReadinessAuditService:
                 "governed_alias_resolutions": methods["governed_alias"],
                 "cleaned_resolutions": methods["cleaned_canonical"] + methods["cleaned_governed_alias"],
                 "embedded_resolutions": methods["embedded_governed_unit"],
+                "role_prefix_resolutions": methods["governed_role_prefix"],
+                "historical_unit_resolutions": classifications["historical_unit"],
                 "emeritus_emerita_exclusions": classifications["excluded_emeritus"],
-                "parser_contamination_cleaned": classifications["parser_contamination"],
+                "excluded_emeritus_with_resolved_underlying_unit": sum(
+                    item["resolved_unit_id"] is not None for item in emeritus_occurrences
+                ),
+                "excluded_emeritus_with_unresolved_underlying_unit": sum(
+                    item["resolved_unit_id"] is None for item in emeritus_occurrences
+                ),
+                "parser_contamination_cleaned": sum(
+                    item["parser_contamination_detected"] and item["resolved_unit_id"] is not None
+                    for item in label_occurrences
+                ),
                 "genuinely_unresolved_unique_labels": sum(
                     detail["classification"] == "genuinely_unresolved"
                     for detail in unresolved_inventory
@@ -376,8 +442,9 @@ class MetricReadinessAuditService:
                 "ambiguous_match_count": methods["ambiguous"],
                 "workforce_unit_mapped_before_cleaning": exact_workforce,
                 "workforce_unit_mapped_after_cleaning": resolved_workforce,
-                "workforce_mapping_coverage_before_percent": _percent(exact_workforce, total_labels),
-                "workforce_mapping_coverage_after_percent": _percent(resolved_workforce, total_labels),
+                "active_workforce_label_observation_count": active_workforce_labels,
+                "workforce_mapping_coverage_before_percent": _percent(exact_workforce, active_workforce_labels),
+                "workforce_mapping_coverage_after_percent": _percent(resolved_workforce, active_workforce_labels),
             },
             "alias_relationships": [
                 {"alias": alias, "unit_id": unit.unit_id}
@@ -394,7 +461,7 @@ class MetricReadinessAuditService:
             ],
             "temporal_model_limitations": [
                 "Institutional-unit definitions do not currently carry effective start or end dates.",
-                "Aliases are current governed labels; the registry has no typed historical-name relationship.",
+                "Successor references preserve reviewed lineage but do not supply missing effective dates.",
             ],
             "reference_consumer_inventory": {
                 "schedule_mapping": [

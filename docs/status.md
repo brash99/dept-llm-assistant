@@ -95,6 +95,16 @@ Status as of July 2026. This file describes the current codebase; research and s
   remains a distinct deprecated historical unit rather than a current SEC
   alias. Explicit emeritus/emerita evidence is preserved but deterministically
   excluded from active-workforce eligibility and denominator readiness.
+- Institutional-unit governance distinguishes CNU's three formal colleges from
+  Luter's independent-school/college-equivalent role; preserves reviewed former
+  Luter, biology, arts, and PCSE departments as deprecated historical units;
+  and models four graduate programs, Honors, and Graduate Studies without
+  treating program administration as faculty-home membership. Explicit
+  curriculum-owner, faculty-home, denominator, and analytical-rollup dimensions
+  prevent program instruction from becoming fictional department headcount.
+  Role-prefixed graduate-program labels resolve deterministically, while
+  unresolved emeritus labels remain excluded rather than inflating active
+  workforce mapping gaps.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

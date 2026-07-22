@@ -124,18 +124,33 @@ def test_audit_reports_resolution_methods_contamination_ambiguity_and_exclusions
         {"id": "f4", "object_type": "faculty_observation", "published_department": "Accounting, Emerita", "published_titles": ["Professor Emerita"]},
         {"id": "f5", "object_type": "faculty_observation", "published_department": "Accounting, Finance, Management & Marketing. B.B.A, University of Notre Dame;", "published_titles": ["Professor"]},
         {"id": "f6", "object_type": "faculty_observation", "published_department": "Unknown Unit", "published_titles": ["Professor"]},
+        {"id": "f7", "object_type": "faculty_observation", "published_department": "Education, Emerita", "published_titles": ["Professor Emerita"]},
+        {"id": "f8", "object_type": "faculty_observation", "published_department": "Graduate Program Director - Environmental Science", "published_titles": ["Professor"]},
     )
     first = MetricReadinessAuditService().audit(values)
     second = MetricReadinessAuditService().audit(reversed(values))
     resolution = first.institutional_units["published_label_resolution"]
     assert resolution["canonical_exact_resolutions"] == 1
     assert resolution["governed_alias_resolutions"] == 1
-    assert resolution["cleaned_resolutions"] == 2
-    assert resolution["parser_contamination_cleaned"] == 1
-    assert resolution["emeritus_emerita_exclusions"] == 1
-    assert resolution["ambiguous_match_count"] == 1
+    assert resolution["cleaned_resolutions"] == 3
+    assert resolution["parser_contamination_cleaned"] == 2
+    assert resolution["emeritus_emerita_exclusions"] == 2
+    assert resolution["ambiguous_match_count"] == 0
+    assert resolution["historical_unit_resolutions"] == 1
+    assert resolution["role_prefix_resolutions"] == 1
     assert resolution["genuinely_unresolved_unique_labels"] == 1
+    assert resolution["excluded_emeritus_with_resolved_underlying_unit"] == 1
+    assert resolution["excluded_emeritus_with_unresolved_underlying_unit"] == 1
     workforce = first.faculty_observation["active_workforce_eligibility"]
-    assert workforce["emeritus_emerita_observations_detected"] == 1
-    assert workforce["emeritus_emerita_observations_excluded"] == 1
+    assert workforce["emeritus_emerita_observations_detected"] == 2
+    assert workforce["emeritus_emerita_observations_excluded"] == 2
+    unresolved = {
+        item["published_label"]
+        for item in first.institutional_units["unresolved_published_unit_labels"]
+    }
+    assert "Education, Emerita" not in unresolved
+    assert "Unknown Unit" in unresolved
+    categories = first.institutional_units["unit_semantic_categories"]
+    assert "academic_unit:honors_program" in categories["university_wide_programs"]
+    assert "academic_unit:graduate_studies" in categories["administrative_coordination_units"]
     assert first.deterministic_fingerprint == second.deterministic_fingerprint

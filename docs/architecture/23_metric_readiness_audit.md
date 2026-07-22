@@ -60,9 +60,10 @@ governed faculty denominator.
 The deterministic unit audit reports governed units, parent/subordinate
 relationships, aliases, references from subject ownership and normalized
 Semantic Identity, unknown unit IDs, unresolved published labels, and governed
-units without current references. The current unit registry does not model
-effective dates or typed historical-name relationships, so historical
-reorganizations remain explicit Evidence Fitness limitations.
+units without current references. The registry preserves distinct deprecated
+historical units and explicit successor references where reviewed evidence
+supports them. Effective ranges remain unset rather than guessed when governed
+dates are unavailable.
 
 Published unit labels are resolved with bounded deterministic precedence:
 canonical name, governed alias, cleaned canonical/alias, then a boundary-aware
@@ -71,16 +72,32 @@ uses unrestricted fuzzy similarity. Degree history, institutions, and prose
 after an identifiable unit phrase are parser contamination; they do not become
 ontology aliases.
 
-The current registry includes the departments required by governed semantic
-scopes. The former Department of Physics, Computer Science and Engineering is
-a distinct deprecated historical unit, not an alias for current SEC. Parent
-relationships remain unset where repository evidence does not establish them.
+The current college-level structure distinguishes the three formal colleges
+from the Joseph W. Luter, III School of Business: Luter remains formally an
+independent school while carrying a college-equivalent analytical rollup role.
+Its former combined Accounting, Finance, Management and Marketing department
+is a distinct deprecated historical unit, not either current Luter department.
+Historical biology and arts departments likewise remain distinct from their
+current successors. Parent relationships remain unset where reviewed evidence
+does not establish them.
+
+Four named graduate programs are governed program-level units. A bounded
+`Graduate Program Director -` cleaner preserves the role title and resolves
+the remaining text to the program; it never turns the administrative role into
+a department. Honors is a university-wide curriculum-owning program, not a
+faculty-home or conventional denominator unit. Graduate Studies is an academic
+coordination unit. Curricular ownership, faculty-home membership, conventional
+faculty denominators, and analytical rollups are separate eligibility facts.
+`Finance` and `Fine Arts and Art History` remain unresolved because inspected
+Mac-accessible evidence does not establish one deterministic interpretation.
 
 ## Emeritus and emerita
 
 Explicit published `emeritus` or `emerita` status is preserved in its source
 observation and produces a derived `active_workforce_eligible = false`
-assessment. Such observations remain available for historical retrieval, but
+assessment. This exclusion remains primary even when the underlying historical
+unit phrase is unresolved, so those records do not inflate active-workforce
+mapping failures. Such observations remain available for historical retrieval, but
 are excluded by default from active faculty populations, instructional faculty
 denominators, workforce capacity, teaching-load analysis, current staffing,
 and scenario inputs. The rule is based only on explicit structured published

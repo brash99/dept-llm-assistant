@@ -4,6 +4,7 @@ from app.retrieval import (
     retrieve,
     build_grouped_context,
 )
+from app.reasoning.query import constitutional_quota_for_query
 
 
 def answer_question(
@@ -35,6 +36,9 @@ def answer_question(
     trace, profile)``. This mirrors the Decision Brief reasoning entry point.
     """
     query = query.strip()
+    constitutional_top_k = constitutional_quota_for_query(
+        query, constitutional_top_k
+    )
     if decision_type is None:
         from app.observatory.evidence_fitness import EvidenceFitnessService
 

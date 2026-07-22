@@ -34,7 +34,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 17. [Classification Policy and Evaluation](16_classification_policy_and_evaluation.md)
 18. [Semantic Corpus Population](17_semantic_corpus_population.md)
 19. [Semantic Document Routing and High-Value Classification](18_semantic_document_routing.md)
-20. [Architecture FAQ](ArchitectureFAQ.md)
+20. [Deterministic Schedule Analysis](19_schedule_analysis_service.md)
+21. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

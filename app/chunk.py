@@ -7,6 +7,7 @@ import json
 from collections import Counter
 
 from app.knowledge import load_knowledge_object
+from app.source_presentation import repository_relative_path
 
 
 CONSTITUTIONAL_METADATA_FIELDS = (
@@ -135,7 +136,9 @@ def _document_metadata(document) -> Dict[str, Any]:
 
     metadata = {
         "document_title": document.title,
-        "relative_path": _document_field(document, "relative_path"),
+        "relative_path": repository_relative_path(
+            _document_field(document, "relative_path")
+        ),
         "parser": _document_field(document, "parser"),
         "file_type": _document_field(document, "file_type"),
     }
@@ -302,6 +305,7 @@ def _schedule_metadata(observation) -> Dict[str, Any]:
         _mapping_value(provenance, "source_path")
         or _mapping_value(source, "path")
     )
+    source_path = repository_relative_path(source_path)
     source_type = _mapping_value(source, "kind")
     instructor_type = _object_value(observation, "instructor_type", {}) or {}
     resolution = (
@@ -470,10 +474,12 @@ def _faculty_metadata(observation) -> Dict[str, Any]:
             _mapping_value(provenance, "source_type")
             or _mapping_value(source, "kind")
         ),
-        "relative_path": _object_value(
-            observation, "relative_source_path"
+        "relative_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
         ),
-        "source_path": _object_value(observation, "relative_source_path"),
+        "source_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
         "source_sha256": (
             _mapping_value(provenance, "source_sha256")
             or _object_value(observation, "raw_acquisition_hash")
@@ -614,8 +620,12 @@ def _catalog_metadata(observation) -> Dict[str, Any]:
         "academic_unit": academic_unit,
         "page_numbers": list(getattr(observation, "page_numbers", ()) or ()),
         "source_type": _mapping_value(provenance, "source_type"),
-        "relative_path": _object_value(observation, "relative_source_path"),
-        "source_path": _object_value(observation, "relative_source_path"),
+        "relative_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
+        "source_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
         "source_sha256": _object_value(observation, "document_hash"),
         "adapter": _mapping_value(provenance, "adapter"),
         "adapter_version": _mapping_value(provenance, "adapter_version"),
@@ -698,11 +708,15 @@ def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
 
         citation = {
             "title": document.title,
-            "relative_path": _document_field(document, "relative_path"),
-            "source_path": _document_field(
-                document,
-                "source_path",
-                _document_field(document, "path"),
+            "relative_path": repository_relative_path(
+                _document_field(document, "relative_path")
+            ),
+            "source_path": repository_relative_path(
+                _document_field(
+                    document,
+                    "source_path",
+                    _document_field(document, "path"),
+                )
             ),
             "file_type": _document_field(document, "file_type"),
             "parser": _document_field(document, "parser"),

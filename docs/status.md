@@ -37,6 +37,14 @@ Status as of July 2026. This file describes the current codebase; research and s
 
 ### Reasoning Layer
 
+- Deterministic schedule analysis operates directly over normalized schedule
+  Knowledge Objects for distinct-instructor and course-offering counts by term
+  and normalized Instructor Type. It preserves unresolved, repaired, unknown,
+  and missing-status categories and produces provenance-bearing fingerprints.
+- Deterministic execution typing and routing distinguish selective retrieval,
+  structured aggregation, comparison, trend analysis, scenario modeling, and
+  unsupported requests. Descriptive schedule questions no longer receive an
+  automatic constitutional retrieval quota.
 - Grounded question answering through a configured OpenAI-compatible local endpoint.
 - Governed Decision Brief prompt with stable empirical/constitutional citations, evidence-role serialization, and self-study claim-safety instructions.
 - Decision Brief Dashboard V2 with deterministic readiness, observatory, workforce framework, evidence map, and participation panels.

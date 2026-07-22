@@ -4,6 +4,7 @@ from typing import Dict, List, Optional
 from openai import OpenAI
 
 from app.retrieval import retrieve
+from app.reasoning.query import constitutional_quota_for_query
 from app.vector_index import RetrievalResult
 from app.observatory.metrics import ObservatoryAssessment, build_observatory_assessment
 from app.observatory.evidence_fitness import EvidenceFitnessService
@@ -75,6 +76,9 @@ def generate_decision_brief(
     scope until explicit scenario services and adequate evidence exist.
     """
     question = question.strip()
+    constitutional_top_k = constitutional_quota_for_query(
+        question, constitutional_top_k
+    )
     if decision_type is None:
         from app.observatory.evidence_fitness import EvidenceFitnessService
 

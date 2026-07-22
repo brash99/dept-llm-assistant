@@ -80,6 +80,14 @@ Status as of July 2026. This file describes the current codebase; research and s
   ENVS remains distinct from EVST. Prefix reporting now separates source-set
   differences from incomplete institutional mapping and genuine parser or
   catalog-structure limitations.
+- Deterministic institutional metric-readiness auditing now inventories
+  governed and referenced academic units, documents the exact capabilities of
+  directory/catalog/roster/schedule faculty evidence, measures SCH input
+  coverage, and reports denominator blockers. SCH itself is not implemented.
+  Current contracts lack governed cross-source faculty identity,
+  effective-dated appointment category/FTE, tenure-line status, and approved
+  policies for cross-listing, cancellation, labs, variable credit, independent
+  study, team teaching, and reporting-period definitions.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

@@ -683,19 +683,19 @@ def load_normalized_objects(root: str | Path) -> tuple[tuple[dict[str, Any], ...
 def _denominator_readiness() -> dict[str, Any]:
     return {
         "sch_per_faculty": {
-            "status": "blocked_by_absent_governed_person_identity_and_population_definition",
-            "available_evidence": "Directory and catalog observations provide names and unit listings.",
-            "missing_evidence": ["Cross-source person identity", "governed active population", "effective appointments"],
+            "status": "blocked_by_absent_population_definition_and_effective_appointments",
+            "available_evidence": "Deterministic cross-source identity auditing links supported name observations without inferring appointments.",
+            "missing_evidence": ["governed active population", "effective appointments"],
         },
         "sch_per_instructional_faculty": {
             "status": "blocked_by_absent_instructional_appointment_observer",
             "available_evidence": "Schedules show section assignments by published instructor name.",
-            "missing_evidence": ["Governed instructional status", "cross-source person identity"],
+            "missing_evidence": ["Governed instructional status", "effective appointment evidence"],
         },
         "sch_per_full_time_faculty": {
             "status": "blocked_by_absent_employment_status_observer",
             "available_evidence": "Section-scoped Instructor Type exists but is not an employment assertion.",
-            "missing_evidence": ["Effective-dated employee category", "cross-source person identity"],
+            "missing_evidence": ["Effective-dated employee category"],
         },
         "sch_per_teaching_fte": {
             "status": "blocked_by_absent_appointment_and_teaching_fte",
@@ -705,12 +705,12 @@ def _denominator_readiness() -> dict[str, Any]:
         "sch_per_tenure_line_faculty": {
             "status": "blocked_by_absent_tenure_line_observer",
             "available_evidence": "Published titles are not governed tenure-line status.",
-            "missing_evidence": ["Tenure-line category", "effective dates", "cross-source person identity"],
+            "missing_evidence": ["Tenure-line category", "effective dates"],
         },
         "sch_per_active_instructor": {
-            "status": "partially_implemented_name_based_proxy_only",
-            "available_evidence": "Schedules support term-scoped distinct published instructor-name counts.",
-            "missing_evidence": ["Governed person resolution", "team-teaching structure", "missing/ambiguous instructor policy"],
+            "status": "partially_implemented_identity_resolution_without_population_policy",
+            "available_evidence": "Schedules support term-scoped assignments and the identity service reports deterministic supported links and ambiguities.",
+            "missing_evidence": ["team-teaching structure", "missing/ambiguous instructor policy", "active population policy"],
         },
     }
 
@@ -725,7 +725,7 @@ def _backlog() -> dict[str, tuple[str, ...]]:
         "needed_before_quentin_milestone": (
             "Implement the governed SCH aggregation service after policy approval.",
             "Acquire an effective-dated faculty appointment roster with stable person ID, home unit, employment category, instructional status, and appointment FTE.",
-            "Implement governed cross-source faculty identity resolution and Evidence Fitness reporting.",
+            "Validate governed faculty identity coverage against production observations before appointment modeling.",
         ),
         "useful_later": (
             "Add tenure-line and administrative-assignment history when authorized.",
@@ -733,7 +733,7 @@ def _backlog() -> dict[str, tuple[str, ...]]:
         ),
         "architectural_debt": (
             "Institutional-unit registry lacks effective dates and typed historical aliases.",
-            "Faculty directory, catalog, roster, and schedule observations lack a shared governed person identity.",
+            "Most faculty sources lack stable shared institutional person identifiers, so bounded name evidence still leaves explicit ambiguity.",
         ),
         "nice_to_have": (
             "Add compact coverage dashboards after metric contracts stabilize.",

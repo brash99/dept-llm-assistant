@@ -39,7 +39,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 22. [Catalog-Derived Subject-Ownership Evidence](21_catalog_subject_ownership_evidence.md)
 23. [Semantic Discrepancy Analysis](22_semantic_discrepancy_analysis.md)
 24. [Institutional Metric Readiness Audit](23_metric_readiness_audit.md)
-24. [Architecture FAQ](ArchitectureFAQ.md)
+25. [Faculty Identity](24_faculty_identity.md)
+26. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

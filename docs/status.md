@@ -84,10 +84,18 @@ Status as of July 2026. This file describes the current codebase; research and s
   governed and referenced academic units, documents the exact capabilities of
   directory/catalog/roster/schedule faculty evidence, measures SCH input
   coverage, and reports denominator blockers. SCH itself is not implemented.
-  Current contracts lack governed cross-source faculty identity,
-  effective-dated appointment category/FTE, tenure-line status, and approved
+  Deterministic cross-source faculty identity is now available, while current
+  contracts still lack effective-dated appointment category/FTE, tenure-line status, and approved
   policies for cross-listing, cancellation, labs, variable credit, independent
   study, team teaching, and reporting-period definitions.
+- The foundational Faculty Identity layer audits directory, catalog-faculty,
+  department-roster, and schedule-instructor observations without changing the
+  source Knowledge Objects. It links exact identifiers and names, reviewed
+  aliases, compatible middle-name forms, and uniquely resolvable initials;
+  uncertain matches remain separate. Identity objects preserve every observed
+  form, provenance, confidence, ambiguity, and deterministic fingerprints while
+  making no appointment, employment, faculty-home, tenure, FTE,
+  administrative-role, or workload claim.
 - Governed academic-unit normalization now resolves canonical names, explicit
   aliases, status-qualified labels, and bounded contaminated labels while
   rejecting ambiguous or common-word matches. Missing semantic-scope

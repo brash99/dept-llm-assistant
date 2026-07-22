@@ -44,8 +44,10 @@ ISO currently has four complementary faculty-related evidence families:
 - term- and section-scoped schedule instructor assignments.
 
 They provide published names, some unit labels and titles, catalog appointment
-years, snapshot/catalog temporal scope, and teaching assignments. They do not
-provide a shared governed person ID, effective-dated appointment status,
+years, snapshot/catalog temporal scope, and teaching assignments. The Faculty
+Identity service can connect supported observations while reporting ambiguity,
+but most sources still do not provide a shared authoritative person ID. They do
+not provide effective-dated appointment status,
 appointment FTE, teaching FTE, tenure-line status, or a reliable official
 employment history. Schedule `Instructor Type` remains a source assertion about
 one section; it is not a timeless faculty-employment fact.
@@ -53,7 +55,9 @@ one section; it is not a timeless faculty-employment fact.
 Consequently, SCH per teaching FTE, full-time faculty, instructional faculty,
 or tenure-line faculty is blocked. A term-scoped distinct published-instructor
 count is available as a name-based analytical proxy, but it is not yet a
-governed faculty denominator.
+governed faculty denominator. Identity establishes who; a later appointment
+observer must establish effective institutional relationships and population
+eligibility.
 
 ## Institutional-unit limitations
 

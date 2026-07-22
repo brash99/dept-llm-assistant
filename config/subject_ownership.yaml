@@ -74,3 +74,190 @@ subjects:
       historical cross-disciplinary SEC prefix. Its observations belong to SEC
       and do not establish a Department of Physics and Computer Science.
     notes: No catalog citation is asserted; evidence is explicitly institutional-expert review.
+
+  # Operational scheduling prefixes publish instrument- and activity-specific
+  # Music instruction. MUSC remains the catalog-visible curriculum family.
+  - &music_schedule_alias
+    record_id: cnu.subject.basn.music_schedule_alias.v1
+    subject_code: BASN
+    display_name: Bassoon
+    canonical_subject_code: MUSC
+    catalog_visible_subject_code: MUSC
+    owning_academic_unit_id: academic_unit:department_music_theatre_dance
+    analytical_academic_unit_id: academic_unit:department_music_theatre_dance
+    relationship_type: operational_schedule_alias
+    mapping_status: mapped
+    mapping_method: administrative_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: institutional_review:music_operational_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: >-
+          This operational scheduling prefix identifies Music instruction owned
+          by the Department of Music, Theatre, and Dance and represented in the
+          catalog under the broader MUSC curriculum.
+    rationale: >-
+      Preserve the operational prefix as schedule evidence while assigning its
+      workforce observations to Music, Theatre, and Dance; the prefix does not
+      establish a separate department or catalog subject family.
+    notes: Governed operational alias; no independent catalog section is required.
+
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.bass.music_schedule_alias.v1
+    subject_code: BASS
+    display_name: Bass
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.btmg.music_schedule_alias.v1
+    subject_code: BTMG
+    display_name: Music Operational Instruction (BTMG)
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.cell.music_schedule_alias.v1
+    subject_code: CELL
+    display_name: Cello
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.clar.music_schedule_alias.v1
+    subject_code: CLAR
+    display_name: Clarinet
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.comp.music_schedule_alias.v1
+    subject_code: COMP
+    display_name: Composition
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.cond.music_schedule_alias.v1
+    subject_code: COND
+    display_name: Conducting
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.euph.music_schedule_alias.v1
+    subject_code: EUPH
+    display_name: Euphonium
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.flut.music_schedule_alias.v1
+    subject_code: FLUT
+    display_name: Flute
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.guit.music_schedule_alias.v1
+    subject_code: GUIT
+    display_name: Guitar
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.harp.music_schedule_alias.v1
+    subject_code: HARP
+    display_name: Harp
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.horn.music_schedule_alias.v1
+    subject_code: HORN
+    display_name: Horn
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.impr.music_schedule_alias.v1
+    subject_code: IMPR
+    display_name: Improvisation
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.oboe.music_schedule_alias.v1
+    subject_code: OBOE
+    display_name: Oboe
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.orgn.music_schedule_alias.v1
+    subject_code: ORGN
+    display_name: Organ
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.perc.music_schedule_alias.v1
+    subject_code: PERC
+    display_name: Percussion
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.pian.music_schedule_alias.v1
+    subject_code: PIAN
+    display_name: Piano
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.saxo.music_schedule_alias.v1
+    subject_code: SAXO
+    display_name: Saxophone
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.trmb.music_schedule_alias.v1
+    subject_code: TRMB
+    display_name: Trombone
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.trpt.music_schedule_alias.v1
+    subject_code: TRPT
+    display_name: Trumpet
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.tuba.music_schedule_alias.v1
+    subject_code: TUBA
+    display_name: Tuba
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.viol.music_schedule_alias.v1
+    subject_code: VIOL
+    display_name: Violin
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.voic.music_schedule_alias.v1
+    subject_code: VOIC
+    display_name: Voice
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.vola.music_schedule_alias.v1
+    subject_code: VOLA
+    display_name: Viola
+
+  - &reviewed_schedule_subject
+    record_id: cnu.subject.mech.sec.v1
+    subject_code: MECH
+    display_name: Mechatronics
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    relationship_type: owns_instructional_subject
+    mapping_status: intentionally_grouped_department_equivalent
+    mapping_method: administrative_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: MECH is the legitimate instructional prefix for Mechatronics minor courses owned by SEC.
+    rationale: >-
+      MECH observations roll up to SEC for workforce analysis and do not create
+      a separate formal Mechatronics department.
+    notes: Governed from institutional review; source schedule identity remains MECH.
+
+  - <<: *reviewed_schedule_subject
+    record_id: cnu.subject.envs.bces.v1
+    subject_code: ENVS
+    display_name: Environmental Science
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    analytical_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    mapping_status: mapped
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: ENVS is Environmental Science instruction owned by Biology, Chemistry, and Environmental Science and is distinct from EVST.
+    rationale: ENVS is a governed instructional subject distinct from Environmental Studies (EVST).
+    notes: Source schedule identity remains ENVS; no equivalence to EVST is asserted.
+
+  - <<: *reviewed_schedule_subject
+    record_id: cnu.subject.navs.military_science.v1
+    subject_code: NAVS
+    display_name: Naval Science
+    owning_academic_unit_id: academic_unit:department_military_science
+    analytical_academic_unit_id: academic_unit:department_military_science
+    mapping_status: mapped
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: NAVS is the legitimate Naval Science prefix associated with the Naval ROTC program and owned by Military Science.
+    rationale: NAVS schedule observations belong to Military Science for analytical aggregation.
+    notes: Source schedule identity remains NAVS.
+
+  - <<: *reviewed_schedule_subject
+    record_id: cnu.subject.hbrw.languages.v1
+    subject_code: HBRW
+    display_name: Hebrew
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    analytical_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    mapping_status: mapped
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: HBRW is legitimate Hebrew language instruction owned by Modern and Classical Languages and Literatures.
+    rationale: HBRW schedule observations belong to Modern and Classical Languages and Literatures.
+    notes: Source schedule identity remains HBRW.

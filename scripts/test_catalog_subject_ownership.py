@@ -48,7 +48,13 @@ def test_is_is_not_subject_but_information_science_program_remains_sec():
     assert program is not None
     assert "BSIS" in program.aliases
     assert program.school == "School of Engineering and Computing"
-    assert len(SubjectOwnershipRegistry.load().records) == 6
+    sec_records = [
+        record for record in SubjectOwnershipRegistry.load().records
+        if record.analytical_academic_unit_id == "academic_unit:sec"
+    ]
+    assert {record.subject_code for record in sec_records} == {
+        "PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE", "MECH"
+    }
     assert SubjectOwnershipRegistry.load().records_for_subject("PCSE")
     assert all("program" not in record.to_dict() for record in SubjectOwnershipRegistry.load().records)
 
@@ -188,7 +194,7 @@ def test_report_outputs_and_filters_never_write_governed_registry(tmp_path):
         report["candidates"], {"COLL": {"offering_count": 3}},
     ).to_dict()
     write_outputs(report, rows, tmp_path)
-    assert {p.name for p in tmp_path.iterdir()} == {"catalog_subject_ownership.json", "catalog_subject_candidates.csv", "catalog_subject_ownership.md", "catalog_subject_candidates.review.yaml", "catalog_subject_review_queue.csv", "semantic_discrepancies.csv"}
+    assert {p.name for p in tmp_path.iterdir()} == {"catalog_subject_ownership.json", "catalog_subject_candidates.csv", "catalog_subject_ownership.md", "catalog_subject_candidates.review.yaml", "catalog_subject_review_queue.csv", "semantic_prefix_investigation.csv"}
     review = yaml.safe_load((tmp_path / "catalog_subject_candidates.review.yaml").read_text())
     assert review["candidates"][0]["review_status"] == "requires_review"
     assert not hasattr(parse_args([]), "write_governed_registry")

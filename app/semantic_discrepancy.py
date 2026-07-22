@@ -12,12 +12,14 @@ from typing import Any, Mapping, Sequence
 from app.subject_ownership import SubjectOwnershipRegistry
 
 
-ANALYZER_VERSION = "1.0"
+ANALYZER_VERSION = "1.1"
 
 
 class DiscrepancyCategory(str, Enum):
     CURRENT_CATALOG_ONLY = "current_catalog_only"
     CURRENT_SCHEDULE_ONLY = "current_schedule_only"
+    GOVERNED_SCHEDULE_ONLY = "governed_schedule_only"
+    OPERATIONAL_SCHEDULE_ALIAS = "operational_schedule_alias"
     HISTORICAL_PREFIX = "historical_prefix"
     SERVICE_SUBJECT = "service_subject"
     INTERDISCIPLINARY = "interdisciplinary"
@@ -25,6 +27,7 @@ class DiscrepancyCategory(str, Enum):
     GRADUATE_ONLY = "graduate_only"
     CATALOG_EXTRACTION_LIMITATION = "catalog_extraction_limitation"
     CATALOG_STRUCTURE_LIMITATION = "catalog_structure_limitation"
+    INSTITUTIONAL_MAPPING_INCOMPLETE = "institutional_mapping_incomplete"
     SCHEDULE_NORMALIZATION_LIMITATION = "schedule_normalization_limitation"
     GOVERNANCE_GAP = "governance_gap"
     UNKNOWN = "unknown"
@@ -45,6 +48,10 @@ class DiscrepancyEvidence:
     catalog_extraction_confidence: float | None
     catalog_kind: str | None
     schedule_normalization_issues: tuple[str, ...]
+    governed_mapping_status: str | None = None
+    governed_relationship_type: str | None = None
+    canonical_subject_code: str | None = None
+    catalog_structural_issues: tuple[str, ...] = ()
 
     def to_dict(self): return asdict(self)
 
@@ -71,10 +78,15 @@ class DiscrepancyEvidenceFitness:
     schedule_completeness_percent: float
     governance_completeness_percent: float
     parser_completeness_percent: float
-    overall_discrepancy_count: int
+    investigation_record_count: int
     confidence_distribution: Mapping[str, int]
     review_workload_remaining: Mapping[str, int]
     limitations: tuple[str, ...]
+
+    @property
+    def overall_discrepancy_count(self) -> int:
+        """Compatibility alias; reports use the non-inflating investigation label."""
+        return self.investigation_record_count
 
     def to_dict(self): return asdict(self)
 
@@ -90,13 +102,19 @@ class DiscrepancyDashboard:
     review_priority: tuple[str, ...]
     evidence_fitness: DiscrepancyEvidenceFitness
     deterministic_fingerprint: str
+    source_comparison: Mapping[str, int]
+    institutional_mapping_status: Mapping[str, int]
+    evidence_limitations: Mapping[str, int]
 
     def to_dict(self):
         return {"records": [item.to_dict() for item in self.records],
                 "overall_counts": dict(self.overall_counts), "count_by_category": dict(self.count_by_category),
                 "observation_counts": dict(self.observation_counts), "prefix_counts": dict(self.prefix_counts),
                 "confidence_histogram": dict(self.confidence_histogram), "review_priority": list(self.review_priority),
-                "evidence_fitness": self.evidence_fitness.to_dict(), "deterministic_fingerprint": self.deterministic_fingerprint}
+                "evidence_fitness": self.evidence_fitness.to_dict(), "deterministic_fingerprint": self.deterministic_fingerprint,
+                "source_comparison": dict(self.source_comparison),
+                "institutional_mapping_status": dict(self.institutional_mapping_status),
+                "evidence_limitations": dict(self.evidence_limitations)}
 
 
 class SemanticDiscrepancyAnalyzer:
@@ -109,7 +127,8 @@ class SemanticDiscrepancyAnalyzer:
         catalog_candidates: Sequence[Mapping[str, Any]],
         schedule_inventory: Mapping[str, Mapping[str, Any]],
     ) -> DiscrepancyDashboard:
-        governed = {item.subject_code for item in governed_registry.records}
+        governed_records = {item.subject_code: item for item in governed_registry.records}
+        governed = set(governed_records)
         observations_by: dict[str, list[Mapping[str, Any]]] = {}
         for item in catalog_observations:
             observations_by.setdefault(str(item.get("subject_code") or "").upper(), []).append(item)
@@ -124,7 +143,7 @@ class SemanticDiscrepancyAnalyzer:
             # Fully aligned governed evidence is not a discrepancy.
             if prefix in governed and in_catalog and in_schedule and candidate.get("candidate_status") not in {"ambiguous", "requires_review", "exception_candidate", "unsupported"}:
                 continue
-            evidence = self._evidence(prefix, prefix in governed, observations_by.get(prefix, ()), candidate, schedule.get(prefix) or {})
+            evidence = self._evidence(prefix, governed_records.get(prefix), observations_by.get(prefix, ()), candidate, schedule.get(prefix) or {})
             category, confidence, rationale, action = _classify(evidence)
             priority = _priority(evidence, category)
             semantic = {"prefix": prefix, "category": category, "evidence": evidence.to_dict(), "confidence": confidence, "rationale": rationale, "action": action, "priority": priority, "version": ANALYZER_VERSION}
@@ -133,18 +152,31 @@ class SemanticDiscrepancyAnalyzer:
         return _dashboard(tuple(records), governed, set(observations_by), set(schedule))
 
     @staticmethod
-    def _evidence(prefix, governed, observations, candidate, schedule):
+    def _evidence(prefix, governed_record, observations, candidate, schedule):
         confidences = [float(item.get("extraction_confidence", 1.0)) for item in observations]
         catalog_kind = None
         if observations:
             catalog_kind = str((observations[0].get("provenance") or {}).get("catalog_kind") or "undergraduate")
+        structural_issues = {
+            str(issue)
+            for item in observations
+            for issue in ((item.get("provenance") or {}).get("structural_issues") or ())
+        }
+        structural_issues.update(
+            str(issue) for issue in (candidate.get("conflicts") or ())
+            if str(issue) in {"ambiguous_section_resolution", "conflicting_structural_evidence"}
+        )
         return DiscrepancyEvidence(
-            governed, bool(observations), bool(schedule), int(schedule.get("offering_count", 0)),
+            governed_record is not None, bool(observations), bool(schedule), int(schedule.get("offering_count", 0)),
             int(schedule.get("term_count", 0)), int(schedule.get("distinct_instructor_count", 0)),
             tuple(sorted({str(item.get("section_title") or "") for item in observations if item.get("section_title")})),
             candidate.get("candidate_status"), candidate.get("proposed_mapping_status"),
             candidate.get("proposed_relationship_type"), min(confidences) if confidences else None,
             catalog_kind, tuple(sorted(map(str, schedule.get("normalization_issues") or ()))),
+            governed_record.mapping_status if governed_record else None,
+            governed_record.relationship_type if governed_record else None,
+            governed_record.canonical_subject_code if governed_record else None,
+            tuple(sorted(structural_issues)),
         )
 
 
@@ -163,10 +195,14 @@ def _classify(evidence: DiscrepancyEvidence):
         return DiscrepancyCategory.CATALOG_EXTRACTION_LIMITATION.value, evidence.catalog_extraction_confidence, "Catalog extraction confidence is below the reviewed reliability threshold.", "Improve or manually inspect the catalog parser."
     if evidence.schedule_normalization_issues:
         return DiscrepancyCategory.SCHEDULE_NORMALIZATION_LIMITATION.value, 1.0, "Schedule provenance records normalization issues for this prefix.", "Investigate schedule normalization."
-    if evidence.catalog_candidate_status in {"ambiguous", "requires_review", "unsupported"} and evidence.current_catalog:
+    if evidence.catalog_structural_issues and evidence.current_catalog:
         return DiscrepancyCategory.CATALOG_STRUCTURE_LIMITATION.value, 0.5, "The prefix was extracted, but its catalog section cannot be resolved unambiguously.", "Review catalog structure or exact section aliases."
+    if evidence.catalog_candidate_status in {"ambiguous", "requires_review", "unsupported"} and evidence.current_catalog:
+        return DiscrepancyCategory.INSTITUTIONAL_MAPPING_INCOMPLETE.value, 1.0, "The catalog prefix was extracted successfully, but its institutional-unit mapping is not yet governed or resolved.", "Complete institutional mapping review; the catalog parser is not implicated."
     if evidence.production_schedule and not evidence.current_catalog and evidence.governed:
-        return DiscrepancyCategory.HISTORICAL_PREFIX.value, 1.0, "The governed prefix appears in schedules but is absent from the selected current catalog.", "Treat as historical/current institutional evidence; do not delete governance automatically."
+        if evidence.governed_relationship_type == "operational_schedule_alias":
+            return DiscrepancyCategory.OPERATIONAL_SCHEDULE_ALIAS.value, 1.0, "The governed operational prefix is preserved in schedule evidence and resolves to a broader catalog-visible instructional family.", "Expected resolved schedule alias; no independent catalog section is required."
+        return DiscrepancyCategory.GOVERNED_SCHEDULE_ONLY.value, 1.0, "The legitimate governed prefix appears in schedules but is absent from the selected current catalog.", "Expected governed schedule evidence; retain its source identity and ownership mapping."
     if evidence.current_catalog and not evidence.governed:
         return DiscrepancyCategory.GOVERNANCE_GAP.value, 1.0, "Current catalog course descriptions support the prefix, but no governed ownership record exists.", "Review governance; never promote automatically."
     if evidence.current_catalog and not evidence.production_schedule:
@@ -179,7 +215,7 @@ def _classify(evidence: DiscrepancyEvidence):
 def _priority(evidence, category):
     if category in {"unknown", "catalog_structure_limitation", "schedule_normalization_limitation"} or evidence.schedule_offering_count >= 50:
         return "high"
-    if evidence.schedule_offering_count >= 10 or category in {"governance_gap", "current_schedule_only", "catalog_extraction_limitation"}:
+    if evidence.schedule_offering_count >= 10 or category in {"governance_gap", "current_schedule_only", "catalog_extraction_limitation", "institutional_mapping_incomplete"}:
         return "medium"
     return "low"
 
@@ -199,8 +235,44 @@ def _dashboard(records, governed, catalog, schedule):
         len(records), dict(sorted(confidence.items())), dict(sorted(priorities.items())),
         ("Completeness measures evidence alignment, not institutional importance.", "A deterministic explanation does not itself establish governed ownership."),
     )
-    semantic = {"records": [item.deterministic_fingerprint for item in records], "categories": dict(sorted(categories.items())), "confidence": dict(sorted(confidence.items())), "priorities": dict(sorted(priorities.items())), "fitness": fitness.to_dict(), "version": ANALYZER_VERSION}
-    return DiscrepancyDashboard(records, {"discrepancies": len(records), "explained": explained, "unknown": len(records) - explained}, dict(sorted(categories.items())), {"catalog_course_prefixes": len(catalog), "schedule_prefixes": len(schedule), "governed_prefixes": len(governed)}, {"union": len(union), "catalog_only": len(catalog - schedule), "schedule_only": len(schedule - catalog)}, dict(sorted(confidence.items())), tuple(item.prefix for item in records), fitness, _fingerprint(semantic))
+    source_comparison = {
+        "catalog_prefixes": len(catalog), "schedule_prefixes": len(schedule),
+        "found_in_both": len(catalog & schedule), "catalog_only": len(catalog - schedule),
+        "schedule_only": len(schedule - catalog), "union": len(catalog | schedule),
+        "symmetric_difference": len(catalog ^ schedule),
+        "schedule_only_unexplained": sum(
+            item.evidence.production_schedule and not item.evidence.current_catalog
+            and item.category in {DiscrepancyCategory.CURRENT_SCHEDULE_ONLY.value, DiscrepancyCategory.UNKNOWN.value}
+            for item in records
+        ),
+    }
+    mapping_categories = {
+        DiscrepancyCategory.GOVERNANCE_GAP.value,
+        DiscrepancyCategory.INSTITUTIONAL_MAPPING_INCOMPLETE.value,
+        DiscrepancyCategory.SERVICE_SUBJECT.value,
+        DiscrepancyCategory.INTERDISCIPLINARY.value,
+        DiscrepancyCategory.CENTRAL_ADMINISTRATION.value,
+        DiscrepancyCategory.OPERATIONAL_SCHEDULE_ALIAS.value,
+        DiscrepancyCategory.GOVERNED_SCHEDULE_ONLY.value,
+    }
+    limitation_categories = {
+        DiscrepancyCategory.CATALOG_EXTRACTION_LIMITATION.value,
+        DiscrepancyCategory.CATALOG_STRUCTURE_LIMITATION.value,
+        DiscrepancyCategory.SCHEDULE_NORMALIZATION_LIMITATION.value,
+    }
+    institutional = {key: categories[key] for key in sorted(mapping_categories) if categories[key]}
+    limitations = {key: categories[key] for key in sorted(limitation_categories) if categories[key]}
+    overall = {
+        "investigation_records": len(records), "explained": explained,
+        "unknown": len(records) - explained,
+        "source_set_differences": source_comparison["symmetric_difference"],
+        "institutional_mapping_work_items": sum(
+            categories[key] for key in {DiscrepancyCategory.GOVERNANCE_GAP.value, DiscrepancyCategory.INSTITUTIONAL_MAPPING_INCOMPLETE.value}
+        ),
+        "evidence_limitations": sum(limitations.values()),
+    }
+    semantic = {"records": [item.deterministic_fingerprint for item in records], "categories": dict(sorted(categories.items())), "source_comparison": source_comparison, "institutional_mapping_status": institutional, "evidence_limitations": limitations, "confidence": dict(sorted(confidence.items())), "priorities": dict(sorted(priorities.items())), "fitness": fitness.to_dict(), "version": ANALYZER_VERSION}
+    return DiscrepancyDashboard(records, overall, dict(sorted(categories.items())), {"catalog_course_prefixes": len(catalog), "schedule_prefixes": len(schedule), "governed_prefixes": len(governed)}, {"union": len(union), "catalog_only": len(catalog - schedule), "schedule_only": len(schedule - catalog)}, dict(sorted(confidence.items())), tuple(item.prefix for item in records), fitness, _fingerprint(semantic), source_comparison, institutional, limitations)
 
 
 __all__ = ["DiscrepancyCategory", "DiscrepancyDashboard", "DiscrepancyEvidence", "DiscrepancyEvidenceFitness", "DiscrepancyRecord", "SemanticDiscrepancyAnalyzer"]

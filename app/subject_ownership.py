@@ -30,7 +30,7 @@ VALID_RELATIONSHIP_TYPES = {
     "interdisciplinary_coordination", "service_subject_provision",
     "non_workforce_subject", "centrally_administered_subject",
     "interdisciplinary_subject", "service_subject", "cross_unit_subject",
-    "unresolved",
+    "operational_schedule_alias", "unresolved",
 }
 VALID_REVIEW_STATUSES = {"governed", "provisional", "requires_review"}
 VALID_EVIDENCE_TYPES = {
@@ -66,6 +66,8 @@ class SubjectOwnershipRecord:
     effective_start_term: str | None = None
     effective_end_term: str | None = None
     notes: str | None = None
+    canonical_subject_code: str | None = None
+    catalog_visible_subject_code: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         value = asdict(self)
@@ -193,6 +195,14 @@ def _record_from_dict(value: Mapping[str, Any]) -> SubjectOwnershipRecord:
         effective_start_term=value.get("effective_start_term"),
         effective_end_term=value.get("effective_end_term"),
         notes=value.get("notes"),
+        canonical_subject_code=(
+            str(value["canonical_subject_code"]).strip().upper()
+            if value.get("canonical_subject_code") else None
+        ),
+        catalog_visible_subject_code=(
+            str(value["catalog_visible_subject_code"]).strip().upper()
+            if value.get("catalog_visible_subject_code") else None
+        ),
     )
 
 

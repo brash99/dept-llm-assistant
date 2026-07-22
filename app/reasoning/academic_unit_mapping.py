@@ -45,6 +45,8 @@ class AcademicUnitMappingResult:
     effective_end_term: str | None = None
     notes: str | None = None
     candidate_unit_ids: tuple[str, ...] = ()
+    canonical_subject_code: str | None = None
+    catalog_visible_subject_code: str | None = None
 
     @property
     def academic_unit_id(self) -> str | None:
@@ -134,6 +136,7 @@ class AcademicUnitMappingService:
             record.record_id, record.confidence, record.rationale, record.review_status,
             tuple(asdict(item) for item in record.evidence), record.effective_start_term,
             record.effective_end_term, record.notes, (analytical.unit_id,),
+            record.canonical_subject_code, record.catalog_visible_subject_code,
         )
 
 

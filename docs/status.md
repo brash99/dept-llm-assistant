@@ -73,6 +73,13 @@ Status as of July 2026. This file describes the current codebase; research and s
   prefix. Its dashboard reports confidence, engineering review priority, and
   catalog/schedule/governance/parser completeness as Evidence Fitness. It does
   not infer mappings or promote candidates.
+- Governed schedule-prefix normalization now resolves 24 operational Music
+  prefixes to the Department of Music, Theatre, and Dance while preserving
+  their published schedule identities and linking them to the catalog-visible
+  MUSC family. MECH, ENVS, NAVS, and HBRW have reviewed ownership mappings;
+  ENVS remains distinct from EVST. Prefix reporting now separates source-set
+  differences from incomplete institutional mapping and genuine parser or
+  catalog-structure limitations.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

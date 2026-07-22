@@ -103,7 +103,15 @@ def _markdown(report, rows):
     for row in rows: lines.append(f"| {row['subject_code']} | {row['candidate_status']} | {row['proposed_analytical_academic_unit_id'] or ''} | {len(row['observed_course_codes'])} | {len(row['source_sections'])} |")
     if report.get("discrepancy_dashboard"):
         dashboard = report["discrepancy_dashboard"]
-        lines += ["", "## Semantic discrepancies", "", "| Prefix | Found in | Category | Confidence | Priority | Action |", "|---|---|---|---:|---|---|"]
+        source = dashboard["source_comparison"]
+        lines += ["", "## Semantic prefix investigation", "",
+                  f"- Catalog prefixes: {source['catalog_prefixes']}",
+                  f"- Schedule prefixes: {source['schedule_prefixes']}",
+                  f"- Found in both: {source['found_in_both']}",
+                  f"- Catalog only: {source['catalog_only']}",
+                  f"- Schedule only: {source['schedule_only']}",
+                  f"- Schedule-only unexplained: {source['schedule_only_unexplained']}", "",
+                  "| Prefix | Found in | Category | Confidence | Priority | Action |", "|---|---|---|---:|---|---|"]
         for item in dashboard["records"]:
             evidence = item["evidence"]
             found = ", ".join(name for name, present in (("governance", evidence["governed"]), ("catalog", evidence["current_catalog"]), ("schedule", evidence["production_schedule"])) if present)
@@ -124,7 +132,7 @@ def write_outputs(report, rows, output_dir):
     (output_dir / "catalog_subject_candidates.review.yaml").write_text(yaml.safe_dump(_review_yaml(rows), sort_keys=False), encoding="utf-8")
     with (output_dir / "catalog_subject_review_queue.csv").open("w", encoding="utf-8", newline="") as handle: _write_csv(report["review_queue"], handle)
     if report.get("discrepancy_dashboard"):
-        with (output_dir / "semantic_discrepancies.csv").open("w", encoding="utf-8", newline="") as handle:
+        with (output_dir / "semantic_prefix_investigation.csv").open("w", encoding="utf-8", newline="") as handle:
             flat = []
             for item in report["discrepancy_dashboard"]["records"]:
                 evidence = item["evidence"]
@@ -149,8 +157,14 @@ def main(argv=None):
         print(f"Candidates shown: {len(rows)}")
         if report.get("discrepancy_dashboard"):
             dashboard = report["discrepancy_dashboard"]
-            print(f"Discrepancies: {dashboard['overall_counts']['discrepancies']}")
-            print(f"Discrepancy fingerprint: {dashboard['deterministic_fingerprint']}")
+            source = dashboard["source_comparison"]
+            print(f"Catalog prefixes: {source['catalog_prefixes']}")
+            print(f"Schedule prefixes: {source['schedule_prefixes']}")
+            print(f"Found in both: {source['found_in_both']}")
+            print(f"Catalog only: {source['catalog_only']}")
+            print(f"Schedule only: {source['schedule_only']}")
+            print(f"Schedule-only unexplained: {source['schedule_only_unexplained']}")
+            print(f"Investigation fingerprint: {dashboard['deterministic_fingerprint']}")
         print(f"Fingerprint: {report['deterministic_report_fingerprint']}")
         if args.output_dir: print(f"Reports: {args.output_dir}")
     return 0

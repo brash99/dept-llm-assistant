@@ -86,3 +86,30 @@ def test_pcse_remains_subject_group_and_rolls_up_to_sec_deterministically():
     assert unit.deterministic_result_fingerprint == repeated.deterministic_result_fingerprint
     assert unit.evidence_fitness.workforce_mappable_observation_count == 2
     assert unit.evidence_fitness.suitability["staffing_recommendations"] == "insufficient"
+
+
+def test_governed_operational_music_aliases_preserve_schedule_identity_and_roll_up():
+    codes = (
+        "BASN", "BASS", "BTMG", "CELL", "CLAR", "COMP", "COND", "EUPH",
+        "FLUT", "GUIT", "HARP", "HORN", "IMPR", "OBOE", "ORGN", "PERC",
+        "PIAN", "SAXO", "TRMB", "TRPT", "TUBA", "VIOL", "VOIC", "VOLA",
+    )
+    service = AcademicUnitMappingService()
+    for code in codes:
+        result = service.map_subject(code)
+        assert result.subject_code == code
+        assert result.relationship_type == "operational_schedule_alias"
+        assert result.canonical_subject_code == "MUSC"
+        assert result.catalog_visible_subject_code == "MUSC"
+        assert result.academic_unit_id == "academic_unit:department_music_theatre_dance"
+        assert result.formal_unit_type == "department"
+
+
+def test_resolved_schedule_prefixes_use_canonical_units_without_false_equivalence():
+    service = AcademicUnitMappingService()
+    assert service.map_subject("MECH").academic_unit_id == "academic_unit:sec"
+    assert service.map_subject("ENVS").academic_unit_id == "academic_unit:department_biology_chemistry_environmental_science"
+    assert service.map_subject("NAVS").academic_unit_id == "academic_unit:department_military_science"
+    assert service.map_subject("HBRW").academic_unit_id == "academic_unit:department_modern_classical_languages_literatures"
+    assert service.map_subject("ENVS").subject_code == "ENVS"
+    assert service.map_subject("EVST").academic_unit_id != service.map_subject("ENVS").academic_unit_id

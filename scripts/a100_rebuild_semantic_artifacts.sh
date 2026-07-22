@@ -89,10 +89,7 @@ assert configured_root == root.resolve(), (
 )
 
 storage = config["storage"]
-root_keys = (
-    "normalized", "constitutional", "schedule_observations",
-    "faculty_observations", "catalog_observations",
-)
+root_keys = ("normalized", "constitutional")
 ids = []
 counts = {}
 for key in root_keys:
@@ -116,7 +113,7 @@ expected_hash = "f48ae97b2ae57831c6f387af0d049b01d4b2b44aed40df231f7e6f370521154
 source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
 assert source_hash == expected_hash, f"Unexpected canonical schedule hash: {source_hash}"
 
-schedule_root = root / storage["schedule_observations"]
+schedule_root = root / config["schedule_ingestion"]["normalized_output"]
 schedule_files = list(schedule_root.rglob("*.json"))
 assert len(schedule_files) == 18403, f"Expected 18,403 schedule objects; found {len(schedule_files)}"
 stored = {}
@@ -253,7 +250,7 @@ assert pipeline["vector_count"] == pipeline["metadata_record_count"]
 
 config = load_config()
 project_root = Path(config["project"]["root"])
-schedule_root = project_root / config["storage"]["schedule_observations"]
+schedule_root = project_root / config["schedule_ingestion"]["normalized_output"]
 chunks_root = project_root / config["storage"]["chunks"]
 vector_root = project_root / config["storage"]["vector_db"]
 overall = Counter()

@@ -16,9 +16,6 @@ if str(PROJECT_ROOT) not in sys.path:
 from app.adapters.faculty_adapter import FacultyDirectoryAdapter, write_observations
 
 
-DEFAULT_OUTPUT_ROOT = Path("data/normalized/faculty")
-
-
 def _counter(label: str, values: Counter[str]) -> None:
     print(f"{label}: {sum(values.values())}")
     for name, count in sorted(values.items()):
@@ -30,11 +27,21 @@ def main() -> int:
         description="Adapt an acquired faculty-directory snapshot into factual observations."
     )
     parser.add_argument("snapshot_directory", type=Path)
-    parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        help="Override the configured faculty normalized-output root.",
+    )
     args = parser.parse_args()
 
+    config = load_config()
+    configured_root = Path(config["project"]["root"])
+    project_root = configured_root if configured_root.exists() else PROJECT_ROOT
+    output_root = args.output_root or (
+        project_root / config["faculty_ingestion"]["normalized_output_root"]
+    )
     result = FacultyDirectoryAdapter(args.snapshot_directory).adapt()
-    output = args.output_root / args.snapshot_directory.name
+    output = output_root / args.snapshot_directory.name
     written = write_observations(result.observations, output)
 
     print("Faculty directory ingestion")

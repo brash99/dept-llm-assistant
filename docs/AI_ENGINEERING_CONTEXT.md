@@ -555,6 +555,14 @@ The configured OpenAI-compatible model server must already be running.
 .venv/bin/python -m scripts.build_constitutional_catalog
 ```
 
+All ordinary normalized Knowledge Objects are written beneath the single
+recursive root `storage/normalized`. Structured producers use
+`storage/normalized/faculty`, `storage/normalized/catalogs`, and
+`storage/normalized/schedules`; downstream classification and chunking discover
+them through `storage.normalized` rather than through separate source roots.
+Constitutional Knowledge Objects remain governed separately under
+`storage/constitutional`.
+
 Review `docs/operations/external_evidence_refresh.md` before external
 acquisition. Its dry run is intentionally non-networked; `--execute` retrieves
 only explicitly registered resources.

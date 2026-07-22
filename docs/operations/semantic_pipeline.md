@@ -11,6 +11,20 @@ normalized Knowledge Objects
 
 The command orchestrates the existing `app.chunk.run_chunking`, `app.embed.embed_chunks`, and `app.vector_index.build_faiss_index` implementations. It does not normalize or classify evidence, synchronize Google Drive, acquire sources, change retrieval ranking, call an LLM, or deploy ISO.
 
+The normalized-corpus invariant is one recursively discovered physical tree:
+
+```text
+storage/normalized/
+  faculty/
+  catalogs/
+  schedules/
+  ...generic normalized documents...
+```
+
+`storage/constitutional` remains separate because constitutional evidence has
+a distinct governance contract. No producer or downstream consumer should use
+`data/normalized` as an active Knowledge Object store.
+
 ## Status meanings
 
 - `CURRENT`: the artifact agrees with a successful pipeline manifest and its immediate dependency.

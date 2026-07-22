@@ -8,6 +8,9 @@ Status as of July 2026. This file describes the current codebase; research and s
 
 - Filesystem, directory, web, and curated-resource acquisition services with manifests and provenance.
 - Multi-source normalization into Knowledge Objects.
+- One canonical recursive normalized corpus at `storage/normalized`, including
+  faculty, catalog, and schedule subtrees; `data/normalized` is no longer an
+  active evidence store.
 - Curated Constitutional Knowledge Objects built from configured normalized sources.
 - Chunking of normalized and constitutional objects.
 - Sentence-transformer embeddings and FAISS indexing.

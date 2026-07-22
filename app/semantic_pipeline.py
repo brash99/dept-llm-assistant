@@ -145,10 +145,7 @@ def resolve_pipeline_paths(config_path: Path | str = "config/settings.yaml") -> 
             f"Configured project root {configured_root} is unavailable; using repository root {repository_root}."
         )
     storage = config["storage"]
-    source_keys = (
-        "normalized", "constitutional", "schedule_observations",
-        "faculty_observations", "catalog_observations",
-    )
+    source_keys = ("normalized", "constitutional")
     roots = tuple(
         effective_root / storage[key] for key in source_keys if storage.get(key)
     )

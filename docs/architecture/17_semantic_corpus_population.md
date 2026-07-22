@@ -53,14 +53,11 @@ without granting them permission to mutate the corpus.
 
 ## Inputs
 
-With no `--input`, `scripts/classify_knowledge_corpus.py` reads all configured
-normalized Knowledge Object roots from `config/settings.yaml`:
-
-- `storage.normalized`;
-- `storage.constitutional`;
-- `storage.schedule_observations`;
-- `storage.faculty_observations`;
-- `storage.catalog_observations`.
+With no `--input`, `scripts/classify_knowledge_corpus.py` recursively reads the
+single configured normalized Knowledge Object root, `storage.normalized`, plus
+the separately governed `storage.constitutional` source. Faculty, catalog, and
+schedule observations live below `storage/normalized/{faculty,catalogs,schedules}`;
+they are not independent normalized roots.
 
 An explicit `--input` overrides the defaults and may be repeated. Each input
 may be a JSON Knowledge Object or a directory searched recursively. Resolved
@@ -130,8 +127,7 @@ python3 scripts/classify_knowledge_corpus.py \
 
 python3 scripts/classify_knowledge_corpus.py \
   --dry-run \
-  --input data/normalized/faculty \
-  --input data/normalized/schedules
+  --input storage/normalized
 ```
 
 `--resume` reads the existing manifest and skips completed Knowledge Object IDs

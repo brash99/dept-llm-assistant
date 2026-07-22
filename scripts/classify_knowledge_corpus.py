@@ -24,13 +24,7 @@ def _default_inputs() -> tuple[Path, ...]:
     configured_root = Path(config["project"]["root"])
     project_root = configured_root if configured_root.exists() else PROJECT_ROOT
     storage = config["storage"]
-    keys = (
-        "normalized",
-        "constitutional",
-        "schedule_observations",
-        "faculty_observations",
-        "catalog_observations",
-    )
+    keys = ("normalized", "constitutional")
     return tuple(project_root / storage[key] for key in keys if storage.get(key))
 
 

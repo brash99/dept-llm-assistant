@@ -215,17 +215,51 @@ def render_course_offering_observation(observation) -> str:
         _object_value(observation, "credits"),
     )
     instructor_type = _object_value(observation, "instructor_type", {}) or {}
-    instructor_type_published = (
-        instructor_type.get("published_value")
+    instructor_type_values = (
+        tuple(instructor_type.get("published_values") or ())
+        if isinstance(instructor_type, dict)
+        else ()
+    )
+    if not instructor_type_values and isinstance(instructor_type, dict):
+        published_value = instructor_type.get("published_value")
+        instructor_type_values = (published_value,) if published_value else ()
+    normalized_instructor_type = (
+        instructor_type.get("normalized_value")
         if isinstance(instructor_type, dict)
         else None
+    )
+    resolution = (
+        instructor_type.get("resolution") or {}
+        if isinstance(instructor_type, dict)
+        else {}
     )
     for label, value in (
         ("Section", _object_value(observation, "section")),
         ("CRN", _object_value(observation, "crn")),
         ("Credits", credits),
         ("Instructor", _object_value(observation, "instructor_raw")),
-        ("Published instructor type", instructor_type_published),
+        (
+            "Published instructor type values",
+            "; ".join(instructor_type_values) if instructor_type_values else None,
+        ),
+        (
+            "Normalized instructor type",
+            normalized_instructor_type.replace("_", " ").title()
+            if normalized_instructor_type else None,
+        ),
+        (
+            "Instructor type source conflict",
+            "Yes" if isinstance(instructor_type, dict)
+            and instructor_type.get("conflicting") else "No"
+            if isinstance(instructor_type, dict) and instructor_type_values
+            else None,
+        ),
+        ("Instructor type repair method", resolution.get("method")),
+        (
+            "Instructor type repair status",
+            "Resolved" if resolution.get("resolved") else "Unresolved"
+            if resolution else None,
+        ),
         (
             "Instructional method",
             _object_value(observation, "instructional_method"),
@@ -269,6 +303,13 @@ def _schedule_metadata(observation) -> Dict[str, Any]:
         or _mapping_value(source, "path")
     )
     source_type = _mapping_value(source, "kind")
+    instructor_type = _object_value(observation, "instructor_type", {}) or {}
+    resolution = (
+        instructor_type.get("resolution") or {}
+        if isinstance(instructor_type, dict)
+        else {}
+    )
+    repair = _object_value(observation, "repair", {}) or {}
 
     values = {
         "document_title": observation.title,
@@ -283,10 +324,17 @@ def _schedule_metadata(observation) -> Dict[str, Any]:
         "section": _object_value(observation, "section"),
         "crn": _object_value(observation, "crn"),
         "instructor_text": _object_value(observation, "instructor_raw"),
-        "instructor_type": (
-            _object_value(observation, "instructor_type", {}).get("normalized_value")
-            if isinstance(_object_value(observation, "instructor_type", {}), dict)
-            else None
+        "instructor_type": instructor_type.get("normalized_value"),
+        "instructor_type_published_values": list(
+            instructor_type.get("published_values") or ()
+        ),
+        "instructor_type_conflicting": instructor_type.get("conflicting"),
+        "instructor_type_resolution_method": resolution.get("method"),
+        "instructor_type_resolution_confidence": resolution.get("confidence"),
+        "schedule_repair_algorithm": _mapping_value(repair, "algorithm"),
+        "schedule_repair_version": _mapping_value(repair, "version"),
+        "schedule_repair_decision_fingerprint": _mapping_value(
+            repair, "decision_fingerprint"
         ),
         "source_type": source_type,
         "source_path": source_path,
@@ -749,6 +797,7 @@ def run_chunking(
     overlap=300,
     max_chunks_per_document=None,
     normalized_dir=None,
+    verbose=False,
 ):
     source_dirs = _normalize_source_dirs(
         source_dirs=source_dirs,
@@ -853,11 +902,12 @@ def run_chunking(
                 object_type_counts[document.object_type] += 1
                 source_dir_counts[str(source_dir)] += 1
 
-                print(
-                    f"[OK] {len(chunks):4d} chunks  "
-                    f"{document.object_type:28s}  "
-                    f"{_document_field(document, 'relative_path', document.id)}"
-                )
+                if verbose:
+                    print(
+                        f"[OK] {len(chunks):4d} chunks  "
+                        f"{document.object_type:28s}  "
+                        f"{_document_field(document, 'relative_path', document.id)}"
+                    )
 
             except Exception as exc:
                 results["failed"] += 1

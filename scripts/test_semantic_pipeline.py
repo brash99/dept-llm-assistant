@@ -35,7 +35,7 @@ def _config(root: Path) -> Path:
     path = root / "config" / "settings.yaml"
     path.parent.mkdir(parents=True)
     path.write_text(
-        f"""project:\n  root: {root}\nstorage:\n  normalized: normalized\n  constitutional: constitutional\n  schedule_observations: schedules\n  faculty_observations: faculty\n  catalog_observations: catalogs\n  chunks: derived/chunks\n  embeddings: derived/embeddings\n  vector_db: derived/vector_db\nembedding:\n  model: fixture-model\n  batch_size: 4\n  device: cpu\nchunking:\n  chunk_size: 200\n  overlap: 20\n  max_chunks_per_document: null\n""",
+        f"""project:\n  root: {root}\nstorage:\n  normalized: normalized\n  constitutional: constitutional\n  chunks: derived/chunks\n  embeddings: derived/embeddings\n  vector_db: derived/vector_db\nembedding:\n  model: fixture-model\n  batch_size: 4\n  device: cpu\nchunking:\n  chunk_size: 200\n  overlap: 20\n  max_chunks_per_document: null\n""",
         encoding="utf-8",
     )
     return path
@@ -44,8 +44,7 @@ def _config(root: Path) -> Path:
 def _objects(root: Path):
     normalized = root / "normalized"
     normalized.mkdir(parents=True)
-    for name in ("constitutional", "schedules", "faculty", "catalogs"):
-        (root / name).mkdir(parents=True, exist_ok=True)
+    (root / "constitutional").mkdir(parents=True, exist_ok=True)
     for index, (family, role) in enumerate(FAMILIES):
         identity = {
             "object_type": "document", "source_family": family,

@@ -166,3 +166,41 @@ def test_scalar_credits_are_rendered_when_raw_value_is_unavailable() -> None:
     chunk = chunk_document(_observation(credits=3, credits_raw=None))[0]
 
     assert "Credits: 3." in chunk.text
+
+
+def test_instructor_type_conflict_and_repair_are_retrievable_facts() -> None:
+    instructor_type = {
+        "published_value": None,
+        "published_values": ["Adjunct", "Full Time"],
+        "normalized_value": "unknown",
+        "has_blank_value": False,
+        "conflicting": True,
+        "resolution": {
+            "resolved": False,
+            "method": "unresolved_source_conflict",
+            "confidence": 0.0,
+        },
+    }
+    repair = {
+        "algorithm": "schedule_source_repair",
+        "version": "1.0",
+        "decision_fingerprint": "f" * 64,
+    }
+
+    chunk = chunk_document(
+        _observation(instructor_type=instructor_type, repair=repair)
+    )[0]
+
+    assert "Published instructor type values: Adjunct; Full Time." in chunk.text
+    assert "Normalized instructor type: Unknown." in chunk.text
+    assert "Instructor type source conflict: Yes." in chunk.text
+    assert "Instructor type repair method: unresolved_source_conflict." in chunk.text
+    assert "Instructor type repair status: Unresolved." in chunk.text
+    assert chunk.metadata["instructor_type_published_values"] == [
+        "Adjunct", "Full Time"
+    ]
+    assert chunk.metadata["instructor_type_conflicting"] is True
+    assert chunk.metadata["instructor_type_resolution_method"] == (
+        "unresolved_source_conflict"
+    )
+    assert chunk.metadata["schedule_repair_decision_fingerprint"] == "f" * 64

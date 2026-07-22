@@ -18,9 +18,6 @@ from app.config import load_config
 from app.schedule_repair import write_repair_reports
 
 
-DEFAULT_OUTPUT_ROOT = Path("data/normalized/schedules")
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
@@ -37,8 +34,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-root",
         type=Path,
-        default=DEFAULT_OUTPUT_ROOT,
-        help=f"Output root (default: {DEFAULT_OUTPUT_ROOT})",
+        help=(
+            "Legacy output-root override. The configured canonical output is "
+            "used when neither output override is supplied."
+        ),
     )
     parser.add_argument(
         "--output-directory",
@@ -74,6 +73,7 @@ def main() -> int:
     configured_root = Path(config["project"]["root"])
     project_root = configured_root if configured_root.exists() else PROJECT_ROOT
     canonical_source = project_root / config["schedule_ingestion"]["canonical_source"]
+    configured_output = project_root / config["schedule_ingestion"]["normalized_output"]
     source_csv = args.source_csv
     if source_csv is None:
         source_csv = canonical_source
@@ -87,11 +87,12 @@ def main() -> int:
     ):
         raise SystemExit("Canonical schedule CSV header does not match configuration")
 
-    output_directory = (
-        args.output_directory
-        if args.output_directory is not None
-        else args.output_root / source_csv.stem
-    )
+    if args.output_directory is not None:
+        output_directory = args.output_directory
+    elif args.output_root is not None:
+        output_directory = args.output_root / source_csv.stem
+    else:
+        output_directory = configured_output
     if result.repair_analysis is None:
         raise SystemExit("Schedule repair analysis was not produced")
     if args.repair_report_dir:

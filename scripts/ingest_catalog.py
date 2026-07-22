@@ -13,6 +13,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.adapters.catalog_adapter import CatalogAdapter, write_observations
+from app.config import load_config
 
 
 def main() -> int:
@@ -25,13 +26,19 @@ def main() -> int:
     )
     parser.add_argument(
         "--output",
-        default="data/normalized/catalogs",
-        help="Root for year-scoped Knowledge Object JSON",
+        type=Path,
+        help="Override the configured root for year-scoped Knowledge Object JSON",
     )
     args = parser.parse_args()
 
+    config = load_config()
+    configured_root = Path(config["project"]["root"])
+    project_root = configured_root if configured_root.exists() else PROJECT_ROOT
+    output = args.output or (
+        project_root / config["catalog_ingestion"]["normalized_output_root"]
+    )
     result = CatalogAdapter(Path(args.source_directory)).adapt()
-    written = write_observations(result.observations, Path(args.output))
+    written = write_observations(result.observations, output)
 
     print("Academic Catalog Semantic Ingestion")
     print(f"Catalog files discovered: {result.files_discovered}")

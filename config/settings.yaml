@@ -6,9 +6,6 @@ storage:
   raw_web: storage/raw_web
   external_staging: storage/external_staging
   normalized: storage/normalized
-  schedule_observations: data/normalized/schedules
-  faculty_observations: data/normalized/faculty
-  catalog_observations: data/normalized/catalogs
   constitutional: storage/constitutional
   chunks: storage/chunks
   embeddings: storage/embeddings
@@ -19,6 +16,7 @@ storage:
 
 schedule_ingestion:
   canonical_source: data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv
+  normalized_output: storage/normalized/schedules/canonical
   encoding: utf-8-sig
   expected_header:
     - CRN
@@ -39,6 +37,12 @@ schedule_ingestion:
     - Enrolled
     - Instructor Type
     - Term
+
+faculty_ingestion:
+  normalized_output_root: storage/normalized/faculty
+
+catalog_ingestion:
+  normalized_output_root: storage/normalized/catalogs
 
 llm:
   base_url: http://localhost:8001/v1

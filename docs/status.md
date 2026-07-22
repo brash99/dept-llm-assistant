@@ -96,6 +96,13 @@ Status as of July 2026. This file describes the current codebase; research and s
   form, provenance, confidence, ambiguity, and deterministic fingerprints while
   making no appointment, employment, faculty-home, tenure, FTE,
   administrative-role, or workload claim.
+- Source-scoped faculty appointment evidence now remains separate from
+  administrative appointments, employment-status statements, identities, and
+  teaching assignments. Directory snapshots and catalog editions preserve their
+  temporal meaning; schedules never create appointments. Explicit ranks, roles,
+  statuses, units, source paths, identity links, limitations, and deterministic
+  fingerprints are auditable, while current employment, tenure, faculty home,
+  appointment FTE, denominator eligibility, and SCH remain unimplemented.
 - Governed academic-unit normalization now resolves canonical names, explicit
   aliases, status-qualified labels, and bounded contaminated labels while
   rejecting ambiguous or common-word matches. Missing semantic-scope

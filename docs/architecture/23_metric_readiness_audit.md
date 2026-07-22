@@ -55,9 +55,10 @@ one section; it is not a timeless faculty-employment fact.
 Consequently, SCH per teaching FTE, full-time faculty, instructional faculty,
 or tenure-line faculty is blocked. A term-scoped distinct published-instructor
 count is available as a name-based analytical proxy, but it is not yet a
-governed faculty denominator. Identity establishes who; a later appointment
-observer must establish effective institutional relationships and population
-eligibility.
+governed faculty denominator. Identity establishes who, and the appointment
+evidence service preserves what dated sources explicitly publish. A stronger
+effective-dated appointment source and later reasoning policy must still
+establish institutional relationships and population eligibility.
 
 ## Institutional-unit limitations
 

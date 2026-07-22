@@ -19,7 +19,7 @@ from app.institutional_units import AcademicUnitRegistry
 
 
 ALGORITHM = "iso_faculty_appointment_observation"
-ALGORITHM_VERSION = "1.0"
+ALGORITHM_VERSION = "1.1"
 APPOINTMENT_SOURCE_TYPES = {
     "faculty_observation", "catalog_faculty_observation",
     "department_faculty_roster_observation",
@@ -145,6 +145,7 @@ class FacultyAppointmentAuditResult:
     summary: Mapping[str, Any]
     evidence_inventory: Mapping[str, Any]
     denominator_readiness: Mapping[str, Any]
+    identity_review_queue: tuple[Mapping[str, Any], ...]
     deterministic_fingerprint: str
 
     def summary_dict(self) -> dict[str, Any]:
@@ -152,6 +153,7 @@ class FacultyAppointmentAuditResult:
             "summary": dict(self.summary),
             "evidence_inventory": dict(self.evidence_inventory),
             "denominator_readiness": dict(self.denominator_readiness),
+            "identity_review_queue": [dict(item) for item in self.identity_review_queue],
             "deterministic_fingerprint": self.deterministic_fingerprint,
         }
 
@@ -181,6 +183,7 @@ class FacultyAppointmentObservationService:
         candidate_counts = Counter()
         schedule_assignments = 0
         ambiguous_records = []
+        identity_review_queue = []
 
         for obj in sorted(values, key=lambda item: str(item.get("id") or "")):
             object_type = str(obj.get("object_type") or "")
@@ -197,11 +200,20 @@ class FacultyAppointmentObservationService:
                 reference = source["reference"]
                 identity_id = identity_links.get(reference)
                 if identity_id is None:
-                    ambiguous_records.append({
+                    unresolved = {
                         "source_observation_reference": reference,
                         "observed_person_name": source["name"],
                         "source_system": source["source_system"],
                         "reason": "identity_unresolved_or_ambiguous",
+                    }
+                    ambiguous_records.append(unresolved)
+                    identity_review_queue.append({
+                        **unresolved,
+                        "deterministic_candidates": list(
+                            self.identity_service.review_candidates(
+                                source["name"], identity_audit.identities
+                            )
+                        ),
                     })
                 faculty_observation = self._faculty_observation(
                     obj, source, identity_id
@@ -273,6 +285,11 @@ class FacultyAppointmentObservationService:
             "observations_by_temporal_label": dict(sorted(temporal_counts.items())),
             "evidence_fitness_counts": dict(sorted(fitness.items())),
             "ambiguous_or_unlinked_record_count": len(ambiguous_records),
+            "identity_review_queue_count": len(identity_review_queue),
+            "identity_review_queue_with_candidates_count": sum(
+                bool(item["deterministic_candidates"])
+                for item in identity_review_queue
+            ),
             "ambiguous_or_unlinked_examples": sorted(
                 ambiguous_records,
                 key=lambda item: (item["observed_person_name"].casefold(), item["source_observation_reference"]),
@@ -292,10 +309,15 @@ class FacultyAppointmentObservationService:
             "summary": summary,
             "evidence_inventory": inventory,
             "denominator_readiness": readiness,
+            "identity_review_queue": sorted(
+                identity_review_queue,
+                key=lambda item: item["source_observation_reference"],
+            ),
         }
         return FacultyAppointmentAuditResult(
             tuple(faculty), tuple(administrative), tuple(statuses), summary,
-            inventory, readiness, _fingerprint(semantic),
+            inventory, readiness,
+            tuple(semantic["identity_review_queue"]), _fingerprint(semantic),
         )
 
     def _faculty_observation(self, obj, source, identity_id):

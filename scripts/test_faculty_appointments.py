@@ -155,6 +155,16 @@ def test_ambiguous_identity_preserves_appointment_without_forced_link():
     assert initial.faculty_identity_id is None
     assert "identity_unresolved" in initial.evidence_fitness
     assert result.summary["ambiguous_or_unlinked_record_count"] == 1
+    assert result.summary["identity_review_queue_count"] == 1
+    queue = result.identity_review_queue[0]
+    assert queue["observed_person_name"] == "R. Smith"
+    assert {item["display_name"] for item in queue["deterministic_candidates"]} == {
+        "Robert Smith", "Richard Smith",
+    }
+    assert all(
+        "given_initial" in item["candidate_methods"]
+        for item in queue["deterministic_candidates"]
+    )
 
 
 def test_rank_unknown_title_and_explicit_current_claim_are_conservative():
@@ -232,5 +242,6 @@ def test_cli_writes_compact_reports_and_manifests(tmp_path, capsys):
         "faculty_appointment_observations.jsonl",
         "administrative_appointment_observations.jsonl",
         "employment_status_observations.jsonl",
+        "identity_review_queue.jsonl",
     ):
         assert (output / filename).is_file()

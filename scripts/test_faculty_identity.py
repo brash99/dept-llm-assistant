@@ -2,7 +2,13 @@ from __future__ import annotations
 
 import json
 
-from app.faculty_identity import FacultyIdentityService, normalize_person_name
+import pytest
+
+from app.faculty_identity import (
+    FacultyIdentityService,
+    IdentityAliasRegistry,
+    normalize_person_name,
+)
 from scripts.audit_faculty_identity import main
 
 
@@ -108,6 +114,64 @@ def test_exact_identifier_can_link_names_but_similar_names_do_not_merge():
     assert frozenset({"Alexa Morgan"}) in clusters
     assert frozenset({"Alex Morton"}) in clusters
     assert result.summary["duplicate_identity_id_count"] == 0
+
+
+def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
+    values = (
+        _directory("patricia", "Patricia Siewe Seuchie"),
+        _catalog("patricia-short", "Patricia Seuchie"),
+        _directory("james", "James P. Kelly"),
+        _catalog("james-initials", "J. P. Kelly"),
+        _directory("jessica", "Jessica Kelly"),
+        _directory("shinhye", "Shinhye Kim"),
+        _catalog("shinhye-initial", "S. Kim"),
+        _directory("seung", "Seung-Hye Kim"),
+    )
+    result = FacultyIdentityService().audit(values)
+    by_id = {item.identity_id: item for item in result.identities}
+    assert set(by_id["faculty_identity:patricia_siewe_seuchie"].observed_names) == {
+        "Patricia Siewe Seuchie", "Patricia Seuchie",
+    }
+    assert set(by_id["faculty_identity:james_p_kelly"].observed_names) == {
+        "James P. Kelly", "J. P. Kelly",
+    }
+    assert "Jessica Kelly" not in by_id["faculty_identity:james_p_kelly"].observed_names
+    assert set(by_id["faculty_identity:shinhye_kim"].observed_names) == {
+        "Shinhye Kim", "S. Kim",
+    }
+    assert "Seung-Hye Kim" not in by_id["faculty_identity:shinhye_kim"].observed_names
+    assert not by_id["faculty_identity:james_p_kelly"].ambiguous
+    assert not by_id["faculty_identity:shinhye_kim"].ambiguous
+
+
+def test_alias_registry_rejects_duplicate_aliases(tmp_path):
+    registry = tmp_path / "aliases.yaml"
+    registry.write_text("""
+registry_id: duplicate-test
+identities:
+  - identity_key: one
+    canonical_display_name: Jane Doe
+    observed_names: [Jane Doe]
+    confidence: 1.0
+    evidence: {source: review:one, assertion: reviewed}
+  - identity_key: two
+    canonical_display_name: Janet Doe
+    observed_names: [Jane Doe]
+    confidence: 1.0
+    evidence: {source: review:two, assertion: reviewed}
+""", encoding="utf-8")
+    with pytest.raises(ValueError, match="Duplicate governed faculty alias"):
+        IdentityAliasRegistry.load(registry)
+
+
+def test_no_fuzzy_name_matching_is_introduced():
+    result = FacultyIdentityService().audit((
+        _directory("one", "Patricia Siewe Seuchie"),
+        _catalog("typo", "Patricia Siewe Seuchi"),
+        _directory("kim", "Shinhye Kim"),
+        _catalog("similar", "Shinhee Kim"),
+    ))
+    assert len(result.identities) == 4
 
 
 def test_bounded_middle_matching_and_ambiguous_initials_do_not_guess():

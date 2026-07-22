@@ -31,7 +31,7 @@ FACULTY_OBJECT_TYPES = {
 PLACEHOLDER_NAMES = {"staff", "tba", "tbd", "to be announced", "unassigned"}
 IDENTIFIER_FIELDS = ("person_id", "employee_id", "email")
 ALGORITHM = "iso_faculty_identity_resolution"
-ALGORITHM_VERSION = "1.0"
+ALGORITHM_VERSION = "1.1"
 
 
 def _fingerprint(value: Any) -> str:
@@ -105,6 +105,17 @@ def normalize_person_name(value: str) -> NormalizedPersonName | None:
     )
 
 
+def _middle_names_compatible(left: tuple[str, ...], right: tuple[str, ...]) -> bool:
+    if not left or not right:
+        return True
+    if len(left) != len(right):
+        return False
+    return all(
+        a == b or (len(a) == 1 and b.startswith(a)) or (len(b) == 1 and a.startswith(b))
+        for a, b in zip(left, right)
+    )
+
+
 @dataclass(frozen=True)
 class FacultyIdentityAlias:
     identity_key: str
@@ -114,11 +125,12 @@ class FacultyIdentityAlias:
     evidence: Mapping[str, str]
 
 
-class FacultyIdentityAliasRegistry:
+class IdentityAliasRegistry:
     def __init__(self, aliases: Iterable[FacultyIdentityAlias], registry_id: str):
         self.registry_id = registry_id
         self.aliases = tuple(aliases)
         by_name: dict[str, FacultyIdentityAlias] = {}
+        identity_keys: set[str] = set()
         for alias in self.aliases:
             if not alias.identity_key or not alias.observed_names:
                 raise ValueError("Faculty identity aliases require a key and observed names")
@@ -126,18 +138,21 @@ class FacultyIdentityAliasRegistry:
                 raise ValueError("Faculty identity alias confidence must be between zero and one")
             if not alias.evidence.get("source") or not alias.evidence.get("assertion"):
                 raise ValueError("Faculty identity aliases require evidence")
+            if alias.identity_key in identity_keys:
+                raise ValueError(f"Duplicate governed faculty identity key: {alias.identity_key}")
+            identity_keys.add(alias.identity_key)
             for name in alias.observed_names:
                 normalized = normalize_person_name(name)
                 if not normalized:
                     raise ValueError(f"Invalid governed faculty alias: {name!r}")
                 prior = by_name.get(normalized.normalized_name)
-                if prior and prior.identity_key != alias.identity_key:
-                    raise ValueError(f"Conflicting governed faculty alias: {name!r}")
+                if prior:
+                    raise ValueError(f"Duplicate governed faculty alias: {name!r}")
                 by_name[normalized.normalized_name] = alias
         self._by_name = by_name
 
     @classmethod
-    def load(cls, path: Path = DEFAULT_ALIAS_REGISTRY) -> "FacultyIdentityAliasRegistry":
+    def load(cls, path: Path = DEFAULT_ALIAS_REGISTRY) -> "IdentityAliasRegistry":
         payload = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
         aliases = tuple(
             FacultyIdentityAlias(
@@ -160,6 +175,10 @@ class FacultyIdentityAliasRegistry:
             "registry_id": self.registry_id,
             "identities": [asdict(item) for item in self.aliases],
         })
+
+
+# Compatibility name for callers written before the governance sprint.
+FacultyIdentityAliasRegistry = IdentityAliasRegistry
 
 
 @dataclass(frozen=True)
@@ -227,8 +246,8 @@ class _DisjointSet:
 
 
 class FacultyIdentityService:
-    def __init__(self, alias_registry: FacultyIdentityAliasRegistry | None = None):
-        self.alias_registry = alias_registry or FacultyIdentityAliasRegistry.load()
+    def __init__(self, alias_registry: IdentityAliasRegistry | None = None):
+        self.alias_registry = alias_registry or IdentityAliasRegistry.load()
 
     def audit(self, objects: Iterable[Mapping[str, Any]]) -> FacultyIdentityAuditResult:
         all_objects = tuple(objects)
@@ -244,7 +263,9 @@ class FacultyIdentityService:
         methods: dict[int, set[str]] = defaultdict(set)
         ambiguous: dict[int, str] = {}
 
-        self._union_equal(observations, parsed, dsu, methods)
+        self._union_identifiers(observations, dsu, methods)
+        self._union_exact_names(parsed, dsu, methods)
+        self._union_governed_aliases(parsed, dsu, methods)
         self._union_compatible_middle_names(parsed, dsu, methods, ambiguous)
         self._union_unique_initials(parsed, dsu, methods, ambiguous)
 
@@ -315,28 +336,35 @@ class FacultyIdentityService:
             tuple(identities), summary, schema, _fingerprint(semantic)
         )
 
-    def _union_equal(self, observations, names, dsu, methods) -> None:
+    def _union_identifiers(self, observations, dsu, methods) -> None:
         identifier_indexes: dict[str, list[int]] = defaultdict(list)
-        exact_names: dict[str, list[int]] = defaultdict(list)
-        governed_aliases: dict[str, list[int]] = defaultdict(list)
-        for index, (observation, name) in enumerate(zip(observations, names)):
-            exact_names[name.normalized_name].append(index)
+        for index, observation in enumerate(observations):
             for identifier in observation.identifiers:
                 identifier_indexes[identifier].append(index)
+        self._union_groups(identifier_indexes, "exact_identifier", dsu, methods)
+
+    def _union_exact_names(self, names, dsu, methods) -> None:
+        exact_names: dict[str, list[int]] = defaultdict(list)
+        for index, name in enumerate(names):
+            exact_names[name.normalized_name].append(index)
+        self._union_groups(exact_names, "exact_normalized_name", dsu, methods)
+
+    def _union_governed_aliases(self, names, dsu, methods) -> None:
+        governed_aliases: dict[str, list[int]] = defaultdict(list)
+        for index, name in enumerate(names):
             alias = self.alias_registry.for_name(name)
             if alias:
                 governed_aliases[alias.identity_key].append(index)
-        for groups, method in (
-            (identifier_indexes, "exact_identifier"),
-            (exact_names, "exact_normalized_name"),
-            (governed_aliases, "explicit_governed_alias"),
-        ):
-            for indexes in groups.values():
-                for index in indexes[1:]:
-                    dsu.union(indexes[0], index)
-                if len(indexes) > 1:
-                    for index in indexes:
-                        methods[index].add(method)
+        self._union_groups(governed_aliases, "explicit_governed_alias", dsu, methods)
+
+    @staticmethod
+    def _union_groups(groups, method, dsu, methods) -> None:
+        for indexes in groups.values():
+            for index in indexes[1:]:
+                dsu.union(indexes[0], index)
+            if len(indexes) > 1:
+                for index in indexes:
+                    methods[index].add(method)
 
     def _union_compatible_middle_names(self, names, dsu, methods, ambiguous) -> None:
         groups: dict[tuple[str, str, str | None], list[int]] = defaultdict(list)
@@ -372,6 +400,10 @@ class FacultyIdentityService:
         for index, name in enumerate(names):
             if not name.is_given_initial_only:
                 continue
+            # A reviewed alias has already resolved at the stronger governance
+            # stage and must not be weakened by a later initial-only ambiguity.
+            if self.alias_registry.for_name(name):
+                continue
             candidates = {
                 dsu.find(other)
                 for other, candidate in enumerate(names)
@@ -387,6 +419,45 @@ class FacultyIdentityService:
                 methods[target].add("unique_given_initial")
             elif len(candidates) > 1:
                 ambiguous[index] = "multiple_given_name_candidates_for_initial"
+
+    def review_candidates(
+        self, observed_name: str, identities: Iterable[FacultyIdentity]
+    ) -> tuple[dict[str, Any], ...]:
+        """Return bounded deterministic candidates without performing a merge."""
+        name = normalize_person_name(observed_name)
+        if not name:
+            return ()
+        candidates: dict[str, set[str]] = defaultdict(set)
+        governed = self.alias_registry.for_name(name)
+        for identity in identities:
+            if identity.ambiguous:
+                continue
+            parsed_names = tuple(filter(None, (
+                normalize_person_name(value) for value in identity.observed_names
+            )))
+            if governed and identity.identity_id == f"faculty_identity:{governed.identity_key}":
+                candidates[identity.identity_id].add("governed_alias")
+            for candidate in parsed_names:
+                if (
+                    not name.is_given_initial_only
+                    and name.given_name == candidate.given_name
+                    and name.family_name == candidate.family_name
+                    and name.suffix == candidate.suffix
+                    and _middle_names_compatible(name.middle_names, candidate.middle_names)
+                ):
+                    candidates[identity.identity_id].add("middle_name_variation")
+                if (
+                    name.is_given_initial_only
+                    and name.family_name == candidate.family_name
+                    and name.given_initial == candidate.given_initial
+                ):
+                    candidates[identity.identity_id].add("given_initial")
+        by_id = {item.identity_id: item for item in identities}
+        return tuple({
+            "faculty_identity_id": identity_id,
+            "display_name": by_id[identity_id].display_name,
+            "candidate_methods": sorted(methods),
+        } for identity_id, methods in sorted(candidates.items()))
 
     def _build_identity(self, indexes, observations, names, methods, ambiguous):
         refs = tuple(sorted((observations[index] for index in indexes), key=lambda x: x.observation_reference))
@@ -580,7 +651,8 @@ def _repository_relative(value: str) -> str:
 
 
 __all__ = [
-    "FacultyIdentity", "FacultyIdentityAliasRegistry", "FacultyIdentityAuditResult",
+    "FacultyIdentity", "FacultyIdentityAliasRegistry", "IdentityAliasRegistry",
+    "FacultyIdentityAuditResult",
     "FacultyIdentityService", "FacultySourceObservation", "NormalizedPersonName",
     "normalize_person_name",
 ]

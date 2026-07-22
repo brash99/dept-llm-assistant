@@ -42,6 +42,7 @@ def _markdown(payload: dict) -> str:
         f"- Identity-link coverage: {summary['identity_link_coverage_percent']}%",
         f"- Unit-resolution coverage: {summary['unit_resolution_coverage_percent']}%",
         f"- Duplicate observation IDs: {summary['duplicate_observation_id_count']}",
+        f"- Identity review queue: {summary['identity_review_queue_count']}",
         "",
         "## Denominator readiness",
         "",
@@ -100,6 +101,11 @@ def main(argv=None) -> int:
         with (args.output_dir / filename).open("w", encoding="utf-8") as handle:
             for observation in observations:
                 handle.write(json.dumps(observation.to_dict(), sort_keys=True) + "\n")
+    with (args.output_dir / "identity_review_queue.jsonl").open(
+        "w", encoding="utf-8"
+    ) as handle:
+        for item in result.identity_review_queue:
+            handle.write(json.dumps(item, sort_keys=True) + "\n")
     compact = {
         "fingerprint": result.deterministic_fingerprint,
         **result.summary,

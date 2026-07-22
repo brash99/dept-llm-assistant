@@ -127,6 +127,10 @@ def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
         _directory("shinhye", "Shinhye Kim"),
         _catalog("shinhye-initial", "S. Kim"),
         _directory("seung", "Seung-Hye Kim"),
+        _directory("cynthia-canonical", "Cynthia Vacca Davis"),
+        _schedule("cynthia-schedule", "Cynthia Davis"),
+        _directory("ann-canonical", "Ann Mazzocca Bellecci"),
+        _schedule("ann-schedule", "Ann Bellecci"),
     )
     result = FacultyIdentityService().audit(values)
     by_id = {item.identity_id: item for item in result.identities}
@@ -154,6 +158,32 @@ def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
     assert "Seung-Hye Kim" not in by_id["faculty_identity:shinhye_kim"].observed_names
     assert not by_id["faculty_identity:james_p_kelly"].ambiguous
     assert not by_id["faculty_identity:shinhye_kim"].ambiguous
+    assert set(by_id["faculty_identity:cynthia_vacca_davis"].observed_names) == {
+        "Cynthia Vacca Davis", "Cynthia Davis",
+    }
+    assert set(by_id["faculty_identity:ann_mazzocca_bellecci"].observed_names) == {
+        "Ann Mazzocca Bellecci", "Ann Bellecci",
+    }
+    for identity_id, schedule_id in (
+        ("faculty_identity:cynthia_vacca_davis", "cynthia-schedule"),
+        ("faculty_identity:ann_mazzocca_bellecci", "ann-schedule"),
+    ):
+        identity = by_id[identity_id]
+        assert not identity.ambiguous
+        assert any(
+            source.knowledge_object_id == schedule_id
+            and source.source_system == "schedule"
+            for source in identity.source_observations
+        )
+    assert not any(
+        identity.identity_id not in {
+            "faculty_identity:cynthia_vacca_davis",
+            "faculty_identity:ann_mazzocca_bellecci",
+        }
+        and any(name in {"Cynthia Davis", "Ann Bellecci"} for name in identity.observed_names)
+        for identity in result.identities
+    )
+    assert result.summary["duplicate_identity_id_count"] == 0
 
 
 def test_alias_registry_rejects_duplicate_aliases(tmp_path):

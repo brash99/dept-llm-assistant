@@ -91,6 +91,32 @@ def test_patricia_directory_observation_links_to_governed_identity():
     assert result.summary["ambiguous_or_unlinked_record_count"] == 0
 
 
+def test_new_governed_aliases_preserve_complete_appointment_linkage():
+    result = FacultyAppointmentObservationService().audit((
+        _directory("cynthia-short", name="Cynthia Davis", unit="English"),
+        _catalog("cynthia-full", name="Cynthia Vacca Davis", unit="English"),
+        _directory(
+            "ann-short", name="Ann Bellecci",
+            unit="Music, Theatre, and Dance",
+        ),
+        _catalog(
+            "ann-full", name="Ann Mazzocca Bellecci",
+            unit="Music, Theatre, and Dance",
+        ),
+    ))
+    links = {
+        item.observed_person_name: item.faculty_identity_id
+        for item in result.faculty_appointments
+    }
+    assert links["Cynthia Davis"] == "faculty_identity:cynthia_vacca_davis"
+    assert links["Cynthia Vacca Davis"] == "faculty_identity:cynthia_vacca_davis"
+    assert links["Ann Bellecci"] == "faculty_identity:ann_mazzocca_bellecci"
+    assert links["Ann Mazzocca Bellecci"] == "faculty_identity:ann_mazzocca_bellecci"
+    assert result.summary["identity_link_coverage_percent"] == 100.0
+    assert result.summary["identity_unlinked_observation_count"] == 0
+    assert result.summary["ambiguous_or_unlinked_record_count"] == 0
+
+
 def test_catalog_and_roster_are_edition_claims_not_current_employment():
     result = FacultyAppointmentObservationService().audit((
         _catalog("c1", title="Associate Professor", appointment_year="2018"),

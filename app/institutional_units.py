@@ -28,7 +28,8 @@ VALID_OPERATIONAL_ROLES = {
     "faculty_home_unit", "workforce_allocation_unit", "dean_level_unit",
     "parent_academic_unit", "budgetary_rollup_unit",
     "intermediate_academic_unit", "interdisciplinary", "service_subject",
-    "non_workforce_unit", "academic_coordination", "curriculum_ownership_unit",
+    "non_workforce_unit", "academic_coordination", "academic_governance",
+    "curriculum_ownership_unit",
     "university_wide_program", "unresolved",
 }
 
@@ -47,6 +48,9 @@ _CONTAMINATION = re.compile(
 _GOVERNED_ROLE_PREFIX = re.compile(
     r"^(Graduate Program Director)\s*-\s*(.+)$", re.IGNORECASE,
 )
+_GOVERNED_CONTAMINATED_LABELS = {
+    _normalize_label("and Marketing Department"): "Management and Marketing",
+}
 
 
 @dataclass(frozen=True)
@@ -414,6 +418,9 @@ def _unit_from_dict(value: Mapping[str, Any]) -> AcademicUnitDefinition:
 
 
 def _clean_published_unit_label(value: str) -> tuple[str, bool]:
+    governed_cleaned = _GOVERNED_CONTAMINATED_LABELS.get(_normalize_label(value))
+    if governed_cleaned:
+        return governed_cleaned, True
     cleaned = _EMERITUS.sub("", value)
     cleaned = re.sub(r"\s*,\s*(?=$)", "", cleaned).strip(" ,")
     contaminated = False

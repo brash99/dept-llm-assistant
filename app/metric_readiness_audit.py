@@ -387,7 +387,9 @@ class MetricReadinessAuditService:
                 ),
                 "administrative_coordination_units": sorted(
                     unit.unit_id for unit in units.values()
-                    if "academic_coordination" in unit.operational_roles
+                    if {
+                        "academic_coordination", "academic_governance"
+                    }.intersection(unit.operational_roles)
                 ),
             },
             "unit_eligibility_counts": {

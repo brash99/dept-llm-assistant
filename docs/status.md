@@ -105,6 +105,13 @@ Status as of July 2026. This file describes the current codebase; research and s
   Role-prefixed graduate-program labels resolve deterministically, while
   unresolved emeritus labels remain excluded rather than inflating active
   workforce mapping gaps.
+- Final institutional-label governance resolves current Performing Arts/Music,
+  Fine Arts and Art History, Finance, Management, and the bounded `and Marketing
+  Department` parser fragment. Neuroscience is modeled as an interdisciplinary
+  curriculum-owning program, and the Provost and ORCA as non-denominator
+  administrative units. Historical Department of Music and Department of
+  Performing Arts entities remain distinct from the current public-facing
+  Performing Arts alias.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

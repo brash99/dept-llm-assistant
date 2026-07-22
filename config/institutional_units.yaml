@@ -1,4 +1,4 @@
-version: 3
+version: 4
 
 # Reviewed organizational facts used to resolve published academic-unit labels.
 # Operational roles are explicit institutional modeling decisions; they are not
@@ -83,8 +83,8 @@ units:
     subordinate_unit_ids: [academic_unit:department_fine_art_art_history, academic_unit:department_music_theatre_dance]
 
   - unit_id: academic_unit:department_fine_art_art_history
-    published_name: Department of Fine Art and Art History
-    aliases: [Fine Art and Art History, Fine Art and Art History Department]
+    published_name: Department of Fine Arts and Art History
+    aliases: [Fine Arts and Art History, Fine Art and Art History, Fine Art and Art History Department]
     entity_type: department
     formal_unit_type: department
     parent_unit_id: academic_unit:school_arts
@@ -95,7 +95,7 @@ units:
 
   - unit_id: academic_unit:department_music_theatre_dance
     published_name: Department of Music, Theatre, and Dance
-    aliases: ["Music, Theatre, and Dance", "Music, Theatre and Dance", "Department of Music, Theatre and Dance"]
+    aliases: ["Music, Theatre, and Dance", "Music, Theatre and Dance", "Department of Music, Theatre and Dance", Music, Performing Arts, Performimg Arts]
     entity_type: department
     formal_unit_type: department
     parent_unit_id: academic_unit:school_arts
@@ -106,7 +106,7 @@ units:
 
   - unit_id: academic_unit:department_accounting_finance
     published_name: Department of Accounting and Finance
-    aliases: [Accounting, "Accounting, Finance", Accounting and Finance, Accounting and Finance Department]
+    aliases: [Accounting, Finance, "Accounting, Finance", Accounting and Finance, Accounting and Finance Department]
     entity_type: department
     formal_unit_type: department
     parent_unit_id: academic_unit:luter_school_business
@@ -117,7 +117,7 @@ units:
 
   - unit_id: academic_unit:department_management_marketing
     published_name: Department of Management and Marketing
-    aliases: [Management and Marketing, Management and Marketing Department]
+    aliases: [Management, Management and Marketing, Management and Marketing Department]
     entity_type: department
     formal_unit_type: department
     parent_unit_id: academic_unit:luter_school_business
@@ -355,6 +355,49 @@ units:
     valid_conventional_denominator_unit: false
     valid_analytical_rollup_unit: false
 
+  - unit_id: academic_unit:neuroscience_program
+    published_name: Neuroscience Program
+    aliases: [Neuroscience]
+    entity_type: academic_program
+    formal_unit_type: interdisciplinary_program
+    governance_level: university_wide
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [interdisciplinary, curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:office_provost
+    published_name: Office of the Provost
+    aliases: [Provost's Office, Provost Office]
+    entity_type: academic_unit
+    formal_unit_type: university_unit
+    governance_level: university_wide
+    leadership_type: provost
+    contains_subordinate_departments: false
+    operational_roles: [academic_governance, curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:office_research_creative_activity
+    published_name: Office of Research and Creative Activity
+    aliases: [ORCA]
+    entity_type: academic_unit
+    formal_unit_type: university_unit
+    parent_unit_id: academic_unit:office_provost
+    governance_level: university_wide
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [academic_coordination, non_workforce_unit]
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
   - unit_id: academic_unit:graduate_studies
     published_name: Graduate Studies
     aliases: [Office of Graduate Studies]
@@ -416,7 +459,7 @@ units:
 
   - unit_id: academic_unit:department_performing_arts_historical
     published_name: Department of Performing Arts
-    aliases: [Performing Arts]
+    aliases: []
     entity_type: department
     formal_unit_type: department
     governance_level: department

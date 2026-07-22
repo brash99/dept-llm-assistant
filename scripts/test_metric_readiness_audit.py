@@ -154,3 +154,32 @@ def test_audit_reports_resolution_methods_contamination_ambiguity_and_exclusions
     assert "academic_unit:honors_program" in categories["university_wide_programs"]
     assert "academic_unit:graduate_studies" in categories["administrative_coordination_units"]
     assert first.deterministic_fingerprint == second.deterministic_fingerprint
+
+
+def test_final_label_cleanup_reports_programs_administration_and_no_known_unresolved():
+    labels = (
+        "Performing Arts", "Performimg Arts", "Music",
+        "Fine Arts and Art History", "Finance", "Management",
+        "and Marketing Department", "Neuroscience Program",
+        "Office of Research and Creative Activity", "Office of the Provost",
+    )
+    values = tuple(
+        {
+            "id": f"f{index}", "object_type": "faculty_observation",
+            "published_department": label, "published_titles": ["Professor"],
+        }
+        for index, label in enumerate(labels)
+    )
+    first = MetricReadinessAuditService().audit(values)
+    second = MetricReadinessAuditService().audit(reversed(values))
+    units = first.institutional_units
+    assert units["unresolved_published_unit_labels"] == []
+    resolution = units["published_label_resolution"]
+    assert resolution["genuinely_unresolved_unique_labels"] == 0
+    assert resolution["genuinely_unresolved_observation_count"] == 0
+    assert resolution["parser_contamination_cleaned"] == 1
+    categories = units["unit_semantic_categories"]
+    assert "academic_unit:neuroscience_program" in categories["program_level_units"]
+    assert "academic_unit:office_provost" in categories["administrative_coordination_units"]
+    assert "academic_unit:office_research_creative_activity" in categories["administrative_coordination_units"]
+    assert first.deterministic_fingerprint == second.deterministic_fingerprint

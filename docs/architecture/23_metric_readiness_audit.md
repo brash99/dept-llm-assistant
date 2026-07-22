@@ -88,8 +88,14 @@ a department. Honors is a university-wide curriculum-owning program, not a
 faculty-home or conventional denominator unit. Graduate Studies is an academic
 coordination unit. Curricular ownership, faculty-home membership, conventional
 faculty denominators, and analytical rollups are separate eligibility facts.
-`Finance` and `Fine Arts and Art History` remain unresolved because inspected
-Mac-accessible evidence does not establish one deterministic interpretation.
+Final reviewed aliases resolve Finance and Management to their current Luter
+departments; Music, Performing Arts, and the published typo `Performimg Arts`
+to the current Department of Music, Theatre, and Dance; and Fine Arts and Art
+History to its current School of the Arts department. The exact parser fragment
+`and Marketing Department` is cleaned by a bounded governed rule rather than
+fuzzy matching. Neuroscience is an interdisciplinary curriculum-owning program,
+while the Provost and ORCA are governed administrative units; none is a
+faculty-home or conventional denominator unit.
 
 ## Emeritus and emerita
 

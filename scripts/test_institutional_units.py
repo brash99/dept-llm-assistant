@@ -321,10 +321,9 @@ def test_historical_arts_and_biology_units_remain_distinct_from_current_units():
         assert historical.deprecated
         assert historical.unit_id != current_bces.unit_id
         assert historical.successor_unit_ids == (current_bces.unit_id,)
-    # No dated local registry evidence establishes this plural form as current
-    # or historical, so it remains explicit rather than guessed.
-    assert registry.resolve_published_label("Fine Arts and Art History").unit is None
-    assert registry.resolve_published_label("Finance").unit is None
+    assert registry.resolve_published_label(
+        "Fine Arts and Art History"
+    ).unit_id == "academic_unit:department_fine_art_art_history"
 
 
 def test_unresolved_emeritus_is_excluded_without_inventing_a_unit():
@@ -338,6 +337,72 @@ def test_unresolved_emeritus_is_excluded_without_inventing_a_unit():
         assert result.classification == "excluded_emeritus"
         assert not result.active_workforce_eligible
         assert result.cleaned_label not in {"", label}
+
+
+def test_final_governed_labels_resolve_without_erasing_historical_music():
+    registry = AcademicUnitRegistry.load()
+    current_music = "academic_unit:department_music_theatre_dance"
+    for label in ("Performing Arts", "Performimg Arts", "Music"):
+        result = registry.resolve_published_label(label)
+        assert result.unit_id == current_music
+        assert result.resolution_method == "governed_alias"
+        assert not result.unit.deprecated
+    historical_music = registry.resolve_published_label("Department of Music")
+    assert historical_music.unit_id == "academic_unit:department_music_historical"
+    assert historical_music.unit.deprecated
+    assert historical_music.unit_id != current_music
+    historical_performing = registry.resolve_published_label(
+        "Department of Performing Arts"
+    )
+    assert historical_performing.unit.deprecated
+    assert historical_performing.unit_id != current_music
+
+    assert registry.resolve_published_label(
+        "Fine Arts and Art History"
+    ).unit_id == "academic_unit:department_fine_art_art_history"
+    assert registry.get(
+        "academic_unit:department_fine_art_art_history"
+    ).published_name == "Department of Fine Arts and Art History"
+
+
+def test_finance_management_and_bounded_marketing_contamination_resolution():
+    registry = AcademicUnitRegistry.load()
+    assert registry.resolve_published_label(
+        "Finance"
+    ).unit_id == "academic_unit:department_accounting_finance"
+    assert registry.resolve_published_label(
+        "Management"
+    ).unit_id == "academic_unit:department_management_marketing"
+    contaminated = registry.resolve_published_label("and Marketing Department")
+    assert contaminated.unit_id == "academic_unit:department_management_marketing"
+    assert contaminated.cleaned_label == "Management and Marketing"
+    assert contaminated.resolution_method == "cleaned_governed_alias"
+    assert contaminated.classification == "parser_contamination"
+    assert contaminated.parser_contamination_detected
+    assert registry.resolve_published_label(
+        "Unreviewed Role - Marketing Department"
+    ).unit is None
+
+
+def test_neuroscience_and_administrative_units_are_not_workforce_departments():
+    registry = AcademicUnitRegistry.load()
+    neuroscience = registry.resolve("Neuroscience Program")
+    assert neuroscience.formal_unit_type == "interdisciplinary_program"
+    assert "interdisciplinary" in neuroscience.operational_roles
+    assert neuroscience.valid_curriculum_ownership_unit
+    assert not neuroscience.valid_faculty_home_unit
+    assert not neuroscience.valid_conventional_denominator_unit
+    assert not neuroscience.is_department_workforce_unit
+
+    provost = registry.resolve("Office of the Provost")
+    orca = registry.resolve("ORCA")
+    assert provost.formal_unit_type == orca.formal_unit_type == "university_unit"
+    assert "academic_governance" in provost.operational_roles
+    assert orca.parent_unit_id == provost.unit_id
+    assert not provost.valid_faculty_home_unit
+    assert not provost.valid_conventional_denominator_unit
+    assert not orca.valid_faculty_home_unit
+    assert not orca.valid_conventional_denominator_unit
 
 
 def test_historical_pcse_is_distinct_from_current_sec_and_new_units_load():

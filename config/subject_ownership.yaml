@@ -1,0 +1,81 @@
+schema_version: 1
+registry_id: cnu.subject_ownership
+description: >-
+  Governed facts about instructional subject ownership and analytical
+  assignment. Organizational-unit definitions remain authoritative in
+  config/institutional_units.yaml.
+
+subjects:
+  - &sec_subject
+    record_id: cnu.subject.phys.sec.v1
+    subject_code: PHYS
+    display_name: Physics
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    relationship_type: owns_instructional_subject
+    mapping_status: intentionally_grouped_department_equivalent
+    mapping_method: governed_registry_lookup
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: config/institutional_programs.yaml
+        source_type: governed_registry
+        assertion: The governed program registry places this instructional subject within SEC.
+    rationale: >-
+      SEC owns this instructional subject and is the governed faculty-home and
+      workforce-allocation unit. This does not create a separate department or
+      assert faculty-to-major membership.
+    notes: Workforce aggregation only; formal organizational facts are resolved from the unit registry.
+
+  - <<: *sec_subject
+    record_id: cnu.subject.cpsc.sec.v1
+    subject_code: CPSC
+    display_name: Computer Science
+
+  - <<: *sec_subject
+    record_id: cnu.subject.cybr.sec.v1
+    subject_code: CYBR
+    display_name: Cybersecurity
+
+  - <<: *sec_subject
+    record_id: cnu.subject.is.sec.v1
+    subject_code: IS
+    display_name: Information Science
+
+  - <<: *sec_subject
+    record_id: cnu.subject.cpen.sec.v1
+    subject_code: CPEN
+    display_name: Computer Engineering
+
+  - <<: *sec_subject
+    record_id: cnu.subject.eeng.sec.v1
+    subject_code: EENG
+    display_name: Electrical Engineering
+
+  - record_id: cnu.subject.pcse.sec.v1
+    subject_code: PCSE
+    display_name: Physics, Computer Science and Engineering
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    relationship_type: owns_instructional_subject
+    mapping_status: intentionally_grouped_department_equivalent
+    mapping_method: institutional_expert_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: institutional_review:edward_brash:pcse_subject_ownership:2026-07-22
+        source_type: institutional_expert
+        assertion: >-
+          PCSE courses belong to the School of Engineering and Computing and
+          roll up to SEC for workforce analysis; PCSE is not a formal department.
+        reviewer: Edward Brash
+        review_date: 2026-07-22
+    rationale: >-
+      Institutional review confirms that PCSE is an instructional and
+      historical cross-disciplinary SEC prefix. Its observations belong to SEC
+      and do not establish a Department of Physics and Computer Science.
+    notes: No catalog citation is asserted; evidence is explicitly institutional-expert review.

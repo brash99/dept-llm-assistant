@@ -42,12 +42,24 @@ Status as of July 2026. This file describes the current codebase; research and s
   explicit offering-share denominators by term, Instructor Type, subject, and
   governed academic unit. It preserves unresolved, repaired, unknown, and
   missing-status categories and produces provenance-bearing fingerprints.
-- Governed schedule subject mapping is implemented with explicit mapped,
+- Governed schedule subject ownership is separated from organizational-unit
+  definitions: `config/subject_ownership.yaml` records prefix ownership while
+  `config/institutional_units.yaml` remains authoritative for units, formal
+  types, relationships, and operational roles. Mapping is implemented with explicit mapped,
   intentionally grouped, ambiguous, unmapped, and unsupported outcomes. The
-  first reviewed rules roll six SEC subject codes into SEC as a
+  first reviewed records roll seven SEC subject codes—including PCSE—into SEC as a
   department-equivalent workforce unit without representing SEC as a formal
   department or inventing specialty departments. Other subjects remain
   unmapped pending reviewed crosswalks.
+- The subject ownership registry carries mapping method, typed evidence
+  (including explicitly reviewed institutional-expert evidence for PCSE),
+  authority, source type, confidence, effective terms, review status, and
+  notes. Registry auditing detects conflicts, invalid targets/types/roles,
+  missing evidence, overlapping effective ranges, and deprecated targets.
+  Production inventory and report-comparison tooling operate directly over
+  normalized schedules without retrieval or LLM dependencies. No additional
+  subject mappings were added because the Mac-accessible catalog ontology does
+  not publish a governed course-prefix-to-unit crosswalk.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

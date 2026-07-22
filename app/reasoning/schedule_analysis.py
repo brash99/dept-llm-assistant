@@ -75,6 +75,11 @@ class ScheduleAggregationGroup:
 class AcademicUnitMappingSummary:
     mapped_observation_count: int
     intentionally_grouped_observation_count: int
+    interdisciplinary_observation_count: int
+    service_subject_observation_count: int
+    non_workforce_unit_observation_count: int
+    provisional_observation_count: int
+    requires_review_observation_count: int
     unmapped_observation_count: int
     ambiguous_mapping_count: int
     unsupported_mapping_count: int
@@ -86,9 +91,18 @@ class AcademicUnitMappingSummary:
     def mapped_observations(self) -> int:
         return self.mapped_observation_count + self.intentionally_grouped_observation_count
 
+    @property
+    def classified_non_workforce_observations(self) -> int:
+        return (
+            self.interdisciplinary_observation_count
+            + self.service_subject_observation_count
+            + self.non_workforce_unit_observation_count
+        )
+
     def to_dict(self) -> dict[str, Any]:
         value = asdict(self)
         value["mapped_observations"] = self.mapped_observations
+        value["classified_non_workforce_observations"] = self.classified_non_workforce_observations
         return value
 
 
@@ -97,6 +111,13 @@ class ScheduleEvidenceFitness:
     total_schedule_observations: int
     observations_with_usable_subject: int
     mapped_observations: int
+    workforce_mappable_observation_count: int
+    workforce_mapping_coverage_percent: float
+    governed_interdisciplinary_observations: int
+    governed_service_subject_observations: int
+    governed_non_workforce_observations: int
+    provisional_mapping_observations: int
+    requires_review_mapping_observations: int
     unmapped_observations: int
     ambiguous_mappings: int
     observations_with_instructor_identity: int
@@ -105,6 +126,7 @@ class ScheduleEvidenceFitness:
     missing_instructor_type_rate: float
     missing_instructor_rate: float
     identity_policy_limitations: tuple[str, ...]
+    mapping_policy_limitations: tuple[str, ...]
     term_coverage: tuple[str, ...]
     unsupported_terms: tuple[str, ...]
     suitability: Mapping[str, str]
@@ -323,9 +345,13 @@ class ScheduleAnalysisService:
             instructor = str(_value(observation, "instructor_raw") or _value(observation, "instructor_name") or "").strip()
             assertion = _value(observation, "instructor_type", {}) or {}
             resolution = assertion.get("resolution") or {}
-            mapping = self.mapping_service.map_subject(subject)
-            mapping_counts[mapping.status] += 1
-            if mapping.status in {AcademicUnitMappingStatus.MAPPED.value, AcademicUnitMappingStatus.INTENTIONALLY_GROUPED.value}:
+            mapping = self.mapping_service.map_subject(subject, term)
+            governed = mapping.review_status == "governed"
+            if mapping.status in {"unmapped", "ambiguous", "unsupported"}:
+                mapping_counts[mapping.status] += 1
+            else:
+                mapping_counts[mapping.status if governed else f"review:{mapping.review_status}"] += 1
+            if governed and mapping.status in {AcademicUnitMappingStatus.MAPPED.value, AcademicUnitMappingStatus.INTENTIONALLY_GROUPED.value}:
                 mapped_subjects.add(subject)
             elif mapping.status == AcademicUnitMappingStatus.UNMAPPED.value:
                 unmapped_subjects.add(subject)
@@ -352,7 +378,7 @@ class ScheduleAnalysisService:
             if "subject" in grouping and not subject:
                 excluded += 1
                 continue
-            mapped = mapping.status in {AcademicUnitMappingStatus.MAPPED.value, AcademicUnitMappingStatus.INTENTIONALLY_GROUPED.value}
+            mapped = governed and mapping.status in {AcademicUnitMappingStatus.MAPPED.value, AcademicUnitMappingStatus.INTENTIONALLY_GROUPED.value}
             if "academic_unit" in grouping and not mapped:
                 excluded += 1
                 continue
@@ -376,6 +402,11 @@ class ScheduleAnalysisService:
         mapping_summary = AcademicUnitMappingSummary(
             mapped_observation_count=mapping_counts[AcademicUnitMappingStatus.MAPPED.value],
             intentionally_grouped_observation_count=mapping_counts[AcademicUnitMappingStatus.INTENTIONALLY_GROUPED.value],
+            interdisciplinary_observation_count=mapping_counts[AcademicUnitMappingStatus.INTERDISCIPLINARY.value],
+            service_subject_observation_count=mapping_counts[AcademicUnitMappingStatus.SERVICE_SUBJECT.value],
+            non_workforce_unit_observation_count=mapping_counts[AcademicUnitMappingStatus.NON_WORKFORCE_UNIT.value],
+            provisional_observation_count=mapping_counts["review:provisional"],
+            requires_review_observation_count=mapping_counts["review:requires_review"],
             unmapped_observation_count=mapping_counts[AcademicUnitMappingStatus.UNMAPPED.value],
             ambiguous_mapping_count=mapping_counts[AcademicUnitMappingStatus.AMBIGUOUS.value],
             unsupported_mapping_count=mapping_counts[AcademicUnitMappingStatus.UNSUPPORTED.value],
@@ -397,6 +428,8 @@ class ScheduleAnalysisService:
             "algorithm": ANALYSIS_ALGORITHM,
             "algorithm_version": ANALYSIS_VERSION,
             "academic_unit_registry_version": self.mapping_service.registry.version,
+            "subject_ownership_registry_id": self.mapping_service.subject_registry.registry_id,
+            "subject_ownership_registry_fingerprint": self.mapping_service.subject_registry.fingerprint,
             "source_object_ids_fingerprint": _fingerprint(sorted(object_ids)),
         }
         payload = {
@@ -571,6 +604,7 @@ def _build_evidence_fitness(
     supported_terms = tuple(sorted((term for term in terms if academic_term_order(term).supported), key=academic_term_sort_key))
     unsupported_terms = tuple(sorted(term for term in terms if term and not academic_term_order(term).supported))
     rate = lambda count: round(100.0 * count / total, 6) if total else 0.0
+    subject_rate = lambda count: round(100.0 * count / usable_subject, 6) if usable_subject else 0.0
     mapped_count = mapping.mapped_observations
     mapping_strength = mapped_count / total if total else 0.0
     suitability = {
@@ -586,6 +620,13 @@ def _build_evidence_fitness(
         total_schedule_observations=total,
         observations_with_usable_subject=usable_subject,
         mapped_observations=mapped_count,
+        workforce_mappable_observation_count=mapped_count,
+        workforce_mapping_coverage_percent=subject_rate(mapped_count),
+        governed_interdisciplinary_observations=mapping.interdisciplinary_observation_count,
+        governed_service_subject_observations=mapping.service_subject_observation_count,
+        governed_non_workforce_observations=mapping.non_workforce_unit_observation_count,
+        provisional_mapping_observations=mapping.provisional_observation_count,
+        requires_review_mapping_observations=mapping.requires_review_observation_count,
         unmapped_observations=mapping.unmapped_observation_count + mapping.unsupported_mapping_count,
         ambiguous_mappings=mapping.ambiguous_mapping_count,
         observations_with_instructor_identity=with_identity,
@@ -596,6 +637,11 @@ def _build_evidence_fitness(
         identity_policy_limitations=(
             "Instructor names are formatting-normalized within groups but are not institutionally resolved identities.",
             "Instructor Type is a section-scoped source assertion, not a timeless employment fact.",
+        ),
+        mapping_policy_limitations=(
+            "Only governed direct and department-equivalent mappings count as workforce-mappable.",
+            "Interdisciplinary, service-subject, and non-workforce classifications are not department assignments.",
+            "Provisional, review-required, ambiguous, and unmapped subjects are excluded from academic-unit comparison.",
         ),
         term_coverage=supported_terms, unsupported_terms=unsupported_terms,
         suitability=suitability,

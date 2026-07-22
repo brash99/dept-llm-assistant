@@ -34,11 +34,28 @@ from app.reasoning.schedule_analysis import (
     ScheduleTrendGroup,
     ScheduleTrendResult,
 )
+from app.reasoning.subject_crosswalk_audit import (
+    CrosswalkAuditFinding,
+    SubjectCrosswalkAuditReport,
+    SubjectCrosswalkAuditService,
+)
+from app.reasoning.subject_mapping_inventory import (
+    ScheduleSubjectMappingInventoryService,
+    ScheduleSubjectMappingReport,
+    SubjectMappingComparison,
+    compare_subject_mapping_reports,
+)
+from app.subject_ownership import (
+    SubjectOwnershipEvidence,
+    SubjectOwnershipRecord,
+    SubjectOwnershipRegistry,
+)
 
 __all__ = [
     "AcademicUnitMappingResult",
     "AcademicUnitMappingService",
     "AcademicUnitMappingStatus",
+    "CrosswalkAuditFinding",
     "HybridReasoningResult",
     "INSTRUCTOR_TYPE_ADJUNCT",
     "INSTRUCTOR_TYPE_FULL_TIME",
@@ -56,11 +73,20 @@ __all__ = [
     "ScheduleAnalysisService",
     "ScheduleEvidenceFitness",
     "ScheduleReasoningService",
+    "ScheduleSubjectMappingInventoryService",
+    "ScheduleSubjectMappingReport",
     "ScheduleTrendGroup",
     "ScheduleTrendResult",
+    "SubjectCrosswalkAuditReport",
+    "SubjectCrosswalkAuditService",
+    "SubjectMappingComparison",
+    "SubjectOwnershipEvidence",
+    "SubjectOwnershipRecord",
+    "SubjectOwnershipRegistry",
     "classify_query_type",
     "constitutional_evidence_is_relevant",
     "constitutional_quota_for_query",
+    "compare_subject_mapping_reports",
     "infer_schedule_grouping",
     "infer_schedule_metric",
 ]

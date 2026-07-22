@@ -5,7 +5,8 @@ from types import SimpleNamespace
 import pytest
 
 from app.academic_terms import academic_term_order, academic_term_sort_key
-from app.institutional_units import AcademicUnitRegistry, SubjectAcademicUnitRule
+from app.institutional_units import AcademicUnitRegistry
+from app.subject_ownership import SubjectOwnershipEvidence, SubjectOwnershipRecord, SubjectOwnershipRegistry
 from app.reasoning import (
     AcademicUnitMappingService,
     ReasoningRouter,
@@ -35,6 +36,15 @@ def _values(result):
         (row.subject, row.academic_term, row.instructor_type): row.value
         for row in result.grouped_results
     }
+
+
+def _subject_record(record_id, subject, unit_id, status="mapped", review="governed"):
+    return SubjectOwnershipRecord(
+        record_id, subject, subject, unit_id, unit_id,
+        "owns_instructional_subject", status, "governed_registry_lookup", 1.0,
+        review, (SubjectOwnershipEvidence("config/institutional_units.yaml", "governed_registry", "Synthetic assertion."),),
+        "Reviewed synthetic fixture.",
+    )
 
 
 def test_subject_counts_distinguish_people_from_offerings():
@@ -92,23 +102,17 @@ def test_governed_sec_mapping_preserves_formal_school_type():
 
 def test_formal_department_unmapped_and_ambiguous_mapping_contracts():
     base = AcademicUnitRegistry.load()
-    department_rule = SubjectAcademicUnitRule(
-        "test.art.v1", ("ARTX",), "academic_unit:department_fine_art_art_history",
-        "synthetic_test_registry", 1.0, "Reviewed synthetic fixture.", False,
-    )
+    department_rule = _subject_record("test.art.v1", "ARTX", "academic_unit:department_fine_art_art_history")
     direct = AcademicUnitMappingService(
-        AcademicUnitRegistry(base.units, "test", (department_rule,))
+        base, SubjectOwnershipRegistry((department_rule,), registry_id="test")
     ).map_subject("ARTX")
     assert direct.status == "mapped"
     assert direct.formal_unit_type == "department"
     assert AcademicUnitMappingService().map_subject("ZZZZ").status == "unmapped"
 
-    competing = SubjectAcademicUnitRule(
-        "test.competing.v1", ("ARTX",), "academic_unit:department_music_theatre_dance",
-        "synthetic_test_registry", 1.0, "Competing synthetic fixture.", False,
-    )
+    competing = _subject_record("test.competing.v1", "ARTX", "academic_unit:department_music_theatre_dance")
     ambiguous = AcademicUnitMappingService(
-        AcademicUnitRegistry(base.units, "test", (department_rule, competing))
+        base, SubjectOwnershipRegistry((department_rule, competing), registry_id="test")
     ).map_subject("ARTX")
     assert ambiguous.status == "ambiguous"
     assert len(ambiguous.candidate_unit_ids) == 2
@@ -191,6 +195,35 @@ def test_evidence_fitness_does_not_overstate_decision_utility():
     assert fitness.suitability["staffing_recommendations"] == "insufficient"
     assert fitness.suitability["workload_inference"] == "insufficient"
     assert fitness.unsupported_terms == ("bad term",)
+
+
+def test_evidence_fitness_separates_workforce_and_non_workforce_mappings():
+    base = AcademicUnitRegistry.load()
+    # Non-workforce classifications still reference a governed analytical unit;
+    # their status prevents treatment as a department assignment.
+    rules = (
+        _subject_record("direct", "DIR", "academic_unit:department_fine_art_art_history"),
+        _subject_record("inter", "INTD", "academic_unit:faculty_arts_humanities", "interdisciplinary"),
+        _subject_record("nonwork", "NOWK", "academic_unit:faculty_arts_humanities", "non_workforce_unit"),
+    )
+    mapping = AcademicUnitMappingService(base, SubjectOwnershipRegistry(rules, registry_id="fitness"))
+    result = ScheduleAnalysisService(mapping_service=mapping).analyze_observations(
+        "Count offerings by subject",
+        [
+            _offering("1", "2024_fall", "DIR", "A"),
+            _offering("2", "2024_fall", "INTD", "B"),
+            _offering("3", "2024_fall", "NOWK", "C"),
+            _offering("4", "2024_fall", "MISS", "D"),
+        ], metric="course_offerings", group_by=("subject",),
+    )
+    fitness = result.evidence_fitness
+    assert fitness.workforce_mappable_observation_count == 1
+    assert fitness.workforce_mapping_coverage_percent == 25.0
+    assert fitness.governed_interdisciplinary_observations == 1
+    assert fitness.governed_non_workforce_observations == 1
+    assert result.mapping_coverage.mapped_observations == 1
+    assert result.mapping_coverage.classified_non_workforce_observations == 2
+    assert fitness.suitability["academic_unit_comparison"] == "insufficient_mapping_coverage"
 
 
 class _FakeAnalysis:

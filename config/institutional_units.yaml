@@ -110,19 +110,3 @@ units:
     leadership_type: chair
     contains_subordinate_departments: false
     operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
-
-# Reviewed subject-to-workforce-unit mappings. A subject code identifies an
-# instructional subject, not a department. These six mappings intentionally
-# roll SEC specialties into the governed department-equivalent SEC unit.
-subject_mappings:
-  - rule_id: cnu.sec_subjects.v1
-    subject_codes: [PHYS, CPSC, CYBR, IS, CPEN, EENG]
-    unit_id: academic_unit:sec
-    mapping_source: config/institutional_programs.yaml
-    confidence: 1.0
-    intentionally_grouped: true
-    rationale: >-
-      The governed program registry publishes these subject/program aliases
-      within the School of Engineering and Computing; SEC is the governed
-      faculty-home and workforce-allocation unit. The mapping does not create
-      separate departments or faculty-to-major memberships.

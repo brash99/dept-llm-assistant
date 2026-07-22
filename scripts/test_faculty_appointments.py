@@ -71,6 +71,26 @@ def test_directory_title_emits_source_scoped_faculty_appointment():
     assert "published_unit_is_not_faculty_home_assertion" in appointment.evidence_limitations
 
 
+def test_patricia_directory_observation_links_to_governed_identity():
+    result = FacultyAppointmentObservationService().audit((
+        _directory("patricia-directory", name="Patricia Seuchie"),
+        _catalog(
+            "patricia-catalog",
+            name="Patricia Angele Siewe Seuchie",
+        ),
+    ))
+    patricia = [
+        item for item in result.faculty_appointments
+        if item.observed_person_name == "Patricia Seuchie"
+    ]
+    assert len(patricia) == 1
+    assert patricia[0].faculty_identity_id == (
+        "faculty_identity:patricia_siewe_seuchie"
+    )
+    assert result.summary["identity_unlinked_observation_count"] == 0
+    assert result.summary["ambiguous_or_unlinked_record_count"] == 0
+
+
 def test_catalog_and_roster_are_edition_claims_not_current_employment():
     result = FacultyAppointmentObservationService().audit((
         _catalog("c1", title="Associate Professor", appointment_year="2018"),

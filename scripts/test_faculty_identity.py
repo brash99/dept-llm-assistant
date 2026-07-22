@@ -120,6 +120,7 @@ def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
     values = (
         _directory("patricia", "Patricia Siewe Seuchie"),
         _catalog("patricia-short", "Patricia Seuchie"),
+        _catalog("patricia-full", "Patricia Angele Siewe Seuchie"),
         _directory("james", "James P. Kelly"),
         _catalog("james-initials", "J. P. Kelly"),
         _directory("jessica", "Jessica Kelly"),
@@ -131,7 +132,18 @@ def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
     by_id = {item.identity_id: item for item in result.identities}
     assert set(by_id["faculty_identity:patricia_siewe_seuchie"].observed_names) == {
         "Patricia Siewe Seuchie", "Patricia Seuchie",
+        "Patricia Angele Siewe Seuchie",
     }
+    assert not by_id["faculty_identity:patricia_siewe_seuchie"].ambiguous
+    assert len([
+        identity for identity in result.identities
+        if any("Patricia" in name for name in identity.observed_names)
+    ]) == 1
+    assert not any(
+        identity.identity_id != "faculty_identity:patricia_siewe_seuchie"
+        and "Patricia Angele Siewe Seuchie" in identity.observed_names
+        for identity in result.identities
+    )
     assert set(by_id["faculty_identity:james_p_kelly"].observed_names) == {
         "James P. Kelly", "J. P. Kelly",
     }

@@ -372,6 +372,11 @@ class FacultyIdentityService:
             if not name.is_given_initial_only:
                 groups[(name.given_name, name.family_name, name.suffix)].append(index)
         for indexes in groups.values():
+            # Stronger identifier, exact-name, or governed-alias evidence may
+            # already have joined every observation in this name group. A
+            # lower-priority middle-name rule must not weaken that resolution.
+            if len({dsu.find(index) for index in indexes}) == 1:
+                continue
             full_middle = {
                 name.middle_names[0]
                 for index in indexes

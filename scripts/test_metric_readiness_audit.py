@@ -114,3 +114,28 @@ def test_invalid_json_fails_without_dumping_file_inventory(tmp_path, capsys):
     assert main(["--normalized-root", str(root)]) == 2
     output = json.loads(capsys.readouterr().out)
     assert output == {"error": "invalid_normalized_json", "invalid_json_count": 1}
+
+
+def test_audit_reports_resolution_methods_contamination_ambiguity_and_exclusions():
+    values = (
+        {"id": "f1", "object_type": "faculty_observation", "published_department": "Department of Communication Studies", "published_titles": ["Professor"]},
+        {"id": "f2", "object_type": "faculty_observation", "published_department": "Communication", "published_titles": ["Professor"]},
+        {"id": "f3", "object_type": "faculty_observation", "published_department": "Communication. Ph.B., Miami University;", "published_titles": ["Professor"]},
+        {"id": "f4", "object_type": "faculty_observation", "published_department": "Accounting, Emerita", "published_titles": ["Professor Emerita"]},
+        {"id": "f5", "object_type": "faculty_observation", "published_department": "Accounting, Finance, Management & Marketing. B.B.A, University of Notre Dame;", "published_titles": ["Professor"]},
+        {"id": "f6", "object_type": "faculty_observation", "published_department": "Unknown Unit", "published_titles": ["Professor"]},
+    )
+    first = MetricReadinessAuditService().audit(values)
+    second = MetricReadinessAuditService().audit(reversed(values))
+    resolution = first.institutional_units["published_label_resolution"]
+    assert resolution["canonical_exact_resolutions"] == 1
+    assert resolution["governed_alias_resolutions"] == 1
+    assert resolution["cleaned_resolutions"] == 2
+    assert resolution["parser_contamination_cleaned"] == 1
+    assert resolution["emeritus_emerita_exclusions"] == 1
+    assert resolution["ambiguous_match_count"] == 1
+    assert resolution["genuinely_unresolved_unique_labels"] == 1
+    workforce = first.faculty_observation["active_workforce_eligibility"]
+    assert workforce["emeritus_emerita_observations_detected"] == 1
+    assert workforce["emeritus_emerita_observations_excluded"] == 1
+    assert first.deterministic_fingerprint == second.deterministic_fingerprint

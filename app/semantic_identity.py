@@ -25,6 +25,7 @@ class InstitutionalEntity:
     leadership_type: Optional[str] = None
     has_dean: Optional[bool] = None
     contains_subordinate_departments: Optional[bool] = None
+    deprecated: bool = False
 
     def __post_init__(self) -> None:
         if not self.entity_type.strip():
@@ -48,6 +49,7 @@ class InstitutionalEntity:
                 "leadership_type": self.leadership_type,
                 "has_dean": self.has_dean,
                 "contains_subordinate_departments": self.contains_subordinate_departments,
+                "deprecated": self.deprecated or None,
             }.items()
             if value is not None and value != {} and value != []
         }
@@ -66,6 +68,7 @@ class InstitutionalEntity:
             leadership_type=value.get("leadership_type"),
             has_dean=value.get("has_dean"),
             contains_subordinate_departments=value.get("contains_subordinate_departments"),
+            deprecated=bool(value.get("deprecated", False)),
         )
 
 

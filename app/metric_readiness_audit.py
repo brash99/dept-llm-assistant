@@ -12,17 +12,21 @@ from dataclasses import asdict, dataclass
 import hashlib
 import json
 from pathlib import Path
+import re
 from typing import Any, Iterable, Mapping
 
 import yaml
 
-from app.institutional_units import AcademicUnitRegistry
+from app.institutional_units import (
+    AcademicUnitRegistry,
+    assess_faculty_workforce_eligibility,
+)
 from app.reasoning.academic_unit_mapping import AcademicUnitMappingService
 from app.subject_ownership import SubjectOwnershipRegistry
 
 
 AUDIT_ALGORITHM = "iso_metric_readiness_audit"
-AUDIT_VERSION = "1.0"
+AUDIT_VERSION = "1.1"
 
 
 FACULTY_CAPABILITIES: Mapping[str, Mapping[str, str]] = {
@@ -192,6 +196,7 @@ class MetricReadinessAuditService:
         units = {unit.unit_id: unit for unit in self.unit_registry.units}
         references: dict[str, set[str]] = defaultdict(set)
         unresolved_labels: Counter[str] = Counter()
+        label_occurrences: list[dict[str, Any]] = []
         for unit in units.values():
             if unit.parent_unit_id:
                 references[unit.parent_unit_id].add("institutional_unit.parent")
@@ -240,12 +245,42 @@ class MetricReadinessAuditService:
                     unit_id = str(relationship.get(field) or "")
                     if unit_id.startswith("academic_unit:"):
                         references[unit_id].add(f"normalized:{object_type}:relationship")
-            for field in ("academic_unit", "published_department", "published_college"):
-                label = str(obj.get(field) or "").strip()
+            published_labels = [
+                (field, obj.get(field))
+                for field in ("academic_unit", "published_department", "published_college")
+            ]
+            if object_type == "academic_unit_observation":
+                published_labels.extend((
+                    ("published_name", obj.get("published_name")),
+                    ("published_parent_unit", obj.get("published_parent_unit")),
+                ))
+            if object_type == "faculty_observation":
+                published_labels.extend(
+                    ("organizational_affiliations.label", affiliation.get("label"))
+                    for affiliation in obj.get("organizational_affiliations") or ()
+                    if isinstance(affiliation, Mapping)
+                )
+            for field, raw_label in published_labels:
+                label = str(raw_label or "").strip()
                 if label:
-                    resolved = self.unit_registry.resolve(label)
-                    if resolved:
-                        references[resolved.unit_id].add(f"normalized:{object_type}:{field}")
+                    exact = self.unit_registry.resolve(label)
+                    resolution = self.unit_registry.resolve_published_label(label)
+                    label_occurrences.append({
+                        "published_label": label,
+                        "object_type": object_type,
+                        "field": field,
+                        "source_path": _object_source_path(obj),
+                        "exact_unit_id": exact.unit_id if exact else None,
+                        "resolved_unit_id": resolution.unit_id,
+                        "resolution_method": resolution.resolution_method,
+                        "classification": resolution.classification,
+                        "active_workforce_eligible": resolution.active_workforce_eligible,
+                        "cleaned_label": resolution.cleaned_label,
+                        "parser_contamination_detected": resolution.parser_contamination_detected,
+                        "competing_unit_ids": list(resolution.competing_unit_ids),
+                    })
+                    if resolution.unit:
+                        references[resolution.unit.unit_id].add(f"normalized:{object_type}:{field}")
                     else:
                         unresolved_labels[label] += 1
         governed = []
@@ -267,6 +302,41 @@ class MetricReadinessAuditService:
         used = {unit_id for unit_id in references if unit_id in units}
         formal_types = Counter(unit.formal_unit_type for unit in units.values())
         roles = Counter(role for unit in units.values() for role in unit.operational_roles)
+        methods = Counter(item["resolution_method"] for item in label_occurrences)
+        classifications = Counter(item["classification"] for item in label_occurrences)
+        exact_workforce = sum(
+            bool(item["exact_unit_id"] and units[item["exact_unit_id"]].is_department_workforce_unit)
+            for item in label_occurrences
+        )
+        resolved_workforce = sum(
+            bool(item["resolved_unit_id"] and units[item["resolved_unit_id"]].is_department_workforce_unit)
+            for item in label_occurrences
+        )
+        unresolved_details: dict[str, dict[str, Any]] = {}
+        for item in label_occurrences:
+            if item["resolution_method"] not in {"unresolved", "ambiguous"}:
+                continue
+            detail = unresolved_details.setdefault(item["published_label"], {
+                "published_label": item["published_label"], "observation_count": 0,
+                "object_types": set(), "source_paths": set(),
+                "classification": item["classification"],
+                "competing_unit_ids": set(),
+            })
+            detail["observation_count"] += 1
+            detail["object_types"].add(item["object_type"])
+            if item["source_path"]:
+                detail["source_paths"].add(item["source_path"])
+            detail["competing_unit_ids"].update(item["competing_unit_ids"])
+        unresolved_inventory = [
+            {
+                **detail,
+                "object_types": sorted(detail["object_types"]),
+                "source_paths": sorted(detail["source_paths"])[:5],
+                "competing_unit_ids": sorted(detail["competing_unit_ids"]),
+            }
+            for _, detail in sorted(unresolved_details.items())
+        ]
+        total_labels = len(label_occurrences)
         return {
             "governed_academic_units": governed,
             "governed_unit_count": len(governed),
@@ -278,10 +348,37 @@ class MetricReadinessAuditService:
             "referenced_unit_count": len(references),
             "referenced_but_not_governed": unknown_ids,
             "governed_but_currently_unused": sorted(set(units) - used),
-            "unresolved_published_unit_labels": [
-                {"published_label": label, "observation_count": count}
+            "unresolved_published_unit_labels": unresolved_inventory,
+            "configuration_unresolved_labels": [
+                {"published_label": label, "reference_count": count}
                 for label, count in sorted(unresolved_labels.items())
+                if label not in unresolved_details
             ],
+            "published_label_resolution": {
+                "total_published_unit_label_observations": total_labels,
+                "resolution_method_counts": dict(sorted(methods.items())),
+                "classification_counts": dict(sorted(classifications.items())),
+                "canonical_exact_resolutions": methods["canonical_exact"],
+                "governed_alias_resolutions": methods["governed_alias"],
+                "cleaned_resolutions": methods["cleaned_canonical"] + methods["cleaned_governed_alias"],
+                "embedded_resolutions": methods["embedded_governed_unit"],
+                "emeritus_emerita_exclusions": classifications["excluded_emeritus"],
+                "parser_contamination_cleaned": classifications["parser_contamination"],
+                "genuinely_unresolved_unique_labels": sum(
+                    detail["classification"] == "genuinely_unresolved"
+                    for detail in unresolved_inventory
+                ),
+                "genuinely_unresolved_observation_count": sum(
+                    detail["observation_count"]
+                    for detail in unresolved_inventory
+                    if detail["classification"] == "genuinely_unresolved"
+                ),
+                "ambiguous_match_count": methods["ambiguous"],
+                "workforce_unit_mapped_before_cleaning": exact_workforce,
+                "workforce_unit_mapped_after_cleaning": resolved_workforce,
+                "workforce_mapping_coverage_before_percent": _percent(exact_workforce, total_labels),
+                "workforce_mapping_coverage_after_percent": _percent(resolved_workforce, total_labels),
+            },
             "alias_relationships": [
                 {"alias": alias, "unit_id": unit.unit_id}
                 for unit in sorted(units.values(), key=lambda item: item.unit_id)
@@ -355,6 +452,29 @@ class MetricReadinessAuditService:
                     name: sum(_present(item.get(name)) for item in matching) for name in names
                 },
             }
+        eligibility_records = []
+        for item in objects:
+            object_type = str(item.get("object_type") or "")
+            if object_type in {"faculty_observation", "catalog_faculty_observation"}:
+                eligibility_records.append((object_type, assess_faculty_workforce_eligibility(item)))
+            elif object_type == "department_faculty_roster_observation":
+                for entry in item.get("entries") or ():
+                    combined = dict(entry)
+                    combined["academic_unit"] = item.get("academic_unit")
+                    eligibility_records.append((object_type, assess_faculty_workforce_eligibility(combined)))
+        excluded = [value for _, value in eligibility_records if not value.active_workforce_eligible]
+        ambiguous_emerit = 0
+        for item in objects:
+            if item.get("object_type") not in {
+                "faculty_observation", "catalog_faculty_observation",
+                "department_faculty_roster_observation",
+            }:
+                continue
+            encoded = json.dumps(item, ensure_ascii=False)
+            if re.search(r"\bemerit\w*\b", encoded, re.IGNORECASE) and not re.search(
+                r"\bemerit(?:us|a)\b", encoded, re.IGNORECASE
+            ):
+                ambiguous_emerit += 1
         return {
             "evidence_sources": {
                 "institutional_faculty_directory": {
@@ -376,6 +496,16 @@ class MetricReadinessAuditService:
             },
             "observed_object_type_counts": dict(sorted(object_types.items())),
             "observed_field_coverage": coverage,
+            "active_workforce_eligibility": {
+                "faculty_records_evaluated": len(eligibility_records),
+                "active_workforce_eligible": len(eligibility_records) - len(excluded),
+                "emeritus_emerita_observations_detected": len(excluded),
+                "emeritus_emerita_observations_excluded": len(excluded),
+                "ambiguous_emerit_status_records_not_excluded": ambiguous_emerit,
+                "exclusion_reason_counts": {
+                    "explicit_emeritus_or_emerita": len(excluded),
+                },
+            },
             "identity_limitations": [
                 "No governed cross-source faculty-person identifier links directory, catalog, roster, and schedule names.",
                 "Schedule Instructor Type is section-scoped and cannot establish timeless employment status.",
@@ -427,6 +557,13 @@ class MetricReadinessAuditService:
                     "instructor_present", "workforce_unit_mapped",
                     "sch_inputs_and_workforce_unit_mapped",
                 )
+            },
+            "mapping_coverage_before_and_after_label_cleaning": {
+                "workforce_unit_mapped_before": counts["workforce_unit_mapped"],
+                "workforce_unit_mapped_after": counts["workforce_unit_mapped"],
+                "sch_inputs_and_workforce_unit_mapped_before": counts["sch_inputs_and_workforce_unit_mapped"],
+                "sch_inputs_and_workforce_unit_mapped_after": counts["sch_inputs_and_workforce_unit_mapped"],
+                "explanation": "Schedule workforce mapping uses governed subject ownership, not published faculty/catalog unit labels; label cleanup therefore does not alter SCH mapping counts.",
             },
             "status_value_counts": dict(sorted(statuses.items())),
             "mapped_observation_counts_by_unit": dict(sorted(mapped_units.items())),
@@ -560,6 +697,24 @@ def _repository_relative(path: str | Path | None) -> str | None:
         return value.resolve().relative_to(Path.cwd().resolve()).as_posix()
     except ValueError:
         return value.as_posix()
+
+
+def _object_source_path(value: Mapping[str, Any]) -> str | None:
+    provenance = value.get("provenance")
+    source = value.get("source")
+    provenance = provenance if isinstance(provenance, Mapping) else {}
+    source = source if isinstance(source, Mapping) else {}
+    for candidate in (
+        value.get("relative_source_path"), value.get("source_file"),
+        provenance.get("source_path"), source.get("path"),
+    ):
+        if candidate:
+            return _repository_relative(str(candidate))
+    return None
+
+
+def _percent(numerator: int, denominator: int) -> float:
+    return round(100.0 * numerator / denominator, 6) if denominator else 0.0
 
 
 def _fingerprint(values: Iterable[str]) -> str:

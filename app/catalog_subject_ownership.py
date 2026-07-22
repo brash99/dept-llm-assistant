@@ -238,7 +238,12 @@ class CatalogSectionAcademicUnitResolver:
 
     def resolve(self, observation: CatalogSubjectOwnershipObservation):
         labels = tuple(dict.fromkeys((*observation.section_title_path, observation.section_title)))
-        candidates = {unit.unit_id for label in labels for unit in [self.registry.resolve(label)] if unit}
+        candidates = {
+            resolution.unit.unit_id
+            for label in labels
+            for resolution in [self.registry.resolve_published_label(label)]
+            if resolution.unit and resolution.resolution_method != "ambiguous"
+        }
         for label in labels:
             target = self.reviewed_aliases.get(_label(label))
             if target: candidates.add(target)

@@ -241,7 +241,7 @@ class FacultyObservationClassifier(SemanticClassifier):
                 ).to_dict()
             )
         department = getattr(obj, "published_department", None)
-        unit = self.unit_registry.resolve(department)
+        unit = self.unit_registry.resolve_published_label(department).unit
         relationships = []
         if unit:
             unit_entities, relationships = _unit_entities_and_relationships(
@@ -371,7 +371,7 @@ class CatalogObservationClassifier(SemanticClassifier):
                 )
             if unit:
                 published_label = unit
-        resolved_unit = self.unit_registry.resolve(published_label)
+        resolved_unit = self.unit_registry.resolve_published_label(published_label).unit
         if resolved_unit:
             unit_entities, relationships = _unit_entities_and_relationships(
                 obj, published_label, resolved_unit, self.unit_registry,

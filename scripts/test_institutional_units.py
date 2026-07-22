@@ -1,14 +1,21 @@
 from __future__ import annotations
 
 import json
+from dataclasses import replace
 from types import SimpleNamespace
+
+import pytest
 
 from app.classification.classifiers import DeterministicSemanticClassifier
 from app.classification.corpus import (
     CorpusClassificationOptions, SemanticCorpusPopulationService,
 )
 from app.classification.policy import ClassificationGovernor
-from app.institutional_units import AcademicUnitRegistry, is_department_workforce_entity
+from app.institutional_units import (
+    AcademicUnitRegistry,
+    assess_faculty_workforce_eligibility,
+    is_department_workforce_entity,
+)
 from app.knowledge import KnowledgeObject, load_knowledge_object
 from app.observatory.decision_brief.dashboard_v2.participation import _topology_profile
 from app.observatory.topology.bootstrap import build_bootstrap_catalog
@@ -166,3 +173,105 @@ def test_registry_reclassification_replaces_legacy_entity_and_is_idempotent(tmp_
     ))
     assert second.overall.changed == 0
     assert second.overall.unchanged == 1
+
+
+def test_governed_aliases_and_contamination_cleanup_are_bounded():
+    registry = AcademicUnitRegistry.load()
+    communication = "academic_unit:department_communication_studies"
+    for label in (
+        "Communication", "Communication Studies", "Department of Communication",
+        "Department of Communication Studies",
+    ):
+        assert registry.resolve_published_label(label).unit_id == communication
+    contaminated = registry.resolve_published_label(
+        "Communication. Ph.B., Miami University;"
+    )
+    assert contaminated.unit_id == communication
+    assert contaminated.cleaned_label == "Communication"
+    assert contaminated.classification == "parser_contamination"
+    assert contaminated.resolution_method == "cleaned_governed_alias"
+
+    bces = "academic_unit:department_biology_chemistry_environmental_science"
+    for label in (
+        "Biology, Chemistry and Environmental Science",
+        "Biology, Chemistry, and Environmental Science",
+        "Department of Biology, Chemistry and Environmental Science",
+    ):
+        assert registry.resolve_published_label(label).unit_id == bces
+    contaminated_bces = registry.resolve_published_label(
+        "Biology, Chemistry, and Environmental Science. B.Ed., Beijing Sport University;"
+    )
+    assert contaminated_bces.unit_id == bces
+    assert contaminated_bces.classification == "parser_contamination"
+
+
+def test_emeritus_is_preserved_resolved_and_excluded_from_active_workforce():
+    registry = AcademicUnitRegistry.load()
+    for label in ("Accounting, Emeritus", "Accounting, Emerita", "Biology, Emeritus"):
+        result = registry.resolve_published_label(label)
+        assert result.unit is not None
+        assert result.classification == "excluded_emeritus"
+        assert result.active_workforce_eligible is False
+        assert result.exclusion_reason == "explicit_emeritus_or_emerita"
+        assert "emerit" in result.original_label.casefold()
+    eligibility = assess_faculty_workforce_eligibility({
+        "published_title": "Professor of Communication, Emerita",
+    })
+    assert eligibility.active_workforce_eligible is False
+    assert eligibility.matched_published_values == (
+        "Professor of Communication, Emerita",
+    )
+
+
+def test_common_words_and_competing_embedded_units_are_not_guessed():
+    registry = AcademicUnitRegistry.load()
+    assert registry.resolve_published_label("Art").resolution_method == "unresolved"
+    ambiguous = registry.resolve_published_label(
+        "Accounting, Finance, Management & Marketing. B.B.A, University of Notre Dame;"
+    )
+    assert ambiguous.resolution_method == "ambiguous"
+    assert ambiguous.unit is None
+    assert set(ambiguous.competing_unit_ids) == {
+        "academic_unit:department_accounting_finance",
+        "academic_unit:department_management_marketing",
+    }
+
+
+def test_historical_pcse_is_distinct_from_current_sec_and_new_units_load():
+    registry = AcademicUnitRegistry.load()
+    historical = registry.resolve_published_label(
+        "Department of Physics, Computer Science and Engineering"
+    ).unit
+    current = registry.resolve("SEC")
+    assert historical.unit_id == "academic_unit:department_pcse_historical"
+    assert historical.deprecated is True
+    assert historical.is_department_workforce_unit is False
+    assert historical.to_entity().deprecated is True
+    assert is_department_workforce_entity(historical.to_entity()) is False
+    assert historical.unit_id != current.unit_id
+    for unit_id in (
+        "academic_unit:department_communication_studies",
+        "academic_unit:department_economics", "academic_unit:department_english",
+        "academic_unit:department_history",
+        "academic_unit:department_leadership_american_studies",
+        "academic_unit:department_mathematics",
+        "academic_unit:department_philosophy_religion",
+        "academic_unit:department_political_science",
+        "academic_unit:department_psychology",
+        "academic_unit:department_sociology_social_work_anthropology",
+    ):
+        assert registry.get(unit_id).formal_unit_type == "department"
+
+
+def test_academic_unit_parent_hierarchy_rejects_cycles():
+    source = AcademicUnitRegistry.load()
+    left = replace(
+        source.get("academic_unit:department_english"),
+        parent_unit_id="academic_unit:department_history",
+    )
+    right = replace(
+        source.get("academic_unit:department_history"),
+        parent_unit_id="academic_unit:department_english",
+    )
+    with pytest.raises(ValueError, match="contains a cycle"):
+        AcademicUnitRegistry((left, right))

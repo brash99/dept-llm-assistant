@@ -34,6 +34,8 @@ def _markdown(report: dict, integrity: dict) -> str:
     faculty = report["faculty_observation"]
     sch = report["sch_readiness"]
     denominators = report["denominator_readiness"]
+    resolution = units["published_label_resolution"]
+    eligibility = faculty["active_workforce_eligibility"]
     lines = [
         "# ISO Metric Readiness Audit",
         "",
@@ -43,6 +45,10 @@ def _markdown(report: dict, integrity: dict) -> str:
         f"- Governed academic units: {units['governed_unit_count']}",
         f"- Referenced but not governed unit IDs: {len(units['referenced_but_not_governed'])}",
         f"- Unresolved published unit labels: {len(units['unresolved_published_unit_labels'])}",
+        f"- Published unit-label observations: {resolution['total_published_unit_label_observations']}",
+        f"- Workforce mapping before cleaning: {resolution['workforce_mapping_coverage_before_percent']}%",
+        f"- Workforce mapping after cleaning: {resolution['workforce_mapping_coverage_after_percent']}%",
+        f"- Emeritus/emerita observations excluded: {eligibility['emeritus_emerita_observations_excluded']}",
         f"- Schedule observations: {sch['schedule_observation_count']}",
         f"- SCH readiness: {sch['readiness_status']}",
         "",
@@ -56,6 +62,17 @@ def _markdown(report: dict, integrity: dict) -> str:
             f"| {unit['published_name']} (`{unit['unit_id']}`) | "
             f"{unit['formal_unit_type']} | {unit['parent_unit_id'] or ''} | "
             f"{', '.join(unit['operational_roles'])} |"
+        )
+    lines += ["", "## Published unit-label resolution", "", "| Method | Observations |", "|---|---:|"]
+    for method, count in resolution["resolution_method_counts"].items():
+        lines.append(f"| {method} | {count} |")
+    lines += ["", "### Genuinely unresolved or ambiguous labels (first 25)", "",
+              "| Label | Classification | Observations | Source object types |",
+              "|---|---|---:|---|"]
+    for item in units["unresolved_published_unit_labels"][:25]:
+        lines.append(
+            f"| {item['published_label']} | {item['classification']} | "
+            f"{item['observation_count']} | {', '.join(item['object_types'])} |"
         )
     lines += ["", "## Faculty evidence sources", "", "| Source | Object type | Observed objects |", "|---|---|---:|"]
     for source, value in faculty["evidence_sources"].items():
@@ -111,6 +128,10 @@ def main(argv=None) -> int:
             "governed_units": report["institutional_units"]["governed_unit_count"],
             "referenced_but_not_governed": len(report["institutional_units"]["referenced_but_not_governed"]),
             "unresolved_published_unit_labels": len(report["institutional_units"]["unresolved_published_unit_labels"]),
+            "unit_label_resolution_methods": report["institutional_units"]["published_label_resolution"]["resolution_method_counts"],
+            "workforce_mapping_coverage_before_percent": report["institutional_units"]["published_label_resolution"]["workforce_mapping_coverage_before_percent"],
+            "workforce_mapping_coverage_after_percent": report["institutional_units"]["published_label_resolution"]["workforce_mapping_coverage_after_percent"],
+            "emeritus_emerita_excluded": report["faculty_observation"]["active_workforce_eligibility"]["emeritus_emerita_observations_excluded"],
             "schedule_observations": report["sch_readiness"]["schedule_observation_count"],
             "sch_readiness": report["sch_readiness"]["readiness_status"],
             "invalid_json": integrity["invalid_json_count"],

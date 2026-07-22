@@ -64,6 +64,28 @@ units without current references. The current unit registry does not model
 effective dates or typed historical-name relationships, so historical
 reorganizations remain explicit Evidence Fitness limitations.
 
+Published unit labels are resolved with bounded deterministic precedence:
+canonical name, governed alias, cleaned canonical/alias, then a boundary-aware
+embedded governed phrase. Embedded matching rejects competing units and never
+uses unrestricted fuzzy similarity. Degree history, institutions, and prose
+after an identifiable unit phrase are parser contamination; they do not become
+ontology aliases.
+
+The current registry includes the departments required by governed semantic
+scopes. The former Department of Physics, Computer Science and Engineering is
+a distinct deprecated historical unit, not an alias for current SEC. Parent
+relationships remain unset where repository evidence does not establish them.
+
+## Emeritus and emerita
+
+Explicit published `emeritus` or `emerita` status is preserved in its source
+observation and produces a derived `active_workforce_eligible = false`
+assessment. Such observations remain available for historical retrieval, but
+are excluded by default from active faculty populations, instructional faculty
+denominators, workforce capacity, teaching-load analysis, current staffing,
+and scenario inputs. The rule is based only on explicit structured published
+text; age, appointment year, and absence of teaching are never substitutes.
+
 ## Six-layer role
 
 1. **Evidence Layer** supplies schedule, catalog, roster, and directory facts.

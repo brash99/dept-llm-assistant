@@ -133,8 +133,9 @@ def test_candidate_generation_distinguishes_normal_sec_exception_and_conflict():
     )
     candidates = {x.subject_code: x for x in CatalogSubjectOwnershipCandidateService().generate(observations, resolver)}
     assert candidates["ARTX"].candidate_status == "high_confidence_candidate"
-    assert candidates["CPSC"].proposed_analytical_academic_unit_id == "academic_unit:sec"
-    assert candidates["CPSC"].proposed_mapping_status == "intentionally_grouped_department_equivalent"
+    assert candidates["CPSC"].proposed_analytical_academic_unit_id == "academic_unit:department_pcse_historical"
+    assert candidates["CPSC"].candidate_status == "high_confidence_candidate"
+    assert candidates["CPSC"].proposed_mapping_status == "mapped"
     assert candidates["COLL"].candidate_status == "exception_candidate"
     assert candidates["COLL"].proposed_relationship_type == "centrally_administered_subject"
     assert candidates["IDST"].proposed_relationship_type == "interdisciplinary_subject"

@@ -58,7 +58,7 @@ def test_all_seven_sec_subjects_resolve_without_fictional_departments():
         assert "department_equivalent" in result.operational_roles
     units = AcademicUnitRegistry.load().units
     assert not any(
-        unit.formal_unit_type == "department" and
+        unit.formal_unit_type == "department" and not unit.deprecated and
         any(name in unit.published_name.casefold() for name in ("physics", "computer science", "cybersecurity"))
         for unit in units
     )

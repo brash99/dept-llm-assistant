@@ -88,6 +88,13 @@ Status as of July 2026. This file describes the current codebase; research and s
   effective-dated appointment category/FTE, tenure-line status, and approved
   policies for cross-listing, cancellation, labs, variable credit, independent
   study, team teaching, and reporting-period definitions.
+- Governed academic-unit normalization now resolves canonical names, explicit
+  aliases, status-qualified labels, and bounded contaminated labels while
+  rejecting ambiguous or common-word matches. Missing semantic-scope
+  departments are represented as governed units; the former PCSE department
+  remains a distinct deprecated historical unit rather than a current SEC
+  alias. Explicit emeritus/emerita evidence is preserved but deterministically
+  excluded from active-workforce eligibility and denominator readiness.
 - Narrow schedule trend analysis uses chronological normalized terms and
   reports endpoint changes, missing terms, zero denominators, and
   comparability limitations. Schedule Evidence Fitness explicitly rejects

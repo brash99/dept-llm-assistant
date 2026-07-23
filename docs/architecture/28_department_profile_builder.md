@@ -50,6 +50,14 @@ normalized catalog corpus currently has no structured course-credit table, and
 the schedule has no governed cross-list identifier, so neither source can be
 silently inferred.
 
+The missing-section forensic report lists every non-ready section rather than
+only department totals. It records normalized schedule identity, title,
+instructor, enrollment and credit status, deterministic reason codes,
+recoverability, required additional evidence, systematic patterns, and one
+pipeline trace per failure category. Its before/after repair accounting is based
+only on explicit duplicate-section consolidation and uncontested course-term
+credit consensus.
+
 Department profiles assemble institutional state and reconcile every included
 identity exactly once. They do not score capacity, rank departments, recommend
 reductions, or implement Scenario Modeling. They are the governed input for the

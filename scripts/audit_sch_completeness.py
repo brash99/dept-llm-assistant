@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter, defaultdict
 import csv
 from hashlib import sha256
 import json
@@ -57,25 +58,40 @@ def main(argv=None):
     )
     repairs = tuple(sorted((*repairs, *duplicate_repairs), key=lambda item: (item["section_key"], item["method"])))
     departments, missing = _audit_departments(profiles, raw_rows, repaired_rows)
+    reason_breakdown = _reason_breakdown(missing)
+    patterns = _pattern_analysis(missing)
+    traces = _pipeline_traces(missing)
     payload = {
         "department_count": len(departments),
         "complete_department_count": sum(item["status"] == "COMPLETE" for item in departments),
         "incomplete_department_count": sum(item["status"] == "INCOMPLETE" for item in departments),
         "incomplete_departments": [item["department_name"] for item in departments if item["status"] == "INCOMPLETE"],
-        "missing_section_count": len(missing), "automatic_repair_count": len(repairs),
+        "missing_section_count": len(missing), "automatic_repair_count": 0,
+        "preexisting_deterministic_repair_evidence_count": len(repairs),
         "catalog_course_credit_evidence_available": False,
         "structured_cross_list_evidence_available": False,
         "departments": departments, "missing_sections": missing,
         "repairs": list(repairs),
+        "before_missing_section_count": len(missing),
+        "after_missing_section_count": len(missing),
+        "remaining_irreducible_count": len(missing),
+        "reason_breakdown": reason_breakdown,
+        "systematic_patterns": patterns,
+        "representative_pipeline_traces": traces,
     }
     payload["deterministic_fingerprint"] = sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     _csv(args.output_dir / "department_sch_completeness.csv", departments)
     _csv(args.output_dir / "missing_sch_sections.csv", missing)
+    _csv(args.output_dir / "missing_sch_sections_by_reason.csv", reason_breakdown)
     _jsonl_write(args.output_dir / "missing_sch_sections.jsonl", missing)
     _jsonl_write(args.output_dir / "sch_repairs.jsonl", repairs)
     (args.output_dir / "sch_completeness_audit.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (args.output_dir / "sch_completeness_audit.md").write_text(_markdown(payload), encoding="utf-8")
+    (args.output_dir / "missing_sch_sections.md").write_text(_missing_sections_markdown(missing), encoding="utf-8")
+    (args.output_dir / "missing_sch_pipeline_trace.md").write_text(_trace_markdown(traces), encoding="utf-8")
+    (args.output_dir / "sch_forensics_summary.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (args.output_dir / "sch_forensics_summary.md").write_text(_forensics_markdown(payload), encoding="utf-8")
     print(json.dumps({key: value for key, value in payload.items() if key not in {"departments", "missing_sections", "repairs"}}, indent=2, sort_keys=True))
     return 0
 
@@ -130,16 +146,22 @@ def _activity(rows, member_ids, unit_id):
 def _missing_section(profile, row):
     reasons = []
     if not _valid_number(row["enrollment"], integer=True):
-        reasons.append("missing_enrollment" if row["enrollment"] is None else "invalid_normalization")
+        reasons.append("missing_enrollment" if row["enrollment"] is None else "normalization_failure")
     if not _valid_number(row["credits"]):
         method = row.get("credit_resolution_method")
         if method == "legitimate_variable_credit":
             reasons.append("variable_credit")
         elif method == "unresolved_credit_conflict":
-            reasons.append("cross_listed_ambiguity" if "cross" in str(row.get("credits_raw") or "").casefold() else "invalid_normalization")
+            text = " ".join(str(row.get(key) or "") for key in ("credits_raw", "notes", "course_title")).casefold()
+            reasons.append("cross_list_resolution_failure" if "cross" in text else "normalization_failure")
         else:
-            reasons.append("missing_credits" if row["credits"] is None else "invalid_normalization")
-    reasons.extend(item for item in row.get("sch_repairs") or () if item.endswith("_conflict"))
+            reasons.append("missing_credit_hours" if row["credits"] is None else "normalization_failure")
+    if any(item.endswith("_conflict") for item in row.get("sch_repairs") or ()):
+        reasons.append("duplicate_section")
+    if not row["course_number"] and not row["course_code"]:
+        reasons.append("missing_course_record")
+    reasons = reasons or ["unknown"]
+    recovery = _recovery(reasons)
     return {
         "academic_unit_id": profile["academic_unit_id"], "department_name": profile["department_name"],
         "term": row["term"], "subject_prefix": row["subject"],
@@ -147,11 +169,87 @@ def _missing_section(profile, row):
         "course_title": row["course_title"], "instructors": list(row.get("instructors") or ((row["instructor_raw"],) if row["instructor_raw"] else ())),
         "enrollment": row["enrollment"], "enrollment_status": "explicit" if _valid_number(row["enrollment"], integer=True) else "missing_or_invalid",
         "credits": row["credits"], "credit_status": "explicit" if _valid_number(row["credits"]) else "missing_variable_or_invalid",
+        "computed_sch": float(row["credits"]) * int(row["enrollment"]) if _ready(row) else None,
         "reason_codes": sorted(set(reasons)),
         "repairable_from_current_evidence": False,
         "repair_limitation": "no unique explicit scalar value remains in normalized schedule evidence",
+        "recovery_classification": recovery[0],
+        "required_evidence": recovery[1],
+        "instructional_method": row.get("instructional_method"),
+        "source_file": row.get("source_file"),
         "source_observation_id": row["observation_id"],
     }
+
+
+def _recovery(reasons):
+    values = set(reasons)
+    if "missing_enrollment" in values:
+        return "requires_additional_source_ingestion", "explicit registrar section enrollment"
+    if "variable_credit" in values:
+        return "requires_additional_source_ingestion", "registered student-level or section-level attempted credits"
+    if "missing_credit_hours" in values or "missing_course_record" in values:
+        return "requires_additional_source_ingestion", "structured authoritative course or section credit record"
+    if "normalization_failure" in values:
+        return "recoverable_from_existing_institutional_data", "review and correction of preserved raw normalization evidence"
+    if "duplicate_section" in values or "cross_list_resolution_failure" in values:
+        return "requires_additional_source_ingestion", "governed cross-list or authoritative section identity evidence"
+    return "fundamentally_unknowable_from_available_evidence", "no deterministic supporting evidence identified"
+
+
+def _reason_breakdown(missing):
+    by_reason = defaultdict(list)
+    for item in missing:
+        for reason in item["reason_codes"]:
+            by_reason[reason].append(item)
+    return [{
+        "reason_code": reason, "section_count": len(items),
+        "departments": sorted({item["department_name"] for item in items}),
+        "courses": sorted({f"{item['subject_prefix']} {item['course_number']}".strip() for item in items}),
+    } for reason, items in sorted(by_reason.items())]
+
+
+def _pattern_analysis(missing):
+    def counts(field):
+        return dict(sorted(Counter(str(item.get(field) or "unknown") for item in missing).items(), key=lambda pair: (-pair[1], pair[0])))
+    categories = Counter()
+    for item in missing:
+        text = " ".join(str(item.get(key) or "") for key in ("course_title", "instructional_method", "course_number")).casefold()
+        matched = False
+        for category, terms in {
+            "laboratory": ("lab", "laboratory"), "recitation": ("recitation",),
+            "internship": ("internship", "practicum"), "independent_study": ("independent", "individual study"),
+            "research": ("research",), "music_ensemble": ("ensemble",),
+            "capstone": ("capstone",), "thesis": ("thesis",), "special_topics": ("special topics",),
+        }.items():
+            if any(term in text for term in terms):
+                categories[category] += 1
+                matched = True
+        if not matched:
+            categories["ordinary_or_unclassified"] += 1
+    return {
+        "by_department": counts("department_name"), "by_subject_prefix": counts("subject_prefix"),
+        "by_course_number": counts("course_number"), "by_instructional_method": counts("instructional_method"),
+        "by_course": dict(sorted(Counter(f"{item['subject_prefix']} {item['course_number']}".strip() for item in missing).items(), key=lambda pair: (-pair[1], pair[0]))),
+        "by_term": counts("term"), "by_course_category": dict(sorted(categories.items(), key=lambda pair: (-pair[1], pair[0]))),
+    }
+
+
+def _pipeline_traces(missing):
+    representatives = {}
+    for item in missing:
+        for reason in item["reason_codes"]:
+            representatives.setdefault(reason, item)
+    return [{
+        "reason_code": reason, "representative_section": item,
+        "pipeline": [
+            {"stage": "normalized_schedule", "result": "found", "evidence": item["source_observation_id"]},
+            {"stage": "course_record", "result": "structured_catalog_course_record_unavailable", "evidence": None},
+            {"stage": "credits", "result": item["credit_status"], "evidence": item["credits"]},
+            {"stage": "enrollment", "result": item["enrollment_status"], "evidence": item["enrollment"]},
+            {"stage": "sch_calculation", "result": "failed", "evidence": reason},
+        ],
+        "failure_point": reason,
+    } for reason, item in sorted(representatives.items())]
 
 
 def _ready(row):
@@ -200,6 +298,51 @@ def _markdown(payload):
     lines += [f"| {item['department_name']} | {item['total_unique_sections']} | {item['sch_ready_sections']} | {item['sch_completeness_percent']} | {item['known_sch']} | {item['missing_section_count']} | {item['status']} | {item['comparison_impact']} |" for item in payload["departments"]]
     lines += ["", "## Every missing section", "", "| Department | Term | Course | Section | Instructors | Reasons |", "|---|---|---|---|---|---|"]
     lines += [f"| {item['department_name']} | {item['term']} | {item['course_number']} | {item['section']} | {', '.join(item['instructors'])} | {', '.join(item['reason_codes'])} |" for item in payload["missing_sections"]]
+    return "\n".join(lines) + "\n"
+
+
+def _missing_sections_markdown(missing):
+    lines = [
+        "# Every Missing SCH Section", "",
+        "| Department | Term | Subject | Course | Section | Title | Instructors | Enrollment | Credits | Computed SCH | Reasons |",
+        "|---|---|---|---|---|---|---|---:|---:|---:|---|",
+    ]
+    lines += [
+        f"| {item['department_name']} | {item['term']} | {item['subject_prefix']} | {item['course_number']} | {item['section']} | {item['course_title'] or ''} | {', '.join(item['instructors'])} | {item['enrollment']} | {item['credits']} | {item['computed_sch']} | {', '.join(item['reason_codes'])} |"
+        for item in missing
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def _trace_markdown(traces):
+    lines = ["# Missing SCH Pipeline Traces", ""]
+    for trace in traces:
+        item = trace["representative_section"]
+        lines += [
+            f"## {trace['reason_code']}", "",
+            f"Representative: {item['department_name']} — {item['term']} {item['course_number']} {item['section']}", "",
+            "| Stage | Result | Evidence |", "|---|---|---|",
+        ]
+        lines += [f"| {stage['stage']} | {stage['result']} | {stage['evidence']} |" for stage in trace["pipeline"]]
+        lines += [""]
+    return "\n".join(lines)
+
+
+def _forensics_markdown(payload):
+    lines = [
+        "# SCH Missing-Section Forensics", "",
+        f"- Before missing sections: {payload['before_missing_section_count']}",
+        f"- Repairs supported by existing evidence: {payload['automatic_repair_count']}",
+        f"- After missing sections: {payload['after_missing_section_count']}",
+        f"- Remaining irreducible: {payload['remaining_irreducible_count']}", "",
+        "## Reason breakdown", "", "| Reason | Sections | Courses |", "|---|---:|---|",
+    ]
+    lines += [f"| {item['reason_code']} | {item['section_count']} | {', '.join(item['courses'])} |" for item in payload["reason_breakdown"]]
+    lines += ["", "## Top affected departments", ""]
+    lines += [f"- {name}: {count}" for name, count in list(payload["systematic_patterns"]["by_department"].items())[:10]]
+    lines += ["", "## Top affected courses", ""]
+    courses = Counter(f"{item['subject_prefix']} {item['course_number']}".strip() for item in payload["missing_sections"])
+    lines += [f"- {name}: {count}" for name, count in courses.most_common(20)]
     return "\n".join(lines) + "\n"
 
 

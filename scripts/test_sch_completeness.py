@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from app.department_profiles import _repair_sch_rows, _unique_sections
-from scripts.audit_sch_completeness import _audit_departments
+from scripts.audit_sch_completeness import (
+    _audit_departments, _pattern_analysis, _pipeline_traces, _reason_breakdown,
+)
 
 
 def _row(observation, section, credits=3.0, enrollment=10, method=None, course="TEST 101"):
@@ -66,3 +68,19 @@ def test_missing_enrollment_and_credit_are_listed_with_partial_sch():
     assert department["missing_section_count"] == 2
     assert {reason for item in missing for reason in item["reason_codes"]} == {"variable_credit", "missing_enrollment"}
     assert department["potential_sch_affected_percent"] is None
+    assert all(item["reason_codes"] for item in missing)
+    assert all(item["computed_sch"] is None for item in missing)
+
+
+def test_forensic_grouping_and_pipeline_traces_are_deterministic():
+    rows = (
+        _row("missing-credit", "missing-credit", credits=None, enrollment=7),
+        _row("missing-enrollment", "missing-enrollment", credits=3, enrollment=None),
+    )
+    _, first = _audit_departments((_profile(),), rows, rows)
+    _, second = _audit_departments((_profile(),), tuple(reversed(rows)), tuple(reversed(rows)))
+    assert first == second
+    breakdown = _reason_breakdown(first)
+    assert {item["reason_code"] for item in breakdown} == {"missing_credit_hours", "missing_enrollment"}
+    assert _pipeline_traces(first) == _pipeline_traces(second)
+    assert _pattern_analysis(first) == _pattern_analysis(second)

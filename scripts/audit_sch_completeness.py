@@ -57,24 +57,38 @@ def main(argv=None):
         if method.startswith("duplicate_section_") and not method.endswith("_conflict")
     )
     repairs = tuple(sorted((*repairs, *duplicate_repairs), key=lambda item: (item["section_key"], item["method"])))
+    _, before_missing = _audit_departments(profiles, raw_rows, raw_rows)
     departments, missing = _audit_departments(profiles, raw_rows, repaired_rows)
     reason_breakdown = _reason_breakdown(missing)
     patterns = _pattern_analysis(missing)
-    traces = _pipeline_traces(missing)
+    before_missing_ids = {
+        item["source_observation_id"] for item in before_missing
+    }
+    normalization_repairs = tuple(
+        item for item in repairs
+        if item["method"] == "historical_credit_revision_resolution"
+        and item["observation_id"] in before_missing_ids
+    )
+    traces = _normalization_repair_traces(normalization_repairs, raw_rows)
+    traces.extend(_pipeline_traces(missing))
     payload = {
         "department_count": len(departments),
         "complete_department_count": sum(item["status"] == "COMPLETE" for item in departments),
         "incomplete_department_count": sum(item["status"] == "INCOMPLETE" for item in departments),
         "incomplete_departments": [item["department_name"] for item in departments if item["status"] == "INCOMPLETE"],
-        "missing_section_count": len(missing), "automatic_repair_count": 0,
+        "missing_section_count": len(missing),
+        "automatic_repair_count": len(before_missing) - len(missing),
         "preexisting_deterministic_repair_evidence_count": len(repairs),
         "catalog_course_credit_evidence_available": False,
         "structured_cross_list_evidence_available": False,
         "departments": departments, "missing_sections": missing,
         "repairs": list(repairs),
-        "before_missing_section_count": len(missing),
+        "before_missing_section_count": len(before_missing),
         "after_missing_section_count": len(missing),
-        "remaining_irreducible_count": len(missing),
+        "remaining_missing_section_count": len(missing),
+        "remaining_unrepaired_normalization_failure_count": sum(
+            "normalization_failure" in item["reason_codes"] for item in missing
+        ),
         "reason_breakdown": reason_breakdown,
         "systematic_patterns": patterns,
         "representative_pipeline_traces": traces,
@@ -252,6 +266,96 @@ def _pipeline_traces(missing):
     } for reason, item in sorted(representatives.items())]
 
 
+def _normalization_repair_traces(repairs, rows):
+    by_id = {row["observation_id"]: row for row in rows}
+    representatives = {}
+    for repair in repairs:
+        if repair["method"] == "historical_credit_revision_resolution":
+            row = by_id[repair["observation_id"]]
+            representatives.setdefault(row["course_code"], (repair, row))
+    traces = []
+    for course_code, (repair, row) in sorted(representatives.items()):
+        support = by_id[repair["supporting_observation_id"]]
+        traces.append({
+            "reason_code": "normalization_failure",
+            "course_code": course_code,
+            "representative_section": {
+                "term": row["term"], "subject_prefix": row["subject"],
+                "course_number": row["course_number"], "section": row["section"],
+                "course_title": row["course_title"],
+                "source_observation_id": row["observation_id"],
+            },
+            "working_comparison": {
+                "term": support["term"], "course_code": support["course_code"],
+                "section": support["section"], "credits": support["credits"],
+                "credit_resolution_method": support["credit_resolution_method"],
+                "source_observation_id": support["observation_id"],
+            },
+            "field_comparison": {
+                "course_key": {
+                    "failing": [row["subject"], row["course_number"]],
+                    "working": [support["subject"], support["course_number"]],
+                },
+                "term": {"failing": row["term"], "working": support["term"]},
+                "published_credits": {
+                    "failing": list(row.get("published_credit_values") or ()),
+                    "working": list(support.get("published_credit_values") or ()),
+                },
+                "normalized_credits": {
+                    "before": row["credits"], "working": support["credits"],
+                    "after": repair["value"],
+                },
+                "credit_resolution_method": {
+                    "failing": row["credit_resolution_method"],
+                    "working": support["credit_resolution_method"],
+                    "repair": repair["method"],
+                },
+            },
+            "pipeline": [
+                {
+                    "stage": "raw_schedule_record", "result": "found",
+                    "evidence": row.get("raw_schedule_record"),
+                },
+                {
+                    "stage": "normalized_schedule", "result": "credit_conflict",
+                    "evidence": {
+                        "observation_id": row["observation_id"],
+                        "source_rows": list(row.get("source_rows") or ()),
+                        "published_credit_values": list(
+                            row.get("published_credit_values") or ()
+                        ),
+                    },
+                },
+                {
+                    "stage": "course_lookup", "result": "matched",
+                    "evidence": [row["subject"], row["course_number"]],
+                },
+                {
+                    "stage": "credit_lookup",
+                    "result": "resolved_from_explicit_revision_pattern",
+                    "evidence": repair,
+                },
+                {
+                    "stage": "enrollment_lookup",
+                    "result": "explicit" if _valid_number(
+                        row["enrollment"], integer=True
+                    ) else "missing_or_invalid",
+                    "evidence": row["enrollment"],
+                },
+                {
+                    "stage": "sch_calculation", "result": "ready",
+                    "evidence": (
+                        repair["value"] * row["enrollment"]
+                        if _valid_number(row["enrollment"], integer=True)
+                        else None
+                    ),
+                },
+            ],
+            "failure_point": "credit normalization rejected a visible historical revision",
+        })
+    return traces
+
+
 def _ready(row):
     return _valid_number(row["credits"]) and _valid_number(row["enrollment"], integer=True)
 
@@ -318,12 +422,23 @@ def _trace_markdown(traces):
     lines = ["# Missing SCH Pipeline Traces", ""]
     for trace in traces:
         item = trace["representative_section"]
+        label = trace.get("course_code") or trace["reason_code"]
         lines += [
-            f"## {trace['reason_code']}", "",
-            f"Representative: {item['department_name']} — {item['term']} {item['course_number']} {item['section']}", "",
+            f"## {label}", "",
+            f"Representative: {item.get('department_name', '')} — {item['term']} {item['course_number']} {item['section']}", "",
             "| Stage | Result | Evidence |", "|---|---|---|",
         ]
-        lines += [f"| {stage['stage']} | {stage['result']} | {stage['evidence']} |" for stage in trace["pipeline"]]
+        lines += [
+            f"| {stage['stage']} | {stage['result']} | "
+            f"{json.dumps(stage['evidence'], sort_keys=True) if isinstance(stage['evidence'], (dict, list)) else stage['evidence']} |"
+            for stage in trace["pipeline"]
+        ]
+        if trace.get("working_comparison"):
+            lines += [
+                "",
+                "Working comparison: "
+                f"{json.dumps(trace['working_comparison'], sort_keys=True)}",
+            ]
         lines += [""]
     return "\n".join(lines)
 
@@ -334,7 +449,8 @@ def _forensics_markdown(payload):
         f"- Before missing sections: {payload['before_missing_section_count']}",
         f"- Repairs supported by existing evidence: {payload['automatic_repair_count']}",
         f"- After missing sections: {payload['after_missing_section_count']}",
-        f"- Remaining irreducible: {payload['remaining_irreducible_count']}", "",
+        f"- Remaining missing sections: {payload['remaining_missing_section_count']}",
+        f"- Remaining unrepaired normalization failures: {payload['remaining_unrepaired_normalization_failure_count']}", "",
         "## Reason breakdown", "", "| Reason | Sections | Courses |", "|---|---:|---|",
     ]
     lines += [f"| {item['reason_code']} | {item['section_count']} | {', '.join(item['courses'])} |" for item in payload["reason_breakdown"]]

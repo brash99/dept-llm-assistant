@@ -43,7 +43,14 @@ and SCH-ready coverage.
 
 Repairable incompleteness is limited to deterministic evidence already present:
 an explicit duplicate-section value or one uncontested scalar credit value for
-the same course and term. Repairs retain their method and evidence key.
+the same course and term. A repeated-snapshot credit conflict is also repairable
+when the earlier section preserves exactly two explicit values and all later
+unambiguous observations for that course publish one of them. In that bounded
+revision pattern, the other preserved value is retained as the explicit
+pre-revision credit. The repair records both values, the later supporting
+observation, the effective term ordering, and its method; it neither invents a
+credit nor contains course-specific rules. Repairs retain their method and
+evidence key.
 Variable-credit courses, conflicting duplicate values, missing enrollment, and
 missing credits without a unique explicit source remain irreducible. The
 normalized catalog corpus currently has no structured course-credit table, and

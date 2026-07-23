@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 import hashlib
 import json
+import re
 from typing import Any, Iterable, Mapping
 
 from app.academic_terms import academic_term_order, academic_term_sort_key
@@ -17,7 +18,7 @@ from app.subject_ownership import SubjectOwnershipRegistry
 
 
 ALGORITHM = "iso_department_profile_builder"
-ALGORITHM_VERSION = "1.0"
+ALGORITHM_VERSION = "1.1"
 
 
 def _fingerprint(value: Any) -> str:
@@ -299,7 +300,12 @@ def _schedule_row(item, schedule_identity, home, mapper):
         "subject_mapping_review_status": mapping.review_status,
         "credits": item.get("credits"), "enrollment": item.get("enrollment"),
         "credits_raw": item.get("credits_raw"),
+        "published_credit_values": tuple(
+            (item.get("credits_assertion") or {}).get("published_values") or ()
+        ),
         "credit_resolution_method": ((item.get("credits_assertion") or {}).get("resolution") or {}).get("method"),
+        "raw_schedule_record": item.get("raw_record"),
+        "source_rows": tuple((item.get("provenance") or {}).get("source_rows") or ()),
         "sch_repairs": (),
     }
 
@@ -336,16 +342,21 @@ def _merge_section(rows):
 
 def _repair_sch_rows(rows):
     credit_index = defaultdict(set)
+    course_history = defaultdict(list)
     for row in rows:
         if _valid_number(row["credits"]):
-            credit_index[(row["term"], row["subject"], row["course_number"] or row["course_code"])].add(row["credits"])
+            course_key = (row["subject"], row["course_number"] or row["course_code"])
+            credit_index[(row["term"], *course_key)].add(row["credits"])
+            course_history[course_key].append(row)
     repaired, repairs = [], []
     for row in rows:
         value = dict(row)
         key = (row["term"], row["subject"], row["course_number"] or row["course_code"])
         candidates = credit_index[key]
-        variable = row.get("credit_resolution_method") in {"legitimate_variable_credit", "unresolved_credit_conflict"}
-        if row["credits"] is None and len(candidates) == 1 and not variable:
+        method = row.get("credit_resolution_method")
+        if row["credits"] is None and len(candidates) == 1 and method not in {
+            "legitimate_variable_credit", "unresolved_credit_conflict",
+        }:
             value["credits"] = next(iter(candidates))
             value["sch_repairs"] = ("course_term_credit_consensus",)
             repairs.append({
@@ -354,8 +365,81 @@ def _repair_sch_rows(rows):
                 "method": "course_term_credit_consensus",
                 "evidence_key": "|".join(map(str, key)),
             })
+        elif row["credits"] is None and method == "unresolved_credit_conflict":
+            repair = _historical_credit_revision(row, course_history[
+                (row["subject"], row["course_number"] or row["course_code"])
+            ])
+            if repair is not None:
+                value["credits"] = repair["value"]
+                value["sch_repairs"] = ("historical_credit_revision_resolution",)
+                repairs.append({
+                    "observation_id": row["observation_id"],
+                    "section_key": row["section_key"],
+                    "field": "credits",
+                    **repair,
+                })
         repaired.append(value)
     return tuple(repaired), tuple(sorted(repairs, key=lambda item: (item["section_key"], item["observation_id"])))
+
+
+def _published_credit_numbers(row):
+    values = row.get("published_credit_values") or ()
+    if not values:
+        values = re.split(r"\s*\|\s*", str(row.get("credits_raw") or ""))
+    parsed = set()
+    for raw in values:
+        try:
+            value = float(str(raw).strip())
+        except (TypeError, ValueError):
+            continue
+        if value > 0:
+            parsed.add(value)
+    return tuple(sorted(parsed))
+
+
+def _historical_credit_revision(row, course_history):
+    """Resolve a repeated-snapshot conflict around a visible credit revision.
+
+    A repair is allowed only when later, unambiguous observations unanimously
+    publish one of exactly two values preserved on the earlier section.  The
+    other value is therefore the sole explicit pre-revision assertion; no
+    credit value is invented or selected from a course-specific rule.
+    """
+    published = _published_credit_numbers(row)
+    if len(published) != 2:
+        return None
+    later = tuple(
+        item for item in course_history
+        if academic_term_sort_key(item["term"]) > academic_term_sort_key(row["term"])
+        and _valid_number(item["credits"])
+    )
+    later_values = {float(item["credits"]) for item in later}
+    if len(later_values) != 1:
+        return None
+    stable_value = next(iter(later_values))
+    historical = tuple(value for value in published if value != stable_value)
+    if stable_value not in published or len(historical) != 1:
+        return None
+    support = sorted(later, key=lambda item: (
+        academic_term_sort_key(item["term"]), item["observation_id"],
+    ))
+    return {
+        "value": historical[0],
+        "method": "historical_credit_revision_resolution",
+        "evidence_key": "|".join((
+            row["subject"], row["course_number"] or row["course_code"],
+            row["term"], support[0]["term"],
+        )),
+        "published_conflicting_values": list(published),
+        "later_stable_credit": stable_value,
+        "supporting_term": support[0]["term"],
+        "supporting_observation_id": support[0]["observation_id"],
+        "notes": (
+            "Later unambiguous observations unanimously publish one of two "
+            "values preserved on the earlier repeated snapshots; the other "
+            "explicit value is retained as the pre-revision credit."
+        ),
+    }
 
 
 def _union_rows(*groups):

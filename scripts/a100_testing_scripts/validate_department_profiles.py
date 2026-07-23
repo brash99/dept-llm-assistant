@@ -65,6 +65,8 @@ def validate(root, expected_workforce_count=282):
         raise ValueError("missing SCH section accounting does not reconcile")
     if any(not item["reason_codes"] for item in sch_audit["missing_sections"]):
         raise ValueError("an SCH-missing section lacks a forensic reason")
+    if sch_audit["remaining_unrepaired_normalization_failure_count"]:
+        raise ValueError("unrepaired SCH normalization failures remain")
     sch_by_unit = {item["academic_unit_id"]: item for item in sch_audit["departments"]}
     counts = sorted(({
         "department": item["department_name"], "faculty": item["analytical_workforce_count"],
@@ -95,7 +97,9 @@ def validate(root, expected_workforce_count=282):
         "incomplete_departments": sch_audit["incomplete_departments"],
         "missing_sch_section_count": sch_audit["missing_section_count"],
         "automatic_sch_repair_count": sch_audit["automatic_repair_count"],
-        "remaining_irreducible_sch_sections": sch_audit["remaining_irreducible_count"],
+        "remaining_unrepaired_normalization_failures": sch_audit[
+            "remaining_unrepaired_normalization_failure_count"
+        ],
         "sch_reason_breakdown": sch_audit["reason_breakdown"],
         "top_affected_courses": list(sch_audit["systematic_patterns"]["by_course"].items())[:20],
         "top_affected_departments": list(sch_audit["systematic_patterns"]["by_department"].items())[:10],

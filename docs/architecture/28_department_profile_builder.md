@@ -21,6 +21,17 @@ crosswalk from producing plausible but semantically incomplete departmental
 SCH. The production coverage audit lists every observed prefix, its governed
 owner, profile target, and any missing or non-department ownership.
 
+Workforce planning may additionally use `workforce-attributed SCH`, a separate
+derived metric that assigns section SCH to an instructor's governed Current
+Analytical Workforce home. When no eligible current-workforce home is
+available, the governed prefix owner is used as a deterministic fallback, so
+adjunct, historical, staff, unmatched, and outside-workforce instructors do not
+erase governed SCH. Each section records `instructor_home` or
+`prefix_owner_fallback`. This does not alter prefix ownership or the canonical
+department-owned SCH measure. Because the current workforce is an analytical
+baseline, this metric is decision-specific and is not an authoritative HR
+workload measure.
+
 The reconciled 282-person production workforce is ready as the analytical
 denominator for the August milestone. It remains a public-evidence analytical
 baseline rather than an authoritative HR roster. The builder reports

@@ -1,0 +1,344 @@
+"""Decision-specific faculty-delivered SCH derived from governed workforce home."""
+
+from __future__ import annotations
+
+from dataclasses import asdict, dataclass
+from hashlib import sha256
+import json
+from typing import Any, Iterable, Mapping
+
+from app.academic_terms import academic_term_order
+from app.department_profiles import _unique_sections, _valid_number
+from app.institutional_units import AcademicUnitRegistry
+
+
+ALGORITHM = "faculty_delivered_sch_comparison"
+ALGORITHM_VERSION = "1.1"
+DEFAULT_ACADEMIC_YEARS = ("2022-23", "2023-24", "2024-25")
+QUENTIN_DEPARTMENT_CODES = {
+    "ACFN": "academic_unit:department_accounting_finance",
+    "BCES": "academic_unit:department_biology_chemistry_environmental_science",
+    "COMM": "academic_unit:department_communication_studies",
+    "ECON": "academic_unit:department_economics",
+    "ENGL": "academic_unit:department_english",
+    "FAAH": "academic_unit:department_fine_art_art_history",
+    "HIST": "academic_unit:department_history",
+    "LAMS": "academic_unit:department_leadership_american_studies",
+    "MATH": "academic_unit:department_mathematics",
+    "MCLL": "academic_unit:department_modern_classical_languages_literatures",
+    "MGMT": "academic_unit:department_management_marketing",
+    "MTD": "academic_unit:department_music_theatre_dance",
+    "PHIL": "academic_unit:department_philosophy_religion",
+    "POLS": "academic_unit:department_political_science",
+    "PSYC": "academic_unit:department_psychology",
+    "SEC": "academic_unit:sec",
+    "SSWA": "academic_unit:department_sociology_social_work_anthropology",
+}
+
+
+def _fingerprint(value: Any) -> str:
+    return sha256(json.dumps(
+        value, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+    ).encode("utf-8")).hexdigest()
+
+
+def _academic_year(term: str) -> str:
+    order = academic_term_order(term)
+    if not order.supported:
+        raise ValueError(f"Unsupported academic term: {term}")
+    start = order.year if order.period == "fall" else order.year - 1
+    return f"{start}-{str(start + 1)[-2:]}"
+
+
+@dataclass(frozen=True)
+class DepartmentSCHComparison:
+    academic_unit_id: str
+    department_name: str
+    governed_prefix_owned_sch: float
+    workforce_attributed_sch: float
+    difference: float
+    cross_unit_contribution: float
+    governed_owned_section_count: int
+    workforce_attributed_section_count: int
+    instructor_home_sch: float
+    prefix_owner_fallback_sch: float
+    workforce_attributed_outside_owned_sch: float
+    department_owned_delivered_by_other_homes_sch: float
+
+    def to_dict(self):
+        value = asdict(self)
+        # Temporary serialization aliases for callers of the original metric name.
+        value["faculty_delivered_sch"] = self.workforce_attributed_sch
+        value["faculty_delivered_section_count"] = (
+            self.workforce_attributed_section_count
+        )
+        value["faculty_delivered_outside_owned_sch"] = (
+            self.workforce_attributed_outside_owned_sch
+        )
+        return value
+
+    @property
+    def faculty_delivered_sch(self):
+        return self.workforce_attributed_sch
+
+
+@dataclass(frozen=True)
+class SectionSCHAttribution:
+    section_key: str
+    term: str
+    subject: str
+    course_code: str
+    governed_prefix_owner_unit_id: str | None
+    workforce_attributed_unit_id: str | None
+    attribution_method: str
+    fallback_reason: str | None
+    sch: float
+
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class FacultyDeliveredSCHReport:
+    academic_years: tuple[str, ...]
+    fall_only: bool
+    aggregation: str
+    rows: tuple[DepartmentSCHComparison, ...]
+    section_attributions: tuple[SectionSCHAttribution, ...]
+    attribution_pathway_counts: Mapping[str, int]
+    attribution_pathway_sch: Mapping[str, float]
+    unassigned_instructor_section_count: int
+    multi_home_section_count: int
+    deterministic_fingerprint: str
+
+    def to_dict(self):
+        return {
+            "algorithm": ALGORITHM,
+            "algorithm_version": ALGORITHM_VERSION,
+            "metric_definition": {
+                "curriculum_owned_sch": (
+                    "SCH assigned to the governed owner of the course prefix."
+                ),
+                "workforce_attributed_sch": (
+                    "SCH assigned to the governed analytical home of an active "
+                    "full-time analytical-workforce instructor; otherwise to "
+                    "the governed prefix owner."
+                ),
+            },
+            "academic_years": list(self.academic_years),
+            "fall_only": self.fall_only,
+            "aggregation": self.aggregation,
+            "rows": [item.to_dict() for item in self.rows],
+            "section_attributions": [
+                item.to_dict() for item in self.section_attributions
+            ],
+            "attribution_pathway_counts": dict(self.attribution_pathway_counts),
+            "attribution_pathway_sch": dict(self.attribution_pathway_sch),
+            "unassigned_instructor_section_count": self.unassigned_instructor_section_count,
+            "multi_home_section_count": self.multi_home_section_count,
+            "deterministic_fingerprint": self.deterministic_fingerprint,
+        }
+
+
+def build_faculty_delivered_sch_comparison(
+    profiles: Iterable[Mapping[str, Any]],
+    rows: Iterable[Mapping[str, Any]],
+    *,
+    academic_years: Iterable[str] = DEFAULT_ACADEMIC_YEARS,
+    fall_only: bool = False,
+) -> FacultyDeliveredSCHReport:
+    """Compare three-year average ownership SCH with faculty-delivery SCH."""
+    years = tuple(academic_years)
+    selected = tuple(
+        row for row in rows
+        if _academic_year(row["term"]) in years
+        and (
+            not fall_only
+            or academic_term_order(row["term"]).period == "fall"
+        )
+    )
+    section_groups: dict[str, list[Mapping[str, Any]]] = {}
+    for row in selected:
+        section_groups.setdefault(row["section_key"], []).append(row)
+    multi_home = 0
+    unassigned = 0
+    attributions = []
+    for key in sorted(section_groups):
+        values = section_groups[key]
+        homes = {item["home_unit_id"] for item in values if item["home_unit_id"]}
+        multi_home += len(homes) > 1
+        unassigned += not homes
+        merged = _unique_sections(values)[0]
+        owners = {
+            item["owned_unit_id"] for item in values if item["owned_unit_id"]
+        }
+        owner = next(iter(owners)) if len(owners) == 1 else None
+        if len(homes) == 1:
+            attributed = next(iter(homes))
+            method = "instructor_home"
+            fallback_reason = None
+        elif owner:
+            attributed = owner
+            method = "prefix_owner_fallback"
+            fallback_reason = (
+                "multiple_active_workforce_homes"
+                if len(homes) > 1 else "no_active_workforce_home"
+            )
+        else:
+            attributed = None
+            method = "unattributed_missing_governed_prefix_owner"
+            fallback_reason = "missing_governed_prefix_owner"
+        attributions.append(SectionSCHAttribution(
+            section_key=key,
+            term=str(merged["term"]),
+            subject=str(merged["subject"]),
+            course_code=str(merged["course_code"]),
+            governed_prefix_owner_unit_id=owner,
+            workforce_attributed_unit_id=attributed,
+            attribution_method=method,
+            fallback_reason=fallback_reason,
+            sch=round(_sch((merged,)), 6),
+        ))
+
+    results = []
+    for profile in sorted(profiles, key=lambda item: item["academic_unit_id"]):
+        unit_id = profile["academic_unit_id"]
+        owned = _unique_sections(
+            row for row in selected if row["owned_unit_id"] == unit_id
+        )
+        attributed = tuple(
+            item for item in attributions
+            if item.workforce_attributed_unit_id == unit_id
+        )
+        owned_sch = _sch(owned)
+        attributed_sch = sum(item.sch for item in attributed)
+        outside_sch = sum(
+            item.sch for item in attributed
+            if item.governed_prefix_owner_unit_id != unit_id
+        )
+        inbound_sch = sum(
+            item.sch for item in attributions
+            if item.governed_prefix_owner_unit_id == unit_id
+            and item.workforce_attributed_unit_id != unit_id
+        )
+        # The report compares like-for-like three-year annual averages.
+        divisor = len(years)
+        owned_average = round(owned_sch / divisor, 6)
+        attributed_average = round(attributed_sch / divisor, 6)
+        difference = round(attributed_average - owned_average, 6)
+        results.append(DepartmentSCHComparison(
+            academic_unit_id=unit_id,
+            department_name=profile["department_name"],
+            governed_prefix_owned_sch=owned_average,
+            workforce_attributed_sch=attributed_average,
+            difference=difference,
+            cross_unit_contribution=difference,
+            governed_owned_section_count=len(owned),
+            workforce_attributed_section_count=len(attributed),
+            instructor_home_sch=round(sum(
+                item.sch for item in attributed
+                if item.attribution_method == "instructor_home"
+            ) / divisor, 6),
+            prefix_owner_fallback_sch=round(sum(
+                item.sch for item in attributed
+                if item.attribution_method == "prefix_owner_fallback"
+            ) / divisor, 6),
+            workforce_attributed_outside_owned_sch=round(
+                outside_sch / divisor, 6
+            ),
+            department_owned_delivered_by_other_homes_sch=round(
+                inbound_sch / divisor, 6
+            ),
+        ))
+    pathway_counts = {
+        method: sum(item.attribution_method == method for item in attributions)
+        for method in sorted({item.attribution_method for item in attributions})
+    }
+    pathway_sch = {
+        method: round(sum(
+            item.sch for item in attributions if item.attribution_method == method
+        ) / len(years), 6)
+        for method in pathway_counts
+    }
+    semantic = {
+        "academic_years": years,
+        "fall_only": fall_only,
+        "aggregation": "mean_annual_sch",
+        "rows": [item.to_dict() for item in results],
+        "section_attributions": [item.to_dict() for item in attributions],
+        "attribution_pathway_counts": pathway_counts,
+        "attribution_pathway_sch": pathway_sch,
+        "unassigned_instructor_section_count": unassigned,
+        "multi_home_section_count": multi_home,
+    }
+    return FacultyDeliveredSCHReport(
+        years, fall_only, "mean_annual_sch", tuple(results), tuple(attributions),
+        pathway_counts, pathway_sch, unassigned, multi_home,
+        _fingerprint(semantic),
+    )
+
+
+def compare_with_quentin(
+    report: FacultyDeliveredSCHReport,
+    quentin_rows: Iterable[Mapping[str, Any]],
+) -> tuple[dict[str, Any], ...]:
+    """Compare faculty-delivered SCH with an explicit Quentin-table extract."""
+    by_name = {item.department_name.casefold(): item for item in report.rows}
+    by_unit = {item.academic_unit_id: item for item in report.rows}
+    units = AcademicUnitRegistry.load()
+    output = []
+    for source in quentin_rows:
+        name = str(source["Department"]).strip()
+        metric = float(source["Quentin SCH"])
+        governed = units.resolve(name)
+        row = (
+            by_unit.get(governed.unit_id) if governed else None
+        ) or by_unit.get(QUENTIN_DEPARTMENT_CODES.get(name.upper(), "")) or by_name.get(
+            name.casefold()
+        )
+        if row is None:
+            raise ValueError(f"Quentin department has no ISO profile: {name}")
+        output.append({
+            "Department": row.department_name,
+            "Quentin Department Code": name,
+            "Quentin SCH": metric,
+            "Governed-Prefix-Owned SCH": row.governed_prefix_owned_sch,
+            "Workforce-Attributed SCH": row.workforce_attributed_sch,
+            "Difference (Governed - Quentin)": round(
+                row.governed_prefix_owned_sch - metric, 6
+            ),
+            "Difference (Workforce-Attributed - Quentin)": round(
+                row.workforce_attributed_sch - metric, 6
+            ),
+            "Absolute Difference Improvement": round(
+                abs(row.governed_prefix_owned_sch - metric)
+                - abs(row.workforce_attributed_sch - metric),
+                6,
+            ),
+            "Percent Difference (Workforce-Attributed)": (
+                round(100 * (row.workforce_attributed_sch - metric) / metric, 6)
+                if metric else None
+            ),
+        })
+    return tuple(sorted(output, key=lambda item: item["Department"].casefold()))
+
+
+def _sch(rows: Iterable[Mapping[str, Any]]) -> float:
+    total = 0.0
+    for row in rows:
+        if not _valid_number(row.get("credits")) or not _valid_number(
+            row.get("enrollment"), integer=True
+        ):
+            raise ValueError(
+                f"Faculty-delivered SCH requires explicit inputs: {row['section_key']}"
+            )
+        total += float(row["credits"]) * int(row["enrollment"])
+    return total
+
+
+__all__ = [
+    "DEFAULT_ACADEMIC_YEARS", "DepartmentSCHComparison",
+    "FacultyDeliveredSCHReport", "SectionSCHAttribution",
+    "build_faculty_delivered_sch_comparison",
+    "compare_with_quentin",
+]

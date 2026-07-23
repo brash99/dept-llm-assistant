@@ -44,7 +44,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 27. [Authoritative Faculty Roster Contract](26_authoritative_faculty_roster.md)
 28. [Analytical Workforce Builder](27_analytical_workforce_builder.md)
 29. [Department Profile Builder](28_department_profile_builder.md)
-30. [Architecture FAQ](ArchitectureFAQ.md)
+30. [Faculty Identity Match Review](29_faculty_identity_match_review.md)
+31. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

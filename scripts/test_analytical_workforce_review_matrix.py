@@ -47,6 +47,22 @@ def test_review_matrix_separates_membership_and_unit_review(tmp_path):
     (workforce / "analytical_workforce_decisions.jsonl").write_text(
         "".join(json.dumps(item) + "\n" for item in decisions)
     )
+    appointments = root / "appointments"
+    appointments.mkdir()
+    (appointments / "faculty_appointment_observations.jsonl").write_text(
+        json.dumps({
+            "faculty_identity_id": "faculty:dean",
+            "published_titles": ["Professor and Dean"],
+            "appointment_category_published": None,
+            "published_academic_unit_label": "Department of Examples",
+        }) + "\n"
+    )
+    (appointments / "administrative_appointment_observations.jsonl").write_text(
+        json.dumps({
+            "faculty_identity_id": "faculty:dean",
+            "published_administrative_title": "Professor and Dean",
+        }) + "\n"
+    )
     payload = build_matrix(root)
     assert payload["review_scope_counts"] == {
         "both": 1, "department_assignment_only": 1,
@@ -55,6 +71,10 @@ def test_review_matrix_separates_membership_and_unit_review(tmp_path):
     unit = next(item for item in payload["review_matrix"] if item["display_name"] == "Unit Review")
     assert unit["actual_review_triggers"] == ["no_safe_analytical_unit"]
     assert payload["diagnosis"]["review_primary_reason_mismatch_count"] == 2
+    dean = next(item for item in payload["review_matrix"] if item["display_name"] == "Dean Review")
+    assert dean["published_positions"] == ["Professor and Dean"]
+    assert dean["administrative_positions"] == ["Professor and Dean"]
+    assert dean["departments"] == ["Department of Examples"]
     scenarios = {item["name"]: item["population_count"] for item in payload["policy_interpretations"]}
     assert scenarios["strict_included_only"] == 6
     assert scenarios["include_department_assignment_only"] == 7

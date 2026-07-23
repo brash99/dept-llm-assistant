@@ -60,16 +60,25 @@ def _review_triggers(reasons):
 def build_matrix(run_root: Path) -> dict:
     population = _json(run_root / "workforce_1/analytical_workforce_population.json")
     decisions = _jsonl(run_root / "workforce_1/analytical_workforce_decisions.jsonl")
+    appointment_context = _appointment_context(run_root)
     reviews = [item for item in decisions if item["decision"] == "review_required"]
     rows = []
     for item in sorted(reviews, key=lambda value: (value["display_name"].casefold(), value["faculty_identity_id"])):
         reasons = tuple(item["all_reason_codes"])
         teaching = item["teaching_assignment_summary"]
         scope = _review_scope(reasons)
+        context = appointment_context.get(item["faculty_identity_id"], {})
+        departments = sorted({
+            *item["published_academic_units"],
+            *context.get("departments", ()),
+        })
         rows.append({
             "faculty_identity_id": item["faculty_identity_id"],
             "display_name": item["display_name"],
             "review_scope": scope,
+            "published_positions": context.get("faculty_positions", []),
+            "administrative_positions": context.get("administrative_positions", []),
+            "departments": departments,
             "reported_primary_reason": item["primary_reason_code"],
             "actual_review_triggers": list(_review_triggers(reasons)),
             "all_reason_codes": list(reasons),
@@ -138,6 +147,42 @@ def build_matrix(run_root: Path) -> dict:
     }
 
 
+def _appointment_context(run_root):
+    appointment_root = run_root / "appointments"
+    faculty_path = appointment_root / "faculty_appointment_observations.jsonl"
+    admin_path = appointment_root / "administrative_appointment_observations.jsonl"
+    if not faculty_path.is_file() or not admin_path.is_file():
+        return {}
+    values = {}
+    for item in _jsonl(faculty_path):
+        identity_id = item.get("faculty_identity_id")
+        if not identity_id:
+            continue
+        target = values.setdefault(identity_id, {
+            "faculty_positions": set(), "administrative_positions": set(),
+            "departments": set(),
+        })
+        target["faculty_positions"].update(item.get("published_titles") or ())
+        if item.get("appointment_category_published"):
+            target["faculty_positions"].add(item["appointment_category_published"])
+        if item.get("published_academic_unit_label"):
+            target["departments"].add(item["published_academic_unit_label"])
+    for item in _jsonl(admin_path):
+        identity_id = item.get("faculty_identity_id")
+        if not identity_id:
+            continue
+        target = values.setdefault(identity_id, {
+            "faculty_positions": set(), "administrative_positions": set(),
+            "departments": set(),
+        })
+        if item.get("published_administrative_title"):
+            target["administrative_positions"].add(item["published_administrative_title"])
+    return {
+        identity_id: {key: sorted(items) for key, items in context.items()}
+        for identity_id, context in values.items()
+    }
+
+
 def _scenario(name, count, rule):
     return {"name": name, "population_count": count, "distance_from_275": count - 275, "rule": rule}
 
@@ -161,6 +206,7 @@ def write_reports(payload, output_dir):
     )
     columns = (
         "display_name", "faculty_identity_id", "review_scope",
+        "published_positions", "administrative_positions", "departments",
         "reported_primary_reason", "actual_review_triggers",
         "published_academic_units", "analytical_academic_unit_id",
         "recent_teaching_assignments", "most_recent_term", "limitations",
@@ -187,9 +233,10 @@ def _markdown(payload):
         "## Policy interpretations", "", "| Interpretation | Population | Distance from 275 |", "|---|---:|---:|",
     ]
     lines.extend(f"| {item['name']} | {item['population_count']} | {item['distance_from_275']} |" for item in payload["policy_interpretations"])
-    lines += ["", "## Review cases", "", "| Person | Scope | Actual trigger | Unit | Recent teaching | Review question |", "|---|---|---|---|---:|---|"]
+    lines += ["", "## Review cases", "", "| Person | Positions | Departments | Scope | Actual trigger | Recent teaching |", "|---|---|---|---|---|---:|"]
     for row in payload["review_matrix"]:
-        lines.append(f"| {row['display_name']} | {row['review_scope']} | {', '.join(row['actual_review_triggers'])} | {row['analytical_academic_unit_id'] or ''} | {row['recent_teaching_assignments']} | {row['review_question']} |")
+        positions = sorted({*row['published_positions'], *row['administrative_positions']})
+        lines.append(f"| {row['display_name']} | {', '.join(positions)} | {', '.join(row['departments'])} | {row['review_scope']} | {', '.join(row['actual_review_triggers'])} | {row['recent_teaching_assignments']} |")
     lines += ["", "## Rule diagnosis", ""]
     lines.extend(f"- {key}: {value}" for key, value in payload["diagnosis"].items())
     return "\n".join(lines) + "\n"
@@ -204,6 +251,15 @@ def main():
     output = args.output_dir or args.run_root / "review_matrix"
     write_reports(payload, output)
     compact = {key: value for key, value in payload.items() if key != "review_matrix"}
+    compact["review_people"] = [{
+        "name": row["display_name"],
+        "positions": sorted({
+            *row["published_positions"], *row["administrative_positions"],
+        }),
+        "departments": row["departments"],
+        "review_scope": row["review_scope"],
+        "review_triggers": row["actual_review_triggers"],
+    } for row in payload["review_matrix"]]
     compact["review_matrix_path"] = str(output)
     print(json.dumps(compact, indent=2, sort_keys=True))
     return 0

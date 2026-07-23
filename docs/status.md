@@ -108,6 +108,12 @@ Status as of July 2026. This file describes the current codebase; research and s
   deterministic identity/unit linkage, quarantine rules, Evidence Fitness, and
   denominator-readiness reporting. No authoritative production roster is
   asserted to exist, and no active population or denominator is calculated.
+- The Reasoning Layer now includes a governed Analytical Workforce Builder that
+  starts from the latest faculty-directory identities and produces deterministic
+  include, exclude, or review-required decisions with teaching support,
+  analytical-unit provenance, policy sensitivity, overrides, and plausible
+  population bounds. It is an analytical proxy rather than an HR roster and
+  does not calculate FTE, SCH, capacity, or reduction recommendations.
 - Governed academic-unit normalization now resolves canonical names, explicit
   aliases, status-qualified labels, and bounded contaminated labels while
   rejecting ambiguous or common-word matches. Missing semantic-scope

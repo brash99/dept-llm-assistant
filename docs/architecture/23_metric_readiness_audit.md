@@ -118,13 +118,15 @@ text; age, appointment year, and absence of teaching are never substitutes.
 
 1. **Evidence Layer** supplies schedule, catalog, roster, and directory facts.
 2. **Semantic Layer** governs institutional units and subject ownership.
-3. **Reasoning Layer** will eventually calculate approved metrics.
+3. **Reasoning Layer** now derives a governed analytical workforce proxy from
+   the current directory; approved SCH and capacity metrics remain future work.
 4. **Evidence Fitness** reports whether the required facts and policies are
    adequate.
 5. **Scenario Modeling** must consume only governed, fitness-qualified metrics.
 6. **Institutional Digital Twin** may later retain effective organizational and
    appointment histories.
 
-The smallest next milestone is policy approval plus production coverage
-measurement, followed by a separate reviewed SCH aggregation service and an
-authorized effective-dated faculty appointment observer.
+The current-directory analytical population improves scenario readiness but is
+not an authoritative HR denominator. The next milestones are production policy
+review, coverage measurement, a separate reviewed SCH aggregation service, and
+an authorized effective-dated faculty appointment observer.

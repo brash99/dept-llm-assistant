@@ -7,6 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import yaml
+
 
 GOVERNED_IDENTITIES = {
     "faculty_identity:patricia_siewe_seuchie": {
@@ -79,17 +81,39 @@ def validate(root: Path) -> dict:
         value["identity_id"]: value
         for value in _jsonl(root / "identity_1/faculty_identities.jsonl")
     }
+    registry_path = Path(__file__).resolve().parents[2] / "config/faculty_identity_aliases.yaml"
+    registry_payload = yaml.safe_load(registry_path.read_text(encoding="utf-8")) or {}
+    registry = {
+        str(value["identity_key"]): value
+        for value in registry_payload.get("identities") or ()
+    }
     governed = {}
     for identity_id, required_names in GOVERNED_IDENTITIES.items():
+        identity_key = identity_id.removeprefix("faculty_identity:")
+        governed_record = registry.get(identity_key)
+        if not governed_record:
+            raise ValueError(f"missing governed registry record: {identity_key}")
+        configured_names = set(governed_record.get("observed_names") or ())
+        missing_configured = required_names - configured_names
+        if missing_configured:
+            raise ValueError(
+                f"{identity_key} missing governed aliases: {sorted(missing_configured)}"
+            )
         identity = identities.get(identity_id)
         if not identity:
             raise ValueError(f"missing governed identity: {identity_id}")
         if identity["ambiguous"]:
             raise ValueError(f"governed identity remains ambiguous: {identity_id}")
-        missing = required_names - set(identity["observed_names"])
-        if missing:
-            raise ValueError(f"{identity_id} missing names: {sorted(missing)}")
-        governed[identity_id] = len(identity["source_observations"])
+        observed_governed_names = required_names.intersection(identity["observed_names"])
+        if not observed_governed_names:
+            raise ValueError(f"{identity_id} has no governed name in production evidence")
+        if identity["display_name"] != governed_record["canonical_display_name"]:
+            raise ValueError(f"{identity_id} canonical display name differs from governance")
+        governed[identity_id] = {
+            "observation_count": len(identity["source_observations"]),
+            "observed_governed_names": sorted(observed_governed_names),
+            "configured_governed_names": sorted(configured_names),
+        }
 
     unresolved = metric["audit"]["institutional_units"]["unresolved_published_unit_labels"]
     if unresolved:

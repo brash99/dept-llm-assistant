@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from app.academic_terms import academic_term_sort_key  # noqa: E402
-from app.department_profiles import _schedule_row, _unique_sections  # noqa: E402
+from app.department_profiles import _repair_sch_rows, _schedule_row, _unique_sections  # noqa: E402
 from app.faculty_identity import FacultyIdentityService  # noqa: E402
 from app.institutional_units import AcademicUnitRegistry  # noqa: E402
 from app.metric_readiness_audit import load_normalized_objects  # noqa: E402
@@ -50,7 +50,7 @@ def main(argv=None):
         for item in decisions if item["workforce_disposition"] == "include"
     }
     schedules = tuple(item for item in objects if item.get("object_type") == "course_offering_observation")
-    rows = tuple(_schedule_row(item, schedule_identity, home, mapper) for item in schedules)
+    rows, _ = _repair_sch_rows(tuple(_schedule_row(item, schedule_identity, home, mapper) for item in schedules))
     profile_by_unit = {item["academic_unit_id"]: item for item in profiles}
     prefix_rows = _prefix_matrix(rows, mapper, units, profile_by_unit)
     department_rows = _department_matrix(rows, profiles, home)

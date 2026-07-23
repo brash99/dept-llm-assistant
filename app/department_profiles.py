@@ -107,7 +107,8 @@ class DepartmentProfileBuilder:
             for source in identity.source_observations if source.source_system == "schedule"
         }
         schedules = tuple(item for item in objects if item.get("object_type") == "course_offering_observation")
-        schedule_rows = tuple(_schedule_row(item, schedule_identity, home, self.mapper) for item in schedules)
+        raw_schedule_rows = tuple(_schedule_row(item, schedule_identity, home, self.mapper) for item in schedules)
+        schedule_rows, sch_repairs = _repair_sch_rows(raw_schedule_rows)
         represented_units = set(home.values())
         represented_units.update(
             row["owned_unit_id"] for row in schedule_rows
@@ -156,6 +157,7 @@ class DepartmentProfileBuilder:
             "departments_with_complete_sch": sum(item.sch_complete for item in profiles),
             "most_recent_complete_academic_year": complete_year,
             "most_recent_observed_term": _latest_term(schedule_rows),
+            "sch_repair_count": len(sch_repairs),
         }
         digest = _fingerprint({"summary": summary, "profiles": [item.to_dict() for item in profiles]})
         return DepartmentProfileResult(profiles, summary, digest)
@@ -282,6 +284,9 @@ def _schedule_row(item, schedule_identity, home, mapper):
         "observation_id": str(item.get("id") or item.get("observation_id") or ""),
         "section_key": _section_key(item), "term": term, "subject": subject,
         "course_code": str(item.get("course_code") or ""),
+        "course_number": str(item.get("course_number") or ""),
+        "section": str(item.get("section") or ""),
+        "course_title": item.get("course_title"),
         "instructor_identity_id": identity_id, "instructor_raw": item.get("instructor_raw") or item.get("instructor_name"),
         "home_unit_id": home.get(identity_id), "owned_unit_id": owned,
         "original_owner_unit_id": mapping.owning_academic_unit_id,
@@ -289,6 +294,9 @@ def _schedule_row(item, schedule_identity, home, mapper):
         "subject_mapping_status": mapping.status,
         "subject_mapping_review_status": mapping.review_status,
         "credits": item.get("credits"), "enrollment": item.get("enrollment"),
+        "credits_raw": item.get("credits_raw"),
+        "credit_resolution_method": ((item.get("credits_assertion") or {}).get("resolution") or {}).get("method"),
+        "sch_repairs": (),
     }
 
 
@@ -297,10 +305,53 @@ def _section_key(item):
 
 
 def _unique_sections(rows):
-    values = {}
+    grouped = defaultdict(list)
     for row in sorted(rows, key=lambda item: (item["section_key"], item["observation_id"])):
-        values.setdefault(row["section_key"], row)
-    return tuple(values.values())
+        grouped[row["section_key"]].append(row)
+    return tuple(_merge_section(tuple(grouped[key])) for key in sorted(grouped))
+
+
+def _merge_section(rows):
+    merged = dict(rows[0])
+    repairs = set(merged.get("sch_repairs") or ())
+    for field in ("enrollment", "credits"):
+        values = {row[field] for row in rows if _valid_number(row[field], integer=(field == "enrollment"))}
+        if len(values) == 1:
+            value = next(iter(values))
+            if merged[field] is None:
+                merged[field] = value
+                repairs.add(f"duplicate_section_{field}")
+        elif len(values) > 1:
+            merged[field] = None
+            repairs.add(f"duplicate_section_{field}_conflict")
+    merged["sch_repairs"] = tuple(sorted(repairs))
+    merged["duplicate_observation_count"] = len(rows)
+    merged["instructors"] = tuple(sorted({str(row["instructor_raw"] or "") for row in rows if row["instructor_raw"]}))
+    return merged
+
+
+def _repair_sch_rows(rows):
+    credit_index = defaultdict(set)
+    for row in rows:
+        if _valid_number(row["credits"]):
+            credit_index[(row["term"], row["subject"], row["course_number"] or row["course_code"])].add(row["credits"])
+    repaired, repairs = [], []
+    for row in rows:
+        value = dict(row)
+        key = (row["term"], row["subject"], row["course_number"] or row["course_code"])
+        candidates = credit_index[key]
+        variable = row.get("credit_resolution_method") in {"legitimate_variable_credit", "unresolved_credit_conflict"}
+        if row["credits"] is None and len(candidates) == 1 and not variable:
+            value["credits"] = next(iter(candidates))
+            value["sch_repairs"] = ("course_term_credit_consensus",)
+            repairs.append({
+                "observation_id": row["observation_id"], "section_key": row["section_key"],
+                "field": "credits", "value": value["credits"],
+                "method": "course_term_credit_consensus",
+                "evidence_key": "|".join(map(str, key)),
+            })
+        repaired.append(value)
+    return tuple(repaired), tuple(sorted(repairs, key=lambda item: (item["section_key"], item["observation_id"])))
 
 
 def _union_rows(*groups):

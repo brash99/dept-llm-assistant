@@ -71,6 +71,35 @@ def test_each_section_contributes_to_exactly_one_term_and_year():
     assert department["grand_total"]["sections"] == 3
 
 
+def test_fall_only_scope_excludes_every_non_fall_term():
+    rows = (
+        _row("fall-22", "2022_fall", 10),
+        _row("spring-23", "2023_spring", 20),
+        _row("summer-23", "2023_summer_1", 30),
+        _row("fall-23", "2023_fall", 40),
+    )
+    result = build_timeline((_profile(),), rows, fall_only=True)
+    department = result["departments"][0]
+    assert result["reporting_scope"] == "fall_only"
+    assert [item["academic_term"] for item in result["terms"]] == [
+        "2022_fall", "2023_fall",
+    ]
+    assert [item["sch"] for item in department["academic_years"]] == [30, 120]
+    assert department["grand_total"]["sch"] == 150
+    assert department["grand_total"]["sections"] == 2
+
+
+def test_timeline_uses_governed_subject_owner_not_faculty_home():
+    home_only = {
+        **_row("outside", "2022_fall", 10),
+        "owned_unit_id": "academic_unit:other",
+    }
+    result = build_timeline((_profile(),), (home_only,))
+    department = result["departments"][0]
+    assert department["grand_total"]["sections"] == 0
+    assert department["grand_total"]["sch"] == 0
+
+
 def test_incomplete_sch_is_not_inferred():
     with pytest.raises(ValueError, match="SCH-complete"):
         build_timeline((_profile(),), (_row("missing", "2022_fall", 10, credits=None),))

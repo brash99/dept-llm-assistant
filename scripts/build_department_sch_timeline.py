@@ -18,7 +18,6 @@ from app.academic_terms import academic_term_order, academic_term_sort_key  # no
 from app.department_profiles import (  # noqa: E402
     _repair_sch_rows,
     _schedule_row,
-    _union_rows,
     _unique_sections,
     _valid_number,
 )
@@ -28,7 +27,7 @@ from app.reasoning.academic_unit_mapping import AcademicUnitMappingService  # no
 
 
 ALGORITHM = "department_sch_timeline_report"
-ALGORITHM_VERSION = "1.0"
+ALGORITHM_VERSION = "1.1"
 
 
 def _academic_year(term):
@@ -75,8 +74,13 @@ def _period(rows):
     }
 
 
-def build_timeline(profiles, rows):
+def build_timeline(profiles, rows, *, fall_only=False):
     profiles = tuple(sorted(profiles, key=lambda item: item["academic_unit_id"]))
+    if fall_only:
+        rows = tuple(
+            row for row in rows
+            if academic_term_order(row["term"]).period == "fall"
+        )
     terms = tuple(sorted({row["term"] for row in rows}, key=academic_term_sort_key))
     if not terms:
         raise ValueError("No schedule terms found")
@@ -84,10 +88,9 @@ def build_timeline(profiles, rows):
     departments = []
     section_term_assignments = 0
     for profile in profiles:
-        members = set(profile["faculty_identity_ids"])
-        activity = _union_rows(
-            tuple(row for row in rows if row["instructor_identity_id"] in members),
-            tuple(row for row in rows if row["owned_unit_id"] == profile["academic_unit_id"]),
+        activity = tuple(
+            row for row in rows
+            if row["owned_unit_id"] == profile["academic_unit_id"]
         )
         term_values = []
         for term in terms:
@@ -137,7 +140,10 @@ def build_timeline(profiles, rows):
     payload = {
         "algorithm": ALGORITHM,
         "algorithm_version": ALGORITHM_VERSION,
+        "reporting_scope": "fall_only" if fall_only else "full_academic_year",
         "academic_year_definition": (
+            "Fall semester of the academic-year starting year only."
+            if fall_only else
             "Fall of the starting year plus Spring, Maymester, Summer I, "
             "Extended Summer, and Summer II of the following calendar year."
         ),
@@ -166,6 +172,10 @@ def main(argv=None):
     parser.add_argument("--workforce-output", type=Path, required=True)
     parser.add_argument("--profiles-output", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument(
+        "--fall-only", action="store_true",
+        help="Include only fall semesters in term, academic-year, and grand totals.",
+    )
     args = parser.parse_args(argv)
     workforce_root = args.workforce_output.parent if args.workforce_output.is_file() else args.workforce_output
     profile_root = args.profiles_output.parent if args.profiles_output.is_file() else args.profiles_output
@@ -192,7 +202,7 @@ def main(argv=None):
         if item.get("object_type") == "course_offering_observation"
     )
     rows, _ = _repair_sch_rows(raw_rows)
-    payload = build_timeline(profiles, rows)
+    payload = build_timeline(profiles, rows, fall_only=args.fall_only)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     _write_json(args.output_dir / "department_sch_timeline.json", payload)
     _write_term_csv(args.output_dir / "department_sch_by_term.csv", payload)

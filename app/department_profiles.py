@@ -18,7 +18,7 @@ from app.subject_ownership import SubjectOwnershipRegistry
 
 
 ALGORITHM = "iso_department_profile_builder"
-ALGORITHM_VERSION = "1.1"
+ALGORITHM_VERSION = "1.2"
 
 
 def _fingerprint(value: Any) -> str:
@@ -151,6 +151,13 @@ class DepartmentProfileBuilder:
             "unmapped_teaching_assignments": sum(not row["owned_unit_id"] for row in schedule_rows),
             "subject_prefix_count": len({row["subject"] for row in schedule_rows if row["subject"]}),
             "governed_subject_prefix_count": len({row["subject"] for row in schedule_rows if row["owned_unit_id"]}),
+            "unmapped_subject_prefixes": sorted({
+                row["subject"] for row in schedule_rows
+                if row["subject"] and not row["owned_unit_id"]
+            }),
+            "subject_ownership_complete": not any(
+                row["subject"] and not row["owned_unit_id"] for row in schedule_rows
+            ),
             "departments_with_teaching_history": sum(bool(item.teaching_assignment_count) for item in profiles),
             "departments_with_enrollment": sum(item.sections_with_enrollment > 0 for item in profiles),
             "departments_with_complete_enrollment": sum(item.enrollment_complete for item in profiles),
@@ -170,7 +177,10 @@ class DepartmentProfileBuilder:
         owned_rows = tuple(row for row in rows if row["owned_unit_id"] == unit.unit_id)
         home_outside = tuple(row for row in home_rows if row["owned_unit_id"] != unit.unit_id)
         outside_owned = tuple(row for row in owned_rows if row["instructor_identity_id"] not in member_ids)
-        activity_rows = _union_rows(home_rows, owned_rows)
+        # Department-level instructional totals are ownership totals. Home
+        # faculty activity is a separate descriptive axis and must never be
+        # used as a fallback for absent subject governance.
+        activity_rows = owned_rows
         parent = self.units.parent_of(unit)
         faculty_members, rank_counts, admin_count, recent_count = [], Counter(), 0, 0
         for item in members:
@@ -198,11 +208,15 @@ class DepartmentProfileBuilder:
         fitness = {
             "governed_workforce_membership_complete", "governed_department_assignment_complete",
             "current_directory_supported", "public_evidence_analytical_baseline",
-            "not_authoritative_hr_roster", "subject_ownership_governed",
+            "not_authoritative_hr_roster",
         }
         limitations = {"analytical baseline is not an authoritative HR roster", "teaching assignments do not represent faculty effort or workload"}
         if activity_rows:
             fitness.add("teaching_history_available")
+        if subjects:
+            fitness.add("subject_ownership_governed")
+        else:
+            limitations.add("no governed instructional subject is assigned to this department")
         if recent_count:
             fitness.add("recent_teaching_observed")
         if len(members) - recent_count:

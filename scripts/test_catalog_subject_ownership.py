@@ -53,7 +53,8 @@ def test_is_is_not_subject_but_information_science_program_remains_sec():
         if record.analytical_academic_unit_id == "academic_unit:sec"
     ]
     assert {record.subject_code for record in sec_records} == {
-        "PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE", "MECH"
+        "PHYS", "CPSC", "CYBR", "CPEN", "EENG", "PCSE", "MECH",
+        "DATA", "ENGR",
     }
     assert SubjectOwnershipRegistry.load().records_for_subject("PCSE")
     assert all("program" not in record.to_dict() for record in SubjectOwnershipRegistry.load().records)

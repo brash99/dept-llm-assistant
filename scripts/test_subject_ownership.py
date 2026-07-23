@@ -112,4 +112,35 @@ def test_resolved_schedule_prefixes_use_canonical_units_without_false_equivalenc
     assert service.map_subject("NAVS").academic_unit_id == "academic_unit:department_military_science"
     assert service.map_subject("HBRW").academic_unit_id == "academic_unit:department_modern_classical_languages_literatures"
     assert service.map_subject("ENVS").subject_code == "ENVS"
-    assert service.map_subject("EVST").academic_unit_id != service.map_subject("ENVS").academic_unit_id
+    assert service.map_subject("EVST").subject_code == "EVST"
+    registry = SubjectOwnershipRegistry.load()
+    assert (
+        registry.records_for_subject("EVST")[0].record_id
+        != registry.records_for_subject("ENVS")[0].record_id
+    )
+
+
+def test_current_department_subject_crosswalk_is_governed_not_candidate_driven():
+    service = AcademicUnitMappingService()
+    expected = {
+        "ACCT": "academic_unit:department_accounting_finance",
+        "FINC": "academic_unit:department_accounting_finance",
+        "MGMT": "academic_unit:department_management_marketing",
+        "MKTG": "academic_unit:department_management_marketing",
+        "PHIL": "academic_unit:department_philosophy_religion",
+        "RSTD": "academic_unit:department_philosophy_religion",
+        "MATH": "academic_unit:department_mathematics",
+        "ENGL": "academic_unit:department_english",
+        "POLS": "academic_unit:department_political_science",
+        "PSYC": "academic_unit:department_psychology",
+        "PMED": "academic_unit:department_biology_chemistry_environmental_science",
+        "EVST": "academic_unit:department_biology_chemistry_environmental_science",
+        "DTAN": "academic_unit:department_economics",
+        "HEAL": "academic_unit:department_communication_studies",
+        "CHLF": "academic_unit:department_psychology",
+        "HUMN": "academic_unit:department_modern_classical_languages_literatures",
+    }
+    for prefix, unit_id in expected.items():
+        result = service.map_subject(prefix)
+        assert result.review_status == "governed"
+        assert result.analytical_academic_unit_id == unit_id

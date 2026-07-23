@@ -108,6 +108,34 @@ def test_partial_sch_and_unlinked_instructor_preserve_owned_teaching():
     assert profile.cross_unit_instruction["department_subjects_taught_by_outside_faculty"]["teaching_assignment_count"] == 2
 
 
+def test_home_faculty_activity_never_substitutes_for_subject_ownership():
+    objects = (
+        _directory("one", "One Professor", unit="Accounting and Finance"),
+        _schedule("outside", "One Professor", subject="PHYS"),
+    )
+    from app.faculty_identity import FacultyIdentityService
+    identity = FacultyIdentityService().audit(objects).identities[0]
+    profiles = {
+        item.academic_unit_id: item for item in DepartmentProfileBuilder().build(
+            objects,
+            (_decision(
+                identity.identity_id,
+                "academic_unit:department_accounting_finance",
+                identity.display_name,
+                1,
+            ),),
+            _population(1),
+        ).profiles
+    }
+    accounting = profiles["academic_unit:department_accounting_finance"]
+    assert accounting.teaching_assignment_count == 0
+    assert accounting.student_credit_hours is None
+    assert accounting.home_faculty_instruction["teaching_assignment_count"] == 1
+    assert accounting.cross_unit_instruction[
+        "home_faculty_outside_department"
+    ]["teaching_assignment_count"] == 1
+
+
 def test_duplicate_schedule_rows_do_not_double_count_sections():
     objects = (
         _directory("one", "One Professor", unit="School of Engineering and Computing"),

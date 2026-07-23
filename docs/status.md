@@ -208,10 +208,12 @@ authoritative HR denominator confirmation remains unavailable and is reported as
 an Evidence Fitness limitation.
 
 Department instructional coverage now distinguishes home-faculty activity from
-governed subject-owned activity. The 36 currently governed schedule prefixes do
-not cover the complete production subject inventory; unmapped ownership remains
-visible without suppressing linked home-faculty teaching history. Partial known
-enrollment and SCH are reported with strict completeness flags.
+governed subject-owned activity. The governed crosswalk includes ordinary
+catalog-visible department prefixes as well as reviewed operational and
+non-department subjects. Departmental SCH is derived only from governed
+subject-owned activity; home-faculty teaching remains a separate descriptive
+measure and cannot conceal an ownership gap. The production coverage audit
+retains every still-unmapped prefix for institutional review.
 
 The Analytical Workforce Builder now treats workforce membership and department
 assignment as orthogonal reasoning results. Instructional identities whose only

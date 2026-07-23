@@ -14,11 +14,12 @@ builder therefore reports home-faculty instruction, department-owned subject
 instruction, home faculty teaching outside the department, and department
 subjects taught by faculty from elsewhere separately.
 
-Headline teaching history is the deterministic union of home-faculty
-assignments and governed department-owned assignments. It therefore does not
-mistake incomplete subject-ownership coverage for an absence of teaching. The
-two sources remain separately reported, and an unmapped subject is never
-assigned from faculty home.
+Headline departmental teaching history comes only from governed
+department-owned subjects. Home-faculty assignments remain separately reported
+and are never used as a fallback ownership rule. This prevents an incomplete
+crosswalk from producing plausible but semantically incomplete departmental
+SCH. The production coverage audit lists every observed prefix, its governed
+owner, profile target, and any missing or non-department ownership.
 
 The reconciled 282-person production workforce is ready as the analytical
 denominator for the August milestone. It remains a public-evidence analytical
@@ -35,7 +36,7 @@ and spring terms and is distinct from the latest observed term.
 
 ## SCH completeness
 
-Complete SCH means every unique section in the profile's combined descriptive
+Complete SCH means every unique section in the profile's governed owned-subject
 activity has explicit valid enrollment and scalar credits. Partial SCH is the
 known sum from SCH-ready sections; it is never presented as the missing total.
 The audit reports every non-ready section and independent enrollment, credit,

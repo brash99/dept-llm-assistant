@@ -18,6 +18,17 @@ def _jsonl(path):
     return tuple(json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
 
 
+def _previous_profiles(root):
+    candidates = sorted(
+        (
+            path for path in root.parent.glob("department_profiles_*")
+            if path != root and (path / "profiles_1/department_profiles.jsonl").is_file()
+        ),
+        reverse=True,
+    )
+    return _jsonl(candidates[0] / "profiles_1/department_profiles.jsonl") if candidates else ()
+
+
 def validate(root, expected_workforce_count=282):
     first_root, second_root = root / "profiles_1", root / "profiles_2"
     for path in first_root.iterdir():
@@ -31,6 +42,7 @@ def validate(root, expected_workforce_count=282):
     population = _json(root / "workforce/analytical_workforce_population.json")
     decisions = _jsonl(root / "workforce/analytical_workforce_decisions.jsonl")
     profiles = _jsonl(first_root / "department_profiles.jsonl")
+    previous_profiles = _previous_profiles(root)
     if population["workforce_review_required_count"] != 0 or population["department_assignment_review_required_count"] != 0:
         raise ValueError("analytical workforce review remains")
     if population["workforce_included_count"] != expected_workforce_count:
@@ -53,8 +65,22 @@ def validate(root, expected_workforce_count=282):
     for item in department_coverage:
         if item["owned_subject_teaching_assignment_count"] and not item["profile_teaching_assignment_count"]:
             raise ValueError(f"lost governed owned-subject activity: {item['academic_unit_id']}")
-        if item["home_faculty_teaching_assignment_count"] and not item["profile_teaching_assignment_count"]:
-            raise ValueError(f"lost linked home-faculty activity: {item['academic_unit_id']}")
+    prefix_rows = coverage["subject_prefix_coverage"]
+    philosophy = {
+        item["subject_prefix"]: item for item in prefix_rows
+        if item["subject_prefix"] in {"PHIL", "RSTD"}
+    }
+    if set(philosophy) != {"PHIL", "RSTD"} or any(
+        item["mapped_profile_unit_id"] != "academic_unit:department_philosophy_religion"
+        for item in philosophy.values()
+    ):
+        raise ValueError("PHIL/RSTD governed ownership did not reach Philosophy and Religion")
+    if coverage["subject_prefixes_without_governed_owners"]:
+        missing = sorted(
+            item["subject_prefix"] for item in prefix_rows
+            if item["mapping_result"] in {"missing_owner", "otherwise_unmapped"}
+        )
+        raise ValueError(f"production subject prefixes lack governed ownership: {missing}")
     sch_root = root / "sch_completeness_1"
     for path in sch_root.iterdir():
         other = root / "sch_completeness_2" / path.name
@@ -76,6 +102,27 @@ def validate(root, expected_workforce_count=282):
         "known_sch": sch_by_unit[item["academic_unit_id"]]["known_sch"],
         "missing_sch_sections": sch_by_unit[item["academic_unit_id"]]["missing_section_count"],
     } for item in profiles), key=lambda item: item["department"].casefold())
+    previous_sch = {
+        item["academic_unit_id"]: item.get("student_credit_hours")
+        for item in previous_profiles
+    }
+    sch_changes = []
+    for item in sorted(profiles, key=lambda value: value["department_name"].casefold()):
+        if item["academic_unit_id"] not in previous_sch:
+            continue
+        before = previous_sch[item["academic_unit_id"]]
+        after = item.get("student_credit_hours")
+        if before != after:
+            sch_changes.append({
+                "academic_unit_id": item["academic_unit_id"],
+                "department": item["department_name"],
+                "before_sch": before,
+                "after_sch": after,
+                "change": (
+                    round(float(after or 0) - float(before or 0), 6)
+                    if before is not None or after is not None else 0.0
+                ),
+            })
     return {
         "status": "passed", "deterministic_fingerprint": first["deterministic_fingerprint"],
         "department_profile_count": len(profiles), "analytical_workforce_count": len(included),
@@ -89,6 +136,10 @@ def validate(root, expected_workforce_count=282):
         "unmapped_teaching_assignments": coverage["unmapped_teaching_assignments"],
         "subject_prefixes_with_governed_owners": coverage["subject_prefixes_with_governed_owners"],
         "subject_prefixes_without_governed_owners": coverage["subject_prefixes_without_governed_owners"],
+        "unmapped_subject_prefixes": [
+            item["subject_prefix"] for item in prefix_rows
+            if item["mapping_result"] in {"missing_owner", "otherwise_unmapped"}
+        ],
         "departments_with_teaching_history": first["departments_with_teaching_history"],
         "departments_with_enrollment_evidence": first["departments_with_enrollment"],
         "departments_with_complete_enrollment": first["departments_with_complete_enrollment"],
@@ -104,6 +155,7 @@ def validate(root, expected_workforce_count=282):
         "top_affected_courses": list(sch_audit["systematic_patterns"]["by_course"].items())[:20],
         "top_affected_departments": list(sch_audit["systematic_patterns"]["by_department"].items())[:10],
         "department_counts": counts,
+        "department_sch_changes_from_previous_run": sch_changes,
     }
 
 
@@ -114,10 +166,20 @@ def main():
     summary = validate(args.run_root)
     (args.run_root / "production_validation_summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     lines = ["# Department Profile Production Validation", ""] + [
-        f"- {key}: {value}" for key, value in summary.items() if key != "department_counts"
+        f"- {key}: {value}" for key, value in summary.items()
+        if key not in {"department_counts", "department_sch_changes_from_previous_run"}
     ] + ["", "| Department | Faculty | Sections | SCH-ready | Complete | Known SCH | Missing |", "|---|---:|---:|---:|---:|---:|---:|"] + [
         f"| {item['department']} | {item['faculty']} | {item['sections']} | {item['sch_ready_sections']} | {item['sch_completeness_percent']}% | {item['known_sch']} | {item['missing_sch_sections']} |" for item in summary["department_counts"]
     ]
+    if summary["department_sch_changes_from_previous_run"]:
+        lines += [
+            "", "## SCH changes from previous production profile run", "",
+            "| Department | Before | After | Change |",
+            "|---|---:|---:|---:|",
+        ] + [
+            f"| {item['department']} | {item['before_sch']} | {item['after_sch']} | {item['change']} |"
+            for item in summary["department_sch_changes_from_previous_run"]
+        ]
     (args.run_root / "production_validation_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     compact = {key: value for key, value in summary.items() if key != "department_counts"}
     compact["department_counts"] = summary["department_counts"]

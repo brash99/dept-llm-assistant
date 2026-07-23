@@ -200,6 +200,13 @@ The long-term objective is a temporal, evidence-backed representation of institu
 
 ## Academic Workforce Planning limitations
 
+The Current Analytical Workforce is institutionally reviewed and reconciles 282
+included identities with governed home-unit assignments. Department profiles
+aggregate that baseline separately from subject-owned instructional activity.
+The analytical workforce denominator is ready for the August analysis;
+authoritative HR denominator confirmation remains unavailable and is reported as
+an Evidence Fitness limitation.
+
 The Analytical Workforce Builder now treats workforce membership and department
 assignment as orthogonal reasoning results. Instructional identities whose only
 issue is an unresolved receiving unit remain in the workforce population and

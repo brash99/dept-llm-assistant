@@ -156,6 +156,7 @@ def test_readiness_without_roster_is_explicitly_blocked():
     payload = audit(None)
     assert payload["authoritative_roster_present"] is False
     assert payload["production_denominator_ready"] is False
+    assert payload["authoritative_hr_denominator_ready"] is False
     assert all(
         item["status"] == "blocked_by_missing_evidence"
         for item in payload["denominator_readiness"].values()

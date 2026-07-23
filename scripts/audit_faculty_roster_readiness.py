@@ -27,12 +27,14 @@ def audit(report: Path | None) -> dict:
     ingestion = json.loads(report.read_text(encoding="utf-8")) if present else None
     summary = ingestion["summary"] if ingestion else {"accepted_observation_count": 0}
     readiness = denominator_readiness(summary)
+    authoritative_ready = bool(present) and all(
+        value["status"] == "supported_by_explicit_evidence"
+        for value in readiness.values()
+    )
     return {
         "authoritative_roster_present": present,
-        "production_denominator_ready": bool(present) and all(
-            value["status"] == "supported_by_explicit_evidence"
-            for value in readiness.values()
-        ),
+        "authoritative_hr_denominator_ready": authoritative_ready,
+        "production_denominator_ready": authoritative_ready,
         "ingestion_fingerprint": ingestion.get("deterministic_fingerprint") if ingestion else None,
         "summary": summary,
         "denominator_readiness": readiness,
@@ -49,7 +51,7 @@ def main(argv=None) -> int:
     lines = [
         "# Faculty Roster Readiness", "",
         f"- Authoritative roster present: {str(payload['authoritative_roster_present']).lower()}",
-        f"- Production denominator ready: {str(payload['production_denominator_ready']).lower()}", "",
+        f"- Authoritative HR denominator ready: {str(payload['authoritative_hr_denominator_ready']).lower()}", "",
         "| Future denominator | Status |", "|---|---|",
     ] + [f"| {name} | {value['status']} |" for name, value in payload["denominator_readiness"].items()]
     (args.output_dir / "faculty_roster_readiness.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

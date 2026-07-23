@@ -1,0 +1,1110 @@
+{
+  "after_missing_section_count": 0,
+  "automatic_repair_count": 107,
+  "before_missing_section_count": 107,
+  "catalog_course_credit_evidence_available": false,
+  "complete_department_count": 18,
+  "department_count": 18,
+  "deterministic_fingerprint": "f4dd81cacc6b611bdd95bb4dd1e3af67ab6d6cf7ee7a08a5785c99299b5dbb9e",
+  "incomplete_department_count": 0,
+  "incomplete_departments": [],
+  "missing_section_count": 0,
+  "preexisting_deterministic_repair_evidence_count": 107,
+  "reason_breakdown": [],
+  "remaining_missing_section_count": 0,
+  "remaining_unrepaired_normalization_failure_count": 0,
+  "representative_pipeline_traces": [
+    {
+      "course_code": "CPEN 431",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "CPEN",
+            "431"
+          ],
+          "working": [
+            "CPEN",
+            "431"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 4.0,
+          "before": null,
+          "working": 3
+        },
+        "published_credits": {
+          "failing": [
+            "3",
+            "4"
+          ],
+          "working": [
+            "3"
+          ]
+        },
+        "term": {
+          "failing": "2020_fall",
+          "working": "2022_fall"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "",
+            "CRN": "8067",
+            "Capacity": "17",
+            "Course": "CPEN 431",
+            "Days": "MW",
+            "Enrolled": "16",
+            "Hours": "3",
+            "Instructor": "Dali Wang",
+            "Instructor Type": "Full Time",
+            "Location": "Ferguson Center for the Arts 208",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "1",
+            "Section": "1",
+            "Status": "OPEN",
+            "Term": "Fall Semester 2020",
+            "Time": "1000-1115",
+            "Title": "Computer Engineering Design",
+            "Type": "Lec"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "f10a11ead983ef717e692be7853c5c8d3a5b3977fcbf5d97dfa9d14a9b9e3f47",
+            "published_credit_values": [
+              "3",
+              "4"
+            ],
+            "source_rows": [
+              184,
+              7973
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "CPEN",
+            "431"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "CPEN|431|2020_fall|2022_fall",
+            "field": "credits",
+            "later_stable_credit": 3.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "f10a11ead983ef717e692be7853c5c8d3a5b3977fcbf5d97dfa9d14a9b9e3f47",
+            "published_conflicting_values": [
+              3.0,
+              4.0
+            ],
+            "section_key": "2020_fall|8067|CPEN|CPEN 431|1",
+            "supporting_observation_id": "7c3565184d2c799c08c712d9b01a860b8587d35cf5f66c327227f9160069810c",
+            "supporting_term": "2022_fall",
+            "value": 4.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 16,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 64.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "431",
+        "course_title": "Computer Engineering Design",
+        "section": "1",
+        "source_observation_id": "f10a11ead983ef717e692be7853c5c8d3a5b3977fcbf5d97dfa9d14a9b9e3f47",
+        "subject_prefix": "CPEN",
+        "term": "2020_fall"
+      },
+      "working_comparison": {
+        "course_code": "CPEN 431",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 3,
+        "section": "1",
+        "source_observation_id": "7c3565184d2c799c08c712d9b01a860b8587d35cf5f66c327227f9160069810c",
+        "term": "2022_fall"
+      }
+    },
+    {
+      "course_code": "CPEN 498",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "CPEN",
+            "498"
+          ],
+          "working": [
+            "CPEN",
+            "498"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 1.0,
+          "before": null,
+          "working": 2
+        },
+        "published_credits": {
+          "failing": [
+            "2",
+            "1"
+          ],
+          "working": [
+            "2"
+          ]
+        },
+        "term": {
+          "failing": "2020_fall",
+          "working": "2023_spring"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "WI",
+            "CRN": "8068",
+            "Capacity": "19",
+            "Course": "CPEN 498",
+            "Days": "MWF",
+            "Enrolled": "22",
+            "Hours": "2",
+            "Instructor": "Toni Riedl",
+            "Instructor Type": "Full Time",
+            "Location": "Joseph W. Luter III Hall 258",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "-3",
+            "Section": "1",
+            "Status": "CLOSED",
+            "Term": "Fall Semester 2020",
+            "Time": "1300-1350",
+            "Title": "Computer Engineering Capstn 2",
+            "Type": "Ind"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "1ff8bfcf4bf8376ca5ee48f74828dfbccffa4a42e7e9e882c1c891e735ae1936",
+            "published_credit_values": [
+              "2",
+              "1"
+            ],
+            "source_rows": [
+              13728,
+              18907
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "CPEN",
+            "498"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "CPEN|498|2020_fall|2023_spring",
+            "field": "credits",
+            "later_stable_credit": 2.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "1ff8bfcf4bf8376ca5ee48f74828dfbccffa4a42e7e9e882c1c891e735ae1936",
+            "published_conflicting_values": [
+              1.0,
+              2.0
+            ],
+            "section_key": "2020_fall|8068|CPEN|CPEN 498|1",
+            "supporting_observation_id": "e70ae592058f17541e39d91a166c70ef8cefc959463972114700b65cf4491b24",
+            "supporting_term": "2023_spring",
+            "value": 1.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 22,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 22.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "498",
+        "course_title": null,
+        "section": "1",
+        "source_observation_id": "1ff8bfcf4bf8376ca5ee48f74828dfbccffa4a42e7e9e882c1c891e735ae1936",
+        "subject_prefix": "CPEN",
+        "term": "2020_fall"
+      },
+      "working_comparison": {
+        "course_code": "CPEN 498",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 2,
+        "section": "1",
+        "source_observation_id": "e70ae592058f17541e39d91a166c70ef8cefc959463972114700b65cf4491b24",
+        "term": "2023_spring"
+      }
+    },
+    {
+      "course_code": "EENG 498",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "EENG",
+            "498"
+          ],
+          "working": [
+            "EENG",
+            "498"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 1.0,
+          "before": null,
+          "working": 2
+        },
+        "published_credits": {
+          "failing": [
+            "2",
+            "1"
+          ],
+          "working": [
+            "2"
+          ]
+        },
+        "term": {
+          "failing": "2020_fall",
+          "working": "2022_fall"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "WI",
+            "CRN": "8074",
+            "Capacity": "16",
+            "Course": "EENG 498",
+            "Days": "MWF",
+            "Enrolled": "15",
+            "Hours": "2",
+            "Instructor": "Jonathan Backens",
+            "Instructor Type": "Full Time",
+            "Location": "Joseph W. Luter III Hall 322",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "1",
+            "Section": "1",
+            "Status": "OPEN",
+            "Term": "Fall Semester 2020",
+            "Time": "1300-1350",
+            "Title": "Electrical Engineerng Capstn 2",
+            "Type": "Ind"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "3259d3c9046ca7c68ac69cd2f09bed23695fa12d4a2e378aa8a9c0543b2ccd39",
+            "published_credit_values": [
+              "2",
+              "1"
+            ],
+            "source_rows": [
+              7663,
+              18237
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "EENG",
+            "498"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "EENG|498|2020_fall|2022_fall",
+            "field": "credits",
+            "later_stable_credit": 2.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "3259d3c9046ca7c68ac69cd2f09bed23695fa12d4a2e378aa8a9c0543b2ccd39",
+            "published_conflicting_values": [
+              1.0,
+              2.0
+            ],
+            "section_key": "2020_fall|8074|EENG|EENG 498|1",
+            "supporting_observation_id": "238620a169518929b1581424d67cfe0e5fbe9fe2169f67936d029185fef4c2d3",
+            "supporting_term": "2022_fall",
+            "value": 1.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 15,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 15.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "498",
+        "course_title": null,
+        "section": "1",
+        "source_observation_id": "3259d3c9046ca7c68ac69cd2f09bed23695fa12d4a2e378aa8a9c0543b2ccd39",
+        "subject_prefix": "EENG",
+        "term": "2020_fall"
+      },
+      "working_comparison": {
+        "course_code": "EENG 498",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 2,
+        "section": "1",
+        "source_observation_id": "238620a169518929b1581424d67cfe0e5fbe9fe2169f67936d029185fef4c2d3",
+        "term": "2022_fall"
+      }
+    },
+    {
+      "course_code": "ENGL 491",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "ENGL",
+            "491"
+          ],
+          "working": [
+            "ENGL",
+            "491"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 3.0,
+          "before": null,
+          "working": 1
+        },
+        "published_credits": {
+          "failing": [
+            "3",
+            "1"
+          ],
+          "working": [
+            "1"
+          ]
+        },
+        "term": {
+          "failing": "2020_fall",
+          "working": "2022_fall"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "LETR",
+            "CRN": "8752",
+            "Capacity": "0",
+            "Course": "ENGL 491",
+            "Days": "",
+            "Enrolled": "2",
+            "Hours": "3",
+            "Instructor": "Nicole Emmelhainz",
+            "Instructor Type": "Full Time",
+            "Location": "Synchronous Online Course ",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "-2",
+            "Section": "ON1",
+            "Status": "CLOSED",
+            "Term": "Fall Semester 2020",
+            "Time": "-",
+            "Title": "Internship in Writing",
+            "Type": "Int"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "5e0f06684a912568a84fd38c66df02b6be56de45843b56428cdbce7c91b43202",
+            "published_credit_values": [
+              "3",
+              "1"
+            ],
+            "source_rows": [
+              8069,
+              8070
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "ENGL",
+            "491"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "ENGL|491|2020_fall|2022_fall",
+            "field": "credits",
+            "later_stable_credit": 1.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "5e0f06684a912568a84fd38c66df02b6be56de45843b56428cdbce7c91b43202",
+            "published_conflicting_values": [
+              1.0,
+              3.0
+            ],
+            "section_key": "2020_fall|8752|ENGL|ENGL 491|ON1",
+            "supporting_observation_id": "1e3112489ac44d561f187972eba14591a191c69c7c99ba275ad838c437c197ad",
+            "supporting_term": "2022_fall",
+            "value": 3.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 2,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 6.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "491",
+        "course_title": "Internship in Writing",
+        "section": "ON1",
+        "source_observation_id": "5e0f06684a912568a84fd38c66df02b6be56de45843b56428cdbce7c91b43202",
+        "subject_prefix": "ENGL",
+        "term": "2020_fall"
+      },
+      "working_comparison": {
+        "course_code": "ENGL 491",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 1,
+        "section": "1",
+        "source_observation_id": "1e3112489ac44d561f187972eba14591a191c69c7c99ba275ad838c437c197ad",
+        "term": "2022_fall"
+      }
+    },
+    {
+      "course_code": "HIST 295",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "HIST",
+            "295"
+          ],
+          "working": [
+            "HIST",
+            "295"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 3.0,
+          "before": null,
+          "working": 1
+        },
+        "published_credits": {
+          "failing": [
+            "3",
+            "1"
+          ],
+          "working": [
+            "1"
+          ]
+        },
+        "term": {
+          "failing": "2022_fall",
+          "working": "2025_spring"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "",
+            "CRN": "9240",
+            "Capacity": "19",
+            "Course": "HIST 295",
+            "Days": "MW",
+            "Enrolled": "12",
+            "Hours": "3",
+            "Instructor": "James Allegro",
+            "Instructor Type": "Adjunct",
+            "Location": "Lewis McMurran Hall 162",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "7",
+            "Section": "1M",
+            "Status": "OPEN",
+            "Term": "Fall Semester 2022",
+            "Time": "1600-1715",
+            "Title": "Special Topics",
+            "Type": "Lec"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "7f675c1ac9357c6f29ae7071784ea7bf22fc4d0a1eb0b45207ee0656dc35548e",
+            "published_credit_values": [
+              "3",
+              "1"
+            ],
+            "source_rows": [
+              7534,
+              10213
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "HIST",
+            "295"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "HIST|295|2022_fall|2025_spring",
+            "field": "credits",
+            "later_stable_credit": 1.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "7f675c1ac9357c6f29ae7071784ea7bf22fc4d0a1eb0b45207ee0656dc35548e",
+            "published_conflicting_values": [
+              1.0,
+              3.0
+            ],
+            "section_key": "2022_fall|9240|HIST|HIST 295|1M",
+            "supporting_observation_id": "4cd73a65171de6270aa603b6a1c9c728485fabf285031dba88763c7dee6ee7fa",
+            "supporting_term": "2025_spring",
+            "value": 3.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 12,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 36.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "295",
+        "course_title": "Special Topics",
+        "section": "1M",
+        "source_observation_id": "7f675c1ac9357c6f29ae7071784ea7bf22fc4d0a1eb0b45207ee0656dc35548e",
+        "subject_prefix": "HIST",
+        "term": "2022_fall"
+      },
+      "working_comparison": {
+        "course_code": "HIST 295",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 1,
+        "section": "2",
+        "source_observation_id": "4cd73a65171de6270aa603b6a1c9c728485fabf285031dba88763c7dee6ee7fa",
+        "term": "2025_spring"
+      }
+    },
+    {
+      "course_code": "MATH 140",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "MATH",
+            "140"
+          ],
+          "working": [
+            "MATH",
+            "140"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 4.0,
+          "before": null,
+          "working": 3
+        },
+        "published_credits": {
+          "failing": [
+            "3",
+            "4"
+          ],
+          "working": [
+            "3"
+          ]
+        },
+        "term": {
+          "failing": "2020_fall",
+          "working": "2025_fall"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "GE, LLF, LLFM, MATH",
+            "CRN": "8263",
+            "Capacity": "35",
+            "Course": "MATH 140",
+            "Days": "MTWRF",
+            "Enrolled": "32",
+            "Hours": "3",
+            "Instructor": "Ryan Carpenter",
+            "Instructor Type": "Full Time",
+            "Location": "Lewis McMurran Hall 101",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "3",
+            "Section": "1M",
+            "Status": "OPEN",
+            "Term": "Fall Semester 2020",
+            "Time": "0800-0850",
+            "Title": "Calculus and Analytic Geometry",
+            "Type": "Lec"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "6dcb6a1a1da53d56e9173255a81c14df8d608c588f93818fc19b07464bca8d59",
+            "published_credit_values": [
+              "3",
+              "4"
+            ],
+            "source_rows": [
+              3027,
+              8261
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "MATH",
+            "140"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "MATH|140|2020_fall|2025_fall",
+            "field": "credits",
+            "later_stable_credit": 3.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "6dcb6a1a1da53d56e9173255a81c14df8d608c588f93818fc19b07464bca8d59",
+            "published_conflicting_values": [
+              3.0,
+              4.0
+            ],
+            "section_key": "2020_fall|8263|MATH|MATH 140|1M",
+            "supporting_observation_id": "2776944a6b786725582a40f40fa0041d6e7f7afdf3c84cf8abef03d68317f375",
+            "supporting_term": "2025_fall",
+            "value": 4.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 32,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 128.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "140",
+        "course_title": "Calculus and Analytic Geometry",
+        "section": "1M",
+        "source_observation_id": "6dcb6a1a1da53d56e9173255a81c14df8d608c588f93818fc19b07464bca8d59",
+        "subject_prefix": "MATH",
+        "term": "2020_fall"
+      },
+      "working_comparison": {
+        "course_code": "MATH 140",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 3,
+        "section": "1M",
+        "source_observation_id": "2776944a6b786725582a40f40fa0041d6e7f7afdf3c84cf8abef03d68317f375",
+        "term": "2025_fall"
+      }
+    },
+    {
+      "course_code": "MATH 240",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "MATH",
+            "240"
+          ],
+          "working": [
+            "MATH",
+            "240"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 4.0,
+          "before": null,
+          "working": 3
+        },
+        "published_credits": {
+          "failing": [
+            "3",
+            "4"
+          ],
+          "working": [
+            "3"
+          ]
+        },
+        "term": {
+          "failing": "2020_fall",
+          "working": "2026_fall"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "GE, LLF, LLFM, MATH",
+            "CRN": "8272",
+            "Capacity": "30",
+            "Course": "MATH 240",
+            "Days": "MW",
+            "Enrolled": "25",
+            "Hours": "3",
+            "Instructor": "Hongwei Chen",
+            "Instructor Type": "Full Time",
+            "Location": "Joseph W. Luter III Hall 269",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "5",
+            "Section": "2",
+            "Status": "OPEN",
+            "Term": "Fall Semester 2020",
+            "Time": "1000-1115",
+            "Title": "Intermediate Calculus",
+            "Type": "Lec"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "1b3668cba8900c57e234f1c19c11588c33c340c16d0ab37f65c595f959d2640f",
+            "published_credit_values": [
+              "3",
+              "4"
+            ],
+            "source_rows": [
+              7142,
+              7143,
+              9793,
+              17713
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "MATH",
+            "240"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "MATH|240|2020_fall|2026_fall",
+            "field": "credits",
+            "later_stable_credit": 3.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "1b3668cba8900c57e234f1c19c11588c33c340c16d0ab37f65c595f959d2640f",
+            "published_conflicting_values": [
+              3.0,
+              4.0
+            ],
+            "section_key": "2020_fall|8272|MATH|MATH 240|2",
+            "supporting_observation_id": "22fcc26ae56758a6dbae48ed68b4ab51ea3b8f8ab6c408d229a94f9ecb6d922f",
+            "supporting_term": "2026_fall",
+            "value": 4.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 25,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 100.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "240",
+        "course_title": "Intermediate Calculus",
+        "section": "2",
+        "source_observation_id": "1b3668cba8900c57e234f1c19c11588c33c340c16d0ab37f65c595f959d2640f",
+        "subject_prefix": "MATH",
+        "term": "2020_fall"
+      },
+      "working_comparison": {
+        "course_code": "MATH 240",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 3,
+        "section": "3",
+        "source_observation_id": "22fcc26ae56758a6dbae48ed68b4ab51ea3b8f8ab6c408d229a94f9ecb6d922f",
+        "term": "2026_fall"
+      }
+    },
+    {
+      "course_code": "THEA 395",
+      "failure_point": "credit normalization rejected a visible historical revision",
+      "field_comparison": {
+        "course_key": {
+          "failing": [
+            "THEA",
+            "395"
+          ],
+          "working": [
+            "THEA",
+            "395"
+          ]
+        },
+        "credit_resolution_method": {
+          "failing": "unresolved_credit_conflict",
+          "repair": "historical_credit_revision_resolution",
+          "working": "direct_source_assertion"
+        },
+        "normalized_credits": {
+          "after": 3.0,
+          "before": null,
+          "working": 1
+        },
+        "published_credits": {
+          "failing": [
+            "1",
+            "3"
+          ],
+          "working": [
+            "1"
+          ]
+        },
+        "term": {
+          "failing": "2022_extended_summer",
+          "working": "2026_spring"
+        }
+      },
+      "pipeline": [
+        {
+          "evidence": {
+            "Area of LLC": "LETR",
+            "CRN": "4011",
+            "Capacity": "16",
+            "Course": "THEA 395",
+            "Days": "",
+            "Enrolled": "5",
+            "Hours": "1",
+            "Instructor": "Grace Godwin",
+            "Instructor Type": "Full Time",
+            "Location": "To Be Arranged ",
+            "Low Cost Textbook": "",
+            "Seats Still Available": "11",
+            "Section": "S10",
+            "Status": "OPEN",
+            "Term": "Extended Summer 2022",
+            "Time": "-",
+            "Title": "Special Topics",
+            "Type": "Lec"
+          },
+          "result": "found",
+          "stage": "raw_schedule_record"
+        },
+        {
+          "evidence": {
+            "observation_id": "9f866747b79e62fa651b8902347f3ed357f226ba500154662fac6e03a76ec565",
+            "published_credit_values": [
+              "1",
+              "3"
+            ],
+            "source_rows": [
+              116,
+              18463
+            ]
+          },
+          "result": "credit_conflict",
+          "stage": "normalized_schedule"
+        },
+        {
+          "evidence": [
+            "THEA",
+            "395"
+          ],
+          "result": "matched",
+          "stage": "course_lookup"
+        },
+        {
+          "evidence": {
+            "evidence_key": "THEA|395|2022_extended_summer|2026_spring",
+            "field": "credits",
+            "later_stable_credit": 1.0,
+            "method": "historical_credit_revision_resolution",
+            "notes": "Later unambiguous observations unanimously publish one of two values preserved on the earlier repeated snapshots; the other explicit value is retained as the pre-revision credit.",
+            "observation_id": "9f866747b79e62fa651b8902347f3ed357f226ba500154662fac6e03a76ec565",
+            "published_conflicting_values": [
+              1.0,
+              3.0
+            ],
+            "section_key": "2022_extended_summer|4011|THEA|THEA 395|S10",
+            "supporting_observation_id": "e65683ac0ea92e6fc0b14ac15d4cafea02cbb58a53f1a31cefa976b53bf23928",
+            "supporting_term": "2026_spring",
+            "value": 3.0
+          },
+          "result": "resolved_from_explicit_revision_pattern",
+          "stage": "credit_lookup"
+        },
+        {
+          "evidence": 5,
+          "result": "explicit",
+          "stage": "enrollment_lookup"
+        },
+        {
+          "evidence": 15.0,
+          "result": "ready",
+          "stage": "sch_calculation"
+        }
+      ],
+      "reason_code": "normalization_failure",
+      "representative_section": {
+        "course_number": "395",
+        "course_title": "Special Topics",
+        "section": "S10",
+        "source_observation_id": "9f866747b79e62fa651b8902347f3ed357f226ba500154662fac6e03a76ec565",
+        "subject_prefix": "THEA",
+        "term": "2022_extended_summer"
+      },
+      "working_comparison": {
+        "course_code": "THEA 395",
+        "credit_resolution_method": "direct_source_assertion",
+        "credits": 1,
+        "section": "1",
+        "source_observation_id": "e65683ac0ea92e6fc0b14ac15d4cafea02cbb58a53f1a31cefa976b53bf23928",
+        "term": "2026_spring"
+      }
+    }
+  ],
+  "structured_cross_list_evidence_available": false,
+  "systematic_patterns": {
+    "by_course": {},
+    "by_course_category": {},
+    "by_course_number": {},
+    "by_department": {},
+    "by_instructional_method": {},
+    "by_subject_prefix": {},
+    "by_term": {}
+  }
+}

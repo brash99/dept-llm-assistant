@@ -372,6 +372,10 @@ class FacultyIdentityService:
             if not name.is_given_initial_only:
                 groups[(name.given_name, name.family_name, name.suffix)].append(index)
         for indexes in groups.values():
+            governed_roots = {
+                dsu.find(index) for index in indexes
+                if self.alias_registry.for_name(names[index])
+            }
             # Stronger identifier, exact-name, or governed-alias evidence may
             # already have joined every observation in this name group. A
             # lower-priority middle-name rule must not weaken that resolution.
@@ -392,7 +396,10 @@ class FacultyIdentityService:
             conflict = len(full_middle) > 1 or len(initials) > 1
             if conflict:
                 for index in indexes:
-                    if not names[index].middle_names:
+                    if (
+                        not names[index].middle_names
+                        and dsu.find(index) not in governed_roots
+                    ):
                         ambiguous[index] = "multiple_compatible_middle_name_candidates"
                 continue
             for index in indexes[1:]:
@@ -402,12 +409,16 @@ class FacultyIdentityService:
                     methods[index].add("bounded_middle_name_variation")
 
     def _union_unique_initials(self, names, dsu, methods, ambiguous) -> None:
+        governed_roots = {
+            dsu.find(index) for index, name in enumerate(names)
+            if self.alias_registry.for_name(name)
+        }
         for index, name in enumerate(names):
             if not name.is_given_initial_only:
                 continue
             # A reviewed alias has already resolved at the stronger governance
             # stage and must not be weakened by a later initial-only ambiguity.
-            if self.alias_registry.for_name(name):
+            if dsu.find(index) in governed_roots:
                 continue
             candidates = {
                 dsu.find(other)

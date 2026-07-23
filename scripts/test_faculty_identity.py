@@ -129,8 +129,10 @@ def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
         _directory("seung", "Seung-Hye Kim"),
         _directory("cynthia-canonical", "Cynthia Vacca Davis"),
         _schedule("cynthia-schedule", "Cynthia Davis"),
+        _catalog("cynthia-other-middle", "Cynthia Lewis Davis"),
         _directory("ann-canonical", "Ann Mazzocca Bellecci"),
         _schedule("ann-schedule", "Ann Bellecci"),
+        _catalog("ann-other-middle", "Ann Louise Bellecci"),
     )
     result = FacultyIdentityService().audit(values)
     by_id = {item.identity_id: item for item in result.identities}
@@ -184,6 +186,36 @@ def test_reviewed_aliases_resolve_before_initial_and_middle_name_rules():
         for identity in result.identities
     )
     assert result.summary["duplicate_identity_id_count"] == 0
+
+
+def test_ungoverned_middle_name_collision_remains_ambiguous():
+    result = FacultyIdentityService().audit((
+        _catalog("short", "Marla Jones"),
+        _catalog("anne", "Marla Anne Jones"),
+        _catalog("beth", "Marla Beth Jones"),
+    ))
+    short = next(
+        identity for identity in result.identities
+        if identity.observed_names == ("Marla Jones",)
+    )
+    assert short.ambiguous
+    assert short.ambiguity_reason == "multiple_compatible_middle_name_candidates"
+
+
+def test_conflicting_governed_keys_joined_by_identifier_remain_ambiguous():
+    result = FacultyIdentityService().audit((
+        _directory(
+            "cynthia", "Cynthia Vacca Davis", email="shared@example.edu"
+        ),
+        _directory(
+            "ann", "Ann Mazzocca Bellecci", email="shared@example.edu"
+        ),
+    ))
+    assert len(result.identities) == 1
+    identity = result.identities[0]
+    assert identity.ambiguous
+    assert identity.ambiguity_reason == "conflicting_governed_identity_aliases"
+    assert "exact_identifier" in identity.matching_methods
 
 
 def test_alias_registry_rejects_duplicate_aliases(tmp_path):

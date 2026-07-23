@@ -7,14 +7,17 @@ from scripts.a100_testing_scripts.build_analytical_workforce_review_matrix impor
 )
 
 
-def _decision(identity, name, reasons, unit=None, recent=0):
+def _decision(identity, name, workforce, workforce_reasons, department, department_reasons, unit=None, recent=0):
     return {
         "decision_id": f"decision:{identity}",
         "faculty_identity_id": identity,
         "display_name": name,
-        "decision": "review_required",
-        "primary_reason_code": reasons[0],
-        "all_reason_codes": reasons,
+        "workforce_disposition": workforce,
+        "workforce_primary_reason_code": workforce_reasons[0],
+        "workforce_reason_codes": workforce_reasons,
+        "department_assignment_disposition": department,
+        "department_assignment_primary_reason_code": department_reasons[0],
+        "department_assignment_reason_codes": department_reasons,
         "published_academic_units": [],
         "analytical_academic_unit_id": unit,
         "analytical_unit_method": None,
@@ -34,15 +37,17 @@ def test_review_matrix_separates_membership_and_unit_review(tmp_path):
     workforce.mkdir(parents=True)
     population = {
         "deterministic_fingerprint": "fixture-fingerprint",
-        "starting_directory_identity_count": 10,
-        "included_count": 6, "excluded_count": 1,
-        "review_required_count": 3, "maximum_plausible_population": 9,
+        "starting_population_count": 10,
+        "workforce_included_count": 7, "workforce_excluded_count": 1,
+        "workforce_review_required_count": 2,
+        "department_assignment_review_required_count": 2,
+        "maximum_plausible_workforce_population": 9,
     }
     (workforce / "analytical_workforce_population.json").write_text(json.dumps(population))
     decisions = (
-        _decision("faculty:unit", "Unit Review", ["current_directory_instructional_title", "no_safe_analytical_unit"], recent=2),
-        _decision("faculty:dean", "Dean Review", ["senior_administrator_with_faculty_rank"]),
-        _decision("faculty:both", "Both Review", ["current_directory_instructional_title", "senior_administrator_with_faculty_rank", "multiple_current_unit_candidates"]),
+        _decision("faculty:unit", "Unit Review", "include", ["current_directory_instructional_title"], "review_required", ["no_safe_analytical_unit"], recent=2),
+        _decision("faculty:dean", "Dean Review", "review_required", ["senior_administrator_with_faculty_rank"], "resolved", ["current_directory_academic_unit"], unit="academic_unit:example"),
+        _decision("faculty:both", "Both Review", "review_required", ["senior_administrator_with_faculty_rank"], "review_required", ["multiple_current_unit_candidates"]),
     )
     (workforce / "analytical_workforce_decisions.jsonl").write_text(
         "".join(json.dumps(item) + "\n" for item in decisions)
@@ -70,15 +75,15 @@ def test_review_matrix_separates_membership_and_unit_review(tmp_path):
     }
     unit = next(item for item in payload["review_matrix"] if item["display_name"] == "Unit Review")
     assert unit["actual_review_triggers"] == ["no_safe_analytical_unit"]
-    assert payload["diagnosis"]["review_primary_reason_mismatch_count"] == 2
+    assert payload["diagnosis"]["review_primary_reason_mismatch_count"] == 0
     dean = next(item for item in payload["review_matrix"] if item["display_name"] == "Dean Review")
     assert dean["published_positions"] == ["Professor and Dean"]
     assert dean["administrative_positions"] == ["Professor and Dean"]
     assert dean["departments"] == ["Department of Examples"]
     scenarios = {item["name"]: item["population_count"] for item in payload["policy_interpretations"]}
-    assert scenarios["strict_included_only"] == 6
-    assert scenarios["include_department_assignment_only"] == 7
-    assert scenarios["include_all_review_required"] == 9
+    assert scenarios["strict_workforce_included_only"] == 7
+    assert scenarios["include_senior_administrator_reviews"] == 9
+    assert scenarios["include_all_workforce_reviews"] == 9
 
 
 def test_review_reports_are_byte_identical(tmp_path):
@@ -86,12 +91,14 @@ def test_review_reports_are_byte_identical(tmp_path):
     workforce = root / "workforce_1"
     workforce.mkdir(parents=True)
     (workforce / "analytical_workforce_population.json").write_text(json.dumps({
-        "deterministic_fingerprint": "same", "starting_directory_identity_count": 1,
-        "included_count": 0, "excluded_count": 0, "review_required_count": 1,
-        "maximum_plausible_population": 1,
+        "deterministic_fingerprint": "same", "starting_population_count": 1,
+        "workforce_included_count": 0, "workforce_excluded_count": 0,
+        "workforce_review_required_count": 1,
+        "department_assignment_review_required_count": 0,
+        "maximum_plausible_workforce_population": 1,
     }))
     (workforce / "analytical_workforce_decisions.jsonl").write_text(json.dumps(
-        _decision("faculty:one", "One Review", ["visiting_policy_uncertain"])
+        _decision("faculty:one", "One Review", "review_required", ["visiting_policy_uncertain"], "resolved", ["current_directory_academic_unit"], unit="academic_unit:example")
     ) + "\n")
     payload = build_matrix(root)
     first, second = tmp_path / "first", tmp_path / "second"

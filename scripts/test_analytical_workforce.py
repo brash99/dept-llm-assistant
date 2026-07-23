@@ -43,9 +43,9 @@ def test_current_directory_is_population_and_teaching_alone_is_not_membership():
         _directory("old", "Old Directory", date="2025-01-01"),
     )
     decisions, population = AnalyticalWorkforceBuilder(_policy()).build(objects)
-    assert population.starting_directory_identity_count == 1
+    assert population.starting_population_count == 1
     assert [item.display_name for item in decisions] == ["Paula Professor"]
-    assert population.included_count == 1
+    assert population.workforce_included_count == 1
     assert decisions[0].teaching_assignment_summary["recent_assignment_count"] == 1
 
 
@@ -57,8 +57,8 @@ def test_instructional_titles_include_without_requiring_recent_teaching():
         _schedule("old", "Ivan Instructor", "2020_fall"),
     )
     decisions, population = AnalyticalWorkforceBuilder(_policy()).build(objects)
-    assert {item.decision for item in decisions} == {"include"}
-    assert population.included_count == 3
+    assert {item.workforce_disposition for item in decisions} == {"include"}
+    assert population.workforce_included_count == 3
     ivan = _by_name(decisions)["Ivan Instructor"]
     assert "historical_teaching_only" in ivan.evidence_fitness
     assert "no_recent_teaching_observed" in ivan.limitations
@@ -71,8 +71,8 @@ def test_explicit_emeritus_retired_and_adjunct_exclude():
         _directory("adjunct", "Adam Adjunct", "Adjunct Professor"),
     )
     decisions, population = AnalyticalWorkforceBuilder(_policy()).build(objects)
-    assert population.excluded_count == 3
-    reasons = {item.primary_reason_code for item in decisions}
+    assert population.workforce_excluded_count == 3
+    reasons = {item.workforce_primary_reason_code for item in decisions}
     assert {"explicit_emerita", "explicit_retired", "explicit_adjunct_only"} == reasons
 
 
@@ -85,10 +85,11 @@ def test_chairs_and_program_directors_include_but_senior_administrators_review()
     )
     decisions, _ = AnalyticalWorkforceBuilder(_policy()).build(objects)
     values = _by_name(decisions)
-    assert values["Casey Chair"].decision == "include"
-    assert values["Dana Director"].decision == "include"
-    assert values["Drew Dean"].decision == "review_required"
-    assert values["Vera Provost"].decision == "review_required"
+    assert values["Casey Chair"].workforce_disposition == "include"
+    assert values["Dana Director"].workforce_disposition == "include"
+    assert values["Drew Dean"].workforce_disposition == "review_required"
+    assert values["Vera Provost"].workforce_disposition == "review_required"
+    assert values["Drew Dean"].department_assignment_disposition == "resolved"
 
 
 def test_staff_administrative_only_visiting_and_missing_unit_are_conservative():
@@ -100,10 +101,14 @@ def test_staff_administrative_only_visiting_and_missing_unit_are_conservative():
     )
     decisions, _ = AnalyticalWorkforceBuilder(_policy()).build(objects)
     values = _by_name(decisions)
-    assert values["Sally Worker"].decision == "exclude"
-    assert values["Oscar Office"].decision == "exclude"
-    assert values["Vicky Visiting"].decision == "review_required"
-    assert values["Uma Unitless"].decision == "review_required"
+    assert values["Sally Worker"].workforce_disposition == "exclude"
+    assert values["Sally Worker"].department_assignment_disposition == "not_applicable"
+    assert values["Oscar Office"].workforce_disposition == "exclude"
+    assert values["Vicky Visiting"].workforce_disposition == "review_required"
+    assert values["Uma Unitless"].workforce_disposition == "include"
+    assert values["Uma Unitless"].workforce_primary_reason_code == "current_directory_instructional_title"
+    assert values["Uma Unitless"].department_assignment_disposition == "review_required"
+    assert values["Uma Unitless"].department_assignment_primary_reason_code == "no_safe_analytical_unit"
     assert values["Oscar Office"].analytical_academic_unit_id is None
 
 
@@ -120,8 +125,11 @@ def test_current_directory_unit_outranks_historical_and_multiple_current_units_r
     )
     decisions, _ = AnalyticalWorkforceBuilder(_policy()).build(objects)
     assert len(decisions) == 1
-    assert decisions[0].decision == "review_required"
-    assert "multiple_current_unit_candidates" in decisions[0].all_reason_codes
+    assert decisions[0].workforce_disposition == "include"
+    assert decisions[0].department_assignment_disposition == "review_required"
+    assert decisions[0].department_assignment_primary_reason_code == "multiple_current_unit_candidates"
+    assert set(decisions[0].analytical_academic_unit_candidates) == {
+        "academic_unit:department_english", "academic_unit:department_history"}
     assert decisions[0].analytical_academic_unit_id is None
 
 
@@ -138,7 +146,8 @@ def test_governed_override_is_visible_and_deterministic():
     first = AnalyticalWorkforceBuilder(_policy(), (override,)).build(objects)
     second = AnalyticalWorkforceBuilder(_policy(), (override,)).build(reversed(objects))
     decision = first[0][0]
-    assert decision.decision == "include"
+    assert decision.workforce_disposition == "include"
+    assert decision.department_assignment_disposition == "resolved"
     assert decision.analytical_unit_method == "governed_override"
     assert "governed_override_applied" in decision.evidence_fitness
     assert first[1].deterministic_fingerprint == second[1].deterministic_fingerprint
@@ -158,9 +167,10 @@ def test_population_reconciles_and_source_objects_are_not_mutated():
     before = copy.deepcopy(objects)
     decisions, population = AnalyticalWorkforceBuilder(_policy()).build(objects)
     assert len(decisions) == 3
-    assert population.included_count + population.excluded_count + population.review_required_count == 3
-    assert population.minimum_plausible_population == population.included_count
-    assert population.maximum_plausible_population == population.included_count + population.review_required_count
+    assert population.workforce_included_count + population.workforce_excluded_count + population.workforce_review_required_count == 3
+    assert population.department_assignment_resolved_count + population.department_assignment_review_required_count + population.department_assignment_not_applicable_count == 3
+    assert population.minimum_plausible_workforce_population == population.workforce_included_count
+    assert population.maximum_plausible_workforce_population == population.workforce_included_count + population.workforce_review_required_count
     assert population.central_working_population is None
     assert objects == before
     assert len({item.decision_id for item in decisions}) == len(decisions)
@@ -179,3 +189,5 @@ def test_cli_outputs_are_byte_identical(tmp_path):
     assert {path.name for path in outputs[0].iterdir()} == {path.name for path in outputs[1].iterdir()}
     for path in outputs[0].iterdir():
         assert path.read_bytes() == (outputs[1] / path.name).read_bytes()
+    assert (outputs[0] / "analytical_workforce_membership_review_queue.jsonl").is_file()
+    assert (outputs[0] / "analytical_workforce_department_review_queue.jsonl").is_file()

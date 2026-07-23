@@ -200,6 +200,12 @@ The long-term objective is a temporal, evidence-backed representation of institu
 
 ## Academic Workforce Planning limitations
 
+The Analytical Workforce Builder now treats workforce membership and department
+assignment as orthogonal reasoning results. Instructional identities whose only
+issue is an unresolved receiving unit remain in the workforce population and
+appear in a separate department-assignment review queue. Workforce minimum and
+maximum bounds therefore reflect membership uncertainty only.
+
 The canonical benchmark cannot be answered responsibly without institution-wide, unit-level evidence such as:
 
 - faculty headcount/FTE, qualifications, loads, vacancies, retirements, adjuncts, and overloads;

@@ -36,8 +36,8 @@ def main(argv=None):
     payload = population.to_dict()
     payload["target_reference_population"] = policy.target_reference_population
     payload["distance_from_275"] = {
-        "minimum": population.minimum_plausible_population - policy.target_reference_population,
-        "maximum": population.maximum_plausible_population - policy.target_reference_population,
+        "minimum": population.minimum_plausible_workforce_population - policy.target_reference_population,
+        "maximum": population.maximum_plausible_workforce_population - policy.target_reference_population,
     }
     _write_json(args.output_dir / "analytical_workforce_population.json", payload)
     _write_json(args.output_dir / "analytical_workforce_unit_summary.json", population.counts_by_academic_unit)
@@ -77,20 +77,23 @@ def main(argv=None):
     }
     _write_json(args.output_dir / "analytical_workforce_evidence_audit.json", evidence)
     _write_jsonl(args.output_dir / "analytical_workforce_decisions.jsonl", decisions)
-    _write_jsonl(args.output_dir / "analytical_workforce_included.jsonl", [item for item in decisions if item.decision == "include"])
-    _write_jsonl(args.output_dir / "analytical_workforce_excluded.jsonl", [item for item in decisions if item.decision == "exclude"])
-    _write_jsonl(args.output_dir / "analytical_workforce_review_queue.jsonl", [item for item in decisions if item.decision == "review_required"])
+    _write_jsonl(args.output_dir / "analytical_workforce_included.jsonl", [item for item in decisions if item.workforce_disposition == "include"])
+    _write_jsonl(args.output_dir / "analytical_workforce_excluded.jsonl", [item for item in decisions if item.workforce_disposition == "exclude"])
+    _write_jsonl(args.output_dir / "analytical_workforce_membership_review_queue.jsonl", [item for item in decisions if item.workforce_disposition == "review_required"])
+    _write_jsonl(args.output_dir / "analytical_workforce_department_review_queue.jsonl", [item for item in decisions if item.department_assignment_disposition == "review_required"])
     (args.output_dir / "analytical_workforce_population.md").write_text(
         _markdown(payload), encoding="utf-8"
     )
     print(json.dumps({
         "fingerprint": population.deterministic_fingerprint,
-        "starting_population": population.starting_directory_identity_count,
-        "included": population.included_count,
-        "excluded": population.excluded_count,
-        "review_required": population.review_required_count,
-        "minimum_plausible_population": population.minimum_plausible_population,
-        "maximum_plausible_population": population.maximum_plausible_population,
+        "starting_population": population.starting_population_count,
+        "workforce_included": population.workforce_included_count,
+        "workforce_excluded": population.workforce_excluded_count,
+        "workforce_review_required": population.workforce_review_required_count,
+        "department_assignment_resolved": population.department_assignment_resolved_count,
+        "department_assignment_review_required": population.department_assignment_review_required_count,
+        "minimum_plausible_workforce_population": population.minimum_plausible_workforce_population,
+        "maximum_plausible_workforce_population": population.maximum_plausible_workforce_population,
         "distance_from_275": payload["distance_from_275"],
         "unit_resolution_percent": population.evidence_coverage["analytical_unit_resolution_percent"],
         "output_dir": str(args.output_dir),
@@ -113,17 +116,24 @@ def _markdown(value):
         "# Analytical Workforce Population", "",
         "> Governed analytical proxy; not an authoritative HR roster.", "",
         f"- As of directory snapshot: {value['as_of_date']}",
-        f"- Starting directory identities: {value['starting_directory_identity_count']}",
-        f"- Included: {value['included_count']}",
-        f"- Excluded: {value['excluded_count']}",
-        f"- Review required: {value['review_required_count']}",
-        f"- Minimum plausible population: {value['minimum_plausible_population']}",
-        f"- Maximum plausible population: {value['maximum_plausible_population']}",
+        "## Workforce membership", "",
+        f"- Starting directory identities: {value['starting_population_count']}",
+        f"- Included: {value['workforce_included_count']}",
+        f"- Excluded: {value['workforce_excluded_count']}",
+        f"- Review required: {value['workforce_review_required_count']}",
+        f"- Minimum plausible population: {value['minimum_plausible_workforce_population']}",
+        f"- Maximum plausible population: {value['maximum_plausible_workforce_population']}",
         f"- Distance from 275: {value['distance_from_275']}",
-        f"- Unit resolution: {value['evidence_coverage']['analytical_unit_resolution_percent']}%", "",
-        "## Primary reasons", "", "| Reason | Count |", "|---|---:|",
+        "", "## Department assignment", "",
+        f"- Resolved: {value['department_assignment_resolved_count']}",
+        f"- Review required: {value['department_assignment_review_required_count']}",
+        f"- Not applicable: {value['department_assignment_not_applicable_count']}",
+        f"- Unit resolution among workforce-included identities: {value['evidence_coverage']['unit_resolution_percent_among_workforce_included']}%", "",
+        "## Workforce primary reasons", "", "| Reason | Count |", "|---|---:|",
     ]
-    lines.extend(f"| {reason} | {count} |" for reason, count in value["counts_by_reason"].items())
+    lines.extend(f"| {reason} | {count} |" for reason, count in value["counts_by_workforce_reason"].items())
+    lines += ["", "## Department-assignment primary reasons", "", "| Reason | Count |", "|---|---:|"]
+    lines.extend(f"| {reason} | {count} |" for reason, count in value["counts_by_department_assignment_reason"].items())
     lines += ["", "## Policy sensitivity", "", "| Choice | Affected identities |", "|---|---:|"]
     lines.extend(f"| {name} | {count} |" for name, count in value["policy_sensitivity"].items())
     return "\n".join(lines) + "\n"

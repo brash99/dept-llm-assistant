@@ -37,6 +37,17 @@ def _jsonl(path: Path):
     )
 
 
+def _partition_unit_labels(values):
+    """Keep explicit ambiguity visible without treating it as ontology failure."""
+    ambiguous = tuple(
+        value for value in values if value.get("classification") == "ambiguous"
+    )
+    blocking = tuple(
+        value for value in values if value.get("classification") != "ambiguous"
+    )
+    return ambiguous, blocking
+
+
 def validate(root: Path) -> dict:
     identity_one = _load(root / "identity_1/faculty_identity_audit.json")
     identity_two = _load(root / "identity_2/faculty_identity_audit.json")
@@ -116,8 +127,10 @@ def validate(root: Path) -> dict:
         }
 
     unresolved = metric["audit"]["institutional_units"]["unresolved_published_unit_labels"]
-    if unresolved:
-        raise ValueError("institutional unresolved labels remain")
+    ambiguous_unit_labels, blocking_unit_labels = _partition_unit_labels(unresolved)
+    if blocking_unit_labels:
+        labels = [value.get("published_label") for value in blocking_unit_labels]
+        raise ValueError(f"genuinely unresolved institutional labels remain: {labels}")
     if roster["authoritative_roster_present"] is not False:
         raise ValueError("authoritative_roster_present must remain false")
     if roster["production_denominator_ready"] is not False:
@@ -132,7 +145,11 @@ def validate(root: Path) -> dict:
         "appointment_identity_link_coverage_percent": appointment_summary["identity_link_coverage_percent"],
         "appointment_identity_unlinked_observation_count": appointment_summary["identity_unlinked_observation_count"],
         "appointment_ambiguous_or_unlinked_record_count": appointment_summary["ambiguous_or_unlinked_record_count"],
-        "institutional_unresolved_label_count": len(unresolved),
+        "institutional_unresolved_label_count": len(blocking_unit_labels),
+        "institutional_ambiguous_label_count": len(ambiguous_unit_labels),
+        "institutional_ambiguous_labels": [
+            value.get("published_label") for value in ambiguous_unit_labels
+        ],
         "authoritative_roster_present": roster["authoritative_roster_present"],
         "production_denominator_ready": roster["production_denominator_ready"],
         "governed_identity_observation_counts": governed,

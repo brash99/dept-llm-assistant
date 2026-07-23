@@ -10,6 +10,9 @@ from app.faculty_identity import (
     normalize_person_name,
 )
 from scripts.audit_faculty_identity import main
+from scripts.a100_testing_scripts.validate_faculty_identity_governance_precedence import (
+    _partition_unit_labels,
+)
 
 
 def _directory(identifier, name, **extra):
@@ -246,6 +249,15 @@ def test_no_fuzzy_name_matching_is_introduced():
         _catalog("similar", "Shinhee Kim"),
     ))
     assert len(result.identities) == 4
+
+
+def test_identity_validator_reports_unit_ambiguity_without_hiding_real_gaps():
+    ambiguous, blocking = _partition_unit_labels((
+        {"classification": "ambiguous", "published_label": "Multiple roles"},
+        {"classification": "genuinely_unresolved", "published_label": "Unknown unit"},
+    ))
+    assert [item["published_label"] for item in ambiguous] == ["Multiple roles"]
+    assert [item["published_label"] for item in blocking] == ["Unknown unit"]
 
 
 def test_bounded_middle_matching_and_ambiguous_initials_do_not_guess():

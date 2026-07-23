@@ -207,6 +207,12 @@ The analytical workforce denominator is ready for the August analysis;
 authoritative HR denominator confirmation remains unavailable and is reported as
 an Evidence Fitness limitation.
 
+Department instructional coverage now distinguishes home-faculty activity from
+governed subject-owned activity. The 36 currently governed schedule prefixes do
+not cover the complete production subject inventory; unmapped ownership remains
+visible without suppressing linked home-faculty teaching history. Partial known
+enrollment and SCH are reported with strict completeness flags.
+
 The Analytical Workforce Builder now treats workforce membership and department
 assignment as orthogonal reasoning results. Instructional identities whose only
 issue is an unresolved receiving unit remain in the workforce population and

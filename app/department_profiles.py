@@ -51,8 +51,14 @@ class DepartmentProfile:
     governed_subject_prefixes: tuple[str, ...]
     courses_taught: tuple[str, ...]
     section_count: int
+    sections_with_enrollment: int
+    sections_with_explicit_credits: int
+    sch_ready_section_count: int
+    sch_ready_section_percent: float
     enrollment_total: int | None
     student_credit_hours: float | None
+    enrollment_complete: bool
+    sch_complete: bool
     home_faculty_instruction: Mapping[str, Any]
     department_owned_instruction: Mapping[str, Any]
     cross_unit_instruction: Mapping[str, Any]
@@ -137,9 +143,17 @@ class DepartmentProfileBuilder:
             "workforce_reconciled": True,
             "analytical_workforce_denominator_ready": True,
             "authoritative_hr_denominator_ready": False,
-            "teaching_assignment_count": sum(item.teaching_assignment_count for item in profiles),
-            "departments_with_enrollment": sum(item.enrollment_total is not None for item in profiles),
-            "departments_with_sch": sum(item.student_credit_hours is not None for item in profiles),
+            "total_discovered_teaching_assignments": len(schedule_rows),
+            "teaching_assignments_mapped_through_subject_ownership": sum(bool(row["owned_unit_id"]) for row in schedule_rows),
+            "teaching_assignments_linked_through_home_faculty": sum(bool(row["home_unit_id"]) for row in schedule_rows),
+            "unmapped_teaching_assignments": sum(not row["owned_unit_id"] for row in schedule_rows),
+            "subject_prefix_count": len({row["subject"] for row in schedule_rows if row["subject"]}),
+            "governed_subject_prefix_count": len({row["subject"] for row in schedule_rows if row["owned_unit_id"]}),
+            "departments_with_teaching_history": sum(bool(item.teaching_assignment_count) for item in profiles),
+            "departments_with_enrollment": sum(item.sections_with_enrollment > 0 for item in profiles),
+            "departments_with_complete_enrollment": sum(item.enrollment_complete for item in profiles),
+            "departments_with_sch": sum(item.sch_ready_section_count > 0 for item in profiles),
+            "departments_with_complete_sch": sum(item.sch_complete for item in profiles),
             "most_recent_complete_academic_year": complete_year,
             "most_recent_observed_term": _latest_term(schedule_rows),
         }
@@ -153,6 +167,7 @@ class DepartmentProfileBuilder:
         owned_rows = tuple(row for row in rows if row["owned_unit_id"] == unit.unit_id)
         home_outside = tuple(row for row in home_rows if row["owned_unit_id"] != unit.unit_id)
         outside_owned = tuple(row for row in owned_rows if row["instructor_identity_id"] not in member_ids)
+        activity_rows = _union_rows(home_rows, owned_rows)
         parent = self.units.parent_of(unit)
         faculty_members, rank_counts, admin_count, recent_count = [], Counter(), 0, 0
         for item in members:
@@ -173,18 +188,17 @@ class DepartmentProfileBuilder:
                 "administrative_roles": roles, "recent_teaching_observed": recent,
             })
         subjects = tuple(sorted({record.subject_code for record in self.subjects.records if record.analytical_academic_unit_id == unit.unit_id and record.review_status == "governed"}))
-        owned_sections = _unique_sections(owned_rows)
-        term_summaries = tuple(_summarize_rows(term, tuple(row for row in owned_sections if row["term"] == term)) for term in sorted({row["term"] for row in owned_sections}, key=academic_term_sort_key))
-        recent_summary = _summarize_rows(complete_year, tuple(row for row in owned_sections if _academic_year(row["term"]) == complete_year)) if complete_year else None
-        enrollment = _explicit_total(owned_sections, "enrollment")
-        sch = _sch_total(owned_sections)
+        activity_sections = _unique_sections(activity_rows)
+        coverage = _section_coverage(activity_sections)
+        term_summaries = tuple(_summarize_rows(term, tuple(row for row in activity_sections if row["term"] == term)) for term in sorted({row["term"] for row in activity_sections}, key=academic_term_sort_key))
+        recent_summary = _summarize_rows(complete_year, tuple(row for row in activity_sections if _academic_year(row["term"]) == complete_year)) if complete_year else None
         fitness = {
             "governed_workforce_membership_complete", "governed_department_assignment_complete",
             "current_directory_supported", "public_evidence_analytical_baseline",
             "not_authoritative_hr_roster", "subject_ownership_governed",
         }
         limitations = {"analytical baseline is not an authoritative HR roster", "teaching assignments do not represent faculty effort or workload"}
-        if owned_rows:
+        if activity_rows:
             fitness.add("teaching_history_available")
         if recent_count:
             fitness.add("recent_teaching_observed")
@@ -192,15 +206,15 @@ class DepartmentProfileBuilder:
             fitness.add("no_recent_teaching_observed")
         if admin_count:
             fitness.add("administrative_role_observed")
-        if enrollment is None:
+        if not coverage["enrollment_complete"]:
             fitness.add("enrollment_incomplete")
-            limitations.add("some or all department-owned sections lack explicit enrollment")
+            limitations.add("some department activity sections lack explicit enrollment")
         else:
             fitness.add("enrollment_available")
-        if sch is not None:
+        if coverage["sch_ready_section_count"]:
             fitness.add("sch_derived_from_explicit_credits_and_enrollment")
-        else:
-            limitations.add("SCH is unavailable where credits or enrollment are missing")
+        if not coverage["sch_complete"]:
+            limitations.add("known SCH is partial where credits or enrollment are missing")
         semantic = {
             "academic_unit_id": unit.unit_id, "department_name": unit.published_name,
             "parent_academic_unit_id": parent.unit_id if parent else None,
@@ -213,14 +227,21 @@ class DepartmentProfileBuilder:
             "faculty_with_administrative_roles_count": admin_count,
             "faculty_with_recent_teaching_count": recent_count,
             "faculty_without_recent_teaching_count": len(members) - recent_count,
-            "teaching_assignment_count": len(owned_rows),
-            "distinct_instructors_observed": len({row["instructor_identity_id"] or row["instructor_raw"] for row in owned_rows if row["instructor_identity_id"] or row["instructor_raw"]}),
-            "distinct_terms": tuple(sorted({row["term"] for row in owned_rows}, key=academic_term_sort_key)),
-            "earliest_observed_term": _earliest_term(owned_rows), "latest_observed_term": _latest_term(owned_rows),
+            "teaching_assignment_count": len(activity_rows),
+            "distinct_instructors_observed": len({row["instructor_identity_id"] or row["instructor_raw"] for row in activity_rows if row["instructor_identity_id"] or row["instructor_raw"]}),
+            "distinct_terms": tuple(sorted({row["term"] for row in activity_rows}, key=academic_term_sort_key)),
+            "earliest_observed_term": _earliest_term(activity_rows), "latest_observed_term": _latest_term(activity_rows),
             "governed_subject_prefixes": subjects,
-            "courses_taught": tuple(sorted({row["course_code"] for row in owned_rows if row["course_code"]})),
-            "section_count": len(owned_sections), "enrollment_total": enrollment,
-            "student_credit_hours": sch,
+            "courses_taught": tuple(sorted({row["course_code"] for row in activity_rows if row["course_code"]})),
+            "section_count": coverage["section_count"],
+            "sections_with_enrollment": coverage["sections_with_enrollment"],
+            "sections_with_explicit_credits": coverage["sections_with_explicit_credits"],
+            "sch_ready_section_count": coverage["sch_ready_section_count"],
+            "sch_ready_section_percent": coverage["sch_ready_section_percent"],
+            "enrollment_total": coverage["known_enrollment"],
+            "student_credit_hours": coverage["known_sch"],
+            "enrollment_complete": coverage["enrollment_complete"],
+            "sch_complete": coverage["sch_complete"],
             "home_faculty_instruction": _activity_summary(home_rows),
             "department_owned_instruction": _activity_summary(owned_rows),
             "cross_unit_instruction": {
@@ -252,7 +273,7 @@ def _group(values):
 
 
 def _schedule_row(item, schedule_identity, home, mapper):
-    subject = str(item.get("subject") or str(item.get("course_code") or "").split()[0]).upper()
+    subject = str(item.get("subject") or str(item.get("course_code") or "").split()[0]).strip().upper()
     term = str(item.get("academic_term") or "")
     identity_id = schedule_identity.get(str(item.get("id") or ""))
     mapping = mapper.map_subject(subject, term)
@@ -263,6 +284,10 @@ def _schedule_row(item, schedule_identity, home, mapper):
         "course_code": str(item.get("course_code") or ""),
         "instructor_identity_id": identity_id, "instructor_raw": item.get("instructor_raw") or item.get("instructor_name"),
         "home_unit_id": home.get(identity_id), "owned_unit_id": owned,
+        "original_owner_unit_id": mapping.owning_academic_unit_id,
+        "original_owner_name": mapping.owning_academic_unit_name,
+        "subject_mapping_status": mapping.status,
+        "subject_mapping_review_status": mapping.review_status,
         "credits": item.get("credits"), "enrollment": item.get("enrollment"),
     }
 
@@ -278,36 +303,54 @@ def _unique_sections(rows):
     return tuple(values.values())
 
 
+def _union_rows(*groups):
+    values = {}
+    for row in (*groups,):
+        for item in row:
+            key = item["observation_id"] or "|".join((item["section_key"], str(item["instructor_identity_id"] or item["instructor_raw"] or "")))
+            values.setdefault(key, item)
+    return tuple(values[key] for key in sorted(values))
+
+
 def _activity_summary(rows):
     sections = _unique_sections(rows)
+    coverage = _section_coverage(sections)
     return {
         "teaching_assignment_count": len(rows), "section_count": len(sections),
         "distinct_instructor_count": len({row["instructor_identity_id"] or row["instructor_raw"] for row in rows if row["instructor_identity_id"] or row["instructor_raw"]}),
         "subject_prefixes": sorted({row["subject"] for row in rows if row["subject"]}),
-        "enrollment_total": _explicit_total(sections, "enrollment"),
-        "student_credit_hours": _sch_total(sections),
+        "sections_with_enrollment": coverage["sections_with_enrollment"],
+        "sections_with_explicit_credits": coverage["sections_with_explicit_credits"],
+        "sch_ready_section_count": coverage["sch_ready_section_count"],
+        "sch_ready_section_percent": coverage["sch_ready_section_percent"],
+        "enrollment_total": coverage["known_enrollment"],
+        "student_credit_hours": coverage["known_sch"],
+        "enrollment_complete": coverage["enrollment_complete"],
+        "sch_complete": coverage["sch_complete"],
     }
 
 
-def _explicit_total(rows, field):
-    if not rows or any(
-        not isinstance(row[field], (int, float)) or isinstance(row[field], bool)
-        or row[field] < 0 for row in rows
-    ):
-        return None
-    return sum(row[field] for row in rows)
+def _section_coverage(rows):
+    enrollment_rows = tuple(row for row in rows if _valid_number(row["enrollment"], integer=True))
+    credit_rows = tuple(row for row in rows if _valid_number(row["credits"]))
+    ready = tuple(row for row in rows if _valid_number(row["enrollment"], integer=True) and _valid_number(row["credits"]))
+    count = len(rows)
+    return {
+        "section_count": count,
+        "sections_with_enrollment": len(enrollment_rows),
+        "sections_with_explicit_credits": len(credit_rows),
+        "sch_ready_section_count": len(ready),
+        "sch_ready_section_percent": round(100 * len(ready) / count, 6) if count else 0.0,
+        "known_enrollment": sum(row["enrollment"] for row in enrollment_rows) if enrollment_rows else None,
+        "known_sch": sum(float(row["credits"]) * int(row["enrollment"]) for row in ready) if ready else None,
+        "enrollment_complete": bool(rows) and len(enrollment_rows) == count,
+        "sch_complete": bool(rows) and len(ready) == count,
+    }
 
 
-def _sch_total(rows):
-    if not rows or any(
-        not isinstance(row["credits"], (int, float))
-        or isinstance(row["credits"], bool) or row["credits"] < 0
-        or not isinstance(row["enrollment"], int)
-        or isinstance(row["enrollment"], bool) or row["enrollment"] < 0
-        for row in rows
-    ):
-        return None
-    return sum(float(row["credits"]) * int(row["enrollment"]) for row in rows)
+def _valid_number(value, integer=False):
+    expected = int if integer else (int, float)
+    return isinstance(value, expected) and not isinstance(value, bool) and value >= 0
 
 
 def _summarize_rows(label, rows):

@@ -48,6 +48,13 @@ def validate(root, expected_workforce_count=282):
         raise ValueError("analytical workforce denominator is not ready")
     if first["authoritative_hr_denominator_ready"] is not False:
         raise ValueError("authoritative HR readiness was overstated")
+    coverage = _json(root / "coverage/department_instructional_coverage.json")
+    department_coverage = coverage["department_instructional_coverage"]
+    for item in department_coverage:
+        if item["owned_subject_teaching_assignment_count"] and not item["profile_teaching_assignment_count"]:
+            raise ValueError(f"lost governed owned-subject activity: {item['academic_unit_id']}")
+        if item["home_faculty_teaching_assignment_count"] and not item["profile_teaching_assignment_count"]:
+            raise ValueError(f"lost linked home-faculty activity: {item['academic_unit_id']}")
     counts = sorted(
         ((item["department_name"], item["analytical_workforce_count"], item["section_count"]) for item in profiles),
         key=lambda item: item[0].casefold(),
@@ -59,9 +66,17 @@ def validate(root, expected_workforce_count=282):
         "workforce_review_remaining": 0, "department_assignment_review_remaining": 0,
         "analytical_workforce_denominator_ready": True,
         "authoritative_hr_denominator_ready": False,
-        "departments_with_teaching_history": sum(bool(item["teaching_assignment_count"]) for item in profiles),
-        "departments_with_complete_enrollment": first["departments_with_enrollment"],
-        "departments_with_complete_sch": first["departments_with_sch"],
+        "total_discovered_teaching_assignments": coverage["total_discovered_teaching_assignments"],
+        "teaching_assignments_mapped_through_subject_ownership": coverage["teaching_assignments_mapped_through_subject_ownership"],
+        "teaching_assignments_linked_through_home_faculty": coverage["teaching_assignments_linked_through_home_faculty"],
+        "unmapped_teaching_assignments": coverage["unmapped_teaching_assignments"],
+        "subject_prefixes_with_governed_owners": coverage["subject_prefixes_with_governed_owners"],
+        "subject_prefixes_without_governed_owners": coverage["subject_prefixes_without_governed_owners"],
+        "departments_with_teaching_history": first["departments_with_teaching_history"],
+        "departments_with_enrollment_evidence": first["departments_with_enrollment"],
+        "departments_with_complete_enrollment": first["departments_with_complete_enrollment"],
+        "departments_with_any_known_sch": first["departments_with_sch"],
+        "departments_with_complete_sch": first["departments_with_complete_sch"],
         "department_counts": counts,
     }
 

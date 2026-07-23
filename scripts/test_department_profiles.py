@@ -88,6 +88,54 @@ def test_missing_enrollment_is_marked_not_inferred():
     assert "enrollment_incomplete" in profile.evidence_fitness
 
 
+def test_partial_sch_and_unlinked_instructor_preserve_owned_teaching():
+    objects = (
+        _directory("one", "One Professor", unit="School of Engineering and Computing"),
+        _schedule("ready", "Unlinked Instructor", enrollment=10, credits=3.0),
+        _schedule("missing", "Another Unlinked", term="2026_spring", enrollment=5, credits=None),
+    )
+    from app.faculty_identity import FacultyIdentityService
+    identity = next(item for item in FacultyIdentityService().audit(objects).identities if item.display_name == "One Professor")
+    decisions = (_decision(identity.identity_id, "academic_unit:sec", identity.display_name),)
+    profile = DepartmentProfileBuilder().build(objects, decisions, _population(1)).profiles[0]
+    assert profile.teaching_assignment_count == 2
+    assert profile.section_count == 2
+    assert profile.sections_with_enrollment == 2
+    assert profile.sections_with_explicit_credits == 1
+    assert profile.sch_ready_section_count == 1
+    assert profile.student_credit_hours == 30.0
+    assert profile.sch_complete is False
+    assert profile.cross_unit_instruction["department_subjects_taught_by_outside_faculty"]["teaching_assignment_count"] == 2
+
+
+def test_duplicate_schedule_rows_do_not_double_count_sections():
+    objects = (
+        _directory("one", "One Professor", unit="School of Engineering and Computing"),
+        _schedule("row-one", "One Professor"),
+        {**_schedule("row-two", "One Professor"), "crn": "row-one"},
+    )
+    from app.faculty_identity import FacultyIdentityService
+    identity = next(item for item in FacultyIdentityService().audit(objects).identities if item.display_name == "One Professor")
+    profile = DepartmentProfileBuilder().build(
+        objects, (_decision(identity.identity_id, "academic_unit:sec", identity.display_name, 1),), _population(1)
+    ).profiles[0]
+    assert profile.teaching_assignment_count == 2
+    assert profile.section_count == 1
+
+
+def test_subject_prefix_normalization_is_deterministic():
+    objects = (
+        _directory("one", "One Professor", unit="School of Engineering and Computing"),
+        {**_schedule("section", "One Professor"), "subject": " phys "},
+    )
+    from app.faculty_identity import FacultyIdentityService
+    identity = next(item for item in FacultyIdentityService().audit(objects).identities if item.display_name == "One Professor")
+    profile = DepartmentProfileBuilder().build(
+        objects, (_decision(identity.identity_id, "academic_unit:sec", identity.display_name, 1),), _population(1)
+    ).profiles[0]
+    assert profile.department_owned_instruction["subject_prefixes"] == ["PHYS"]
+
+
 def test_profiles_require_completed_review_and_governed_department():
     objects = (_directory("one", "One Professor"),)
     from app.faculty_identity import FacultyIdentityService

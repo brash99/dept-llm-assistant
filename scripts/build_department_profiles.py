@@ -92,12 +92,12 @@ def _write_workforce_csv(path, profiles):
 
 
 def _write_activity_csv(path, profiles):
-    columns = ("academic_unit_id", "department_name", "analytical_workforce_count", "teaching_assignment_count", "section_count", "distinct_instructors_observed", "enrollment_total", "student_credit_hours", "earliest_observed_term", "latest_observed_term")
+    columns = ("academic_unit_id", "department_name", "analytical_workforce_count", "teaching_assignment_count", "section_count", "distinct_instructors_observed", "sections_with_enrollment", "sections_with_explicit_credits", "sch_ready_section_count", "sch_ready_section_percent", "enrollment_total", "student_credit_hours", "enrollment_complete", "sch_complete", "earliest_observed_term", "latest_observed_term")
     _csv(path, columns, ({key: getattr(profile, key) for key in columns} for profile in profiles))
 
 
 def _write_cross_csv(path, profiles):
-    columns = ("academic_unit_id", "department_name", "direction", "teaching_assignment_count", "section_count", "distinct_instructor_count", "subject_prefixes", "enrollment_total", "student_credit_hours")
+    columns = ("academic_unit_id", "department_name", "direction", "teaching_assignment_count", "section_count", "distinct_instructor_count", "subject_prefixes", "sections_with_enrollment", "sections_with_explicit_credits", "sch_ready_section_count", "sch_ready_section_percent", "enrollment_total", "student_credit_hours", "enrollment_complete", "sch_complete")
     rows = []
     for profile in profiles:
         for direction, values in profile.cross_unit_instruction.items():
@@ -123,7 +123,9 @@ def _markdown(result):
             f"- Department-owned sections: {profile.section_count}",
             f"- Teaching assignments: {profile.teaching_assignment_count}",
             f"- Enrollment: {profile.enrollment_total if profile.enrollment_total is not None else 'incomplete'}",
-            f"- SCH: {profile.student_credit_hours if profile.student_credit_hours is not None else 'incomplete'}",
+            f"- Known SCH: {profile.student_credit_hours if profile.student_credit_hours is not None else 'unavailable'}",
+            f"- SCH-ready sections: {profile.sch_ready_section_count}/{profile.section_count} ({profile.sch_ready_section_percent}%)",
+            f"- SCH complete: {str(profile.sch_complete).lower()}",
             f"- Home-faculty outside assignments: {profile.cross_unit_instruction['home_faculty_outside_department']['teaching_assignment_count']}",
             f"- Outside-faculty assignments in owned subjects: {profile.cross_unit_instruction['department_subjects_taught_by_outside_faculty']['teaching_assignment_count']}", "",
         ]

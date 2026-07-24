@@ -20,6 +20,10 @@ from app.faculty_delivered_sch import (  # noqa: E402
     compare_with_quentin,
 )
 from app.faculty_identity import FacultyIdentityService  # noqa: E402
+from app.llc_designations import (  # noqa: E402
+    DEFAULT_LLC_DESIGNATION_REGISTRY,
+    LLCDesignationRegistry,
+)
 from app.metric_readiness_audit import load_normalized_objects  # noqa: E402
 from app.reasoning.academic_unit_mapping import AcademicUnitMappingService  # noqa: E402
 
@@ -33,9 +37,12 @@ def main(argv=None):
     parser.add_argument("--academic-year", action="append", dest="academic_years")
     parser.add_argument("--fall-only", action="store_true")
     parser.add_argument(
+        "--llc-policy", type=Path, default=DEFAULT_LLC_DESIGNATION_REGISTRY,
+    )
+    parser.add_argument(
         "--llc-only",
         action="store_true",
-        help="Include only sections with a nonblank published LLC designation.",
+        help="Include only sections containing a recognized LLC designation code.",
     )
     parser.add_argument(
         "--quentin-table", type=Path,
@@ -72,6 +79,7 @@ def main(argv=None):
         academic_years=args.academic_years or DEFAULT_ACADEMIC_YEARS,
         fall_only=args.fall_only,
         llc_only=args.llc_only,
+        llc_registry=LLCDesignationRegistry.load(args.llc_policy),
     )
     args.output_dir.mkdir(parents=True, exist_ok=True)
     payload = report.to_dict()
@@ -83,6 +91,18 @@ def main(argv=None):
     _write_jsonl(
         args.output_dir / "faculty_sch_section_attributions.jsonl",
         [item.to_dict() for item in report.section_attributions],
+    )
+    llc_audit = {
+        "policy_ids": list(report.llc_policy_ids),
+        "unknown_token_counts": dict(report.llc_unknown_token_counts),
+    }
+    _json(args.output_dir / "llc_designation_audit.json", llc_audit)
+    _csv(
+        args.output_dir / "llc_unknown_tokens.csv",
+        [
+            {"Token": token, "Section Count": count}
+            for token, count in report.llc_unknown_token_counts.items()
+        ],
     )
     by_term = _attribution_by_term(report)
     _csv(args.output_dir / "faculty_sch_attribution_by_term.csv", by_term)
@@ -139,6 +159,8 @@ def main(argv=None):
         "academic_years": list(report.academic_years),
         "fall_only": report.fall_only,
         "llc_only": report.llc_only,
+        "llc_policy_ids": list(report.llc_policy_ids),
+        "llc_unknown_token_count": len(report.llc_unknown_token_counts),
         "quentin_comparison": quentin_status,
         "deterministic_fingerprint": report.deterministic_fingerprint,
     }, indent=2, sort_keys=True))
@@ -176,7 +198,7 @@ def _csv(path, rows):
 def _markdown(report):
     scope = "Fall semesters only" if report.fall_only else "All terms in each academic year"
     if report.llc_only:
-        scope += "; nonblank published LLC designation only"
+        scope += "; recognized published LLC designation code only"
     lines = [
         "# Department Curriculum-Owned and Workforce-Attributed SCH", "",
         f"- Academic years: {', '.join(report.academic_years)}",

@@ -3,6 +3,7 @@ from __future__ import annotations
 from app.faculty_delivered_sch import (
     build_faculty_delivered_sch_comparison,
     compare_with_quentin,
+    parse_llc_designation_codes,
 )
 from scripts.build_faculty_delivered_sch import _attribution_by_term
 
@@ -200,7 +201,7 @@ def test_attribution_strategy_is_reported_for_each_term():
     },)
 
 
-def test_llc_scope_requires_only_a_nonblank_published_designation():
+def test_llc_scope_requires_a_recognized_published_designation_code():
     report = build_faculty_delivered_sch_comparison(
         (_profile("department:english", "English"),),
         (
@@ -209,8 +210,8 @@ def test_llc_scope_requires_only_a_nonblank_published_designation():
                 llc_area_raw="AIWT, GE, LETR",
             ),
             _row(
-                "blank", "department:english", "department:english", 20,
-                llc_area_raw="",
+                "other-code", "department:english", "department:english", 20,
+                llc_area_raw="GE, LETR",
             ),
             _row(
                 "none", "department:english", "department:english", 30,
@@ -226,6 +227,36 @@ def test_llc_scope_requires_only_a_nonblank_published_designation():
     assert report.rows[0].workforce_attributed_sch == 30
     assert len(report.section_attributions) == 1
     assert report.section_attributions[0].llc_area_raw == "AIWT, GE, LETR"
+    assert [
+        item.code
+        for item in report.section_attributions[0].llc_matched_designations
+    ] == ["AIWT"]
+    assert report.section_attributions[0].llc_unknown_tokens == ("GE", "LETR")
+    assert report.llc_unknown_token_counts == {"GE": 2, "LETR": 2}
+
+
+def test_llc_designations_are_discrete_case_insensitive_codes():
+    assert parse_llc_designation_codes("LLFE / wi; AIDE") == (
+        "AIDE", "LLFE", "WI"
+    )
+    assert parse_llc_designation_codes("GE, LETR, HONORS, WIDE") == ()
+    assert parse_llc_designation_codes(None) == ()
+
+
+def test_multiple_llc_designations_still_count_a_section_once():
+    report = build_faculty_delivered_sch_comparison(
+        (_profile("department:english", "English"),),
+        (_row(
+            "multi", "department:english", "department:english", 10,
+            llc_area_raw="AIWT, WI, HON",
+        ),),
+        academic_years=("2022-23",),
+        llc_only=True,
+    )
+    assert report.rows[0].governed_prefix_owned_sch == 30
+    assert [
+        item.code for item in report.section_attributions[0].llc_matched_designations
+    ] == ["AIWT", "HON", "WI"]
 
 
 def test_honors_and_idst_are_an_explicit_combined_quentin_bucket():
@@ -238,7 +269,7 @@ def test_honors_and_idst_are_an_explicit_combined_quentin_bucket():
             ),
             _row(
                 "idst-fallback", "unit:provost", None, 20,
-                llc_area_raw="AIII", subject="IDST",
+                llc_area_raw="AIDE", subject="IDST",
             ),
         ),
         academic_years=("2022-23",),

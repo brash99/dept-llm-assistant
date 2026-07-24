@@ -10,10 +10,14 @@ from typing import Any, Iterable, Mapping
 from app.academic_terms import academic_term_order
 from app.department_profiles import _unique_sections, _valid_number
 from app.institutional_units import AcademicUnitRegistry
+from app.llc_designations import (
+    LLCDesignationMatch,
+    LLCDesignationRegistry,
+)
 
 
 ALGORITHM = "faculty_delivered_sch_comparison"
-ALGORITHM_VERSION = "1.2"
+ALGORITHM_VERSION = "1.4"
 DEFAULT_ACADEMIC_YEARS = ("2022-23", "2023-24", "2024-25")
 QUENTIN_DEPARTMENT_CODES = {
     "ACFN": "academic_unit:department_accounting_finance",
@@ -89,6 +93,9 @@ class SectionSCHAttribution:
     subject: str
     course_code: str
     llc_area_raw: str | None
+    llc_policy_id: str
+    llc_matched_designations: tuple[LLCDesignationMatch, ...]
+    llc_unknown_tokens: tuple[str, ...]
     governed_prefix_owner_unit_id: str | None
     workforce_attributed_unit_id: str | None
     attribution_method: str
@@ -104,6 +111,8 @@ class FacultyDeliveredSCHReport:
     academic_years: tuple[str, ...]
     fall_only: bool
     llc_only: bool
+    llc_policy_ids: tuple[str, ...]
+    llc_unknown_token_counts: Mapping[str, int]
     aggregation: str
     rows: tuple[DepartmentSCHComparison, ...]
     section_attributions: tuple[SectionSCHAttribution, ...]
@@ -130,6 +139,8 @@ class FacultyDeliveredSCHReport:
             "academic_years": list(self.academic_years),
             "fall_only": self.fall_only,
             "llc_only": self.llc_only,
+            "llc_policy_ids": list(self.llc_policy_ids),
+            "llc_unknown_token_counts": dict(self.llc_unknown_token_counts),
             "aggregation": self.aggregation,
             "rows": [item.to_dict() for item in self.rows],
             "section_attributions": [
@@ -150,30 +161,43 @@ def build_faculty_delivered_sch_comparison(
     academic_years: Iterable[str] = DEFAULT_ACADEMIC_YEARS,
     fall_only: bool = False,
     llc_only: bool = False,
+    llc_registry: LLCDesignationRegistry | None = None,
 ) -> FacultyDeliveredSCHReport:
     """Compare three-year average ownership SCH with faculty-delivery SCH."""
     years = tuple(academic_years)
-    selected = tuple(
+    llc_registry = llc_registry or LLCDesignationRegistry.load()
+    candidates = tuple(
         row for row in rows
         if _academic_year(row["term"]) in years
         and (
             not fall_only
             or academic_term_order(row["term"]).period == "fall"
         )
-        and (not llc_only or bool(str(row.get("llc_area_raw") or "").strip()))
     )
     section_groups: dict[str, list[Mapping[str, Any]]] = {}
-    for row in selected:
+    for row in candidates:
         section_groups.setdefault(row["section_key"], []).append(row)
     multi_home = 0
     unassigned = 0
     attributions = []
+    selected_rows = []
+    unknown_token_counts: dict[str, int] = {}
+    policy_ids = set()
     for key in sorted(section_groups):
         values = section_groups[key]
+        merged = _unique_sections(values)[0]
+        llc = llc_registry.classify(
+            merged.get("llc_area_raw"), str(merged["term"])
+        )
+        policy_ids.add(llc.policy_id)
+        for token in llc.unknown_tokens:
+            unknown_token_counts[token] = unknown_token_counts.get(token, 0) + 1
+        if llc_only and not llc.included:
+            continue
+        selected_rows.extend(values)
         homes = {item["home_unit_id"] for item in values if item["home_unit_id"]}
         multi_home += len(homes) > 1
         unassigned += not homes
-        merged = _unique_sections(values)[0]
         owners = {
             item["owned_unit_id"] for item in values if item["owned_unit_id"]
         }
@@ -201,12 +225,16 @@ def build_faculty_delivered_sch_comparison(
             llc_area_raw=(
                 str(merged.get("llc_area_raw") or "").strip() or None
             ),
+            llc_policy_id=llc.policy_id,
+            llc_matched_designations=llc.matched_designations,
+            llc_unknown_tokens=llc.unknown_tokens,
             governed_prefix_owner_unit_id=owner,
             workforce_attributed_unit_id=attributed,
             attribution_method=method,
             fallback_reason=fallback_reason,
             sch=round(_sch((merged,)), 6),
         ))
+    selected = tuple(selected_rows)
 
     results = []
     for profile in sorted(profiles, key=lambda item: item["academic_unit_id"]):
@@ -272,6 +300,8 @@ def build_faculty_delivered_sch_comparison(
         "academic_years": years,
         "fall_only": fall_only,
         "llc_only": llc_only,
+        "llc_policy_ids": sorted(policy_ids),
+        "llc_unknown_token_counts": dict(sorted(unknown_token_counts.items())),
         "aggregation": "mean_annual_sch",
         "rows": [item.to_dict() for item in results],
         "section_attributions": [item.to_dict() for item in attributions],
@@ -281,7 +311,9 @@ def build_faculty_delivered_sch_comparison(
         "multi_home_section_count": multi_home,
     }
     return FacultyDeliveredSCHReport(
-        years, fall_only, llc_only, "mean_annual_sch", tuple(results),
+        years, fall_only, llc_only, tuple(sorted(policy_ids)),
+        dict(sorted(unknown_token_counts.items())),
+        "mean_annual_sch", tuple(results),
         tuple(attributions),
         pathway_counts, pathway_sch, unassigned, multi_home,
         _fingerprint(semantic),
@@ -373,9 +405,15 @@ def _sch(rows: Iterable[Mapping[str, Any]]) -> float:
     return total
 
 
+def parse_llc_designation_codes(value: Any) -> tuple[str, ...]:
+    """Compatibility helper backed by the governed designation registry."""
+    policy = LLCDesignationRegistry.load().policies[0]
+    return tuple(item.code for item in policy.classify(value).matched_designations)
+
+
 __all__ = [
     "DEFAULT_ACADEMIC_YEARS", "DepartmentSCHComparison",
     "FacultyDeliveredSCHReport", "SectionSCHAttribution",
     "build_faculty_delivered_sch_comparison",
-    "compare_with_quentin",
+    "compare_with_quentin", "parse_llc_designation_codes",
 ]

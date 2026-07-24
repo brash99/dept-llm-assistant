@@ -1,5 +1,11 @@
 # Academic Workforce Planning Semantic Model
 
+> **Status:** Historical pre-implementation design material. This document
+> records the model proposed for the August 2026 milestone and contains
+> baseline statements superseded by implementation. Use
+> [Current Status](../../status.md) and the
+> [Architecture Book](../../architecture/README.md) for current behavior.
+
 ## Purpose and milestone boundary
 
 This document defines the smallest useful Semantic Layer for the August 1, 2026 Academic Workforce Planning milestone. It is grounded in the current ISO implementation and the benchmark:

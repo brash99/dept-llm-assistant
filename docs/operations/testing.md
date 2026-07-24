@@ -1,50 +1,153 @@
 # Testing and Validation
 
-## Standard checks
+> **Status:** Current operational reference, synchronized July 23, 2026.
 
-Run from the repository root with the active environment’s Python interpreter:
+Run tests in the environment whose behavior is being validated. Mac tests
+verify code and bounded checked-in evidence. A100 validation verifies the
+current production checkout and production evidence.
+
+## Standard Mac checks
 
 ```bash
-python3 -m compileall -q app scripts
-python3 -m pytest -q
+cd /Users/brash/dept-llm-assistant
+source .venv/bin/activate
+set -euo pipefail
+
+PYTHONPATH="$PWD" python -m pytest -q
+PYTHONPATH="$PWD" python -m compileall -q app scripts
 git diff --check
 ```
 
-On the A100, use `.venv/bin/python` instead of `python3` to guarantee the production environment.
+Do not report the full suite as passing when only a focused subset ran. FAISS,
+sentence-transformer, cross-encoder, GPU, or local-LLM behavior must be tested
+with the real production dependencies before deployment.
 
-## Academic Workforce Planning
+## Focused semantic and workforce validation
 
-Focused dashboard, evidence-map, participation, and stabilization coverage:
-
-```bash
-python3 -m pytest -q \
-  scripts/test_academic_workforce_dashboard.py \
-  scripts/test_academic_workforce_evidence_map.py \
-  scripts/test_academic_workforce_participation.py \
-  scripts/test_awp_stabilization.py
-```
-
-Decision-type and taxonomy executable:
+### Institutional units and subject ownership
 
 ```bash
-python3 scripts/test_academic_workforce_planning.py
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_institutional_units.py \
+  scripts/test_subject_ownership.py \
+  scripts/test_subject_crosswalk_audit.py \
+  scripts/test_subject_mapping_inventory.py
 ```
 
-Related Semantic Control Plane and readiness coverage:
+### Faculty identity and appointments
 
 ```bash
-python3 -m pytest -q \
-  scripts/test_institutional_orientation.py \
-  scripts/test_dual_semantic_control_plane.py \
-  scripts/test_decision_readiness_framework.py
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_faculty_identity.py \
+  scripts/test_faculty_identity_review.py \
+  scripts/test_faculty_appointments.py
 ```
 
-The stabilization tests cover short-alias safety, institution-wide scope, document-family grouping, evidence roles, scope-aware Evidence Fitness, enrollment-trend semantics, topology summaries, prompt claim safety, and executive source labels.
+### Authoritative roster contract
 
-## Dependency interpretation
+```bash
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_authoritative_faculty_roster.py
+```
 
-- A test that exercises FAISS search, sentence-transformer embeddings, or cross-encoder reranking must run with those real modules before production deployment.
-- Conditional test stubs allow deterministic presentation/contract coverage on a machine without optional GPU dependencies; they do not prove the production retrieval stack works.
-- A local checkout with placeholder `storage/` files cannot validate the production index.
+This validates the future roster ingestion contract and synthetic fixtures. It
+does not assert that an authoritative production roster exists.
 
-Never report the full suite as passing when only a focused subset ran.
+### Analytical workforce
+
+```bash
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_analytical_workforce.py \
+  scripts/test_analytical_workforce_review.py \
+  scripts/test_analytical_workforce_review_matrix.py
+```
+
+### Department profiles, SCH, and attribution
+
+```bash
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_department_profiles.py \
+  scripts/test_sch_completeness.py \
+  scripts/test_department_sch_timeline.py \
+  scripts/test_department_three_year_sch.py \
+  scripts/test_faculty_delivered_sch.py
+```
+
+### LLC designation governance
+
+```bash
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_llc_designations.py
+```
+
+### Undergraduate majors, capstones, and estimated graduates
+
+```bash
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_undergraduate_majors.py \
+  scripts/test_undergraduate_major_capstones.py \
+  scripts/test_estimated_graduates.py
+```
+
+## Schedule evidence
+
+Schedule ingestion and analysis have separate focused coverage:
+
+```bash
+PYTHONPATH="$PWD" python -m pytest -q \
+  scripts/test_schedule_adapter.py \
+  scripts/test_authoritative_schedule_adapter.py \
+  scripts/test_schedule_analysis.py \
+  scripts/test_schedule_repair.py
+```
+
+Teaching assignments remain distinct from appointment and workforce evidence.
+Tests must not silently use schedule participation as proof of employment.
+
+## Durable A100 validation
+
+Substantial production validation logic belongs in committed scripts under
+`scripts/a100_testing_scripts/`. Prefer a short invocation of a reviewed script
+to pasting a long Python heredoc or thousands of terminal lines into a
+conversational interface.
+
+Current durable entry points include:
+
+```bash
+bash scripts/a100_testing_scripts/validate_faculty_identity_governance_precedence.sh
+bash scripts/a100_testing_scripts/validate_analytical_workforce_builder.sh
+bash scripts/a100_testing_scripts/validate_department_profiles.sh
+bash scripts/a100_testing_scripts/build_department_sch_timeline.sh
+bash scripts/a100_testing_scripts/build_department_sch_fall_only.sh
+bash scripts/a100_testing_scripts/build_department_three_year_sch.sh
+bash scripts/a100_testing_scripts/build_faculty_delivered_sch.sh
+```
+
+The usual A100 sequence is:
+
+```bash
+cd /work/brash/dept-llm-assistant
+source .venv/bin/activate
+git pull --ff-only origin sprint/academic-workforce-planning
+bash scripts/a100_testing_scripts/validate_department_profiles.sh
+```
+
+Choose the entry point appropriate to the capability under review. Validation
+scripts should write timestamped artifacts under `storage/logs`, print compact
+summaries, enforce deterministic fingerprints, and fail on broken invariants.
+
+## Interpreting evidence environments
+
+Governed normalized evidence may exist and be tracked on the Mac. It may still
+differ from current A100 evidence because of acquisition time, local generated
+artifacts, or a branch mismatch.
+
+Before making a production claim, verify:
+
+- branch and commit;
+- source and normalized evidence inventories;
+- invalid-record counts;
+- deterministic fingerprints; and
+- the production validator’s invariants.
+
+Local synthetic fixtures prove deterministic behavior, not production counts.

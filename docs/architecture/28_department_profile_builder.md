@@ -39,6 +39,11 @@ baseline rather than an authoritative HR roster. The builder reports
 `authoritative_hr_denominator_ready: false` so that this limitation remains
 visible without blocking profiles.
 
+The production builder reconciles all 282 included identities across 18
+governed current department profiles, with no remaining workforce or
+department-assignment review. Schedule teaching never creates workforce
+membership and never silently changes faculty home.
+
 Enrollment and SCH are reported only for unique sections with explicit source
 values. Known enrollment and known SCH remain reportable for covered sections,
 while independent coverage counts and strict completeness flags disclose
@@ -76,6 +81,17 @@ recoverability, required additional evidence, systematic patterns, and one
 pipeline trace per failure category. Its before/after repair accounting is based
 only on explicit duplicate-section consolidation and uncontested course-term
 credit consensus.
+
+The current production profile build validates complete SCH input coverage for
+all 18 profiles over the available governed schedule evidence. The completeness
+machinery remains necessary because future evidence may again contain missing,
+variable, or conflicting inputs.
+
+Term and academic-year reporting is provided by
+`scripts/build_department_sch_timeline.py`. Fall-only and three-year products
+select explicit terms without altering DepartmentProfile or SCH semantics.
+LLC-only reporting applies the effective-dated governed designation policy
+before aggregation.
 
 Department profiles assemble institutional state and reconcile every included
 identity exactly once. They do not score capacity, rank departments, recommend

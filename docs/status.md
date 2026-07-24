@@ -1,233 +1,256 @@
 # Current Implementation Status
 
-Status as of July 2026. This file describes the current codebase; research and session notes may describe earlier states or future goals.
+> **Status:** Authoritative current-state inventory, synchronized July 23,
+> 2026. Historical sessions, design proposals, presentations, and dated audits
+> are not implementation-status sources.
 
-## Implemented
+ISO uses the permanent six-layer architecture:
 
-### Evidence Layer
+1. Evidence Layer
+2. Semantic Layer
+3. Reasoning Layer
+4. Evidence Fitness
+5. Scenario Modeling
+6. Institutional Digital Twin
 
-- Filesystem, directory, web, and curated-resource acquisition services with manifests and provenance.
-- Multi-source normalization into Knowledge Objects.
-- One canonical recursive normalized corpus at `storage/normalized`, including
-  faculty, catalog, and schedule subtrees; `data/normalized` is no longer an
-  active evidence store.
-- Curated Constitutional Knowledge Objects built from configured normalized sources.
-- Chunking of normalized and constitutional objects.
-- Sentence-transformer embeddings and FAISS indexing.
-- Retrieval with exact/path deduplication, optional cross-encoder reranking, optional thresholding, constitutional/empirical quotas, and trace diagnostics.
-- Conservative document-family normalization and post-rerank diversity limits. ABET self-study revisions and criterion-response filename variants are grouped without merging distinct criteria or identified programs.
-- Deterministic evidence classes and finer evidence roles, including Institutional Self-Study, Formal External Standard, Departmental Report, Planning Document, External Comparator, and Constitutional Evidence.
-- Decision-driven external evidence acquisition pilot with a seven-authority
-  curated registry, deterministic Evidence Fitness gap planning, dry-run
-  reports, staged validation, provenance-enriched Knowledge Objects, and
-  promotion through the existing normalization path.
+> Knowledge objects store facts. Services derive meaning.
 
-### Semantic Layer
+ISO does not model institutional reports as reality. ISO models the
+institution. Reports are evidence about that model and may be explained,
+validated, or reproduced as consequences of the underlying institutional
+structure.
 
-- Catalog-backed program orientation and guarded short-alias resolution.
-- Deterministic question-scope classification: single entity, multi-entity, institution-wide, or unresolved.
-- Constitutional orientation against the Strategic Compass catalog.
-- Bootstrap institutional topology with incoming/outgoing impact summaries.
-- Institution-wide questions preserve contextual mentions without forcing one selected topology entity.
-- Authoritative Semantic Identity contracts, classification proposals, field-level policy, audit sampling, and dry-run corpus population are implemented for structured Knowledge Objects.
-- Registry-driven generic-document routing is implemented for curated external evidence, SCHEV, CNU Institutional Research, and reviewed SEC Statistics, Program Review, Annual Report, and Planning families. Source family, document type, institutional role, authority, scope, and temporal scope remain separate assertions; unknown and sensitive families abstain.
-- Semantic Document Routing v1 was reviewed and applied to 480 generic documents on July 21, 2026: 162 CNU Institutional Research, 65 SCHEV, 92 SEC Statistics, 70 SEC Program Review, 40 SEC Annual Reports, 41 SEC Planning, and 10 explicitly provenanced curated external documents. Post-application classification is idempotent with zero projected changes, conflicts, reviews, or failures.
-- After application, corpus-wide Semantic Identity coverage is 480 source-family values, 418 document types, 480 institutional roles, 237 authority assertions, 8,951 objects with institutional entities, and 8,770 objects with temporal scope. Decision domains and organizational relationships remain unpopulated by document routing.
-- Safe derived-data pipeline tooling is implemented in `scripts/semantic_pipeline.py`, with read-only status, mutation-free rebuild preflight, staged chunk/embedding/FAISS construction, backup and rollback protection, durable manifests, structural verification, and exact Semantic Identity propagation checks. It has been validated with temporary synthetic artifacts on macOS; it has not yet rebuilt production chunks, embeddings, or FAISS.
+## Status vocabulary
 
-### Reasoning Layer
+- **Implemented** means the code, governed configuration, and deterministic
+  tests exist.
+- **Validated** means an implemented capability has also been exercised
+  against the available production evidence and its invariants checked.
+- **Partially estimable** means a governed method can produce an explicit
+  subset or proxy while preserving exclusions and limitations.
+- **Unresolved** means evidence or institutional governance is insufficient
+  for a safe result.
+- **Not yet implemented** means no production service should claim the
+  capability.
 
-- Deterministic schedule analysis operates directly over normalized schedule
-  Knowledge Objects for distinct-instructor counts, course-offering counts, and
-  explicit offering-share denominators by term, Instructor Type, subject, and
-  governed academic unit. It preserves unresolved, repaired, unknown, and
-  missing-status categories and produces provenance-bearing fingerprints.
-- Governed schedule subject ownership is separated from organizational-unit
-  definitions: `config/subject_ownership.yaml` records prefix ownership while
-  `config/institutional_units.yaml` remains authoritative for units, formal
-  types, relationships, and operational roles. Mapping is implemented with explicit mapped,
-  intentionally grouped, ambiguous, unmapped, and unsupported outcomes. The
-  reviewed records roll six SEC instructional subject codes—PHYS, CPSC, CYBR,
-  CPEN, EENG, and PCSE—into SEC as a
-  department-equivalent workforce unit without representing SEC as a formal
-  department or inventing specialty departments. Other subjects remain
-  unmapped pending reviewed crosswalks.
-- The subject ownership registry carries mapping method, typed evidence
-  (including explicitly reviewed institutional-expert evidence for PCSE),
-  authority, source type, confidence, effective terms, review status, and
-  notes. Registry auditing detects conflicts, invalid targets/types/roles,
-  missing evidence, overlapping effective ranges, and deprecated targets.
-  Production inventory and report-comparison tooling operate directly over
-  normalized schedules without retrieval or LLM dependencies. No additional
-  subject mappings were added because the Mac-accessible catalog ontology does
-  not publish a governed course-prefix-to-unit crosswalk.
-- Catalog-derived subject-ownership evidence tooling now selects catalog
-  editions by academic year, extracts anchored course-description headers,
-  resolves exact governed section aliases, emits typed exceptions and
-  reviewable candidates, and compares catalog, schedule, and governed prefix
-  sets. Candidates cannot automatically modify governance. IS is intentionally
-  absent from subject ownership while the Information Science/BSIS academic
-  program remains governed in the program registry.
-- Deterministic semantic discrepancy analysis explains catalog, schedule, and
-  governance differences with exactly one primary category per investigated
-  prefix. Its dashboard reports confidence, engineering review priority, and
-  catalog/schedule/governance/parser completeness as Evidence Fitness. It does
-  not infer mappings or promote candidates.
-- Governed schedule-prefix normalization now resolves 24 operational Music
-  prefixes to the Department of Music, Theatre, and Dance while preserving
-  their published schedule identities and linking them to the catalog-visible
-  MUSC family. MECH, ENVS, NAVS, and HBRW have reviewed ownership mappings;
-  ENVS remains distinct from EVST. Prefix reporting now separates source-set
-  differences from incomplete institutional mapping and genuine parser or
-  catalog-structure limitations.
-- Deterministic institutional metric-readiness auditing now inventories
-  governed and referenced academic units, documents the exact capabilities of
-  directory/catalog/roster/schedule faculty evidence, measures SCH input
-  coverage, and reports denominator blockers. SCH itself is not implemented.
-  Deterministic cross-source faculty identity is now available, while current
-  contracts still lack effective-dated appointment category/FTE, tenure-line status, and approved
-  policies for cross-listing, cancellation, labs, variable credit, independent
-  study, team teaching, and reporting-period definitions.
-- The foundational Faculty Identity layer audits directory, catalog-faculty,
-  department-roster, and schedule-instructor observations without changing the
-  source Knowledge Objects. It links exact identifiers and names, reviewed
-  aliases, compatible middle-name forms, and uniquely resolvable initials;
-  uncertain matches remain separate. Identity objects preserve every observed
-  form, provenance, confidence, ambiguity, and deterministic fingerprints while
-  making no appointment, employment, faculty-home, tenure, FTE,
-  administrative-role, or workload claim.
-- Source-scoped faculty appointment evidence now remains separate from
-  administrative appointments, employment-status statements, identities, and
-  teaching assignments. Directory snapshots and catalog editions preserve their
-  temporal meaning; schedules never create appointments. Explicit ranks, roles,
-  statuses, units, source paths, identity links, limitations, and deterministic
-  fingerprints are auditable, while current employment, tenure, faculty home,
-  appointment FTE, denominator eligibility, and SCH remain unimplemented.
-- An authoritative faculty-roster ingestion contract now defines configurable
-  CSV columns, effective/snapshot dates, explicit appointment and FTE facts,
-  deterministic identity/unit linkage, quarantine rules, Evidence Fitness, and
-  denominator-readiness reporting. No authoritative production roster is
-  asserted to exist, and no active population or denominator is calculated.
-- The Reasoning Layer now includes a governed Analytical Workforce Builder that
-  starts from the latest faculty-directory identities and produces deterministic
-  include, exclude, or review-required decisions with teaching support,
-  analytical-unit provenance, policy sensitivity, overrides, and plausible
-  population bounds. It is an analytical proxy rather than an HR roster and
-  does not calculate FTE, SCH, capacity, or reduction recommendations.
-- Governed academic-unit normalization now resolves canonical names, explicit
-  aliases, status-qualified labels, and bounded contaminated labels while
-  rejecting ambiguous or common-word matches. Missing semantic-scope
-  departments are represented as governed units; the former PCSE department
-  remains a distinct deprecated historical unit rather than a current SEC
-  alias. Explicit emeritus/emerita evidence is preserved but deterministically
-  excluded from active-workforce eligibility and denominator readiness.
-- Institutional-unit governance distinguishes CNU's three formal colleges from
-  Luter's independent-school/college-equivalent role; preserves reviewed former
-  Luter, biology, arts, and PCSE departments as deprecated historical units;
-  and models four graduate programs, Honors, and Graduate Studies without
-  treating program administration as faculty-home membership. Explicit
-  curriculum-owner, faculty-home, denominator, and analytical-rollup dimensions
-  prevent program instruction from becoming fictional department headcount.
-  Role-prefixed graduate-program labels resolve deterministically, while
-  unresolved emeritus labels remain excluded rather than inflating active
-  workforce mapping gaps.
-- Final institutional-label governance resolves current Performing Arts/Music,
-  Fine Arts and Art History, Finance, Management, and the bounded `and Marketing
-  Department` parser fragment. Neuroscience is modeled as an interdisciplinary
-  curriculum-owning program, and the Provost and ORCA as non-denominator
-  administrative units. Historical Department of Music and Department of
-  Performing Arts entities remain distinct from the current public-facing
-  Performing Arts alias.
-- Narrow schedule trend analysis uses chronological normalized terms and
-  reports endpoint changes, missing terms, zero denominators, and
-  comparability limitations. Schedule Evidence Fitness explicitly rejects
-  official employment-history, workload/FTE, and staffing-recommendation uses.
-- Deterministic execution typing and routing distinguish selective retrieval,
-  structured aggregation, comparison, trend analysis, scenario modeling, and
-  unsupported requests. `scripts/ask_rag.py` routes supported schedule
-  analytics before retrieval and refuses top-k fallback for unsupported
-  analytics. Descriptive schedule questions do not request constitutional
-  evidence; normative hybrids represent that request separately.
-- Grounded question answering through a configured OpenAI-compatible local endpoint.
-- Governed Decision Brief prompt with stable empirical/constitutional citations, evidence-role serialization, and self-study claim-safety instructions.
-- Decision Brief Dashboard V2 with deterministic readiness, observatory, workforce framework, evidence map, and participation panels.
-- Executive source lists omit uncalibrated reranker logits; engineering diagnostics retain FAISS and reranker values.
+## Evidence Layer
 
-### Evidence Fitness
+### Implemented
 
-- Deterministic decision-type classification, including Academic Workforce Planning.
-- Domain evaluators and graded support: Strong, Partial, Weak, or Missing.
-- Scope-aware Academic Workforce Planning qualification for directness, institutional scope, authority/role, coverage breadth, and unique document families.
-- Enrollment Trends requires temporal or multi-year evidence; a single-year snapshot is not a trend.
-- Evidence Fitness limitations are passed into deterministic panels and the governed narrative prompt.
+- Filesystem, directory, web, and curated-resource acquisition with manifests
+  and provenance.
+- Deterministic normalization into typed Knowledge Objects under
+  `storage/normalized`.
+- Governed faculty-directory, catalog, department-roster, and schedule
+  observations.
+- Explicit schedule facts including term, section, instructor, enrollment,
+  credits, status, and published LLC designation text.
+- Constitutional Knowledge Objects from configured institutional sources.
+- Chunking, sentence-transformer embeddings, FAISS indexing, retrieval,
+  reranking, evidence quotas, exact deduplication, document-family diversity,
+  and trace diagnostics.
+- Curated external-evidence acquisition with quarantine, validation, and
+  provenance-preserving promotion.
 
-## Partially implemented
+### Environment boundary
 
-- **Institutional topology:** a small manually curated graph, not a complete institutional relationship model.
-- **Institutional Participation Profile:** renders supplied profile contracts or validated department/college topology context; institution-wide unit collections are not yet available.
-- **Evidence-role classification:** deterministic path/title/metadata heuristics; it does not inspect source authorship through an LLM.
-- **Generic-document semantic coverage:** high-value reviewed families are supported; broad ABET, assessment, curriculum, syllabi, course materials, student work, presentations, archives, and personnel materials intentionally remain unsupported unless explicit curated provenance applies.
-- **Derived-data propagation:** the generic chunker is capable of inheriting the complete `semantic_identity`, but the existing chunks, embeddings, and FAISS index predate the applied document identities. The new fields are normalized-object facts until a separately reviewed chunk/embedding/index rebuild is performed; no retrieval or scenario conclusion should be attributed to them yet.
-- **Document-family normalization:** deterministic metadata and filename heuristics; no semantic embedding pass is used for family identity.
-- **Constitutional reasoning:** Strategic Compass orientation and citation separation are implemented; constitutional alignment is not a final normative judgment.
-- **Decision readiness:** evidence sufficiency is assessed, but operational, financial, enrollment, and scenario services shown in the dashboard are not connected.
+Governed normalized evidence may exist and be tracked in the Mac checkout.
+That checkout must not automatically be assumed identical to the current A100
+production state. Evidence inventories and deterministic fingerprints must be
+verified before production conclusions are reported.
 
-## Recorded technical debt
+## Semantic Layer
 
-- Importing `app.control_plane` eagerly imports `sentence-transformers` through
-  semantic-neighbor components, even when callers need only lightweight
-  catalog, resolver, or orientation contracts. Dependency-light tests currently
-  use a localized optional-dependency fixture. Decoupling that import path is a
-  separate change and is intentionally not addressed by the Health Physics
-  integration patch.
+### Implemented and validated
 
-## Planned
+- A governed institutional-unit registry with stable identifiers, formal unit
+  types, current and historical units, aliases, parent relationships where
+  supported, analytical roles, and eligibility dimensions.
+- Governed subject-prefix ownership, distinct from institutional-unit
+  definitions. Published schedule prefixes remain source facts; services map
+  them to governed curriculum owners.
+- Catalog-derived subject-ownership evidence and discrepancy auditing that
+  cannot silently promote candidates into governance.
+- Deterministic institutional-label normalization with exact names, governed
+  aliases, bounded contamination cleanup, explicit ambiguity, and no fuzzy or
+  LLM matching.
+- Governed program, administrative-unit, historical-unit, and current-unit
+  distinctions.
+- Deterministic Faculty Identity across directory, catalog, roster, and
+  schedule observations. Reviewed aliases are governed facts; uncertain
+  matches remain separate.
+- Faculty Appointment Observation, Administrative Appointment Observation,
+  and Employment Status Observation as distinct evidence objects.
+- A governed LLC designation policy. Published `llc_area_raw` remains source
+  evidence; effective-dated policy determines which tokens are LLC
+  designations.
+- A governed Undergraduate Major Registry with stable identities,
+  source-specific ownership assertions, aliases, degree facts, status,
+  provenance, and unresolved conflicts.
+- A separate governed Major → Capstone Registry with catalog provenance and
+  explicit relationship types.
 
-### Scenario Modeling
+### Partially implemented
 
-- Explicit alternative workforce scenarios.
-- Function-level capacity and substitution assumptions.
-- Financial, enrollment, course-coverage, accreditation, and one-line-loss effects.
-- Comparable scenario outputs with transparent assumptions.
+- Institutional topology is governed for the academic units and relationships
+  required by current workforce analysis, but it is not a complete university
+  relationship graph.
+- Generic-document semantic routing covers reviewed high-value source
+  families; unsupported document families abstain.
+- Semantic Identity propagation into normalized generic documents is
+  implemented. Existing production retrieval artifacts may require a separately
+  reviewed rebuild before those fields become available to retrieval filters.
 
-No scenario engine currently ranks departments or recommends reductions.
+## Reasoning Layer
 
-## Aspirational
+### Faculty and workforce
 
-### Institutional Digital Twin
+- The Authoritative Faculty Roster contract supports deterministic future
+  ingestion of effective-dated HR or Academic Affairs evidence. No
+  authoritative production roster is asserted to exist.
+- The governed Analytical Workforce Builder starts from current
+  faculty-directory identities and reasons separately about workforce
+  membership and department assignment.
+- Institutional review is complete for the current production baseline:
+  **282 included analytical-workforce identities**, with zero remaining
+  workforce-membership or department-assignment review decisions.
+- The 282-person population is a governed analytical baseline, not an
+  authoritative HR roster, legal employment assertion, or inferred FTE
+  population.
 
-The long-term objective is a temporal, evidence-backed representation of institutional entities, functions, dependencies, constraints, and changes. The current Knowledge Objects, topology, and participation contracts are foundations only. ISO does not yet provide a complete institutional ontology, graph database, live operational twin, probabilistic forecast, or autonomous decision system.
+### Department profiles and instructional activity
 
-## Academic Workforce Planning limitations
+- Department Profiles aggregate every included analytical-workforce identity
+  exactly once into its governed home department.
+- Faculty home and instructional delivery are separate relationships.
+- Profiles report workforce membership, titles and ranks, administrative roles,
+  teaching history, governed subject activity, enrollment, SCH, cross-unit
+  instruction, provenance, Evidence Fitness, and limitations.
+- Production validation reconciles 282 workforce identities across 18 current
+  department profiles.
 
-The Current Analytical Workforce is institutionally reviewed and reconciles 282
-included identities with governed home-unit assignments. Department profiles
-aggregate that baseline separately from subject-owned instructional activity.
-The analytical workforce denominator is ready for the August analysis;
-authoritative HR denominator confirmation remains unavailable and is reported as
-an Evidence Fitness limitation.
+### SCH
 
-Department instructional coverage now distinguishes home-faculty activity from
-governed subject-owned activity. The governed crosswalk includes ordinary
-catalog-visible department prefixes as well as reviewed operational and
-non-department subjects. Departmental SCH is derived only from governed
-subject-owned activity; home-faculty teaching remains a separate descriptive
-measure and cannot conceal an ownership gap. The production coverage audit
-retains every still-unmapped prefix for institutional review.
+- SCH is implemented as a deterministic derived metric for sections with
+  explicit enrollment and explicit scalar credits.
+- SCH completeness auditing preserves missing-input reasons and never invents
+  enrollment or credits.
+- The current production Department Profiles validate complete SCH input
+  coverage for all 18 profiles over the available governed schedule evidence.
+- **Curriculum-owned SCH** assigns a section to the governed owner of its
+  subject prefix. This is the canonical curriculum-ownership metric.
+- **Workforce-attributed SCH** assigns a section to the governed analytical
+  home of an active analytical-workforce instructor; when no eligible home is
+  available, it uses the governed prefix owner as an explicit
+  `prefix_owner_fallback`. This decision-specific metric does not change
+  curriculum ownership.
+- Timeline and fall-only reporting expose term and academic-year SCH without
+  changing the underlying attribution semantics.
 
-The Analytical Workforce Builder now treats workforce membership and department
-assignment as orthogonal reasoning results. Instructional identities whose only
-issue is an unresolved receiving unit remain in the workforce population and
-appear in a separate department-assignment review queue. Workforce minimum and
-maximum bounds therefore reflect membership uncertainty only.
+### LLC SCH
 
-The canonical benchmark cannot be answered responsibly without institution-wide, unit-level evidence such as:
+- LLC section inclusion is governed by effective-dated designation tokens,
+  not by a nonblank-string heuristic.
+- A section with one or more governed LLC tokens contributes SCH once while
+  retaining all matched tokens and categories.
+- Unknown LLC tokens are reported rather than interpreted.
+- LLC SCH can be reported with the same curriculum-owned and
+  workforce-attributed distinctions where the corresponding service applies
+  them.
 
-- faculty headcount/FTE, qualifications, loads, vacancies, retirements, adjuncts, and overloads;
-- multi-year enrollment, completions, sections, student-credit hours, and service teaching;
-- course-to-program, prerequisite, Liberal Learning Core, laboratory, and accreditation dependencies;
-- departmental budgets, compensation, projected savings, replacement costs, revenue effects, and scenario assumptions;
-- mission-critical capabilities, advising, research, governance, facilities, and external partnerships; and
-- evidence of alternative providers and available capacity for each institutional function.
+### Majors, capstones, and estimated graduates
 
-Until those inputs exist, ISO should report missing evidence and refuse a departmental reduction recommendation.
+- The Undergraduate Major Registry is implemented and validated independently
+  of administrative completion totals.
+- The Major → Capstone Registry is implemented for every governed current
+  undergraduate major and distinguishes single capstones, sequences, multiple
+  requirements, alternatives, thesis/seminar pathways, shared capstones,
+  unresolved pathways, and no identifiable capstone.
+- Estimated Graduates by Major is implemented as an independent,
+  deterministic capstone-enrollment proxy.
+- The observable uses only governed majors, governed capstone relationships,
+  and schedule enrollment. Quentin’s completion totals are held-out validation
+  evidence, not an input or optimization target.
+- The observable is **partially estimable**: shared capstones, unresolved
+  pathways, no identifiable capstone, and unobserved terminal sections remain
+  explicit exclusions or unavailable results. A held-out comparison covered
+  approximately 72% of institution-wide completions; that dated result is
+  evidence about fitness, not a universal accuracy claim.
+- Absence of an observed capstone section is not interpreted as zero
+  graduates.
+
+### Other implemented reasoning
+
+- Deterministic schedule aggregation and trend analysis.
+- Semantic discrepancy analysis.
+- Grounded question answering through a configured OpenAI-compatible endpoint.
+- Decision Brief synthesis with stable citations, evidence-role separation,
+  claim-safety rules, and deterministic readiness panels.
+
+## Evidence Fitness
+
+### Implemented
+
+- Decision-type classification and domain-level Strong, Partial, Weak, or
+  Missing support.
+- Scope, authority, directness, coverage, temporal fitness, source-family
+  independence, and missing-evidence reporting.
+- Distinct readiness labels for the reviewed analytical workforce and the
+  unavailable authoritative HR denominator.
+- Categorical limitations for SCH completeness, workforce attribution,
+  capstone estimation, identity linkage, and temporal scope.
+
+### Important current limitations
+
+- Rank is not appointment FTE.
+- Schedule instruction is not proof of a full-time appointment.
+- Public-directory presence is not an authoritative effective-dated HR record.
+- Capstone enrollment is not a graduation record.
+- Administrative reports may use reporting ownership, definitions, time
+  windows, or exclusions that differ from ISO’s governed semantic metrics.
+
+## Scenario Modeling
+
+### Not yet implemented
+
+- No production engine ranks departments for reductions.
+- No service currently recommends which positions should be removed.
+- No governed scenario model yet combines faculty capacity, instructional
+  demand, curriculum dependencies, finances, accreditation, service teaching,
+  and institutional priorities into comparable reduction alternatives.
+
+The current workforce, department profiles, SCH metrics, LLC semantics, and
+graduate proxy provide important scenario inputs. They do not by themselves
+justify a reduction recommendation.
+
+## Institutional Digital Twin
+
+### Aspirational
+
+ISO has governed entities, observations, identities, relationships, temporal
+evidence, and derived institutional profiles. It does not yet provide a
+complete temporal university graph, live operational twin, probabilistic
+forecast, or autonomous decision system.
+
+## August workforce-planning readiness
+
+Quentin’s benchmark asks:
+
+> If CNU reduces full-time instructional faculty from approximately 275 to
+> approximately 250, which departments should lose positions?
+
+ISO can now inspect a reviewed analytical workforce, faculty home, curriculum
+ownership, instructional delivery, SCH, LLC activity, majors, capstones, and a
+partial graduate proxy. It can reproduce or explain many report-like metrics
+from governed institutional structure.
+
+A responsible reduction recommendation still requires governed scenario
+assumptions and evidence not fully represented, including authoritative
+effective-dated appointment/FTE confirmation, financial effects, vacancies and
+retirements, course and program dependencies, accreditation constraints,
+advising and governance responsibilities, facilities, research obligations,
+and feasible substitution or consolidation choices.
+
+Until Scenario Modeling incorporates those inputs, ISO should explain the
+evidence and its fitness, compare transparent alternatives when explicitly
+defined, and refuse to manufacture a departmental reduction ranking.

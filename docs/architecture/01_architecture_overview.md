@@ -26,7 +26,9 @@ Document-family diversity is distinct from exact deduplication. Exact deduplicat
 
 - family identity is metadata/filename-based rather than semantic;
 - corpus coverage is broad but incomplete and uneven across institutional domains; and
-- production data exists on the A100, not in the repository’s placeholder storage directories.
+- governed normalized evidence may be tracked in a Mac checkout, but production
+  conclusions require verification against the current A100 evidence inventory
+  and deterministic fingerprints;
 
 ## 2. Semantic Layer
 

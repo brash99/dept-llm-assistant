@@ -13,14 +13,15 @@ The audit belongs to the existing Semantic Layer and Evidence Fitness work. It
 does not add an architectural layer, implement Scenario Modeling, or turn
 schedule observations into employment records.
 
-## Current evidence position
+## Original readiness question
 
 Schedule Knowledge Objects preserve section credit hours, enrollment, academic
 term, status, instructor, Instructor Type, repair provenance, and source rows.
 Governed subject ownership can assign supported schedule subjects to academic
-workforce units. These facts are necessary but not sufficient for SCH.
+workforce units. The first readiness audit correctly treated these facts as
+necessary but not sufficient for a governed SCH metric.
 
-Before an SCH service is decision-ready, ISO still needs governed rules for:
+The original blockers included governed rules for:
 
 - calendar-year versus academic-year versus fiscal-year reporting;
 - cancelled and future sections;
@@ -31,8 +32,28 @@ Before an SCH service is decision-ready, ISO still needs governed rules for:
 - minimum production coverage for enrollment, credit, status, and academic-unit
   mapping.
 
-The audit reports coverage of these inputs but never multiplies enrollment by
-credits.
+The audit itself remains an Evidence Fitness diagnostic and does not calculate
+SCH. Later Reasoning Layer services resolved the bounded calculation and
+reporting questions required by Department Profiles. They now derive SCH only
+from explicit scalar credits and enrollment, deduplicate governed section
+identity deterministically, retain partial input coverage, and expose every
+unrepaired failure rather than imputing values.
+
+Production Department Profile validation currently reports complete SCH input
+coverage across all 18 governed profiles for the available schedule evidence.
+That resolves the former SCH-construction blocker; it does not make every
+possible institutional SCH definition equivalent.
+
+ISO now preserves two separate department-level interpretations:
+
+- **curriculum-owned SCH**, assigned through governed subject-prefix ownership;
+- **workforce-attributed SCH**, assigned through an eligible analytical
+  workforce instructor's governed home and otherwise through an explicit
+  prefix-owner fallback.
+
+Reporting periods, LLC-only subsets, and administrative comparisons select
+among governed views; they do not rewrite schedule evidence or subject
+ownership.
 
 ## Faculty observer position
 
@@ -52,13 +73,13 @@ appointment FTE, teaching FTE, tenure-line status, or a reliable official
 employment history. Schedule `Instructor Type` remains a source assertion about
 one section; it is not a timeless faculty-employment fact.
 
-Consequently, SCH per teaching FTE, full-time faculty, instructional faculty,
-or tenure-line faculty is blocked. A term-scoped distinct published-instructor
-count is available as a name-based analytical proxy, but it is not yet a
-governed faculty denominator. Identity establishes who, and the appointment
-evidence service preserves what dated sources explicitly publish. A stronger
-effective-dated appointment source and later reasoning policy must still
-establish institutional relationships and population eligibility.
+Consequently, SCH per authoritative teaching FTE, HR-confirmed full-time
+faculty, or tenure-line faculty remains blocked. Identity establishes who, and
+the appointment evidence service preserves what dated sources explicitly
+publish. ISO now also has an institutionally reviewed 282-person analytical
+workforce with governed home assignments. That population is ready for the
+August analytical baseline, but it is not an effective-dated HR roster and
+does not supply appointment or instructional FTE.
 
 ## Institutional-unit limitations
 
@@ -118,15 +139,17 @@ text; age, appointment year, and absence of teaching are never substitutes.
 
 1. **Evidence Layer** supplies schedule, catalog, roster, and directory facts.
 2. **Semantic Layer** governs institutional units and subject ownership.
-3. **Reasoning Layer** now derives a governed analytical workforce proxy from
-   the current directory; approved SCH and capacity metrics remain future work.
+3. **Reasoning Layer** derives the reviewed analytical workforce, Department
+   Profiles, curriculum-owned and workforce-attributed SCH, LLC SCH, and
+   related timelines and comparisons.
 4. **Evidence Fitness** reports whether the required facts and policies are
    adequate.
 5. **Scenario Modeling** must consume only governed, fitness-qualified metrics.
 6. **Institutional Digital Twin** may later retain effective organizational and
    appointment histories.
 
-The current-directory analytical population improves scenario readiness but is
-not an authoritative HR denominator. The next milestones are production policy
-review, coverage measurement, a separate reviewed SCH aggregation service, and
-an authorized effective-dated faculty appointment observer.
+The reviewed analytical population and complete department SCH aggregation
+resolve the original public-evidence baseline questions. They remain distinct
+from an authoritative HR denominator. Scenario Modeling, governed
+substitutability and capacity assumptions, financial effects, and an authorized
+effective-dated faculty appointment source remain unresolved.

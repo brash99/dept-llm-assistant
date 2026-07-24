@@ -60,4 +60,6 @@ git diff --check
 git status --short
 ```
 
-Do not assume a local test against placeholder storage validates production retrieval.
+Governed normalized evidence may be present and tracked locally. Do not assume
+that its inventory or fingerprints match the current A100 production state, and
+do not treat a local retrieval check as production validation.

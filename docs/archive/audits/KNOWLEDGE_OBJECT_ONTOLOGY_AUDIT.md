@@ -1,5 +1,11 @@
 # KnowledgeObject Ontology Audit
 
+> **Status:** Dated ontology audit conducted July 20, 2026. It is preserved as
+> an audit of that repository state and does not include later faculty,
+> workforce, department-profile, LLC, major, capstone, or graduate-estimate
+> objects. Use [Current Status](../../status.md) for current capability
+> boundaries.
+
 ## Scope and method
 
 This audit describes the ontology implemented in the repository as of July 20, 2026. It distinguishes three things that are easy to conflate:

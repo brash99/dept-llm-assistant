@@ -16,3 +16,10 @@ The YAML file supports multiple documents. If the curriculum changes, append a
 new policy document with non-overlapping effective dates instead of modifying
 the historical vocabulary. The service requires exactly one applicable policy
 for every analyzed term and fails closed on gaps or overlaps.
+
+LLC SCH is a Reasoning Layer view over sections selected by this governed
+policy. It may be aggregated by curriculum owner or by the separate
+workforce-attribution method, but neither report changes the underlying LLC
+designation or subject ownership. A nonblank unrecognized value does not make
+a section LLC instruction, and a section with several governed tokens
+contributes its SCH only once.

@@ -47,7 +47,9 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 30. [Faculty Identity Match Review](29_faculty_identity_match_review.md)
 31. [LLC Designation Governance](30_llc_designation_governance.md)
 32. [Undergraduate Major Registry](31_undergraduate_major_registry.md)
-33. [Architecture FAQ](ArchitectureFAQ.md)
+33. [Undergraduate Major Capstones](32_undergraduate_major_capstones.md)
+34. [Estimated Graduates by Major](33_estimated_graduates.md)
+35. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

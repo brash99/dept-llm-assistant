@@ -44,6 +44,18 @@ The [Architecture Book](architecture/README.md) describes enduring design commit
 - [Research Agenda](ResearchAgenda.md) — planned and aspirational research.
 - [Editorial Roadmap](EDITORIAL_ROADMAP.md)
 
+## Dated design and audit records
+
+- [Academic Workforce Planning Semantic Model](archive/design/ACADEMIC_WORKFORCE_PLANNING_SEMANTIC_MODEL.md)
+  — pre-implementation August milestone design.
+- [AI Engineering Context](archive/development_context/AI_ENGINEERING_CONTEXT.md)
+  — July 21 engineering-onboarding snapshot.
+- [KnowledgeObject Ontology Audit](archive/audits/KNOWLEDGE_OBJECT_ONTOLOGY_AUDIT.md)
+  — repository audit dated July 20.
+
+These records explain how the implementation developed. They are not current
+status or operating instructions.
+
 ## Historical records
 
 The files under `sessions/`, `experiments/`, and

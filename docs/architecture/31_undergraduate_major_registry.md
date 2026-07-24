@@ -30,4 +30,9 @@ The object is deliberately ready for later governed relationships:
 
 `Department → owns → Major → requires → Capstone → offered_as → Section`
 
-Capstone extraction and those relationships are not part of this registry.
+Capstone requirements remain outside this registry so that major identity and
+ownership facts are not conflated with curriculum requirements. The separate
+[Undergraduate Major Capstone Registry](32_undergraduate_major_capstones.md)
+now governs those relationships, and
+[Estimated Graduates](33_estimated_graduates.md) derives a bounded
+capstone-enrollment proxy from them.

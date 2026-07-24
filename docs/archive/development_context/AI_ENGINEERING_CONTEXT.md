@@ -1,5 +1,12 @@
 # ISO AI Engineering Context
 
+> **Status:** Historical engineering-onboarding snapshot from July 21, 2026.
+> It predates the reviewed analytical workforce, completed Department
+> Profiles, SCH services, LLC governance, and major/capstone observables. Use
+> the repository `AGENTS.md`, [Current Status](../../status.md),
+> [Architecture Book](../../architecture/README.md), and
+> [Operations](../../operations/) for current guidance.
+
 This is the canonical engineering onboarding guide for the Institutional
 Semantic Observatory (ISO). Read it before changing the repository. It is an
 implementation-oriented map of the current system, not a product overview or
@@ -11,9 +18,10 @@ The canonical production checkout is:
 /work/brash/dept-llm-assistant
 ```
 
-Local macOS checkouts are useful for editing and deterministic tests, but they
-do not contain the production corpus, FAISS index, GPU runtime, or local LLM by
-default.
+Local macOS checkouts are useful for editing and deterministic tests. Governed
+normalized evidence may be tracked locally, but it must not be assumed
+identical to the current A100 production state. A Mac normally lacks the
+production FAISS index, GPU runtime, and local LLM endpoint.
 
 ### Read these files first
 
@@ -184,10 +192,9 @@ these documents as the decision record:
   acquisition design.
 - `docs/architecture/ArchitectureFAQ.md` — recurring boundary questions.
 
-If future work creates `docs/ARCHITECTURE_HISTORY.md` or a formal ADR
-directory, it should record why major contracts changed and link to the commit
-or benchmark that motivated each change. That file does not currently exist;
-do not cite it as an authority until it is intentionally added.
+If future work creates a formal architecture-history document or ADR directory,
+it should record why major contracts changed and link to the commit or
+benchmark that motivated each change.
 
 ## 4. Core Architectural Principles
 

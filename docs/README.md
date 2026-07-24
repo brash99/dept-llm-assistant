@@ -46,6 +46,10 @@ The [Architecture Book](architecture/README.md) describes enduring design commit
 
 ## Historical records
 
-The files under `sessions/`, `experiments/`, and the repository-root `Department_LLM_Assistant_Phase_II_Context.txt` record earlier development states. They may contain superseded phase terminology, commands, paths, or planned capabilities. They are retained as a laboratory notebook and are not operational instructions. See [Session archive](sessions/README.md).
+The files under `sessions/`, `experiments/`, and
+`archive/development_context/` record earlier development states. They may
+contain superseded phase terminology, commands, paths, or planned
+capabilities. They are retained as a laboratory notebook and are not
+operational instructions. See [Session archive](sessions/README.md).
 
 Files under `presentations/` are also milestone artifacts; see the [Presentation Archive](presentations/README.md).

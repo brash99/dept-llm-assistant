@@ -49,7 +49,9 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 32. [Undergraduate Major Registry](31_undergraduate_major_registry.md)
 33. [Undergraduate Major Capstones](32_undergraduate_major_capstones.md)
 34. [Estimated Graduates by Major](33_estimated_graduates.md)
-35. [Architecture FAQ](ArchitectureFAQ.md)
+35. [Institutional Ontology and Explainable Reasoning](40_contribution_ontology.md)
+36. [Contribution Ontology Contracts](41_contribution_ontology_contracts.md)
+37. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

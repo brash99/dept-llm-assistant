@@ -13,7 +13,7 @@ from app.institutional_units import AcademicUnitRegistry
 
 
 ALGORITHM = "faculty_delivered_sch_comparison"
-ALGORITHM_VERSION = "1.1"
+ALGORITHM_VERSION = "1.2"
 DEFAULT_ACADEMIC_YEARS = ("2022-23", "2023-24", "2024-25")
 QUENTIN_DEPARTMENT_CODES = {
     "ACFN": "academic_unit:department_accounting_finance",
@@ -88,6 +88,7 @@ class SectionSCHAttribution:
     term: str
     subject: str
     course_code: str
+    llc_area_raw: str | None
     governed_prefix_owner_unit_id: str | None
     workforce_attributed_unit_id: str | None
     attribution_method: str
@@ -102,6 +103,7 @@ class SectionSCHAttribution:
 class FacultyDeliveredSCHReport:
     academic_years: tuple[str, ...]
     fall_only: bool
+    llc_only: bool
     aggregation: str
     rows: tuple[DepartmentSCHComparison, ...]
     section_attributions: tuple[SectionSCHAttribution, ...]
@@ -127,6 +129,7 @@ class FacultyDeliveredSCHReport:
             },
             "academic_years": list(self.academic_years),
             "fall_only": self.fall_only,
+            "llc_only": self.llc_only,
             "aggregation": self.aggregation,
             "rows": [item.to_dict() for item in self.rows],
             "section_attributions": [
@@ -146,6 +149,7 @@ def build_faculty_delivered_sch_comparison(
     *,
     academic_years: Iterable[str] = DEFAULT_ACADEMIC_YEARS,
     fall_only: bool = False,
+    llc_only: bool = False,
 ) -> FacultyDeliveredSCHReport:
     """Compare three-year average ownership SCH with faculty-delivery SCH."""
     years = tuple(academic_years)
@@ -156,6 +160,7 @@ def build_faculty_delivered_sch_comparison(
             not fall_only
             or academic_term_order(row["term"]).period == "fall"
         )
+        and (not llc_only or bool(str(row.get("llc_area_raw") or "").strip()))
     )
     section_groups: dict[str, list[Mapping[str, Any]]] = {}
     for row in selected:
@@ -193,6 +198,9 @@ def build_faculty_delivered_sch_comparison(
             term=str(merged["term"]),
             subject=str(merged["subject"]),
             course_code=str(merged["course_code"]),
+            llc_area_raw=(
+                str(merged.get("llc_area_raw") or "").strip() or None
+            ),
             governed_prefix_owner_unit_id=owner,
             workforce_attributed_unit_id=attributed,
             attribution_method=method,
@@ -263,6 +271,7 @@ def build_faculty_delivered_sch_comparison(
     semantic = {
         "academic_years": years,
         "fall_only": fall_only,
+        "llc_only": llc_only,
         "aggregation": "mean_annual_sch",
         "rows": [item.to_dict() for item in results],
         "section_attributions": [item.to_dict() for item in attributions],
@@ -272,7 +281,8 @@ def build_faculty_delivered_sch_comparison(
         "multi_home_section_count": multi_home,
     }
     return FacultyDeliveredSCHReport(
-        years, fall_only, "mean_annual_sch", tuple(results), tuple(attributions),
+        years, fall_only, llc_only, "mean_annual_sch", tuple(results),
+        tuple(attributions),
         pathway_counts, pathway_sch, unassigned, multi_home,
         _fingerprint(semantic),
     )
@@ -296,31 +306,58 @@ def compare_with_quentin(
         ) or by_unit.get(QUENTIN_DEPARTMENT_CODES.get(name.upper(), "")) or by_name.get(
             name.casefold()
         )
+        if row is None and name.upper() in {
+            "HONOR & IDST", "HONORS & IDST", "HONR & IDST"
+        }:
+            subjects = {"HONR", "IDST"}
+            values = tuple(
+                item for item in report.section_attributions
+                if item.subject in subjects
+            )
+            owned_metric = round(
+                sum(item.sch for item in values) / len(report.academic_years), 6
+            )
+            special_owner_ids = {
+                item.governed_prefix_owner_unit_id for item in values
+                if item.governed_prefix_owner_unit_id
+            }
+            attributed_metric = round(sum(
+                item.sch for item in values
+                if item.workforce_attributed_unit_id in special_owner_ids
+            ) / len(report.academic_years), 6)
+            output.append(_comparison_row(
+                "Honors and IDST", name, metric,
+                owned_metric, attributed_metric,
+            ))
+            continue
         if row is None:
             raise ValueError(f"Quentin department has no ISO profile: {name}")
-        output.append({
-            "Department": row.department_name,
-            "Quentin Department Code": name,
-            "Quentin SCH": metric,
-            "Governed-Prefix-Owned SCH": row.governed_prefix_owned_sch,
-            "Workforce-Attributed SCH": row.workforce_attributed_sch,
-            "Difference (Governed - Quentin)": round(
-                row.governed_prefix_owned_sch - metric, 6
-            ),
-            "Difference (Workforce-Attributed - Quentin)": round(
-                row.workforce_attributed_sch - metric, 6
-            ),
-            "Absolute Difference Improvement": round(
-                abs(row.governed_prefix_owned_sch - metric)
-                - abs(row.workforce_attributed_sch - metric),
-                6,
-            ),
-            "Percent Difference (Workforce-Attributed)": (
-                round(100 * (row.workforce_attributed_sch - metric) / metric, 6)
-                if metric else None
-            ),
-        })
+        output.append(_comparison_row(
+            row.department_name, name, metric,
+            row.governed_prefix_owned_sch, row.workforce_attributed_sch,
+        ))
     return tuple(sorted(output, key=lambda item: item["Department"].casefold()))
+
+
+def _comparison_row(department, code, quentin, owned, attributed):
+    return {
+        "Department": department,
+        "Quentin Department Code": code,
+        "Quentin SCH": quentin,
+        "Governed-Prefix-Owned SCH": owned,
+        "Workforce-Attributed SCH": attributed,
+        "Difference (Governed - Quentin)": round(owned - quentin, 6),
+        "Difference (Workforce-Attributed - Quentin)": round(
+            attributed - quentin, 6
+        ),
+        "Absolute Difference Improvement": round(
+            abs(owned - quentin) - abs(attributed - quentin), 6
+        ),
+        "Percent Difference (Workforce-Attributed)": (
+            round(100 * (attributed - quentin) / quentin, 6)
+            if quentin else None
+        ),
+    }
 
 
 def _sch(rows: Iterable[Mapping[str, Any]]) -> float:

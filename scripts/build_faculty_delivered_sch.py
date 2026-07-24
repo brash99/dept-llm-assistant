@@ -33,6 +33,11 @@ def main(argv=None):
     parser.add_argument("--academic-year", action="append", dest="academic_years")
     parser.add_argument("--fall-only", action="store_true")
     parser.add_argument(
+        "--llc-only",
+        action="store_true",
+        help="Include only sections with a nonblank published LLC designation.",
+    )
+    parser.add_argument(
         "--quentin-table", type=Path,
         help="Optional CSV with exact columns: Department, Quentin SCH.",
     )
@@ -66,6 +71,7 @@ def main(argv=None):
         profiles, rows,
         academic_years=args.academic_years or DEFAULT_ACADEMIC_YEARS,
         fall_only=args.fall_only,
+        llc_only=args.llc_only,
     )
     args.output_dir.mkdir(parents=True, exist_ok=True)
     payload = report.to_dict()
@@ -97,6 +103,7 @@ def main(argv=None):
         _csv(args.output_dir / "faculty_delivered_sch_vs_quentin.csv", comparison)
         quentin_payload = {
             "scope": "fall_only" if report.fall_only else "all_academic_year_terms",
+            "llc_only": report.llc_only,
             "academic_years": list(report.academic_years),
             "rows": comparison,
             "totals": _quentin_totals(comparison),
@@ -108,6 +115,18 @@ def main(argv=None):
         (args.output_dir / "faculty_delivered_sch_vs_quentin.md").write_text(
             _quentin_markdown(quentin_payload), encoding="utf-8"
         )
+        if report.llc_only:
+            _csv(
+                args.output_dir / "faculty_delivered_llc_sch_vs_quentin.csv",
+                comparison,
+            )
+            _json(
+                args.output_dir / "faculty_delivered_llc_sch_vs_quentin.json",
+                quentin_payload,
+            )
+            (
+                args.output_dir / "faculty_delivered_llc_sch_vs_quentin.md"
+            ).write_text(_quentin_markdown(quentin_payload), encoding="utf-8")
         quentin_status = "generated"
     else:
         _json(args.output_dir / "faculty_delivered_sch_vs_quentin.json", {
@@ -119,6 +138,7 @@ def main(argv=None):
         "department_count": len(report.rows),
         "academic_years": list(report.academic_years),
         "fall_only": report.fall_only,
+        "llc_only": report.llc_only,
         "quentin_comparison": quentin_status,
         "deterministic_fingerprint": report.deterministic_fingerprint,
     }, indent=2, sort_keys=True))
@@ -155,6 +175,8 @@ def _csv(path, rows):
 
 def _markdown(report):
     scope = "Fall semesters only" if report.fall_only else "All terms in each academic year"
+    if report.llc_only:
+        scope += "; nonblank published LLC designation only"
     lines = [
         "# Department Curriculum-Owned and Workforce-Attributed SCH", "",
         f"- Academic years: {', '.join(report.academic_years)}",
@@ -248,8 +270,12 @@ def _attribution_by_term_markdown(rows):
 
 
 def _quentin_markdown(payload):
+    llc_only = payload.get("llc_only", False)
     lines = [
-        "# Fall-Only Quentin SCH Comparison", "",
+        (
+            "# Fall-Only Quentin LLC SCH Comparison"
+            if llc_only else "# Fall-Only Quentin SCH Comparison"
+        ), "",
         f"- Academic years: {', '.join(payload['academic_years'])}",
         "- Each value is the mean of Fall 2022, Fall 2023, and Fall 2024.",
         "- Curriculum ownership remains governed by course prefix.",

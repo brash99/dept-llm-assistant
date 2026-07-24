@@ -11,15 +11,19 @@ def _profile(unit, name):
     return {"academic_unit_id": unit, "department_name": name}
 
 
-def _row(identifier, owner, home, enrollment, term="2022_fall"):
+def _row(
+    identifier, owner, home, enrollment, term="2022_fall", llc_area_raw=None,
+    subject="TEST",
+):
     return {
         "observation_id": identifier,
         "section_key": f"{term}|{identifier}",
         "term": term,
         "owned_unit_id": owner,
         "home_unit_id": home,
-        "subject": "TEST",
-        "course_code": "TEST 101",
+        "subject": subject,
+        "course_code": f"{subject} 101",
+        "llc_area_raw": llc_area_raw,
         "credits": 3,
         "enrollment": enrollment,
         "instructor_raw": "Fixture Instructor",
@@ -194,3 +198,58 @@ def test_attribution_strategy_is_reported_for_each_term():
         "No Active Workforce Home Sections": 1,
         "Multiple Active Workforce Homes Sections": 0,
     },)
+
+
+def test_llc_scope_requires_only_a_nonblank_published_designation():
+    report = build_faculty_delivered_sch_comparison(
+        (_profile("department:english", "English"),),
+        (
+            _row(
+                "llc", "department:english", "department:english", 10,
+                llc_area_raw="AIWT, GE, LETR",
+            ),
+            _row(
+                "blank", "department:english", "department:english", 20,
+                llc_area_raw="",
+            ),
+            _row(
+                "none", "department:english", "department:english", 30,
+                llc_area_raw=None,
+            ),
+        ),
+        academic_years=("2022-23",),
+        fall_only=True,
+        llc_only=True,
+    )
+    assert report.llc_only is True
+    assert report.rows[0].governed_prefix_owned_sch == 30
+    assert report.rows[0].workforce_attributed_sch == 30
+    assert len(report.section_attributions) == 1
+    assert report.section_attributions[0].llc_area_raw == "AIWT, GE, LETR"
+
+
+def test_honors_and_idst_are_an_explicit_combined_quentin_bucket():
+    report = build_faculty_delivered_sch_comparison(
+        (_profile("department:english", "English"),),
+        (
+            _row(
+                "honors-home", "program:honors", "department:english", 10,
+                llc_area_raw="HON", subject="HONR",
+            ),
+            _row(
+                "idst-fallback", "unit:provost", None, 20,
+                llc_area_raw="AIII", subject="IDST",
+            ),
+        ),
+        academic_years=("2022-23",),
+        fall_only=True,
+        llc_only=True,
+    )
+    comparison = compare_with_quentin(
+        report, ({"Department": "HONOR & IDST", "Quentin SCH": "75"},)
+    )
+    assert comparison[0]["Department"] == "Honors and IDST"
+    assert comparison[0]["Governed-Prefix-Owned SCH"] == 90
+    assert comparison[0]["Workforce-Attributed SCH"] == 60
+    assert comparison[0]["Difference (Governed - Quentin)"] == 15
+    assert comparison[0]["Difference (Workforce-Attributed - Quentin)"] == -15

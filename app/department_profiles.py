@@ -313,6 +313,7 @@ def _schedule_row(item, schedule_identity, home, mapper):
         "subject_mapping_status": mapping.status,
         "subject_mapping_review_status": mapping.review_status,
         "credits": item.get("credits"), "enrollment": item.get("enrollment"),
+        "llc_area_raw": item.get("llc_area_raw"),
         "credits_raw": item.get("credits_raw"),
         "published_credit_values": tuple(
             (item.get("credits_assertion") or {}).get("published_values") or ()

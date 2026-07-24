@@ -1,0 +1,353 @@
+{
+  "id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 402 Section 3 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: SOWK 402\nSection: 3\nTitle: WI: Field Instruction II\nCRN: 8165",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa",
+          "published_name": "SOWK 402 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa",
+                "published_name": "SOWK 402 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d9df6fd5eda8e2273c2178eaea38a5365b7f398a983eeebb917560936d4b6576"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4879,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "5c2c5bc2a18097ce423215b6bb1ecab4c992697345ee4326a033ee10877a0daa",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4879,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "SOWK",
+  "course_number": "402",
+  "course_code": "SOWK 402",
+  "course_title": "WI: Field Instruction II",
+  "section": "3",
+  "crn": "8165",
+  "instructor_name": "Jill Russett",
+  "instructor_raw": "Jill Russett",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "d21ec3b8fca521d85e2b772e7d36ba73b0439102363e9813a107f2f98d0f5f96",
+        "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344",
+        "16c5f9b7db1e5c2dada64f9a1a3072d5d716d8f74e6bc4f1f335dc3d0689ec91"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Field Instruction II"
+    ],
+    "normalized_value": "WI: Field Instruction II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "6"
+    ],
+    "normalized_value": "6",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Fie",
+  "meeting_pattern": "W 1200-1350",
+  "meeting_days": "W",
+  "meeting_time_raw": "1200-1350",
+  "start_time": "12:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2088",
+  "building": null,
+  "room": null,
+  "credits": 6,
+  "credits_raw": "6",
+  "enrollment": 6,
+  "capacity": 8,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "WI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "W",
+      "time_published": "1200-1350",
+      "location_published": "Forbes Hall 2088",
+      "source_rows": [
+        4879,
+        7469
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "726664e625e0ea64eff77617e747e01a78737f94a859d465b1dfc3e93f22bb26",
+    "source_row_hashes": [
+      "9be238b6861bff9945274f7ec0b68f280037712a2a95f41263f19cff8c4aa3a4",
+      "66acf0686294f67166fdff17e5042214356f04e07156d6074d927129ed682cb2"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4879,
+    "source_rows": [
+      4879,
+      7469
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8165",
+    "Course": "SOWK 402",
+    "Section": "3",
+    "Title": "WI: Field Instruction II",
+    "Hours": "6",
+    "Area of LLC": "WI",
+    "Type": "Fie",
+    "Days": "W",
+    "Time": "1200-1350",
+    "Location": "Forbes Hall 2088",
+    "Instructor": "Jill Russett",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "8",
+    "Enrolled": "6",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    4879,
+    7469
+  ],
+  "raw_records": [
+    {
+      "CRN": "8165",
+      "Course": "SOWK 402",
+      "Section": "3",
+      "Title": "WI: Field Instruction II",
+      "Hours": "6",
+      "Area of LLC": "WI",
+      "Type": "Fie",
+      "Days": "W",
+      "Time": "1200-1350",
+      "Location": "Forbes Hall 2088",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "6",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8165",
+      "Course": "SOWK 402",
+      "Section": "3",
+      "Title": "WI: Field Instruction II",
+      "Hours": "6",
+      "Area of LLC": "WI",
+      "Type": "Fie",
+      "Days": "W",
+      "Time": "1200-1350",
+      "Location": "Forbes Hall 2088",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "6",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

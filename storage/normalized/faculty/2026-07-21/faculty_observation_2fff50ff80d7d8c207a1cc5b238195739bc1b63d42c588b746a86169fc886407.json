@@ -1,0 +1,405 @@
+{
+  "id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+  "object_type": "faculty_observation",
+  "title": "Akib Khan",
+  "text": "Faculty directory observation\nName: Akib Khan\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+          "published_name": "Akib Khan"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+                "published_name": "Akib Khan"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "952f72a78b3d95f42b068f489209fb091ef329573e4e407c84c8ad5c96877a7f"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+                "published_name": "Akib Khan"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "76ec93d91d441d03d0f28d5ab7d99b9288089e177698253b062f3a1f45fd1dcc"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_akibzabedkhan.html",
+    "url": "https://cnu.edu/faculty/akibzabedkhan.html",
+    "content_hash": "eacf84f9418238840905ee49683765161a94c77f8eea017f6d408c917c9b8a20"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "2fff50ff80d7d8c207a1cc5b238195739bc1b63d42c588b746a86169fc886407",
+  "display_name": "Akib Khan",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Akib Khan",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "akibzabed.khan@cnu.edu",
+  "phone": "(757) 5947569-",
+  "office": "Luter Hall 344",
+  "profile_url": "https://cnu.edu/faculty/akibzabedkhan.html",
+  "biography": "I am Md Akib Zabed Khan, an Assistant Professor of the School of Engineering and Computing at Christopher Newport University (CNU), Newport News, VA, USA. I received my Ph.D. in Computer Science from the Knight Foundation School of Computing and Information Sciences at Florida International University, Miami, FL, USA, in August 2025. I completed my M.Sc. and B.Sc. in Computer Science and Engineering from Jahangirnagar University, Dhaka, Bangladesh, in 2019 and 2018, respectively. I also worked as a Lecturer in two different universities in Bangladesh for three years (2019 - 2021). I taught different undergraduate courses in the Computer Science Department.",
+  "education_entries": [
+    "Ph D in Computer Science, Florida International University",
+    "MS in Computer Science and Engineering, Jahangirnager University",
+    "BS in Computer Science and Engineering, Jahangirnager University"
+  ],
+  "research_interests": "My research interests include Educational Data Mining, Learning Analytics, Machine Learning, Deep Learning, Natural Language Processing, and Artificial Intelligence (AI). I utilize real-world educational data to design AI-driven models that improve student learning experiences and academic outcomes.",
+  "teaching_interests": "Programming Languages (C, C++, Java, Python), Data Structure, Algorithms, Database Systems, Machine Learning, Data Mining, Artificial Intelligence, Software Engineering.",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Akib Khan",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 344"
+    ],
+    "Phone": "(757) 5947569-",
+    "Email": "akibzabed.khan@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Computer Science, Florida International University",
+      "MS in Computer Science and Engineering, Jahangirnager University",
+      "BS in Computer Science and Engineering, Jahangirnager University"
+    ],
+    "Biography": "I am Md Akib Zabed Khan, an Assistant Professor of the School of Engineering and Computing at Christopher Newport University (CNU), Newport News, VA, USA. I received my Ph.D. in Computer Science from the Knight Foundation School of Computing and Information Sciences at Florida International University, Miami, FL, USA, in August 2025. I completed my M.Sc. and B.Sc. in Computer Science and Engineering from Jahangirnagar University, Dhaka, Bangladesh, in 2019 and 2018, respectively. I also worked as a Lecturer in two different universities in Bangladesh for three years (2019 - 2021). I taught different undergraduate courses in the Computer Science Department.",
+    "Teaching": "Programming Languages (C, C++, Java, Python), Data Structure, Algorithms, Database Systems, Machine Learning, Data Mining, Artificial Intelligence, Software Engineering.",
+    "Research": "My research interests include Educational Data Mining, Learning Analytics, Machine Learning, Deep Learning, Natural Language Processing, and Artificial Intelligence (AI). I utilize real-world educational data to design AI-driven models that improve student learning experiences and academic outcomes."
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_akibzabedkhan.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_akibzabedkhan.html",
+  "raw_acquisition_hash": "eacf84f9418238840905ee49683765161a94c77f8eea017f6d408c917c9b8a20",
+  "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/akibzabedkhan.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_akibzabedkhan.html",
+    "source_sha256": "eacf84f9418238840905ee49683765161a94c77f8eea017f6d408c917c9b8a20",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

@@ -30,6 +30,18 @@ class ImpactSummary:
     def narrative(self) -> str:
         """Produce a deterministic, non-LLM interpretation."""
 
+        if self.total_relationships == 0:
+            return (
+                f"{self.entity.name} currently has no direct relationships "
+                "represented in the institutional topology."
+            )
+
+        def count_phrase(count: int, direction: str) -> str:
+            if count == 0:
+                return f"no represented {direction} relationships"
+            word = "relationship" if count == 1 else "relationships"
+            return f"{count} represented {direction} {word}"
+
         functions: list[str] = []
 
         if self.supports:
@@ -38,28 +50,22 @@ class ImpactSummary:
         if self.contributes_to:
             functions.append("university-wide curricular functions")
 
-        if not functions:
-            return (
-                f"{self.entity.name} currently has no direct relationships "
-                "represented in the institutional topology."
-            )
-
-        if len(functions) == 1:
-            participation = functions[0]
-        else:
-            participation = f"{functions[0]} and {functions[1]}"
-
         review_areas = sorted(
             set(self.supports)
             | set(self.contributes_to)
+            | set(self.supported_by)
+            | set(self.contributed_to_by)
         )
 
         narrative = (
-            f"{self.entity.name} participates in {participation}. "
-            f"The current topology records {self.total_relationships} direct "
-            f"institutional relationship"
-            f"{'' if self.total_relationships == 1 else 's'}."
+            f"{self.entity.name} has "
+            f"{count_phrase(self.incoming_relationships, 'incoming')} and "
+            f"{count_phrase(self.outgoing_relationships, 'outgoing')}."
         )
+
+        if functions:
+            participation = " and ".join(functions)
+            narrative += f" It participates in {participation}."
 
         if review_areas:
             narrative += (

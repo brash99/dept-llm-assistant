@@ -1,0 +1,411 @@
+{
+  "id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+  "object_type": "faculty_observation",
+  "title": "Nathan Mecham",
+  "text": "Faculty directory observation\nName: Nathan Mecham\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+          "published_name": "Nathan Mecham"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+                "published_name": "Nathan Mecham"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Accounting and Finance",
+                "published_name": "Accounting and Finance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "078bb89ff1687da66d88ea7fbd82dfd933ea4770c922eb97ca6f2fb609e5ed83"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+                "published_name": "Nathan Mecham"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "ea5fdbbe2f121a568b10a224107bbbff19a9a3947dd1da917d1b2cf87b8cfc68"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_nathanmecham.html",
+    "url": "https://cnu.edu/faculty/nathanmecham.html",
+    "content_hash": "fc56b581d46cb727726df392a515abf55428ed0963341f42287fbccc9429f433"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "4aca8bd11a6f45c0347b84f420a466cf6469297bdc194f0733385a81b2d0a535",
+  "display_name": "Nathan Mecham",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Nathan Mecham",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "Accounting and Finance",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "Accounting and Finance",
+      "url": "https://cnu.edu/academics/departments/accountingfinance/"
+    },
+    {
+      "label": "Luter School of Business",
+      "url": "https://cnu.edu/academics/departments/business/index.html"
+    }
+  ],
+  "email": "nathan.mecham@cnu.edu",
+  "phone": null,
+  "office": "Luter Hall 136",
+  "profile_url": "https://cnu.edu/faculty/nathanmecham.html",
+  "biography": "I am an Assistant Professor of Accounting at the Christopher Newport University. I received both my Masters and Bachelors in Accounting from Brigham Young University and my PhD in Accounting from the University of Pittsburgh.",
+  "education_entries": [
+    "Ph D in Business Administration/Accounting, University of Pittsburgh",
+    "BS in Accounting/Economics, Brigham Young University",
+    "M Acc in Accounting, Brigham Young University"
+  ],
+  "research_interests": "Relative Performance Information Employee Performance Incentive Systems Goals",
+  "teaching_interests": "Managerial Accounting Financial Accounting Data Analytics",
+  "publications": [
+    "Journal Article, Academic Journal (2021). The effects of pornography on unethical behavior in business. . Journal of Business Ethics. Volume, 168. Pages, 37-54.",
+    "Journal Article, Academic Journal (2019). Ranking accounting journals by topical area and methodology . Journal of Information Systems. Volume, 33. Issue, 2. Pages, 1-22."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Nathan Mecham",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 136"
+    ],
+    "Email": "nathan.mecham@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Accounting and Finance",
+        "url": "https://cnu.edu/academics/departments/accountingfinance/"
+      },
+      {
+        "label": "Luter School of Business",
+        "url": "https://cnu.edu/academics/departments/business/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Business Administration/Accounting, University of Pittsburgh",
+      "BS in Accounting/Economics, Brigham Young University",
+      "M Acc in Accounting, Brigham Young University"
+    ],
+    "Biography": "I am an Assistant Professor of Accounting at the Christopher Newport University. I received both my Masters and Bachelors in Accounting from Brigham Young University and my PhD in Accounting from the University of Pittsburgh.",
+    "Teaching": "Managerial Accounting Financial Accounting Data Analytics",
+    "Research": "Relative Performance Information Employee Performance Incentive Systems Goals",
+    "Publications": [
+      "Journal Article, Academic Journal (2021). The effects of pornography on unethical behavior in business. . Journal of Business Ethics. Volume, 168. Pages, 37-54.",
+      "Journal Article, Academic Journal (2019). Ranking accounting journals by topical area and methodology . Journal of Information Systems. Volume, 33. Issue, 2. Pages, 1-22."
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_nathanmecham.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_nathanmecham.html",
+  "raw_acquisition_hash": "fc56b581d46cb727726df392a515abf55428ed0963341f42287fbccc9429f433",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/nathanmecham.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_nathanmecham.html",
+    "source_sha256": "fc56b581d46cb727726df392a515abf55428ed0963341f42287fbccc9429f433",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

@@ -1,0 +1,68 @@
+schema_version: 1
+schema_id: cnu.authoritative_faculty_roster.v1
+description: >-
+  Source-column contract for future authoritative HR or Academic Affairs
+  faculty rosters. Configuration maps published columns to canonical facts;
+  it does not supply missing values or denominator eligibility.
+
+required_fields:
+  - institutional_person_identifier
+  - published_person_name
+  - employment_status
+  - appointment_category
+  - appointment_academic_unit
+  - source_authority
+  - source_record_id
+
+required_temporal_alternatives:
+  - effective_date
+  - snapshot_date
+
+recommended_fields:
+  - appointment_fte
+  - instructional_fte
+  - administrative_fte
+  - faculty_rank
+  - tenure_status
+  - primary_secondary
+  - position_number
+  - home_department
+  - effective_end_date
+
+optional_fields:
+  - email
+  - preferred_name
+  - legal_name
+  - hire_date
+  - retirement_date
+  - notes
+
+column_aliases:
+  institutional_person_identifier: [institutional_person_identifier, person_id, employee_id]
+  published_person_name: [published_person_name, employee_name, faculty_name, name]
+  effective_date: [effective_date, appointment_effective_date]
+  snapshot_date: [snapshot_date, as_of_date]
+  employment_status: [employment_status, employee_status]
+  appointment_category: [appointment_category, appointment_type]
+  appointment_academic_unit: [appointment_academic_unit, academic_unit, department]
+  source_authority: [source_authority]
+  source_record_id: [source_record_id, record_id]
+  appointment_fte: [appointment_fte]
+  instructional_fte: [instructional_fte, teaching_fte]
+  administrative_fte: [administrative_fte, admin_fte]
+  faculty_rank: [faculty_rank, rank]
+  tenure_status: [tenure_status]
+  primary_secondary: [primary_secondary, appointment_priority]
+  position_number: [position_number, position_id]
+  home_department: [home_department]
+  effective_end_date: [effective_end_date, end_date]
+  email: [email, institutional_email]
+  preferred_name: [preferred_name]
+  legal_name: [legal_name]
+  hire_date: [hire_date]
+  retirement_date: [retirement_date]
+  notes: [notes]
+
+date_format: YYYY-MM-DD
+fte_minimum: 0.0
+fte_maximum: 1.0

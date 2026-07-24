@@ -1,0 +1,347 @@
+{
+  "id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SPAN 352 Section 1 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: SPAN 352\nSection: 1\nCRN: 9124",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da",
+          "published_name": "SPAN 352 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da",
+                "published_name": "SPAN 352 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9ea218acf23b10588b0ebf82b5ea6eeb51d850c5f357f9139718b55fc216e3b8"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2365,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "444130ccbf2db22e6e974ed2426ea1ebf53998f1ea06bc08f5dcaa0bcbe4f9da",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2365,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "SPAN",
+  "course_number": "352",
+  "course_code": "SPAN 352",
+  "course_title": null,
+  "section": "1",
+  "crn": "9124",
+  "instructor_name": "Rocio Gordon",
+  "instructor_raw": "Rocio Gordon",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Power and Resistance",
+      "Intro to Latin-American Lit"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1200-1250",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1200-1250",
+  "start_time": "12:00",
+  "end_time": "12:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 314",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 16,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIGM, LLF, LLFL, XLAN",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1200-1250",
+      "location_published": "Lewis McMurran Hall 314",
+      "source_rows": [
+        2365,
+        7560
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "15683ef798142e4eb1882687218d0220f9e961af4f78ad265bab805504047d77",
+    "source_row_hashes": [
+      "c90130e3fedc62c285500f6fd3c99166b2e7f264b52336e61dda05c8c0f0f8bd",
+      "2cc5aad92398669e7150fdfdbbe0f13f4defb7103a874ba62e7c9e699b025ca7"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2365,
+    "source_rows": [
+      2365,
+      7560
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9124",
+    "Course": "SPAN 352",
+    "Section": "1",
+    "Title": "Power and Resistance",
+    "Hours": "3",
+    "Area of LLC": "AIGM, LLF, LLFL, XLAN",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1200-1250",
+    "Location": "Lewis McMurran Hall 314",
+    "Instructor": "Rocio Gordon",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "16",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    2365,
+    7560
+  ],
+  "raw_records": [
+    {
+      "CRN": "9124",
+      "Course": "SPAN 352",
+      "Section": "1",
+      "Title": "Power and Resistance",
+      "Hours": "3",
+      "Area of LLC": "AIGM, LLF, LLFL, XLAN",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Lewis McMurran Hall 314",
+      "Instructor": "Rocio Gordon",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "16",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "9124",
+      "Course": "SPAN 352",
+      "Section": "1",
+      "Title": "Intro to Latin-American Lit",
+      "Hours": "3",
+      "Area of LLC": "AIGM, LLF, LLFL, XLAN",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Lewis McMurran Hall 314",
+      "Instructor": "Rocio Gordon",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "16",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Power and Resistance",
+      "Intro to Latin-American Lit"
+    ]
+  }
+}

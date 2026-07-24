@@ -1,0 +1,411 @@
+{
+  "id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: IDST 255 Section 2 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: IDST 255\nSection: 2\nCRN: 8863",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21",
+          "published_name": "IDST 255 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21",
+                "published_name": "IDST 255 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b813f238a69d3d89eca78b1d89847d7c6c736d33db3a892f4be001856b1dc375"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6154,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "db8a2942c084751c3ee571425eabaffc081dc6dfa32a6a724824da09d27e2f21",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6154,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "IDST",
+  "course_number": "255",
+  "course_code": "IDST 255",
+  "course_title": null,
+  "section": "2",
+  "crn": "8863",
+  "instructor_name": "Laura Puaca",
+  "instructor_raw": "Laura Puaca",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "b54350bed3b6f358fa22fcbfcb1e2ba509d78835963ed4495aafd82f9baf97ff",
+        "507e8a59ae34a12d00f65d0c17f1bb21c6b7c32577f7ce190bb784e457917002",
+        "d549365e59b29e53a2680244f084d7a3d80a68e94b1243404a02716234fa4e85"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Intro Women, Gender & Sexualty",
+      "Intro to Women's & Gender Stud"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "926710fbaac75b76451c26cdb41b8d1a37213a3cc71cb6b8d0a1cd9164aae989"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2012",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIGM, AIII",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Forbes Hall 2012",
+      "source_rows": [
+        6154,
+        8803,
+        16792,
+        16793
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "c493d622b8556ffcfa6ea8053f5831ff395b89816505116c11e205618544c32b",
+    "source_row_hashes": [
+      "765b91626444882cc317df46d88442af13ea046621eb30657145263bb7ab4fae",
+      "5257de196c80c1f1117b79d4027456a63cb918b91bab061a97e7955f9643811a",
+      "835687f6a7fefdadc375302943a92eae37e8056442bf19fe9250c9c2a8da74df",
+      "61c9b5529171e78c89bbdaac0f4a814ca2ee010fedd023a9c3ea49fb06555e41"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6154,
+    "source_rows": [
+      6154,
+      8803,
+      16792,
+      16793
+    ],
+    "source_row_count": 4,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8863",
+    "Course": "IDST 255",
+    "Section": "2",
+    "Title": "Intro Women, Gender & Sexualty",
+    "Hours": "3",
+    "Area of LLC": "AIGM, AIII",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Forbes Hall 2012",
+    "Instructor": "Laura Puaca",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "18",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    6154,
+    8803,
+    16792,
+    16793
+  ],
+  "raw_records": [
+    {
+      "CRN": "8863",
+      "Course": "IDST 255",
+      "Section": "2",
+      "Title": "Intro Women, Gender & Sexualty",
+      "Hours": "3",
+      "Area of LLC": "AIGM, AIII",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2012",
+      "Instructor": "Laura Puaca",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "18",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8863",
+      "Course": "IDST 255",
+      "Section": "2",
+      "Title": "Intro to Women's & Gender Stud",
+      "Hours": "3",
+      "Area of LLC": "AIGM, AIII",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2012",
+      "Instructor": "Laura Puaca",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8863",
+      "Course": "IDST 255",
+      "Section": "2",
+      "Title": "Intro to Women's & Gender Stud",
+      "Hours": "3",
+      "Area of LLC": "AIGM, AIII",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2012",
+      "Instructor": "Laura Puaca",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "18",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8863",
+      "Course": "IDST 255",
+      "Section": "2",
+      "Title": "Intro Women, Gender & Sexualty",
+      "Hours": "3",
+      "Area of LLC": "AIGM, AIII",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2012",
+      "Instructor": "Laura Puaca",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Intro Women, Gender & Sexualty",
+      "Intro to Women's & Gender Stud"
+    ],
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

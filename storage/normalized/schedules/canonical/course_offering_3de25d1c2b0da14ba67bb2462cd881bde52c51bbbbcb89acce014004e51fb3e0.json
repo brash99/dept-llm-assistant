@@ -1,0 +1,357 @@
+{
+  "id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 499 Section 1 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: CHEM 499\nSection: 1\nTitle: Independent Study and Research\nCRN: 9322",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0",
+          "published_name": "CHEM 499 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0",
+                "published_name": "CHEM 499 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5e88a4f91e18141efd8161c10ff557ecf55e25500cba11288bba9148ca38d70c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 17803,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 17803,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "CHEM",
+  "course_number": "499",
+  "course_code": "CHEM 499",
+  "course_title": "Independent Study and Research",
+  "section": "1",
+  "crn": "9322",
+  "instructor_name": "Ronald Quinlan",
+  "instructor_raw": "Ronald Quinlan",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 6,
+      "supporting_observation_ids": [
+        "e830c7b72c391c5c8bf77cc9bca30fc24f8cd4ba9707f9ff538dfd84d1702be5",
+        "7c208bca1b23cb6d7566ddc73ef88315a754d60114d400a993f903efec0ea572",
+        "985924375bb129b3b8e1ef2b405e388ec974edffbbabb39c2cf1193fb766d90b",
+        "04979505e6c38e0cb1da46fe59d836ba36452b9c6613db50cf9489a9dd47a265",
+        "2a52c033fe5b23d75404f5e01e9feae527a653e626eeedf858c3650f30e164aa",
+        "0fcbe44863088e81f12d594c70177e78b1abf5bac792299d40a0c3e334e181a1"
+      ],
+      "supporting_terms": [
+        "2022_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Independent Study and Research"
+    ],
+    "normalized_value": "Independent Study and Research",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Ind",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 1,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        17803,
+        17804
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "1746057885f746971c793d42ee2930217d1c1d93d7b1d112143b21dcf58b1f4d",
+    "source_row_hashes": [
+      "a0d23d213ebd71b332be5041ef833a5e0f635806c7881f8cfdd8b8338f8a01d1",
+      "21f6d73fd3ed597dc9f361e2f4c4e0d0f0d6b70cca2689a4065b49fbcf2bcbd4"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 17803,
+    "source_rows": [
+      17803,
+      17804
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9322",
+    "Course": "CHEM 499",
+    "Section": "1",
+    "Title": "Independent Study and Research",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Ind",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "Ronald Quinlan",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "1",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    17803,
+    17804
+  ],
+  "raw_records": [
+    {
+      "CRN": "9322",
+      "Course": "CHEM 499",
+      "Section": "1",
+      "Title": "Independent Study and Research",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Ind",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    },
+    {
+      "CRN": "9322",
+      "Course": "CHEM 499",
+      "Section": "1",
+      "Title": "Independent Study and Research",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Ind",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

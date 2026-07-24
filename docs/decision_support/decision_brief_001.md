@@ -1,5 +1,7 @@
 # Decision Brief 001
 
+> **Status:** Historical benchmark specification. It is not a sample of the current Dashboard V2 Decision Brief renderer or Academic Workforce Planning workflow.
+
 ## Objective
 
 Demonstrate the first complete institutional decision-support workflow.

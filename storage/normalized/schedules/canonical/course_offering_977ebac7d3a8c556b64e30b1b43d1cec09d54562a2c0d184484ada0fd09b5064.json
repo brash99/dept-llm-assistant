@@ -1,0 +1,316 @@
+{
+  "id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BUSN 448 Section 1 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: BUSN 448\nSection: 1\nTitle: Enterprise Management\nCRN: 8367",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064",
+          "published_name": "BUSN 448 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064",
+                "published_name": "BUSN 448 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "87477b3cc98e167423ee52a55522be43b1f10272a9d6f9c03f314a394dc452a2"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 13,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "977ebac7d3a8c556b64e30b1b43d1cec09d54562a2c0d184484ada0fd09b5064",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 13,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "BUSN",
+  "course_number": "448",
+  "course_code": "BUSN 448",
+  "course_title": "Enterprise Management",
+  "section": "1",
+  "crn": "8367",
+  "instructor_name": "Robert Wilson",
+  "instructor_raw": "Robert Wilson",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Enterprise Management"
+    ],
+    "normalized_value": "Enterprise Management",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0800-0915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0800-0915",
+  "start_time": "08:00",
+  "end_time": "09:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 105",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0800-0915",
+      "location_published": "Joseph W. Luter III Hall 105",
+      "source_rows": [
+        13
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "40b13308d091ddf2aeafe9af33b07c54d8ac770a305331cbf270b0b68c11af77",
+    "source_row_hashes": [
+      "61766539606d0523cd5bd4cac2163f87ace64fd706d8eecc410e0ec4b6f5200f"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 13,
+    "source_rows": [
+      13
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8367",
+    "Course": "BUSN 448",
+    "Section": "1",
+    "Title": "Enterprise Management",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0800-0915",
+    "Location": "Joseph W. Luter III Hall 105",
+    "Instructor": "Robert Wilson",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "19",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    13
+  ],
+  "raw_records": [
+    {
+      "CRN": "8367",
+      "Course": "BUSN 448",
+      "Section": "1",
+      "Title": "Enterprise Management",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0800-0915",
+      "Location": "Joseph W. Luter III Hall 105",
+      "Instructor": "Robert Wilson",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {}
+}

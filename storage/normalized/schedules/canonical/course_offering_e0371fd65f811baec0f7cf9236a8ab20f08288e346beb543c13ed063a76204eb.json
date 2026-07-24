@@ -1,0 +1,354 @@
+{
+  "id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 213 Section 2B (2023_fall)",
+  "text": "Academic term: 2023_fall\nCourse: BIOL 213\nSection: 2B\nTitle: Principles in Biology III\nCRN: 8117",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb",
+          "published_name": "BIOL 213 2B"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_fall",
+        "published_label": "Fall Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb",
+                "published_name": "BIOL 213 2B"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_fall",
+              "published_label": "Fall Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4b77d0ea375998e20030c290b40c0783749324fff16e7333c120f6bd7eb241cc"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3583,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e0371fd65f811baec0f7cf9236a8ab20f08288e346beb543c13ed063a76204eb",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3583,
+  "acquisition_date": null,
+  "academic_term": "2023_fall",
+  "academic_term_published": "Fall Semester 2023",
+  "subject": "BIOL",
+  "course_number": "213",
+  "course_code": "BIOL 213",
+  "course_title": "Principles in Biology III",
+  "section": "2B",
+  "crn": "8117",
+  "instructor_name": "Russ Burke",
+  "instructor_raw": "Russ Burke",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "2350817e3dcdf4585d2b06ce1d86c68fa2cfb0a7df9e7da68b1330d1aed9fe69",
+        "00034a8823d2f2796fdcc13644a6ea7523029ff3d17999f6f90ed3f49e9cea9b",
+        "3668fa77319db18cb0c545dc8e98a31fde34d07a37056fe9ac7cf71860292216",
+        "b2c4c1ed5e2fc94aec2e564ac7b5533a9ee6b4ce2223836b05ca8ce2ae94a1dc"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Principles in Biology III"
+    ],
+    "normalized_value": "Principles in Biology III",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 0900-0950",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2070D",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 17,
+  "capacity": 48,
+  "waitlist": null,
+  "seats_available": 31,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Forbes Hall 2070D",
+      "source_rows": [
+        3583,
+        6190
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "6d3b7fcf42b4244b30edb32b38ddbf821bd7254b11f4e04cd9b2a62c6e8ac1a9",
+    "source_row_hashes": [
+      "953c24f52b0ecb5efec1c33aa7d1159e5fc9b95dbd63ff8538be0ea5fbd88d93",
+      "1d1ee45c69be8d5266a4b70db3eb0172da06b9d00741023818de85269b4dcf8f"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3583,
+    "source_rows": [
+      3583,
+      6190
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8117",
+    "Course": "BIOL 213",
+    "Section": "2B",
+    "Title": "Principles in Biology III",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "0900-0950",
+    "Location": "Forbes Hall 2070D",
+    "Instructor": "Russ Burke",
+    "Seats Still Available": "31",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "48",
+    "Enrolled": "17",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2023"
+  },
+  "source_rows": [
+    3583,
+    6190
+  ],
+  "raw_records": [
+    {
+      "CRN": "8117",
+      "Course": "BIOL 213",
+      "Section": "2B",
+      "Title": "Principles in Biology III",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 2070D",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "31",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "17",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2023"
+    },
+    {
+      "CRN": "8117",
+      "Course": "BIOL 213",
+      "Section": "2B",
+      "Title": "Principles in Biology III",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 2070D",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "31",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "17",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

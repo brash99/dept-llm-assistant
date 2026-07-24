@@ -1,0 +1,353 @@
+{
+  "id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 103 Section 2R (2025_fall)",
+  "text": "Academic term: 2025_fall\nCourse: CHEM 103\nSection: 2R\nTitle: Introductory Chemistry I\nCRN: 8096",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb",
+          "published_name": "CHEM 103 2R"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "Fall Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb",
+                "published_name": "CHEM 103 2R"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "Fall Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c6ce18d18390d4b2400516c72649e8e491619029f73e027dbf4f3f90e7442190"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 695,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "7b235ee4a7a47242772d3aafb820c887e86c1102591ec9137e881829f3e11adb",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 695,
+  "acquisition_date": null,
+  "academic_term": "2025_fall",
+  "academic_term_published": "Fall Semester 2025",
+  "subject": "CHEM",
+  "course_number": "103",
+  "course_code": "CHEM 103",
+  "course_title": "Introductory Chemistry I",
+  "section": "2R",
+  "crn": "8096",
+  "instructor_name": "Amanda Thorsen",
+  "instructor_raw": "Amanda Thorsen",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "c1528d3508eb6397cb58764a68d4c7bd75bdeae76c3b2f155b0606ddddb7daaf",
+        "6ba758ba80b7b11bb3d545ee80ac29b201eda5399b700d767de878ecf19f01fe",
+        "df53c7dafd037fa82c779b38ab6f0c1e0fbaf09b3171c406548ad23bfb4da027"
+      ],
+      "supporting_terms": [
+        "2025_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introductory Chemistry I"
+    ],
+    "normalized_value": "Introductory Chemistry I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1630-1745",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1630-1745",
+  "start_time": "16:30",
+  "end_time": "17:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 1022",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 86,
+  "capacity": 95,
+  "waitlist": null,
+  "seats_available": 9,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, NSCI, OR, SCIE, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1630-1745",
+      "location_published": "Forbes Hall 1022",
+      "source_rows": [
+        695,
+        16498
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "d6de1e9b0f2ed744d755b663c0da9e907cd754ae24e56c4acb4fda3cba74cca4",
+    "source_row_hashes": [
+      "b3f1011cbb6f1506ee9dea440ccea1479126aca3e4ea4934b59026097710ee24",
+      "fd4f2d4d4d0a206930c3a783d8bdd54da41dd398bb2a2e69a9c66adb565c37e9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 695,
+    "source_rows": [
+      695,
+      16498
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8096",
+    "Course": "CHEM 103",
+    "Section": "2R",
+    "Title": "Introductory Chemistry I",
+    "Hours": "3",
+    "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1630-1745",
+    "Location": "Forbes Hall 1022",
+    "Instructor": "Amanda Thorsen",
+    "Seats Still Available": "9",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "95",
+    "Enrolled": "86",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2025"
+  },
+  "source_rows": [
+    695,
+    16498
+  ],
+  "raw_records": [
+    {
+      "CRN": "8096",
+      "Course": "CHEM 103",
+      "Section": "2R",
+      "Title": "Introductory Chemistry I",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Forbes Hall 1022",
+      "Instructor": "Amanda Thorsen",
+      "Seats Still Available": "9",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "86",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2025"
+    },
+    {
+      "CRN": "8096",
+      "Course": "CHEM 103",
+      "Section": "2R",
+      "Title": "Introductory Chemistry I",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Forbes Hall 1022",
+      "Instructor": "Amanda Thorsen",
+      "Seats Still Available": "9",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "86",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

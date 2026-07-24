@@ -1,0 +1,354 @@
+{
+  "id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHIL 490 Section 1 (2027_spring)",
+  "text": "Academic term: 2027_spring\nCourse: PHIL 490\nSection: 1\nTitle: WI: Senior Seminar\nCRN: 8833",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a",
+          "published_name": "PHIL 490 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2027_spring",
+        "published_label": "Spring Semester 2027"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a",
+                "published_name": "PHIL 490 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2027_spring",
+              "published_label": "Spring Semester 2027"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f6e8ffd8f2a09d5dd2207858bbb23e7444839474b7dfcd201c2e146b4189d86e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2217,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "465da6ff859aa8473f79ea867828b542a12e4a2822e5ca38720e808b70215a1a",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2217,
+  "acquisition_date": null,
+  "academic_term": "2027_spring",
+  "academic_term_published": "Spring Semester 2027",
+  "subject": "PHIL",
+  "course_number": "490",
+  "course_code": "PHIL 490",
+  "course_title": "WI: Senior Seminar",
+  "section": "1",
+  "crn": "8833",
+  "instructor_name": "Dawn Hutchinson",
+  "instructor_raw": "Dawn Hutchinson",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "08b3cd2c438ec45f4e768d879dd3d61d882fd236e7edaebd917f7f0172d7cd75",
+        "b763b70c0ccb8476dccefc53d73d94876df2802a6a48f1e4ce8df1769dfd2e40",
+        "b83b6b897d902e73609b2c07aa77c46058cc9afa627deab4c6dda9deded42337",
+        "a69016eefbe2184e664a5cfad75532ef4d0e4aefa8406c2c90b266b69c801285"
+      ],
+      "supporting_terms": [
+        "2026_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Senior Seminar"
+    ],
+    "normalized_value": "WI: Senior Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1300-1350",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1300-1350",
+  "start_time": "13:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 0,
+  "capacity": 10,
+  "waitlist": null,
+  "seats_available": 10,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR, WI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1300-1350",
+      "location_published": "Lewis McMurran Hall ",
+      "source_rows": [
+        2217,
+        17988
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "1b8c7a367f89bd60d0c3763e0f02ee5c28aa5af1ca96ab712eac91beff3ac7ba",
+    "source_row_hashes": [
+      "201e356df50e913a569acb3f2026867f862e6ca7d10bd1026781d03150ac5550",
+      "bb0eb536efa6a7ab8d95817158f9c90e36d540b4130c17fa41afa6784db375f2"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2217,
+    "source_rows": [
+      2217,
+      17988
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8833",
+    "Course": "PHIL 490",
+    "Section": "1",
+    "Title": "WI: Senior Seminar",
+    "Hours": "3",
+    "Area of LLC": "LETR, WI",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1300-1350",
+    "Location": "Lewis McMurran Hall ",
+    "Instructor": "Dawn Hutchinson",
+    "Seats Still Available": "10",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "10",
+    "Enrolled": "0",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2027"
+  },
+  "source_rows": [
+    2217,
+    17988
+  ],
+  "raw_records": [
+    {
+      "CRN": "8833",
+      "Course": "PHIL 490",
+      "Section": "1",
+      "Title": "WI: Senior Seminar",
+      "Hours": "3",
+      "Area of LLC": "LETR, WI",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Lewis McMurran Hall ",
+      "Instructor": "Dawn Hutchinson",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "10",
+      "Enrolled": "0",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2027"
+    },
+    {
+      "CRN": "8833",
+      "Course": "PHIL 490",
+      "Section": "1",
+      "Title": "WI: Senior Seminar",
+      "Hours": "3",
+      "Area of LLC": "LETR, WI",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Lewis McMurran Hall ",
+      "Instructor": "Dawn Hutchinson",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "10",
+      "Enrolled": "0",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2027"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

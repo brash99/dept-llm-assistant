@@ -1,0 +1,414 @@
+{
+  "id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 315 Section 2 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: PSYC 315\nSection: 2\nCRN: 8830",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b",
+          "published_name": "PSYC 315 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b",
+                "published_name": "PSYC 315 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2fb1e86913dccb7bdcb9eed84feb44e3540e4729f3b241e09a9067921cc25b68"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2778,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2778,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "PSYC",
+  "course_number": "315",
+  "course_code": "PSYC 315",
+  "course_title": null,
+  "section": "2",
+  "crn": "8830",
+  "instructor_name": "Michelle Lange",
+  "instructor_raw": "Michelle Lange",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "8bce008b62fe42f674ee0046c6918b39a355ad52c8615d1be546a5f62a335f46",
+        "26ddbe926a19940db02d2a4601317d26c2367e366ad04ed3b3e7380d404e544a",
+        "37083ad07eb84cf4c89eced980a919da11c21e93142096dcaee865b495041348",
+        "f4b57617775fa209ba9e41dc0548a88f79f85684cc91c94bc6664348b85a1d7b",
+        "e0277a27ad3768603320fca63f85a18004c93a586d0d521533322e69f7c5c5fb"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "0aa4285e62cda0c75a2d7bffcd03122101aa9e20c7b014fcbac7e2242ae67c6c",
+        "e7f834fc2bae68921e0ea51e1c9c3753b5e641913a19cb020827667a9c982748"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2074",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 44,
+  "capacity": 45,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Forbes Hall 2074",
+      "source_rows": [
+        2778,
+        7986,
+        15981,
+        18545
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "fb6823122aad2373de912ed1d69f1d000c82d3e4027182aa8f3186b8502ef956",
+    "source_row_hashes": [
+      "cad8a008298c6c4b395d83aa56026f3aa5241293b718fdc6377fb0c2bada1ea7",
+      "0a70ed1710b5b4efe79a862c489b765242201ebe8e41c14a550098c01501b784",
+      "e73f9aa7bb0b84b953daa3f728fffd5c8057341f1def191e275fec4de56a54f4",
+      "845d49dc6a315268875a5e9b26aa411dd6a1c2ca437fbb71e27126ce536ee14d"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2778,
+    "source_rows": [
+      2778,
+      7986,
+      15981,
+      18545
+    ],
+    "source_row_count": 4,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8830",
+    "Course": "PSYC 315",
+    "Section": "2",
+    "Title": "Psychology-Abnormal Behavior",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Forbes Hall 2074",
+    "Instructor": "Michelle Lange",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "45",
+    "Enrolled": "44",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    2778,
+    7986,
+    15981,
+    18545
+  ],
+  "raw_records": [
+    {
+      "CRN": "8830",
+      "Course": "PSYC 315",
+      "Section": "2",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "44",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8830",
+      "Course": "PSYC 315",
+      "Section": "2",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "44",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8830",
+      "Course": "PSYC 315",
+      "Section": "2",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "44",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8830",
+      "Course": "PSYC 315",
+      "Section": "2",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "44",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ],
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

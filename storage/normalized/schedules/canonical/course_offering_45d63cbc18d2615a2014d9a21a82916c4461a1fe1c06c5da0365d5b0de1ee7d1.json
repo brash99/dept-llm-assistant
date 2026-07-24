@@ -1,0 +1,358 @@
+{
+  "id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 122 Section 4 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: CHEM 122\nSection: 4\nTitle: General Chemistry II\nCRN: 8592",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1",
+          "published_name": "CHEM 122 4"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1",
+                "published_name": "CHEM 122 4"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "06ac8d167cd3b92281e6661b149d2e21ea049ebe5d070f2f9817c2515d753208"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4561,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "45d63cbc18d2615a2014d9a21a82916c4461a1fe1c06c5da0365d5b0de1ee7d1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4561,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "CHEM",
+  "course_number": "122",
+  "course_code": "CHEM 122",
+  "course_title": "General Chemistry II",
+  "section": "4",
+  "crn": "8592",
+  "instructor_name": "Sumie Shima",
+  "instructor_raw": "Sumie Shima",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 8,
+      "supporting_observation_ids": [
+        "fde4cc2bd944b2c55e088e8778daf9adbb4b6d070e9b6e2106f8bb45688f3f6e",
+        "8eec2b499100aa4103bd8354d5b5776653377d6d5bc08c9a5413026a981e2ea7",
+        "7fbf679d1e5a94690ac21005fd11d43d5e978d059b1e649c3e678bb226ff2a2d",
+        "7d250087d2bb1e28a3df9c87d775804d56c37000b2453d629e81b9e5a5f813e7",
+        "d0a0a3f6d71516b4d8437e0af12dcbcd6bdf37fc2d6de4aa9e79faa4da5dc14c",
+        "d6334e76509353e0a5ceb82138a6b7202aa10d63340bb639f596f3d004d17e95",
+        "bb4fb9ceac043eb1c48925f4828f033a64d5554d6283a7c32261c4d4301ae187",
+        "e4ccf14525fb849d742cbaae3d1ce49a899b175da6301edfb1427823091886df"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "General Chemistry II"
+    ],
+    "normalized_value": "General Chemistry II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1100-1150",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1100-1150",
+  "start_time": "11:00",
+  "end_time": "11:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 114",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 38,
+  "capacity": 48,
+  "waitlist": null,
+  "seats_available": 10,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, NSCI, OR, SCIE, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1100-1150",
+      "location_published": "Lewis McMurran Hall 114",
+      "source_rows": [
+        4561,
+        7195
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "cdd395b46f5d29112d421c6d642ba59ba9613d3b4c64cc904f868059abf4b30f",
+    "source_row_hashes": [
+      "6600f0d294f4bf89851639d5c0a081d7bd4f30b949b58e6ccdb87135d0f2dc25",
+      "3f3c8bccf9d282a7126acfbcfd2c7d87bc804b953663344d4adf42b4b278b301"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4561,
+    "source_rows": [
+      4561,
+      7195
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8592",
+    "Course": "CHEM 122",
+    "Section": "4",
+    "Title": "General Chemistry II",
+    "Hours": "3",
+    "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1100-1150",
+    "Location": "Lewis McMurran Hall 114",
+    "Instructor": "Sumie Shima",
+    "Seats Still Available": "10",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "48",
+    "Enrolled": "38",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    4561,
+    7195
+  ],
+  "raw_records": [
+    {
+      "CRN": "8592",
+      "Course": "CHEM 122",
+      "Section": "4",
+      "Title": "General Chemistry II",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Lewis McMurran Hall 114",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "38",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "8592",
+      "Course": "CHEM 122",
+      "Section": "4",
+      "Title": "General Chemistry II",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Lewis McMurran Hall 114",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "38",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

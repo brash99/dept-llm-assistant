@@ -1,0 +1,354 @@
+{
+  "id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 302 Section ON1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: SOWK 302\nSection: ON1\nTitle: Social Work Practice II\nCRN: 9142",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd",
+          "published_name": "SOWK 302 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd",
+                "published_name": "SOWK 302 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "67dfaacda045280fe54d6cdc68a762fa65375a4fd8c70722af5fe831f255d97b"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4685,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4685,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "SOWK",
+  "course_number": "302",
+  "course_code": "SOWK 302",
+  "course_title": "Social Work Practice II",
+  "section": "ON1",
+  "crn": "9142",
+  "instructor_name": "Jill Russett",
+  "instructor_raw": "Jill Russett",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "01a514102f3d75927680e50f0a20887b6ae60b3c613fb43ecb72438ca783816f",
+        "e8b75b71f60891cd6f8067a2e9ee82a00c1c2eec07af40951ceb27df53fad96d",
+        "8c53e0728396968c214b5aacf9c34cb3326b6811213707451ca03b1b93e54971",
+        "c084e271ba292d986e269e7f5552894c583da838eb0e7d19a9f49dbcde28b808"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Social Work Practice II"
+    ],
+    "normalized_value": "Social Work Practice II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Synchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 22,
+  "capacity": 26,
+  "waitlist": null,
+  "seats_available": 4,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        4685,
+        9977
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "311e71b5814657e74bfecdfb3a4943c6902261a10440d2b4ff774bb3ccee5416",
+    "source_row_hashes": [
+      "8b5bd4474f9135b135dd8b5340fe01a793b13f86d068e6616a3ef3b01dce0bb7",
+      "704ffbb99d3513c64befff05269ac26ff6ec7c4f8f4f8a0a8b0b0c4cb5c6b84c"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4685,
+    "source_rows": [
+      4685,
+      9977
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9142",
+    "Course": "SOWK 302",
+    "Section": "ON1",
+    "Title": "Social Work Practice II",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Synchronous Online Course ",
+    "Instructor": "Jill Russett",
+    "Seats Still Available": "4",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "26",
+    "Enrolled": "22",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    4685,
+    9977
+  ],
+  "raw_records": [
+    {
+      "CRN": "9142",
+      "Course": "SOWK 302",
+      "Section": "ON1",
+      "Title": "Social Work Practice II",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "22",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "9142",
+      "Course": "SOWK 302",
+      "Section": "ON1",
+      "Title": "Social Work Practice II",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "22",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

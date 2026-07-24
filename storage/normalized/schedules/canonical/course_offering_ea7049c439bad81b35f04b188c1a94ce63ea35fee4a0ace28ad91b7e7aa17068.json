@@ -1,0 +1,316 @@
+{
+  "id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 112 Section 1 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: MUSC 112\nSection: 1\nTitle: Marching Band\nCRN: 8681",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068",
+          "published_name": "MUSC 112 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068",
+                "published_name": "MUSC 112 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "3d947905ae8af11524e2a5601bcaedbb64c6581641642e4aaf2766667a6dcfb1"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 5360,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "ea7049c439bad81b35f04b188c1a94ce63ea35fee4a0ace28ad91b7e7aa17068",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 5360,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "MUSC",
+  "course_number": "112",
+  "course_code": "MUSC 112",
+  "course_title": "Marching Band",
+  "section": "1",
+  "crn": "8681",
+  "instructor_name": "Mark Johnson",
+  "instructor_raw": "Mark Johnson",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Marching Band"
+    ],
+    "normalized_value": "Marching Band",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "MWF 1600-1750",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1600-1750",
+  "start_time": "16:00",
+  "end_time": "17:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts R106",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 184,
+  "capacity": 250,
+  "waitlist": null,
+  "seats_available": 66,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AICE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1600-1750",
+      "location_published": "Ferguson Center for the Arts R106",
+      "source_rows": [
+        5360
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "373d0ae397edecd97cc6f9735ad4cdfffa61741df5e8b3417a756f838df4cb7d",
+    "source_row_hashes": [
+      "36d8747d3630a8346f2a89a0beaa6a20134991c5c8049371d450294b12b5ff7c"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 5360,
+    "source_rows": [
+      5360
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8681",
+    "Course": "MUSC 112",
+    "Section": "1",
+    "Title": "Marching Band",
+    "Hours": "1",
+    "Area of LLC": "AICE",
+    "Type": "Lab",
+    "Days": "MWF",
+    "Time": "1600-1750",
+    "Location": "Ferguson Center for the Arts R106",
+    "Instructor": "Mark Johnson",
+    "Seats Still Available": "66",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "250",
+    "Enrolled": "184",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    5360
+  ],
+  "raw_records": [
+    {
+      "CRN": "8681",
+      "Course": "MUSC 112",
+      "Section": "1",
+      "Title": "Marching Band",
+      "Hours": "1",
+      "Area of LLC": "AICE",
+      "Type": "Lab",
+      "Days": "MWF",
+      "Time": "1600-1750",
+      "Location": "Ferguson Center for the Arts R106",
+      "Instructor": "Mark Johnson",
+      "Seats Still Available": "66",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "250",
+      "Enrolled": "184",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {}
+}

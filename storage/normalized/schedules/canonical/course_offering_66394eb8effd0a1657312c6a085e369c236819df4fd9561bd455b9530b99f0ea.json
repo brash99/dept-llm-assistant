@@ -1,0 +1,351 @@
+{
+  "id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 216 Section 2 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: MUSC 216\nSection: 2\nCRN: 8314",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1,
+      "instructor_type_unknown": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea",
+          "published_name": "MUSC 216 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea",
+                "published_name": "MUSC 216 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d5c87d968b054da15f00da18a4796a3afb2963ddd151aa3c3784cd58380e4efa"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4515,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "66394eb8effd0a1657312c6a085e369c236819df4fd9561bd455b9530b99f0ea",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4515,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "MUSC",
+  "course_number": "216",
+  "course_code": "MUSC 216",
+  "course_title": null,
+  "section": "2",
+  "crn": "8314",
+  "instructor_name": "Seung-Hye Kim",
+  "instructor_raw": "Seung-Hye Kim",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [],
+    "normalized_value": "unknown",
+    "has_blank_value": true,
+    "conflicting": false,
+    "resolution": {
+      "resolved": false,
+      "method": "unknown_source_value",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Advanced Keyboard Skills",
+      "Advanced Keyboard Skills IV"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "c0e0529744fba357a7893e17474e54cd68bf674f538198627196cc4386813b3b",
+        "8aec8deadc71cec74fa958071b89a4fda857e436a727711a3969ccae33b8cbd9"
+      ],
+      "supporting_terms": [
+        "2021_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts 213",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 7,
+  "capacity": 13,
+  "waitlist": null,
+  "seats_available": 6,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": "Ferguson Center for the Arts 213",
+      "source_rows": [
+        4515,
+        20334
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f15d1b517c7ed238ed53c2f67cdfc61c5e624ebeed18836ffb4c8977c2914e55",
+    "source_row_hashes": [
+      "813818e323ece50a2f68db373617942b96d7d8175bef8c48dece2bf6bfe4f527",
+      "f8f717ff25ac3c327fbc0dd057d44886c829553f33c6ced950544180cef958d9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4515,
+    "source_rows": [
+      4515,
+      20334
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8314",
+    "Course": "MUSC 216",
+    "Section": "2",
+    "Title": "Advanced Keyboard Skills",
+    "Hours": "1",
+    "Area of LLC": "LETR",
+    "Type": "Lab",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": "Ferguson Center for the Arts 213",
+    "Instructor": "Seung-Hye Kim",
+    "Seats Still Available": "6",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "13",
+    "Enrolled": "7",
+    "Instructor Type": "",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    4515,
+    20334
+  ],
+  "raw_records": [
+    {
+      "CRN": "8314",
+      "Course": "MUSC 216",
+      "Section": "2",
+      "Title": "Advanced Keyboard Skills",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts 213",
+      "Instructor": "Seung-Hye Kim",
+      "Seats Still Available": "6",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "13",
+      "Enrolled": "7",
+      "Instructor Type": "",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8314",
+      "Course": "MUSC 216",
+      "Section": "2",
+      "Title": "Advanced Keyboard Skills IV",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts 213",
+      "Instructor": "Seung-Hye Kim",
+      "Seats Still Available": "6",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "13",
+      "Enrolled": "7",
+      "Instructor Type": "",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Advanced Keyboard Skills",
+      "Advanced Keyboard Skills IV"
+    ]
+  }
+}

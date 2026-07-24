@@ -1,0 +1,354 @@
+{
+  "id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 315 Section 1 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: PSYC 315\nSection: 1\nTitle: Psychopathology\nCRN: 8951",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c",
+          "published_name": "PSYC 315 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c",
+                "published_name": "PSYC 315 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "042bfa71b88f43f7bf0f38abfbf7dfd414aea38c99719e5522ee8ed656266339"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 13243,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b77193716a3c9e28bf07ebca5473cec667f9cbbe4eea7edf0c05be29b8ba8b0c",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 13243,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "PSYC",
+  "course_number": "315",
+  "course_code": "PSYC 315",
+  "course_title": "Psychopathology",
+  "section": "1",
+  "crn": "8951",
+  "instructor_name": "Michelle Lange",
+  "instructor_raw": "Michelle Lange",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "8bdaf97cc949d0dec261a1fb7462c603b58d961b48b9f9003460d946fa9d5fdc",
+        "824b59f7fbc8c9a53e1edcbc2fab2c37676bd6bc626a944745f770ebf38799d1",
+        "5ba2150173d3255d0224719d3423785c76943228fc263680e0cb20ff2a5d4338",
+        "416c543e55735305d4c7bce26de24631c0a9cd99fa830a3ec2a707f838d882fa"
+      ],
+      "supporting_terms": [
+        "2026_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychopathology"
+    ],
+    "normalized_value": "Psychopathology",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2070A",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 36,
+  "capacity": 35,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Forbes Hall 2070A",
+      "source_rows": [
+        13243,
+        18491
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "392c765667b1e772e6d61b48882b5b89f9c7acf6b3f10b53b3a9bc2a88ca859e",
+    "source_row_hashes": [
+      "14e28cde4f7a74d52f0b12a0932b74da065547ebe5084419ed3054a8511b878f",
+      "38782ca07fc1705c5b0f1addda9913108b05d14b8679c3493d827c94d99c8d30"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 13243,
+    "source_rows": [
+      13243,
+      18491
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8951",
+    "Course": "PSYC 315",
+    "Section": "1",
+    "Title": "Psychopathology",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Forbes Hall 2070A",
+    "Instructor": "Michelle Lange",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "35",
+    "Enrolled": "36",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    13243,
+    18491
+  ],
+  "raw_records": [
+    {
+      "CRN": "8951",
+      "Course": "PSYC 315",
+      "Section": "1",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Forbes Hall 2070A",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "35",
+      "Enrolled": "36",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    },
+    {
+      "CRN": "8951",
+      "Course": "PSYC 315",
+      "Section": "1",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Forbes Hall 2070A",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "35",
+      "Enrolled": "36",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

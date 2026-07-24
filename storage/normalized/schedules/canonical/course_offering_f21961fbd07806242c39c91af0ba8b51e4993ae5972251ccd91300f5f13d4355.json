@@ -1,0 +1,352 @@
+{
+  "id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 284L Section 1 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: BIOL 284L\nSection: 1\nTitle: Fund Human Anatmy & Phys Lab I\nCRN: 8089",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355",
+          "published_name": "BIOL 284L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355",
+                "published_name": "BIOL 284L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2cc4242b5ebeab96e6e150da1f41ad5d1cef4bfa741c0791a92de311234cf54a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 18252,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "f21961fbd07806242c39c91af0ba8b51e4993ae5972251ccd91300f5f13d4355",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 18252,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "BIOL",
+  "course_number": "284L",
+  "course_code": "BIOL 284L",
+  "course_title": "Fund Human Anatmy & Phys Lab I",
+  "section": "1",
+  "crn": "8089",
+  "instructor_name": "Dave Knight",
+  "instructor_raw": "Dave Knight",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "da4c937fe7f14d6594b48af56c14c291430e55be3d0fcc2c663e0bb831359713",
+        "4d2a56111e8901c96085c4cc0e39d0d3b92f45e83e021ff565bfa46575233789"
+      ],
+      "supporting_terms": [
+        "2026_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Fund Human Anatmy & Phys Lab I"
+    ],
+    "normalized_value": "Fund Human Anatmy & Phys Lab I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "T 1330-1720",
+  "meeting_days": "T",
+  "meeting_time_raw": "1330-1720",
+  "start_time": "13:30",
+  "end_time": "17:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2056",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 21,
+  "capacity": 20,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "T",
+      "time_published": "1330-1720",
+      "location_published": "Forbes Hall 2056",
+      "source_rows": [
+        18252,
+        20785
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "dae9daf58ccea9252d6240323d969c4def34f5602290f7adfc8d47c99bc33391",
+    "source_row_hashes": [
+      "d46da9b41ce9f13c01969debfc8f1328a906c72d231f382a46a561881276cfd4",
+      "ab1ee361381b06eb94d1f548f4d35e98257ff5a41dd7854803674d9a3da4e9b8"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 18252,
+    "source_rows": [
+      18252,
+      20785
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8089",
+    "Course": "BIOL 284L",
+    "Section": "1",
+    "Title": "Fund Human Anatmy & Phys Lab I",
+    "Hours": "1",
+    "Area of LLC": "LOW",
+    "Type": "Lab",
+    "Days": "T",
+    "Time": "1330-1720",
+    "Location": "Forbes Hall 2056",
+    "Instructor": "Dave Knight",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "20",
+    "Enrolled": "21",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    18252,
+    20785
+  ],
+  "raw_records": [
+    {
+      "CRN": "8089",
+      "Course": "BIOL 284L",
+      "Section": "1",
+      "Title": "Fund Human Anatmy & Phys Lab I",
+      "Hours": "1",
+      "Area of LLC": "LOW",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 2056",
+      "Instructor": "Dave Knight",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "20",
+      "Enrolled": "21",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    },
+    {
+      "CRN": "8089",
+      "Course": "BIOL 284L",
+      "Section": "1",
+      "Title": "Fund Human Anatmy & Phys Lab I",
+      "Hours": "1",
+      "Area of LLC": "LOW",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 2056",
+      "Instructor": "Dave Knight",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "20",
+      "Enrolled": "21",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

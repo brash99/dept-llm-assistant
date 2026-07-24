@@ -1,0 +1,354 @@
+{
+  "id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: LDSP 338 Section 3 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: LDSP 338\nSection: 3\nTitle: Leading Adaptive Change\nCRN: 8407",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358",
+          "published_name": "LDSP 338 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358",
+                "published_name": "LDSP 338 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "caad9ddcebc240a70cfb5a2750bb95c311f5235a21f7e586c71a5d3188af2126"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2181,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e6df66ff80b9af80a3d62ea1bbd3f57572d479196562cb5ed26c91a7844e1358",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2181,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "LDSP",
+  "course_number": "338",
+  "course_code": "LDSP 338",
+  "course_title": "Leading Adaptive Change",
+  "section": "3",
+  "crn": "8407",
+  "instructor_name": "Jess Hench",
+  "instructor_raw": "Jess Hench",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "701deda5285055deeb6db073fecc737534d40b4ffe20596fcfdf402d12db669a",
+        "e7a68e8a0745487d0d7e98a9545666f916a8a960e5fbfcd915a18e532aa177e4",
+        "0b33a12cb658206557046f30ab32ae3c5fc227c1671efad36bb4f8aac84303c2",
+        "76cb9f70f847d9736a090600a1cb4b69682c3d13dd5e96fd696df91e49f777ea"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Leading Adaptive Change"
+    ],
+    "normalized_value": "Leading Adaptive Change",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1600-1715",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1600-1715",
+  "start_time": "16:00",
+  "end_time": "17:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 264",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LDSP, LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1600-1715",
+      "location_published": "Joseph W. Luter III Hall 264",
+      "source_rows": [
+        2181,
+        4761
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "c104eaa1d1f32abb6a43faa4282eaf30215b40a3cd2808b0cf898190cd8c08b3",
+    "source_row_hashes": [
+      "aabd349f4135f325539908d84ce80c563d76df4a872aff3c79a5718741811114",
+      "6a7c0e381bd2515f681eddadc2c7eb50e8b9fd0b4d69267292ea079c98168cd2"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2181,
+    "source_rows": [
+      2181,
+      4761
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8407",
+    "Course": "LDSP 338",
+    "Section": "3",
+    "Title": "Leading Adaptive Change",
+    "Hours": "3",
+    "Area of LLC": "LDSP, LOW",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1600-1715",
+    "Location": "Joseph W. Luter III Hall 264",
+    "Instructor": "Jess Hench",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "19",
+    "Enrolled": "19",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    2181,
+    4761
+  ],
+  "raw_records": [
+    {
+      "CRN": "8407",
+      "Course": "LDSP 338",
+      "Section": "3",
+      "Title": "Leading Adaptive Change",
+      "Hours": "3",
+      "Area of LLC": "LDSP, LOW",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1600-1715",
+      "Location": "Joseph W. Luter III Hall 264",
+      "Instructor": "Jess Hench",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "8407",
+      "Course": "LDSP 338",
+      "Section": "3",
+      "Title": "Leading Adaptive Change",
+      "Hours": "3",
+      "Area of LLC": "LDSP, LOW",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1600-1715",
+      "Location": "Joseph W. Luter III Hall 264",
+      "Instructor": "Jess Hench",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

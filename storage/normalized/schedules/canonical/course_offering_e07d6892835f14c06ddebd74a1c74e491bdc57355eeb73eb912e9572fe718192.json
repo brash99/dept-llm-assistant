@@ -1,0 +1,316 @@
+{
+  "id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 100 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: MUSC 100\nSection: 1\nTitle: University Chorale\nCRN: 8651",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192",
+          "published_name": "MUSC 100 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192",
+                "published_name": "MUSC 100 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d043d6071165759ae69d3a796ce8b5f627ff93272087153840c767da7fa1e696"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 11899,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e07d6892835f14c06ddebd74a1c74e491bdc57355eeb73eb912e9572fe718192",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 11899,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "MUSC",
+  "course_number": "100",
+  "course_code": "MUSC 100",
+  "course_title": "University Chorale",
+  "section": "1",
+  "crn": "8651",
+  "instructor_name": "John Irving",
+  "instructor_raw": "John Irving",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "University Chorale"
+    ],
+    "normalized_value": "University Chorale",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "TR 1630-1745",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1630-1745",
+  "start_time": "16:30",
+  "end_time": "17:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts R118",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 33,
+  "capacity": 49,
+  "waitlist": null,
+  "seats_available": 16,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AICE, GE, OR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1630-1745",
+      "location_published": "Ferguson Center for the Arts R118",
+      "source_rows": [
+        11899
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "8fbffdcc34f956e6a19af602a24f3e58fba959095723f46ad89d5983af9d3450",
+    "source_row_hashes": [
+      "5da44b8e27105fc2c9ba7e242d5321bf38b0c79ee66592be00f9303b11b4c945"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 11899,
+    "source_rows": [
+      11899
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8651",
+    "Course": "MUSC 100",
+    "Section": "1",
+    "Title": "University Chorale",
+    "Hours": "1",
+    "Area of LLC": "AICE, GE, OR",
+    "Type": "Lab",
+    "Days": "TR",
+    "Time": "1630-1745",
+    "Location": "Ferguson Center for the Arts R118",
+    "Instructor": "John Irving",
+    "Seats Still Available": "16",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "49",
+    "Enrolled": "33",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    11899
+  ],
+  "raw_records": [
+    {
+      "CRN": "8651",
+      "Course": "MUSC 100",
+      "Section": "1",
+      "Title": "University Chorale",
+      "Hours": "1",
+      "Area of LLC": "AICE, GE, OR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Ferguson Center for the Arts R118",
+      "Instructor": "John Irving",
+      "Seats Still Available": "16",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "49",
+      "Enrolled": "33",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {}
+}

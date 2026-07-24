@@ -1,0 +1,353 @@
+{
+  "id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BUSN 304 Section 3 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: BUSN 304\nSection: 3\nTitle: Operations Management\nCRN: 8165",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac",
+          "published_name": "BUSN 304 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac",
+                "published_name": "BUSN 304 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f27232cb058961d78b8c2515fd4ce0c7554391b2d04b89b731443797939081ed"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 8849,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "7ce3612e043a0fa63c0eca50f25e4955d70a1505583beb66ac1e6d90a99d06ac",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 8849,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "BUSN",
+  "course_number": "304",
+  "course_code": "BUSN 304",
+  "course_title": "Operations Management",
+  "section": "3",
+  "crn": "8165",
+  "instructor_name": "Lonnie Cheney",
+  "instructor_raw": "Lonnie Cheney",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "6f1971e75359e393f52972fe506048e31a02507a804341d6db9dc9c82b7389ae",
+        "85ff305c8809f1ce56345a0d9cf58b7c76c24c97aa2afd543502b9118d855730",
+        "6fab9884049f03f141d4f5e09d55a4040f6fcfd2ee4d0e23c4ced75839cc59e7"
+      ],
+      "supporting_terms": [
+        "2026_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Operations Management"
+    ],
+    "normalized_value": "Operations Management",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Science & Engineering Research 2279",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 46,
+  "capacity": 45,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": "Science & Engineering Research 2279",
+      "source_rows": [
+        8849,
+        11522
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "15ee7f4365d02cfc409106e89f0cb1d3142d799f4ef38f81fca2cb898f004205",
+    "source_row_hashes": [
+      "3b7790b1c5071a0759c174f4b3ddb3400b10bfa3a3bab26a7b2dee343ffddee9",
+      "6ca7f8184231118fccb0db3916ef52059aa45fe4b20147c56acf37ab766badb3"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 8849,
+    "source_rows": [
+      8849,
+      11522
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8165",
+    "Course": "BUSN 304",
+    "Section": "3",
+    "Title": "Operations Management",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": "Science & Engineering Research 2279",
+    "Instructor": "Lonnie Cheney",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "45",
+    "Enrolled": "46",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    8849,
+    11522
+  ],
+  "raw_records": [
+    {
+      "CRN": "8165",
+      "Course": "BUSN 304",
+      "Section": "3",
+      "Title": "Operations Management",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Science & Engineering Research 2279",
+      "Instructor": "Lonnie Cheney",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "46",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    },
+    {
+      "CRN": "8165",
+      "Course": "BUSN 304",
+      "Section": "3",
+      "Title": "Operations Management",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Science & Engineering Research 2279",
+      "Instructor": "Lonnie Cheney",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "46",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

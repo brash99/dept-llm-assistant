@@ -1,0 +1,353 @@
+{
+  "id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BUSN 311 Section 1 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: BUSN 311\nSection: 1\nTitle: Marketing Management\nCRN: 9012",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f",
+          "published_name": "BUSN 311 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f",
+                "published_name": "BUSN 311 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a9771f3f12aecd87948ff9a8b68a6a9a2e8acf2b656a86d30614793c7007ae93"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 17090,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "3551aafe5ea9181cca967bc4b2fafa1482b40c75ae5f69a521f130f210b3065f",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 17090,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "BUSN",
+  "course_number": "311",
+  "course_code": "BUSN 311",
+  "course_title": "Marketing Management",
+  "section": "1",
+  "crn": "9012",
+  "instructor_name": "Lydia Scrofani",
+  "instructor_raw": "Lydia Scrofani",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "981caca5c09342efca544dd6c5b6a5b594f1daa40988fd3f7dc4b00292f29d0d",
+        "bbd2dc4ded6708f35e367ddbc7d794f2173ac11892ce9cba2842a8e566e00193",
+        "88b9fa217dfb1fde7d26559c55ebe775d101aa4b5cb046f6bdac76fbb852d21b"
+      ],
+      "supporting_terms": [
+        "2022_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Marketing Management"
+    ],
+    "normalized_value": "Marketing Management",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 0900-0950",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2088",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 12,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Forbes Hall 2088",
+      "source_rows": [
+        17090,
+        19654
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "784af22cbd6e91de93c41a623449c8bd71ffd04521a376f7a25f88532565f768",
+    "source_row_hashes": [
+      "8eb35f9412277775c5633a0e0ef7308bfd5ed31bc154ad9e612db7116fd62cc2",
+      "6c68fad1469e5c6945cdec9c9fbed605bf77c10bc608afa875c2259d4e18aad9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 17090,
+    "source_rows": [
+      17090,
+      19654
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9012",
+    "Course": "BUSN 311",
+    "Section": "1",
+    "Title": "Marketing Management",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "0900-0950",
+    "Location": "Forbes Hall 2088",
+    "Instructor": "Lydia Scrofani",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "15",
+    "Enrolled": "12",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    17090,
+    19654
+  ],
+  "raw_records": [
+    {
+      "CRN": "9012",
+      "Course": "BUSN 311",
+      "Section": "1",
+      "Title": "Marketing Management",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 2088",
+      "Instructor": "Lydia Scrofani",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "12",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    },
+    {
+      "CRN": "9012",
+      "Course": "BUSN 311",
+      "Section": "1",
+      "Title": "Marketing Management",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 2088",
+      "Instructor": "Lydia Scrofani",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "12",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

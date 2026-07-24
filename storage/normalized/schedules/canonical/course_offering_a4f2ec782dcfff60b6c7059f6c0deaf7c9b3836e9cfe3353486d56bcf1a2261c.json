@@ -1,0 +1,354 @@
+{
+  "id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 309 Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: PSYC 309\nSection: 1\nTitle: Adolescent Development\nCRN: 8918",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c",
+          "published_name": "PSYC 309 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c",
+                "published_name": "PSYC 309 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a1340a5e7ea258b197a1af09f0c2b07287d3b4f4a61f1a3565ea6e7817c44f2b"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 15721,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "a4f2ec782dcfff60b6c7059f6c0deaf7c9b3836e9cfe3353486d56bcf1a2261c",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 15721,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "PSYC",
+  "course_number": "309",
+  "course_code": "PSYC 309",
+  "course_title": "Adolescent Development",
+  "section": "1",
+  "crn": "8918",
+  "instructor_name": "Earl Riggins",
+  "instructor_raw": "Earl Riggins",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "b64d806fe79e612a001a799fdb1537346729e76b814daf0e1cee0ff0122791be",
+        "1c53d555e0f95eefeee88c4a21e70d128fbb56aa2e23bf2a983c543cf78a5a71",
+        "e66fab7da1b52ad9bdaad7edf74595d2bfe04a62d007b56af7066e4db2fbf057",
+        "8773d121307307a45c0814e1b5a211c81c1a07214a2dd318879ef67c9f5304be"
+      ],
+      "supporting_terms": [
+        "2025_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Adolescent Development"
+    ],
+    "normalized_value": "Adolescent Development",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2070C",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 17,
+  "capacity": 35,
+  "waitlist": null,
+  "seats_available": 18,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIII, XPSY",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Forbes Hall 2070C",
+      "source_rows": [
+        15721,
+        20806
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "801aa0553a33512e6a5d23c20220c8cd62f78c6dd363b5a0ba144bc0e2481f52",
+    "source_row_hashes": [
+      "14a0b5d1cb2577c20c8768b5380486058edb6efd172ef5ebc58141f3a72e39d6",
+      "0a20593832868415be7e31ae8913042c21d96bf38a0d265362d777328d6ac986"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 15721,
+    "source_rows": [
+      15721,
+      20806
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8918",
+    "Course": "PSYC 309",
+    "Section": "1",
+    "Title": "Adolescent Development",
+    "Hours": "3",
+    "Area of LLC": "AIII, XPSY",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Forbes Hall 2070C",
+    "Instructor": "Earl Riggins",
+    "Seats Still Available": "18",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "35",
+    "Enrolled": "17",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    15721,
+    20806
+  ],
+  "raw_records": [
+    {
+      "CRN": "8918",
+      "Course": "PSYC 309",
+      "Section": "1",
+      "Title": "Adolescent Development",
+      "Hours": "3",
+      "Area of LLC": "AIII, XPSY",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 2070C",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "18",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "35",
+      "Enrolled": "17",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "8918",
+      "Course": "PSYC 309",
+      "Section": "1",
+      "Title": "Adolescent Development",
+      "Hours": "3",
+      "Area of LLC": "AIII, XPSY",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 2070C",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "18",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "35",
+      "Enrolled": "17",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

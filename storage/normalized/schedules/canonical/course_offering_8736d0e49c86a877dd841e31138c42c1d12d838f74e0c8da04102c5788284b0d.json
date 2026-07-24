@@ -1,0 +1,354 @@
+{
+  "id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHIL 315 Section 1 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: PHIL 315\nSection: 1\nTitle: Philosophy of Gender\nCRN: 8304",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d",
+          "published_name": "PHIL 315 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d",
+                "published_name": "PHIL 315 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "aaefe7ce7272836cb1a69f4c69fb96b79ffcbda3a39d97a2385c007ec65dc8df"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 7025,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "8736d0e49c86a877dd841e31138c42c1d12d838f74e0c8da04102c5788284b0d",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 7025,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "PHIL",
+  "course_number": "315",
+  "course_code": "PHIL 315",
+  "course_title": "Philosophy of Gender",
+  "section": "1",
+  "crn": "8304",
+  "instructor_name": "Dawn Hutchinson",
+  "instructor_raw": "Dawn Hutchinson",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "e94981e26ccdf855dacc4919cff367f93651476d19b6915a45220ee725d24663",
+        "fa0fdfa0f8d836b850657b7c845089c8ae200d218fa53a5bdb76c8e7d7301e42",
+        "ec3db1d5aaeaebd0d5b1e7046ef2814ec57cef33cc1451e292ecdf6a0eb4d979",
+        "8a0a0fe03a7c8139c9dfabb8b66f0319513f7ec66aa21da4637d23d2385d4e47"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Philosophy of Gender"
+    ],
+    "normalized_value": "Philosophy of Gender",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1100-1150",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1100-1150",
+  "start_time": "11:00",
+  "end_time": "11:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Paul & Rosemary Trible Library 1210",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 16,
+  "capacity": 18,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIII, LETR, LOW, XAMS, XPRS",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1100-1150",
+      "location_published": "Paul & Rosemary Trible Library 1210",
+      "source_rows": [
+        7025,
+        7026
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "50ab35207570aea992af1f24598463d3fdaefcd9e29da603919f7cdd719e9967",
+    "source_row_hashes": [
+      "595b8f8227126bb40992eda9420c77003d61dd73e6f456db0ef2c2e34c6b0925",
+      "1a6499b4f5aa0224847dfb5b89dce82ed75352ed5bcb4908757731c5a113c1d9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 7025,
+    "source_rows": [
+      7025,
+      7026
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8304",
+    "Course": "PHIL 315",
+    "Section": "1",
+    "Title": "Philosophy of Gender",
+    "Hours": "3",
+    "Area of LLC": "AIII, LETR, LOW, XAMS, XPRS",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1100-1150",
+    "Location": "Paul & Rosemary Trible Library 1210",
+    "Instructor": "Dawn Hutchinson",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "18",
+    "Enrolled": "16",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    7025,
+    7026
+  ],
+  "raw_records": [
+    {
+      "CRN": "8304",
+      "Course": "PHIL 315",
+      "Section": "1",
+      "Title": "Philosophy of Gender",
+      "Hours": "3",
+      "Area of LLC": "AIII, LETR, LOW, XAMS, XPRS",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Paul & Rosemary Trible Library 1210",
+      "Instructor": "Dawn Hutchinson",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "18",
+      "Enrolled": "16",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "8304",
+      "Course": "PHIL 315",
+      "Section": "1",
+      "Title": "Philosophy of Gender",
+      "Hours": "3",
+      "Area of LLC": "AIII, LETR, LOW, XAMS, XPRS",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Paul & Rosemary Trible Library 1210",
+      "Instructor": "Dawn Hutchinson",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "18",
+      "Enrolled": "16",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

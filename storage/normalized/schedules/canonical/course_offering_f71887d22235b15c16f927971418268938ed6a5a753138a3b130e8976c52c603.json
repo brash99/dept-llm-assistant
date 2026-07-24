@@ -1,0 +1,354 @@
+{
+  "id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BCHM 415L Section 1 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: BCHM 415L\nSection: 1\nTitle: Biochemistry II Lab\nCRN: 8472",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603",
+          "published_name": "BCHM 415L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603",
+                "published_name": "BCHM 415L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "43ed4f9cbfc978ba6d9ba119246b7542e1ecc8e4af860a55dc48062aca597864"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3665,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "f71887d22235b15c16f927971418268938ed6a5a753138a3b130e8976c52c603",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3665,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "BCHM",
+  "course_number": "415L",
+  "course_code": "BCHM 415L",
+  "course_title": "Biochemistry II Lab",
+  "section": "1",
+  "crn": "8472",
+  "instructor_name": "Amanda Thorsen",
+  "instructor_raw": "Amanda Thorsen",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "5ac7a33aeb8a250f0614f15a58452bf9d8f20be409614e0a6d1aec3e68f3ae62",
+        "61955b132be1bed71ecb968d3dc530f810ab77af6e8bb345dab6bf4f120659fb",
+        "9b7cbeb89da708457e9714ab9edcc34b810782688c59e99b5321142ffda32fe7",
+        "b5ee1d04093922e9af55d5d9cdc295ad387e3c6e457f6554df2b4cff60b834ad"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Biochemistry II Lab"
+    ],
+    "normalized_value": "Biochemistry II Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "F 1300-1650",
+  "meeting_days": "F",
+  "meeting_time_raw": "1300-1650",
+  "start_time": "13:00",
+  "end_time": "16:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 1015",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 12,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 12,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "F",
+      "time_published": "1300-1650",
+      "location_published": "Forbes Hall 1015",
+      "source_rows": [
+        3665,
+        16930
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "401e419a64c0577e90d6d7a6303fa2a52a313a8764c17c98d4151ca20aa76be8",
+    "source_row_hashes": [
+      "e860904219069a4aa4fcf67717ecd108e0b1f3c9c537d87dc0dceb414ec03536",
+      "511427917a3f1d24a715f006ba46ff0af1e7322b64f36573e36b7b261a92ae75"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3665,
+    "source_rows": [
+      3665,
+      16930
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8472",
+    "Course": "BCHM 415L",
+    "Section": "1",
+    "Title": "Biochemistry II Lab",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "F",
+    "Time": "1300-1650",
+    "Location": "Forbes Hall 1015",
+    "Instructor": "Amanda Thorsen",
+    "Seats Still Available": "12",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "12",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    3665,
+    16930
+  ],
+  "raw_records": [
+    {
+      "CRN": "8472",
+      "Course": "BCHM 415L",
+      "Section": "1",
+      "Title": "Biochemistry II Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "F",
+      "Time": "1300-1650",
+      "Location": "Forbes Hall 1015",
+      "Instructor": "Amanda Thorsen",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "12",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8472",
+      "Course": "BCHM 415L",
+      "Section": "1",
+      "Title": "Biochemistry II Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "F",
+      "Time": "1300-1650",
+      "Location": "Forbes Hall 1015",
+      "Instructor": "Amanda Thorsen",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "12",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

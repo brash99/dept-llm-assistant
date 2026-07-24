@@ -1,0 +1,317 @@
+{
+  "id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: VOIC 331 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: VOIC 331\nSection: 1\nTitle: Applied Music: Voice\nCRN: 9147",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd",
+          "published_name": "VOIC 331 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd",
+                "published_name": "VOIC 331 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "e8afd696c3a72f7fba8eba163523bf67e52b0097324f8fbaeb092acee8289b77"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 7613,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "901f4fbc6c902ccbb921b7e4719c13c9bc2b4b9763be6690b8796eee9f6716cd",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 7613,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "VOIC",
+  "course_number": "331",
+  "course_code": "VOIC 331",
+  "course_title": "Applied Music: Voice",
+  "section": "1",
+  "crn": "9147",
+  "instructor_name": "John McGuire",
+  "instructor_raw": "John McGuire",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Applied Music: Voice"
+    ],
+    "normalized_value": "Applied Music: Voice",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 1,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "APPL",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        7613
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "e8e6188ae361c530d6475bf098d2ae7d8552fd7d3a7dfb9e183eb021749fe319",
+    "source_row_hashes": [
+      "87e0f25bbd7d12af6bc852814a88d1c204a6a2fe6821679e90708b523fb36bb5"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 7613,
+    "source_rows": [
+      7613
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9147",
+    "Course": "VOIC 331",
+    "Section": "1",
+    "Title": "Applied Music: Voice",
+    "Hours": "1",
+    "Area of LLC": "APPL",
+    "Type": "Lab",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "John McGuire",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "1",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    7613
+  ],
+  "raw_records": [
+    {
+      "CRN": "9147",
+      "Course": "VOIC 331",
+      "Section": "1",
+      "Title": "Applied Music: Voice",
+      "Hours": "1",
+      "Area of LLC": "APPL",
+      "Type": "Lab",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "John McGuire",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {}
+}

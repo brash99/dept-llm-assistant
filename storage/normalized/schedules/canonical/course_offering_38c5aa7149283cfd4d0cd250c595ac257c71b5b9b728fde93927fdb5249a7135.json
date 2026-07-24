@@ -1,0 +1,316 @@
+{
+  "id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 104 Section 3 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: MUSC 104\nSection: 3\nTitle: Chamber Ensemble\nCRN: 8877",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135",
+          "published_name": "MUSC 104 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135",
+                "published_name": "MUSC 104 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "fa425291ed4a9e625c509d354f18b43fac7fda6917e0b644750e0bd790a2ab4d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4223,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "38c5aa7149283cfd4d0cd250c595ac257c71b5b9b728fde93927fdb5249a7135",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4223,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "MUSC",
+  "course_number": "104",
+  "course_code": "MUSC 104",
+  "course_title": "Chamber Ensemble",
+  "section": "3",
+  "crn": "8877",
+  "instructor_name": "Ben Corbin",
+  "instructor_raw": "Ben Corbin",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Chamber Ensemble"
+    ],
+    "normalized_value": "Chamber Ensemble",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "WF 1100-1150",
+  "meeting_days": "WF",
+  "meeting_time_raw": "1100-1150",
+  "start_time": "11:00",
+  "end_time": "11:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts R106",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 7,
+  "capacity": 29,
+  "waitlist": null,
+  "seats_available": 22,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "GE, OR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "WF",
+      "time_published": "1100-1150",
+      "location_published": "Ferguson Center for the Arts R106",
+      "source_rows": [
+        4223
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "d39f5a1abc6fb71a0e4f91c47c7410f897432186cf918efd8e54bc743484d49e",
+    "source_row_hashes": [
+      "73814b1c7ee4ef5368ac8179a29810f4635d0853bcd8cdca9d9c4f97238180c1"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4223,
+    "source_rows": [
+      4223
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8877",
+    "Course": "MUSC 104",
+    "Section": "3",
+    "Title": "Chamber Ensemble",
+    "Hours": "1",
+    "Area of LLC": "GE, OR",
+    "Type": "Lab",
+    "Days": "WF",
+    "Time": "1100-1150",
+    "Location": "Ferguson Center for the Arts R106",
+    "Instructor": "Ben Corbin",
+    "Seats Still Available": "22",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "29",
+    "Enrolled": "7",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    4223
+  ],
+  "raw_records": [
+    {
+      "CRN": "8877",
+      "Course": "MUSC 104",
+      "Section": "3",
+      "Title": "Chamber Ensemble",
+      "Hours": "1",
+      "Area of LLC": "GE, OR",
+      "Type": "Lab",
+      "Days": "WF",
+      "Time": "1100-1150",
+      "Location": "Ferguson Center for the Arts R106",
+      "Instructor": "Ben Corbin",
+      "Seats Still Available": "22",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "29",
+      "Enrolled": "7",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {}
+}

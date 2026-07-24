@@ -1,0 +1,355 @@
+{
+  "id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 410 Section 2 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: CPSC 410\nSection: 2\nTitle: Operating Systems I\nCRN: 8241",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8",
+          "published_name": "CPSC 410 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8",
+                "published_name": "CPSC 410 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f97026f147df1f020d3c3c69873e28d3baeed458eee29b948b5095b8819c7d31"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1576,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "d5d15bd33157a7e95817cd36c25798ee16a13872d0e3c99faef11ff2724ed4d8",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1576,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "CPSC",
+  "course_number": "410",
+  "course_code": "CPSC 410",
+  "course_title": "Operating Systems I",
+  "section": "2",
+  "crn": "8241",
+  "instructor_name": "Keith Perkins",
+  "instructor_raw": "Keith Perkins",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "10ec8fa36463698cea347c86fffe732951ff6d94268723c95cba0dd8851ed1c9",
+        "f76c00fd775d6b37ccdd961a2bf8639773bacf448487d1c2e110c2a4a1fd136b",
+        "4f493b61498228dbf1ed87b1a8faa61ab2c5fca22e6adeec46eac1a47019210f",
+        "b198be8b15b282bab2e1c1e1426cf5a55540204b8bacdf46a5fad940bae61725",
+        "cc462f51484cc0ac006b173f4b08f3aa6168c0429358a245227d1c853462c234"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Operating Systems I"
+    ],
+    "normalized_value": "Operating Systems I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 258",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 22,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "PROF",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Joseph W. Luter III Hall 258",
+      "source_rows": [
+        1576,
+        6762
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "62bf99c62d77a165ad180a9d5f61feb06479bd76624aa9f03f2201b6b572a006",
+    "source_row_hashes": [
+      "6e3f4ec480a3f67b55094c9511ca9e57dc0e20b865f7c96005734f7bbbe306a9",
+      "1e7804c02a8e9b7589354b20b96b07169278b15cf86f2f1404e912eb343f58d0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1576,
+    "source_rows": [
+      1576,
+      6762
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8241",
+    "Course": "CPSC 410",
+    "Section": "2",
+    "Title": "Operating Systems I",
+    "Hours": "3",
+    "Area of LLC": "PROF",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Joseph W. Luter III Hall 258",
+    "Instructor": "Keith Perkins",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "22",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    1576,
+    6762
+  ],
+  "raw_records": [
+    {
+      "CRN": "8241",
+      "Course": "CPSC 410",
+      "Section": "2",
+      "Title": "Operating Systems I",
+      "Hours": "3",
+      "Area of LLC": "PROF",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Keith Perkins",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "22",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8241",
+      "Course": "CPSC 410",
+      "Section": "2",
+      "Title": "Operating Systems I",
+      "Hours": "3",
+      "Area of LLC": "PROF",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Keith Perkins",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "22",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

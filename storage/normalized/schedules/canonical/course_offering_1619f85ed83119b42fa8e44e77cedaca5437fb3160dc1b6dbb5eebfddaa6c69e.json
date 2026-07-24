@@ -1,0 +1,355 @@
+{
+  "id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 489 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: ENGL 489\nSection: 1\nTitle: Journalism Capstone\nCRN: 8391",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e",
+          "published_name": "ENGL 489 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e",
+                "published_name": "ENGL 489 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c3d7c9c9a181842e253120f6fa4fd6f2d9e208529e862ff8c0f08591ed54f214"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4589,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "1619f85ed83119b42fa8e44e77cedaca5437fb3160dc1b6dbb5eebfddaa6c69e",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4589,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "ENGL",
+  "course_number": "489",
+  "course_code": "ENGL 489",
+  "course_title": "Journalism Capstone",
+  "section": "1",
+  "crn": "8391",
+  "instructor_name": "Cynthia Davis",
+  "instructor_raw": "Cynthia Davis",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "d81612f7b320ccec5a973c91cdad165350f700c36d32db14472cbfd0e7a56fe1",
+        "1cc80a8e93c2619dc85db501a20f809f41c9e698d926b15f8659f53fc0f031f1",
+        "ccbdf83eefa2c15c9d4338aba9f23f26196fdf80e5347b4db076d4dd7a2a2c6e",
+        "5e6cdeaeb130c09ea15096ae0ead68792d09927baa8b32c6838b61745ade0a4c",
+        "ca8dc027148da212a1f02867335900c9435261ac8ae4d4f3f8499c1a2b7dc377"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Journalism Capstone"
+    ],
+    "normalized_value": "Journalism Capstone",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1400-1450",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1400-1450",
+  "start_time": "14:00",
+  "end_time": "14:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 366",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 5,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 14,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1400-1450",
+      "location_published": "Lewis McMurran Hall 366",
+      "source_rows": [
+        4589,
+        20394
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "dac1b0c7c79c7e1ec92a21a217a7caa8d77019eed8d16fc17fb52f851b52852f",
+    "source_row_hashes": [
+      "1ab525cc2abeb94b6a1171ac84fe219dcbdf2374a4c5a20760dff5af68c6d3b7",
+      "822a119e0a7d616022534406faa5d6faedaa4a847805bb664527783ef759d78e"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4589,
+    "source_rows": [
+      4589,
+      20394
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8391",
+    "Course": "ENGL 489",
+    "Section": "1",
+    "Title": "Journalism Capstone",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1400-1450",
+    "Location": "Lewis McMurran Hall 366",
+    "Instructor": "Cynthia Davis",
+    "Seats Still Available": "14",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "19",
+    "Enrolled": "5",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    4589,
+    20394
+  ],
+  "raw_records": [
+    {
+      "CRN": "8391",
+      "Course": "ENGL 489",
+      "Section": "1",
+      "Title": "Journalism Capstone",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 366",
+      "Instructor": "Cynthia Davis",
+      "Seats Still Available": "14",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "5",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8391",
+      "Course": "ENGL 489",
+      "Section": "1",
+      "Title": "Journalism Capstone",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 366",
+      "Instructor": "Cynthia Davis",
+      "Seats Still Available": "14",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "5",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

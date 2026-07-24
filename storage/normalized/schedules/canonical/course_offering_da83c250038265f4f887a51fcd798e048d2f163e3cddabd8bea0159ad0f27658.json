@@ -1,0 +1,353 @@
+{
+  "id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BUSN 317 Section 1 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: BUSN 317\nSection: 1\nTitle: Sales Skills\nCRN: 9017",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658",
+          "published_name": "BUSN 317 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658",
+                "published_name": "BUSN 317 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6a585d0a8cd0c1c83fa62ac5b3baba24c4c937025857e97d067fd7ba4bc2c548"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 20715,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "da83c250038265f4f887a51fcd798e048d2f163e3cddabd8bea0159ad0f27658",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 20715,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "BUSN",
+  "course_number": "317",
+  "course_code": "BUSN 317",
+  "course_title": "Sales Skills",
+  "section": "1",
+  "crn": "9017",
+  "instructor_name": "Lydia Scrofani",
+  "instructor_raw": "Lydia Scrofani",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "981caca5c09342efca544dd6c5b6a5b594f1daa40988fd3f7dc4b00292f29d0d",
+        "bbd2dc4ded6708f35e367ddbc7d794f2173ac11892ce9cba2842a8e566e00193",
+        "88b9fa217dfb1fde7d26559c55ebe775d101aa4b5cb046f6bdac76fbb852d21b"
+      ],
+      "supporting_terms": [
+        "2022_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Sales Skills"
+    ],
+    "normalized_value": "Sales Skills",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1300-1350",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1300-1350",
+  "start_time": "13:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 131",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 15,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1300-1350",
+      "location_published": "Joseph W. Luter III Hall 131",
+      "source_rows": [
+        20715,
+        20716
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "3b8b6d4754794c146ef746599183194ca0e5ff9369b94a0dc60716b15be89e81",
+    "source_row_hashes": [
+      "6d683fd3579fc1262e71f0727c345386051220b5a362ad56acf95434b6eb6ca0",
+      "75b821cbcb57f387ba548450f52dd4764b1a8a786fcf4e69a52fefc5d87b29bc"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 20715,
+    "source_rows": [
+      20715,
+      20716
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9017",
+    "Course": "BUSN 317",
+    "Section": "1",
+    "Title": "Sales Skills",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1300-1350",
+    "Location": "Joseph W. Luter III Hall 131",
+    "Instructor": "Lydia Scrofani",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "15",
+    "Enrolled": "15",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    20715,
+    20716
+  ],
+  "raw_records": [
+    {
+      "CRN": "9017",
+      "Course": "BUSN 317",
+      "Section": "1",
+      "Title": "Sales Skills",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Joseph W. Luter III Hall 131",
+      "Instructor": "Lydia Scrofani",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "15",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    },
+    {
+      "CRN": "9017",
+      "Course": "BUSN 317",
+      "Section": "1",
+      "Title": "Sales Skills",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Joseph W. Luter III Hall 131",
+      "Instructor": "Lydia Scrofani",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "15",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

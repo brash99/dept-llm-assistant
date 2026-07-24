@@ -1,0 +1,354 @@
+{
+  "id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MLAN 308 Section 2 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: MLAN 308\nSection: 2\nTitle: Cross Cultural Awareness\nCRN: 8623",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378",
+          "published_name": "MLAN 308 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378",
+                "published_name": "MLAN 308 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "579de0ded3734fdfdbc25eb2a6ce55823750f69b1c09a1b7a674242ab291d57c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 16933,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "166c7c1db366094d32abc2ed1d5fe30bf34241ae90a97059e361be3b6123f378",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 16933,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "MLAN",
+  "course_number": "308",
+  "course_code": "MLAN 308",
+  "course_title": "Cross Cultural Awareness",
+  "section": "2",
+  "crn": "8623",
+  "instructor_name": "Diana Obeid",
+  "instructor_raw": "Diana Obeid",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d",
+        "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd",
+        "3e660c8c4de52727b348d6c35c00606fa7ac2d109e9cecf61c5fa6f1c9243681",
+        "0fa729417d8501aa644681bc7a5047d31d151b1b097d93bee7033f4ffb8fd60c"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Cross Cultural Awareness"
+    ],
+    "normalized_value": "Cross Cultural Awareness",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1400-1450",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1400-1450",
+  "start_time": "14:00",
+  "end_time": "14:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 314",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 24,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIGM, LOW, XLAN",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1400-1450",
+      "location_published": "Lewis McMurran Hall 314",
+      "source_rows": [
+        16933,
+        16934
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "84994f611a9b0bdd64ee11dd64eb4ed14c73f3cec048d244c14b2be4b10612d8",
+    "source_row_hashes": [
+      "c023bba0ed0d11f5ae0faaf12cf7834529af630ecb3aca714e691da842f13607",
+      "33a582ad70fee1f1425e3e3635a04281ac1887604252fcebae324eea8c33ae14"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 16933,
+    "source_rows": [
+      16933,
+      16934
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8623",
+    "Course": "MLAN 308",
+    "Section": "2",
+    "Title": "Cross Cultural Awareness",
+    "Hours": "3",
+    "Area of LLC": "AIGM, LOW, XLAN",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1400-1450",
+    "Location": "Lewis McMurran Hall 314",
+    "Instructor": "Diana Obeid",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "24",
+    "Enrolled": "24",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    16933,
+    16934
+  ],
+  "raw_records": [
+    {
+      "CRN": "8623",
+      "Course": "MLAN 308",
+      "Section": "2",
+      "Title": "Cross Cultural Awareness",
+      "Hours": "3",
+      "Area of LLC": "AIGM, LOW, XLAN",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 314",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "24",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8623",
+      "Course": "MLAN 308",
+      "Section": "2",
+      "Title": "Cross Cultural Awareness",
+      "Hours": "3",
+      "Area of LLC": "AIGM, LOW, XLAN",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 314",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "24",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 120 Section 1 (2027_spring)",
+  "text": "Academic term: 2027_spring\nCourse: MUSC 120\nSection: 1\nTitle: Saxophone Ensemble\nCRN: 8773",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63",
+          "published_name": "MUSC 120 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2027_spring",
+        "published_label": "Spring Semester 2027"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63",
+                "published_name": "MUSC 120 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2027_spring",
+              "published_label": "Spring Semester 2027"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7ad67a3219d76e2be5ff58643b94c522b342774c493bdbf9e63168f00609eb7b"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 19584,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "ec29bcbdf09cd87bdf1e78da1f82fca87be673911203f41fa27003c2e958bd63",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 19584,
+  "acquisition_date": null,
+  "academic_term": "2027_spring",
+  "academic_term_published": "Spring Semester 2027",
+  "subject": "MUSC",
+  "course_number": "120",
+  "course_code": "MUSC 120",
+  "course_title": "Saxophone Ensemble",
+  "section": "1",
+  "crn": "8773",
+  "instructor_name": "Kenneth Drefke",
+  "instructor_raw": "Kenneth Drefke",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Saxophone Ensemble"
+    ],
+    "normalized_value": "Saxophone Ensemble",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "W 1200-1250",
+  "meeting_days": "W",
+  "meeting_time_raw": "1200-1250",
+  "start_time": "12:00",
+  "end_time": "12:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts ",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 0,
+  "capacity": 12,
+  "waitlist": null,
+  "seats_available": 12,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "W",
+      "time_published": "1200-1250",
+      "location_published": "Ferguson Center for the Arts ",
+      "source_rows": [
+        19584
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "1548cca104f8d3c93a1d6d4bff21b18a84dcbe1bb1578d247325bdbbbf2ebee4",
+    "source_row_hashes": [
+      "3cd715dfdbb5b7a8dec86d3cbc64b8d2c36453f0c2a09fa690d23b00490d4a77"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 19584,
+    "source_rows": [
+      19584
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8773",
+    "Course": "MUSC 120",
+    "Section": "1",
+    "Title": "Saxophone Ensemble",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "W",
+    "Time": "1200-1250",
+    "Location": "Ferguson Center for the Arts ",
+    "Instructor": "Kenneth Drefke",
+    "Seats Still Available": "12",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "12",
+    "Enrolled": "0",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2027"
+  },
+  "source_rows": [
+    19584
+  ],
+  "raw_records": [
+    {
+      "CRN": "8773",
+      "Course": "MUSC 120",
+      "Section": "1",
+      "Title": "Saxophone Ensemble",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "W",
+      "Time": "1200-1250",
+      "Location": "Ferguson Center for the Arts ",
+      "Instructor": "Kenneth Drefke",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "12",
+      "Enrolled": "0",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2027"
+    }
+  ],
+  "published_field_variants": {}
+}

@@ -1,0 +1,353 @@
+{
+  "id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 315 Section ON2 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: PSYC 315\nSection: ON2\nCRN: 9062",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe",
+          "published_name": "PSYC 315 ON2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe",
+                "published_name": "PSYC 315 ON2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "250e1d966503d290fa71cef493341a5c4f33efb7dc8c6f2aba673c9cfce1a58c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2716,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "dc3fc2bb5c5bf08bc4ed64ee19d67ab7219d65a08c9631533d17816a5654dffe",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2716,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "PSYC",
+  "course_number": "315",
+  "course_code": "PSYC 315",
+  "course_title": null,
+  "section": "ON2",
+  "crn": "9062",
+  "instructor_name": "Lindsey Stone",
+  "instructor_raw": "Lindsey Stone",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "8b7e03c2c253a75e80bbb510892c741d423feaab0014a0b1da01e683359735bc",
+        "ed1cdce0f18c5fc727a7f3bdd6a7442cf83f49bdb5dece179cb75afc6b14c5f2",
+        "8f64053643da0729c4c3ff11732f2d9006c31c1256db18c542a1776ab3531a98"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1500-1615",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1500-1615",
+  "start_time": "15:00",
+  "end_time": "16:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Synchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 40,
+  "capacity": 39,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1500-1615",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        2716,
+        2717
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "2ce4af55c9e70650af041ab07fd80e6eebebe65566b5a0619ead928ae0f88018",
+    "source_row_hashes": [
+      "7b5f22fbd4f99bec96b53cee8c98117b2815944676c680e382771b30e08874ac",
+      "c70833e57e371e770cb7cd96ae0ba17888b0fba87d273e8bc612e48e1a1c7f7b"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2716,
+    "source_rows": [
+      2716,
+      2717
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9062",
+    "Course": "PSYC 315",
+    "Section": "ON2",
+    "Title": "Psychology-Abnormal Behavior",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1500-1615",
+    "Location": "Synchronous Online Course ",
+    "Instructor": "Lindsey Stone",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "39",
+    "Enrolled": "40",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    2716,
+    2717
+  ],
+  "raw_records": [
+    {
+      "CRN": "9062",
+      "Course": "PSYC 315",
+      "Section": "ON2",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Lindsey Stone",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "39",
+      "Enrolled": "40",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "9062",
+      "Course": "PSYC 315",
+      "Section": "ON2",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Lindsey Stone",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "39",
+      "Enrolled": "40",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ]
+  }
+}

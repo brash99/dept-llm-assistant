@@ -1,73 +1,67 @@
-# Institutional Semantic Observatory Documentation
+# ISO Documentation
 
-## *Observe. Explain. Illuminate.*
+This directory separates current authoritative guidance from enduring design essays, research plans, examples, and historical records.
 
-The Institutional Semantic Observatory is an evidence-driven platform for constructing an explainable, evolving representation of an institution's knowledge ecosystem.
+## Start here
 
-## Start Here
+- [Current status](status.md) — implemented, partial, planned, and aspirational capabilities.
+- [Architecture overview](architecture/01_architecture_overview.md) — authoritative six-layer model.
+- [A100 operations](operations/a100.md) — server launch, monitoring, ingestion, indexing, and benchmarking.
+- [External evidence refresh runbook](operations/external_evidence_refresh.md) — standard curated acquisition and rebuild workflow.
+- [macOS development](operations/macos.md) — local editing and lightweight validation.
+- [Testing](operations/testing.md) — focused and repository-level checks.
+- [Configuration](operations/configuration.md) — current settings and registries.
+- [Decision-driven external acquisition](architecture/12_decision_driven_evidence_acquisition.md) — curated Evidence Fitness gap planning and staging.
+- [Glossary](reference/glossary.md) — canonical terminology.
 
-- [The ISO Manifesto](ISO_Manifesto.md)
-- [ISO Architecture Book](architecture/README.md)
-- [Research Agenda](ResearchAgenda.md)
+## Architecture
 
-## Documentation Areas
+The [Architecture Book](architecture/README.md) describes enduring design commitments and subsystem details. Its chapters are not separate architectural layers. The permanent architecture is always:
 
-### Architecture
+1. Evidence Layer
+2. Semantic Layer
+3. Reasoning Layer
+4. Evidence Fitness
+5. Scenario Modeling
+6. Institutional Digital Twin
 
-The enduring philosophy, abstractions, and design principles of ISO.
+## Decision support
 
-- [Architecture Book](architecture/README.md)
-- [Architecture FAQ](architecture/ArchitectureFAQ.md)
+- [Decision Briefs](decision_support/decision_briefs.md)
+- [Decision Brief 001](decision_support/decision_brief_001.md) — historical benchmark specification, not current runtime output.
+- [Decision-support vision](decision_support/vision.md) — directional material; consult `status.md` for implementation state.
 
-### Engineering
-
-Technical analysis of the current implementation.
+## Engineering references
 
 - [Benchmarking](engineering/benchmarking.md)
-- [Corpus Health](engineering/corpus_health.md)
-- [Corpus Observatory](engineering/corpus_observatory.md)
-- [Retrieval Diagnostics](engineering/retrieval_diagnostics.md)
+- [Retrieval diagnostics](engineering/retrieval_diagnostics.md)
+- [Corpus health](engineering/corpus_health.md)
+- [Corpus observatory](engineering/corpus_observatory.md)
 
-### Developer Reference
+## Research and principles
 
-Operational guidance for developers and maintainers.
+- [ISO Manifesto](ISO_Manifesto.md) — design values, not an implementation-status claim.
+- [Research Agenda](ResearchAgenda.md) — planned and aspirational research.
+- [Editorial Roadmap](EDITORIAL_ROADMAP.md)
 
-- [tmux Quick Reference](developer/tmux_quick_reference.md)
+## Dated design and audit records
 
-### Decision Support
+- [Academic Workforce Planning Semantic Model](archive/design/ACADEMIC_WORKFORCE_PLANNING_SEMANTIC_MODEL.md)
+  — pre-implementation August milestone design.
+- [AI Engineering Context](archive/development_context/AI_ENGINEERING_CONTEXT.md)
+  — July 21 engineering-onboarding snapshot.
+- [KnowledgeObject Ontology Audit](archive/audits/KNOWLEDGE_OBJECT_ONTOLOGY_AUDIT.md)
+  — repository audit dated July 20.
 
-Vision documents, examples, and Decision Brief documentation.
+These records explain how the implementation developed. They are not current
+status or operating instructions.
 
-- [Decision Support Vision](decision_support/vision.md)
-- [Decision Briefs](decision_support/decision_briefs.md)
-- [Example Decision Brief](decision_support/decision_brief_001.md)
+## Historical records
 
-### Presentations
+The files under `sessions/`, `experiments/`, and
+`archive/development_context/` record earlier development states. They may
+contain superseded phase terminology, commands, paths, or planned
+capabilities. They are retained as a laboratory notebook and are not
+operational instructions. See [Session archive](sessions/README.md).
 
-Presentation source files, PDFs, and supporting images.
-
-- [Presentations Directory](presentations/)
-
-### Development History
-
-The session notes preserve the project's development history as a laboratory notebook.
-
-- [Sessions Directory](sessions/)
-
-## Core Principle
-
-> **Knowledge Objects preserve observations. Services derive meaning.**
-
-ISO separates institutional facts from their interpretation so that the complete path from observation to recommendation remains transparent, inspectable, and open to challenge.
-
-## Repository Documentation Model
-
-The documentation is organized by purpose:
-
-- **Manifesto:** why ISO exists
-- **Architecture:** what ISO is
-- **Engineering:** how the current system behaves
-- **Developer reference:** how to operate and extend it
-- **Decision support:** how ISO supports institutional work
-- **Sessions:** how the project evolved
-- **Research agenda:** where the research program may go next
+Files under `presentations/` are also milestone artifacts; see the [Presentation Archive](presentations/README.md).

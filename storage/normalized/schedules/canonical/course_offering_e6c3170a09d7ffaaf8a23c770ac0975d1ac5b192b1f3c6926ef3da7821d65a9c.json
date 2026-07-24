@@ -1,0 +1,355 @@
+{
+  "id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 210 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: ENGL 210\nSection: 1\nTitle: Introduction to Journalism\nCRN: 8351",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c",
+          "published_name": "ENGL 210 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c",
+                "published_name": "ENGL 210 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "77b032e9b8f94524c69753df7a51d72330a3bd0a18dad0d56a3b7a736c841f08"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2718,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e6c3170a09d7ffaaf8a23c770ac0975d1ac5b192b1f3c6926ef3da7821d65a9c",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2718,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "ENGL",
+  "course_number": "210",
+  "course_code": "ENGL 210",
+  "course_title": "Introduction to Journalism",
+  "section": "1",
+  "crn": "8351",
+  "instructor_name": "Cynthia Davis",
+  "instructor_raw": "Cynthia Davis",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "d81612f7b320ccec5a973c91cdad165350f700c36d32db14472cbfd0e7a56fe1",
+        "1cc80a8e93c2619dc85db501a20f809f41c9e698d926b15f8659f53fc0f031f1",
+        "ccbdf83eefa2c15c9d4338aba9f23f26196fdf80e5347b4db076d4dd7a2a2c6e",
+        "5e6cdeaeb130c09ea15096ae0ead68792d09927baa8b32c6838b61745ade0a4c",
+        "ca8dc027148da212a1f02867335900c9435261ac8ae4d4f3f8499c1a2b7dc377"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introduction to Journalism"
+    ],
+    "normalized_value": "Introduction to Journalism",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 210",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 15,
+  "capacity": 25,
+  "waitlist": null,
+  "seats_available": 10,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Lewis McMurran Hall 210",
+      "source_rows": [
+        2718,
+        7925
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "62a3e02fedbf0976855317bd3fc657701bb563a35e5b6ff3810980e082ec3745",
+    "source_row_hashes": [
+      "769e9afdb5c60d36404a50a24b815adac6b7a11bd72a7d0a3ac088ad02c5581b",
+      "4bb74ef46f9391f588f8034897f2bd512d830db403038fb0cb442c60f7cd6a54"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2718,
+    "source_rows": [
+      2718,
+      7925
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8351",
+    "Course": "ENGL 210",
+    "Section": "1",
+    "Title": "Introduction to Journalism",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Lewis McMurran Hall 210",
+    "Instructor": "Cynthia Davis",
+    "Seats Still Available": "10",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "25",
+    "Enrolled": "15",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    2718,
+    7925
+  ],
+  "raw_records": [
+    {
+      "CRN": "8351",
+      "Course": "ENGL 210",
+      "Section": "1",
+      "Title": "Introduction to Journalism",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Lewis McMurran Hall 210",
+      "Instructor": "Cynthia Davis",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "25",
+      "Enrolled": "15",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8351",
+      "Course": "ENGL 210",
+      "Section": "1",
+      "Title": "Introduction to Journalism",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Lewis McMurran Hall 210",
+      "Instructor": "Cynthia Davis",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "25",
+      "Enrolled": "15",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

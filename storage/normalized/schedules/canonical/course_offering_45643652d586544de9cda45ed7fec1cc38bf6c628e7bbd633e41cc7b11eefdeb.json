@@ -1,0 +1,351 @@
+{
+  "id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: LDSP 386 Section 4 (2021_fall)",
+  "text": "Academic term: 2021_fall\nCourse: LDSP 386\nSection: 4\nTitle: Values Leadership\nCRN: 9178",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb",
+          "published_name": "LDSP 386 4"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_fall",
+        "published_label": "Fall Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb",
+                "published_name": "LDSP 386 4"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_fall",
+              "published_label": "Fall Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5f42e193b92622bfbc528ae2107e643bdd49401e724c255982f8d37081a151c8"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 8393,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "45643652d586544de9cda45ed7fec1cc38bf6c628e7bbd633e41cc7b11eefdeb",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 8393,
+  "acquisition_date": null,
+  "academic_term": "2021_fall",
+  "academic_term_published": "Fall Semester 2021",
+  "subject": "LDSP",
+  "course_number": "386",
+  "course_code": "LDSP 386",
+  "course_title": "Values Leadership",
+  "section": "4",
+  "crn": "9178",
+  "instructor_name": "Lori Throupe",
+  "instructor_raw": "Lori Throupe",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "9d11b0aefd67b36e14de6afaa693ae2f23f6abe36d307b1b6622c584dbb0b0f7"
+      ],
+      "supporting_terms": [
+        "2021_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Values Leadership"
+    ],
+    "normalized_value": "Values Leadership",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 3012",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Forbes Hall 3012",
+      "source_rows": [
+        8393,
+        13749
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "a13f4025c2668b11e4e6e726d64842b6bd0024ea5f217770284fb7948600b56c",
+    "source_row_hashes": [
+      "e96655873ebe6ab69289c0783b2518836a4c0e810ae85f53403f77e50a82bfb6",
+      "4476df51ef2ec56b01b374382ef77f322e9f42859769971152f6ce0caadef6ce"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 8393,
+    "source_rows": [
+      8393,
+      13749
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9178",
+    "Course": "LDSP 386",
+    "Section": "4",
+    "Title": "Values Leadership",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Forbes Hall 3012",
+    "Instructor": "Lori Throupe",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "19",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2021"
+  },
+  "source_rows": [
+    8393,
+    13749
+  ],
+  "raw_records": [
+    {
+      "CRN": "9178",
+      "Course": "LDSP 386",
+      "Section": "4",
+      "Title": "Values Leadership",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 3012",
+      "Instructor": "Lori Throupe",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2021"
+    },
+    {
+      "CRN": "9178",
+      "Course": "LDSP 386",
+      "Section": "4",
+      "Title": "Values Leadership",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Forbes Hall 3012",
+      "Instructor": "Lori Throupe",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

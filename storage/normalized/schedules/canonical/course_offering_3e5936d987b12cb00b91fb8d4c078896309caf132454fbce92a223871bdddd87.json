@@ -1,0 +1,316 @@
+{
+  "id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOCL 314L Section 1 (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: SOCL 314L\nSection: 1\nTitle: Educ, Culture and Society Lab\nCRN: 8976",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87",
+          "published_name": "SOCL 314L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87",
+                "published_name": "SOCL 314L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "fd0f5e46d151c8296992569bc0267a7375d6b2ae1244904d05cb718fb1eeddb0"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 11458,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "3e5936d987b12cb00b91fb8d4c078896309caf132454fbce92a223871bdddd87",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 11458,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "SOCL",
+  "course_number": "314L",
+  "course_code": "SOCL 314L",
+  "course_title": "Educ, Culture and Society Lab",
+  "section": "1",
+  "crn": "8976",
+  "instructor_name": "Linda Powell",
+  "instructor_raw": "Linda Powell",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Educ, Culture and Society Lab"
+    ],
+    "normalized_value": "Educ, Culture and Society Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "T 1100-1215",
+  "meeting_days": "T",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 200B",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 7,
+  "capacity": 7,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "T",
+      "time_published": "1100-1215",
+      "location_published": "Lewis McMurran Hall 200B",
+      "source_rows": [
+        11458
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "8b1f52559fba552eb9ee5a82459740fd4d187843114ea6685fabe29bc0531592",
+    "source_row_hashes": [
+      "22918c2c6f42f90814bd565804b7c3443dd378194263b3c337ce16de500552b0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 11458,
+    "source_rows": [
+      11458
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8976",
+    "Course": "SOCL 314L",
+    "Section": "1",
+    "Title": "Educ, Culture and Society Lab",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "T",
+    "Time": "1100-1215",
+    "Location": "Lewis McMurran Hall 200B",
+    "Instructor": "Linda Powell",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "7",
+    "Enrolled": "7",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    11458
+  ],
+  "raw_records": [
+    {
+      "CRN": "8976",
+      "Course": "SOCL 314L",
+      "Section": "1",
+      "Title": "Educ, Culture and Society Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1100-1215",
+      "Location": "Lewis McMurran Hall 200B",
+      "Instructor": "Linda Powell",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "7",
+      "Enrolled": "7",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {}
+}

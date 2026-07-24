@@ -1,0 +1,316 @@
+{
+  "id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: GERM 101 Section 1R (2023_fall)",
+  "text": "Academic term: 2023_fall\nCourse: GERM 101\nSection: 1R\nTitle: Beginning German I\nCRN: 8951",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6",
+          "published_name": "GERM 101 1R"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_fall",
+        "published_label": "Fall Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6",
+                "published_name": "GERM 101 1R"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_fall",
+              "published_label": "Fall Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "650705c3d9823848d15d4075c7eb3b2591eddab7d5de09f548858e99f19ae75f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 12870,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "99022ff580ffbdf9d53245daa37cf2fde937398e1be51534076936544c5887a6",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 12870,
+  "acquisition_date": null,
+  "academic_term": "2023_fall",
+  "academic_term_published": "Fall Semester 2023",
+  "subject": "GERM",
+  "course_number": "101",
+  "course_code": "GERM 101",
+  "course_title": "Beginning German I",
+  "section": "1R",
+  "crn": "8951",
+  "instructor_name": "Brian McInnis",
+  "instructor_raw": "Brian McInnis",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Beginning German I"
+    ],
+    "normalized_value": "Beginning German I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 0900-0950",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 137",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 23,
+  "waitlist": null,
+  "seats_available": 5,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "FLAN, GE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Joseph W. Luter III Hall 137",
+      "source_rows": [
+        12870
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "4dc6913456dea0f0ee813be3bab02de5d7b25164a06b3236360e8f630750fc61",
+    "source_row_hashes": [
+      "7b9dd6238bae9a164122a16efdab0a917fb00bcf64bca0b91f138c2e2dbe5b73"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 12870,
+    "source_rows": [
+      12870
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8951",
+    "Course": "GERM 101",
+    "Section": "1R",
+    "Title": "Beginning German I",
+    "Hours": "3",
+    "Area of LLC": "FLAN, GE",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "0900-0950",
+    "Location": "Joseph W. Luter III Hall 137",
+    "Instructor": "Brian McInnis",
+    "Seats Still Available": "5",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "23",
+    "Enrolled": "18",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2023"
+  },
+  "source_rows": [
+    12870
+  ],
+  "raw_records": [
+    {
+      "CRN": "8951",
+      "Course": "GERM 101",
+      "Section": "1R",
+      "Title": "Beginning German I",
+      "Hours": "3",
+      "Area of LLC": "FLAN, GE",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Joseph W. Luter III Hall 137",
+      "Instructor": "Brian McInnis",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "23",
+      "Enrolled": "18",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2023"
+    }
+  ],
+  "published_field_variants": {}
+}

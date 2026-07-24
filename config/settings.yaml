@@ -4,6 +4,7 @@ project:
 storage:
   raw_drive: storage/raw_drive
   raw_web: storage/raw_web
+  external_staging: storage/external_staging
   normalized: storage/normalized
   constitutional: storage/constitutional
   chunks: storage/chunks
@@ -12,6 +13,36 @@ storage:
   models: storage/models
   cache: storage/cache
   logs: storage/logs
+
+schedule_ingestion:
+  canonical_source: data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv
+  normalized_output: storage/normalized/schedules/canonical
+  encoding: utf-8-sig
+  expected_header:
+    - CRN
+    - Course
+    - Section
+    - Title
+    - Hours
+    - Area of LLC
+    - Type
+    - Days
+    - Time
+    - Location
+    - Instructor
+    - Seats Still Available
+    - Status
+    - Low Cost Textbook
+    - Capacity
+    - Enrolled
+    - Instructor Type
+    - Term
+
+faculty_ingestion:
+  normalized_output_root: storage/normalized/faculty
+
+catalog_ingestion:
+  normalized_output_root: storage/normalized/catalogs
 
 llm:
   base_url: http://localhost:8001/v1
@@ -62,6 +93,9 @@ retrieval:
   constitutional_top_k: 2
   empirical_top_k: 10
   fetch_k: 200
+  max_per_document_family: 2
+  max_per_evidence_role: 4
+  evidence_role_relevance_margin: 0.5
 
 normalization_sources:
   - key: cnu_website

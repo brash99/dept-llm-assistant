@@ -1,0 +1,316 @@
+{
+  "id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: GERM 101 Section 2R (2025_fall)",
+  "text": "Academic term: 2025_fall\nCourse: GERM 101\nSection: 2R\nTitle: Beginning German I\nCRN: 8330",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7",
+          "published_name": "GERM 101 2R"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "Fall Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7",
+                "published_name": "GERM 101 2R"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "Fall Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b3cf937e45969831bfe964fb38e74d28444247dd80afd3b6952a009460d7b63e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 12814,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "70a990611e28ca6adb6022b10477a086ffc4677d93e17636ec7203b5dcf007c7",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 12814,
+  "acquisition_date": null,
+  "academic_term": "2025_fall",
+  "academic_term_published": "Fall Semester 2025",
+  "subject": "GERM",
+  "course_number": "101",
+  "course_code": "GERM 101",
+  "course_title": "Beginning German I",
+  "section": "2R",
+  "crn": "8330",
+  "instructor_name": "Jeffrey Castle",
+  "instructor_raw": "Jeffrey Castle",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Beginning German I"
+    ],
+    "normalized_value": "Beginning German I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 357",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 22,
+  "waitlist": null,
+  "seats_available": 4,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "FLAN, GE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Lewis McMurran Hall 357",
+      "source_rows": [
+        12814
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "6d763c54b854f409eac6be2977415283514caa6ab9092ad65569597d50354aeb",
+    "source_row_hashes": [
+      "a31cb6509a596891f8d3f3418f70d77749ff9b4805a5019aeb7dd766ac75cc39"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 12814,
+    "source_rows": [
+      12814
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8330",
+    "Course": "GERM 101",
+    "Section": "2R",
+    "Title": "Beginning German I",
+    "Hours": "3",
+    "Area of LLC": "FLAN, GE",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Lewis McMurran Hall 357",
+    "Instructor": "Jeffrey Castle",
+    "Seats Still Available": "4",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "22",
+    "Enrolled": "18",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2025"
+  },
+  "source_rows": [
+    12814
+  ],
+  "raw_records": [
+    {
+      "CRN": "8330",
+      "Course": "GERM 101",
+      "Section": "2R",
+      "Title": "Beginning German I",
+      "Hours": "3",
+      "Area of LLC": "FLAN, GE",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Lewis McMurran Hall 357",
+      "Instructor": "Jeffrey Castle",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "22",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2025"
+    }
+  ],
+  "published_field_variants": {}
+}

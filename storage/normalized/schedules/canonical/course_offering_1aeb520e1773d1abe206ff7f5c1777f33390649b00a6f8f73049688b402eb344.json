@@ -1,0 +1,352 @@
+{
+  "id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 401 Section 3 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: SOWK 401\nSection: 3\nTitle: Field Instruction I\nCRN: 8565",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344",
+          "published_name": "SOWK 401 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344",
+                "published_name": "SOWK 401 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d9d351f85eac6cdccd102fcc8f2a09fedd0019e112b1a4cdcb11cab6ac920635"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 7706,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "1aeb520e1773d1abe206ff7f5c1777f33390649b00a6f8f73049688b402eb344",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 7706,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "SOWK",
+  "course_number": "401",
+  "course_code": "SOWK 401",
+  "course_title": "Field Instruction I",
+  "section": "3",
+  "crn": "8565",
+  "instructor_name": "Jill Russett",
+  "instructor_raw": "Jill Russett",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "4febb860584eacdec2ee74a6213511702981c6f9720c3f57817035badc8a4c7d",
+        "9e061d66388238266ff42d499063e84418a3fe6e89e4d902f11473b9d357c058"
+      ],
+      "supporting_terms": [
+        "2022_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Field Instruction I"
+    ],
+    "normalized_value": "Field Instruction I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "6"
+    ],
+    "normalized_value": "6",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Pra",
+  "meeting_pattern": "W 1200-1350",
+  "meeting_days": "W",
+  "meeting_time_raw": "1200-1350",
+  "start_time": "12:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 200B",
+  "building": null,
+  "room": null,
+  "credits": 6,
+  "credits_raw": "6",
+  "enrollment": 6,
+  "capacity": 8,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "W",
+      "time_published": "1200-1350",
+      "location_published": "Lewis McMurran Hall 200B",
+      "source_rows": [
+        7706,
+        13005
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "8601f93d430c1ba5b14d7396e3c226a81fd86fbd8bf2fc45b82097190d4c5ba8",
+    "source_row_hashes": [
+      "97601b9472b8077a1a2e2f130165cfa469e3c466c522db72628cf7570bac4001",
+      "95e6ad612c3d9a70c5f77a6b0a181b2775443df209b9714ff4c318d9b5a4729d"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 7706,
+    "source_rows": [
+      7706,
+      13005
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8565",
+    "Course": "SOWK 401",
+    "Section": "3",
+    "Title": "Field Instruction I",
+    "Hours": "6",
+    "Area of LLC": "",
+    "Type": "Pra",
+    "Days": "W",
+    "Time": "1200-1350",
+    "Location": "Lewis McMurran Hall 200B",
+    "Instructor": "Jill Russett",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "8",
+    "Enrolled": "6",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    7706,
+    13005
+  ],
+  "raw_records": [
+    {
+      "CRN": "8565",
+      "Course": "SOWK 401",
+      "Section": "3",
+      "Title": "Field Instruction I",
+      "Hours": "6",
+      "Area of LLC": "",
+      "Type": "Pra",
+      "Days": "W",
+      "Time": "1200-1350",
+      "Location": "Lewis McMurran Hall 200B",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "6",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    },
+    {
+      "CRN": "8565",
+      "Course": "SOWK 401",
+      "Section": "3",
+      "Title": "Field Instruction I",
+      "Hours": "6",
+      "Area of LLC": "",
+      "Type": "Pra",
+      "Days": "W",
+      "Time": "1200-1350",
+      "Location": "Lewis McMurran Hall 200B",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "6",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

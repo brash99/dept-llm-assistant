@@ -1,0 +1,361 @@
+{
+  "id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MBCH 498 Section 1 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: MBCH 498\nSection: 1\nTitle: Undergraduate Research & Thsis\nCRN: 9405",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2",
+          "published_name": "MBCH 498 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2",
+                "published_name": "MBCH 498 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "e87ec3228c4c9a7f183ce94ecc81c1d0a197198c2ce704c92749d464814a84d8"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 670,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "69f79f63867755e1bf3a7be5eca7f6ff035582f73aa5d922050ad72fb2ea1cb2",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 670,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "MBCH",
+  "course_number": "498",
+  "course_code": "MBCH 498",
+  "course_title": "Undergraduate Research & Thsis",
+  "section": "1",
+  "crn": "9405",
+  "instructor_name": "Ronald Quinlan",
+  "instructor_raw": "Ronald Quinlan",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 10,
+      "supporting_observation_ids": [
+        "1417e37c5ad6d93d5bb0ea1e80ee66d5c6e812548ef83a4b80e6c72aa9c427e5",
+        "246a8415a76c85b9626bde071d58e0b6ab3a73479bbbe4eafc7b35017251ccc7",
+        "c19cbd813af6735e96eacae03e5630c7d0aa5054d478f93b5872a72e44135bb2",
+        "32cc6f0e85dd7dd2549d3099e87233d8a80bc82f6d906e535f69c282cfcc1562",
+        "c82a3d445893cc95185e4869578e5213fbb372230e3a883feac3160867ce964d",
+        "e8b42b31390c5974ef6538957b1212f2df7aa2093de30d225db2d9e9362f3035",
+        "e80acf34110ca527af7f5671dc8d834d7f600a7810cbaff8c9c9e08f6f29f72a",
+        "9dd25f08f64289ece018889f60720bf1bac8b41a42a0e80f2147f1e5396100e4",
+        "e1b662ec9e57caea23f3fb586ec1020896d35ea80fa3573e8c648af1f43aedd5",
+        "3de25d1c2b0da14ba67bb2462cd881bde52c51bbbbcb89acce014004e51fb3e0"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Undergraduate Research & Thsis"
+    ],
+    "normalized_value": "Undergraduate Research & Thsis",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Ind",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 1,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        670,
+        8486
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "2ebf52daccc81560be9c203898dd895215be634267c21e8d552e995497716c73",
+    "source_row_hashes": [
+      "7c046998b1f30e0cbb1d5f14d7e8ea4b51698bdb93ad3ba1d950ada38cce56db",
+      "54a73c416ee6a261c81f15ab6cb2f20d6e4a309d5f44fe7cf232fcb21aeac832"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 670,
+    "source_rows": [
+      670,
+      8486
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9405",
+    "Course": "MBCH 498",
+    "Section": "1",
+    "Title": "Undergraduate Research & Thsis",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Ind",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "Ronald Quinlan",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "1",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    670,
+    8486
+  ],
+  "raw_records": [
+    {
+      "CRN": "9405",
+      "Course": "MBCH 498",
+      "Section": "1",
+      "Title": "Undergraduate Research & Thsis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Ind",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "9405",
+      "Course": "MBCH 498",
+      "Section": "1",
+      "Title": "Undergraduate Research & Thsis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Ind",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

@@ -24,7 +24,109 @@
     "institutional_scope": [
       "Christopher Newport University"
     ],
-    "constitutional_notes": "Curated as constitutional evidence because CNU evaluates new proposals through their consistency with the Strategic Compass. The four canonical Compass directions are Advance, Connect, Create, and Build."
+    "constitutional_notes": "Curated as constitutional evidence because CNU evaluates new proposals through their consistency with the Strategic Compass. The four canonical Compass directions are Advance, Connect, Create, and Build.",
+    "semantic_identity": {
+      "object_type": "constitutional_knowledge",
+      "institutional_entities": [
+        {
+          "entity_type": "institution",
+          "entity_id": "published_institution:Christopher Newport University",
+          "published_name": "Christopher Newport University"
+        }
+      ],
+      "institutional_relevance": {
+        "constitutional_type": "strategic_compass",
+        "principles": [
+          "advance the power and promise of an education embedded in the liberal arts",
+          "connect with our community",
+          "create a stronger culture of inclusion and belonging",
+          "build a foundation to thrive"
+        ]
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "constitutional_knowledge_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "institutional_relevance",
+          "object_type"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "constitutional_knowledge",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "constitutional:7153afc3f1f68309f10cd97691ee00b4bddec4d51e335f4b1f9bf7e1526b6c53"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "institution",
+                "entity_id": "published_institution:Christopher Newport University",
+                "published_name": "Christopher Newport University"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "institutional_scope",
+                "knowledge_object_id": "constitutional:7153afc3f1f68309f10cd97691ee00b4bddec4d51e335f4b1f9bf7e1526b6c53"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_relevance",
+            "value": {
+              "constitutional_type": "strategic_compass",
+              "principles": [
+                "advance the power and promise of an education embedded in the liberal arts",
+                "connect with our community",
+                "create a stronger culture of inclusion and belonging",
+                "build a foundation to thrive"
+              ]
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "constitutional_type",
+                "knowledge_object_id": "constitutional:7153afc3f1f68309f10cd97691ee00b4bddec4d51e335f4b1f9bf7e1526b6c53"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "principles",
+                "knowledge_object_id": "constitutional:7153afc3f1f68309f10cd97691ee00b4bddec4d51e335f4b1f9bf7e1526b6c53"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d3f7aa9d083f287ecb7aab6e10f8b678ab2a51818041029928eeab6d6719062c"
+      }
+    ]
   },
   "source": {
     "kind": "filesystem",

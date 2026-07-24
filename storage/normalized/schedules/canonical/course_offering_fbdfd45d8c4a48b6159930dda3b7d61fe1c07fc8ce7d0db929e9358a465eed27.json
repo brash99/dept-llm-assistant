@@ -1,0 +1,354 @@
+{
+  "id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: DANC 304 Section 1 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: DANC 304\nSection: 1\nTitle: Ballet II\nCRN: 8881",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27",
+          "published_name": "DANC 304 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27",
+                "published_name": "DANC 304 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f44718c39605f5df807052064b3e8af1abe4988bb13f98001986c518574fa341"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 927,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "fbdfd45d8c4a48b6159930dda3b7d61fe1c07fc8ce7d0db929e9358a465eed27",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 927,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "DANC",
+  "course_number": "304",
+  "course_code": "DANC 304",
+  "course_title": "Ballet II",
+  "section": "1",
+  "crn": "8881",
+  "instructor_name": "Laura Lloyd",
+  "instructor_raw": "Laura Lloyd",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "b5bf6966e97a584d49c635bb1c23c355295bc3de0d13c0dd4cd1ae5f8ada2da3",
+        "02d6eb65a0ab21b7b9a0b36a2ce1b11e750979759551e4576564eceaac2aade2",
+        "637704f7fcf94ea9b0b0fff9c2eefdbb7cb54b28b3bb4684d336f1f210cc2f8f",
+        "f5edd81082c856cf7b22b2e22311d449b56487327c12dd2267ec991a1ab35872"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Ballet II"
+    ],
+    "normalized_value": "Ballet II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts T177",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 17,
+  "capacity": 17,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": "Ferguson Center for the Arts T177",
+      "source_rows": [
+        927,
+        8777
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f154ce16fd9fcca557a5b7494f70803ae23e0d7b8c90d038e30e5c0e814425c4",
+    "source_row_hashes": [
+      "a9bf487bbce3b6fad51e1ed5d1ca9593d6c30427b0ff8759a0698fb7895bcd9c",
+      "a58c35f8172b7cf3d81571769528ce7a2831473c1085dec4cff5236d63b1f6c0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 927,
+    "source_rows": [
+      927,
+      8777
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8881",
+    "Course": "DANC 304",
+    "Section": "1",
+    "Title": "Ballet II",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": "Ferguson Center for the Arts T177",
+    "Instructor": "Laura Lloyd",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "17",
+    "Enrolled": "17",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    927,
+    8777
+  ],
+  "raw_records": [
+    {
+      "CRN": "8881",
+      "Course": "DANC 304",
+      "Section": "1",
+      "Title": "Ballet II",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts T177",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "17",
+      "Enrolled": "17",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8881",
+      "Course": "DANC 304",
+      "Section": "1",
+      "Title": "Ballet II",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts T177",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "17",
+      "Enrolled": "17",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

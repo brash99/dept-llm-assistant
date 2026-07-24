@@ -1,0 +1,316 @@
+{
+  "id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: AMST 100 Section 5 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: AMST 100\nSection: 5\nTitle: The American Experiment\nCRN: 8027",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1",
+          "published_name": "AMST 100 5"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1",
+                "published_name": "AMST 100 5"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "aee9f56f74c76034939151e4d8588e5aa1cebeb4c8262ee53da467ef7be5ae20"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6654,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "86e1f1ee5548cef8facbe2e69a5c12bddb31f01179c768f408156519665957a1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6654,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "AMST",
+  "course_number": "100",
+  "course_code": "AMST 100",
+  "course_title": "The American Experiment",
+  "section": "5",
+  "crn": "8027",
+  "instructor_name": "Jeffry Morrison",
+  "instructor_raw": "Jeffry Morrison",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "The American Experiment"
+    ],
+    "normalized_value": "The American Experiment",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1800-1915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 137",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 26,
+  "capacity": 26,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIDE, LDSP, LOW, XAMS",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1800-1915",
+      "location_published": "Joseph W. Luter III Hall 137",
+      "source_rows": [
+        6654
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "d85e6eae60114fe4e9698e50808a1578cc20d5f8beca4b98f30c1f5e53afab5c",
+    "source_row_hashes": [
+      "cffe7dff45839d69841d3cbfa8b2bc294fd2c3b1c3766ba089f32c62b72abfc6"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6654,
+    "source_rows": [
+      6654
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8027",
+    "Course": "AMST 100",
+    "Section": "5",
+    "Title": "The American Experiment",
+    "Hours": "3",
+    "Area of LLC": "AIDE, LDSP, LOW, XAMS",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1800-1915",
+    "Location": "Joseph W. Luter III Hall 137",
+    "Instructor": "Jeffry Morrison",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "26",
+    "Enrolled": "26",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    6654
+  ],
+  "raw_records": [
+    {
+      "CRN": "8027",
+      "Course": "AMST 100",
+      "Section": "5",
+      "Title": "The American Experiment",
+      "Hours": "3",
+      "Area of LLC": "AIDE, LDSP, LOW, XAMS",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Joseph W. Luter III Hall 137",
+      "Instructor": "Jeffry Morrison",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "26",
+      "Enrolled": "26",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {}
+}

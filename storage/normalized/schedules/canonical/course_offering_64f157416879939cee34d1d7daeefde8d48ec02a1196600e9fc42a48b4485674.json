@@ -1,0 +1,355 @@
+{
+  "id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 110 Section ON1 (2024_may)",
+  "text": "Academic term: 2024_may\nCourse: CPSC 110\nSection: ON1\nTitle: Introduction to Computing\nCRN: 2049",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674",
+          "published_name": "CPSC 110 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_may",
+        "published_label": "May Term 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674",
+                "published_name": "CPSC 110 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_may",
+              "published_label": "May Term 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "da62144987f69a5e37faaf8ca008fdb2dc4092ba4842f0dd9431402eb3ed26cc"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 5355,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 5355,
+  "acquisition_date": null,
+  "academic_term": "2024_may",
+  "academic_term_published": "May Term 2024",
+  "subject": "CPSC",
+  "course_number": "110",
+  "course_code": "CPSC 110",
+  "course_title": "Introduction to Computing",
+  "section": "ON1",
+  "crn": "2049",
+  "instructor_name": "Kimberly Davis",
+  "instructor_raw": "Kimberly Davis",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "b70eff4ef8edac4749e01a18e8c175676053cd40429c0f95229d80a559f71b76",
+        "e9d3cd9acab639f0db905022c91ac02b2bbc7f233668f76d346928d8a36d4f77",
+        "9b6414025b835ca9d0f09c03c4cc3ce677be806da53fc0d61f9377dd01bbe680",
+        "040e611961e36f919ac1c73bd353d51d5d8577246ff48a6683c7df6b125dc4aa"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introduction to Computing"
+    ],
+    "normalized_value": "Introduction to Computing",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Asynchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 15,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIIF, GE, LLFR, XPCE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "Asynchronous Online Course ",
+      "source_rows": [
+        5355,
+        15956
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "ddd04a21b80a898fca8921ced56faa51bb03f97d780dea4164731a26c90dd551",
+    "source_row_hashes": [
+      "5790f5eeb53b6a3b376030ff392af2d53313ae3fdfee344004a463d473bf33ff",
+      "f99c122e0ff03da294c753ddf04ad64d413049277fdcaba6c77af2b278572c1a"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 5355,
+    "source_rows": [
+      5355,
+      15956
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "2049",
+    "Course": "CPSC 110",
+    "Section": "ON1",
+    "Title": "Introduction to Computing",
+    "Hours": "3",
+    "Area of LLC": "AIIF, GE, LLFR, XPCE",
+    "Type": "Lec",
+    "Days": "",
+    "Time": "-",
+    "Location": "Asynchronous Online Course ",
+    "Instructor": "Kimberly Davis",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "15",
+    "Enrolled": "15",
+    "Instructor Type": "Full Time",
+    "Term": "May Term 2024"
+  },
+  "source_rows": [
+    5355,
+    15956
+  ],
+  "raw_records": [
+    {
+      "CRN": "2049",
+      "Course": "CPSC 110",
+      "Section": "ON1",
+      "Title": "Introduction to Computing",
+      "Hours": "3",
+      "Area of LLC": "AIIF, GE, LLFR, XPCE",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Kimberly Davis",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "15",
+      "Instructor Type": "Full Time",
+      "Term": "May Term 2024"
+    },
+    {
+      "CRN": "2049",
+      "Course": "CPSC 110",
+      "Section": "ON1",
+      "Title": "Introduction to Computing",
+      "Hours": "3",
+      "Area of LLC": "AIIF, GE, LLFR, XPCE",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Kimberly Davis",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "15",
+      "Instructor Type": "Adjunct",
+      "Term": "May Term 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

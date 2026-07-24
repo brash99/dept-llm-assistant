@@ -1,0 +1,353 @@
+{
+  "id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGR 211L Section 3 (2023_fall)",
+  "text": "Academic term: 2023_fall\nCourse: ENGR 211L\nSection: 3\nTitle: Intro Electric Circ/Electr Lab\nCRN: 8765",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285",
+          "published_name": "ENGR 211L 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_fall",
+        "published_label": "Fall Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285",
+                "published_name": "ENGR 211L 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_fall",
+              "published_label": "Fall Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f7310526515505f1ab5f27a1dee9f1ebf00f9fd0035924a3044f2b3588dbf4c6"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4943,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "67f4721385d81c0271ffb63ebd6a3c48f641cdfa464021927e593bfa98fc3285",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4943,
+  "acquisition_date": null,
+  "academic_term": "2023_fall",
+  "academic_term_published": "Fall Semester 2023",
+  "subject": "ENGR",
+  "course_number": "211L",
+  "course_code": "ENGR 211L",
+  "course_title": "Intro Electric Circ/Electr Lab",
+  "section": "3",
+  "crn": "8765",
+  "instructor_name": "Hessam Keshtkar Vanashi",
+  "instructor_raw": "Hessam Keshtkar Vanashi",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "cdee8d786a3d88c7191c7ba9d405e51b3d20c67f52a530db3b7d172d4031faa9",
+        "5379f4abb7c3960e20e15a1e0efc394e57e1b2d84820e7e9aaf53d923356c08f",
+        "4dacadc91242f5c23c7741be17e0157d86b37d0c215f3ae4118448b6f4ee959b"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Intro Electric Circ/Electr Lab"
+    ],
+    "normalized_value": "Intro Electric Circ/Electr Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "W 1500-1745",
+  "meeting_days": "W",
+  "meeting_time_raw": "1500-1745",
+  "start_time": "15:00",
+  "end_time": "17:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 206",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 8,
+  "capacity": 18,
+  "waitlist": null,
+  "seats_available": 10,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "W",
+      "time_published": "1500-1745",
+      "location_published": "Joseph W. Luter III Hall 206",
+      "source_rows": [
+        4943,
+        7538
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "04adc91ceeb4b61f78120ae4e7e8b1626336287d856da03fe06ab978e918f41a",
+    "source_row_hashes": [
+      "7addd33e7b9431c87df389bab22694c6e894b8047da7e021a4bc5e4698216a5e",
+      "1384db096dc696d2a287b688326c32eeb193fc6827a13e8a1c48d78648063c90"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4943,
+    "source_rows": [
+      4943,
+      7538
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8765",
+    "Course": "ENGR 211L",
+    "Section": "3",
+    "Title": "Intro Electric Circ/Electr Lab",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "W",
+    "Time": "1500-1745",
+    "Location": "Joseph W. Luter III Hall 206",
+    "Instructor": "Hessam Keshtkar Vanashi",
+    "Seats Still Available": "10",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "18",
+    "Enrolled": "8",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2023"
+  },
+  "source_rows": [
+    4943,
+    7538
+  ],
+  "raw_records": [
+    {
+      "CRN": "8765",
+      "Course": "ENGR 211L",
+      "Section": "3",
+      "Title": "Intro Electric Circ/Electr Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "W",
+      "Time": "1500-1745",
+      "Location": "Joseph W. Luter III Hall 206",
+      "Instructor": "Hessam Keshtkar Vanashi",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "8",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2023"
+    },
+    {
+      "CRN": "8765",
+      "Course": "ENGR 211L",
+      "Section": "3",
+      "Title": "Intro Electric Circ/Electr Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "W",
+      "Time": "1500-1745",
+      "Location": "Joseph W. Luter III Hall 206",
+      "Instructor": "Hessam Keshtkar Vanashi",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "8",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

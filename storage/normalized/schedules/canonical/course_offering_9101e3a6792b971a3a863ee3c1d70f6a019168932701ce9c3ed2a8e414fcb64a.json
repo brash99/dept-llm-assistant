@@ -1,0 +1,358 @@
+{
+  "id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 150L Section 1 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: CPSC 150L\nSection: 1\nTitle: Intro to Programming Lab\nCRN: 8124",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a",
+          "published_name": "CPSC 150L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a",
+                "published_name": "CPSC 150L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6aec84934210c95d472c78a85e5384bcfea490101d10271c9690d1a115452246"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 373,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "9101e3a6792b971a3a863ee3c1d70f6a019168932701ce9c3ed2a8e414fcb64a",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 373,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "CPSC",
+  "course_number": "150L",
+  "course_code": "CPSC 150L",
+  "course_title": "Intro to Programming Lab",
+  "section": "1",
+  "crn": "8124",
+  "instructor_name": "Daniel Belsky",
+  "instructor_raw": "Daniel Belsky",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 8,
+      "supporting_observation_ids": [
+        "e0beb3b2226b82e0b33381194f7d6050e33508768d2d9152b86cf833bf656c91",
+        "c2a02d136b96a37772299be76d03eaa94368f94cc250597c05613c629ea52fc8",
+        "124b303c27e1ff6a0386ee435c61330543467c7350f17e6a498d5cae01099e21",
+        "0d04f804c259b770762ee16e0f88a0c2b9304b380f1707c23f78a0ce87ec4528",
+        "f9c1e002c1bf83b7178d8af13d036530e4307b96f8ac357f9f4a72758156260f",
+        "96c009ac2ceb9715f68a531228203b8fef9dac99435df9822168af4d86244191",
+        "4b02f57059b99dd8c599022ef53e6c75ed3ed6d4b89b751e098aa5014fe0574e",
+        "d325ead942490bbf2090e2671d2004c0f9a0c3f78e6fa038ad97ae9c4b602b29"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Intro to Programming Lab"
+    ],
+    "normalized_value": "Intro to Programming Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "T 1330-1515",
+  "meeting_days": "T",
+  "meeting_time_raw": "1330-1515",
+  "start_time": "13:30",
+  "end_time": "15:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 109",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 28,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": -4,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIIF, GE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "T",
+      "time_published": "1330-1515",
+      "location_published": "Joseph W. Luter III Hall 109",
+      "source_rows": [
+        373,
+        13507
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "216059338b6588be3a8bb1e25f21dcf01210e2c46ca96c1437d848e9baf45423",
+    "source_row_hashes": [
+      "6fff8eb286ee842776db7b1f35ac59d30d432c17d127d435afbcfab1a5b267c7",
+      "1d0d395ff0459ca8728a83b1f6da1ebcc1446e729122a92d20525814334b88e1"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 373,
+    "source_rows": [
+      373,
+      13507
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8124",
+    "Course": "CPSC 150L",
+    "Section": "1",
+    "Title": "Intro to Programming Lab",
+    "Hours": "1",
+    "Area of LLC": "AIIF, GE",
+    "Type": "Lab",
+    "Days": "T",
+    "Time": "1330-1515",
+    "Location": "Joseph W. Luter III Hall 109",
+    "Instructor": "Daniel Belsky",
+    "Seats Still Available": "-4",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "28",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    373,
+    13507
+  ],
+  "raw_records": [
+    {
+      "CRN": "8124",
+      "Course": "CPSC 150L",
+      "Section": "1",
+      "Title": "Intro to Programming Lab",
+      "Hours": "1",
+      "Area of LLC": "AIIF, GE",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1330-1515",
+      "Location": "Joseph W. Luter III Hall 109",
+      "Instructor": "Daniel Belsky",
+      "Seats Still Available": "-4",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "28",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8124",
+      "Course": "CPSC 150L",
+      "Section": "1",
+      "Title": "Intro to Programming Lab",
+      "Hours": "1",
+      "Area of LLC": "AIIF, GE",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1330-1515",
+      "Location": "Joseph W. Luter III Hall 109",
+      "Instructor": "Daniel Belsky",
+      "Seats Still Available": "-4",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "28",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

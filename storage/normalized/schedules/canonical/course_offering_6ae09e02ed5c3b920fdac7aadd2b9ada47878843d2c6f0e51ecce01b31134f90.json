@@ -1,0 +1,353 @@
+{
+  "id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ACCT 202 Section 7 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: ACCT 202\nSection: 7\nCRN: 9289",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90",
+          "published_name": "ACCT 202 7"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90",
+                "published_name": "ACCT 202 7"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "fea2cc512355ba07ba8ae49a625cfb4cb24d17cc7028823370b8311b8ff3d9c3"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 14008,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "6ae09e02ed5c3b920fdac7aadd2b9ada47878843d2c6f0e51ecce01b31134f90",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 14008,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "ACCT",
+  "course_number": "202",
+  "course_code": "ACCT 202",
+  "course_title": null,
+  "section": "7",
+  "crn": "9289",
+  "instructor_name": "Philip Chung",
+  "instructor_raw": "Philip Chung",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Prin of Account II: Managerial",
+      "Principles of Accounting II"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "25c59917254937ba4b564c69d2fe7ccc25a26eeb3742e3a775bd1edbf5d8f9fa",
+        "b39bd87de8bf26c5e3ca241cd50954b8bc4079ab790e7bff844da99961c2deeb",
+        "da727e4d1b92f58f7a753bda68fced3c464ce7211c498dd0a1dda33c56249b1d"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 105",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 13,
+  "capacity": 16,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Joseph W. Luter III Hall 105",
+      "source_rows": [
+        14008,
+        16669
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "3bbc944feb60b707e5582624ee8b6f37d72643aa73bbf6fa52e504ea81b98389",
+    "source_row_hashes": [
+      "d890519bf118e25bc81773fd91f4f4dac292ae142344a4cada413ce5d05cee74",
+      "e55ff5fbb7e5c087d9acc9f1c5c6aa28d79de5fe703096a887d7cec48cb1c47e"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 14008,
+    "source_rows": [
+      14008,
+      16669
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9289",
+    "Course": "ACCT 202",
+    "Section": "7",
+    "Title": "Prin of Account II: Managerial",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Joseph W. Luter III Hall 105",
+    "Instructor": "Philip Chung",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "16",
+    "Enrolled": "13",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    14008,
+    16669
+  ],
+  "raw_records": [
+    {
+      "CRN": "9289",
+      "Course": "ACCT 202",
+      "Section": "7",
+      "Title": "Prin of Account II: Managerial",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Joseph W. Luter III Hall 105",
+      "Instructor": "Philip Chung",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "16",
+      "Enrolled": "13",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "9289",
+      "Course": "ACCT 202",
+      "Section": "7",
+      "Title": "Principles of Accounting II",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Joseph W. Luter III Hall 105",
+      "Instructor": "Philip Chung",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "16",
+      "Enrolled": "13",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Prin of Account II: Managerial",
+      "Principles of Accounting II"
+    ]
+  }
+}

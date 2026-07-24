@@ -1,0 +1,352 @@
+{
+  "id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 213L Section 4B (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: BIOL 213L\nSection: 4B\nTitle: Principles of Biology III Lab\nCRN: 8111",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735",
+          "published_name": "BIOL 213L 4B"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735",
+                "published_name": "BIOL 213L 4B"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "66b5d0c4a0fba46e5005b1d3e3922d415577ad2c470c3e46c51fc20ea954d54e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1207,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "f7273d82d0698cf67290ba30540afa5f7bddab324d42d7aeac83daf6c99f2735",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1207,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "BIOL",
+  "course_number": "213L",
+  "course_code": "BIOL 213L",
+  "course_title": "Principles of Biology III Lab",
+  "section": "4B",
+  "crn": "8111",
+  "instructor_name": "Russ Burke",
+  "instructor_raw": "Russ Burke",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "c9b34be28a5e23d57e0fb0408642b7254b1868bb9168ed428b090831b3f2c341",
+        "f759d58b2541abaf54522f630c0a386054fc11ff01d0aae6bb145b3cbb02c552"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Principles of Biology III Lab"
+    ],
+    "normalized_value": "Principles of Biology III Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "T 1330-1720",
+  "meeting_days": "T",
+  "meeting_time_raw": "1330-1720",
+  "start_time": "13:30",
+  "end_time": "17:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 1039",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 24,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "T",
+      "time_published": "1330-1720",
+      "location_published": "Forbes Hall 1039",
+      "source_rows": [
+        1207,
+        19575
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "752c12851151d8ce4a635f45d76aaeaec69447ea945c9ee2f79f6145aefa3517",
+    "source_row_hashes": [
+      "4e5d4066a8285a6a5f009b8686ad55918795220045313918d0c40cfcb57ea18d",
+      "d5c3a6b1dac97d717043295370c840948c3c5ae99fcddd877534075e643121ee"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1207,
+    "source_rows": [
+      1207,
+      19575
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8111",
+    "Course": "BIOL 213L",
+    "Section": "4B",
+    "Title": "Principles of Biology III Lab",
+    "Hours": "1",
+    "Area of LLC": "LOW",
+    "Type": "Lab",
+    "Days": "T",
+    "Time": "1330-1720",
+    "Location": "Forbes Hall 1039",
+    "Instructor": "Russ Burke",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "24",
+    "Enrolled": "24",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    1207,
+    19575
+  ],
+  "raw_records": [
+    {
+      "CRN": "8111",
+      "Course": "BIOL 213L",
+      "Section": "4B",
+      "Title": "Principles of Biology III Lab",
+      "Hours": "1",
+      "Area of LLC": "LOW",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 1039",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "24",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8111",
+      "Course": "BIOL 213L",
+      "Section": "4B",
+      "Title": "Principles of Biology III Lab",
+      "Hours": "1",
+      "Area of LLC": "LOW",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 1039",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "24",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

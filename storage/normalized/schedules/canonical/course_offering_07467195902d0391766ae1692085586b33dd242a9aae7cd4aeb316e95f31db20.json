@@ -1,0 +1,353 @@
+{
+  "id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 116 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: MUSC 116\nSection: 1\nTitle: Keyboard Skills II\nCRN: 8661",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20",
+          "published_name": "MUSC 116 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20",
+                "published_name": "MUSC 116 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c61b8abb6d3c4d598f81de0ecdf3205d9c5c681bc066dea9403e1116ccb135dd"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3874,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "07467195902d0391766ae1692085586b33dd242a9aae7cd4aeb316e95f31db20",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3874,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "MUSC",
+  "course_number": "116",
+  "course_code": "MUSC 116",
+  "course_title": "Keyboard Skills II",
+  "section": "1",
+  "crn": "8661",
+  "instructor_name": "Beth Tomassetti",
+  "instructor_raw": "Beth Tomassetti",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2",
+        "0d362c6e32b0d268882b9833970db673b929e786e311acf2ce1f0ceb25b91f7a",
+        "fede7c360fc6aef6b9950a46827974d95836054dd7ca15c66f10d3e0f03afb1c"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Keyboard Skills II"
+    ],
+    "normalized_value": "Keyboard Skills II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts 213",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 12,
+  "capacity": 13,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Ferguson Center for the Arts 213",
+      "source_rows": [
+        3874,
+        17118
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "9b27107778f1c217ce9d2619226c2a42aab4830c62c20427e49db04e41311253",
+    "source_row_hashes": [
+      "ca2c583f0d64486431df474f590a8101c312341654d67dc48fa1d63e3de11605",
+      "dd437bfe759def8c9794de0a0c88dda2a0d0202605af7e218ded6e97c26b1beb"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3874,
+    "source_rows": [
+      3874,
+      17118
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8661",
+    "Course": "MUSC 116",
+    "Section": "1",
+    "Title": "Keyboard Skills II",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Ferguson Center for the Arts 213",
+    "Instructor": "Beth Tomassetti",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "13",
+    "Enrolled": "12",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    3874,
+    17118
+  ],
+  "raw_records": [
+    {
+      "CRN": "8661",
+      "Course": "MUSC 116",
+      "Section": "1",
+      "Title": "Keyboard Skills II",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Ferguson Center for the Arts 213",
+      "Instructor": "Beth Tomassetti",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "13",
+      "Enrolled": "12",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8661",
+      "Course": "MUSC 116",
+      "Section": "1",
+      "Title": "Keyboard Skills II",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Ferguson Center for the Arts 213",
+      "Instructor": "Beth Tomassetti",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "13",
+      "Enrolled": "12",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

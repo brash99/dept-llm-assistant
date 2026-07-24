@@ -1,0 +1,351 @@
+{
+  "id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 136 Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: MUSC 136\nSection: 1\nCRN: 8764",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6",
+          "published_name": "MUSC 136 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6",
+                "published_name": "MUSC 136 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b774a70d4f54c0c16e39c0bd01b3c50f80e91aa3aa7d100e0ffcd12705e7ddfb"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1135,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "53cb5f32a0ebd2c96b0e9dcd9621e08b6d3ce8a8fc72852cc3fb018134497eb6",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1135,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "MUSC",
+  "course_number": "136",
+  "course_code": "MUSC 136",
+  "course_title": null,
+  "section": "1",
+  "crn": "8764",
+  "instructor_name": "Eugene Chieffo",
+  "instructor_raw": "Eugene Chieffo",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Elements of Music: Music Thtr",
+      "Music Theory: Musc Thtr& Music"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "f69fb0bec5ca8b3b7a344de0fada8c123d1f0ca85da06ae2120c86e9bcf3f116"
+      ],
+      "supporting_terms": [
+        "2025_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts A183",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 16,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Ferguson Center for the Arts A183",
+      "source_rows": [
+        1135,
+        1136
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f165359ffa008fe160709db508c616fa89009046e348b86fcd28a73bef839e46",
+    "source_row_hashes": [
+      "be1b2d76768b2fd7b45efd994c9fe9158ababe525c038118e08c5f88fff6538c",
+      "6a2b274ab39c994c9eb83b5f453aeaa981cb7626c4fe6ca756e48c7cba3356db"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1135,
+    "source_rows": [
+      1135,
+      1136
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8764",
+    "Course": "MUSC 136",
+    "Section": "1",
+    "Title": "Elements of Music: Music Thtr",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Ferguson Center for the Arts A183",
+    "Instructor": "Eugene Chieffo",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "19",
+    "Enrolled": "16",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    1135,
+    1136
+  ],
+  "raw_records": [
+    {
+      "CRN": "8764",
+      "Course": "MUSC 136",
+      "Section": "1",
+      "Title": "Elements of Music: Music Thtr",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Ferguson Center for the Arts A183",
+      "Instructor": "Eugene Chieffo",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "16",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "8764",
+      "Course": "MUSC 136",
+      "Section": "1",
+      "Title": "Music Theory: Musc Thtr& Music",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Ferguson Center for the Arts A183",
+      "Instructor": "Eugene Chieffo",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "16",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Elements of Music: Music Thtr",
+      "Music Theory: Musc Thtr& Music"
+    ]
+  }
+}

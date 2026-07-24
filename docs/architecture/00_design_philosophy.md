@@ -1,5 +1,7 @@
 # Institutional Semantic Observatory (ISO)
 
+> **Status:** Enduring design philosophy. Capability and layer claims are governed by the current [six-layer architecture](01_architecture_overview.md) and [implementation status](../status.md).
+
 ## Design Philosophy
 
 **Version 0.1**

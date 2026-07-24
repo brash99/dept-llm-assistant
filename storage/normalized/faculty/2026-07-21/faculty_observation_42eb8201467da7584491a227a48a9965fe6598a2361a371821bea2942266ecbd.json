@@ -1,0 +1,509 @@
+{
+  "id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+  "object_type": "faculty_observation",
+  "title": "Christopher Kreider",
+  "text": "Faculty directory observation\nName: Christopher Kreider\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+          "published_name": "Christopher Kreider"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+                "published_name": "Christopher Kreider"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "770cff7a1d021521918aad167993894a71da640d9fa55861a7ea424b0dc5245b"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+                "published_name": "Christopher Kreider"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a1b6be94893b19dc45ec70f91768e9c81166ea82a2076fb04ffff98a3e9602bf"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_chriskreider.html",
+    "url": "https://cnu.edu/faculty/chriskreider.html",
+    "content_hash": "09d7f79a045ab4379e6808380e0c5d4f25a94cbf50753dd978cb09d72121409f"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "42eb8201467da7584491a227a48a9965fe6598a2361a371821bea2942266ecbd",
+  "display_name": "Christopher Kreider",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Christopher Kreider",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    },
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    }
+  ],
+  "email": "chris.kreider@cnu.edu",
+  "phone": "(757) 594-8857",
+  "office": "Luter Hall 343",
+  "profile_url": "https://cnu.edu/faculty/chriskreider.html",
+  "biography": "Chris is a graduate of the Christopher Newport Information Science program. After spending several years continuing his graduate education while also moving around as a Military spouse, Chris has returned to teach at CNU.",
+  "education_entries": [
+    "Ph D in Information Systems/IS Cyber Security, Dakota State University",
+    "MS in Computer Science, Georgia Institute of Technology",
+    "MIT in Information Technology, Virginia Polytechnic Institute and State University"
+  ],
+  "research_interests": "Information Security (Passwords) Online Communities (Wikipedia) Healthcare and Information Systems",
+  "teaching_interests": "Information Systems/Information Science related classes such as systems analysis and design, database design.",
+  "publications": [
+    "Conference Proceeding (2025). Enabling Novel Authentication Interfaces in AR/VR While Providing Legacy Support . AMCIS. Issue, 2025.",
+    "Conference Proceeding (2025). An Evaluation of Cybersecurity Education Trends in Public State Universities . AMCIS. Issue, 2025.",
+    "Conference Proceeding (2025). ASSESSING THE MATURITY OF CYBERSECURITY EDUCATION IN VIRGINIA AND IMPACT OF STATE LEVEL INVESTMENT . Southern Association for Information Systems (SAIS).",
+    "Conference Proceeding (2025). EXPERIMENTAL EVALUATION OF PERCEIVED MEMORABILITY IN KNOWLEDGE BASED AUTHENTICATION FOR VIRTUAL AND AUGMENTED REALITY . Southern Association for Information Systems (SAIS).",
+    "Conference Proceeding (2023). Formative Validity of A Novel Authentication Artifact for Augmented and Virtual Realities . Americas Conference on Information Systems.",
+    "Conference Proceeding (2022). A Decade in Review: Aligning Information Systems Security (ISS) with the NICE framework . Americas Conference on Information Systems (AMCIS). Volume, 28th Annual Meeting.",
+    "Conference Proceeding (2022). Reconceptualizing Knowledge Based Authentication for Augmented and Virtual Reality Contexts . Americas Conference on Information Systems (AMCIS). Volume, 28th Annual Meeting.",
+    "Journal Article, Academic Journal (2022). AN EXPLORATION OF WIKIPEDIA CONTRIBUTIONS IN THE ERA OF COVID-19 . Journal of the Southern Association for Information Systems.",
+    "Conference Proceeding (2022). ACCOUNTS THAT NEVER EXPIRE: AN EXPLORATION INTO PRIVILEGED ACCOUNTS ON WIKIPEDIA . Southern Association for Information Systems. Issue, 24th Annual Meeting.",
+    "Conference Proceeding Personalized Route Navigation System: Utilizing Available Static and Live Data for Preference-Based Recommendation . 2021 IEEE Global Conference on Artificial Intelligence and Internet of Things (G. Pages, 6.",
+    "Conference Proceeding (2021). Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Midwest Association for Information Systems (MWAIS).",
+    "Journal Article, Academic Journal (2021). A Decade in Review: A Meta-Analysis of the level of analysis and the subjects for Information Systems (IS) Cybersecurity Research . Journal of the Southern Association for Information Systems.",
+    "Journal Article, Academic Journal Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Journal of the Southern Association for Information Systems.",
+    "Conference Proceeding (2020). QUANTIFYING PROGRAM OFFERINGS WITH A CYBERSECURITY EDUCATION MATURITY MODEL . Southern Association for Information Systems. Issue, 23rd.",
+    "Conference Proceeding (2020). A FRAMEWORK FOR DESCRIBING ALTERNATIVE KEYBOARD STRUCTURES IN AUGMENTED REALITY . Southern Association for Information Systems. Volume, 23rd.",
+    "Conference Proceeding (2019). A Framework for Cybersecurity Gap Analysis in Higher Education . Southern Association for Information Systems. Issue, 22.",
+    "Conference Proceeding An Exploration of Countermeasures for Augmented Reality Shoulder Surfing Attacks . Southern Association for Information Systems. Volume, 22.",
+    "Conference Proceeding (2017). THE DISCOVERABILITY OF PASSWORD ENTRY USING VIRTUAL KEYBOARDS IN AN AUGMENTED REALITY WEARABLE: AN INITIAL PROOF OF CONCEPT . Southern Association for Information Systems. Issue, 22."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Christopher Kreider, Lonnie Cheney, Patrick Mero, 31st Americas Conference on Information Systems (AMCIS), \"An Evaluation of Cybersecurity Education Trends in Public State Universities,\" Montreal, CA. (2025)",
+      "Christopher Kreider, Omar El-Gayar, 31st Americas Conference on Information Systems (AMCIS), \"Enabling Novel Authentication Interfaces in AR/VR While Providing Legacy Support,\" Montreal, CA. (2025)",
+      "Christopher Kreider, 8th Annual Virginia Cybersecurity Education Conference, \"Getting Phancy with CTF - Incorporating CTF as an Assessment Tool from Freshman to Seniors,\" Richmond, Virginia. (2025)",
+      "Christopher Kreider, Dalton Armstrong, VA Peninsula ISC2 Chapter, \"An Update of July 2025 Zero Day Exploits,\" Newport News, VA. (2025)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"A Comparison of Cybersecurity Educational Trends Among States of Comparable Population,\" Newport News, VA. (2025)",
+      "Christopher Kreider, Patrick Mero, Aaron Pepsin, 27th Meeting of the Southern Association for Information Systems, \"ASSESSING THE MATURITY OF CYBERSECURITY EDUCATION IN VIRGINIA AND IMPACT OF STATE LEVEL INVESTMENT,\" Tampa, FL. (2025)",
+      "Christopher Kreider, 27th Meeting of the Southern Association for Information Systems, \"EXPERIMENTAL EVALUATION OF PERCEIVED MEMORABILITY IN KNOWLEDGE BASED AUTHENTICATION FOR VIRTUAL AND AUGMENTED REALITY,\" Tampa, FL. (2025)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"A historic context of man-in-the-middle with the Babington Plot and a public/private key demo using RSA,\" Newport News, VA. (2025)",
+      "Christopher Kreider, Ben Newlin, Jacqueline Rose, VA Peninsula ISC2 Chapter, \"Overview of 2025 MACCDC Competition Infrastructure and Challenges,\" Newport News, VA. (2025)",
+      "Christopher Kreider, Willem Wijnaldum, Jacqueline Rose, VA Peninsula ISC2 Chapter, \"How advances in AI are impacting social engineering,\" Newport News, VA. (2024)",
+      "Christopher Kreider, William Doyle,, Southern Association for Information Systems, \"Authentication in AR/VR by Having Fun,\" Gulf Shores, AL. (2024)",
+      "Christopher Kreider, Jacqueline Rose, Josh Edwards, Michael Scanlon, VA Peninsula ISC2 Chapter, \"An Overview of the Metasplot Framework and Live Demonstration,\" Newport News, VA. (2024)",
+      "Christopher Kreider, Titus Voell, Michael Scanlon, Josh Edwards, VA Peninsula ISC2 Chapter, \"Overview and Live Demonstration of Buffer Overflow Attacks,\" Newport News, VA. (2024)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"Evaluation of Alternative Authentication Frameworks for AR/VR,\" Newport News, VA. (2024)",
+      "Christopher Kreider, Derrick Hobbs, Connor McFarren, VA Peninsula ISC2 Chapter, \"Cisco IOS WEbUi Vulnerability,\" Newport News, VA. (2023)",
+      "Christopher Kreider, Luke Filiatrault, VA Peninsula ISC2 Chapter, \"Exploring Security Through Obscurity,\" Newport News, VA. (2023)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"Give it a 10! An analysis of the webp vulnerability with a CVSS score of 10,\" Newport News, VA. (2023)",
+      "Christopher Kreider, CCICon, \"Developing a 1st and 2nd year Cybersecurity Seminar,\" Norfolk, VA. (2023)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"I (don\u2019t) like to MOVEiT MOVEiT - an Analysis of the MoveIT breach summer 2023,\" Newport News, VA. (2023)",
+      "Christopher Kreider, PCSE699, \"Election Security: A Brief History, and a Summary of the Current Election Related Activity,\" Christopher Newport University. (2020)",
+      "Christopher Kreider, ISC2 Peninsula Chapter, \"A Brief History of Election Technology and Election Compromises with a Discussion on Recent Compromises,\" Newport News, Virginia. (2020)",
+      "Christopher Kreider, CCI Researcher Workshop, \"Authentication Attacks in Augmented Reality,\" Alexandria, VA. (2019)",
+      "Christopher Kreider, 2nd Annual Virginia Cybersecurity Education Conference, \"Designing CTF Using the Cyber Range to Provide Contestants Individual Environments,\" Alexandria, VA. (2019)"
+    ],
+    "Grants and Sponsored Research": [
+      "Andrew Falk, Christopher Kreider, Ryan Bible, \"National Marine Sanctuary Foundation Grant,\" Sponsored by National Oceanic and Atmospheric Administration (NOAA)",
+      "Christopher Kreider, \"COVA SHARE Research Environment Faculty Director (Re-funded),\" Sponsored by COVA CCI",
+      "Mohammad Almalag, Michael Lapke, Christopher Kreider, Leigh Armistead, \"Navigating Cybersecurity Compliance Challenges for the Maritime Industry in Southeast Virginia,\" Sponsored by The Coastal Virginia Center of Cyber Innovation (COVA CCI)",
+      "Christopher Kreider, \"COVA SHARE Research Environment Faculty Director,\" Sponsored by COVA CCI",
+      "Michael Lapke, Christopher Kreider, Nazli Siasi, \"Enhancing Secured Cybersecurity Infrastructure for Cybersecurity Students in an Interdisciplinary Department,\" Sponsored by Coastal Virginia Center of Cyber Innovation"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Christopher Kreider",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 343"
+    ],
+    "Phone": "(757) 594-8857",
+    "Email": "chris.kreider@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      },
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      }
+    ],
+    "Education": [
+      "Ph D in Information Systems/IS Cyber Security, Dakota State University",
+      "MS in Computer Science, Georgia Institute of Technology",
+      "MIT in Information Technology, Virginia Polytechnic Institute and State University"
+    ],
+    "Biography": "Chris is a graduate of the Christopher Newport Information Science program. After spending several years continuing his graduate education while also moving around as a Military spouse, Chris has returned to teach at CNU.",
+    "Teaching": "Information Systems/Information Science related classes such as systems analysis and design, database design.",
+    "Research": "Information Security (Passwords) Online Communities (Wikipedia) Healthcare and Information Systems",
+    "Publications": [
+      "Conference Proceeding (2025). Enabling Novel Authentication Interfaces in AR/VR While Providing Legacy Support . AMCIS. Issue, 2025.",
+      "Conference Proceeding (2025). An Evaluation of Cybersecurity Education Trends in Public State Universities . AMCIS. Issue, 2025.",
+      "Conference Proceeding (2025). ASSESSING THE MATURITY OF CYBERSECURITY EDUCATION IN VIRGINIA AND IMPACT OF STATE LEVEL INVESTMENT . Southern Association for Information Systems (SAIS).",
+      "Conference Proceeding (2025). EXPERIMENTAL EVALUATION OF PERCEIVED MEMORABILITY IN KNOWLEDGE BASED AUTHENTICATION FOR VIRTUAL AND AUGMENTED REALITY . Southern Association for Information Systems (SAIS).",
+      "Conference Proceeding (2023). Formative Validity of A Novel Authentication Artifact for Augmented and Virtual Realities . Americas Conference on Information Systems.",
+      "Conference Proceeding (2022). A Decade in Review: Aligning Information Systems Security (ISS) with the NICE framework . Americas Conference on Information Systems (AMCIS). Volume, 28th Annual Meeting.",
+      "Conference Proceeding (2022). Reconceptualizing Knowledge Based Authentication for Augmented and Virtual Reality Contexts . Americas Conference on Information Systems (AMCIS). Volume, 28th Annual Meeting.",
+      "Journal Article, Academic Journal (2022). AN EXPLORATION OF WIKIPEDIA CONTRIBUTIONS IN THE ERA OF COVID-19 . Journal of the Southern Association for Information Systems.",
+      "Conference Proceeding (2022). ACCOUNTS THAT NEVER EXPIRE: AN EXPLORATION INTO PRIVILEGED ACCOUNTS ON WIKIPEDIA . Southern Association for Information Systems. Issue, 24th Annual Meeting.",
+      "Conference Proceeding Personalized Route Navigation System: Utilizing Available Static and Live Data for Preference-Based Recommendation . 2021 IEEE Global Conference on Artificial Intelligence and Internet of Things (G. Pages, 6.",
+      "Conference Proceeding (2021). Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Midwest Association for Information Systems (MWAIS).",
+      "Journal Article, Academic Journal (2021). A Decade in Review: A Meta-Analysis of the level of analysis and the subjects for Information Systems (IS) Cybersecurity Research . Journal of the Southern Association for Information Systems.",
+      "Journal Article, Academic Journal Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Journal of the Southern Association for Information Systems.",
+      "Conference Proceeding (2020). QUANTIFYING PROGRAM OFFERINGS WITH A CYBERSECURITY EDUCATION MATURITY MODEL . Southern Association for Information Systems. Issue, 23rd.",
+      "Conference Proceeding (2020). A FRAMEWORK FOR DESCRIBING ALTERNATIVE KEYBOARD STRUCTURES IN AUGMENTED REALITY . Southern Association for Information Systems. Volume, 23rd.",
+      "Conference Proceeding (2019). A Framework for Cybersecurity Gap Analysis in Higher Education . Southern Association for Information Systems. Issue, 22.",
+      "Conference Proceeding An Exploration of Countermeasures for Augmented Reality Shoulder Surfing Attacks . Southern Association for Information Systems. Volume, 22.",
+      "Conference Proceeding (2017). THE DISCOVERABILITY OF PASSWORD ENTRY USING VIRTUAL KEYBOARDS IN AN AUGMENTED REALITY WEARABLE: AN INITIAL PROOF OF CONCEPT . Southern Association for Information Systems. Issue, 22."
+    ],
+    "Presentations": [
+      "Christopher Kreider, Lonnie Cheney, Patrick Mero, 31st Americas Conference on Information Systems (AMCIS), \"An Evaluation of Cybersecurity Education Trends in Public State Universities,\" Montreal, CA. (2025)",
+      "Christopher Kreider, Omar El-Gayar, 31st Americas Conference on Information Systems (AMCIS), \"Enabling Novel Authentication Interfaces in AR/VR While Providing Legacy Support,\" Montreal, CA. (2025)",
+      "Christopher Kreider, 8th Annual Virginia Cybersecurity Education Conference, \"Getting Phancy with CTF - Incorporating CTF as an Assessment Tool from Freshman to Seniors,\" Richmond, Virginia. (2025)",
+      "Christopher Kreider, Dalton Armstrong, VA Peninsula ISC2 Chapter, \"An Update of July 2025 Zero Day Exploits,\" Newport News, VA. (2025)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"A Comparison of Cybersecurity Educational Trends Among States of Comparable Population,\" Newport News, VA. (2025)",
+      "Christopher Kreider, Patrick Mero, Aaron Pepsin, 27th Meeting of the Southern Association for Information Systems, \"ASSESSING THE MATURITY OF CYBERSECURITY EDUCATION IN VIRGINIA AND IMPACT OF STATE LEVEL INVESTMENT,\" Tampa, FL. (2025)",
+      "Christopher Kreider, 27th Meeting of the Southern Association for Information Systems, \"EXPERIMENTAL EVALUATION OF PERCEIVED MEMORABILITY IN KNOWLEDGE BASED AUTHENTICATION FOR VIRTUAL AND AUGMENTED REALITY,\" Tampa, FL. (2025)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"A historic context of man-in-the-middle with the Babington Plot and a public/private key demo using RSA,\" Newport News, VA. (2025)",
+      "Christopher Kreider, Ben Newlin, Jacqueline Rose, VA Peninsula ISC2 Chapter, \"Overview of 2025 MACCDC Competition Infrastructure and Challenges,\" Newport News, VA. (2025)",
+      "Christopher Kreider, Willem Wijnaldum, Jacqueline Rose, VA Peninsula ISC2 Chapter, \"How advances in AI are impacting social engineering,\" Newport News, VA. (2024)",
+      "Christopher Kreider, William Doyle,, Southern Association for Information Systems, \"Authentication in AR/VR by Having Fun,\" Gulf Shores, AL. (2024)",
+      "Christopher Kreider, Jacqueline Rose, Josh Edwards, Michael Scanlon, VA Peninsula ISC2 Chapter, \"An Overview of the Metasplot Framework and Live Demonstration,\" Newport News, VA. (2024)",
+      "Christopher Kreider, Titus Voell, Michael Scanlon, Josh Edwards, VA Peninsula ISC2 Chapter, \"Overview and Live Demonstration of Buffer Overflow Attacks,\" Newport News, VA. (2024)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"Evaluation of Alternative Authentication Frameworks for AR/VR,\" Newport News, VA. (2024)",
+      "Christopher Kreider, Derrick Hobbs, Connor McFarren, VA Peninsula ISC2 Chapter, \"Cisco IOS WEbUi Vulnerability,\" Newport News, VA. (2023)",
+      "Christopher Kreider, Luke Filiatrault, VA Peninsula ISC2 Chapter, \"Exploring Security Through Obscurity,\" Newport News, VA. (2023)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"Give it a 10! An analysis of the webp vulnerability with a CVSS score of 10,\" Newport News, VA. (2023)",
+      "Christopher Kreider, CCICon, \"Developing a 1st and 2nd year Cybersecurity Seminar,\" Norfolk, VA. (2023)",
+      "Christopher Kreider, VA Peninsula ISC2 Chapter, \"I (don\u2019t) like to MOVEiT MOVEiT - an Analysis of the MoveIT breach summer 2023,\" Newport News, VA. (2023)",
+      "Christopher Kreider, PCSE699, \"Election Security: A Brief History, and a Summary of the Current Election Related Activity,\" Christopher Newport University. (2020)",
+      "Christopher Kreider, ISC2 Peninsula Chapter, \"A Brief History of Election Technology and Election Compromises with a Discussion on Recent Compromises,\" Newport News, Virginia. (2020)",
+      "Christopher Kreider, CCI Researcher Workshop, \"Authentication Attacks in Augmented Reality,\" Alexandria, VA. (2019)",
+      "Christopher Kreider, 2nd Annual Virginia Cybersecurity Education Conference, \"Designing CTF Using the Cyber Range to Provide Contestants Individual Environments,\" Alexandria, VA. (2019)"
+    ],
+    "Grants and Sponsored Research": [
+      "Andrew Falk, Christopher Kreider, Ryan Bible, \"National Marine Sanctuary Foundation Grant,\" Sponsored by National Oceanic and Atmospheric Administration (NOAA)",
+      "Christopher Kreider, \"COVA SHARE Research Environment Faculty Director (Re-funded),\" Sponsored by COVA CCI",
+      "Mohammad Almalag, Michael Lapke, Christopher Kreider, Leigh Armistead, \"Navigating Cybersecurity Compliance Challenges for the Maritime Industry in Southeast Virginia,\" Sponsored by The Coastal Virginia Center of Cyber Innovation (COVA CCI)",
+      "Christopher Kreider, \"COVA SHARE Research Environment Faculty Director,\" Sponsored by COVA CCI",
+      "Michael Lapke, Christopher Kreider, Nazli Siasi, \"Enhancing Secured Cybersecurity Infrastructure for Cybersecurity Students in an Interdisciplinary Department,\" Sponsored by Coastal Virginia Center of Cyber Innovation"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_chriskreider.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_chriskreider.html",
+  "raw_acquisition_hash": "09d7f79a045ab4379e6808380e0c5d4f25a94cbf50753dd978cb09d72121409f",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/chriskreider.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_chriskreider.html",
+    "source_sha256": "09d7f79a045ab4379e6808380e0c5d4f25a94cbf50753dd978cb09d72121409f",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

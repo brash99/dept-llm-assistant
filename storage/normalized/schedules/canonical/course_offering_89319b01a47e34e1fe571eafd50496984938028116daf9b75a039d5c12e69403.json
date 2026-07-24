@@ -1,0 +1,353 @@
+{
+  "id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 491 Section 1 (2021_summer_1)",
+  "text": "Academic term: 2021_summer_1\nCourse: ENGL 491\nSection: 1\nTitle: Internship in Writing\nCRN: 3010",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "credits_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403",
+          "published_name": "ENGL 491 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_summer_1",
+        "published_label": "Summer Term 1 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403",
+                "published_name": "ENGL 491 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_summer_1",
+              "published_label": "Summer Term 1 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d2c6911c35c33158c76da9d3995113f82fe3337394a6a11e64fc9e658b53571d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 647,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "89319b01a47e34e1fe571eafd50496984938028116daf9b75a039d5c12e69403",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 647,
+  "acquisition_date": null,
+  "academic_term": "2021_summer_1",
+  "academic_term_published": "Summer Term 1 2021",
+  "subject": "ENGL",
+  "course_number": "491",
+  "course_code": "ENGL 491",
+  "course_title": "Internship in Writing",
+  "section": "1",
+  "crn": "3010",
+  "instructor_name": "Mary Wright",
+  "instructor_raw": "Mary Wright",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Internship in Writing"
+    ],
+    "normalized_value": "Internship in Writing",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3",
+      "1"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_credit_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "62a9abb0890bf644f051d6df084f6908a461a241dd8491df7ea5cf7052a40fb5",
+        "ffde49ebb777edda777921122ea9c837764e5fb54016a9e420bc85646abd3979"
+      ],
+      "supporting_terms": [
+        "2021_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "instructional_method": "Int",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": null,
+  "credits_raw": "3 | 1",
+  "enrollment": 0,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 15,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        647,
+        16435
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f0729d4ef2706dde8458e6726b509ba544159cada75bbe6391a4c4fccb5400e9",
+    "source_row_hashes": [
+      "544200614e3fc863cd61f5bb59723ac0df57b0a2fd840699190acc38634331d5",
+      "bff85083eebfd7d194c9b2f7292d1e5ecd5594fd4d48d14d4323e991540875fa"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 647,
+    "source_rows": [
+      647,
+      16435
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "3010",
+    "Course": "ENGL 491",
+    "Section": "1",
+    "Title": "Internship in Writing",
+    "Hours": "3",
+    "Area of LLC": "LETR",
+    "Type": "Int",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "Mary Wright",
+    "Seats Still Available": "15",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "15",
+    "Enrolled": "0",
+    "Instructor Type": "Full Time",
+    "Term": "Summer Term 1 2021"
+  },
+  "source_rows": [
+    647,
+    16435
+  ],
+  "raw_records": [
+    {
+      "CRN": "3010",
+      "Course": "ENGL 491",
+      "Section": "1",
+      "Title": "Internship in Writing",
+      "Hours": "3",
+      "Area of LLC": "LETR",
+      "Type": "Int",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Mary Wright",
+      "Seats Still Available": "15",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "0",
+      "Instructor Type": "Full Time",
+      "Term": "Summer Term 1 2021"
+    },
+    {
+      "CRN": "3010",
+      "Course": "ENGL 491",
+      "Section": "1",
+      "Title": "Internship in Writing",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Int",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Mary Wright",
+      "Seats Still Available": "15",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "0",
+      "Instructor Type": "Full Time",
+      "Term": "Summer Term 1 2021"
+    }
+  ],
+  "published_field_variants": {
+    "credits": [
+      "3",
+      "1"
+    ]
+  }
+}

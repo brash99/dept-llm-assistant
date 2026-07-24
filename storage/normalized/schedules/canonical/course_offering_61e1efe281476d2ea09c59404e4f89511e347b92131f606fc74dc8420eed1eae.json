@@ -1,0 +1,316 @@
+{
+  "id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SPAN 202 Section 3 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: SPAN 202\nSection: 3\nTitle: Intermediate Spanish II\nCRN: 9117",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae",
+          "published_name": "SPAN 202 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae",
+                "published_name": "SPAN 202 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "781ac17323f98714ee5e569fcb2df9dc9a6c5633084c3c740ac94d1ffc47dfed"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3393,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "61e1efe281476d2ea09c59404e4f89511e347b92131f606fc74dc8420eed1eae",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3393,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "SPAN",
+  "course_number": "202",
+  "course_code": "SPAN 202",
+  "course_title": "Intermediate Spanish II",
+  "section": "3",
+  "crn": "9117",
+  "instructor_name": "Elaine Miller",
+  "instructor_raw": "Elaine Miller",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Intermediate Spanish II"
+    ],
+    "normalized_value": "Intermediate Spanish II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 364",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 16,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR, LLF, LLFL",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Lewis McMurran Hall 364",
+      "source_rows": [
+        3393
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "74e0f48311bb4cb993abbb9d9ccfc89b14bdb10a61f312101ba217617c3ca810",
+    "source_row_hashes": [
+      "dbdd67d98601bf4ac883a1f9d96e761c6e86b8c4dca531d298d3c4e832406ac4"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3393,
+    "source_rows": [
+      3393
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9117",
+    "Course": "SPAN 202",
+    "Section": "3",
+    "Title": "Intermediate Spanish II",
+    "Hours": "3",
+    "Area of LLC": "LETR, LLF, LLFL",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Lewis McMurran Hall 364",
+    "Instructor": "Elaine Miller",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "16",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    3393
+  ],
+  "raw_records": [
+    {
+      "CRN": "9117",
+      "Course": "SPAN 202",
+      "Section": "3",
+      "Title": "Intermediate Spanish II",
+      "Hours": "3",
+      "Area of LLC": "LETR, LLF, LLFL",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Lewis McMurran Hall 364",
+      "Instructor": "Elaine Miller",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "16",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {}
+}

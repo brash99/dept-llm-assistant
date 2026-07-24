@@ -1,0 +1,316 @@
+{
+  "id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BUSN 276 Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: BUSN 276\nSection: 1\nTitle: Software Applications for Busn\nCRN: 8159",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712",
+          "published_name": "BUSN 276 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712",
+                "published_name": "BUSN 276 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "fd936240ec99e1d3bc271d193408c694e93570d02b1be9e29fed52c9b110bbfb"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 13862,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "03412222358f857a3d396d5729ecf4e6054c566bbdbc507bda9bf2b238462712",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 13862,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "BUSN",
+  "course_number": "276",
+  "course_code": "BUSN 276",
+  "course_title": "Software Applications for Busn",
+  "section": "1",
+  "crn": "8159",
+  "instructor_name": "Tajesvi Bhat",
+  "instructor_raw": "Tajesvi Bhat",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Software Applications for Busn"
+    ],
+    "normalized_value": "Software Applications for Busn",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1800-1915",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 123",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 42,
+  "capacity": 39,
+  "waitlist": null,
+  "seats_available": -3,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1800-1915",
+      "location_published": "Joseph W. Luter III Hall 123",
+      "source_rows": [
+        13862
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "dbd835cda150965eec3db1d05c85932e48de47ae76e514e379e7aee94127c671",
+    "source_row_hashes": [
+      "d8b4b5c1c95acd8e532a3729159f56ea1cba18ab7944d6e10d3b485aa50ecfaa"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 13862,
+    "source_rows": [
+      13862
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8159",
+    "Course": "BUSN 276",
+    "Section": "1",
+    "Title": "Software Applications for Busn",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1800-1915",
+    "Location": "Joseph W. Luter III Hall 123",
+    "Instructor": "Tajesvi Bhat",
+    "Seats Still Available": "-3",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "39",
+    "Enrolled": "42",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    13862
+  ],
+  "raw_records": [
+    {
+      "CRN": "8159",
+      "Course": "BUSN 276",
+      "Section": "1",
+      "Title": "Software Applications for Busn",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1800-1915",
+      "Location": "Joseph W. Luter III Hall 123",
+      "Instructor": "Tajesvi Bhat",
+      "Seats Still Available": "-3",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "39",
+      "Enrolled": "42",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {}
+}

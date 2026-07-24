@@ -1,0 +1,355 @@
+{
+  "id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHYS 144 Section 2 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: PHYS 144\nSection: 2\nTitle: Introduction to Astronomy\nCRN: 8829",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31",
+          "published_name": "PHYS 144 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31",
+                "published_name": "PHYS 144 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "cfa0ec40351a1f693d935af708a3e5e40a627d1961dea99254cfb683e3dbf10a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1917,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "7c82d8b30e9f02ac0ffedb40122e96c9569331f17ade30680ef745363ecdba31",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1917,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "PHYS",
+  "course_number": "144",
+  "course_code": "PHYS 144",
+  "course_title": "Introduction to Astronomy",
+  "section": "2",
+  "crn": "8829",
+  "instructor_name": "Avery McElhenny",
+  "instructor_raw": "Avery McElhenny",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "07c21e1199ea5104dc052129b6c75fb3593a16268740637f71e1aea465a20e24",
+        "9328b603fc6ac19ab1c9d0b276f15d0a79e42ff57421d24fd0a82fe1945561ea",
+        "ce251f4f67f07186b92c4dd4a98f37046c8bf1e74e990d2ddf6910df6037668b",
+        "7e46205f9f7e1981e08c994122c2e874088453e55529eefbec7d33ae105160cb",
+        "7797a118698e2c3ed424cd9da9e1e3082a874bcc0f2020038eb1c802d85acdeb"
+      ],
+      "supporting_terms": [
+        "2025_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introduction to Astronomy"
+    ],
+    "normalized_value": "Introduction to Astronomy",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1630-1745",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1630-1745",
+  "start_time": "16:30",
+  "end_time": "17:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Science & Engineering Research 1181",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 49,
+  "capacity": 48,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, LOW, OR, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1630-1745",
+      "location_published": "Science & Engineering Research 1181",
+      "source_rows": [
+        1917,
+        4477
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "3de32736a422fabb6377e80decea4ce5194a0da4a594a7b5c4820434f8081096",
+    "source_row_hashes": [
+      "bc3dc87e0d6ee1036479d840f45dcdcea48e10698a3ab8d5bc23bde09848a3be",
+      "8a90f61e2e1411c29ea1c2381e7774d30bc9830ce75b5bfc2a641972ec757b73"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1917,
+    "source_rows": [
+      1917,
+      4477
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8829",
+    "Course": "PHYS 144",
+    "Section": "2",
+    "Title": "Introduction to Astronomy",
+    "Hours": "3",
+    "Area of LLC": "AINW, LOW, OR, XNAT",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1630-1745",
+    "Location": "Science & Engineering Research 1181",
+    "Instructor": "Avery McElhenny",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "48",
+    "Enrolled": "49",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    1917,
+    4477
+  ],
+  "raw_records": [
+    {
+      "CRN": "8829",
+      "Course": "PHYS 144",
+      "Section": "2",
+      "Title": "Introduction to Astronomy",
+      "Hours": "3",
+      "Area of LLC": "AINW, LOW, OR, XNAT",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Science & Engineering Research 1181",
+      "Instructor": "Avery McElhenny",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "48",
+      "Enrolled": "49",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "8829",
+      "Course": "PHYS 144",
+      "Section": "2",
+      "Title": "Introduction to Astronomy",
+      "Hours": "3",
+      "Area of LLC": "AINW, LOW, OR, XNAT",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Science & Engineering Research 1181",
+      "Instructor": "Avery McElhenny",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "48",
+      "Enrolled": "49",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

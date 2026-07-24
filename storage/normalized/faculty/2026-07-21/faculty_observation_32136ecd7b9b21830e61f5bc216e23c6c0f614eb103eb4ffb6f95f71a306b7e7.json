@@ -1,0 +1,413 @@
+{
+  "id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+  "object_type": "faculty_observation",
+  "title": "Rebecca Wolff",
+  "text": "Faculty directory observation\nName: Rebecca Wolff\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+          "published_name": "Rebecca Wolff"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_fine_art_art_history",
+          "published_name": "Department of Fine Art and Art History",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_fine_art_art_history",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+          "target": "academic_unit:department_fine_art_art_history",
+          "published_label": "Fine Art and Art History",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+                "published_name": "Rebecca Wolff"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Fine Art and Art History",
+                "published_name": "Fine Art and Art History"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6b59529a418cf9b0cd3923dcf89158341c972dac1c42434cf4dabd1aff3c6d5b"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+                "published_name": "Rebecca Wolff"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_fine_art_art_history",
+                "published_name": "Department of Fine Art and Art History",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_fine_art_art_history",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+                "target": "academic_unit:department_fine_art_art_history",
+                "published_label": "Fine Art and Art History",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5cbd1f9f453e4390e6ff52af5708dda496b76fd1de077cb2268102f36cfe0741"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_rebeccawolff.html",
+    "url": "https://cnu.edu/faculty/rebeccawolff.html",
+    "content_hash": "16d381f5ab63571ef7010fb911da9b95daa90f1d58707072c3d055d77b544f54"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "32136ecd7b9b21830e61f5bc216e23c6c0f614eb103eb4ffb6f95f71a306b7e7",
+  "display_name": "Rebecca Wolff",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Rebecca Wolff",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "Fine Art and Art History",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    },
+    {
+      "label": "Fine Art and Art History",
+      "url": "https://cnu.edu/academics/departments/fineart/index.html"
+    }
+  ],
+  "email": "rebecca.wolff@cnu.edu",
+  "phone": "(757) 594-7883",
+  "office": "Torggler Fine Arts Center 319",
+  "profile_url": "https://cnu.edu/faculty/rebeccawolff.html",
+  "biography": "Dr. Rebecca Wolff is an art historian with a focus on modern and contemporary African art. She is currently working on a book manuscript titled \"Experience and Memory: The Nigerian Civil War (1967\u20131970) and Nigerian Contemporary Art,\" which examines how artistic production intersects with armed conflict through the lenses of testimony, trauma, and memory. Her research has been supported by the Smithsonian Institution, the American Council of Learned Societies, the University of California, Los Angeles, and the Fowler Museum at UCLA. Her writing on African and African Diasporic art has appeared in numerous journals and international exhibition catalogues.",
+  "education_entries": [
+    "Ph D in African Art, Modern Latin American Art, University of California, Los Angeles",
+    "MA in Modern Art History, Columbia University",
+    "BA in Art History and English Honors, University of Texas, Austin"
+  ],
+  "research_interests": "Modern and contemporary African art Nigerian art Art as it intersects with the postcolonial state The relationships between art and propaganda Manifestations of memory and trauma in art",
+  "teaching_interests": "African Art Global Modernisms Latin American Art",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [
+    "Roy Sieber Dissertation Award, Arts Council of the African Studies Association. (2024)"
+  ],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Grants and Sponsored Research": [
+      "Rebecca Wolff, \"One Month Fellowship for research for \"Experience and Memory: The Nigerian Civil War and Nigerian Contemporary Art\",\" Sponsored by The Harry Ransom Center at the University of Texas at Austin"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Rebecca Wolff",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Torggler Fine Arts Center 319"
+    ],
+    "Phone": "(757) 594-7883",
+    "Email": "rebecca.wolff@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      },
+      {
+        "label": "Fine Art and Art History",
+        "url": "https://cnu.edu/academics/departments/fineart/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in African Art, Modern Latin American Art, University of California, Los Angeles",
+      "MA in Modern Art History, Columbia University",
+      "BA in Art History and English Honors, University of Texas, Austin"
+    ],
+    "Biography": "Dr. Rebecca Wolff is an art historian with a focus on modern and contemporary African art. She is currently working on a book manuscript titled \"Experience and Memory: The Nigerian Civil War (1967\u20131970) and Nigerian Contemporary Art,\" which examines how artistic production intersects with armed conflict through the lenses of testimony, trauma, and memory. Her research has been supported by the Smithsonian Institution, the American Council of Learned Societies, the University of California, Los Angeles, and the Fowler Museum at UCLA. Her writing on African and African Diasporic art has appeared in numerous journals and international exhibition catalogues.",
+    "Teaching": "African Art Global Modernisms Latin American Art",
+    "Research": "Modern and contemporary African art Nigerian art Art as it intersects with the postcolonial state The relationships between art and propaganda Manifestations of memory and trauma in art",
+    "Awards and Honors": [
+      "Roy Sieber Dissertation Award, Arts Council of the African Studies Association. (2024)"
+    ],
+    "Grants and Sponsored Research": [
+      "Rebecca Wolff, \"One Month Fellowship for research for \"Experience and Memory: The Nigerian Civil War and Nigerian Contemporary Art\",\" Sponsored by The Harry Ransom Center at the University of Texas at Austin"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_rebeccawolff.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_rebeccawolff.html",
+  "raw_acquisition_hash": "16d381f5ab63571ef7010fb911da9b95daa90f1d58707072c3d055d77b544f54",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/rebeccawolff.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_rebeccawolff.html",
+    "source_sha256": "16d381f5ab63571ef7010fb911da9b95daa90f1d58707072c3d055d77b544f54",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

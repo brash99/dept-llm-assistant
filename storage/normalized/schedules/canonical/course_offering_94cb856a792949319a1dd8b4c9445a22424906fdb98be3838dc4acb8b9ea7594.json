@@ -1,0 +1,357 @@
+{
+  "id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: THEA 380 Section 1 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: THEA 380\nSection: 1\nTitle: Production\nCRN: 8251",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594",
+          "published_name": "THEA 380 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594",
+                "published_name": "THEA 380 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9ac5401bf1ea1505fcf88343b3036f327dc17fd403a4ac0f72e3f93414aac971"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6776,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "94cb856a792949319a1dd8b4c9445a22424906fdb98be3838dc4acb8b9ea7594",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6776,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "THEA",
+  "course_number": "380",
+  "course_code": "THEA 380",
+  "course_title": "Production",
+  "section": "1",
+  "crn": "8251",
+  "instructor_name": "Laura Lloyd",
+  "instructor_raw": "Laura Lloyd",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 6,
+      "supporting_observation_ids": [
+        "fc47a59de27c222e65455da5aad2e9d7e6cb5c27543318aa51ebc5d1cc05f007",
+        "ef30ed7e1f994afb066c5540cfc3d2324698ab36cc08c5e46efa918bbc69035e",
+        "da9f7cd34414c778926eef0136b96f030bd2680760ec4b0533003d7065a0ebde",
+        "f04bc83d19c5169fd5fd7cdc733f2a76b7ad7d837607a5215eb1fbe662ed8418",
+        "9760fa2cac246968b650aff5e95afcf51731ecbd1eeb35512d9dee84afe85999",
+        "f7e52361cde3b0d281eee152c13c8a5b800c7e667f436c9f92c3db8b011a635b"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Production"
+    ],
+    "normalized_value": "Production",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "0"
+    ],
+    "normalized_value": "0",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Pra",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": 0,
+  "credits_raw": "0",
+  "enrollment": 10,
+  "capacity": 11,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        6776,
+        9461
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "cf5eb20f28dfcb67e0958d2ea8ac23288193bd4f9e7ea39d49e3d86ccbc4679b",
+    "source_row_hashes": [
+      "138e1bc4c93a5f7ff93634b959a55cdd077df6c9d7826b2d90d1ff992d6693f0",
+      "f44d8e62d6471971490ae9df9a53c6058cb7296e4d0791ee152dafa119691061"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6776,
+    "source_rows": [
+      6776,
+      9461
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8251",
+    "Course": "THEA 380",
+    "Section": "1",
+    "Title": "Production",
+    "Hours": "0",
+    "Area of LLC": "LETR",
+    "Type": "Pra",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "Laura Lloyd",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "11",
+    "Enrolled": "10",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    6776,
+    9461
+  ],
+  "raw_records": [
+    {
+      "CRN": "8251",
+      "Course": "THEA 380",
+      "Section": "1",
+      "Title": "Production",
+      "Hours": "0",
+      "Area of LLC": "LETR",
+      "Type": "Pra",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "11",
+      "Enrolled": "10",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8251",
+      "Course": "THEA 380",
+      "Section": "1",
+      "Title": "Production",
+      "Hours": "0",
+      "Area of LLC": "LETR",
+      "Type": "Pra",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "11",
+      "Enrolled": "10",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

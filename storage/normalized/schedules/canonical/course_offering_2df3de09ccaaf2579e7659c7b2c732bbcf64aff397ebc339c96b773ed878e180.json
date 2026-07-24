@@ -1,0 +1,352 @@
+{
+  "id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 309 Section 1 (2021_fall)",
+  "text": "Academic term: 2021_fall\nCourse: MUSC 309\nSection: 1\nCRN: 9134",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180",
+          "published_name": "MUSC 309 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_fall",
+        "published_label": "Fall Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180",
+                "published_name": "MUSC 309 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_fall",
+              "published_label": "Fall Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a9d586a25ec909bae45ffdc559a82888ae4dbd7f0f1d52d8f0f312b7253b80db"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6000,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "2df3de09ccaaf2579e7659c7b2c732bbcf64aff397ebc339c96b773ed878e180",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6000,
+  "acquisition_date": null,
+  "academic_term": "2021_fall",
+  "academic_term_published": "Fall Semester 2021",
+  "subject": "MUSC",
+  "course_number": "309",
+  "course_code": "MUSC 309",
+  "course_title": null,
+  "section": "1",
+  "crn": "9134",
+  "instructor_name": "John Pritchard",
+  "instructor_raw": "John Pritchard",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Aural Skills III",
+      "Advanced Aural Skills I"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "979751922f8bf92b48c8ab7b4fb9c81ffe70b5af565b45f8148a6faa314facb6",
+        "060f911fecb0acffc4775f3692b43213c83f93dfa73a34ff123b3b1ccde7fc5d"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts 210",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 5,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 14,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": "Ferguson Center for the Arts 210",
+      "source_rows": [
+        6000,
+        19184
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "23e811257af582a9fe1e492c81f2d7a56d66c56b5802dffa4143134cffa2258e",
+    "source_row_hashes": [
+      "cede17d12838b3f0038d3a1ecdd7906f5b1133ca3251ffce0690df76b03cec61",
+      "db0a8c1fff8f809bb65633780683a5e29b5be68e69ddf6af30467876502975e5"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6000,
+    "source_rows": [
+      6000,
+      19184
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9134",
+    "Course": "MUSC 309",
+    "Section": "1",
+    "Title": "Aural Skills III",
+    "Hours": "1",
+    "Area of LLC": "LETR",
+    "Type": "Lab",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": "Ferguson Center for the Arts 210",
+    "Instructor": "John Pritchard",
+    "Seats Still Available": "14",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "5",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2021"
+  },
+  "source_rows": [
+    6000,
+    19184
+  ],
+  "raw_records": [
+    {
+      "CRN": "9134",
+      "Course": "MUSC 309",
+      "Section": "1",
+      "Title": "Aural Skills III",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts 210",
+      "Instructor": "John Pritchard",
+      "Seats Still Available": "14",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "5",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    },
+    {
+      "CRN": "9134",
+      "Course": "MUSC 309",
+      "Section": "1",
+      "Title": "Advanced Aural Skills I",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts 210",
+      "Instructor": "John Pritchard",
+      "Seats Still Available": "14",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "5",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Aural Skills III",
+      "Advanced Aural Skills I"
+    ]
+  }
+}

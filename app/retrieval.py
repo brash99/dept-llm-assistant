@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import PurePosixPath
 from typing import List, Optional
 import copy
@@ -8,6 +8,9 @@ import time
 from sentence_transformers import CrossEncoder
 
 from app.vector_index import search_index, RetrievalResult
+from app.document_family import document_family_key
+from app.evidence_roles import allocate_empirical_by_role
+from app.semantic_scope import resolve_retrieval_profile
 
 
 @dataclass
@@ -17,6 +20,7 @@ class RetrievalProfile:
     dedupe_seconds: float
     rerank_seconds: float
     threshold_seconds: float
+    family_diversity_seconds: float = 0.0
 
 
 @dataclass
@@ -26,6 +30,11 @@ class RetrievalTrace:
     reranked_candidates: List[RetrievalResult]
     thresholded_candidates: List[RetrievalResult]
     final_results: List[RetrievalResult]
+    family_diversified_candidates: List[RetrievalResult] = field(default_factory=list)
+    family_removed_candidates: List[RetrievalResult] = field(default_factory=list)
+    allocation_removed_candidates: List[RetrievalResult] = field(default_factory=list)
+    role_removed_candidates: List[RetrievalResult] = field(default_factory=list)
+    insufficient_relevance_candidates: List[RetrievalResult] = field(default_factory=list)
 
 
 @dataclass
@@ -50,6 +59,22 @@ class RetrievalReport:
     reranking_enabled: bool = False
     reranker_model: Optional[str] = None
     min_rerank_score: Optional[float] = None
+    max_per_document_family: Optional[int] = None
+    num_after_family_diversity: int = 0
+    num_removed_by_family_diversity: int = 0
+    num_removed_by_evidence_allocation: int = 0
+    num_removed_by_role_allocation: int = 0
+    num_removed_for_insufficient_relevance: int = 0
+    evidence_roles_represented: tuple = ()
+    evidence_role_counts: dict = field(default_factory=dict)
+    expected_evidence_roles: tuple = ()
+    missing_evidence_roles: tuple = ()
+    concentrated_evidence_roles: tuple = ()
+    role_aware_allocation_changed_order: bool = False
+    retrieval_profile: Optional[str] = None
+    selected_semantic_scope: Optional[str] = None
+    eligible_semantic_memberships: tuple = ()
+    semantic_scope_filter_applied: bool = False
 
 
 def clone_results(results: List[RetrievalResult]) -> List[RetrievalResult]:
@@ -198,6 +223,38 @@ def dedupe_results(
     return deduped
 
 
+def diversify_document_families(
+    results: List[RetrievalResult],
+    max_per_family: Optional[int],
+) -> tuple[List[RetrievalResult], List[RetrievalResult]]:
+    """Preserve rank while limiting revision-heavy document families."""
+    if max_per_family is not None and max_per_family < 1:
+        raise ValueError("max_per_document_family must be at least 1 or None")
+
+    kept = []
+    removed = []
+    counts = {}
+
+    for result in results:
+        key = document_family_key(result)
+        result.metadata["document_family_key"] = key
+        count = counts.get(key, 0)
+        if max_per_family is not None and count >= max_per_family:
+            result.metadata["evidence_exclusion_reason"] = (
+                "Excluded by document-family diversity cap "
+                f"({max_per_family} per family)."
+            )
+            removed.append(result)
+            continue
+        counts[key] = count + 1
+        result.metadata["evidence_selection_reason"] = (
+            "Retained in reranker order within the document-family cap."
+        )
+        kept.append(result)
+
+    return kept, removed
+
+
 def retrieve(
     query: str,
     vector_db_dir,
@@ -213,8 +270,25 @@ def retrieve(
     return_trace: bool = False,
     constitutional_top_k: int = 2,
     empirical_top_k: int = 10,
+    max_per_document_family: Optional[int] = None,
+    decision_type: Optional[str] = None,
+    max_per_evidence_role: Optional[int] = None,
+    evidence_role_relevance_margin: float = 0.5,
+    profile=None,
+    department: Optional[str] = None,
+    scope_registry=None,
 ):
     query = query.strip()
+
+    resolved_profile = None
+    eligible_memberships = None
+    if profile is not None:
+        resolved_profile = resolve_retrieval_profile(
+            profile,
+            department=department,
+            registry=scope_registry,
+        )
+        eligible_memberships = resolved_profile.eligible_memberships
 
     if constitutional_top_k < 0:
         raise ValueError("constitutional_top_k cannot be negative")
@@ -242,12 +316,15 @@ def retrieve(
         top_k=fetch_k,
         fetch_k=fetch_k,
         dedupe_by=None,
+        semantic_memberships_filter=eligible_memberships,
     )
     constitutional_in_initial_pool = sum(
         1
         for result in raw_candidates
         if result.object_type == "constitutional_knowledge"
     )
+    for result in raw_candidates:
+        result.metadata["constitutional_fallback"] = False
 
     constitutional_fallback_used = (
         constitutional_in_initial_pool < constitutional_top_k
@@ -263,6 +340,7 @@ def retrieve(
             fetch_k=None,
             dedupe_by=None,
             object_type_filter="constitutional_knowledge",
+            semantic_memberships_filter=eligible_memberships,
         )
 
         existing_chunk_ids = {
@@ -272,6 +350,7 @@ def retrieve(
 
         for result in fallback_results:
             if result.chunk_id not in existing_chunk_ids:
+                result.metadata["constitutional_fallback"] = True
                 raw_candidates.append(result)
                 existing_chunk_ids.add(result.chunk_id)
 
@@ -300,14 +379,23 @@ def retrieve(
         reranked_candidates = clone_results(deduped_candidates)
     t3 = time.perf_counter()
 
+    (
+        family_diversified_candidates,
+        family_removed_candidates,
+    ) = diversify_document_families(
+        reranked_candidates,
+        max_per_family=max_per_document_family,
+    )
+    t_family = time.perf_counter()
+
     if rerank and min_rerank_score is not None:
         thresholded_candidates = [
             result
-            for result in reranked_candidates
+            for result in family_diversified_candidates
             if result.score >= min_rerank_score
         ]
     else:
-        thresholded_candidates = reranked_candidates
+        thresholded_candidates = family_diversified_candidates
     t4 = time.perf_counter()
 
     constitutional_candidates = [
@@ -326,9 +414,43 @@ def retrieve(
         :constitutional_top_k
     ]
 
-    selected_empirical = empirical_candidates[
-        :empirical_top_k
-    ]
+    role_allocation = allocate_empirical_by_role(
+        empirical_candidates,
+        limit=empirical_top_k,
+        decision_type=decision_type,
+        max_per_role=max_per_evidence_role,
+        relevance_margin=evidence_role_relevance_margin,
+    )
+    selected_empirical = list(role_allocation.selected)
+
+    for rank, result in enumerate(selected_constitutional, start=1):
+        result.metadata["final_evidence_rank"] = rank
+        result.metadata["evidence_selection_reason"] = (
+            "Selected for the constitutional evidence quota after separate "
+            "constitutional ranking."
+        )
+
+    for offset, result in enumerate(selected_empirical, start=1):
+        result.metadata["final_evidence_rank"] = len(selected_constitutional) + offset
+        if result.metadata.get("evidence_role_added_new_coverage"):
+            reason = "Selected in eligible reranker order and added a new evidence role."
+        elif result.metadata.get("evidence_role_fallback_selection"):
+            reason = "Selected in reranker order through low-confidence role fallback."
+        else:
+            reason = "Selected in eligible reranker order within the evidence-role cap."
+        result.metadata["evidence_selection_reason"] = reason
+
+    role_removed_candidates = list(role_allocation.role_excluded)
+    insufficient_relevance_candidates = list(role_allocation.insufficient_relevance)
+    allocation_removed_candidates = (
+        constitutional_candidates[constitutional_top_k:]
+        + list(role_allocation.quota_excluded)
+    )
+    for result in allocation_removed_candidates:
+        result.metadata["evidence_exclusion_reason"] = (
+            "Excluded after the applicable constitutional or empirical "
+            "evidence quota was filled."
+        )
 
     final_results = (
         selected_constitutional
@@ -337,12 +459,13 @@ def retrieve(
 
     t_total_end = time.perf_counter()
 
-    profile = RetrievalProfile(
+    timing_profile = RetrievalProfile(
         total_seconds=t_total_end - t_total_start,
         search_seconds=t1 - t0,
         dedupe_seconds=t2 - t1,
         rerank_seconds=t3 - t2,
-        threshold_seconds=t4 - t3,
+        family_diversity_seconds=t_family - t3,
+        threshold_seconds=t4 - t_family,
     )
 
     report = RetrievalReport(
@@ -358,11 +481,31 @@ def retrieve(
         num_candidates=len(raw_candidates),
         num_after_dedup=len(deduped_candidates),
         num_after_rerank=len(reranked_candidates),
+        num_after_family_diversity=len(family_diversified_candidates),
+        num_removed_by_family_diversity=len(family_removed_candidates),
+        num_removed_by_evidence_allocation=len(allocation_removed_candidates),
+        num_removed_by_role_allocation=len(role_removed_candidates),
+        num_removed_for_insufficient_relevance=len(insufficient_relevance_candidates),
+        evidence_roles_represented=role_allocation.roles_represented,
+        evidence_role_counts=role_allocation.role_counts,
+        expected_evidence_roles=role_allocation.expected_roles,
+        missing_evidence_roles=role_allocation.missing_roles,
+        concentrated_evidence_roles=role_allocation.concentrated_roles,
+        role_aware_allocation_changed_order=role_allocation.changed_baseline_order,
+        retrieval_profile=(
+            resolved_profile.profile.name if resolved_profile else None
+        ),
+        selected_semantic_scope=(
+            resolved_profile.selected_scope.id if resolved_profile else None
+        ),
+        eligible_semantic_memberships=(eligible_memberships or ()),
+        semantic_scope_filter_applied=resolved_profile is not None,
         num_after_threshold=len(thresholded_candidates),
         num_results=len(final_results),
         reranking_enabled=rerank,
         reranker_model=reranker_model if rerank else None,
         min_rerank_score=min_rerank_score,
+        max_per_document_family=max_per_document_family,
     )
 
     if return_trace:
@@ -370,12 +513,17 @@ def retrieve(
             raw_candidates=raw_candidates,
             deduped_candidates=deduped_candidates,
             reranked_candidates=reranked_candidates,
+            family_diversified_candidates=family_diversified_candidates,
+            family_removed_candidates=family_removed_candidates,
+            allocation_removed_candidates=allocation_removed_candidates,
+            role_removed_candidates=role_removed_candidates,
+            insufficient_relevance_candidates=insufficient_relevance_candidates,
             thresholded_candidates=thresholded_candidates,
             final_results=final_results,
         )
-        return final_results, report, trace, profile
+        return final_results, report, trace, timing_profile
 
-    return final_results, report, profile
+    return final_results, report, timing_profile
 
 
 def build_context(results: List[RetrievalResult]) -> str:

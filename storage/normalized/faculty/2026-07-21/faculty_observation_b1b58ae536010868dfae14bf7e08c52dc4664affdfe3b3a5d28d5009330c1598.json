@@ -1,0 +1,427 @@
+{
+  "id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+  "object_type": "faculty_observation",
+  "title": "Roberto Flores",
+  "text": "Faculty directory observation\nName: Roberto Flores\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+          "published_name": "Roberto Flores"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+                "published_name": "Roberto Flores"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "cbd86461d4aedd26b0be33053b3b062ff6cfd3a03ab746bef08dff6a81f34e7c"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+                "published_name": "Roberto Flores"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "92b1ca1ef2cf62f435e0cf0b412e8c52222b98dd13a6495b494d820f891e9b53"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_robertoflores.html",
+    "url": "https://cnu.edu/faculty/robertoflores.html",
+    "content_hash": "0e99aa7d4f22330813ce7254c101a6584931b2c546c61546f90f0517ed85d331"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "b1b58ae536010868dfae14bf7e08c52dc4664affdfe3b3a5d28d5009330c1598",
+  "display_name": "Roberto Flores",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Roberto Flores",
+  "published_titles": [
+    "Associate Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    },
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    }
+  ],
+  "email": "roberto.flores@cnu.edu",
+  "phone": "(757) 594-7487",
+  "office": "Luter Hall 326",
+  "profile_url": "https://cnu.edu/faculty/robertoflores.html",
+  "biography": "B.Sc./ISC (ITESM, M\u00e9xico, 1990). M.Sc., Ph.D. (Calgary, Canada, 2002). Post-Doctoral (CNR, Italy, 2003) and (Laval, Canada, 2004). Associate Professor of Computer Science (CNU, USA, Present).",
+  "education_entries": [
+    "Ph D in Computer Science, University of Calgary (Alberta)",
+    "MS in Computer Science, University of Calgary (Alberta)",
+    "BS in Computer Systems Engineering, Instituto Technologico y de Estdios Superiores de Monterrey (Mexico)"
+  ],
+  "research_interests": "Computer Science (Software engineering, Multiagent systems)",
+  "teaching_interests": "Computer Science (Programming languages, Software engineering)",
+  "publications": [
+    "Conference Proceeding (2019). The Quest for a Practical Sophomore-Level Software Engineering Course . Conference on Software Engineering Education and Training. Pages, 7654- 7661.",
+    "Conference Proceeding (2015). Policies, Conversations, and Conversation Composition . Springer. Volume, 9091. Pages, 50-58.",
+    "Journal Article, Academic Journal (2007). Conversational Semantics Sustained by Commitments . Journal on Autonomous Agents and Multi-Agent Systems. Volume, 14. Issue, 2. Pages, 165-186.",
+    "Book, Scholarly-New (2007). Agent Communication II: International Workshops on Agent Communication . Springer. Volume, 3859.",
+    "Magazine/Trade Publication (1999). Towards a Standardization of Multi-agent System Frameworks . Crossroads, ACM Press. Volume, 5. Issue, 4. Pages, 18-24."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation",
+      "Geoffrey Klein, Lisa Webb, Gary Whiting, Michael Meyer, Roberto Flores, \"GK-12 Fellows: Linking Urban Water Quality with Science Education in the Chesapeake Watershed,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Roberto Flores",
+    "Published titles": [
+      "Associate Professor"
+    ],
+    "Office": [
+      "Luter Hall 326"
+    ],
+    "Phone": "(757) 594-7487",
+    "Email": "roberto.flores@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      },
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      }
+    ],
+    "Education": [
+      "Ph D in Computer Science, University of Calgary (Alberta)",
+      "MS in Computer Science, University of Calgary (Alberta)",
+      "BS in Computer Systems Engineering, Instituto Technologico y de Estdios Superiores de Monterrey (Mexico)"
+    ],
+    "Biography": "B.Sc./ISC (ITESM, M\u00e9xico, 1990). M.Sc., Ph.D. (Calgary, Canada, 2002). Post-Doctoral (CNR, Italy, 2003) and (Laval, Canada, 2004). Associate Professor of Computer Science (CNU, USA, Present).",
+    "Teaching": "Computer Science (Programming languages, Software engineering)",
+    "Research": "Computer Science (Software engineering, Multiagent systems)",
+    "Publications": [
+      "Conference Proceeding (2019). The Quest for a Practical Sophomore-Level Software Engineering Course . Conference on Software Engineering Education and Training. Pages, 7654- 7661.",
+      "Conference Proceeding (2015). Policies, Conversations, and Conversation Composition . Springer. Volume, 9091. Pages, 50-58.",
+      "Journal Article, Academic Journal (2007). Conversational Semantics Sustained by Commitments . Journal on Autonomous Agents and Multi-Agent Systems. Volume, 14. Issue, 2. Pages, 165-186.",
+      "Book, Scholarly-New (2007). Agent Communication II: International Workshops on Agent Communication . Springer. Volume, 3859.",
+      "Magazine/Trade Publication (1999). Towards a Standardization of Multi-agent System Frameworks . Crossroads, ACM Press. Volume, 5. Issue, 4. Pages, 18-24."
+    ],
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation",
+      "Geoffrey Klein, Lisa Webb, Gary Whiting, Michael Meyer, Roberto Flores, \"GK-12 Fellows: Linking Urban Water Quality with Science Education in the Chesapeake Watershed,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_robertoflores.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_robertoflores.html",
+  "raw_acquisition_hash": "0e99aa7d4f22330813ce7254c101a6584931b2c546c61546f90f0517ed85d331",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/robertoflores.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_robertoflores.html",
+    "source_sha256": "0e99aa7d4f22330813ce7254c101a6584931b2c546c61546f90f0517ed85d331",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

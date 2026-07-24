@@ -1,0 +1,316 @@
+{
+  "id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: AMST 100 Section 5 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: AMST 100\nSection: 5\nTitle: The American Experiment\nCRN: 8024",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a",
+          "published_name": "AMST 100 5"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a",
+                "published_name": "AMST 100 5"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2a03f133fee33175b950f82c5dd4350402f61db365f0c58273bb4d84fbdf060a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 9178,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "1f2dc6b831b54dc0e451540f37dd053fcb08946ae4f84932ea3bc505788d225a",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 9178,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "AMST",
+  "course_number": "100",
+  "course_code": "AMST 100",
+  "course_title": "The American Experiment",
+  "section": "5",
+  "crn": "8024",
+  "instructor_name": "Tony Williams",
+  "instructor_raw": "Tony Williams",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "The American Experiment"
+    ],
+    "normalized_value": "The American Experiment",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 242",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 27,
+  "capacity": 26,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIDE, LDSP, XAMS",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Joseph W. Luter III Hall 242",
+      "source_rows": [
+        9178
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "3883beae69b7998f451e21f56c1b5db48552fda4d933a433c5cf13e219e43930",
+    "source_row_hashes": [
+      "0e37a7761b2616c53d8de34a43bb6c60950e96f0efe72cc8e935d9fbe21d2d63"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 9178,
+    "source_rows": [
+      9178
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8024",
+    "Course": "AMST 100",
+    "Section": "5",
+    "Title": "The American Experiment",
+    "Hours": "3",
+    "Area of LLC": "AIDE, LDSP, XAMS",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Joseph W. Luter III Hall 242",
+    "Instructor": "Tony Williams",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "26",
+    "Enrolled": "27",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    9178
+  ],
+  "raw_records": [
+    {
+      "CRN": "8024",
+      "Course": "AMST 100",
+      "Section": "5",
+      "Title": "The American Experiment",
+      "Hours": "3",
+      "Area of LLC": "AIDE, LDSP, XAMS",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Joseph W. Luter III Hall 242",
+      "Instructor": "Tony Williams",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "27",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {}
+}

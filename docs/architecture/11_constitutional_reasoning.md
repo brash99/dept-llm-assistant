@@ -1,114 +1,35 @@
 # Constitutional Reasoning
 
-## Motivation
+ISO preserves institutional values and empirical observations as separate semantic spaces.
 
-Institutions do not make decisions from facts alone.
+## Implemented
 
-They make decisions by interpreting empirical evidence through the lens of institutional values.
+- `config/institutional_constitution.yaml` identifies approved source records and declared principles.
+- `scripts/build_constitutional_catalog.py` builds Constitutional Knowledge Objects from already normalized sources.
+- Chunking and retrieval include constitutional objects alongside normalized empirical objects.
+- Constitutional fallback and quotas preserve constitutional evidence in retrieval.
+- Constitutional orientation identifies potentially relevant Strategic Compass principles before retrieval.
+- Decision Brief citations use a separate `Constitutional Source N` namespace.
+- Prompt rules prevent constitutional commitments from becoming unsupported operational facts.
 
-Traditional retrieval systems retrieve documents.
+## Correct interpretation
 
-ISO retrieves two distinct forms of institutional knowledge:
+Constitutional evidence can support wording such as “The Strategic Compass prioritizes…” or “The institution states a commitment to…”. It does not establish that a proposal is approved, funded, feasible, implemented, or successful.
 
-- empirical observations
-- institutional values
+Empirical evidence can describe conditions but does not decide which institutional values should prevail. Alignment remains a reasoned human judgment informed by identified sources.
 
-These are intentionally preserved as separate semantic spaces.
+## Partially implemented
 
----
+- The current constitutional catalog is curated and limited.
+- Orientation uses deterministic concept matching.
+- The dashboard reports constitutional assessment connectivity, not a complete normative evaluation.
+- Leadership approval, conflicts among values, temporal supersession, and authoritative policy interpretation require governance beyond the current service.
 
-# Two Semantic Spaces
+## Planned or aspirational
 
-## Empirical Space
+- broader leadership-approved constitutional sources;
+- temporal validity and supersession workflows;
+- explicit, reviewable alignment assessments; and
+- integration with future Scenario Modeling and the Institutional Digital Twin.
 
-Empirical Knowledge Objects describe the institution as it currently exists.
-
-Examples include:
-
-- enrollment
-- budgets
-- faculty
-- facilities
-- curricula
-- assessment
-- accreditation evidence
-- research output
-
-These objects answer the question:
-
-> What is true?
-
----
-
-## Constitutional Space
-
-Constitutional Knowledge Objects describe the institution's declared values and long-term objectives.
-
-Examples include:
-
-- Mission Statement
-- Vision Statement
-- Strategic Compass
-- Strategic Plan
-- Academic Master Plan
-- Board Priorities
-- Institutional Learning Outcomes
-
-These objects answer the question:
-
-> What does the institution value?
-
----
-
-# Prime Directive
-
-ISO shall never substitute its own values for those of the institution it is observing.
-
-ISO faithfully preserves:
-
-- empirical observations
-- institutional values
-
-Decision Services derive meaning transparently from both.
-
-Human decision-makers remain responsible for institutional decisions.
-
----
-
-# Architectural Principle
-
-Knowledge Objects store facts.
-
-Constitutional Knowledge Objects store values.
-
-Decision Services derive meaning by reasoning over both.
-
----
-
-# Architectural Model
-
-                    Decision Services
-                  (derive meaning)
-                         ▲
-                         │
-        ┌────────────────┴────────────────┐
-        │                                 │
-        ▼                                 ▼
- Knowledge Objects      Constitutional Knowledge Objects
-      (facts)                      (values)
-
----
-
-# Future Implementation
-
-The Constitutional Reasoning extension will introduce:
-
-- ConstitutionalKnowledgeObject
-- Constitutional Observer
-- Constitutional Retrieval
-- Constitutional Alignment sections within Decision Briefs
-- Dual-orientation Semantic Control Plane
-
-No existing Knowledge Object behavior changes.
-
-This is an architectural extension, not a redesign.
+Constitutional reasoning belongs primarily to the Semantic and Reasoning layers. It is not a seventh architectural layer.

@@ -1,0 +1,355 @@
+{
+  "id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 445 Section 1 (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: CHEM 445\nSection: 1\nTitle: Instrumental Analysis\nCRN: 8323",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec",
+          "published_name": "CHEM 445 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec",
+                "published_name": "CHEM 445 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f9053eea4894cb45a00e8703f005a99ef9a79b2e79a3f6d8493540b8ac9027be"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3290,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3290,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "CHEM",
+  "course_number": "445",
+  "course_code": "CHEM 445",
+  "course_title": "Instrumental Analysis",
+  "section": "1",
+  "crn": "8323",
+  "instructor_name": "Ronald Quinlan",
+  "instructor_raw": "Ronald Quinlan",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "d7b8d80c62aa117ece43644591697072337c4adfe0df07dadab82108bcf4a3f1",
+        "3afd4133165634bbf01633b92d2950de07c5ef2da8198dd90ea95c353b31708b",
+        "b5fa33abd6cd323a211e892765004858b97c675b8b4cc3f6c74ee1866996cc61",
+        "6a3c5f31eed3ca9083cfcd4ed4a02a4bee9d1e930dcd9f5dbc9383a21ae05b76",
+        "f4c0cda383202a3a1719b75a90aa250a3b14651bcead975d2f69524bc3e07931"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Instrumental Analysis"
+    ],
+    "normalized_value": "Instrumental Analysis",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 0900-0950",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 3040",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 9,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 10,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Forbes Hall 3040",
+      "source_rows": [
+        3290,
+        13887
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f832816844c7511d2902899c6d548a2c6573a6c429364c58c2ff841500e8c4f3",
+    "source_row_hashes": [
+      "156db816834fc3b1f3840ec4159267c577d9eacfb208411e0bff947910382cbf",
+      "c749da3678522a1781b03ed888c7a703ae9a4d2817d1ce5a2af6f6ac49bf2a40"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3290,
+    "source_rows": [
+      3290,
+      13887
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8323",
+    "Course": "CHEM 445",
+    "Section": "1",
+    "Title": "Instrumental Analysis",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "0900-0950",
+    "Location": "Forbes Hall 3040",
+    "Instructor": "Ronald Quinlan",
+    "Seats Still Available": "10",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "9",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    3290,
+    13887
+  ],
+  "raw_records": [
+    {
+      "CRN": "8323",
+      "Course": "CHEM 445",
+      "Section": "1",
+      "Title": "Instrumental Analysis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 3040",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "9",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "8323",
+      "Course": "CHEM 445",
+      "Section": "1",
+      "Title": "Instrumental Analysis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 3040",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "10",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "9",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+version: 1
+defaults:
+  top_k: 12
+  fetch_k: 100
+  constitutional_top_k: 2
+  empirical_top_k: 10
+  intended_institution_terms:
+    - Christopher Newport
+    - CNU
+    - cnu.edu
+  intended_source_families:
+    - cnu_website
+    - institutional_academic_catalog
+    - institutional_faculty_directory
+    - institutional_schedule
+
+cases:
+  - id: faculty_edward_brash
+    family: faculty_directory
+    query: Edward Brash Professor Physics
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Edward, Brash, Physics]
+      expected_object_types_any: [faculty_observation]
+      expected_semantic_spaces_any: [institutional_people]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: faculty_pcse_department
+    family: faculty_directory
+    query: faculty in the Department of Physics Computer Science and Engineering
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Physics, Computer Science, Engineering]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: faculty_engineering_individual
+    family: faculty_directory
+    query: Anton Riedl School of Engineering and Computing faculty
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Anton, Riedl, School of Engineering and Computing]
+      expected_object_types_any: [faculty_observation]
+      expected_semantic_spaces_any: [institutional_people]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_communication_roster_2021
+    family: academic_catalog
+    query: Department of Communication faculty 2021-22
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Communication]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+    expectations_rerank:
+      expected_terms_all: [Communication, 2021-22]
+      maximum_rank_for_match: 2
+
+  - id: catalog_biology_oenb
+    family: academic_catalog
+    query: Biology Organismal and Environmental
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [Biology, Organismal, Environmental]
+      expected_object_types_any:
+        - academic_unit_observation
+        - department_faculty_roster_observation
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_emeriti_roster
+    family: academic_catalog
+    query: faculty roster Emeriti
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [faculty, Emeriti]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: catalog_engineering_school_faculty
+    family: academic_catalog
+    query: School of Engineering and Computing faculty roster 2025-26
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_all: [School of Engineering and Computing, 2025-26]
+      expected_object_types_any: [department_faculty_roster_observation]
+      expected_semantic_spaces_any: [institutional_academics]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10
+
+  - id: diagnostic_mechanical_engineering_source_scope
+    family: source_scope_diagnostic
+    required: false
+    source_scope_diagnostic: true
+    query: Mechanical Engineering faculty catalog
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      minimum_matching_results: 1
+
+  - id: constitutional_student_flourishing
+    family: constitutional
+    query: Strategic Compass student-focused experience flourish for a lifetime
+    fetch_k: 1000
+    constitutional_top_k: 2
+    empirical_top_k: 0
+    expectations:
+      expected_terms_all: [student, flourish, lifetime]
+      expected_object_types_any: [constitutional_knowledge]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 2
+
+  - id: constitutional_liberal_arts_belonging
+    family: constitutional
+    query: CNU liberal arts community inclusion belonging
+    constitutional_top_k: 2
+    empirical_top_k: 0
+    expectations:
+      expected_terms_all: [community, inclusion, belonging]
+      expected_object_types_any: [constitutional_knowledge]
+      expected_title_terms_any: [Strategic Compass]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 2
+
+  - id: schedule_physics_offering
+    family: schedule
+    query: scheduled course offering Physics PHYS Fall 2026
+    constitutional_top_k: 0
+    empirical_top_k: 10
+    expectations:
+      expected_terms_any: [PHYS, Physics]
+      expected_object_types_any: [course_offering_observation]
+      expected_semantic_spaces_any: [institutional_operations]
+      minimum_matching_results: 1
+      maximum_rank_for_match: 10

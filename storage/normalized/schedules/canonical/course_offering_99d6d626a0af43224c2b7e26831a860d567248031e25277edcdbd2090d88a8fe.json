@@ -1,0 +1,353 @@
+{
+  "id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 301 Section 1 (2021_fall)",
+  "text": "Academic term: 2021_fall\nCourse: SOWK 301\nSection: 1\nTitle: Social Work Practice I\nCRN: 8384",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe",
+          "published_name": "SOWK 301 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_fall",
+        "published_label": "Fall Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe",
+                "published_name": "SOWK 301 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_fall",
+              "published_label": "Fall Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "24a2605a1cd7a19a531bbca14745d9dcf2b550b485afb72267a08fd204a0b2da"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2168,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "99d6d626a0af43224c2b7e26831a860d567248031e25277edcdbd2090d88a8fe",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2168,
+  "acquisition_date": null,
+  "academic_term": "2021_fall",
+  "academic_term_published": "Fall Semester 2021",
+  "subject": "SOWK",
+  "course_number": "301",
+  "course_code": "SOWK 301",
+  "course_title": "Social Work Practice I",
+  "section": "1",
+  "crn": "8384",
+  "instructor_name": "Jill Russett",
+  "instructor_raw": "Jill Russett",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "c10d99d01394b7f2eee62d8e314028180dc32004c69d1d604328ce298f7aabbd",
+        "ca29cf4b1837a0bc8ed423cfc97067771cf0f99c39a549663e1c65ebb0be5d5d",
+        "7b0f195136f935e6f880071883876803f3c5dce7c31b9e7e5a97702bf0d46e14"
+      ],
+      "supporting_terms": [
+        "2021_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Social Work Practice I"
+    ],
+    "normalized_value": "Social Work Practice I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 170",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 17,
+  "capacity": 29,
+  "waitlist": null,
+  "seats_available": 12,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": "Joseph W. Luter III Hall 170",
+      "source_rows": [
+        2168,
+        7367
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "2fab77a665c516c546214dc80fd235791784019535e7bc25cd10d90b724f404b",
+    "source_row_hashes": [
+      "df8f785410ef66ebd7604ce30a47b75736423f76f9751286819c41d68229a63c",
+      "f4d08c1d169de807d19d36fe08ccba58c8096e6146f1e5c8cc37b718851f3be9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2168,
+    "source_rows": [
+      2168,
+      7367
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8384",
+    "Course": "SOWK 301",
+    "Section": "1",
+    "Title": "Social Work Practice I",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": "Joseph W. Luter III Hall 170",
+    "Instructor": "Jill Russett",
+    "Seats Still Available": "12",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "29",
+    "Enrolled": "17",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2021"
+  },
+  "source_rows": [
+    2168,
+    7367
+  ],
+  "raw_records": [
+    {
+      "CRN": "8384",
+      "Course": "SOWK 301",
+      "Section": "1",
+      "Title": "Social Work Practice I",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Joseph W. Luter III Hall 170",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "29",
+      "Enrolled": "17",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    },
+    {
+      "CRN": "8384",
+      "Course": "SOWK 301",
+      "Section": "1",
+      "Title": "Social Work Practice I",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Joseph W. Luter III Hall 170",
+      "Instructor": "Jill Russett",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "29",
+      "Enrolled": "17",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

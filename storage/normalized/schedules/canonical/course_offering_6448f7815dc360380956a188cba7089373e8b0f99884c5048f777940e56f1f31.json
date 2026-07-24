@@ -1,0 +1,355 @@
+{
+  "id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: DANC 430 Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: DANC 430\nSection: 1\nTitle: Advanced Dance Styles\nCRN: 8366",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31",
+          "published_name": "DANC 430 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31",
+                "published_name": "DANC 430 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b5ab89344daa36c293a098ca8a560884590a7a0d46917670a4d8a683ad9563a5"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 980,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "6448f7815dc360380956a188cba7089373e8b0f99884c5048f777940e56f1f31",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 980,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "DANC",
+  "course_number": "430",
+  "course_code": "DANC 430",
+  "course_title": "Advanced Dance Styles",
+  "section": "1",
+  "crn": "8366",
+  "instructor_name": "Laura Lloyd",
+  "instructor_raw": "Laura Lloyd",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "01304e663e81e9afc9d6b95ce43ff38b63cb9da6635c337b653a28a10db6a4f5",
+        "87c929164cfc79ec3f92809c84a7a536638f0c5e0b5ebc331d823927818fd9fd",
+        "a1fa898f56175c10c30a8e7037c7c415c9eb498ddbf897666b706dc0114a122f",
+        "ce1ab91523883a741ffa9f3b478474bf79ed3f0f2dd7c77b0c9a2e90f91304cd",
+        "30c4f6be2f728e52b692abd90ad16278980030219a53c65bca04f1ec9b7fca7c"
+      ],
+      "supporting_terms": [
+        "2025_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Advanced Dance Styles"
+    ],
+    "normalized_value": "Advanced Dance Styles",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts T177",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 17,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": "Ferguson Center for the Arts T177",
+      "source_rows": [
+        980,
+        11498
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "39ec4c531a37218c2e7b96ad7818ffcdaf8a4d6572eea438da02a5a951ccad2f",
+    "source_row_hashes": [
+      "1b9c1ab17d71eec8f2be8beff7a4dde66edd5228bd29ba24e5aaa95e2eb878b5",
+      "326cd5c3fa6f15cb8fa632be81db6093f404073046f570245f181b438813c3c6"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 980,
+    "source_rows": [
+      980,
+      11498
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8366",
+    "Course": "DANC 430",
+    "Section": "1",
+    "Title": "Advanced Dance Styles",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": "Ferguson Center for the Arts T177",
+    "Instructor": "Laura Lloyd",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "19",
+    "Enrolled": "17",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    980,
+    11498
+  ],
+  "raw_records": [
+    {
+      "CRN": "8366",
+      "Course": "DANC 430",
+      "Section": "1",
+      "Title": "Advanced Dance Styles",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts T177",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "17",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "8366",
+      "Course": "DANC 430",
+      "Section": "1",
+      "Title": "Advanced Dance Styles",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": "Ferguson Center for the Arts T177",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "17",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

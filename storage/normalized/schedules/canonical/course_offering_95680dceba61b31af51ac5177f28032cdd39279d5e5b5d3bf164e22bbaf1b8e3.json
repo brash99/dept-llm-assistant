@@ -1,0 +1,357 @@
+{
+  "id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 121L Section 1 (2025_summer_1)",
+  "text": "Academic term: 2025_summer_1\nCourse: CHEM 121L\nSection: 1\nTitle: General Chemistry Lab I\nCRN: 3008",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3",
+          "published_name": "CHEM 121L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_summer_1",
+        "published_label": "Summer Term I 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3",
+                "published_name": "CHEM 121L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_summer_1",
+              "published_label": "Summer Term I 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "bf2cbdd3a435eee06ddf4f16661dda1dd7f6f16457d913a8d3c3d2f9b694179b"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1485,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "95680dceba61b31af51ac5177f28032cdd39279d5e5b5d3bf164e22bbaf1b8e3",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1485,
+  "acquisition_date": null,
+  "academic_term": "2025_summer_1",
+  "academic_term_published": "Summer Term I 2025",
+  "subject": "CHEM",
+  "course_number": "121L",
+  "course_code": "CHEM 121L",
+  "course_title": "General Chemistry Lab I",
+  "section": "1",
+  "crn": "3008",
+  "instructor_name": "Sumie Shima",
+  "instructor_raw": "Sumie Shima",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 7,
+      "supporting_observation_ids": [
+        "c7eb1593928f32701f420bd4763031b1bfd8d8e076e113585632d65aab55537c",
+        "de12b4cb5efd36cd265e2b4424c68d46a3850b2772557c1317906889fdc12522",
+        "992e54e8ab70d6ac492e47f3807133c6711b28ea02e4623958f88de308adcddc",
+        "ac9aa71d1832535265819a1f20721b65b433049df485b50086b59b30e88c20db",
+        "1833fdd7c914709c6da569a53c1cc6617b11c94d4d49233f3ac7079a66c81cc9",
+        "39305712264ad23fadd1164d4a47f0438bbf2c17a41fe345cdbdf3875c240d38",
+        "e46b69a527bc6cc19f03cbd6d8482913f4957ccfb8122f6e4c0535e0c5b7a3f8"
+      ],
+      "supporting_terms": [
+        "2025_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "General Chemistry Lab I"
+    ],
+    "normalized_value": "General Chemistry Lab I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "MTWRF 0800-1150",
+  "meeting_days": "MTWRF",
+  "meeting_time_raw": "0800-1150",
+  "start_time": "08:00",
+  "end_time": "11:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 3002",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 9,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 15,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, NSCI, OR, SCIE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MTWRF",
+      "time_published": "0800-1150",
+      "location_published": "Forbes Hall 3002",
+      "source_rows": [
+        1485,
+        14713
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "e11c46491ce8520d9f395df9a09f6adccd0c7c5f665ca448fb3ff1106b4c5b62",
+    "source_row_hashes": [
+      "e1cfecf3dc14c19d39ce7723e2cb3eab7148765fbcf57a3c03a1a66632c32c01",
+      "c4d86fe54fa320ab91a7a5ff2baf180f6fd442d92614e253b17e1b0c60956902"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1485,
+    "source_rows": [
+      1485,
+      14713
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "3008",
+    "Course": "CHEM 121L",
+    "Section": "1",
+    "Title": "General Chemistry Lab I",
+    "Hours": "1",
+    "Area of LLC": "AINW, GE, NSCI, OR, SCIE",
+    "Type": "Lab",
+    "Days": "MTWRF",
+    "Time": "0800-1150",
+    "Location": "Forbes Hall 3002",
+    "Instructor": "Sumie Shima",
+    "Seats Still Available": "15",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "9",
+    "Instructor Type": "Full Time",
+    "Term": "Summer Term I 2025"
+  },
+  "source_rows": [
+    1485,
+    14713
+  ],
+  "raw_records": [
+    {
+      "CRN": "3008",
+      "Course": "CHEM 121L",
+      "Section": "1",
+      "Title": "General Chemistry Lab I",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE",
+      "Type": "Lab",
+      "Days": "MTWRF",
+      "Time": "0800-1150",
+      "Location": "Forbes Hall 3002",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "15",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "9",
+      "Instructor Type": "Full Time",
+      "Term": "Summer Term I 2025"
+    },
+    {
+      "CRN": "3008",
+      "Course": "CHEM 121L",
+      "Section": "1",
+      "Title": "General Chemistry Lab I",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE",
+      "Type": "Lab",
+      "Days": "MTWRF",
+      "Time": "0800-1150",
+      "Location": "Forbes Hall 3002",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "15",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "9",
+      "Instructor Type": "Adjunct",
+      "Term": "Summer Term I 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

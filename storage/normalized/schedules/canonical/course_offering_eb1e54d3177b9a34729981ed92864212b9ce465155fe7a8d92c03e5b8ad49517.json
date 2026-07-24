@@ -1,0 +1,354 @@
+{
+  "id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: DANC 330 Section 1 (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: DANC 330\nSection: 1\nTitle: Dance Styles\nCRN: 9008",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517",
+          "published_name": "DANC 330 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517",
+                "published_name": "DANC 330 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4d193d7a9eb1c18882257ecfb6d23963032b01791ade42fd698f4cffa92d7984"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4925,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "eb1e54d3177b9a34729981ed92864212b9ce465155fe7a8d92c03e5b8ad49517",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4925,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "DANC",
+  "course_number": "330",
+  "course_code": "DANC 330",
+  "course_title": "Dance Styles",
+  "section": "1",
+  "crn": "9008",
+  "instructor_name": "Laura Lloyd",
+  "instructor_raw": "Laura Lloyd",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "e0e1c8c21f8b0a775e37289ff161e678c81b7a811d1a60f8c31199ebac23f3f1",
+        "e8eac743d27dc2dfd7d125a4a1d42468d5fa0cd88152069188e042a05919fc33",
+        "4253e1da4829bb3c92518ce47ef1b09c2409e9ad3239a2ac63263fa2d079d38a",
+        "6b0e8562465e6a8d9497729787ef6aa054b1d645da6c12e2bbafa39dcc14d18d"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Dance Styles"
+    ],
+    "normalized_value": "Dance Styles",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1300-1415",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1300-1415",
+  "start_time": "13:00",
+  "end_time": "14:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts T177",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1300-1415",
+      "location_published": "Ferguson Center for the Arts T177",
+      "source_rows": [
+        4925,
+        10202
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "e6d986a65d6290331e01034879caab23654c3575c02ae2152e2a2ed925d41c13",
+    "source_row_hashes": [
+      "615ef645f170e901ada0e8e61428768159bddd59516abcd61fc74694b54cae41",
+      "5d93c6b1526f8f10412f0643c73c9afdc59dc77323454b4e9614cf989741af10"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4925,
+    "source_rows": [
+      4925,
+      10202
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9008",
+    "Course": "DANC 330",
+    "Section": "1",
+    "Title": "Dance Styles",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1300-1415",
+    "Location": "Ferguson Center for the Arts T177",
+    "Instructor": "Laura Lloyd",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "19",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    4925,
+    10202
+  ],
+  "raw_records": [
+    {
+      "CRN": "9008",
+      "Course": "DANC 330",
+      "Section": "1",
+      "Title": "Dance Styles",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1300-1415",
+      "Location": "Ferguson Center for the Arts T177",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "9008",
+      "Course": "DANC 330",
+      "Section": "1",
+      "Title": "Dance Styles",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1300-1415",
+      "Location": "Ferguson Center for the Arts T177",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

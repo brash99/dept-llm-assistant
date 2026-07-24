@@ -1,0 +1,346 @@
+{
+  "id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+  "object_type": "catalog_faculty_observation",
+  "title": "NIAZUR RAHIM",
+  "text": "Published catalog faculty entry: NIAZUR RAHIM\nCatalog year: 2022-23",
+  "metadata": {
+    "semantic_layer": "catalog_faculty_observation",
+    "semantic_identity": {
+      "object_type": "catalog_faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "catalog_faculty_observation:a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+          "published_name": "NIAZUR RAHIM"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "published_label": "2022-23"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "page_reference": "297"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "published_name": "NIAZUR RAHIM"
+              },
+              {
+                "entity_type": "academic_unit",
+                "entity_id": "published_academic_unit:Accounting and Finance",
+                "published_name": "Accounting and Finance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_name",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "page_reference": "297"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_unit",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "page_reference": "297"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2022-23"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "page_reference": "297"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "210bd95cd0259f1537457317e599bddf63337b553e1f9b741d2be10f69c0a8c0"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "page_reference": "297"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "published_name": "NIAZUR RAHIM"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2022-23"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+                "page_reference": "297"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "959ca1078e9ee0bacb3d1423f88cddc684742c99a27b8624c392862b5398c85e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_academic_catalog",
+    "path": "data/acquisition/catalogs/2022-23-undergraduate_catalog.pdf",
+    "content_hash": "c9afc3c559276d7a57caea25ccd10ab8f35a561635d061bf6c738c5feb85ac89"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T03:54:23.467510+00:00",
+  "observation_id": "a3f8906204462672e8460600c154e0c2115167b0922ca3134fe93b7e2b5dd6eb",
+  "catalog_year": "2022-23",
+  "published_name": "NIAZUR RAHIM",
+  "published_title": "Associate Professor",
+  "academic_unit": "Accounting and Finance",
+  "education": "B.S., Bangladesh University of Engineering and Technology; M.B.A., Hampton University; Ph.D., Virginia Commonwealth University",
+  "appointment_year": "1998",
+  "published_entry_text": "Associate Professor in Accounting and Finance. B.S., Bangladesh University of Engineering and Technology; M.B.A., Hampton University; Ph.D., Virginia Commonwealth University. (1998)",
+  "page_numbers": [
+    297
+  ],
+  "source_filename": "2022-23-undergraduate_catalog.pdf",
+  "relative_source_path": "data/acquisition/catalogs/2022-23-undergraduate_catalog.pdf",
+  "document_hash": "c9afc3c559276d7a57caea25ccd10ab8f35a561635d061bf6c738c5feb85ac89",
+  "provenance": {
+    "catalog_year": "2022-23",
+    "source_filename": "2022-23-undergraduate_catalog.pdf",
+    "relative_source_path": "data/acquisition/catalogs/2022-23-undergraduate_catalog.pdf",
+    "source_sha256": "c9afc3c559276d7a57caea25ccd10ab8f35a561635d061bf6c738c5feb85ac89",
+    "page_numbers": [
+      297
+    ],
+    "adapter": "academic_catalog_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_academic_catalog"
+  }
+}

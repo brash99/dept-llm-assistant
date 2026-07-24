@@ -1,0 +1,404 @@
+{
+  "id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+  "object_type": "faculty_observation",
+  "title": "David Gore",
+  "text": "Faculty directory observation\nName: David Gore\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; no-teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+          "published_name": "David Gore"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+                "published_name": "David Gore"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7e1586e25210dc60050ea9c9688e7e3345044c2a79622aca1060883a9386d431"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+                "published_name": "David Gore"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "34e22a9af8fa15ebd6718aa8461f804544f4e6541b0d3b0bd08639d3a94b0a3c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_davidgore.html",
+    "url": "https://cnu.edu/faculty/davidgore.html",
+    "content_hash": "d0f5cce9e028b04e384cf0b104ad4b95e88b3ada59a3de63ff7566cd9eb7dbb6"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "92f1a717599826c118aa10fd8fae55fecb67d466650466ea115263f3e9669cc6",
+  "display_name": "David Gore",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "David Gore",
+  "published_titles": [
+    "Lecturer"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "david.gore@cnu.edu",
+  "phone": "(757) 594-7827",
+  "office": "Luter Hall 309",
+  "profile_url": "https://cnu.edu/faculty/davidgore.html",
+  "biography": "Throughout the 1980s, Dr. Gore taught astronomy for School District 54 near Chicago, IL using their 14\" Schmidt-Cassegrain telescope and StarLab planetarium. In the late 1980's, he also worked at Fermi National Accelerator Laboratory on the D-Zero experiment which co-discovered the top quark with CDF. While pursuing his Ph.D. in x-ray optics, he worked on a sounding rocket payload at NASA/MSFC that was launched from White Sands, NM which took images of the Sun in the extreme ultraviolet and soft x-ray wavelengths meant to study the temperature structure of the Sun's upper atmosphere. Dr. Gore's first job following graduate school was with Zygo Corporation working on the acousto-optically modulated and Zeeman split lasers at the heart of their nanometer-accuracy distance measurement tools. In the early 2000's, he moved to the Advanced Photon Source to work on the hard x-ray optics and associated automation and data collection equipment required to investigate biological systems with synchrotron radiation. During that time, he also lead tours of the electron accelerator facility and began his teaching career at Illinois Institute of Technology. In the Fall of 2011, Dr. Gore took a lecturer position at CNU where he continues to teach all levels of the physics curricula: from non-majors to the basic and advanced undergraduate sequences to graduate students. He is currently pursuing a more theory-driven research path in General Relativity. He has graduated one Master's student and hopes to be able to incorporate undergraduate students into his research in the near future.",
+  "education_entries": [
+    "Ph D in Physics, University of Alabama",
+    "MS in Physics, University of Alabama",
+    "BS in Physics, University of Illinois at Urbana-Champaign"
+  ],
+  "research_interests": "General Relativity, Accelerator Physics, Optics",
+  "teaching_interests": null,
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "David Gore",
+    "Published titles": [
+      "Lecturer"
+    ],
+    "Office": [
+      "Luter Hall 309"
+    ],
+    "Phone": "(757) 594-7827",
+    "Email": "david.gore@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Physics, University of Alabama",
+      "MS in Physics, University of Alabama",
+      "BS in Physics, University of Illinois at Urbana-Champaign"
+    ],
+    "Biography": "Throughout the 1980s, Dr. Gore taught astronomy for School District 54 near Chicago, IL using their 14\" Schmidt-Cassegrain telescope and StarLab planetarium. In the late 1980's, he also worked at Fermi National Accelerator Laboratory on the D-Zero experiment which co-discovered the top quark with CDF. While pursuing his Ph.D. in x-ray optics, he worked on a sounding rocket payload at NASA/MSFC that was launched from White Sands, NM which took images of the Sun in the extreme ultraviolet and soft x-ray wavelengths meant to study the temperature structure of the Sun's upper atmosphere. Dr. Gore's first job following graduate school was with Zygo Corporation working on the acousto-optically modulated and Zeeman split lasers at the heart of their nanometer-accuracy distance measurement tools. In the early 2000's, he moved to the Advanced Photon Source to work on the hard x-ray optics and associated automation and data collection equipment required to investigate biological systems with synchrotron radiation. During that time, he also lead tours of the electron accelerator facility and began his teaching career at Illinois Institute of Technology. In the Fall of 2011, Dr. Gore took a lecturer position at CNU where he continues to teach all levels of the physics curricula: from non-majors to the basic and advanced undergraduate sequences to graduate students. He is currently pursuing a more theory-driven research path in General Relativity. He has graduated one Master's student and hopes to be able to incorporate undergraduate students into his research in the near future.",
+    "Research": "General Relativity, Accelerator Physics, Optics"
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_davidgore.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_davidgore.html",
+  "raw_acquisition_hash": "d0f5cce9e028b04e384cf0b104ad4b95e88b3ada59a3de63ff7566cd9eb7dbb6",
+  "structural_variant": "biography; education-h3; no-teaching; research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/davidgore.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_davidgore.html",
+    "source_sha256": "d0f5cce9e028b04e384cf0b104ad4b95e88b3ada59a3de63ff7566cd9eb7dbb6",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

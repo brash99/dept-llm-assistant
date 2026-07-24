@@ -1,0 +1,353 @@
+{
+  "id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 366 Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: SOWK 366\nSection: 1\nTitle: Social Policy Analysis\nCRN: 8994",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea",
+          "published_name": "SOWK 366 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea",
+                "published_name": "SOWK 366 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "fc1984af1fb103a68f561d2fed6fb53fe9f95e5c8c18bff80fc09b26c977aad2"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 18130,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "98855ce1f79e2bc2f7049f6808ac388e2ce3d97e4d9ba1a66ff31ac08753bfea",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 18130,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "SOWK",
+  "course_number": "366",
+  "course_code": "SOWK 366",
+  "course_title": "Social Policy Analysis",
+  "section": "1",
+  "crn": "8994",
+  "instructor_name": "Diane Griffiths",
+  "instructor_raw": "Diane Griffiths",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "556b89250779eac65ce9939cf0372fe2f1267d5575042f309a81a759a36adab9",
+        "7040db4e86a7a7c848ea7ad5c3d398b1e8f61dd3c90ff9be2939491698b5f43a",
+        "9071d31f0323b268c299ef92c2292bb650aef9a4b51eb640f560c90da8f38777"
+      ],
+      "supporting_terms": [
+        "2025_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Social Policy Analysis"
+    ],
+    "normalized_value": "Social Policy Analysis",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0800-0915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0800-0915",
+  "start_time": "08:00",
+  "end_time": "09:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 264",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 27,
+  "capacity": 27,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0800-0915",
+      "location_published": "Joseph W. Luter III Hall 264",
+      "source_rows": [
+        18130,
+        20677
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "b773969519da9e82ce8a6d0716beab4997c2290299b5b2af2bd39cbe9b07b0bb",
+    "source_row_hashes": [
+      "925cbeccfde35512f2b871cac0e05f21b60bf55ae1ebd65c668f3af5b8431bb1",
+      "df18cab506b447bde1d8b31eeb0b4a12c5e449f5bb56e583df1fc61014d33b0a"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 18130,
+    "source_rows": [
+      18130,
+      20677
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8994",
+    "Course": "SOWK 366",
+    "Section": "1",
+    "Title": "Social Policy Analysis",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0800-0915",
+    "Location": "Joseph W. Luter III Hall 264",
+    "Instructor": "Diane Griffiths",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "27",
+    "Enrolled": "27",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    18130,
+    20677
+  ],
+  "raw_records": [
+    {
+      "CRN": "8994",
+      "Course": "SOWK 366",
+      "Section": "1",
+      "Title": "Social Policy Analysis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0800-0915",
+      "Location": "Joseph W. Luter III Hall 264",
+      "Instructor": "Diane Griffiths",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "27",
+      "Enrolled": "27",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "8994",
+      "Course": "SOWK 366",
+      "Section": "1",
+      "Title": "Social Policy Analysis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0800-0915",
+      "Location": "Joseph W. Luter III Hall 264",
+      "Instructor": "Diane Griffiths",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "27",
+      "Enrolled": "27",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 250 Section 5 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: CPSC 250\nSection: 5\nTitle: Progrmng for Data Manipulation\nCRN: 8347",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5",
+          "published_name": "CPSC 250 5"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5",
+                "published_name": "CPSC 250 5"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6f09615e2278509f47ed07eb7ab6bef5c965199b0bdab66fd2783d1f20fcb863"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6205,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "3ef51ee1bb7ab0282e4f3f851f1778fa9ef89ae578809701b52893574d5a04d5",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6205,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "CPSC",
+  "course_number": "250",
+  "course_code": "CPSC 250",
+  "course_title": "Progrmng for Data Manipulation",
+  "section": "5",
+  "crn": "8347",
+  "instructor_name": "Will Phelps",
+  "instructor_raw": "Will Phelps",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 6,
+      "supporting_observation_ids": [
+        "2faba76adb67261312042b0ab4011eb483e4e389971b51477cde558f1f76cf43",
+        "2d1799c406189c761648e41da6ce505dbc48d2ea04eb46240f212334ea613909",
+        "4c55af4f828711b33c204c5c1399177628e791bcb5072612e2310acc6c1db188",
+        "e902fd9401fe9bdd8a6bc096fc13c0e88ff22381ef4a3f78ff2a7319306b2aac",
+        "e84537a8a62f34e7a59812bb3aacf15c8836e0324a0fb84dc3d021260aa2616b",
+        "2f212291529b483957db1bca0682625ca8426a6571b45a1a9a7c557817b4c063"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Progrmng for Data Manipulation"
+    ],
+    "normalized_value": "Progrmng for Data Manipulation",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1500-1615",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1500-1615",
+  "start_time": "15:00",
+  "end_time": "16:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 258",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 21,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIIF, XPCE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1500-1615",
+      "location_published": "Joseph W. Luter III Hall 258",
+      "source_rows": [
+        6205,
+        14208
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "069a24b15ff6999796c11b9e09c57b8974ed6a8dd130150c8b9f59209af58e5f",
+    "source_row_hashes": [
+      "7037391b5b5a3a97fa86e80b8f83c4cf931a8a0dea1c95ee3c58bdaa89bb6eec",
+      "c2ab4ab6ec5d2dc2ad5e9d735589853bdd9da35747f4cc6c00fc7774b2198c33"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6205,
+    "source_rows": [
+      6205,
+      14208
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8347",
+    "Course": "CPSC 250",
+    "Section": "5",
+    "Title": "Progrmng for Data Manipulation",
+    "Hours": "3",
+    "Area of LLC": "AIIF, XPCE",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1500-1615",
+    "Location": "Joseph W. Luter III Hall 258",
+    "Instructor": "Will Phelps",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "21",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    6205,
+    14208
+  ],
+  "raw_records": [
+    {
+      "CRN": "8347",
+      "Course": "CPSC 250",
+      "Section": "5",
+      "Title": "Progrmng for Data Manipulation",
+      "Hours": "3",
+      "Area of LLC": "AIIF, XPCE",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Will Phelps",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "21",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8347",
+      "Course": "CPSC 250",
+      "Section": "5",
+      "Title": "Progrmng for Data Manipulation",
+      "Hours": "3",
+      "Area of LLC": "AIIF, XPCE",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Will Phelps",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "21",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 499 Section 6 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: PSYC 499\nSection: 6\nTitle: Indpendent Study in Psychology\nCRN: 9375",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83",
+          "published_name": "PSYC 499 6"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83",
+                "published_name": "PSYC 499 6"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "aae4b88e887e19770aa5f0f3c95893ddb4ecc7cb6ea0918ecf0c46ef85476eba"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4131,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b2ed94f4a037e15b27b3bbba5811ddfab4f85c11c31d29a444fb9758bdccde83",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4131,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "PSYC",
+  "course_number": "499",
+  "course_code": "PSYC 499",
+  "course_title": "Indpendent Study in Psychology",
+  "section": "6",
+  "crn": "9375",
+  "instructor_name": "Michelle Lange",
+  "instructor_raw": "Michelle Lange",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "222b113a891ef669dd2ec0ac6fc785351f75e672845fb2e6dcf06836fd9fc629",
+        "95cce7d9fb960bf4340fc18fb52330743ac93e3bd4f574487d73d12002892c3f",
+        "31696700f311c01d92c23255c35cdfadc77d00999a63a3dbe8b8d733deb8c572"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Indpendent Study in Psychology"
+    ],
+    "normalized_value": "Indpendent Study in Psychology",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Ind",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 1,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        4131,
+        12035
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "1a34d8bca631376d9f384db4ae0e2edc88504e352e37bb072a0b29bcd1d713c1",
+    "source_row_hashes": [
+      "1e47e7c7215f83f7989891ab3cf4d355606049bae98dc553f8f97b0a06bd92ba",
+      "89f6485f2567ecbb554ea7859c867bb3f7cb551dec25f64886c7ba862e5010af"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4131,
+    "source_rows": [
+      4131,
+      12035
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9375",
+    "Course": "PSYC 499",
+    "Section": "6",
+    "Title": "Indpendent Study in Psychology",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Ind",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "Michelle Lange",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "1",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    4131,
+    12035
+  ],
+  "raw_records": [
+    {
+      "CRN": "9375",
+      "Course": "PSYC 499",
+      "Section": "6",
+      "Title": "Indpendent Study in Psychology",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Ind",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "9375",
+      "Course": "PSYC 499",
+      "Section": "6",
+      "Title": "Indpendent Study in Psychology",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Ind",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

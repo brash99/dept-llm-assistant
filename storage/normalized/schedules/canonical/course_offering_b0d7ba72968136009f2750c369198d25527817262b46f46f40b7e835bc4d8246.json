@@ -1,0 +1,357 @@
+{
+  "id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENVS 534 Section 1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: ENVS 534\nSection: 1\nTitle: Marine Ecology\nCRN: 8522",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246",
+          "published_name": "ENVS 534 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246",
+                "published_name": "ENVS 534 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a50a230991d0f75b49b848e1c5c3e448110b1ed1047e1ac5e5069a4f3f198667"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2652,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b0d7ba72968136009f2750c369198d25527817262b46f46f40b7e835bc4d8246",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2652,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "ENVS",
+  "course_number": "534",
+  "course_code": "ENVS 534",
+  "course_title": "Marine Ecology",
+  "section": "1",
+  "crn": "8522",
+  "instructor_name": "Russ Burke",
+  "instructor_raw": "Russ Burke",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 7,
+      "supporting_observation_ids": [
+        "2c837103196bd96bd91bb2985f9818d6abba6474072a54fed6ecede05b5e9378",
+        "868dbb6adb3c071c04b7539bcab37a18b2516b2a0c21754325371b3ecd727023",
+        "1109f3d5ef4c621fbbc45413ad2181420f1d73e06482b2136505c1985f4867e1",
+        "4c812e470933c67f1c2d512ecb520fc3d05bec848d0e6802214dbfbd3c36940c",
+        "94fbf7c164c22f7689a13846bd600119f1eebaa630e483e29066bd10bfe5c945",
+        "43073ecb624a5c6bf7fdb2903d76724f999d371feee665cc6a667b1b4c26becb",
+        "3f347629e22423a5561aefcfc485eb16b65ec50f49eff884aa51325bccb71469"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Marine Ecology"
+    ],
+    "normalized_value": "Marine Ecology",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "4"
+    ],
+    "normalized_value": "4",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 0900-0950",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2074",
+  "building": null,
+  "room": null,
+  "credits": 4,
+  "credits_raw": "4",
+  "enrollment": 8,
+  "capacity": 6,
+  "waitlist": null,
+  "seats_available": -2,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Forbes Hall 2074",
+      "source_rows": [
+        2652,
+        13182
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "34c124c9bc607b2f48960df943b2a571d6506a18e126ffcf103b89ce1999f7b7",
+    "source_row_hashes": [
+      "107a15972974995960088d4c4a0af522ec18e79770f24581509bd2f2388c924f",
+      "a05d8d6832209341d80128380c69cd463478d9f0ab1d800a478b74947e14f232"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2652,
+    "source_rows": [
+      2652,
+      13182
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8522",
+    "Course": "ENVS 534",
+    "Section": "1",
+    "Title": "Marine Ecology",
+    "Hours": "4",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "0900-0950",
+    "Location": "Forbes Hall 2074",
+    "Instructor": "Russ Burke",
+    "Seats Still Available": "-2",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "6",
+    "Enrolled": "8",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    2652,
+    13182
+  ],
+  "raw_records": [
+    {
+      "CRN": "8522",
+      "Course": "ENVS 534",
+      "Section": "1",
+      "Title": "Marine Ecology",
+      "Hours": "4",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "-2",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "6",
+      "Enrolled": "8",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8522",
+      "Course": "ENVS 534",
+      "Section": "1",
+      "Title": "Marine Ecology",
+      "Hours": "4",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "-2",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "6",
+      "Enrolled": "8",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

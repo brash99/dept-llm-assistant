@@ -1,0 +1,352 @@
+{
+  "id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ECON 200 Section 5 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: ECON 200\nSection: 5\nTitle: The Economic Way of Thinking\nCRN: 8387",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56",
+          "published_name": "ECON 200 5"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56",
+                "published_name": "ECON 200 5"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4726de2caa47fa66232beea0269806dda560066e12b6c983c6dc7efc39cf551c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6263,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "1a2a61fe51c687b3cc0379df7e4cbc6cd885aca7005061b340546bcd68fbdb56",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6263,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "ECON",
+  "course_number": "200",
+  "course_code": "ECON 200",
+  "course_title": "The Economic Way of Thinking",
+  "section": "5",
+  "crn": "8387",
+  "instructor_name": "Alex Hamed",
+  "instructor_raw": "Alex Hamed",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "f47919a99aab953cc37c00fecd21c33278b8cf932a6e4f1a663a6b57a40b31fb",
+        "cb06ae2add34f0c1700c8ab00453a17f81ff2c4ab85fa63aad8d2bb73ac411e4"
+      ],
+      "supporting_terms": [
+        "2026_extended_summer"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "The Economic Way of Thinking"
+    ],
+    "normalized_value": "The Economic Way of Thinking",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "M 1800-2100",
+  "meeting_days": "M",
+  "meeting_time_raw": "1800-2100",
+  "start_time": "18:00",
+  "end_time": "21:00",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 164",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LLFE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "1800-2100",
+      "location_published": "Lewis McMurran Hall 164",
+      "source_rows": [
+        6263,
+        6264
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "7326fbc98ecab26996421adc44dce4428fac110994d4553986cb36c81ea4591b",
+    "source_row_hashes": [
+      "dbf03ba89c6cd70de2931408a3649c661b6c9560238c8acae1a6568677aae3b4",
+      "0b8ed578b11b7976318ec6774fc9844b7c2d180338436915b3eff0ce8bd0c752"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6263,
+    "source_rows": [
+      6263,
+      6264
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8387",
+    "Course": "ECON 200",
+    "Section": "5",
+    "Title": "The Economic Way of Thinking",
+    "Hours": "3",
+    "Area of LLC": "LLFE",
+    "Type": "Lec",
+    "Days": "M",
+    "Time": "1800-2100",
+    "Location": "Lewis McMurran Hall 164",
+    "Instructor": "Alex Hamed",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "19",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    6263,
+    6264
+  ],
+  "raw_records": [
+    {
+      "CRN": "8387",
+      "Course": "ECON 200",
+      "Section": "5",
+      "Title": "The Economic Way of Thinking",
+      "Hours": "3",
+      "Area of LLC": "LLFE",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "1800-2100",
+      "Location": "Lewis McMurran Hall 164",
+      "Instructor": "Alex Hamed",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    },
+    {
+      "CRN": "8387",
+      "Course": "ECON 200",
+      "Section": "5",
+      "Title": "The Economic Way of Thinking",
+      "Hours": "3",
+      "Area of LLC": "LLFE",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "1800-2100",
+      "Location": "Lewis McMurran Hall 164",
+      "Instructor": "Alex Hamed",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

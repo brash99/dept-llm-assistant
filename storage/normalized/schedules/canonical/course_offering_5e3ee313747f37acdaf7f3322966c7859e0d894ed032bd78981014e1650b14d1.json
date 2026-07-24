@@ -1,0 +1,356 @@
+{
+  "id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ANTH 200 Section 1F (2021_fall)",
+  "text": "Academic term: 2021_fall\nCourse: ANTH 200\nSection: 1F\nTitle: Human Adaptation\nCRN: 8192",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1",
+          "published_name": "ANTH 200 1F"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_fall",
+        "published_label": "Fall Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1",
+                "published_name": "ANTH 200 1F"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_fall",
+              "published_label": "Fall Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "812189efc717a21865f117bea568466b546ca1ac790dcfbc476a1e19d420b77f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6367,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "5e3ee313747f37acdaf7f3322966c7859e0d894ed032bd78981014e1650b14d1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6367,
+  "acquisition_date": null,
+  "academic_term": "2021_fall",
+  "academic_term_published": "Fall Semester 2021",
+  "subject": "ANTH",
+  "course_number": "200",
+  "course_code": "ANTH 200",
+  "course_title": "Human Adaptation",
+  "section": "1F",
+  "crn": "8192",
+  "instructor_name": "Chris Loy",
+  "instructor_raw": "Chris Loy",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 6,
+      "supporting_observation_ids": [
+        "d38d0aa526470943b205210858b6e03c0cff9a72c918505d53b5f4834f7986b5",
+        "8e1e7dd059aa663aa42d460adf4deb95e81478ce1e7f3aabef00c75fac76b186",
+        "60954930b5c432aba825c3555a7f6eb2a3196e3ca6d5f13aa01cacd9993e516c",
+        "f61540f502fc37286711ca7d978d29bb935c119277d6443ad5240e33a578c5c8",
+        "8b8c99d72e67e7059c3ba103614ede70c9f99385269a409d8d15bb1ffaa38397",
+        "a61efef20f42e7afeae0e6fb1407bc0c694c3fa201ae6556aad611f2cdaa9166"
+      ],
+      "supporting_terms": [
+        "2021_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Human Adaptation"
+    ],
+    "normalized_value": "Human Adaptation",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 170",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 31,
+  "capacity": 35,
+  "waitlist": null,
+  "seats_available": 4,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, XNAT, XSOC",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Joseph W. Luter III Hall 170",
+      "source_rows": [
+        6367,
+        14387
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "44d0c516694b1e77575c58a900071a88ca95d7a4a60ac12df5a02e6d46396a9f",
+    "source_row_hashes": [
+      "a9b6dfe5872f713ea292247b38cfbc5e1aebe629a53e561fdffd3dfd13274791",
+      "549ccbd8dc420817085e395922abc6e4fcf0b41a9f4e37ac5da076ace9e71bc9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6367,
+    "source_rows": [
+      6367,
+      14387
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8192",
+    "Course": "ANTH 200",
+    "Section": "1F",
+    "Title": "Human Adaptation",
+    "Hours": "3",
+    "Area of LLC": "AINW, XNAT, XSOC",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Joseph W. Luter III Hall 170",
+    "Instructor": "Chris Loy",
+    "Seats Still Available": "4",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "35",
+    "Enrolled": "31",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2021"
+  },
+  "source_rows": [
+    6367,
+    14387
+  ],
+  "raw_records": [
+    {
+      "CRN": "8192",
+      "Course": "ANTH 200",
+      "Section": "1F",
+      "Title": "Human Adaptation",
+      "Hours": "3",
+      "Area of LLC": "AINW, XNAT, XSOC",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Joseph W. Luter III Hall 170",
+      "Instructor": "Chris Loy",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "35",
+      "Enrolled": "31",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    },
+    {
+      "CRN": "8192",
+      "Course": "ANTH 200",
+      "Section": "1F",
+      "Title": "Human Adaptation",
+      "Hours": "3",
+      "Area of LLC": "AINW, XNAT, XSOC",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Joseph W. Luter III Hall 170",
+      "Instructor": "Chris Loy",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "35",
+      "Enrolled": "31",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

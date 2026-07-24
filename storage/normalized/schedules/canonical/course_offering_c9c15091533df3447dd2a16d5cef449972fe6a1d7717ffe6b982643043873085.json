@@ -1,0 +1,352 @@
+{
+  "id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ANTH 491 Section 1 (2025_fall)",
+  "text": "Academic term: 2025_fall\nCourse: ANTH 491\nSection: 1\nTitle: Internship in Anthropology\nCRN: 9168",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085",
+          "published_name": "ANTH 491 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "Fall Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085",
+                "published_name": "ANTH 491 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "Fall Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f29cb17b66503a65a1f2305a7250b3970fba8bab01d36ca2f940a5e250858976"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4220,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "c9c15091533df3447dd2a16d5cef449972fe6a1d7717ffe6b982643043873085",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4220,
+  "acquisition_date": null,
+  "academic_term": "2025_fall",
+  "academic_term_published": "Fall Semester 2025",
+  "subject": "ANTH",
+  "course_number": "491",
+  "course_code": "ANTH 491",
+  "course_title": "Internship in Anthropology",
+  "section": "1",
+  "crn": "9168",
+  "instructor_name": "Chris Loy",
+  "instructor_raw": "Chris Loy",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "b110e6c4927a5901f85c7a8ee673547b93806b80659981bb8c00bb6060d465e7"
+      ],
+      "supporting_terms": [
+        "2025_summer_2"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Internship in Anthropology"
+    ],
+    "normalized_value": "Internship in Anthropology",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Int",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "To Be Arranged ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 2,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -2,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "To Be Arranged ",
+      "source_rows": [
+        4220,
+        20033
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "ebe1eebd2e02161649ce39942941c5619574c8577e2fac0fa3ab05694b47b008",
+    "source_row_hashes": [
+      "6702258b7c0d45fcf70a2ff0da2fe0ac43ce8819b4c37265406130e2813c9d81",
+      "dd91031463b0942632bde8e2eb82b4c62c02e3fa18eadfd6d63df110a93c2a7f"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4220,
+    "source_rows": [
+      4220,
+      20033
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9168",
+    "Course": "ANTH 491",
+    "Section": "1",
+    "Title": "Internship in Anthropology",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Int",
+    "Days": "",
+    "Time": "-",
+    "Location": "To Be Arranged ",
+    "Instructor": "Chris Loy",
+    "Seats Still Available": "-2",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "2",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2025"
+  },
+  "source_rows": [
+    4220,
+    20033
+  ],
+  "raw_records": [
+    {
+      "CRN": "9168",
+      "Course": "ANTH 491",
+      "Section": "1",
+      "Title": "Internship in Anthropology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Int",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Chris Loy",
+      "Seats Still Available": "-2",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "2",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2025"
+    },
+    {
+      "CRN": "9168",
+      "Course": "ANTH 491",
+      "Section": "1",
+      "Title": "Internship in Anthropology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Int",
+      "Days": "",
+      "Time": "-",
+      "Location": "To Be Arranged ",
+      "Instructor": "Chris Loy",
+      "Seats Still Available": "-2",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "2",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

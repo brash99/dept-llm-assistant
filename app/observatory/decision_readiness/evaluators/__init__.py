@@ -28,6 +28,17 @@ from app.observatory.decision_readiness.evaluators.strategic import (
 from app.observatory.decision_readiness.evaluators.historical import (
     HistoricalPrecedentEvaluator,
 )
+from app.observatory.decision_readiness.evaluators.academic_workforce import (
+    InstructionalDemandEvaluator,
+    FacultyCapacityEvaluator,
+    ServiceTeachingDependenceEvaluator,
+    AccreditationExternalConstraintsEvaluator,
+    EnrollmentTrendsEvaluator,
+    FinancialImplicationsEvaluator,
+    StrategicPriorityAlignmentEvaluator,
+    OneLineLossScenarioEvaluator,
+    ACADEMIC_WORKFORCE_PLANNING_EVALUATORS,
+)
 
 ACADEMIC_PROGRAM_EVALUATORS = [
     CurriculumEvaluator,
@@ -52,5 +63,14 @@ __all__ = [
     "EnrollmentEvaluator",
     "StrategicPlanningEvaluator",
     "HistoricalPrecedentEvaluator",
+    "InstructionalDemandEvaluator",
+    "FacultyCapacityEvaluator",
+    "ServiceTeachingDependenceEvaluator",
+    "AccreditationExternalConstraintsEvaluator",
+    "EnrollmentTrendsEvaluator",
+    "FinancialImplicationsEvaluator",
+    "StrategicPriorityAlignmentEvaluator",
+    "OneLineLossScenarioEvaluator",
     "ACADEMIC_PROGRAM_EVALUATORS",
+    "ACADEMIC_WORKFORCE_PLANNING_EVALUATORS",
 ]

@@ -1,0 +1,316 @@
+{
+  "id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 110 Section 1M (2025_fall)",
+  "text": "Academic term: 2025_fall\nCourse: CPSC 110\nSection: 1M\nTitle: Introduction to Computing\nCRN: 8204",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d",
+          "published_name": "CPSC 110 1M"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "Fall Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d",
+                "published_name": "CPSC 110 1M"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "Fall Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4ff9d3517a6c8f2100748ab852aafe573ece55126ad893204fa6baf789df6862"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 10508,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "85d6dc6288e02085f4207f99c087209baab1243c9f212772311c0adefdfad52d",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 10508,
+  "acquisition_date": null,
+  "academic_term": "2025_fall",
+  "academic_term_published": "Fall Semester 2025",
+  "subject": "CPSC",
+  "course_number": "110",
+  "course_code": "CPSC 110",
+  "course_title": "Introduction to Computing",
+  "section": "1M",
+  "crn": "8204",
+  "instructor_name": "Kenneth Hawkins",
+  "instructor_raw": "Kenneth Hawkins",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introduction to Computing"
+    ],
+    "normalized_value": "Introduction to Computing",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 2100-2215",
+  "meeting_days": "MW",
+  "meeting_time_raw": "2100-2215",
+  "start_time": "21:00",
+  "end_time": "22:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 258",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 34,
+  "capacity": 48,
+  "waitlist": null,
+  "seats_available": 14,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIIF, GE, LLFR, XPCE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "2100-2215",
+      "location_published": "Joseph W. Luter III Hall 258",
+      "source_rows": [
+        10508
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "721dbc87e4a4a1c564927e79ea7a856ae36752dd47ba92c7bed8ab96a6906f3e",
+    "source_row_hashes": [
+      "d6bf474da36085cd938ae2bd7d6789cc17db05d2f8a36bedd7ea0fd790e96eeb"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 10508,
+    "source_rows": [
+      10508
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8204",
+    "Course": "CPSC 110",
+    "Section": "1M",
+    "Title": "Introduction to Computing",
+    "Hours": "3",
+    "Area of LLC": "AIIF, GE, LLFR, XPCE",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "2100-2215",
+    "Location": "Joseph W. Luter III Hall 258",
+    "Instructor": "Kenneth Hawkins",
+    "Seats Still Available": "14",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "48",
+    "Enrolled": "34",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2025"
+  },
+  "source_rows": [
+    10508
+  ],
+  "raw_records": [
+    {
+      "CRN": "8204",
+      "Course": "CPSC 110",
+      "Section": "1M",
+      "Title": "Introduction to Computing",
+      "Hours": "3",
+      "Area of LLC": "AIIF, GE, LLFR, XPCE",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "2100-2215",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Kenneth Hawkins",
+      "Seats Still Available": "14",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "34",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2025"
+    }
+  ],
+  "published_field_variants": {}
+}

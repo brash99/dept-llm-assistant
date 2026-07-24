@@ -7,6 +7,7 @@ import json
 from collections import Counter
 
 from app.knowledge import load_knowledge_object
+from app.source_presentation import repository_relative_path
 
 
 CONSTITUTIONAL_METADATA_FIELDS = (
@@ -16,6 +17,35 @@ CONSTITUTIONAL_METADATA_FIELDS = (
     "effective_from",
     "effective_until",
     "source_knowledge_object_id",
+)
+
+EXTERNAL_PROVENANCE_FIELDS = (
+    "external_provenance",
+    "issuing_authority",
+    "authority_class",
+    "evidence_role",
+    "decision_types",
+    "evidence_domains",
+    "canonical_url",
+    "geographic_scope",
+)
+
+SCHEDULE_OBJECT_TYPE = "course_offering_observation"
+SCHEDULE_SEMANTIC_SPACE = "institutional_operations"
+FACULTY_OBJECT_TYPE = "faculty_observation"
+FACULTY_SEMANTIC_SPACE = "institutional_people"
+CATALOG_OBJECT_TYPES = {
+    "catalog_observation",
+    "academic_unit_observation",
+    "department_faculty_roster_observation",
+    "catalog_faculty_observation",
+}
+SEMANTIC_SCOPE_METADATA_FIELDS = (
+    "semantic_identity",
+    "semantic_memberships",
+    "organizational_relationships",
+    "decision_domains",
+    "institutional_relevance",
 )
 
 
@@ -106,7 +136,9 @@ def _document_metadata(document) -> Dict[str, Any]:
 
     metadata = {
         "document_title": document.title,
-        "relative_path": _document_field(document, "relative_path"),
+        "relative_path": repository_relative_path(
+            _document_field(document, "relative_path")
+        ),
         "parser": _document_field(document, "parser"),
         "file_type": _document_field(document, "file_type"),
     }
@@ -120,9 +152,16 @@ def _document_metadata(document) -> Dict[str, Any]:
         if value is not None:
             metadata[field] = value
 
+    for field in EXTERNAL_PROVENANCE_FIELDS:
+        value = source_metadata.get(field)
+        if value is not None:
+            metadata[field] = value
+
     semantic_space = source_metadata.get("semantic_space")
     if semantic_space is not None:
         metadata["semantic_space"] = semantic_space
+
+    metadata.update(_semantic_scope_metadata(document))
 
     constitutional_notes = source_metadata.get("constitutional_notes")
     if constitutional_notes is not None:
@@ -131,7 +170,527 @@ def _document_metadata(document) -> Dict[str, Any]:
     return metadata
 
 
+def _semantic_scope_metadata(observation) -> Dict[str, Any]:
+    source_metadata = getattr(observation, "metadata", {}) or {}
+    inherited = {}
+    for field in SEMANTIC_SCOPE_METADATA_FIELDS:
+        value = source_metadata.get(field)
+        if value is None:
+            value = getattr(observation, field, None)
+        if value is not None and value != () and value != [] and value != {}:
+            inherited[field] = value
+    return inherited
+
+
+def _present(value) -> bool:
+    return value is not None and value != ""
+
+
+def _object_value(observation, field, default=None):
+    value = (
+        observation.get(field)
+        if isinstance(observation, dict)
+        else getattr(observation, field, None)
+    )
+    return value if _present(value) else default
+
+
+def render_course_offering_observation(observation) -> str:
+    """Render one schedule observation as concise factual retrieval text."""
+    term = _object_value(observation, "academic_term")
+    course_code = _object_value(observation, "course_code")
+    title = _object_value(observation, "course_title")
+
+    heading = "Scheduled course offering"
+    if term:
+        heading += f" for {term}"
+    lines = [f"{heading}."]
+
+    if course_code:
+        course = course_code
+        if title:
+            course += f" — {title}"
+        lines.append(f"Course: {course}.")
+
+    credits = _object_value(
+        observation,
+        "credits_raw",
+        _object_value(observation, "credits"),
+    )
+    instructor_type = _object_value(observation, "instructor_type", {}) or {}
+    instructor_type_values = (
+        tuple(instructor_type.get("published_values") or ())
+        if isinstance(instructor_type, dict)
+        else ()
+    )
+    if not instructor_type_values and isinstance(instructor_type, dict):
+        published_value = instructor_type.get("published_value")
+        instructor_type_values = (published_value,) if published_value else ()
+    normalized_instructor_type = (
+        instructor_type.get("normalized_value")
+        if isinstance(instructor_type, dict)
+        else None
+    )
+    resolution = (
+        instructor_type.get("resolution") or {}
+        if isinstance(instructor_type, dict)
+        else {}
+    )
+    for label, value in (
+        ("Section", _object_value(observation, "section")),
+        ("CRN", _object_value(observation, "crn")),
+        ("Credits", credits),
+        ("Instructor", _object_value(observation, "instructor_raw")),
+        (
+            "Published instructor type values",
+            "; ".join(instructor_type_values) if instructor_type_values else None,
+        ),
+        (
+            "Normalized instructor type",
+            normalized_instructor_type.replace("_", " ").title()
+            if normalized_instructor_type else None,
+        ),
+        (
+            "Instructor type source conflict",
+            "Yes" if isinstance(instructor_type, dict)
+            and instructor_type.get("conflicting") else "No"
+            if isinstance(instructor_type, dict) and instructor_type_values
+            else None,
+        ),
+        ("Instructor type repair method", resolution.get("method")),
+        (
+            "Instructor type repair status",
+            "Resolved" if resolution.get("resolved") else "Unresolved"
+            if resolution else None,
+        ),
+        (
+            "Instructional method",
+            _object_value(observation, "instructional_method"),
+        ),
+        ("Modality", _object_value(observation, "modality")),
+        ("Meeting days", _object_value(observation, "meeting_days")),
+        ("Meeting time", _object_value(observation, "meeting_time_raw")),
+        (
+            "Meeting date range",
+            _object_value(observation, "meeting_date_range_raw"),
+        ),
+        ("Start date", _object_value(observation, "start_date")),
+        ("End date", _object_value(observation, "end_date")),
+        ("Location", _object_value(observation, "location_raw")),
+        ("Campus", _object_value(observation, "campus")),
+        ("Enrollment", _object_value(observation, "enrollment")),
+        ("Capacity", _object_value(observation, "capacity")),
+        (
+            "Seats available",
+            _object_value(observation, "seats_available"),
+        ),
+        ("Waitlist", _object_value(observation, "waitlist")),
+        ("Status", _object_value(observation, "status")),
+        (
+            "Liberal Learning Core designation",
+            _object_value(observation, "llc_area_raw"),
+        ),
+        ("Notes", _object_value(observation, "notes")),
+    ):
+        if _present(value):
+            lines.append(f"{label}: {value}.")
+
+    return "\n".join(lines)
+
+
+def _schedule_metadata(observation) -> Dict[str, Any]:
+    source = getattr(observation, "source", {}) or {}
+    provenance = getattr(observation, "provenance", {}) or {}
+    source_path = (
+        _mapping_value(provenance, "source_path")
+        or _mapping_value(source, "path")
+    )
+    source_path = repository_relative_path(source_path)
+    source_type = _mapping_value(source, "kind")
+    instructor_type = _object_value(observation, "instructor_type", {}) or {}
+    resolution = (
+        instructor_type.get("resolution") or {}
+        if isinstance(instructor_type, dict)
+        else {}
+    )
+    repair = _object_value(observation, "repair", {}) or {}
+
+    values = {
+        "document_title": observation.title,
+        "knowledge_object_id": observation.id,
+        "knowledge_object_type": observation.object_type,
+        "semantic_space": SCHEDULE_SEMANTIC_SPACE,
+        "term": _object_value(observation, "academic_term"),
+        "term_published": _object_value(observation, "academic_term_published"),
+        "subject": _object_value(observation, "subject"),
+        "course_number": _object_value(observation, "course_number"),
+        "course_code": _object_value(observation, "course_code"),
+        "section": _object_value(observation, "section"),
+        "crn": _object_value(observation, "crn"),
+        "instructor_text": _object_value(observation, "instructor_raw"),
+        "instructor_type": instructor_type.get("normalized_value"),
+        "instructor_type_published_values": list(
+            instructor_type.get("published_values") or ()
+        ),
+        "instructor_type_conflicting": instructor_type.get("conflicting"),
+        "instructor_type_resolution_method": resolution.get("method"),
+        "instructor_type_resolution_confidence": resolution.get("confidence"),
+        "schedule_repair_algorithm": _mapping_value(repair, "algorithm"),
+        "schedule_repair_version": _mapping_value(repair, "version"),
+        "schedule_repair_decision_fingerprint": _mapping_value(
+            repair, "decision_fingerprint"
+        ),
+        "source_type": source_type,
+        "source_path": source_path,
+        "relative_path": source_path,
+        "source_row": _object_value(observation, "source_row"),
+        "source_sha256": _mapping_value(provenance, "source_sha256"),
+        "adapter": _mapping_value(provenance, "adapter"),
+        "adapter_version": _mapping_value(provenance, "adapter_version"),
+        "normalized_at": getattr(observation, "normalized_at", None),
+    }
+    return {
+        **{key: value for key, value in values.items() if _present(value)},
+        **_semantic_scope_metadata(observation),
+    }
+
+
+def chunk_course_offering_observation(observation):
+    """Produce exactly one deterministic primary chunk for one section."""
+    text = render_course_offering_observation(observation)
+    metadata = {
+        **_schedule_metadata(observation),
+        "chunk_size": None,
+        "overlap": 0,
+        "max_chunks_per_document": 1,
+        "document_truncated": False,
+        "original_chunk_count": 1,
+        "indexed_chunk_count": 1,
+    }
+    source_path = metadata.get("source_path")
+    citation = {
+        "title": observation.title,
+        "relative_path": source_path,
+        "source_path": source_path,
+        "source_type": metadata.get("source_type"),
+        "source_row": metadata.get("source_row"),
+        "crn": metadata.get("crn"),
+        "start_char": 0,
+        "end_char": len(text),
+    }
+    citation = {
+        key: value for key, value in citation.items() if _present(value)
+    }
+    return [
+        Chunk(
+            id=make_chunk_id(observation.id, 0, 0, len(text)),
+            knowledge_object_id=observation.id,
+            object_type=observation.object_type,
+            chunk_index=0,
+            text=text,
+            start_char=0,
+            end_char=len(text),
+            citation=citation,
+            metadata=metadata,
+        )
+    ]
+
+
+def render_faculty_observation(observation) -> str:
+    """Render only factual, profile-scoped faculty directory content."""
+    lines = ["Faculty directory observation"]
+
+    def add(label, value) -> None:
+        if _present(value):
+            lines.append(f"{label}: {value}")
+
+    add("Name", _object_value(observation, "display_name"))
+    titles = tuple(getattr(observation, "published_titles", ()) or ())
+    add("Published title", "; ".join(titles) if titles else None)
+    add(
+        "Published department or organizational unit",
+        _object_value(observation, "published_department"),
+    )
+    add("Published college", _object_value(observation, "published_college"))
+    add("Email", _object_value(observation, "email"))
+    add("Phone", _object_value(observation, "phone"))
+    add("Office", _object_value(observation, "office"))
+    add("Profile URL", _object_value(observation, "profile_url"))
+
+    education = tuple(getattr(observation, "education_entries", ()) or ())
+    if education:
+        add("Education", "; ".join(education))
+    add("Teaching", _object_value(observation, "teaching_interests"))
+    add("Research", _object_value(observation, "research_interests"))
+    add("Biography", _object_value(observation, "biography"))
+
+    for label, field in (
+        ("Publications", "publications"),
+        ("Professional experience", "professional_experience"),
+        ("Awards and honors", "awards_honors"),
+        ("Service", "service"),
+        ("Courses or areas taught", "courses_or_areas_taught"),
+    ):
+        values = tuple(getattr(observation, field, ()) or ())
+        if values:
+            add(label, "; ".join(values))
+
+    for label, values in sorted(
+        (getattr(observation, "other_labeled_sections", {}) or {}).items()
+    ):
+        values = tuple(values or ())
+        if values:
+            add(label, "; ".join(values))
+
+    snapshot = _object_value(observation, "snapshot_date")
+    if snapshot:
+        lines.append(
+            "This information was published in the CNU faculty directory "
+            f"and acquired in the {snapshot} snapshot."
+        )
+    return "\n".join(lines)
+
+
+def _faculty_metadata(observation) -> Dict[str, Any]:
+    source = getattr(observation, "source", {}) or {}
+    provenance = getattr(observation, "provenance", {}) or {}
+    titles = tuple(getattr(observation, "published_titles", ()) or ())
+    values = {
+        "document_title": observation.title,
+        "knowledge_object_id": observation.id,
+        "knowledge_object_type": observation.object_type,
+        "semantic_space": FACULTY_SEMANTIC_SPACE,
+        "display_name": _object_value(observation, "display_name"),
+        "family_name": _object_value(observation, "family_name"),
+        "published_title": "; ".join(titles) if titles else None,
+        "published_department": _object_value(
+            observation, "published_department"
+        ),
+        "published_college": _object_value(observation, "published_college"),
+        "email": _object_value(observation, "email"),
+        "profile_url": _object_value(observation, "profile_url"),
+        "snapshot_date": _object_value(observation, "snapshot_date"),
+        "source_type": (
+            _mapping_value(provenance, "source_type")
+            or _mapping_value(source, "kind")
+        ),
+        "relative_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
+        "source_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
+        "source_sha256": (
+            _mapping_value(provenance, "source_sha256")
+            or _object_value(observation, "raw_acquisition_hash")
+        ),
+        "adapter": _mapping_value(provenance, "adapter"),
+        "adapter_version": _mapping_value(provenance, "adapter_version"),
+        "acquisition_timestamp": _mapping_value(
+            provenance, "acquisition_timestamp"
+        ),
+        "structural_variant": _object_value(
+            observation, "structural_variant"
+        ),
+        "normalized_at": getattr(observation, "normalized_at", None),
+    }
+    return {
+        **{key: value for key, value in values.items() if _present(value)},
+        **_semantic_scope_metadata(observation),
+    }
+
+
+def chunk_faculty_observation(
+    observation,
+    *,
+    chunk_size=3000,
+    overlap=300,
+    max_chunks=None,
+):
+    """Chunk deterministic factual faculty text using the shared size policy."""
+    text = render_faculty_observation(observation)
+    raw_chunks = chunk_text(text, chunk_size=chunk_size, overlap=overlap)
+    inherited = _faculty_metadata(observation)
+    chunks = []
+    for index, (chunk_value, start, end) in enumerate(raw_chunks):
+        if max_chunks is not None and len(chunks) >= max_chunks:
+            break
+        citation = {
+            "title": observation.title,
+            "relative_path": inherited.get("relative_path"),
+            "source_path": inherited.get("source_path"),
+            "source_type": inherited.get("source_type"),
+            "profile_url": inherited.get("profile_url"),
+            "start_char": start,
+            "end_char": end,
+        }
+        citation = {
+            key: value for key, value in citation.items() if _present(value)
+        }
+        chunks.append(
+            Chunk(
+                id=make_chunk_id(observation.id, index, start, end),
+                knowledge_object_id=observation.id,
+                object_type=observation.object_type,
+                chunk_index=index,
+                text=chunk_value,
+                start_char=start,
+                end_char=end,
+                citation=citation,
+                metadata={
+                    **inherited,
+                    "chunk_size": chunk_size,
+                    "overlap": overlap,
+                    "max_chunks_per_document": max_chunks,
+                },
+            )
+        )
+
+    truncated = max_chunks is not None and len(raw_chunks) > len(chunks)
+    for chunk in chunks:
+        chunk.metadata["document_truncated"] = truncated
+        chunk.metadata["original_chunk_count"] = len(raw_chunks)
+        chunk.metadata["indexed_chunk_count"] = len(chunks)
+    return chunks
+
+
+def render_catalog_observation(observation) -> str:
+    """Render one catalog fact record without adding interpretation."""
+    object_type = observation.object_type
+    if object_type == "catalog_observation":
+        lines = ["Academic catalog observation"]
+        fields = (
+            ("Publication", _object_value(observation, "publication_title")),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+            ("Publication designation", _object_value(observation, "publication_designation")),
+            ("Publication date", _object_value(observation, "publication_date")),
+            ("Page count", _object_value(observation, "page_count")),
+        )
+    elif object_type == "academic_unit_observation":
+        lines = ["Published academic unit observation"]
+        fields = (
+            ("Academic unit", _object_value(observation, "published_name")),
+            ("Published parent unit", _object_value(observation, "published_parent_unit")),
+            ("Published leadership", "; ".join(getattr(observation, "published_leadership", ()) or ())),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+        )
+    elif object_type == "department_faculty_roster_observation":
+        lines = ["Published department faculty roster observation"]
+        fields = (
+            ("Academic unit", _object_value(observation, "academic_unit")),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+        )
+    else:
+        lines = ["Published university faculty registry observation"]
+        fields = (
+            ("Name", _object_value(observation, "published_name")),
+            ("Published title", _object_value(observation, "published_title")),
+            ("Published academic unit", _object_value(observation, "academic_unit")),
+            ("Education", _object_value(observation, "education")),
+            ("Published appointment year", _object_value(observation, "appointment_year")),
+            ("Catalog year", _object_value(observation, "catalog_year")),
+        )
+    for label, value in fields:
+        if _present(value):
+            lines.append(f"{label}: {value}")
+    if object_type == "department_faculty_roster_observation":
+        for entry in getattr(observation, "entries", ()) or ():
+            name = _object_value(entry, "published_name")
+            category = _object_value(entry, "published_category")
+            if _present(name) and _present(category):
+                lines.append(f"{category}: {name}")
+    return "\n".join(lines)
+
+
+def _catalog_metadata(observation) -> Dict[str, Any]:
+    provenance = getattr(observation, "provenance", {}) or {}
+    academic_unit = (
+        _object_value(observation, "academic_unit")
+        or _object_value(observation, "published_name")
+    )
+    values = {
+        "document_title": observation.title,
+        "knowledge_object_id": observation.id,
+        "knowledge_object_type": observation.object_type,
+        "semantic_space": (
+            "institutional_catalog" if observation.object_type == "catalog_observation"
+            else "institutional_academics"
+        ),
+        "catalog_year": _object_value(observation, "catalog_year"),
+        "academic_unit": academic_unit,
+        "page_numbers": list(getattr(observation, "page_numbers", ()) or ()),
+        "source_type": _mapping_value(provenance, "source_type"),
+        "relative_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
+        "source_path": repository_relative_path(
+            _object_value(observation, "relative_source_path")
+        ),
+        "source_sha256": _object_value(observation, "document_hash"),
+        "adapter": _mapping_value(provenance, "adapter"),
+        "adapter_version": _mapping_value(provenance, "adapter_version"),
+        "normalized_at": getattr(observation, "normalized_at", None),
+    }
+    return {
+        **{key: value for key, value in values.items() if _present(value)},
+        **_semantic_scope_metadata(observation),
+    }
+
+
+def chunk_catalog_observation(observation, *, chunk_size=3000, overlap=300, max_chunks=None):
+    text = render_catalog_observation(observation)
+    raw_chunks = chunk_text(text, chunk_size=chunk_size, overlap=overlap)
+    inherited = _catalog_metadata(observation)
+    selected = raw_chunks if max_chunks is None else raw_chunks[:max_chunks]
+    chunks = []
+    for index, (value, start, end) in enumerate(selected):
+        chunks.append(Chunk(
+            id=make_chunk_id(observation.id, index, start, end),
+            knowledge_object_id=observation.id,
+            object_type=observation.object_type,
+            chunk_index=index,
+            text=value,
+            start_char=start,
+            end_char=end,
+            citation={
+                "title": observation.title,
+                "relative_path": inherited.get("relative_path"),
+                "source_path": inherited.get("source_path"),
+                "page_numbers": inherited.get("page_numbers"),
+                "start_char": start,
+                "end_char": end,
+            },
+            metadata={
+                **inherited,
+                "chunk_size": chunk_size,
+                "overlap": overlap,
+                "max_chunks_per_document": max_chunks,
+                "document_truncated": len(selected) < len(raw_chunks),
+                "original_chunk_count": len(raw_chunks),
+                "indexed_chunk_count": len(selected),
+            },
+        ))
+    return chunks
+
+
 def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
+    if document.object_type == SCHEDULE_OBJECT_TYPE:
+        return chunk_course_offering_observation(document)
+    if document.object_type == FACULTY_OBJECT_TYPE:
+        return chunk_faculty_observation(
+            document,
+            chunk_size=chunk_size,
+            overlap=overlap,
+            max_chunks=max_chunks,
+        )
+    if document.object_type in CATALOG_OBJECT_TYPES:
+        return chunk_catalog_observation(
+            document,
+            chunk_size=chunk_size,
+            overlap=overlap,
+            max_chunks=max_chunks,
+        )
+
     raw_chunks = chunk_text(
         document.text,
         chunk_size=chunk_size,
@@ -149,11 +708,15 @@ def chunk_document(document, chunk_size=3000, overlap=300, max_chunks=None):
 
         citation = {
             "title": document.title,
-            "relative_path": _document_field(document, "relative_path"),
-            "source_path": _document_field(
-                document,
-                "source_path",
-                _document_field(document, "path"),
+            "relative_path": repository_relative_path(
+                _document_field(document, "relative_path")
+            ),
+            "source_path": repository_relative_path(
+                _document_field(
+                    document,
+                    "source_path",
+                    _document_field(document, "path"),
+                )
             ),
             "file_type": _document_field(document, "file_type"),
             "parser": _document_field(document, "parser"),
@@ -248,6 +811,7 @@ def run_chunking(
     overlap=300,
     max_chunks_per_document=None,
     normalized_dir=None,
+    verbose=False,
 ):
     source_dirs = _normalize_source_dirs(
         source_dirs=source_dirs,
@@ -295,7 +859,7 @@ def run_chunking(
             print(f"[WARN] Source directory does not exist: {source_dir}")
             continue
 
-        for path in sorted(source_dir.glob("*.json")):
+        for path in sorted(source_dir.rglob("*.json")):
             if limit is not None and results["attempted"] >= limit:
                 break
 
@@ -352,11 +916,12 @@ def run_chunking(
                 object_type_counts[document.object_type] += 1
                 source_dir_counts[str(source_dir)] += 1
 
-                print(
-                    f"[OK] {len(chunks):4d} chunks  "
-                    f"{document.object_type:28s}  "
-                    f"{_document_field(document, 'relative_path', document.id)}"
-                )
+                if verbose:
+                    print(
+                        f"[OK] {len(chunks):4d} chunks  "
+                        f"{document.object_type:28s}  "
+                        f"{_document_field(document, 'relative_path', document.id)}"
+                    )
 
             except Exception as exc:
                 results["failed"] += 1

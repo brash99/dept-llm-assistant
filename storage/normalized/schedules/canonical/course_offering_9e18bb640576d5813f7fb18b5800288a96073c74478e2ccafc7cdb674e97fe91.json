@@ -1,0 +1,357 @@
+{
+  "id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 361 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: CHEM 361\nSection: 1\nTitle: Analytical Chemistry\nCRN: 8125",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91",
+          "published_name": "CHEM 361 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91",
+                "published_name": "CHEM 361 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "1575aa07b835e5a029c544444ee3ed0aeefbef4133c2288357e4c55b4af712d1"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 10003,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "9e18bb640576d5813f7fb18b5800288a96073c74478e2ccafc7cdb674e97fe91",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 10003,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "CHEM",
+  "course_number": "361",
+  "course_code": "CHEM 361",
+  "course_title": "Analytical Chemistry",
+  "section": "1",
+  "crn": "8125",
+  "instructor_name": "Ronald Quinlan",
+  "instructor_raw": "Ronald Quinlan",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 7,
+      "supporting_observation_ids": [
+        "c818ef491e4a9b7d615221dbbe2658760bf6bec27c03c1807e865eff0e8e3312",
+        "1221aee1a502d29c7ff552933a08f540af3ba696fc25ec8bf9d85f46088111ec",
+        "c4cd6204b68a253369145a6dce1203f6ed0a4ba3b96d088238fa9b67e8290d31",
+        "03f2c6d10c1808d21b9823acc3db7eb7680f616e75cfffa500a3145f3ae1167b",
+        "3d0aab67d0dd6c2ab527a3ded8635454d375134bdcc94f3e573626eb81bf73a2",
+        "7cdfc5871631d478d9ae37c42b8580d85ca34b477621eda4894fd9632833c83e",
+        "c1876a4b0441cb632048d9ce18690a1da2a66d122b2c6ee5f091e4b1ceef2b49"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Analytical Chemistry"
+    ],
+    "normalized_value": "Analytical Chemistry",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1100-1150",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1100-1150",
+  "start_time": "11:00",
+  "end_time": "11:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 269",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 48,
+  "waitlist": null,
+  "seats_available": 29,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1100-1150",
+      "location_published": "Joseph W. Luter III Hall 269",
+      "source_rows": [
+        10003,
+        10004
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "9b0be84546305d874c7d953884406b133481dd95e318e16a8ba6d28601c348e0",
+    "source_row_hashes": [
+      "f9419f768a15a4667e6cd1021b3482ce483eeb4400efcdefabdbd80146128dd6",
+      "2458f69d12b022db21d052aa043af4e4328a00362eda7ad7501afec7e4236c8e"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 10003,
+    "source_rows": [
+      10003,
+      10004
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8125",
+    "Course": "CHEM 361",
+    "Section": "1",
+    "Title": "Analytical Chemistry",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1100-1150",
+    "Location": "Joseph W. Luter III Hall 269",
+    "Instructor": "Ronald Quinlan",
+    "Seats Still Available": "29",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "48",
+    "Enrolled": "19",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    10003,
+    10004
+  ],
+  "raw_records": [
+    {
+      "CRN": "8125",
+      "Course": "CHEM 361",
+      "Section": "1",
+      "Title": "Analytical Chemistry",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Joseph W. Luter III Hall 269",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "29",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "48",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8125",
+      "Course": "CHEM 361",
+      "Section": "1",
+      "Title": "Analytical Chemistry",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Joseph W. Luter III Hall 269",
+      "Instructor": "Ronald Quinlan",
+      "Seats Still Available": "29",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "48",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

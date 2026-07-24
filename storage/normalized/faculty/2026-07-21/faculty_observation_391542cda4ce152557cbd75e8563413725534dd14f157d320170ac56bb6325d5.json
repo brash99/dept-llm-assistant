@@ -1,0 +1,378 @@
+{
+  "id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+  "object_type": "faculty_observation",
+  "title": "Sean Chen",
+  "text": "Faculty directory observation\nName: Sean Chen\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+          "published_name": "Sean Chen"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Luter School of Business",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+                "published_name": "Sean Chen"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Luter School of Business",
+                "published_name": "Luter School of Business"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "55a52a13e401924fbabedabe7e0504d32c0dc7a354d4a6dc5eaeee2b669149d1"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+                "published_name": "Sean Chen"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:luter_school_business",
+                  "published_label": "Luter School of Business",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Luter School of Business"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Luter School of Business",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:luter_school_business",
+                  "published_label": "Luter School of Business",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Luter School of Business"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "93a3bb2733947ef5ddebd2b43cd74ea3e8829aefabafa393ca12ac5eb438c0e9"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_xianchen.html",
+    "url": "https://cnu.edu/faculty/xianchen.html",
+    "content_hash": "29f021188e4fb777ffbbf6a941f57d48bd3c9de32b8c6ced5762af2ab0cfc6ad"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "391542cda4ce152557cbd75e8563413725534dd14f157d320170ac56bb6325d5",
+  "display_name": "Sean Chen",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Sean Chen",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "Luter School of Business",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "Luter School of Business",
+      "url": "https://cnu.edu/academics/departments/business/index.html"
+    },
+    {
+      "label": "Accounting and Finance",
+      "url": "https://cnu.edu/academics/departments/accountingfinance/"
+    }
+  ],
+  "email": "xian.chen@cnu.edu",
+  "phone": "(757) 594-8979",
+  "office": "Luter Hall 122",
+  "profile_url": "https://cnu.edu/faculty/xianchen.html",
+  "biography": null,
+  "education_entries": [
+    "Ph D in Finance, University of Oregon",
+    "MS in Quantitative Finance, Swiss Federal Institute of Technology",
+    "MS in Statistics and Finance, University of Illinois at Urbana-Champaign"
+  ],
+  "research_interests": "Empirical Corporate Finance, Financial Institutions, Corporate Innovation",
+  "teaching_interests": "Corporate Finance, Portfolio Management, Derivatives and Risk Management, Data Management & Analytics",
+  "publications": [
+    "Journal Article, Academic Journal (2024). Common Ownership along the Supply Chain and Supplier Innovations . Pacific-Basin Finance Journal.",
+    "Journal Article, Academic Journal (2024). Agency Cost of Debt as Incentive for Executive Inside Debt: Evidence from Empirical Study . Corporate Ownership and Control.",
+    "Journal Article, Academic Journal (2024). The Effect of Managerial Horizon and Excess Cash on Firm Value . Journal of International Finance and Economics.",
+    "Journal Article, Academic Journal (2024). Common Ownership and Corporate Innovation Strategy . Corporate Ownership and Control."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Xian Chen, Financial Management Association Conference, \"Common Ownership along the Supply Chain and Supplier Innovations,\" Boulder, Colorado. (2021)"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Sean Chen",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 122"
+    ],
+    "Phone": "(757) 594-8979",
+    "Email": "xian.chen@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Luter School of Business",
+        "url": "https://cnu.edu/academics/departments/business/index.html"
+      },
+      {
+        "label": "Accounting and Finance",
+        "url": "https://cnu.edu/academics/departments/accountingfinance/"
+      }
+    ],
+    "Education": [
+      "Ph D in Finance, University of Oregon",
+      "MS in Quantitative Finance, Swiss Federal Institute of Technology",
+      "MS in Statistics and Finance, University of Illinois at Urbana-Champaign"
+    ],
+    "Teaching": "Corporate Finance, Portfolio Management, Derivatives and Risk Management, Data Management & Analytics",
+    "Research": "Empirical Corporate Finance, Financial Institutions, Corporate Innovation",
+    "Publications": [
+      "Journal Article, Academic Journal (2024). Common Ownership along the Supply Chain and Supplier Innovations . Pacific-Basin Finance Journal.",
+      "Journal Article, Academic Journal (2024). Agency Cost of Debt as Incentive for Executive Inside Debt: Evidence from Empirical Study . Corporate Ownership and Control.",
+      "Journal Article, Academic Journal (2024). The Effect of Managerial Horizon and Excess Cash on Firm Value . Journal of International Finance and Economics.",
+      "Journal Article, Academic Journal (2024). Common Ownership and Corporate Innovation Strategy . Corporate Ownership and Control."
+    ],
+    "Presentations": [
+      "Xian Chen, Financial Management Association Conference, \"Common Ownership along the Supply Chain and Supplier Innovations,\" Boulder, Colorado. (2021)"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_xianchen.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_xianchen.html",
+  "raw_acquisition_hash": "29f021188e4fb777ffbbf6a941f57d48bd3c9de32b8c6ced5762af2ab0cfc6ad",
+  "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/xianchen.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_xianchen.html",
+    "source_sha256": "29f021188e4fb777ffbbf6a941f57d48bd3c9de32b8c6ced5762af2ab0cfc6ad",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

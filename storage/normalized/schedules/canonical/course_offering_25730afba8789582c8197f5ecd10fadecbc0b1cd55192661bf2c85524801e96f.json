@@ -1,0 +1,354 @@
+{
+  "id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: FINC 325 Section 2 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: FINC 325\nSection: 2\nTitle: Mgmt of Financial Institutions\nCRN: 8139",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f",
+          "published_name": "FINC 325 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f",
+                "published_name": "FINC 325 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "132892ba6c002ab05c509e1b39ca449b7a75497cc01403745c6469fbab1bca3d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 8779,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "25730afba8789582c8197f5ecd10fadecbc0b1cd55192661bf2c85524801e96f",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 8779,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "FINC",
+  "course_number": "325",
+  "course_code": "FINC 325",
+  "course_title": "Mgmt of Financial Institutions",
+  "section": "2",
+  "crn": "8139",
+  "instructor_name": "Sanjib Guha",
+  "instructor_raw": "Sanjib Guha",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "27c3655b90579fb7605fd0dfd9ae3bcead45967e3f40cb62732e34cc38a63331",
+        "a53ceaebcd2ec017561a833c5fd9d5cb5d992054da638ded6be703f0b0d00549",
+        "1c86e183f43f586c72e0a8b8f6ba7a8fd24e2035e81f7460b42aa228285701d2",
+        "c2dc272b9adbd103445b3b2396c8e88de3189de3bf1cb32bb559392222c4c068"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Mgmt of Financial Institutions"
+    ],
+    "normalized_value": "Mgmt of Financial Institutions",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1800-1915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2090",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 31,
+  "capacity": 36,
+  "waitlist": null,
+  "seats_available": 5,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1800-1915",
+      "location_published": "Forbes Hall 2090",
+      "source_rows": [
+        8779,
+        19295
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "b2ab06b305513ada58838534082944f94561ed4dbd035b0001dc9d73528901a8",
+    "source_row_hashes": [
+      "f479ed52115c0107a1c425c4192d59e102a8680ac25c64f011c98af7fbecec1d",
+      "b1388ba9934fba808968620c25507568733789736e417dd72059eba220e3b237"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 8779,
+    "source_rows": [
+      8779,
+      19295
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8139",
+    "Course": "FINC 325",
+    "Section": "2",
+    "Title": "Mgmt of Financial Institutions",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1800-1915",
+    "Location": "Forbes Hall 2090",
+    "Instructor": "Sanjib Guha",
+    "Seats Still Available": "5",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "36",
+    "Enrolled": "31",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    8779,
+    19295
+  ],
+  "raw_records": [
+    {
+      "CRN": "8139",
+      "Course": "FINC 325",
+      "Section": "2",
+      "Title": "Mgmt of Financial Institutions",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Forbes Hall 2090",
+      "Instructor": "Sanjib Guha",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "36",
+      "Enrolled": "31",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8139",
+      "Course": "FINC 325",
+      "Section": "2",
+      "Title": "Mgmt of Financial Institutions",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Forbes Hall 2090",
+      "Instructor": "Sanjib Guha",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "36",
+      "Enrolled": "31",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

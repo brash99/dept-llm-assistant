@@ -1,0 +1,403 @@
+{
+  "id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+  "object_type": "faculty_observation",
+  "title": "Phillip Bazzani",
+  "text": "Faculty directory observation\nName: Phillip Bazzani\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+          "published_name": "Phillip Bazzani"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+                "published_name": "Phillip Bazzani"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Accounting and Finance",
+                "published_name": "Accounting and Finance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "bf06585b5fc980195540696ab1d5c95a181bcb98aca0a9fd847b1bde2658814f"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+                "published_name": "Phillip Bazzani"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6d644e166daced8b8d3131da2cbe92247daa4c6a1e67d5a4c6379deec70a6120"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_phillipbazzani.html",
+    "url": "https://cnu.edu/faculty/phillipbazzani.html",
+    "content_hash": "5075957383dcc4417f2525651d71b61161bcdf76b4d55d7b75a543798d984333"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "0ee4a62c6967954996ef060f2496e5d5a117ca1aded664f970fcd867a8776668",
+  "display_name": "Phillip Bazzani",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Phillip Bazzani",
+  "published_titles": [
+    "Instructor"
+  ],
+  "published_department": "Accounting and Finance",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "Accounting and Finance",
+      "url": "https://cnu.edu/academics/departments/accountingfinance/"
+    },
+    {
+      "label": "Luter School of Business",
+      "url": "https://cnu.edu/academics/departments/business/index.html"
+    }
+  ],
+  "email": "phillip.bazzani@cnu.edu",
+  "phone": "(757) 262-8462",
+  "office": "Luter Hall 240",
+  "profile_url": "https://cnu.edu/faculty/phillipbazzani.html",
+  "biography": "Senior Vice President and M&A Business Broker \u2013 Gottesman Company (2012 - Present) \u27a2 Mid-Market Merger and Acquisition Intermediary responsible for Merger & Acquisition of companies from $10M to $100M. Gottesman Company is one of the largest M&A firms in the US specializing in finding Buyers for Sellers and Sellers for Buyers. We have been established since 1985 and currently have over 100 M&A Intermediaries throughout North America, coast-to-coast, in both the US and Canada, enabling us to work with our clients in person. Responsibilities and accomplishments include: Valuate potential seller business based on analysis of current financial structure. Broker negotiations between buyer and seller leading to closing. Perform liaison between private equity groups and seller. Assist and facilitate due diligence efforts Vice President & Principal; Joseph-Nicolas & Associates (JNA) \u2013 Business Consultancy and M&A (1993 to Present) Founded in 1993, JNA provides small businesses consultancy and mergers and acquisition assistance for small to mid-sized businesses. Develop business venture capital plan for an international company leading towards its listing on the NASDAQ. Developed Business Plan Proposals to allow small start-up businesses obtain venture capital and positioning for M&A opportunities. Developed over 50-60 business plans for small businesses. Currently developing a business plan for a start-up maritime security company. Developed IPO efforts for two businesses listed on the NASDAQ. Develop government contract proposals for major procurements. Business Manager/Director, Finance - Virginia Class Submarine Construction Program; Newport News Shipbuilding (NNS - RETIRED) (1979-2012) Responsible for cost and finance management control of an $8.0B Submarine Construction Program. Provide Program Office support, profit & loss/risk analysis, contract/subcontract budget development, funding management, labor resource planning, cost reporting, annual operating plan forecast analysis, and variance analyses. Developed and implemented Program/Operations Management/EVMS budgets and EV cost analysis and reports. Development and implementation of material procurement budgets. Presided over EVM performance reviews and analysis. Business Management liaison between Navy customer, NNS and DCAA. Assist in the development of the NNS 10K and 10Q report for SEC quarterly results. Supervise and coordinate the efforts of four financial analysts",
+  "education_entries": [
+    "MBA in Business Administration, Old Dominion University",
+    "BS in Bio Chemistry, The College of William and Mary"
+  ],
+  "research_interests": "Finance, Contract Pricing & Negotiation, Operations Management,",
+  "teaching_interests": "Finance, Business Statistics, Operations Management, Strategic Management",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Phillip Bazzani",
+    "Published titles": [
+      "Instructor"
+    ],
+    "Office": [
+      "Luter Hall 240"
+    ],
+    "Phone": "(757) 262-8462",
+    "Email": "phillip.bazzani@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Accounting and Finance",
+        "url": "https://cnu.edu/academics/departments/accountingfinance/"
+      },
+      {
+        "label": "Luter School of Business",
+        "url": "https://cnu.edu/academics/departments/business/index.html"
+      }
+    ],
+    "Education": [
+      "MBA in Business Administration, Old Dominion University",
+      "BS in Bio Chemistry, The College of William and Mary"
+    ],
+    "Biography": "Senior Vice President and M&A Business Broker \u2013 Gottesman Company (2012 - Present) \u27a2 Mid-Market Merger and Acquisition Intermediary responsible for Merger & Acquisition of companies from $10M to $100M. Gottesman Company is one of the largest M&A firms in the US specializing in finding Buyers for Sellers and Sellers for Buyers. We have been established since 1985 and currently have over 100 M&A Intermediaries throughout North America, coast-to-coast, in both the US and Canada, enabling us to work with our clients in person. Responsibilities and accomplishments include: Valuate potential seller business based on analysis of current financial structure. Broker negotiations between buyer and seller leading to closing. Perform liaison between private equity groups and seller. Assist and facilitate due diligence efforts Vice President & Principal; Joseph-Nicolas & Associates (JNA) \u2013 Business Consultancy and M&A (1993 to Present) Founded in 1993, JNA provides small businesses consultancy and mergers and acquisition assistance for small to mid-sized businesses. Develop business venture capital plan for an international company leading towards its listing on the NASDAQ. Developed Business Plan Proposals to allow small start-up businesses obtain venture capital and positioning for M&A opportunities. Developed over 50-60 business plans for small businesses. Currently developing a business plan for a start-up maritime security company. Developed IPO efforts for two businesses listed on the NASDAQ. Develop government contract proposals for major procurements. Business Manager/Director, Finance - Virginia Class Submarine Construction Program; Newport News Shipbuilding (NNS - RETIRED) (1979-2012) Responsible for cost and finance management control of an $8.0B Submarine Construction Program. Provide Program Office support, profit & loss/risk analysis, contract/subcontract budget development, funding management, labor resource planning, cost reporting, annual operating plan forecast analysis, and variance analyses. Developed and implemented Program/Operations Management/EVMS budgets and EV cost analysis and reports. Development and implementation of material procurement budgets. Presided over EVM performance reviews and analysis. Business Management liaison between Navy customer, NNS and DCAA. Assist in the development of the NNS 10K and 10Q report for SEC quarterly results. Supervise and coordinate the efforts of four financial analysts",
+    "Teaching": "Finance, Business Statistics, Operations Management, Strategic Management",
+    "Research": "Finance, Contract Pricing & Negotiation, Operations Management,"
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_phillipbazzani.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_phillipbazzani.html",
+  "raw_acquisition_hash": "5075957383dcc4417f2525651d71b61161bcdf76b4d55d7b75a543798d984333",
+  "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/phillipbazzani.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_phillipbazzani.html",
+    "source_sha256": "5075957383dcc4417f2525651d71b61161bcdf76b4d55d7b75a543798d984333",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

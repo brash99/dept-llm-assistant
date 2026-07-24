@@ -1,0 +1,315 @@
+{
+  "id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: COLL 141 Section 8 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: COLL 141\nSection: 8\nTitle: Student Success Seminar\nCRN: 9105",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1,
+      "instructor_type_unknown": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392",
+          "published_name": "COLL 141 8"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392",
+                "published_name": "COLL 141 8"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "92207fe91ebeb68cf36d19bdf13b358fc74048f96b534d3bbde8ab7a44205680"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 10466,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "25fe664b26b4098e02cdd75d1931ec011f3f7fd90fff90e072a0b9ee54a07392",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 10466,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "COLL",
+  "course_number": "141",
+  "course_code": "COLL 141",
+  "course_title": "Student Success Seminar",
+  "section": "8",
+  "crn": "9105",
+  "instructor_name": "CNU Staff",
+  "instructor_raw": "CNU Staff",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [],
+    "normalized_value": "unknown",
+    "has_blank_value": true,
+    "conflicting": false,
+    "resolution": {
+      "resolved": false,
+      "method": "unknown_source_value",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Student Success Seminar"
+    ],
+    "normalized_value": "Student Success Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "M 0900-0950",
+  "meeting_days": "M",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 310",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 0,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "0900-0950",
+      "location_published": "Lewis McMurran Hall 310",
+      "source_rows": [
+        10466
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "eeb1915e7f51000068b7a88f5a5658a988d1e973079bd6542c1b7fa44ee57680",
+    "source_row_hashes": [
+      "606ccd16f4fe287a0f0a3e9dff6c9975c20e16a164f34c942922507dd08c30e8"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 10466,
+    "source_rows": [
+      10466
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9105",
+    "Course": "COLL 141",
+    "Section": "8",
+    "Title": "Student Success Seminar",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "M",
+    "Time": "0900-0950",
+    "Location": "Lewis McMurran Hall 310",
+    "Instructor": "CNU Staff",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "0",
+    "Instructor Type": "",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    10466
+  ],
+  "raw_records": [
+    {
+      "CRN": "9105",
+      "Course": "COLL 141",
+      "Section": "8",
+      "Title": "Student Success Seminar",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "0900-0950",
+      "Location": "Lewis McMurran Hall 310",
+      "Instructor": "CNU Staff",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "0",
+      "Instructor Type": "",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {}
+}

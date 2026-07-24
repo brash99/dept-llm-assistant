@@ -1,0 +1,354 @@
+{
+  "id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 313 Section ON1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: BIOL 313\nSection: ON1\nTitle: Genetics\nCRN: 8105",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7",
+          "published_name": "BIOL 313 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7",
+                "published_name": "BIOL 313 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "81cac674c8875ba9aa884a427fd7f7f371219739c3c53b26379c9436c2a7a176"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2719,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "9bdf1ed29db8b2071d48a0bb0f2a586f1c397c7c1d80c9574d539147761479e7",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2719,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "BIOL",
+  "course_number": "313",
+  "course_code": "BIOL 313",
+  "course_title": "Genetics",
+  "section": "ON1",
+  "crn": "8105",
+  "instructor_name": "James Bogenpohl",
+  "instructor_raw": "James Bogenpohl",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "f1f6653025ed416f3962f110920a8211c77667f4ef621eea5cb56b34206eb442",
+        "fccd03f1c991075c165248bee56d162a4a895427d2b10067aee16abf1cde2009",
+        "75801c6d074fd82935e1766f33ef1a77ac195b2abaf6dc426d0fcf0d34b7cfb2",
+        "138dd6c705a08c00d2c64805188c487b79a5c4c57f76642b652d7f0c682ef790"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Genetics"
+    ],
+    "normalized_value": "Genetics",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1800-1915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Synchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 94,
+  "capacity": 95,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1800-1915",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        2719,
+        5322
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "82c305d9979136a6aa0db318b1ce94350ad448c57aba6d3a57bba8e7a2706bd5",
+    "source_row_hashes": [
+      "ae3135bb5c64fa293573a7c6a3d09499441a47f1f9fba72e9a9dac3e1c7e0d97",
+      "195d48f53185cd606eac3f8ee6ab707bbb5cae4b42bd58fe4b1e548fc757079d"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2719,
+    "source_rows": [
+      2719,
+      5322
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8105",
+    "Course": "BIOL 313",
+    "Section": "ON1",
+    "Title": "Genetics",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1800-1915",
+    "Location": "Synchronous Online Course ",
+    "Instructor": "James Bogenpohl",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "95",
+    "Enrolled": "94",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    2719,
+    5322
+  ],
+  "raw_records": [
+    {
+      "CRN": "8105",
+      "Course": "BIOL 313",
+      "Section": "ON1",
+      "Title": "Genetics",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "James Bogenpohl",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "94",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8105",
+      "Course": "BIOL 313",
+      "Section": "ON1",
+      "Title": "Genetics",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "James Bogenpohl",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "94",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

@@ -10,6 +10,7 @@ from app.observatory.dashboard import (
     render_evidence_fitness,
 )
 from app.evidence import resolve_source_title
+from app.source_presentation import executive_source_label
 from app.constitution import (
     ConstitutionalCatalog,
     ConstitutionalOrientation,
@@ -180,11 +181,22 @@ def render_institutional_orientation(
             "institutional evidence retrieval."
         )
 
+        st.markdown(
+            f"**Question Scope:** {orientation.question_scope.label}"
+        )
+        st.caption(orientation.question_scope.rationale)
+
         st.markdown("**Resolved institutional entities**")
 
         if orientation.resolved_entities:
             for entity in orientation.resolved_entities:
-                st.success(f"Existing program: **{entity.name}**")
+                scope_value = orientation.question_scope.scope.value
+                prefix = (
+                    "Contextual program reference"
+                    if scope_value in {"institution_wide", "multi_entity"}
+                    else "Existing program"
+                )
+                st.success(f"{prefix}: **{entity.name}**")
 
                 details = []
 
@@ -209,6 +221,11 @@ def render_institutional_orientation(
             )
         else:
             st.write("No existing cataloged program was resolved.")
+
+        if orientation.resolution.diagnostics:
+            st.markdown("**Resolution diagnostics**")
+            for diagnostic in orientation.resolution.diagnostics:
+                st.caption(diagnostic)
 
         st.markdown("**Proposed institutional concepts**")
 
@@ -924,6 +941,7 @@ if st.button(button_label, type="primary") and query.strip():
     orientation_neighbor_limit = int(
         control_plane_cfg.get("semantic_neighbor_limit", 5)
     )
+    control_plane_result = None
 
     if orientation_enabled:
         try:
@@ -998,6 +1016,15 @@ if st.button(button_label, type="primary") and query.strip():
         "fetch_k",
         200,
     )
+    max_per_document_family = retrieval_cfg.get(
+        "max_per_document_family",
+        2,
+    )
+    max_per_evidence_role = retrieval_cfg.get("max_per_evidence_role", 4)
+    evidence_role_relevance_margin = retrieval_cfg.get(
+        "evidence_role_relevance_margin",
+        0.5,
+    )
 
     # The constitutional retrieval policy is configuration-driven.
     # Use the configured broad candidate pool rather than the older UI
@@ -1028,11 +1055,19 @@ if st.button(button_label, type="primary") and query.strip():
                 return_trace=developer_mode,
                 constitutional_top_k=constitutional_top_k,
                 empirical_top_k=empirical_top_k,
+                max_per_document_family=max_per_document_family,
+                max_per_evidence_role=max_per_evidence_role,
+                evidence_role_relevance_margin=evidence_role_relevance_margin,
             )
 
             if mode == "Decision Brief":
                 response = generate_decision_brief(
                     question=clean_query,
+                    constitutional_orientation=(
+                        control_plane_result.constitutional_orientation
+                        if control_plane_result is not None
+                        else None
+                    ),
                     **common_kwargs,
                 )
             else:
@@ -1131,17 +1166,11 @@ if st.button(button_label, type="primary") and query.strip():
                         f"{empirical_source_number}"
                     )
 
-            expander_label = (
-                f"[{citation_label}] "
-                f"{title} — score {result.score:.4f}"
+            expander_label = executive_source_label(
+                citation_label,
+                title,
+                evidence_class,
             )
-
-            if evidence_class:
-                expander_label = (
-                    f"[{citation_label}] "
-                    f"[{evidence_class}] "
-                    f"{title} — score {result.score:.4f}"
-                )
 
             with st.expander(expander_label):
                 st.write(f"**Path:** `{relative_path}`")
@@ -1173,6 +1202,9 @@ if st.button(button_label, type="primary") and query.strip():
                 "search_seconds": round(profile.search_seconds, 3),
                 "dedupe_seconds": round(profile.dedupe_seconds, 3),
                 "rerank_seconds": round(profile.rerank_seconds, 3),
+                "family_diversity_seconds": round(
+                    profile.family_diversity_seconds, 3
+                ),
                 "threshold_seconds": round(profile.threshold_seconds, 3),
             }
         )
@@ -1188,6 +1220,36 @@ if st.button(button_label, type="primary") and query.strip():
                 "raw_candidates": retrieval_report.num_candidates,
                 "after_dedup": retrieval_report.num_after_dedup,
                 "after_rerank": retrieval_report.num_after_rerank,
+                "after_document_family_diversity": (
+                    retrieval_report.num_after_family_diversity
+                ),
+                "removed_by_document_family_diversity": (
+                    retrieval_report.num_removed_by_family_diversity
+                ),
+                "removed_by_evidence_allocation": (
+                    retrieval_report.num_removed_by_evidence_allocation
+                ),
+                "removed_by_evidence_role_control": (
+                    retrieval_report.num_removed_by_role_allocation
+                ),
+                "removed_for_insufficient_relevance": (
+                    retrieval_report.num_removed_for_insufficient_relevance
+                ),
+                "evidence_roles_represented": (
+                    retrieval_report.evidence_roles_represented
+                ),
+                "evidence_role_counts": retrieval_report.evidence_role_counts,
+                "expected_evidence_roles": retrieval_report.expected_evidence_roles,
+                "missing_evidence_roles": retrieval_report.missing_evidence_roles,
+                "concentrated_evidence_roles": (
+                    retrieval_report.concentrated_evidence_roles
+                ),
+                "role_allocation_changed_baseline": (
+                    retrieval_report.role_aware_allocation_changed_order
+                ),
+                "max_per_document_family": (
+                    retrieval_report.max_per_document_family
+                ),
                 "after_threshold": retrieval_report.num_after_threshold,
                 "final_results": retrieval_report.num_results,
                 "reranking_enabled": retrieval_report.reranking_enabled,
@@ -1224,6 +1286,51 @@ if st.button(button_label, type="primary") and query.strip():
                     if metadata.get("rerank_score") is not None:
                         st.write(f"**Rerank score:** `{metadata.get('rerank_score')}`")
 
+                    if metadata.get("document_family_key"):
+                        st.write(
+                            "**Document family:** "
+                            f"`{metadata.get('document_family_key')}`"
+                        )
+
+                    authority = (
+                        metadata.get("issuing_authority")
+                        or citation.get("source_organization")
+                        or metadata.get("source_organization")
+                    )
+                    if authority:
+                        st.write(f"**Source authority:** {authority}")
+
+                    if metadata.get("evidence_role"):
+                        st.write(f"**Evidence role:** {metadata.get('evidence_role')}")
+
+                    if metadata.get("derived_evidence_role"):
+                        st.write(
+                            "**Derived evidence role:** "
+                            f"{metadata.get('derived_evidence_role')}"
+                        )
+                        st.write(
+                            "**Role source / confidence:** "
+                            f"{metadata.get('evidence_role_source')} / "
+                            f"{metadata.get('evidence_role_confidence')}"
+                        )
+
+                    if metadata.get("evidence_selection_reason"):
+                        st.write(
+                            "**Selection reason:** "
+                            f"{metadata.get('evidence_selection_reason')}"
+                        )
+
+                    if metadata.get("evidence_exclusion_reason"):
+                        st.write(
+                            "**Exclusion reason:** "
+                            f"{metadata.get('evidence_exclusion_reason')}"
+                        )
+
+                    st.write(
+                        "**Constitutional fallback:** "
+                        f"{metadata.get('constitutional_fallback', False)}"
+                    )
+
                     st.write("**Chunk preview:**")
                     st.write(result.text[:1500])
                     st.divider()
@@ -1231,9 +1338,29 @@ if st.button(button_label, type="primary") and query.strip():
         show_trace_section("1. Raw FAISS Candidates", trace.raw_candidates)
         show_trace_section("2. After Deduplication", trace.deduped_candidates)
         show_trace_section("3. After Reranking", trace.reranked_candidates)
-        show_trace_section("4. After Threshold", trace.thresholded_candidates)
         show_trace_section(
-            "5. Final Results Sent to LLM",
+            "4. After Document-Family Diversity",
+            trace.family_diversified_candidates,
+        )
+        show_trace_section(
+            "5. Removed by Document-Family Diversity",
+            trace.family_removed_candidates,
+        )
+        show_trace_section("6. After Threshold", trace.thresholded_candidates)
+        show_trace_section(
+            "7. Removed by Evidence Allocation",
+            trace.allocation_removed_candidates,
+        )
+        show_trace_section(
+            "8. Removed by Evidence-Role Control",
+            trace.role_removed_candidates,
+        )
+        show_trace_section(
+            "9. Removed for Insufficient Relevance",
+            trace.insufficient_relevance_candidates,
+        )
+        show_trace_section(
+            "10. Final Results Sent to LLM",
             trace.final_results,
             max_items=top_k,
         )

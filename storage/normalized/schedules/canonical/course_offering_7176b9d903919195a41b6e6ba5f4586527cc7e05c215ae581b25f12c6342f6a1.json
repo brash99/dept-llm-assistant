@@ -1,0 +1,347 @@
+{
+  "id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 401 Section 2 (2020_fall)",
+  "text": "Academic term: 2020_fall\nCourse: SOWK 401\nSection: 2\nTitle: Field Instruction I\nCRN: 9072",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1",
+          "published_name": "SOWK 401 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2020_fall",
+        "published_label": "Fall Semester 2020"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1",
+                "published_name": "SOWK 401 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2020_fall",
+              "published_label": "Fall Semester 2020"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "49c5a553b570c510408f4dd95cd4752481977ac80852743cb816e945f5f65257"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2391,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2391,
+  "acquisition_date": null,
+  "academic_term": "2020_fall",
+  "academic_term_published": "Fall Semester 2020",
+  "subject": "SOWK",
+  "course_number": "401",
+  "course_code": "SOWK 401",
+  "course_title": "Field Instruction I",
+  "section": "2",
+  "crn": "9072",
+  "instructor_name": "Diane Griffiths",
+  "instructor_raw": "Diane Griffiths",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No conservative same-term or prior-term evidence resolves the source contradiction."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Field Instruction I"
+    ],
+    "normalized_value": "Field Instruction I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "6"
+    ],
+    "normalized_value": "6",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Pra",
+  "meeting_pattern": "M 1200-1350",
+  "meeting_days": "M",
+  "meeting_time_raw": "1200-1350",
+  "start_time": "12:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 200D",
+  "building": null,
+  "room": null,
+  "credits": 6,
+  "credits_raw": "6",
+  "enrollment": 8,
+  "capacity": 8,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "1200-1350",
+      "location_published": "Lewis McMurran Hall 200D",
+      "source_rows": [
+        2391,
+        15609
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "11a3a7abfdd71a39bb1005a179a4f10c4f23a598ad1c5ea5a30da41cbb0add11",
+    "source_row_hashes": [
+      "ec5998e7600a869c2f72705cea704e4551eb75b25095a89163c15a3babf09734",
+      "784bcbaf44fba622982207dd9d9a5f9ca0159566d8296f6b8018704a51a09c95"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2391,
+    "source_rows": [
+      2391,
+      15609
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9072",
+    "Course": "SOWK 401",
+    "Section": "2",
+    "Title": "Field Instruction I",
+    "Hours": "6",
+    "Area of LLC": "",
+    "Type": "Pra",
+    "Days": "M",
+    "Time": "1200-1350",
+    "Location": "Lewis McMurran Hall 200D",
+    "Instructor": "Diane Griffiths",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "8",
+    "Enrolled": "8",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2020"
+  },
+  "source_rows": [
+    2391,
+    15609
+  ],
+  "raw_records": [
+    {
+      "CRN": "9072",
+      "Course": "SOWK 401",
+      "Section": "2",
+      "Title": "Field Instruction I",
+      "Hours": "6",
+      "Area of LLC": "",
+      "Type": "Pra",
+      "Days": "M",
+      "Time": "1200-1350",
+      "Location": "Lewis McMurran Hall 200D",
+      "Instructor": "Diane Griffiths",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "8",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2020"
+    },
+    {
+      "CRN": "9072",
+      "Course": "SOWK 401",
+      "Section": "2",
+      "Title": "Field Instruction I",
+      "Hours": "6",
+      "Area of LLC": "",
+      "Type": "Pra",
+      "Days": "M",
+      "Time": "1200-1350",
+      "Location": "Lewis McMurran Hall 200D",
+      "Instructor": "Diane Griffiths",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "8",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2020"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

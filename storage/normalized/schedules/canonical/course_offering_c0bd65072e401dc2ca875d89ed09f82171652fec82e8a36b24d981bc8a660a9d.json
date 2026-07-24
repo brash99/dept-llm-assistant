@@ -1,0 +1,355 @@
+{
+  "id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ARAB 201 Section 1R (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: ARAB 201\nSection: 1R\nTitle: Intermediate Arabic I\nCRN: 8953",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d",
+          "published_name": "ARAB 201 1R"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d",
+                "published_name": "ARAB 201 1R"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f7176ee59583fe5a2b1271f04f749eec4f08a9901e223d5c1eed75dae8eae41f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 772,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "c0bd65072e401dc2ca875d89ed09f82171652fec82e8a36b24d981bc8a660a9d",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 772,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "ARAB",
+  "course_number": "201",
+  "course_code": "ARAB 201",
+  "course_title": "Intermediate Arabic I",
+  "section": "1R",
+  "crn": "8953",
+  "instructor_name": "Diana Obeid",
+  "instructor_raw": "Diana Obeid",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "63c742818b0a680bbd5982570dd908a6c35398d105cecc66e042f0bd6ef33208",
+        "f1244b02d801eb85a27fe3b4a6d240697cfd6e10bfa379a50924334546f73f0f",
+        "66107325991d7abe5cc1913ff23bad0b6f861cd4d44331270a1954ca25363c3f",
+        "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce",
+        "e9b0ec711e1304f19ffafc30ffa63c1537c39a5f5dd3db168beb5a83f8f277ba"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Intermediate Arabic I"
+    ],
+    "normalized_value": "Intermediate Arabic I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1300-1350",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1300-1350",
+  "start_time": "13:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 212",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 22,
+  "capacity": 23,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LLF, LLFL, LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1300-1350",
+      "location_published": "Lewis McMurran Hall 212",
+      "source_rows": [
+        772,
+        13938
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "db74859cf6dfa9fd6cc54062eb708d5e681a7a715679b138b1f4a6ebeae996a2",
+    "source_row_hashes": [
+      "32acab6ff2be2bf447bb414a0873a2dc22574e3c65f21cc38f5a363948b4ce7b",
+      "b8aa902e0cb024176bebd15df17dfecdc133b3c9f3cd4828ffdde67ffe091a45"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 772,
+    "source_rows": [
+      772,
+      13938
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8953",
+    "Course": "ARAB 201",
+    "Section": "1R",
+    "Title": "Intermediate Arabic I",
+    "Hours": "3",
+    "Area of LLC": "LLF, LLFL, LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1300-1350",
+    "Location": "Lewis McMurran Hall 212",
+    "Instructor": "Diana Obeid",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "23",
+    "Enrolled": "22",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    772,
+    13938
+  ],
+  "raw_records": [
+    {
+      "CRN": "8953",
+      "Course": "ARAB 201",
+      "Section": "1R",
+      "Title": "Intermediate Arabic I",
+      "Hours": "3",
+      "Area of LLC": "LLF, LLFL, LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Lewis McMurran Hall 212",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "23",
+      "Enrolled": "22",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "8953",
+      "Course": "ARAB 201",
+      "Section": "1R",
+      "Title": "Intermediate Arabic I",
+      "Hours": "3",
+      "Area of LLC": "LLF, LLFL, LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Lewis McMurran Hall 212",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "23",
+      "Enrolled": "22",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

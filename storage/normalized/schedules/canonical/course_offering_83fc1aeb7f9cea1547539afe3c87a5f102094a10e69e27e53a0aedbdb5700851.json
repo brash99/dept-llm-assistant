@@ -1,0 +1,351 @@
+{
+  "id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 335 Section 1 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: CPSC 335\nSection: 1\nTitle: Data Communication Systems\nCRN: 8148",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851",
+          "published_name": "CPSC 335 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851",
+                "published_name": "CPSC 335 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7779eb4ceabb201748dbfc57c1b0291b0b9f968c55b6c657d9a8245ea3b57e6d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 11054,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "83fc1aeb7f9cea1547539afe3c87a5f102094a10e69e27e53a0aedbdb5700851",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 11054,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "CPSC",
+  "course_number": "335",
+  "course_code": "CPSC 335",
+  "course_title": "Data Communication Systems",
+  "section": "1",
+  "crn": "8148",
+  "instructor_name": "Lonnie Cheney",
+  "instructor_raw": "Lonnie Cheney",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "84510035714bd80a6d37f70a5fdeb4b9c2a73fd0487952f60d2b5a5054a5909b"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Data Communication Systems"
+    ],
+    "normalized_value": "Data Communication Systems",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1800-1915",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 323",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 24,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": -5,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "PROF",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1800-1915",
+      "location_published": "Joseph W. Luter III Hall 323",
+      "source_rows": [
+        11054,
+        11055
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "2296dbcb94d67a58651fed82f3e27ac84ba711b4e4548912122b31c06763a6f2",
+    "source_row_hashes": [
+      "11ce22a60e03daff83d79283f8d098ebb6b4bfe199f7327c805278b6cfa1b5ce",
+      "c55be962c8c82fab05b6e2318034068c10e56fcf071c5d4738c76832627a31e2"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 11054,
+    "source_rows": [
+      11054,
+      11055
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8148",
+    "Course": "CPSC 335",
+    "Section": "1",
+    "Title": "Data Communication Systems",
+    "Hours": "3",
+    "Area of LLC": "PROF",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1800-1915",
+    "Location": "Joseph W. Luter III Hall 323",
+    "Instructor": "Lonnie Cheney",
+    "Seats Still Available": "-5",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "24",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    11054,
+    11055
+  ],
+  "raw_records": [
+    {
+      "CRN": "8148",
+      "Course": "CPSC 335",
+      "Section": "1",
+      "Title": "Data Communication Systems",
+      "Hours": "3",
+      "Area of LLC": "PROF",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1800-1915",
+      "Location": "Joseph W. Luter III Hall 323",
+      "Instructor": "Lonnie Cheney",
+      "Seats Still Available": "-5",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "24",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8148",
+      "Course": "CPSC 335",
+      "Section": "1",
+      "Title": "Data Communication Systems",
+      "Hours": "3",
+      "Area of LLC": "PROF",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1800-1915",
+      "Location": "Joseph W. Luter III Hall 323",
+      "Instructor": "Lonnie Cheney",
+      "Seats Still Available": "-5",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "24",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

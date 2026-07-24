@@ -1,0 +1,412 @@
+{
+  "id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+  "object_type": "faculty_observation",
+  "title": "Tom Hall",
+  "text": "Faculty directory observation\nName: Tom Hall\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+          "published_name": "Tom Hall"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+                "published_name": "Tom Hall"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Accounting and Finance",
+                "published_name": "Accounting and Finance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2d41cf511563a1b16fda4d02485f490fa77cf5e7d9e9d9f7e11887e8dd8dace5"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+                "published_name": "Tom Hall"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4250e3fe0ca889b42559749766a193a322174a2a267ba37fcb321f0816fa04f4"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_thomashall.html",
+    "url": "https://cnu.edu/faculty/thomashall.html",
+    "content_hash": "139831936ff2aab5055e62fc1645d5b7d50512f67ca1ef2d17e447df97655c21"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "2c8d6e2d9d5a04f4bd6617ba08d355c9b6918fd5f6c9cee6801341819b44678b",
+  "display_name": "Tom Hall",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Tom Hall",
+  "published_titles": [
+    "Associate Professor"
+  ],
+  "published_department": "Accounting and Finance",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "Accounting and Finance",
+      "url": "https://cnu.edu/academics/departments/accountingfinance/"
+    },
+    {
+      "label": "Luter School of Business",
+      "url": "https://cnu.edu/academics/departments/business/index.html"
+    }
+  ],
+  "email": "thomas.hall@cnu.edu",
+  "phone": "(757) 594-8916",
+  "office": "Luter Hall 122",
+  "profile_url": "https://cnu.edu/faculty/thomashall.html",
+  "biography": "Dr. Hall has 30 years of experience in the private sector, public sector, and the educational sector, both in the US and abroad. He has won numerous grants, published many papers in top journals (including http://www.sciencedirect.com/science/article/pii/S0929119911001301 ), has made dozens of academic and practitioner presentations, and also has an active consulting practice.",
+  "education_entries": [
+    "Ph D in Economic Policy, University of Southern California",
+    "MA in International Economics, The Johns Hopkins University",
+    "BA in Political Science, The Johns Hopkins University"
+  ],
+  "research_interests": "International finance, nonprofit evaluation and economic impact studies, venture capital and private equity, capital structure, emerging markets, high-tech firm financing",
+  "teaching_interests": "Corporate finance, banking institutions, business analytics",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Thomas Hall, VPCC special meeting re: small business study, \"Expansion or Stagnation? A Survey-Based Analysis of Peninsula Small Businesses,\" Hampton. (2018)"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Tom Hall",
+    "Published titles": [
+      "Associate Professor"
+    ],
+    "Office": [
+      "Luter Hall 122"
+    ],
+    "Phone": "(757) 594-8916",
+    "Email": "thomas.hall@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Accounting and Finance",
+        "url": "https://cnu.edu/academics/departments/accountingfinance/"
+      },
+      {
+        "label": "Luter School of Business",
+        "url": "https://cnu.edu/academics/departments/business/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Economic Policy, University of Southern California",
+      "MA in International Economics, The Johns Hopkins University",
+      "BA in Political Science, The Johns Hopkins University"
+    ],
+    "Biography": "Dr. Hall has 30 years of experience in the private sector, public sector, and the educational sector, both in the US and abroad. He has won numerous grants, published many papers in top journals (including http://www.sciencedirect.com/science/article/pii/S0929119911001301 ), has made dozens of academic and practitioner presentations, and also has an active consulting practice.",
+    "Teaching": "Corporate finance, banking institutions, business analytics",
+    "Research": "International finance, nonprofit evaluation and economic impact studies, venture capital and private equity, capital structure, emerging markets, high-tech firm financing",
+    "Presentations": [
+      "Thomas Hall, VPCC special meeting re: small business study, \"Expansion or Stagnation? A Survey-Based Analysis of Peninsula Small Businesses,\" Hampton. (2018)"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_thomashall.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_thomashall.html",
+  "raw_acquisition_hash": "139831936ff2aab5055e62fc1645d5b7d50512f67ca1ef2d17e447df97655c21",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/thomashall.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_thomashall.html",
+    "source_sha256": "139831936ff2aab5055e62fc1645d5b7d50512f67ca1ef2d17e447df97655c21",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

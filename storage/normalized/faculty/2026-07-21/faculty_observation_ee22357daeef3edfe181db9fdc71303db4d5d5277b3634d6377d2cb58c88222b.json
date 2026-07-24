@@ -1,0 +1,440 @@
+{
+  "id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+  "object_type": "faculty_observation",
+  "title": "Ayan Roy",
+  "text": "Faculty directory observation\nName: Ayan Roy\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+          "published_name": "Ayan Roy"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+                "published_name": "Ayan Roy"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2486e67c3fbb63d4555cbb2514cb96b5d9c8b5064b3aa73c8c7e2acf33e72de9"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+                "published_name": "Ayan Roy"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "066ec8b5f6a216db8fc984dbee3fe474b47f7952fee089b02f63905539bcf765"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_ayanroy.html",
+    "url": "https://cnu.edu/faculty/ayanroy.html",
+    "content_hash": "0aea441867eff5d7ded738ebd3d8e01f69b431780acb2aae3322cbafbd645954"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "ee22357daeef3edfe181db9fdc71303db4d5d5277b3634d6377d2cb58c88222b",
+  "display_name": "Ayan Roy",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Ayan Roy",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    },
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    }
+  ],
+  "email": "ayan.roy@cnu.edu",
+  "phone": "(757) 594-7196",
+  "office": "Luter Hall 346",
+  "profile_url": "https://cnu.edu/faculty/ayanroy.html",
+  "biography": "Dr. Ayan Roy is an Assistant Professor in the Department of Physics, Computer Science, and Engineering at Christopher Newport University. He earned his Bachelor's and Master's degrees in Computer Science from St. Xavier's College, Kolkata, India, before completing his PhD in Computer Science with a focus on cybersecurity in connected vehicles from Missouri University of Science and Technology, Rolla, USA. Before joining CNU, Dr. Roy worked as a Software Engineer at a startup from May 2022 to July 2023. He then served as a Postdoctoral Researcher at Thomas Jefferson National Accelerator Facility (Jefferson Lab), where he contributed to an LDRD project supported by the US Department of Energy. Dr. Roy's research interests lie in analyzing privacy and security threats in connected vehicle systems and social media. He has published extensively in high-quality peer-reviewed conferences and has several ongoing research projects. Additionally, Dr. Roy serves as a reviewer for numerous reputable conferences and journals and is a guest editor for the special issue \"Enabling Resilient Operations of Unoccupied Aerial Vehicle (UAV) Swarms\" with Frontier Publishers.",
+  "education_entries": [
+    "Ph D in Computer Science, Missouri University of Science and Technology",
+    "MS in Computer Science, St. Xavier's College",
+    "BS in Computer Science, St. Xavier's College"
+  ],
+  "research_interests": "Security and Privacy, Connected Vehicle Security, Machine Learning and Blockchain applications in Connected vehicle and Cyber Physical System, IoT",
+  "teaching_interests": "Discrete Mathematics, Cybersecurity, Programming",
+  "publications": [
+    "Conference Proceeding (2026). Securing in-Vehicle Large Language Models: A Taxonomy of Integration, Threats, and Trustworthiness . 2026 IEEE World AI IoT Congress (AIIoT).",
+    "Conference Proceeding (2026). FIDS: Accelerating Network Intrusion Detection Through Strategic Feature Selection . IEEE ANTS.",
+    "Conference Proceeding (2026). DI-FLAME: Distributed Incentivized Federated Learning Assessment and Model Evaluation via Blockchain . IEEE.",
+    "Conference Proceeding (2025). Integrity Verification Framework for User Subscribed AI Models on the Edge Platform . IEEE International Conference on Edge Computing and Communications (EDGE). Pages, 10.",
+    "Conference Proceeding (2025). SMART: Secure Incentive-Based Mechanism for Addressing Reliability in Trustworthy VANETs . IEEE/IFIP Network Operations and Management Symposium. Pages, 9.",
+    "Other (2025). Incentive design on social networks to combat online misinformation . Western Economic Association.",
+    "Journal Article, Academic Journal Evaluating the feasibility of Machine Learning approaches in Anomaly-based Intrusion Detection System for In-Vehicle Networks . Transactions on Embedded Computing Systems.",
+    "Conference Proceeding TrustConnect: A Framework for In-Vehicle Network Resilience through Topology-Based Trust Rating . 2025 IEEE 101st Vehicular Technology Conference."
+  ],
+  "professional_experience": [],
+  "awards_honors": [
+    "Best Paper Award, IEEE AIIoT 2026. (2026)",
+    "Silver Medal at CNU Division 2 Site, ICPC Mid-Atlantic Regional Contest. (2025)",
+    "Bronze Medal at CNU Division 2 Site, ICPC Mid-Atlantic Regional Contest. (2024)"
+  ],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Rik Chakraborti, Ayan Roy, James Richmond, Western Economic Association International Annual Conference, \"Incentive design on social networks to combat online misinformation,\" San Francisco. (2025)"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Ayan Roy",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 346"
+    ],
+    "Phone": "(757) 594-7196",
+    "Email": "ayan.roy@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      },
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      }
+    ],
+    "Education": [
+      "Ph D in Computer Science, Missouri University of Science and Technology",
+      "MS in Computer Science, St. Xavier's College",
+      "BS in Computer Science, St. Xavier's College"
+    ],
+    "Biography": "Dr. Ayan Roy is an Assistant Professor in the Department of Physics, Computer Science, and Engineering at Christopher Newport University. He earned his Bachelor's and Master's degrees in Computer Science from St. Xavier's College, Kolkata, India, before completing his PhD in Computer Science with a focus on cybersecurity in connected vehicles from Missouri University of Science and Technology, Rolla, USA. Before joining CNU, Dr. Roy worked as a Software Engineer at a startup from May 2022 to July 2023. He then served as a Postdoctoral Researcher at Thomas Jefferson National Accelerator Facility (Jefferson Lab), where he contributed to an LDRD project supported by the US Department of Energy. Dr. Roy's research interests lie in analyzing privacy and security threats in connected vehicle systems and social media. He has published extensively in high-quality peer-reviewed conferences and has several ongoing research projects. Additionally, Dr. Roy serves as a reviewer for numerous reputable conferences and journals and is a guest editor for the special issue \"Enabling Resilient Operations of Unoccupied Aerial Vehicle (UAV) Swarms\" with Frontier Publishers.",
+    "Teaching": "Discrete Mathematics, Cybersecurity, Programming",
+    "Research": "Security and Privacy, Connected Vehicle Security, Machine Learning and Blockchain applications in Connected vehicle and Cyber Physical System, IoT",
+    "Awards and Honors": [
+      "Best Paper Award, IEEE AIIoT 2026. (2026)",
+      "Silver Medal at CNU Division 2 Site, ICPC Mid-Atlantic Regional Contest. (2025)",
+      "Bronze Medal at CNU Division 2 Site, ICPC Mid-Atlantic Regional Contest. (2024)"
+    ],
+    "Publications": [
+      "Conference Proceeding (2026). Securing in-Vehicle Large Language Models: A Taxonomy of Integration, Threats, and Trustworthiness . 2026 IEEE World AI IoT Congress (AIIoT).",
+      "Conference Proceeding (2026). FIDS: Accelerating Network Intrusion Detection Through Strategic Feature Selection . IEEE ANTS.",
+      "Conference Proceeding (2026). DI-FLAME: Distributed Incentivized Federated Learning Assessment and Model Evaluation via Blockchain . IEEE.",
+      "Conference Proceeding (2025). Integrity Verification Framework for User Subscribed AI Models on the Edge Platform . IEEE International Conference on Edge Computing and Communications (EDGE). Pages, 10.",
+      "Conference Proceeding (2025). SMART: Secure Incentive-Based Mechanism for Addressing Reliability in Trustworthy VANETs . IEEE/IFIP Network Operations and Management Symposium. Pages, 9.",
+      "Other (2025). Incentive design on social networks to combat online misinformation . Western Economic Association.",
+      "Journal Article, Academic Journal Evaluating the feasibility of Machine Learning approaches in Anomaly-based Intrusion Detection System for In-Vehicle Networks . Transactions on Embedded Computing Systems.",
+      "Conference Proceeding TrustConnect: A Framework for In-Vehicle Network Resilience through Topology-Based Trust Rating . 2025 IEEE 101st Vehicular Technology Conference."
+    ],
+    "Presentations": [
+      "Rik Chakraborti, Ayan Roy, James Richmond, Western Economic Association International Annual Conference, \"Incentive design on social networks to combat online misinformation,\" San Francisco. (2025)"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_ayanroy.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_ayanroy.html",
+  "raw_acquisition_hash": "0aea441867eff5d7ded738ebd3d8e01f69b431780acb2aae3322cbafbd645954",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/ayanroy.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_ayanroy.html",
+    "source_sha256": "0aea441867eff5d7ded738ebd3d8e01f69b431780acb2aae3322cbafbd645954",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

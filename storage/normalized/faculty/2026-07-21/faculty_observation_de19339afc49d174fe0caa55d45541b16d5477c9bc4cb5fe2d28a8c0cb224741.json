@@ -1,0 +1,424 @@
+{
+  "id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+  "object_type": "faculty_observation",
+  "title": "Kimberly Davis",
+  "text": "Faculty directory observation\nName: Kimberly Davis\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; no-teaching; no-research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+          "published_name": "Kimberly Davis"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+                "published_name": "Kimberly Davis"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5bf0c296d8550d6c431bb774eb9fc1b15fa84fbc6219c80edf1804d468fd0dad"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+                "published_name": "Kimberly Davis"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "292bb53e70187a9f7d3a9ad2e3dea08329209dca000b3503d8003448592dfe3d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_kimberlydavis.html",
+    "url": "https://cnu.edu/faculty/kimberlydavis.html",
+    "content_hash": "c0cae5fa2b9dec5120cc4a7734ef20ac2732591341942b6c0719c69b6517eafa"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "de19339afc49d174fe0caa55d45541b16d5477c9bc4cb5fe2d28a8c0cb224741",
+  "display_name": "Kimberly Davis",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Kimberly Davis",
+  "published_titles": [
+    "Instructor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "kimberly.davis@cnu.edu",
+  "phone": "(757) 594-7563",
+  "office": "Luter Hall 341",
+  "profile_url": "https://cnu.edu/faculty/kimberlydavis.html",
+  "biography": "Prof. Davis is a graduate of the University of Virginia, where she earned a B.S. degree in Systems Engineering. She also earned a M.S. degree in Information Science from the University of North Carolina at Chapel Hill. Prof. Davis has been a college instructor since 2006. She has taught 17 different courses, including Microsoft Office Applications, Collaborative Technologies, Database Design, Programming Logic and Design, Introduction to Computing, Technology Optimization, Introduction to Storyboarding, and Web Design. She has always enjoyed teaching and loves helping her students discover new ways to use technology for creative problem solving. Her interests include interface design; API automation, low code app development, and training technologists to better understand the requirements of subject matter experts in other disciplines. Prof. Davis spent five years as a government consultant for Electronic Data Systems Corporation, supporting various federal clients through project management, information architecture, strategic planning, and other consulting activities. In 2003, she established her own independent consulting agency and began providing graphic design, web development, and strategic services to businesses, schools, and non-profit organizations. In 2012 she rebranded her company to SparkDawn Media and added photography and videography services to the list of services provided. SparkDawn Media has provided photography, video production, graphic design, technology, consulting, and training services to thousands of athletes, families, students, and professionals, and in support of 28 athletic leagues and organizations, 74 restaurants, 35 non-profit organizations, 71 corporations and brands, 14 real estate agencies and professionals, and 16 educational institutions. On February 28, 2025, Prof. Davis' first mobile app SeniorApp was officially released in the Apple App Store. The Google Play launch followed soon thereafter. Prof. Davis currently resides in Newport News, VA with her husband and their two sons: an Electrical Engineering major at Hampton University, and a Graphic Design major and 2-sport athlete at Virginia State University. When she's not exploring fun new technologies, she's usually spending time with family and friends; listening to Christian, Gospel, or 80's & 90's music; watching or photographing sports; planning arts and crafts projects to do someday, or treasure hunting in local thrift stores.",
+  "education_entries": [
+    "MS in Information Science, Systems Analysis and Design, University of North Carolina, Chapel Hill",
+    "BS in Systems Engineering, Information Systems, University of Virginia"
+  ],
+  "research_interests": null,
+  "teaching_interests": null,
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Kimberly Davis, Live @ Lunch, \"brAInpower : Everyday Wins with AI,\" Virtual. (2025)",
+      "Kimberly Davis, AI@CNU Fellows: Lunch and Learn, \"AI @ CNU Teaching Exchange,\" Trible Library. (2025)",
+      "Kimberly Davis, CNU Actors' Lab, \"Your Digital You: Curating and Cultivating Your Online Presence,\" Freeman Center. (2025)",
+      "Kimberly Davis, Women in Science Panel, \"Women in Science Panel,\" Trible Library Theatre. (2023)",
+      "Kimberly Davis, International Podio Developer Meetup, \"Automating Graphic Design With Podio,\" Virtual. (2020)",
+      "Kimberly Davis, \"Online Teaching,\" (2009)",
+      "Kimberly Davis, \"Using Web-Based Collaborative Technology to Manage the Collection of Evidence for SACS Accreditation,\" (2009)",
+      "Kimberly Davis, \"The Net Game,\" (2008)",
+      "Kimberly Davis, \"Collaborative Technologies,\" (2008)"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Kimberly Davis",
+    "Published titles": [
+      "Instructor"
+    ],
+    "Office": [
+      "Luter Hall 341"
+    ],
+    "Phone": "(757) 594-7563",
+    "Email": "kimberly.davis@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "MS in Information Science, Systems Analysis and Design, University of North Carolina, Chapel Hill",
+      "BS in Systems Engineering, Information Systems, University of Virginia"
+    ],
+    "Biography": "Prof. Davis is a graduate of the University of Virginia, where she earned a B.S. degree in Systems Engineering. She also earned a M.S. degree in Information Science from the University of North Carolina at Chapel Hill. Prof. Davis has been a college instructor since 2006. She has taught 17 different courses, including Microsoft Office Applications, Collaborative Technologies, Database Design, Programming Logic and Design, Introduction to Computing, Technology Optimization, Introduction to Storyboarding, and Web Design. She has always enjoyed teaching and loves helping her students discover new ways to use technology for creative problem solving. Her interests include interface design; API automation, low code app development, and training technologists to better understand the requirements of subject matter experts in other disciplines. Prof. Davis spent five years as a government consultant for Electronic Data Systems Corporation, supporting various federal clients through project management, information architecture, strategic planning, and other consulting activities. In 2003, she established her own independent consulting agency and began providing graphic design, web development, and strategic services to businesses, schools, and non-profit organizations. In 2012 she rebranded her company to SparkDawn Media and added photography and videography services to the list of services provided. SparkDawn Media has provided photography, video production, graphic design, technology, consulting, and training services to thousands of athletes, families, students, and professionals, and in support of 28 athletic leagues and organizations, 74 restaurants, 35 non-profit organizations, 71 corporations and brands, 14 real estate agencies and professionals, and 16 educational institutions. On February 28, 2025, Prof. Davis' first mobile app SeniorApp was officially released in the Apple App Store. The Google Play launch followed soon thereafter. Prof. Davis currently resides in Newport News, VA with her husband and their two sons: an Electrical Engineering major at Hampton University, and a Graphic Design major and 2-sport athlete at Virginia State University. When she's not exploring fun new technologies, she's usually spending time with family and friends; listening to Christian, Gospel, or 80's & 90's music; watching or photographing sports; planning arts and crafts projects to do someday, or treasure hunting in local thrift stores.",
+    "Presentations": [
+      "Kimberly Davis, Live @ Lunch, \"brAInpower : Everyday Wins with AI,\" Virtual. (2025)",
+      "Kimberly Davis, AI@CNU Fellows: Lunch and Learn, \"AI @ CNU Teaching Exchange,\" Trible Library. (2025)",
+      "Kimberly Davis, CNU Actors' Lab, \"Your Digital You: Curating and Cultivating Your Online Presence,\" Freeman Center. (2025)",
+      "Kimberly Davis, Women in Science Panel, \"Women in Science Panel,\" Trible Library Theatre. (2023)",
+      "Kimberly Davis, International Podio Developer Meetup, \"Automating Graphic Design With Podio,\" Virtual. (2020)",
+      "Kimberly Davis, \"Online Teaching,\" (2009)",
+      "Kimberly Davis, \"Using Web-Based Collaborative Technology to Manage the Collection of Evidence for SACS Accreditation,\" (2009)",
+      "Kimberly Davis, \"The Net Game,\" (2008)",
+      "Kimberly Davis, \"Collaborative Technologies,\" (2008)"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_kimberlydavis.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_kimberlydavis.html",
+  "raw_acquisition_hash": "c0cae5fa2b9dec5120cc4a7734ef20ac2732591341942b6c0719c69b6517eafa",
+  "structural_variant": "biography; education-h3; no-teaching; no-research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/kimberlydavis.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_kimberlydavis.html",
+    "source_sha256": "c0cae5fa2b9dec5120cc4a7734ef20ac2732591341942b6c0719c69b6517eafa",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

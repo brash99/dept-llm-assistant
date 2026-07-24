@@ -1,0 +1,352 @@
+{
+  "id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 121L Section 6 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: CHEM 121L\nSection: 6\nTitle: General Chemistry Lab I\nCRN: 8205",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c",
+          "published_name": "CHEM 121L 6"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c",
+                "published_name": "CHEM 121L 6"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "061f6f2e397d20d14d934c44984e1115cf7719ec508b2b386b92f122c8c6fd89"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1330,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "baafdcb4ce08d6865d220bfa91a945b743c3270ba7209e27d238f29640c7356c",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1330,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "CHEM",
+  "course_number": "121L",
+  "course_code": "CHEM 121L",
+  "course_title": "General Chemistry Lab I",
+  "section": "6",
+  "crn": "8205",
+  "instructor_name": "Sumie Shima",
+  "instructor_raw": "Sumie Shima",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "0c0ce1adbafcfab89ea2750c6ed92ec514dd8989262c68262f124abab9b42889",
+        "ae27d238da22398ac6881db888cc60896e5e7d9bd1804c8e1ed9050886812d41"
+      ],
+      "supporting_terms": [
+        "2026_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "General Chemistry Lab I"
+    ],
+    "normalized_value": "General Chemistry Lab I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "R 1330-1720",
+  "meeting_days": "R",
+  "meeting_time_raw": "1330-1720",
+  "start_time": "13:30",
+  "end_time": "17:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 3009",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 21,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, LOW, NSCI, OR, SCIE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "R",
+      "time_published": "1330-1720",
+      "location_published": "Forbes Hall 3009",
+      "source_rows": [
+        1330,
+        6511
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f99c01b6e55d39c617d120003f587a9bf0532e1b7abbad801af09a014590e529",
+    "source_row_hashes": [
+      "e86260c513d842ca691495b1629950b7b83c8394819696d7323b3fe6c22a26d3",
+      "29930a91a0bc8f376ce46eedb47ba4f702de4f0a161dc32d2f59f49d43087d24"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1330,
+    "source_rows": [
+      1330,
+      6511
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8205",
+    "Course": "CHEM 121L",
+    "Section": "6",
+    "Title": "General Chemistry Lab I",
+    "Hours": "1",
+    "Area of LLC": "AINW, GE, LOW, NSCI, OR, SCIE",
+    "Type": "Lab",
+    "Days": "R",
+    "Time": "1330-1720",
+    "Location": "Forbes Hall 3009",
+    "Instructor": "Sumie Shima",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "24",
+    "Enrolled": "21",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    1330,
+    6511
+  ],
+  "raw_records": [
+    {
+      "CRN": "8205",
+      "Course": "CHEM 121L",
+      "Section": "6",
+      "Title": "General Chemistry Lab I",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, LOW, NSCI, OR, SCIE",
+      "Type": "Lab",
+      "Days": "R",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 3009",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "21",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    },
+    {
+      "CRN": "8205",
+      "Course": "CHEM 121L",
+      "Section": "6",
+      "Title": "General Chemistry Lab I",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, LOW, NSCI, OR, SCIE",
+      "Type": "Lab",
+      "Days": "R",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 3009",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "21",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

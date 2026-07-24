@@ -1,0 +1,353 @@
+{
+  "id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 123 Section 1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: ENGL 123\nSection: 1\nTitle: First-Year Writing Seminar\nCRN: 8467",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58",
+          "published_name": "ENGL 123 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58",
+                "published_name": "ENGL 123 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "718b0614bab1ba2e630309bbd436ac1f223680174f1f76127f321b67f3d34c77"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 522,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "7931281cc80fe5bbe5b2f414f5e508e9d43033a1b0c7138b52aa71b6a643fe58",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 522,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "ENGL",
+  "course_number": "123",
+  "course_code": "ENGL 123",
+  "course_title": "First-Year Writing Seminar",
+  "section": "1",
+  "crn": "8467",
+  "instructor_name": "Cynthia Davis",
+  "instructor_raw": "Cynthia Davis",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "4b09c9ecc395c4b71596b324004685880ec68903bd6a5a567946679d3c649d48",
+        "00a3040e93cbf2ada145c447882178c9ef6ec3ebb7941438c764f370becabe57",
+        "1c284377c7a48f0de546120971df83a3f6db05474cf5a8332347c93d16ab0415"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "First-Year Writing Seminar"
+    ],
+    "normalized_value": "First-Year Writing Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1500-1550",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1500-1550",
+  "start_time": "15:00",
+  "end_time": "15:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 160",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 17,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "GE, LETR, LLF, LLFW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1500-1550",
+      "location_published": "Lewis McMurran Hall 160",
+      "source_rows": [
+        522,
+        3106
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f6b94ead8e09cc993d3cb356b1bed31f0a2aa32d7010177d1132217c2aae4bcf",
+    "source_row_hashes": [
+      "c8c2a5c4e9f97f813c2a54f29521e2b9eaa8569c540a522114258b66387c6972",
+      "a4fc825b890050265e39030c61b05b3839486296f30a4c9a6ee39183289cfa7c"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 522,
+    "source_rows": [
+      522,
+      3106
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8467",
+    "Course": "ENGL 123",
+    "Section": "1",
+    "Title": "First-Year Writing Seminar",
+    "Hours": "3",
+    "Area of LLC": "GE, LETR, LLF, LLFW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1500-1550",
+    "Location": "Lewis McMurran Hall 160",
+    "Instructor": "Cynthia Davis",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "17",
+    "Enrolled": "18",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    522,
+    3106
+  ],
+  "raw_records": [
+    {
+      "CRN": "8467",
+      "Course": "ENGL 123",
+      "Section": "1",
+      "Title": "First-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LETR, LLF, LLFW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1500-1550",
+      "Location": "Lewis McMurran Hall 160",
+      "Instructor": "Cynthia Davis",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "17",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8467",
+      "Course": "ENGL 123",
+      "Section": "1",
+      "Title": "First-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LETR, LLF, LLFW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1500-1550",
+      "Location": "Lewis McMurran Hall 160",
+      "Instructor": "Cynthia Davis",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "17",
+      "Enrolled": "18",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

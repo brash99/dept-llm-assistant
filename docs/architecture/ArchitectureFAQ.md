@@ -1,6 +1,8 @@
 
 # Architecture FAQ (Addendum)
 
+> **Status:** Supplementary notes. Where this addendum differs from the current system, [Architecture Overview](01_architecture_overview.md) and [Current Status](../status.md) are authoritative.
+
 ## Why build a benchmark framework?
 
 Because retrieval quality should be measured rather than judged anecdotally.

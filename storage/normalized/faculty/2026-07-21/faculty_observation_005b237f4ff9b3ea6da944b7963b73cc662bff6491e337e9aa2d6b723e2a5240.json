@@ -1,0 +1,434 @@
+{
+  "id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+  "object_type": "faculty_observation",
+  "title": "Ryan Fisher",
+  "text": "Faculty directory observation\nName: Ryan Fisher\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+          "published_name": "Ryan Fisher"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+                "published_name": "Ryan Fisher"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "ba45d564a64db0a1b97a1ff4baece295c0046cc26fc6800df8d3eae54d87bb32"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+                "published_name": "Ryan Fisher"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "381bf9f33f04255758a6b631260a6f0e36b7ccd3cd48d3361c31f8856775128d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_ryanfisher.html",
+    "url": "https://cnu.edu/faculty/ryanfisher.html",
+    "content_hash": "e8fd2cd34a15f06cbf95952012262cb4eff20159f9a993d8e044095ee93e861a"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "005b237f4ff9b3ea6da944b7963b73cc662bff6491e337e9aa2d6b723e2a5240",
+  "display_name": "Ryan Fisher",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Ryan Fisher",
+  "published_titles": [
+    "Associate Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    },
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    }
+  ],
+  "email": "ryan.fisher@cnu.edu",
+  "phone": "(757) 594-7364",
+  "office": "Luter Hall 317",
+  "profile_url": "https://cnu.edu/faculty/ryanfisher.html",
+  "biography": "Research Interests: My research is in the fields of gravitational wave (GW) detection and astrophysics. I am a member of the Laser Interferometer Gravitational-Wave Observatory (LIGO) Scientific Collaboration (LSC). The focus of my research within LIGO is twofold. First, I work to improve our ability to distinguish actual detections of GWs from noise in the LIGO interferometers as part of the Detector Characterization (DetChar) group within the LSC. My second focus is looking for GW counterparts to Fast Radio Burst (FRB) and Gamma Ray Burst (GRB). These are sudden, very bright explosions of energy from deep in space that last for only milliseconds to seconds. We have recently discovered that some GRBs are caused by the collisions of neutron stars, and seek to learn more about these collisions. In contrast, the origins of FRBs are still a complete mystery. Biography: B.S. Physics University of Maryland B.S. Astronomy University of Maryland PhD Princeton University Dr. Ryan Fisher is an Assistant Professor of Physics at Christopher Newport University. Before joining CNU in 2018, Dr. Fisher was a Research Assistant Professor at Syracuse University for 6 years. Dr. Fisher is an active member of the American Association of Physics Teachers, and a member of AAS and APS.",
+  "education_entries": [
+    "Ph D in Physics, Princeton University",
+    "BS in Astronomy, University of Maryland, College Park",
+    "BS in Physics, University of Maryland, College Park"
+  ],
+  "research_interests": "Gravitational Wave Astronomy and Astrophysics",
+  "teaching_interests": "Physics and Astronomy Currently teaching PHYS 151/152 and PHYS 351",
+  "publications": [
+    "Journal Article, Academic Journal (2016). Observation of Gravitational Waves from a Binary Black Hole Merger . Physical Review Letters. Volume, 116. Issue, 6."
+  ],
+  "professional_experience": [],
+  "awards_honors": [
+    "2016 Gruber Cosmology Prize, The Gruber Foundation. (2016)",
+    "Special Breakthrough Prize in Fundamental Physics, Breakthrough Prize Board. (2016)"
+  ],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"Data Handling and Analysis Infrastructure for the International Gravitational-Wave Observatory Network,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"CAREER: Integrated Gravitational Wave and Multimessenger Astronomy and Education,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"Collaborative Research: HCC: Medium: RUI: Intelligent support for non-experts to navigate large information spaces,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"RUI: Searching for Gamma-Ray Burst and Fast Radio Burst Counterparts in LIGO Gravitational Wave Data,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"Data Handling and Analysis Infrastructure for Gravitational-wave Astronomy,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Ryan Fisher",
+    "Published titles": [
+      "Associate Professor"
+    ],
+    "Office": [
+      "Luter Hall 317"
+    ],
+    "Phone": "(757) 594-7364",
+    "Email": "ryan.fisher@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      },
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      }
+    ],
+    "Education": [
+      "Ph D in Physics, Princeton University",
+      "BS in Astronomy, University of Maryland, College Park",
+      "BS in Physics, University of Maryland, College Park"
+    ],
+    "Biography": "Research Interests: My research is in the fields of gravitational wave (GW) detection and astrophysics. I am a member of the Laser Interferometer Gravitational-Wave Observatory (LIGO) Scientific Collaboration (LSC). The focus of my research within LIGO is twofold. First, I work to improve our ability to distinguish actual detections of GWs from noise in the LIGO interferometers as part of the Detector Characterization (DetChar) group within the LSC. My second focus is looking for GW counterparts to Fast Radio Burst (FRB) and Gamma Ray Burst (GRB). These are sudden, very bright explosions of energy from deep in space that last for only milliseconds to seconds. We have recently discovered that some GRBs are caused by the collisions of neutron stars, and seek to learn more about these collisions. In contrast, the origins of FRBs are still a complete mystery. Biography: B.S. Physics University of Maryland B.S. Astronomy University of Maryland PhD Princeton University Dr. Ryan Fisher is an Assistant Professor of Physics at Christopher Newport University. Before joining CNU in 2018, Dr. Fisher was a Research Assistant Professor at Syracuse University for 6 years. Dr. Fisher is an active member of the American Association of Physics Teachers, and a member of AAS and APS.",
+    "Teaching": "Physics and Astronomy Currently teaching PHYS 151/152 and PHYS 351",
+    "Research": "Gravitational Wave Astronomy and Astrophysics",
+    "Awards and Honors": [
+      "2016 Gruber Cosmology Prize, The Gruber Foundation. (2016)",
+      "Special Breakthrough Prize in Fundamental Physics, Breakthrough Prize Board. (2016)"
+    ],
+    "Publications": [
+      "Journal Article, Academic Journal (2016). Observation of Gravitational Waves from a Binary Black Hole Merger . Physical Review Letters. Volume, 116. Issue, 6."
+    ],
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"Data Handling and Analysis Infrastructure for the International Gravitational-Wave Observatory Network,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"CAREER: Integrated Gravitational Wave and Multimessenger Astronomy and Education,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"Collaborative Research: HCC: Medium: RUI: Intelligent support for non-experts to navigate large information spaces,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"RUI: Searching for Gamma-Ray Burst and Fast Radio Burst Counterparts in LIGO Gravitational Wave Data,\" Sponsored by National Science Foundation",
+      "Ryan Fisher, \"Data Handling and Analysis Infrastructure for Gravitational-wave Astronomy,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_ryanfisher.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_ryanfisher.html",
+  "raw_acquisition_hash": "e8fd2cd34a15f06cbf95952012262cb4eff20159f9a993d8e044095ee93e861a",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/ryanfisher.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_ryanfisher.html",
+    "source_sha256": "e8fd2cd34a15f06cbf95952012262cb4eff20159f9a993d8e044095ee93e861a",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

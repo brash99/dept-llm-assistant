@@ -1,0 +1,353 @@
+{
+  "id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 201 Section 2 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: PSYC 201\nSection: 2\nCRN: 8800",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71",
+          "published_name": "PSYC 201 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71",
+                "published_name": "PSYC 201 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9f6441f67cc7f0e8caf00bdd09fcd39162e9161208ab597ca59ab81d2cdf5f0f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 12559,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "47531e4d9daf2ddd733f1650b1fb5ae4a07fb32e89fde47ca93d99e28edf9f71",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 12559,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "PSYC",
+  "course_number": "201",
+  "course_code": "PSYC 201",
+  "course_title": null,
+  "section": "2",
+  "crn": "8800",
+  "instructor_name": "Shelia Greenlee",
+  "instructor_raw": "Shelia Greenlee",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Inv Biol Bases of Beh & Cogn",
+      "Intro to Psychological Science"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "3e8ff1accbae66ba6c8b5dea6979e7f48f8c99a4e29d370e0faa512ec701cfb4",
+        "1249fa333a003c6e98f1256a8ef7e9f78306042f22c5aa5b5b769a7da9168a13",
+        "03ecb54b6cfd081e96e1cd0a5df35e88f2c119056673729cbfdf0c4f3951770f"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 1022",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 83,
+  "capacity": 95,
+  "waitlist": null,
+  "seats_available": 12,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, OR, SSCI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Forbes Hall 1022",
+      "source_rows": [
+        12559,
+        20425
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "125a7d1eaa095673573c2d207b83cb10847a999e3c04a42a6cc69dcd3375cf49",
+    "source_row_hashes": [
+      "1c0546b20c297326bdc3e14dd0ad58fe0e02aae2b14e1b7f648eb13c7dcafc4b",
+      "fddb029c0cee4024dbc27b82e1ed71008514e07270b9fae5cba4bc4869e18f56"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 12559,
+    "source_rows": [
+      12559,
+      20425
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8800",
+    "Course": "PSYC 201",
+    "Section": "2",
+    "Title": "Inv Biol Bases of Beh & Cogn",
+    "Hours": "3",
+    "Area of LLC": "AINW, GE, OR, SSCI",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Forbes Hall 1022",
+    "Instructor": "Shelia Greenlee",
+    "Seats Still Available": "12",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "95",
+    "Enrolled": "83",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    12559,
+    20425
+  ],
+  "raw_records": [
+    {
+      "CRN": "8800",
+      "Course": "PSYC 201",
+      "Section": "2",
+      "Title": "Inv Biol Bases of Beh & Cogn",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, OR, SSCI",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 1022",
+      "Instructor": "Shelia Greenlee",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "83",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8800",
+      "Course": "PSYC 201",
+      "Section": "2",
+      "Title": "Intro to Psychological Science",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, OR, SSCI",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 1022",
+      "Instructor": "Shelia Greenlee",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "83",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Inv Biol Bases of Beh & Cogn",
+      "Intro to Psychological Science"
+    ]
+  }
+}

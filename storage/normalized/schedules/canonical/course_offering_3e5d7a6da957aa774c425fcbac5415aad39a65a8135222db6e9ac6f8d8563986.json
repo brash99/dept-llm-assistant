@@ -1,0 +1,352 @@
+{
+  "id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: LDSP 295 Section 1 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: LDSP 295\nSection: 1\nTitle: Special Topics\nCRN: 9165",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986",
+          "published_name": "LDSP 295 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986",
+                "published_name": "LDSP 295 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "16ac9bf4fd5e5f457c04525b9535ef6807277acb0abd9b00c7168e02d4028ef1"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 14794,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "3e5d7a6da957aa774c425fcbac5415aad39a65a8135222db6e9ac6f8d8563986",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 14794,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "LDSP",
+  "course_number": "295",
+  "course_code": "LDSP 295",
+  "course_title": "Special Topics",
+  "section": "1",
+  "crn": "9165",
+  "instructor_name": "Lori Throupe",
+  "instructor_raw": "Lori Throupe",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "8d2a6c7e4f631eb3337f37d802ff4d9d34c0a8d96fc63e0edd99d29b28ed7055",
+        "70354bbd3a8afdcd505adb73e56b9eeb9f26f71762851b416e89e4476ada3220"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Special Topics"
+    ],
+    "normalized_value": "Special Topics",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Paul & Rosemary Trible Library 208",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 25,
+  "capacity": 26,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LDSP, LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Paul & Rosemary Trible Library 208",
+      "source_rows": [
+        14794,
+        17357
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "bdab6b3c10eb156faec914767c6c3a12f62d8a27575b0227ffd4cf794c5b2ddb",
+    "source_row_hashes": [
+      "d30994b37f25bc51527a4d0ea860bb08a6421a9ec7f5f20165cccfb0afdcd1bb",
+      "3f63a6819e62a94e5bb8e498042efdb4113b0e9f5ef800e2c2cfe761ca77a76c"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 14794,
+    "source_rows": [
+      14794,
+      17357
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9165",
+    "Course": "LDSP 295",
+    "Section": "1",
+    "Title": "Special Topics",
+    "Hours": "3",
+    "Area of LLC": "LDSP, LOW",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Paul & Rosemary Trible Library 208",
+    "Instructor": "Lori Throupe",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "26",
+    "Enrolled": "25",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    14794,
+    17357
+  ],
+  "raw_records": [
+    {
+      "CRN": "9165",
+      "Course": "LDSP 295",
+      "Section": "1",
+      "Title": "Special Topics",
+      "Hours": "3",
+      "Area of LLC": "LDSP, LOW",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Paul & Rosemary Trible Library 208",
+      "Instructor": "Lori Throupe",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "26",
+      "Enrolled": "25",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "9165",
+      "Course": "LDSP 295",
+      "Section": "1",
+      "Title": "Special Topics",
+      "Hours": "3",
+      "Area of LLC": "LDSP, LOW",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Paul & Rosemary Trible Library 208",
+      "Instructor": "Lori Throupe",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "26",
+      "Enrolled": "25",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

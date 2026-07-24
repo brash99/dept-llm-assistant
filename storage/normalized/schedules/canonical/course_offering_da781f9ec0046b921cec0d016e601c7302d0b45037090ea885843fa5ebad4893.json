@@ -1,0 +1,316 @@
+{
+  "id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: COLL 141 Section 14 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: COLL 141\nSection: 14\nTitle: Student Success Seminar\nCRN: 9111",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893",
+          "published_name": "COLL 141 14"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893",
+                "published_name": "COLL 141 14"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b17c77f5248aa6c8005c87696a80112df50f02056fbcefa6cc50d9d36ed37664"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 15982,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "da781f9ec0046b921cec0d016e601c7302d0b45037090ea885843fa5ebad4893",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 15982,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "COLL",
+  "course_number": "141",
+  "course_code": "COLL 141",
+  "course_title": "Student Success Seminar",
+  "section": "14",
+  "crn": "9111",
+  "instructor_name": "Kaitlynn Singer",
+  "instructor_raw": "Kaitlynn Singer",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Student Success Seminar"
+    ],
+    "normalized_value": "Student Success Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "W 0900-0950",
+  "meeting_days": "W",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 310",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 21,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -21,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "W",
+      "time_published": "0900-0950",
+      "location_published": "Lewis McMurran Hall 310",
+      "source_rows": [
+        15982
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "0644479650db631e0f9e064c4151b6bfd1775a69c04cf41fd43c7b00e1350b44",
+    "source_row_hashes": [
+      "94ab4c8aa975b36b9baa3d20dd27e0636e1d087c80bb38ba44829840ffefccca"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 15982,
+    "source_rows": [
+      15982
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9111",
+    "Course": "COLL 141",
+    "Section": "14",
+    "Title": "Student Success Seminar",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "W",
+    "Time": "0900-0950",
+    "Location": "Lewis McMurran Hall 310",
+    "Instructor": "Kaitlynn Singer",
+    "Seats Still Available": "-21",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "21",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    15982
+  ],
+  "raw_records": [
+    {
+      "CRN": "9111",
+      "Course": "COLL 141",
+      "Section": "14",
+      "Title": "Student Success Seminar",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "W",
+      "Time": "0900-0950",
+      "Location": "Lewis McMurran Hall 310",
+      "Instructor": "Kaitlynn Singer",
+      "Seats Still Available": "-21",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "21",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {}
+}

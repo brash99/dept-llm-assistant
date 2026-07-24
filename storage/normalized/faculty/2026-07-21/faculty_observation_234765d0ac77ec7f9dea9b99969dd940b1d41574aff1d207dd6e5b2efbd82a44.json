@@ -1,0 +1,405 @@
+{
+  "id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+  "object_type": "faculty_observation",
+  "title": "Edward Brash",
+  "text": "Faculty directory observation\nName: Edward Brash\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+          "published_name": "Edward Brash"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+                "published_name": "Edward Brash"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5638fd7cd907ca265c45800feb8614f4dc4ede78d33d4673f0da142aad566ad6"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+                "published_name": "Edward Brash"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "0f30317fb4c37c2bb63721e5aa14e5f5c348eb7163c8d963476cb66432eba4a2"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_edwardbrash.html",
+    "url": "https://cnu.edu/faculty/edwardbrash.html",
+    "content_hash": "fab6e06599a63a709302f921104f20e3b56a96ba0ec1f22691996d8d2e679a67"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "234765d0ac77ec7f9dea9b99969dd940b1d41574aff1d207dd6e5b2efbd82a44",
+  "display_name": "Edward Brash",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Edward Brash",
+  "published_titles": [
+    "Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    },
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    }
+  ],
+  "email": "edward.brash@cnu.edu",
+  "phone": "(757) 594-7451",
+  "office": "Luter Hall 304",
+  "profile_url": "https://cnu.edu/faculty/edwardbrash.html",
+  "biography": "Since joining the faculty at Christopher Newport University in 2004, Dr. Brash has established himself as a preeminent leader in teaching, scholarship, and service. Brash leads a program of research in subatomic physics at Jefferson Laboratory (JLab), where he holds a joint staff scientist appointment. As part of this program, he supervises a significant number of graduate and undergraduate students on a variety of research projects. As a direct product of his research efforts, Dr. Brash has been a lead author on more than 100 publications in the top journals in physics, with five of these publications having now reached the status of \u201cfamous papers\u201d according to the American Physical Society (greater than 250 citations). Based on the significance of these results, as well as his reputation for delivery exciting and engaging presentations, he has given a large number of invited talks at national and international conferences. In addition, Dr. Brash was recently honored by being invited to publish a review paper in the European Journal of Physics on the topic of electromagnetic form factors of the proton \u2013 a subject to which Dr. Brash has made significant and meaningful contributions over the last two decades. The educational development of students at CNU is Dr. Brash\u2019s central passion, and to that end, he has developed entirely new courses in experiment design and analysis, computational physics, and high speed data acquisition systems that together draw on myriad examples from the research programs at JLab. Dr. Brash has played a leading role in the enhancement of international study opportunities for CNU students. In the spring of 2016, he led a group of 19 CNU students in a semester-long study abroad experience at the University of Glasgow. Also, he supervised students in collaborative research projects within the Department of Physics & Astronomy at the University of Glasgow, where he holds an appointment as an Honorary Senior Research Fellow.",
+  "education_entries": [
+    "Ph D in Physics, Simon Fraser University (British Columbia)",
+    "MS in Physics, Queen's University (Ontario)",
+    "BS in Engineering Physics, Queen's University (Ontario)"
+  ],
+  "research_interests": "Experimental Nuclear and Particle Physics",
+  "teaching_interests": "Physics",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Edward Brash",
+    "Published titles": [
+      "Professor"
+    ],
+    "Office": [
+      "Luter Hall 304"
+    ],
+    "Phone": "(757) 594-7451",
+    "Email": "edward.brash@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      },
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      }
+    ],
+    "Education": [
+      "Ph D in Physics, Simon Fraser University (British Columbia)",
+      "MS in Physics, Queen's University (Ontario)",
+      "BS in Engineering Physics, Queen's University (Ontario)"
+    ],
+    "Biography": "Since joining the faculty at Christopher Newport University in 2004, Dr. Brash has established himself as a preeminent leader in teaching, scholarship, and service. Brash leads a program of research in subatomic physics at Jefferson Laboratory (JLab), where he holds a joint staff scientist appointment. As part of this program, he supervises a significant number of graduate and undergraduate students on a variety of research projects. As a direct product of his research efforts, Dr. Brash has been a lead author on more than 100 publications in the top journals in physics, with five of these publications having now reached the status of \u201cfamous papers\u201d according to the American Physical Society (greater than 250 citations). Based on the significance of these results, as well as his reputation for delivery exciting and engaging presentations, he has given a large number of invited talks at national and international conferences. In addition, Dr. Brash was recently honored by being invited to publish a review paper in the European Journal of Physics on the topic of electromagnetic form factors of the proton \u2013 a subject to which Dr. Brash has made significant and meaningful contributions over the last two decades. The educational development of students at CNU is Dr. Brash\u2019s central passion, and to that end, he has developed entirely new courses in experiment design and analysis, computational physics, and high speed data acquisition systems that together draw on myriad examples from the research programs at JLab. Dr. Brash has played a leading role in the enhancement of international study opportunities for CNU students. In the spring of 2016, he led a group of 19 CNU students in a semester-long study abroad experience at the University of Glasgow. Also, he supervised students in collaborative research projects within the Department of Physics & Astronomy at the University of Glasgow, where he holds an appointment as an Honorary Senior Research Fellow.",
+    "Teaching": "Physics",
+    "Research": "Experimental Nuclear and Particle Physics"
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_edwardbrash.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_edwardbrash.html",
+  "raw_acquisition_hash": "fab6e06599a63a709302f921104f20e3b56a96ba0ec1f22691996d8d2e679a67",
+  "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/edwardbrash.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_edwardbrash.html",
+    "source_sha256": "fab6e06599a63a709302f921104f20e3b56a96ba0ec1f22691996d8d2e679a67",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

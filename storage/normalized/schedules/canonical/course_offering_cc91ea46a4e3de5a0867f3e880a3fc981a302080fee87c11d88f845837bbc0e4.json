@@ -1,0 +1,359 @@
+{
+  "id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ACCT 201 Section ON1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: ACCT 201\nSection: ON1\nCRN: 8001",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4",
+          "published_name": "ACCT 201 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4",
+                "published_name": "ACCT 201 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "de21706904eba40236feb04bd668e94941610de0304b450a85b4c498b1b2998c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 322,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "cc91ea46a4e3de5a0867f3e880a3fc981a302080fee87c11d88f845837bbc0e4",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 322,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "ACCT",
+  "course_number": "201",
+  "course_code": "ACCT 201",
+  "course_title": null,
+  "section": "ON1",
+  "crn": "8001",
+  "instructor_name": "Vivian Paige",
+  "instructor_raw": "Vivian Paige",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Principles of Accounting I",
+      "Prin of Account I: Financial"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 9,
+      "supporting_observation_ids": [
+        "0153373167bfd4a1c169f808893da637f088f512b2455f7f21aae64f6254141f",
+        "7b5592bfce07bbe6d58b55d8ee40d9ed01902736130a5c4802fb73c112ef788f",
+        "a1b8e49d411f4fe13d52f1a2abfaf3fd55f2273359e636b153c0405027b58e5b",
+        "cab428d39ae21c6b6efa7ab988a7ea740797988a8824a15467ff194f245c8114",
+        "25c204c915f37da729f5deec169112cb290f40ad75aed63a5c2012db8445608f",
+        "fdcdef15a1033680ab854add0ad05ffd3440fd587c31370eef8653f094b71887",
+        "d673b5488c7955197adbf794a011a88c36ebf0a229bc0ae91df518b24a51b4d3",
+        "322ac99786dca66d73bad19eaea5fc481429a191299603263bb01049e5472b31",
+        "4063d9b8c7ee18e5b27387be5e3cb6710a7967eb1185a6f3ad5386c5e7ae038b"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1300-1350",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1300-1350",
+  "start_time": "13:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Synchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 20,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 4,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1300-1350",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        322,
+        5459
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "c103b56d130a4c1618131efd8e25ba46e9d57ffecb86f0c0e908107bcaf848b6",
+    "source_row_hashes": [
+      "2028bdb85a6c6cfe8521b318f95b1a4c179b59f31b4ba2c191ff4c0efa91cbd2",
+      "84f9a0df55585dab759cbd5d06dfbce2252e26b556ffd7862dad17ced498d433"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 322,
+    "source_rows": [
+      322,
+      5459
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8001",
+    "Course": "ACCT 201",
+    "Section": "ON1",
+    "Title": "Principles of Accounting I",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1300-1350",
+    "Location": "Synchronous Online Course ",
+    "Instructor": "Vivian Paige",
+    "Seats Still Available": "4",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "20",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    322,
+    5459
+  ],
+  "raw_records": [
+    {
+      "CRN": "8001",
+      "Course": "ACCT 201",
+      "Section": "ON1",
+      "Title": "Principles of Accounting I",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Vivian Paige",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "20",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8001",
+      "Course": "ACCT 201",
+      "Section": "ON1",
+      "Title": "Prin of Account I: Financial",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Vivian Paige",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "20",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Principles of Accounting I",
+      "Prin of Account I: Financial"
+    ]
+  }
+}

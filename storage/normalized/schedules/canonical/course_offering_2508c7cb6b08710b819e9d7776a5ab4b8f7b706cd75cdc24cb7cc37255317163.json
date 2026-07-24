@@ -1,0 +1,355 @@
+{
+  "id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: THEA 332 Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: THEA 332\nSection: 1\nTitle: The Actor's Voice\nCRN: 9048",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163",
+          "published_name": "THEA 332 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163",
+                "published_name": "THEA 332 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c19aad2172c1be980cc9f9cc55c67c0321cbcf43a015ff1bc773e6bf8991c14e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3474,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "2508c7cb6b08710b819e9d7776a5ab4b8f7b706cd75cdc24cb7cc37255317163",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3474,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "THEA",
+  "course_number": "332",
+  "course_code": "THEA 332",
+  "course_title": "The Actor's Voice",
+  "section": "1",
+  "crn": "9048",
+  "instructor_name": "Laura Lloyd",
+  "instructor_raw": "Laura Lloyd",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "01304e663e81e9afc9d6b95ce43ff38b63cb9da6635c337b653a28a10db6a4f5",
+        "87c929164cfc79ec3f92809c84a7a536638f0c5e0b5ebc331d823927818fd9fd",
+        "a1fa898f56175c10c30a8e7037c7c415c9eb498ddbf897666b706dc0114a122f",
+        "ce1ab91523883a741ffa9f3b478474bf79ed3f0f2dd7c77b0c9a2e90f91304cd",
+        "30c4f6be2f728e52b692abd90ad16278980030219a53c65bca04f1ec9b7fca7c"
+      ],
+      "supporting_terms": [
+        "2025_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "The Actor's Voice"
+    ],
+    "normalized_value": "The Actor's Voice",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1430-1545",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1430-1545",
+  "start_time": "14:30",
+  "end_time": "15:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts T107",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 18,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1430-1545",
+      "location_published": "Ferguson Center for the Arts T107",
+      "source_rows": [
+        3474,
+        14065
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "0e3e692acb9cf1d078a4ebc6c3007817a7d4b3946011855f36164306713b26e2",
+    "source_row_hashes": [
+      "4b473a63da78eed4737050ed1731398a7395fb5da06d5da6180165d779c5c60e",
+      "fa5726b464794bad0a02939dce59e0dbe8002828875aff85bd6dbf66a47d4135"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3474,
+    "source_rows": [
+      3474,
+      14065
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9048",
+    "Course": "THEA 332",
+    "Section": "1",
+    "Title": "The Actor's Voice",
+    "Hours": "3",
+    "Area of LLC": "LETR",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1430-1545",
+    "Location": "Ferguson Center for the Arts T107",
+    "Instructor": "Laura Lloyd",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "18",
+    "Enrolled": "18",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    3474,
+    14065
+  ],
+  "raw_records": [
+    {
+      "CRN": "9048",
+      "Course": "THEA 332",
+      "Section": "1",
+      "Title": "The Actor's Voice",
+      "Hours": "3",
+      "Area of LLC": "LETR",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1430-1545",
+      "Location": "Ferguson Center for the Arts T107",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "18",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "9048",
+      "Course": "THEA 332",
+      "Section": "1",
+      "Title": "The Actor's Voice",
+      "Hours": "3",
+      "Area of LLC": "LETR",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1430-1545",
+      "Location": "Ferguson Center for the Arts T107",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

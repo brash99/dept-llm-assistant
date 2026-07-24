@@ -1,0 +1,354 @@
+{
+  "id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHYS 151L Section 7 (2021_fall)",
+  "text": "Academic term: 2021_fall\nCourse: PHYS 151L\nSection: 7\nTitle: College Physics I Laboratory\nCRN: 8104",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f",
+          "published_name": "PHYS 151L 7"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_fall",
+        "published_label": "Fall Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f",
+                "published_name": "PHYS 151L 7"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_fall",
+              "published_label": "Fall Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "20077563b6120767a53fe4b848818fbb6fad6a2d1c22548519469de201d866d5"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6404,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "fb825474fce3b39d7e0a2b120b4b55c3cc9cce66471e5cb255bfd20c0575a28f",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6404,
+  "acquisition_date": null,
+  "academic_term": "2021_fall",
+  "academic_term_published": "Fall Semester 2021",
+  "subject": "PHYS",
+  "course_number": "151L",
+  "course_code": "PHYS 151L",
+  "course_title": "College Physics I Laboratory",
+  "section": "7",
+  "crn": "8104",
+  "instructor_name": "Jose Fernandez",
+  "instructor_raw": "Jose Fernandez",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "b753495bbecde13a474df6207ce4301fda3cd2a22aa9541709453c5599eb3f10",
+        "fa90ba42c45656279be76a523e35b0db2a1ed598d7d79a9da81a47c86d6ce44c",
+        "cf594eadd6a46bd2479fdf77a766f7078530f574281da8bab84838c43060da20",
+        "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea"
+      ],
+      "supporting_terms": [
+        "2021_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "College Physics I Laboratory"
+    ],
+    "normalized_value": "College Physics I Laboratory",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "W 0800-1045",
+  "meeting_days": "W",
+  "meeting_time_raw": "0800-1045",
+  "start_time": "08:00",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 306",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 31,
+  "capacity": 33,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, NSCI, OR, SCIE, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "W",
+      "time_published": "0800-1045",
+      "location_published": "Joseph W. Luter III Hall 306",
+      "source_rows": [
+        6404,
+        19594
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "0209e3392ee7b007ee0ce0a40c37ae4ff8ff90590a3204d642c6e006a5add3d6",
+    "source_row_hashes": [
+      "825770d7239c6bf0869917c40be134adddc6af3538864702bbff58484e2f1584",
+      "67f3b926855a5912df5ce03ffb63cbcaff11026097eac6ca8dd18a17b03067ac"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6404,
+    "source_rows": [
+      6404,
+      19594
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8104",
+    "Course": "PHYS 151L",
+    "Section": "7",
+    "Title": "College Physics I Laboratory",
+    "Hours": "1",
+    "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+    "Type": "Lab",
+    "Days": "W",
+    "Time": "0800-1045",
+    "Location": "Joseph W. Luter III Hall 306",
+    "Instructor": "Jose Fernandez",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "33",
+    "Enrolled": "31",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2021"
+  },
+  "source_rows": [
+    6404,
+    19594
+  ],
+  "raw_records": [
+    {
+      "CRN": "8104",
+      "Course": "PHYS 151L",
+      "Section": "7",
+      "Title": "College Physics I Laboratory",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lab",
+      "Days": "W",
+      "Time": "0800-1045",
+      "Location": "Joseph W. Luter III Hall 306",
+      "Instructor": "Jose Fernandez",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "33",
+      "Enrolled": "31",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    },
+    {
+      "CRN": "8104",
+      "Course": "PHYS 151L",
+      "Section": "7",
+      "Title": "College Physics I Laboratory",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lab",
+      "Days": "W",
+      "Time": "0800-1045",
+      "Location": "Joseph W. Luter III Hall 306",
+      "Instructor": "Jose Fernandez",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "33",
+      "Enrolled": "31",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

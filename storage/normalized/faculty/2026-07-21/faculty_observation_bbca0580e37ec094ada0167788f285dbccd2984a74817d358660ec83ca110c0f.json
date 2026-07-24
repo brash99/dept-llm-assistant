@@ -1,0 +1,394 @@
+{
+  "id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+  "object_type": "faculty_observation",
+  "title": "Jason Ammons",
+  "text": "Faculty directory observation\nName: Jason Ammons\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "no-biography; education-h2; no-teaching; no-research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+          "published_name": "Jason Ammons"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+                "published_name": "Jason Ammons"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Music, Theatre and Dance",
+                "published_name": "Music, Theatre and Dance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5788f258e0732bb07c2b4a78331abb92913452c41ab6d7e491b629f6937e87c3"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+                "published_name": "Jason Ammons"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "12f2fd9f7ad4bfcd0628f61ebe7c1e6268db79f77c5fec8cc10f7b2bfcf1e8a8"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_jasonammons.html",
+    "url": "https://cnu.edu/faculty/jasonammons.html",
+    "content_hash": "629f5f0b95de3dbb16df6d68ce2031f63845be578f37f67802cc149c964b97cb"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "bbca0580e37ec094ada0167788f285dbccd2984a74817d358660ec83ca110c0f",
+  "display_name": "Jason Ammons",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Jason Ammons",
+  "published_titles": [
+    "Lecturer"
+  ],
+  "published_department": "Music, Theatre and Dance",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "Music, Theatre and Dance",
+      "url": "https://cnu.edu/academics/departments/"
+    },
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    }
+  ],
+  "email": "jason.ammons@cnu.edu",
+  "phone": null,
+  "office": null,
+  "profile_url": "https://cnu.edu/faculty/jasonammons.html",
+  "biography": null,
+  "education_entries": [
+    "MFA in Theatre and Scenic Design, University of Tennessee",
+    "BFA in Printmaking and 4D Art, University of Tennessee",
+    "BA in Anthropology, University of Tennessee"
+  ],
+  "research_interests": null,
+  "teaching_interests": null,
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Jason Ammons",
+    "Published titles": [
+      "Lecturer"
+    ],
+    "Email": "jason.ammons@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Music, Theatre and Dance",
+        "url": "https://cnu.edu/academics/departments/"
+      },
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      }
+    ],
+    "Education": [
+      "MFA in Theatre and Scenic Design, University of Tennessee",
+      "BFA in Printmaking and 4D Art, University of Tennessee",
+      "BA in Anthropology, University of Tennessee"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_jasonammons.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_jasonammons.html",
+  "raw_acquisition_hash": "629f5f0b95de3dbb16df6d68ce2031f63845be578f37f67802cc149c964b97cb",
+  "structural_variant": "no-biography; education-h2; no-teaching; no-research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/jasonammons.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_jasonammons.html",
+    "source_sha256": "629f5f0b95de3dbb16df6d68ce2031f63845be578f37f67802cc149c964b97cb",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

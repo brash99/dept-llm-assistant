@@ -1,0 +1,342 @@
+{
+  "id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+  "object_type": "catalog_faculty_observation",
+  "title": "GREGORY ALPHONSO HENRY",
+  "text": "Published catalog faculty entry: GREGORY ALPHONSO HENRY\nCatalog year: 2024-25",
+  "metadata": {
+    "semantic_layer": "catalog_faculty_observation",
+    "semantic_identity": {
+      "object_type": "catalog_faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "catalog_faculty_observation:f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+          "published_name": "GREGORY ALPHONSO HENRY"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_fine_art_art_history",
+          "published_name": "Department of Fine Art and Art History",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_fine_art_art_history",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+          "target": "academic_unit:department_fine_art_art_history",
+          "published_label": "Fine Art and Art History",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "published_label": "2024-25"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "page_reference": "312"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "published_name": "GREGORY ALPHONSO HENRY"
+              },
+              {
+                "entity_type": "academic_unit",
+                "entity_id": "published_academic_unit:Fine Art and Art History",
+                "published_name": "Fine Art and Art History"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_name",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "page_reference": "312"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_unit",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "page_reference": "312"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2024-25"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "page_reference": "312"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a74e5095e7848452ac6037b3f1e592bbfeaa9507e71940b54d9f29a2fcaaf1b8"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "page_reference": "312"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "published_name": "GREGORY ALPHONSO HENRY"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_fine_art_art_history",
+                "published_name": "Department of Fine Art and Art History",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_fine_art_art_history",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Fine Art and Art History belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "target": "academic_unit:department_fine_art_art_history",
+                "published_label": "Fine Art and Art History",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_fine_art_art_history",
+                  "published_label": "Fine Art and Art History",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Fine Art and Art History"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2024-25"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+                "page_reference": "312"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "351b8beaa8aa01a92b30f342b39f53b4306666ba887c774878729129793d15e6"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_academic_catalog",
+    "path": "data/acquisition/catalogs/2024-25-undergraduate_catalog.pdf",
+    "content_hash": "2a80b097a4b0466faac65f28f1f89135b12b603ce34a79c8c987d00225ede2c6"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T03:54:23.467510+00:00",
+  "observation_id": "f00abcae98848842f3acaf2edd66ef8249258b25217e8af1303e2eac50d0fc6b",
+  "catalog_year": "2024-25",
+  "published_name": "GREGORY ALPHONSO HENRY",
+  "published_title": "Associate Professor",
+  "academic_unit": "Fine Art and Art History",
+  "education": "B.F.A., Ohio University; M.F.A., Maryland Institute College of Art",
+  "appointment_year": "1992",
+  "published_entry_text": "Associate Professor in Fine Art and Art History. B.F.A., Ohio University; M.F.A., Maryland Institute College of Art. (1992)",
+  "page_numbers": [
+    312
+  ],
+  "source_filename": "2024-25-undergraduate_catalog.pdf",
+  "relative_source_path": "data/acquisition/catalogs/2024-25-undergraduate_catalog.pdf",
+  "document_hash": "2a80b097a4b0466faac65f28f1f89135b12b603ce34a79c8c987d00225ede2c6",
+  "provenance": {
+    "catalog_year": "2024-25",
+    "source_filename": "2024-25-undergraduate_catalog.pdf",
+    "relative_source_path": "data/acquisition/catalogs/2024-25-undergraduate_catalog.pdf",
+    "source_sha256": "2a80b097a4b0466faac65f28f1f89135b12b603ce34a79c8c987d00225ede2c6",
+    "page_numbers": [
+      312
+    ],
+    "adapter": "academic_catalog_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_academic_catalog"
+  }
+}

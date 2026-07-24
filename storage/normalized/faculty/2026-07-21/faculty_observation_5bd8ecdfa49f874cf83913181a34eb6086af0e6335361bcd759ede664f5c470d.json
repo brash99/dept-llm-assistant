@@ -1,0 +1,496 @@
+{
+  "id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+  "object_type": "faculty_observation",
+  "title": "Ann Mazzocca Bellecci",
+  "text": "Faculty directory observation\nName: Ann Mazzocca Bellecci\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+          "published_name": "Ann Mazzocca Bellecci"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+                "published_name": "Ann Mazzocca Bellecci"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Music, Theatre and Dance",
+                "published_name": "Music, Theatre and Dance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "22733c7258b89285485964b69e73e95d7629d1edfb63b1338ac1037e216e7512"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+                "published_name": "Ann Mazzocca Bellecci"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9e6c3ac5a6f78ce94ac4aed6e31266599fea1bdfed9d5ce1972d14184bb5204e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_annmazzoccabellecci.html",
+    "url": "https://cnu.edu/faculty/annmazzoccabellecci.html",
+    "content_hash": "8175097d8312a88f0ec244d08d2e6993e7171c766738b435b5c6d59ddf7661bf"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "5bd8ecdfa49f874cf83913181a34eb6086af0e6335361bcd759ede664f5c470d",
+  "display_name": "Ann Mazzocca Bellecci",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Ann Mazzocca Bellecci",
+  "published_titles": [
+    "Professor"
+  ],
+  "published_department": "Music, Theatre and Dance",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "Music, Theatre and Dance",
+      "url": "https://cnu.edu/academics/departments/"
+    },
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    },
+    {
+      "label": "Honors Program",
+      "url": "https://cnu.edu/academics/honors/index.html"
+    }
+  ],
+  "email": "ann.mazzocca.bellecci@cnu.edu",
+  "phone": "(757) 594-0160",
+  "office": null,
+  "profile_url": "https://cnu.edu/faculty/annmazzoccabellecci.html",
+  "biography": "Ann Mazzoccca Bellecci came to CNU in 2011 after completing an MFA in Experimental Choreography from the University of California, Riverside and dancing professionally with Haitian and Afro-Cuban folkloric companies for several years based in New York City. Bellecci performs and presents her choreography based in Afro-Caribbean folkloric themes and contemporary postmodern approaches to composition on the local to international levels, most recently in New York City, New Orleans, and Port-au-Prince and Jeremie, Haiti. Her writing focuses on Haitian ritual choreography and African diasporic folkloric performance including a book chapter published in the edited volume, Vodou in the Haitian Experience: A Black Atlantic Perspective , a co-authored chapter in The Handbook on Shakespeare and Dance published by Oxford University Press, a co-authored essay in Women and Performance: a journal of feminist theory, multiple co-authored journal articles in The Geography Teacher and a forthcoming chapter in Dancing the African Diaspora published by Duke University Press. (M.A. UCLA, B.A. Amherst College)",
+  "education_entries": [
+    "MFA in Experimental Choreography, University of California, Riverside",
+    "MA in Dance, University of California, Los Angeles",
+    "BA in European Studies, Amherst College"
+  ],
+  "research_interests": "Afro-Caribbean Folkloric Dance and History Haitian Vodou Cuban Yoruba Ritual Performance Politics of Intimacy and Difference Postcolonial Theory Postmodernism Critical Dance Theories Cultural Landscapes Politics of Race Social Justice",
+  "teaching_interests": "Haitian and Afro-Cuban Folkloric Dance and History Modern/Contemporary/Postmodern Dance African Diaspora Sacred Dance History Western Concert Dance History Critical Dance Studies Choreography Improvisation",
+  "publications": [
+    "Book, Chapter in Scholarly Book-New (2026). The Sacred Mapou: Landscape and Choreography at Souvnans . Oxford University Press.",
+    "Other (2024). Waters Wisdoms: Honoring and Reclaiming Indigenous and Ancestral Practices in the Face of Climate Disaster . the Black Theatre Review. Volume, 2. Issue, 2. Pages, 52-53.",
+    "Book, Chapter in Scholarly Book-New (2019). Embodiment, Reciprocity, and Reception: Shakespeare Adaptations in a Black Atlantic Context . Oxford University Press.",
+    "Journal Article, Academic Journal (2017). Dancing Petwo in the Ghetto: A Polyphonic Reflection on a Collaborative Performance . Women and Performance: a journal of feminist theory. Volume, 27. Issue, 2. Pages, 194-224.",
+    "Book, Chapter in Scholarly Book-New (2016). Roots / Routes / Rasin: Rural Vodou and the Sacred Tree as Metaphor for the Multiplicity of Styles in Folkloric Dance and Mizik Rasin . Lexington Books, a division of Rowman and Littfield Publishers, Inc.. Pages, pp. 13-34 (21 pages)."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Artistic Accomplishments": [
+      "Dance - Choreograph piece \"Konbit\". Hampton Roads Urban Agriculture, Micro-Farm. Newport News, VA, USA.",
+      "Dance - Choreograph piece \"T\u00e8 Glise at CNU: Routes of Connection and Absence\". T\u00e8 Glise Collective. Christopher Newport University. Newport News, VA, USA.",
+      "Other \"Waters Wisdoms: Indigenous and Ancestral Practices in the Face of Climate Disaster\". Art(S)cience Festival. Mary M. Torggler Fine Arts Center. Newport News.",
+      "Other \"Waters Wisdoms: Honoring and Reclaiming Reclaiming Indigenous and Ancestral Practices in the Face of Climate Disaster\". Ann Mazzocca Bellecci. Christopher Newport University. Newport News, VA, USA.",
+      "Dance - Choreograph multiple pieces \"Dance of the Orcas\". Omiwerx. 6th Annual Afrikana Film Festival. Richmond, VA.",
+      "Dance - Choreograph multiple pieces \"Dance of the Orcas\". DOTO Collaboration/College of William and Mary. Commonwealth Auditorium/William and Mary. Williamsburg, VA, USA.",
+      "Theatre - Direct play \"A Virginia Company: Two Historical Plays in Repertory (Aphra Behn's THE WIDOW RANTER and Robert Munford's THE CANDIDATES)\". TheaterCNU. Ferguson Center Studio Theatre. Newport News, VA.",
+      "Dance - Choreograph piece \"Zanj Yo (Angels)\". Field Studies, Florida State University. Chez Bushwick. Brooklyn, NY.",
+      "Dance - Choreograph piece \"T\u00e8 Glise: Exploring Relational Ecologies of Cultural Practice through Haiti-New Orleans Connections\". T\u00e8 Glise Dance Collective. New Orleans Jazz Museum at the Mint. New Orleans, LA.",
+      "Dance - Choreograph piece \"T\u00e8 Glise (Sliding Land)\". Presented by A Studio in the Woods. A Studio in the Woods. New Orleans, LA.",
+      "Dance - Choreograph multiple pieces \"Dream Clinic\". Virginia Stage Company and Hermitage Museum and Gardens. Hermitage Museum and Gardnes. Norfolk, VA.",
+      "Dance - Perform piece \"Rele listwa demanbre | Plas Dumas, J\u00e9r\u00e9mie (Summoning the historical source | Place Dumas, J\u00e9r\u00e9mie)\". Grand'Anse Il Faut Bouger. Place Dumas, J\u00e9r\u00e9mie (site specific). J\u00e9r\u00e9mie, Grand'Anse, Haiti.",
+      "Dance - Perform piece \"Searching for Magic (m'ap tann ou)\". Chez Bushwick, Field Studies. Chez Bushwick. Brooklyn, NY, USA.",
+      "Dance - Perform piece \"Hands Up | Oy\u00e1 Power\". Ann Mazzocca and Dancers / NEON Festival. Norfolk NEON Festival. Norfolk, VA, USA.",
+      "Dance - Choreograph piece \"The Line: Art for Social Change\". Virginia Stage Company's Dept. of Education and Community Engagement. Slover Library. Norfolk, VA, USA.",
+      "Dance - Perform multiple pieces \"Waters in Our Midst: A Dance Performance\". Ann Mazzocca and Dancers. The Chrysler Museum of Art. Norfolk, VA, USA.",
+      "Dance - Choreograph piece \"Activating Petwo's Kinesthetic Imagination: Dancing Revolution and Forging Lakou in the Gran Rue\". Dasha Chapman, Ann Mazzocca, Jean-Sebastien Duvilaire, Yonel Charles. Downtown Port au Prince/Ghetto Biennale. Port au Prince, Haiti."
+    ],
+    "Presentations": [
+      "Ann Mazzocca, Renee Foster, Brooke Covington, Kelly Rossum, Sarah Chace, Hampton Roads Social Justice Conference / Elevating Voices, Igniting Change, \"Igniting Change through Community-Engaged Learning: Elevating Community Voices in Higher Education and Beyond,\" CNU. (2025)",
+      "Ann Mazzocca, Renee Foster, CNU Conference on Women and Gender/ Telling Women's Stories, \"\u201cEnvironmental Justice, Action, and Healing\u201d,\" CNU. (2025)",
+      "Ann Mazzocca, Climate Crisis and the Politics of Diminishing Cultural Landscapes, \"\u201cWaters Wisdoms: Indigenous and Ancestral Knowledges in the Face of Climate Disaster\u201d,\" Christopher Newport University. (2024)",
+      "Ann Mazzocca, Body Geographies/Mapping Freedoms, \"\u201cA Reflection on Waters Wisdoms: Collaborations and Questions\",\" Duke University, Durham, NC. (2024)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, Phil Rodriguez, Uhambo Luyazilawula: Embodied Wandering Practices/Performance Studies International (PSi), \"\u201cCarrying Kongo - Haiti - New Orleans: Embodied Routes of African Cultural Practice through Collaborative and Place-Based Mus,\" Wits University, Johannesburg, South Africa. (2023)",
+      "Ann Mazzocca, Dasha Chapman, ASTR 2022: Catastrophe/American Society for Theatre Research, \"\u201cFrom T\u00e8 Glise to Tributaries: Embodied Reflections on Migration, Transformation, and Survival Amidst Tumult\u201d,\" New Orleans, LA, USA. (2022)",
+      "Ann Mazzocca Bellecci, Dancing Resilience: Dance Studies and Activism in a Global Age/Dance Studies Association (DSA), \"\"Witnessing and Bodily Writing in Choreographic Relation\",\" Vancouver, BC, Canada. (2022)",
+      "Ann Mazzocca Bellecci, Omiyemi Green, Voyages in Postcolonial African and African Diasporic Theatre Practice, \"\u201cThe Role of Memory, Local Colonial History, Geography, and Landscape in Shaping the Development of Dance of the Orcas\u201d,\" Kyambogo University, Kampala, Uganda. (2022)",
+      "Ann Mazzocca, Galvanizing Dance Studies: Building Anti-Racist Praxis, Transformative Connections, and Movement(s) of Radical Care, \"Tributaries,\" Rutgers University, New Brunswick, New Jersey. (2021)",
+      "Ann Mazzocca Bellecci, Witnessing: The 44th Annual Conference for OSCLG, \"Celebration, Struggle, Beauty, Blackness: Bodily Writing and Witnessing in Relation,\" Norfolk, VA. (2021)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, Haitian Studies in Changing Climates, \"T\u00e8 glise, t\u00e8 tremble: Relational Ecologies of Cultural Practice in Haiti-New Orleans Connections,\" Gainesville, FL. (2019)",
+      "Ann Mazzocca, Ethics and Aesthetics: Vodou\u2019s Commitment to Activism and Change, \"Oyu Oro\u2019s Siete Mares: Embodied Memory and the Transmission of Sacred Knowledge through Folkloric Performance,\" Duke University, Durham, NC. (2019)",
+      "Julian Stetkevych, Kathleen Jaremski, Laura Godwin, Ann Mazzocca, 2018 Global Status of Women and Girls Conference, \"Directing Antigone: Process of Protest,\" Newport News, VA, USA. (2018)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, Dance Black Joy: Global Affirmations and Defiance/CADD Third Bi-Annual Conference, \"The Politics of Intercultural Performance: Recalling Dismembered Histories in Jeremie, Haiti,\" Duke University, Durham, NC. (2018)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, KOSANBA/Vodou in the Twenty-First Century: Identity and Challenges, \"Forging Lakou in the Grand Rue: Performance, Difference, and Vodou,\" Xavier University, New Orleans, LA. (2017)",
+      "Ann Mazzocca, Performing Africana Art and Culture: Repression, Resistance, and Renewal, \"Activating Petwo\u2019s Kinesthetic Imagination in Port-au- Prince: Performance, Revolution, and Vodou,\" University of North Carolina, Charlotte. (2017)",
+      "Ann Mazzocca, Beyond Authenticity and Appropriation: Bodies, Authorship and Choreographies of Transmission, \"Activating Petwo\u2019s Kinesthetic Imagination: Collaboration and Conversation,\" Pomona College, Claremont, CA. (2016)"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Ann Mazzocca Bellecci",
+    "Published titles": [
+      "Professor"
+    ],
+    "Phone": "(757) 594-0160",
+    "Email": "ann.mazzocca.bellecci@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Music, Theatre and Dance",
+        "url": "https://cnu.edu/academics/departments/"
+      },
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      },
+      {
+        "label": "Honors Program",
+        "url": "https://cnu.edu/academics/honors/index.html"
+      }
+    ],
+    "Education": [
+      "MFA in Experimental Choreography, University of California, Riverside",
+      "MA in Dance, University of California, Los Angeles",
+      "BA in European Studies, Amherst College"
+    ],
+    "Biography": "Ann Mazzoccca Bellecci came to CNU in 2011 after completing an MFA in Experimental Choreography from the University of California, Riverside and dancing professionally with Haitian and Afro-Cuban folkloric companies for several years based in New York City. Bellecci performs and presents her choreography based in Afro-Caribbean folkloric themes and contemporary postmodern approaches to composition on the local to international levels, most recently in New York City, New Orleans, and Port-au-Prince and Jeremie, Haiti. Her writing focuses on Haitian ritual choreography and African diasporic folkloric performance including a book chapter published in the edited volume, Vodou in the Haitian Experience: A Black Atlantic Perspective , a co-authored chapter in The Handbook on Shakespeare and Dance published by Oxford University Press, a co-authored essay in Women and Performance: a journal of feminist theory, multiple co-authored journal articles in The Geography Teacher and a forthcoming chapter in Dancing the African Diaspora published by Duke University Press. (M.A. UCLA, B.A. Amherst College)",
+    "Teaching": "Haitian and Afro-Cuban Folkloric Dance and History Modern/Contemporary/Postmodern Dance African Diaspora Sacred Dance History Western Concert Dance History Critical Dance Studies Choreography Improvisation",
+    "Research": "Afro-Caribbean Folkloric Dance and History Haitian Vodou Cuban Yoruba Ritual Performance Politics of Intimacy and Difference Postcolonial Theory Postmodernism Critical Dance Theories Cultural Landscapes Politics of Race Social Justice",
+    "Publications": [
+      "Book, Chapter in Scholarly Book-New (2026). The Sacred Mapou: Landscape and Choreography at Souvnans . Oxford University Press.",
+      "Other (2024). Waters Wisdoms: Honoring and Reclaiming Indigenous and Ancestral Practices in the Face of Climate Disaster . the Black Theatre Review. Volume, 2. Issue, 2. Pages, 52-53.",
+      "Book, Chapter in Scholarly Book-New (2019). Embodiment, Reciprocity, and Reception: Shakespeare Adaptations in a Black Atlantic Context . Oxford University Press.",
+      "Journal Article, Academic Journal (2017). Dancing Petwo in the Ghetto: A Polyphonic Reflection on a Collaborative Performance . Women and Performance: a journal of feminist theory. Volume, 27. Issue, 2. Pages, 194-224.",
+      "Book, Chapter in Scholarly Book-New (2016). Roots / Routes / Rasin: Rural Vodou and the Sacred Tree as Metaphor for the Multiplicity of Styles in Folkloric Dance and Mizik Rasin . Lexington Books, a division of Rowman and Littfield Publishers, Inc.. Pages, pp. 13-34 (21 pages)."
+    ],
+    "Artistic Accomplishments": [
+      "Dance - Choreograph piece \"Konbit\". Hampton Roads Urban Agriculture, Micro-Farm. Newport News, VA, USA.",
+      "Dance - Choreograph piece \"T\u00e8 Glise at CNU: Routes of Connection and Absence\". T\u00e8 Glise Collective. Christopher Newport University. Newport News, VA, USA.",
+      "Other \"Waters Wisdoms: Indigenous and Ancestral Practices in the Face of Climate Disaster\". Art(S)cience Festival. Mary M. Torggler Fine Arts Center. Newport News.",
+      "Other \"Waters Wisdoms: Honoring and Reclaiming Reclaiming Indigenous and Ancestral Practices in the Face of Climate Disaster\". Ann Mazzocca Bellecci. Christopher Newport University. Newport News, VA, USA.",
+      "Dance - Choreograph multiple pieces \"Dance of the Orcas\". Omiwerx. 6th Annual Afrikana Film Festival. Richmond, VA.",
+      "Dance - Choreograph multiple pieces \"Dance of the Orcas\". DOTO Collaboration/College of William and Mary. Commonwealth Auditorium/William and Mary. Williamsburg, VA, USA.",
+      "Theatre - Direct play \"A Virginia Company: Two Historical Plays in Repertory (Aphra Behn's THE WIDOW RANTER and Robert Munford's THE CANDIDATES)\". TheaterCNU. Ferguson Center Studio Theatre. Newport News, VA.",
+      "Dance - Choreograph piece \"Zanj Yo (Angels)\". Field Studies, Florida State University. Chez Bushwick. Brooklyn, NY.",
+      "Dance - Choreograph piece \"T\u00e8 Glise: Exploring Relational Ecologies of Cultural Practice through Haiti-New Orleans Connections\". T\u00e8 Glise Dance Collective. New Orleans Jazz Museum at the Mint. New Orleans, LA.",
+      "Dance - Choreograph piece \"T\u00e8 Glise (Sliding Land)\". Presented by A Studio in the Woods. A Studio in the Woods. New Orleans, LA.",
+      "Dance - Choreograph multiple pieces \"Dream Clinic\". Virginia Stage Company and Hermitage Museum and Gardens. Hermitage Museum and Gardnes. Norfolk, VA.",
+      "Dance - Perform piece \"Rele listwa demanbre | Plas Dumas, J\u00e9r\u00e9mie (Summoning the historical source | Place Dumas, J\u00e9r\u00e9mie)\". Grand'Anse Il Faut Bouger. Place Dumas, J\u00e9r\u00e9mie (site specific). J\u00e9r\u00e9mie, Grand'Anse, Haiti.",
+      "Dance - Perform piece \"Searching for Magic (m'ap tann ou)\". Chez Bushwick, Field Studies. Chez Bushwick. Brooklyn, NY, USA.",
+      "Dance - Perform piece \"Hands Up | Oy\u00e1 Power\". Ann Mazzocca and Dancers / NEON Festival. Norfolk NEON Festival. Norfolk, VA, USA.",
+      "Dance - Choreograph piece \"The Line: Art for Social Change\". Virginia Stage Company's Dept. of Education and Community Engagement. Slover Library. Norfolk, VA, USA.",
+      "Dance - Perform multiple pieces \"Waters in Our Midst: A Dance Performance\". Ann Mazzocca and Dancers. The Chrysler Museum of Art. Norfolk, VA, USA.",
+      "Dance - Choreograph piece \"Activating Petwo's Kinesthetic Imagination: Dancing Revolution and Forging Lakou in the Gran Rue\". Dasha Chapman, Ann Mazzocca, Jean-Sebastien Duvilaire, Yonel Charles. Downtown Port au Prince/Ghetto Biennale. Port au Prince, Haiti."
+    ],
+    "Presentations": [
+      "Ann Mazzocca, Renee Foster, Brooke Covington, Kelly Rossum, Sarah Chace, Hampton Roads Social Justice Conference / Elevating Voices, Igniting Change, \"Igniting Change through Community-Engaged Learning: Elevating Community Voices in Higher Education and Beyond,\" CNU. (2025)",
+      "Ann Mazzocca, Renee Foster, CNU Conference on Women and Gender/ Telling Women's Stories, \"\u201cEnvironmental Justice, Action, and Healing\u201d,\" CNU. (2025)",
+      "Ann Mazzocca, Climate Crisis and the Politics of Diminishing Cultural Landscapes, \"\u201cWaters Wisdoms: Indigenous and Ancestral Knowledges in the Face of Climate Disaster\u201d,\" Christopher Newport University. (2024)",
+      "Ann Mazzocca, Body Geographies/Mapping Freedoms, \"\u201cA Reflection on Waters Wisdoms: Collaborations and Questions\",\" Duke University, Durham, NC. (2024)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, Phil Rodriguez, Uhambo Luyazilawula: Embodied Wandering Practices/Performance Studies International (PSi), \"\u201cCarrying Kongo - Haiti - New Orleans: Embodied Routes of African Cultural Practice through Collaborative and Place-Based Mus,\" Wits University, Johannesburg, South Africa. (2023)",
+      "Ann Mazzocca, Dasha Chapman, ASTR 2022: Catastrophe/American Society for Theatre Research, \"\u201cFrom T\u00e8 Glise to Tributaries: Embodied Reflections on Migration, Transformation, and Survival Amidst Tumult\u201d,\" New Orleans, LA, USA. (2022)",
+      "Ann Mazzocca Bellecci, Dancing Resilience: Dance Studies and Activism in a Global Age/Dance Studies Association (DSA), \"\"Witnessing and Bodily Writing in Choreographic Relation\",\" Vancouver, BC, Canada. (2022)",
+      "Ann Mazzocca Bellecci, Omiyemi Green, Voyages in Postcolonial African and African Diasporic Theatre Practice, \"\u201cThe Role of Memory, Local Colonial History, Geography, and Landscape in Shaping the Development of Dance of the Orcas\u201d,\" Kyambogo University, Kampala, Uganda. (2022)",
+      "Ann Mazzocca, Galvanizing Dance Studies: Building Anti-Racist Praxis, Transformative Connections, and Movement(s) of Radical Care, \"Tributaries,\" Rutgers University, New Brunswick, New Jersey. (2021)",
+      "Ann Mazzocca Bellecci, Witnessing: The 44th Annual Conference for OSCLG, \"Celebration, Struggle, Beauty, Blackness: Bodily Writing and Witnessing in Relation,\" Norfolk, VA. (2021)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, Haitian Studies in Changing Climates, \"T\u00e8 glise, t\u00e8 tremble: Relational Ecologies of Cultural Practice in Haiti-New Orleans Connections,\" Gainesville, FL. (2019)",
+      "Ann Mazzocca, Ethics and Aesthetics: Vodou\u2019s Commitment to Activism and Change, \"Oyu Oro\u2019s Siete Mares: Embodied Memory and the Transmission of Sacred Knowledge through Folkloric Performance,\" Duke University, Durham, NC. (2019)",
+      "Julian Stetkevych, Kathleen Jaremski, Laura Godwin, Ann Mazzocca, 2018 Global Status of Women and Girls Conference, \"Directing Antigone: Process of Protest,\" Newport News, VA, USA. (2018)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, Dance Black Joy: Global Affirmations and Defiance/CADD Third Bi-Annual Conference, \"The Politics of Intercultural Performance: Recalling Dismembered Histories in Jeremie, Haiti,\" Duke University, Durham, NC. (2018)",
+      "Ann Mazzocca, Dasha Chapman, Jean-Sebastien Duvilaire, KOSANBA/Vodou in the Twenty-First Century: Identity and Challenges, \"Forging Lakou in the Grand Rue: Performance, Difference, and Vodou,\" Xavier University, New Orleans, LA. (2017)",
+      "Ann Mazzocca, Performing Africana Art and Culture: Repression, Resistance, and Renewal, \"Activating Petwo\u2019s Kinesthetic Imagination in Port-au- Prince: Performance, Revolution, and Vodou,\" University of North Carolina, Charlotte. (2017)",
+      "Ann Mazzocca, Beyond Authenticity and Appropriation: Bodies, Authorship and Choreographies of Transmission, \"Activating Petwo\u2019s Kinesthetic Imagination: Collaboration and Conversation,\" Pomona College, Claremont, CA. (2016)"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_annmazzoccabellecci.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_annmazzoccabellecci.html",
+  "raw_acquisition_hash": "8175097d8312a88f0ec244d08d2e6993e7171c766738b435b5c6d59ddf7661bf",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/annmazzoccabellecci.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_annmazzoccabellecci.html",
+    "source_sha256": "8175097d8312a88f0ec244d08d2e6993e7171c766738b435b5c6d59ddf7661bf",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

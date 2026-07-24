@@ -1,0 +1,346 @@
+{
+  "id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+  "object_type": "catalog_faculty_observation",
+  "title": "DMITRIY SERGEYEVICH SHALTAYEV",
+  "text": "Published catalog faculty entry: DMITRIY SERGEYEVICH SHALTAYEV\nCatalog year: 2023-24",
+  "metadata": {
+    "semantic_layer": "catalog_faculty_observation",
+    "semantic_identity": {
+      "object_type": "catalog_faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "catalog_faculty_observation:98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+          "published_name": "DMITRIY SERGEYEVICH SHALTAYEV"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_management_marketing",
+          "published_name": "Department of Management and Marketing",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_management_marketing",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Management and Marketing belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_listed_in_catalog_unit",
+          "source": "catalog_faculty_observation:98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+          "target": "academic_unit:department_management_marketing",
+          "published_label": "Management and Marketing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "published_label": "2023-24"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "page_reference": "307"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "published_name": "DMITRIY SERGEYEVICH SHALTAYEV"
+              },
+              {
+                "entity_type": "academic_unit",
+                "entity_id": "published_academic_unit:Management and Marketing",
+                "published_name": "Management and Marketing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_name",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "page_reference": "307"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_unit",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "page_reference": "307"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2023-24"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "page_reference": "307"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c3868bf89938f56476f92bcc45e4bf0b175170cf41a0d0c326852517b13d94be"
+      },
+      {
+        "classifier_name": "catalog_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "catalog_faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "page_reference": "307"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "catalog_faculty_observation:98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "published_name": "DMITRIY SERGEYEVICH SHALTAYEV"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_management_marketing",
+                "published_name": "Department of Management and Marketing",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_management_marketing",
+                  "published_label": "Management and Marketing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Management and Marketing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_management_marketing",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Management and Marketing belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_listed_in_catalog_unit",
+                "source": "catalog_faculty_observation:98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "target": "academic_unit:department_management_marketing",
+                "published_label": "Management and Marketing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_management_marketing",
+                  "published_label": "Management and Marketing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Management and Marketing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "published_label": "2023-24"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "catalog_year",
+                "knowledge_object_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+                "page_reference": "307"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4a6cab167b2dad25f85db7e603c2c0d6dc9a683db2d33ec4c85acea6fb9e0a8d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_academic_catalog",
+    "path": "data/acquisition/catalogs/2023-24-undergraduate_catalog.pdf",
+    "content_hash": "51562841736aa7bdf8cfbc0537048d4f313f8d660b5df550b4f0c95282048d78"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T03:54:23.467510+00:00",
+  "observation_id": "98e05b66c3111c63f3c18909170c1f63dc408a88bd58807329a3f4078a5b4ea0",
+  "catalog_year": "2023-24",
+  "published_name": "DMITRIY SERGEYEVICH SHALTAYEV",
+  "published_title": "Associate Professor",
+  "academic_unit": "Management and Marketing",
+  "education": "B.S., M.S., Moscow Institute of Technology (Russia); M.A., Ph.D., University of Alabama",
+  "appointment_year": "2005",
+  "published_entry_text": "Associate Professor in Management and Marketing.. B.S., M.S., Moscow Institute of Technology (Russia); M.A., Ph.D., University of Alabama. (2005)",
+  "page_numbers": [
+    307
+  ],
+  "source_filename": "2023-24-undergraduate_catalog.pdf",
+  "relative_source_path": "data/acquisition/catalogs/2023-24-undergraduate_catalog.pdf",
+  "document_hash": "51562841736aa7bdf8cfbc0537048d4f313f8d660b5df550b4f0c95282048d78",
+  "provenance": {
+    "catalog_year": "2023-24",
+    "source_filename": "2023-24-undergraduate_catalog.pdf",
+    "relative_source_path": "data/acquisition/catalogs/2023-24-undergraduate_catalog.pdf",
+    "source_sha256": "51562841736aa7bdf8cfbc0537048d4f313f8d660b5df550b4f0c95282048d78",
+    "page_numbers": [
+      307
+    ],
+    "adapter": "academic_catalog_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_academic_catalog"
+  }
+}

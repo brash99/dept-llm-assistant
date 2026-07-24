@@ -1,0 +1,405 @@
+{
+  "id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+  "object_type": "faculty_observation",
+  "title": "Anna Hickey",
+  "text": "Faculty directory observation\nName: Anna Hickey\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; no-teaching; no-research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+          "published_name": "Anna Hickey"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+                "published_name": "Anna Hickey"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Accounting and Finance",
+                "published_name": "Accounting and Finance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "270f83956b1ed9e19fc56950fd17dcd30b428e1069f438fd0a178bab9973ebfe"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+                "published_name": "Anna Hickey"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "8d6ed839788fa286dcd4b0edfe40908c6d6edc7cd13d6a88bbb967a1e00f1c8d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_annahickey.html",
+    "url": "https://cnu.edu/faculty/annahickey.html",
+    "content_hash": "fea0aae2825802366e5c2a9269961cdccbdc0e4bd8981311982d6354212795b2"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "bcea99ab009463b4a976be75717315c3ec6df3c70e223bad4750ac71ea33601a",
+  "display_name": "Anna Hickey",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Anna Hickey",
+  "published_titles": [
+    "Professor",
+    "Dean of the Luter School of Business; Silos O. and Myrtle S. Jennings Professor"
+  ],
+  "published_department": "Accounting and Finance",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "Accounting and Finance",
+      "url": "https://cnu.edu/academics/departments/accountingfinance/"
+    },
+    {
+      "label": "Luter School of Business",
+      "url": "https://cnu.edu/academics/departments/business/index.html"
+    }
+  ],
+  "email": "anna.hickey@cnu.edu",
+  "phone": "(757) 594-8181",
+  "office": "Luter Hall 114",
+  "profile_url": "https://cnu.edu/faculty/annahickey.html",
+  "biography": "Dr. Anna W. Hickey is Dean of the Luter School of Business at Christopher Newport University. She comes to CNU following a distinguished career in the military after serving 28 years in the U. S. Coast Guard. Dr. Hickey retired at the rank of captain, having served in various operational and staff assignments. Dr. Hickey also served as a member of the Permanent Commissioned Teaching Staff at the U. S. Coast Guard Academy. In this capacity, she served as a military professor of accounting and held positions of academic administration that included Management Department Head of an AACSB accredited program, inaugural Dean of the School of Leadership and Management, and lastly as the Vice Provost for Academic Administration. Dr. Hickey has taught courses in financial accounting, managerial accounting, intermediate accounting, cost accounting, and federal budgeting. She is affiliated with the Association of Government Accountants and previously served as a reviewer for the Journal of Accounting Education. Dr. Hickey earned her undergraduate degree in Management from the U.S. Coast Guard Academy, her MBA with a specialty in finance from Florida Atlantic University, and her PhD in Accounting from West Virginia University. Anna immigrated from Taiwan as a child and grew up in the State of Montana. She is married to Lieutenant Commander (retired) Tom Hickey who had a distinguished career as a Coast Guard aviator and responded to Hurricane Katrina and Deepwater Horizon. In their free time, they enjoy golf, cinema and theater, and fishing. As a team, they are excited to join the CNU family and have made Newport News, Virginia their new home.",
+  "education_entries": [
+    "Ph D in Accounting, West Virginia University",
+    "MBA in Business Administration, Finance Concentration, Florida Atlantic University",
+    "BS in Management, U.S. Coast Guard Academy"
+  ],
+  "research_interests": null,
+  "teaching_interests": null,
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Anna Hickey",
+    "Published titles": [
+      "Professor",
+      "Dean of the Luter School of Business; Silos O. and Myrtle S. Jennings Professor"
+    ],
+    "Office": [
+      "Luter Hall 114"
+    ],
+    "Phone": "(757) 594-8181",
+    "Email": "anna.hickey@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Accounting and Finance",
+        "url": "https://cnu.edu/academics/departments/accountingfinance/"
+      },
+      {
+        "label": "Luter School of Business",
+        "url": "https://cnu.edu/academics/departments/business/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Accounting, West Virginia University",
+      "MBA in Business Administration, Finance Concentration, Florida Atlantic University",
+      "BS in Management, U.S. Coast Guard Academy"
+    ],
+    "Biography": "Dr. Anna W. Hickey is Dean of the Luter School of Business at Christopher Newport University. She comes to CNU following a distinguished career in the military after serving 28 years in the U. S. Coast Guard. Dr. Hickey retired at the rank of captain, having served in various operational and staff assignments. Dr. Hickey also served as a member of the Permanent Commissioned Teaching Staff at the U. S. Coast Guard Academy. In this capacity, she served as a military professor of accounting and held positions of academic administration that included Management Department Head of an AACSB accredited program, inaugural Dean of the School of Leadership and Management, and lastly as the Vice Provost for Academic Administration. Dr. Hickey has taught courses in financial accounting, managerial accounting, intermediate accounting, cost accounting, and federal budgeting. She is affiliated with the Association of Government Accountants and previously served as a reviewer for the Journal of Accounting Education. Dr. Hickey earned her undergraduate degree in Management from the U.S. Coast Guard Academy, her MBA with a specialty in finance from Florida Atlantic University, and her PhD in Accounting from West Virginia University. Anna immigrated from Taiwan as a child and grew up in the State of Montana. She is married to Lieutenant Commander (retired) Tom Hickey who had a distinguished career as a Coast Guard aviator and responded to Hurricane Katrina and Deepwater Horizon. In their free time, they enjoy golf, cinema and theater, and fishing. As a team, they are excited to join the CNU family and have made Newport News, Virginia their new home."
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_annahickey.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_annahickey.html",
+  "raw_acquisition_hash": "fea0aae2825802366e5c2a9269961cdccbdc0e4bd8981311982d6354212795b2",
+  "structural_variant": "biography; education-h3; no-teaching; no-research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/annahickey.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_annahickey.html",
+    "source_sha256": "fea0aae2825802366e5c2a9269961cdccbdc0e4bd8981311982d6354212795b2",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

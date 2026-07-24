@@ -1,0 +1,399 @@
+{
+  "id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+  "object_type": "faculty_observation",
+  "title": "Rachel Holland",
+  "text": "Faculty directory observation\nName: Rachel Holland\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; no-research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+          "published_name": "Rachel Holland"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+                "published_name": "Rachel Holland"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Music, Theatre and Dance",
+                "published_name": "Music, Theatre and Dance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "e984b5d397cee680406608ad05113a3c0194b51c2824326c0081eaa0fc9a2420"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+                "published_name": "Rachel Holland"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c1a91b7ca5064a92f1d72fa5eaccbcd119373cc490aaf19d847292d628c8b495"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_rachelholland.html",
+    "url": "https://cnu.edu/faculty/rachelholland.html",
+    "content_hash": "3eaa9935df89bf03d519a7bcc1613cef0a09e7d4223ad3c3b3e7c13f62972dc4"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "9260f1ecd22a202fcaa8f4ca164dd316e00736eb7421492216783276c003d83d",
+  "display_name": "Rachel Holland",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Rachel Holland",
+  "published_titles": [
+    "Professor",
+    "Department Chair"
+  ],
+  "published_department": "Music, Theatre and Dance",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    },
+    {
+      "label": "Music, Theatre and Dance",
+      "url": "https://cnu.edu/academics/departments/"
+    }
+  ],
+  "email": "rachel.holland@cnu.edu",
+  "phone": "(757) 594-8875",
+  "office": null,
+  "profile_url": "https://cnu.edu/faculty/rachelholland.html",
+  "biography": "Chair of the Department of Music, Dr. Rachel Holland, is both an accomplished teacher and sought-after soprano soloist. Her students have gone on to prestigious graduate programs and grace the stages around the nation. Dr. Holland is a frequent soloist with both regional and national organizations around the country. Her operatic credits include two of Mozart\u2019s most stoic heroines, Fiordiligi in Cos\u00ec fan tutte and Donna Anna in Don Giovanni, as well as such 20th century heroines as the title role in Samuel Barber\u2019s Vanessa, Ellen Orford in Benjamin Britten\u2019s Peter Grimes, and Puccini\u2019s most beloved heroines: Madama Butterfly and Tosca. Ms. Holland\u2019s concert credits also span a wide range of styles, including Verdi\u2019s Requiem, Samuel Barber\u2019s Knoxville: Summer of 1915, Richard Strauss\u2019 Vier Letzte Lieder, Mendolssohn\u2019s Elijah and Beethoven\u2019s Symphony No. 9. She has performed with such companies as The Virginia Opera Association, The Virginia Symphony Orchestra, Cincinnati Opera, Indianapolis Opera, the Buffalo Philharmonic Orchestra, Cedar Rapids Symphony, and the Sioux City Symphony.",
+  "education_entries": [
+    "DM in Voice, Indiana University",
+    "MM in Performance, Indiana University",
+    "BM in Vocal Performance, Butler University"
+  ],
+  "research_interests": null,
+  "teaching_interests": "Vocal Pedagogy, Foreign Language Diction, Vocal Literature",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Rachel Holland",
+    "Published titles": [
+      "Professor",
+      "Department Chair"
+    ],
+    "Phone": "(757) 594-8875",
+    "Email": "rachel.holland@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      },
+      {
+        "label": "Music, Theatre and Dance",
+        "url": "https://cnu.edu/academics/departments/"
+      }
+    ],
+    "Education": [
+      "DM in Voice, Indiana University",
+      "MM in Performance, Indiana University",
+      "BM in Vocal Performance, Butler University"
+    ],
+    "Biography": "Chair of the Department of Music, Dr. Rachel Holland, is both an accomplished teacher and sought-after soprano soloist. Her students have gone on to prestigious graduate programs and grace the stages around the nation. Dr. Holland is a frequent soloist with both regional and national organizations around the country. Her operatic credits include two of Mozart\u2019s most stoic heroines, Fiordiligi in Cos\u00ec fan tutte and Donna Anna in Don Giovanni, as well as such 20th century heroines as the title role in Samuel Barber\u2019s Vanessa, Ellen Orford in Benjamin Britten\u2019s Peter Grimes, and Puccini\u2019s most beloved heroines: Madama Butterfly and Tosca. Ms. Holland\u2019s concert credits also span a wide range of styles, including Verdi\u2019s Requiem, Samuel Barber\u2019s Knoxville: Summer of 1915, Richard Strauss\u2019 Vier Letzte Lieder, Mendolssohn\u2019s Elijah and Beethoven\u2019s Symphony No. 9. She has performed with such companies as The Virginia Opera Association, The Virginia Symphony Orchestra, Cincinnati Opera, Indianapolis Opera, the Buffalo Philharmonic Orchestra, Cedar Rapids Symphony, and the Sioux City Symphony.",
+    "Teaching": "Vocal Pedagogy, Foreign Language Diction, Vocal Literature"
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_rachelholland.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_rachelholland.html",
+  "raw_acquisition_hash": "3eaa9935df89bf03d519a7bcc1613cef0a09e7d4223ad3c3b3e7c13f62972dc4",
+  "structural_variant": "biography; education-h3; teaching; no-research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/rachelholland.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_rachelholland.html",
+    "source_sha256": "3eaa9935df89bf03d519a7bcc1613cef0a09e7d4223ad3c3b3e7c13f62972dc4",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

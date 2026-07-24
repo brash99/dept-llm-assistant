@@ -1,0 +1,418 @@
+{
+  "id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+  "object_type": "faculty_observation",
+  "title": "Lynn Lambert",
+  "text": "Faculty directory observation\nName: Lynn Lambert\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+          "published_name": "Lynn Lambert"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+                "published_name": "Lynn Lambert"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "e4efd42771fc0e061fe59adab31393478e83dc2741e2d1279e0c60695ec4ca1e"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+                "published_name": "Lynn Lambert"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "0e59f1b2bc376c779bfe21d30d1c6698b03c2664a0f1e25b80c4f76e28f80869"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_llambert.html",
+    "url": "https://cnu.edu/faculty/llambert.html",
+    "content_hash": "a4f53cdd4b26fb7837e36985249bec6edd3b4cdef7e0d44a98280fb54f3cde4b"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "7365c79dea752d56b3e8616c8091fb7114511f8e55a626ed9739befcbbfb97b0",
+  "display_name": "Lynn Lambert",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Lynn Lambert",
+  "published_titles": [
+    "Associate Professor",
+    "Associate Provost of Research and Dean of Graduate Studies"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    },
+    {
+      "label": "Office of the Provost",
+      "url": "https://cnu.edu/academics/provost/index.html"
+    }
+  ],
+  "email": "llambert@cnu.edu",
+  "phone": "(757) 594-7544",
+  "office": "Christopher Newport Hall 416",
+  "profile_url": "https://cnu.edu/faculty/llambert.html",
+  "biography": null,
+  "education_entries": [
+    "Ph D in Computer Science, University of Delaware",
+    "MS in Computer Science, Shippensburg University of Pennsylvania",
+    "BA in Latin, Wellesley College"
+  ],
+  "research_interests": "Science Education, Computer Science Education, Computational Linguistics",
+  "teaching_interests": "Computer Science",
+  "publications": [
+    "Conference Proceeding (2019). Integrating Git into CS1/2 . The Journal of Computing Sciences in Colleges. Volume, 35. Issue, 3. Pages, 112-121."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Lynn Lambert",
+    "Published titles": [
+      "Associate Professor",
+      "Associate Provost of Research and Dean of Graduate Studies"
+    ],
+    "Office": [
+      "Christopher Newport Hall 416"
+    ],
+    "Phone": "(757) 594-7544",
+    "Email": "llambert@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      },
+      {
+        "label": "Office of the Provost",
+        "url": "https://cnu.edu/academics/provost/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Computer Science, University of Delaware",
+      "MS in Computer Science, Shippensburg University of Pennsylvania",
+      "BA in Latin, Wellesley College"
+    ],
+    "Teaching": "Computer Science",
+    "Research": "Science Education, Computer Science Education, Computational Linguistics",
+    "Publications": [
+      "Conference Proceeding (2019). Integrating Git into CS1/2 . The Journal of Computing Sciences in Colleges. Volume, 35. Issue, 3. Pages, 112-121."
+    ],
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_llambert.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_llambert.html",
+  "raw_acquisition_hash": "a4f53cdd4b26fb7837e36985249bec6edd3b4cdef7e0d44a98280fb54f3cde4b",
+  "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/llambert.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_llambert.html",
+    "source_sha256": "a4f53cdd4b26fb7837e36985249bec6edd3b4cdef7e0d44a98280fb54f3cde4b",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

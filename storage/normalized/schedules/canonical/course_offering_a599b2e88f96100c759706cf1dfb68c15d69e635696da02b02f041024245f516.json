@@ -1,0 +1,352 @@
+{
+  "id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 440 Section 1 (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: CPSC 440\nSection: 1\nTitle: Database Management Systems\nCRN: 8471",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516",
+          "published_name": "CPSC 440 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516",
+                "published_name": "CPSC 440 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "e4be85facf42fdbcd90857fc1fa091a740c7c05d4ea6a072e9a20beea0b671fc"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 6807,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "a599b2e88f96100c759706cf1dfb68c15d69e635696da02b02f041024245f516",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 6807,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "CPSC",
+  "course_number": "440",
+  "course_code": "CPSC 440",
+  "course_title": "Database Management Systems",
+  "section": "1",
+  "crn": "8471",
+  "instructor_name": "Kimberly Davis",
+  "instructor_raw": "Kimberly Davis",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "64f157416879939cee34d1d7daeefde8d48ec02a1196600e9fc42a48b4485674",
+        "de4280c5b5b175d681a36ce6cc6eec878806445df9282e4ee7c27fdc03abede8"
+      ],
+      "supporting_terms": [
+        "2024_may"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Database Management Systems"
+    ],
+    "normalized_value": "Database Management Systems",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1400-1450",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1400-1450",
+  "start_time": "14:00",
+  "end_time": "14:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 258",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 32,
+  "capacity": 28,
+  "waitlist": null,
+  "seats_available": -4,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "PROF",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1400-1450",
+      "location_published": "Joseph W. Luter III Hall 258",
+      "source_rows": [
+        6807,
+        6808
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "818e2745b99afa582dae57a1dfb455e6bc0be1645f69a39a33dfad6196331a8e",
+    "source_row_hashes": [
+      "34ad485ebdd925a1d787b8cdc520a63c5daaef1355c43703928e7c365dad1a2e",
+      "27c74b7afd7414691a25862c85e9bcf2dc4098d0069227f5dab5b539891e3eb6"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 6807,
+    "source_rows": [
+      6807,
+      6808
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8471",
+    "Course": "CPSC 440",
+    "Section": "1",
+    "Title": "Database Management Systems",
+    "Hours": "3",
+    "Area of LLC": "PROF",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1400-1450",
+    "Location": "Joseph W. Luter III Hall 258",
+    "Instructor": "Kimberly Davis",
+    "Seats Still Available": "-4",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "28",
+    "Enrolled": "32",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    6807,
+    6808
+  ],
+  "raw_records": [
+    {
+      "CRN": "8471",
+      "Course": "CPSC 440",
+      "Section": "1",
+      "Title": "Database Management Systems",
+      "Hours": "3",
+      "Area of LLC": "PROF",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Kimberly Davis",
+      "Seats Still Available": "-4",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "28",
+      "Enrolled": "32",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "8471",
+      "Course": "CPSC 440",
+      "Section": "1",
+      "Title": "Database Management Systems",
+      "Hours": "3",
+      "Area of LLC": "PROF",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Kimberly Davis",
+      "Seats Still Available": "-4",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "28",
+      "Enrolled": "32",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

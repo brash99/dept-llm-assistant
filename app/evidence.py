@@ -1,9 +1,13 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import PurePosixPath
-from typing import Dict, List, Optional
+import re
+from typing import TYPE_CHECKING, Dict, List, Optional
 
-from app.vector_index import RetrievalResult
+if TYPE_CHECKING:
+    from app.vector_index import RetrievalResult
 
 
 class EvidenceClass(Enum):
@@ -99,23 +103,90 @@ class Evidence:
         return self.result.score
 
 
+def evidence_role_label(item: "Evidence") -> str:
+    """Return a claim-safe, deterministic role more specific than class."""
+    explicit_role = item.result.metadata.get("evidence_role")
+    if explicit_role:
+        return str(explicit_role)
+
+    text = _normalized_source_text(item.result)
+
+    if item.evidence_class == EvidenceClass.CONSTITUTIONAL:
+        return "Strategic / Constitutional Document"
+    if _is_institutional_self_study(text):
+        return "Institutional Self-Study"
+    if item.evidence_class == EvidenceClass.EXTERNAL_STANDARD:
+        return "Formal External Standard"
+    if item.evidence_class == EvidenceClass.EXTERNAL_COMPARATOR:
+        return "Contextual Reference"
+    if item.evidence_class == EvidenceClass.PLANNING:
+        return "Planning Document"
+    if item.evidence_class == EvidenceClass.INSTITUTIONAL:
+        if any(term in text for term in ("department", "annual report", "pcse")):
+            return "Departmental Report"
+        return "Institutional Operating Record"
+    if item.evidence_class == EvidenceClass.HISTORICAL:
+        return "Contextual Reference"
+    return "Contextual Reference"
+
+
 def _normalized_source_text(result: RetrievalResult) -> str:
     citation = result.citation or {}
     parts = [
         citation.get("relative_path") or "",
         citation.get("source_path") or "",
         citation.get("title") or "",
+        result.metadata.get("source_collection") or "",
+        result.metadata.get("collection") or "",
     ]
     return " ".join(parts).lower()
+
+
+_EXTERNAL_COMPARATOR_MARKERS = (
+    "sample", "purdue", "self-study report (purdue",
+)
+_FORMAL_ABET_STANDARD_MARKERS = (
+    "abet_standards",
+    "criteria for accrediting",
+    "accreditation criteria",
+    "general criteria",
+    "program criteria",
+    "formal standard",
+)
+
+
+def _is_institutional_self_study(text: str) -> bool:
+    normalized = re.sub(r"[^a-z0-9]+", " ", text.casefold())
+    if any(marker.replace("_", " ") in normalized for marker in _FORMAL_ABET_STANDARD_MARKERS):
+        return False
+    if any(marker in text for marker in _EXTERNAL_COMPARATOR_MARKERS):
+        return False
+    if "self study" in normalized or "selfstudy" in text:
+        return True
+    # Locally authored criterion-response exports may omit "self-study" but
+    # normally retain both a response topic and either a local program code or
+    # draft/final workflow marker. A bare "ABET Criterion 5 Curriculum" title
+    # is therefore not silently reclassified as an institutional response.
+    criterion_response = re.search(
+        r"\bcriterion\s*\d+\b.*\b(?:faculty|inst(?:itutional)?\s*support|"
+        r"curriculum|students|facilities)\b",
+        normalized,
+    )
+    local_marker = re.search(
+        r"\b(?:ce|cpe|cpen|cs|cpsc|ece|ee|final|finaldraft|draft)\b",
+        normalized,
+    )
+    return bool(criterion_response and local_marker)
 
 
 def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, str]:
     """
     Classify a retrieved result by evidence role.
 
-    Version 0.1 is intentionally deterministic and path/title based. This keeps
-    evidence-class assignment inspectable and reproducible while the Phase II
-    reasoning pipeline is being developed.
+    Classification is deterministic and uses object type, path, title, and
+    existing source metadata. It distinguishes local institutional self-studies
+    and criterion responses from formal external standards and comparators
+    without adding an LLM call.
     """
     # Constitutional objects carry institutional values and commitments.
     # This semantic identity takes precedence over path/title heuristics.
@@ -123,6 +194,25 @@ def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, st
         constitutional_type = result.metadata.get(
             "constitutional_type",
             "unspecified",
+        )
+
+    authority_class = str(result.metadata.get("authority_class") or "")
+    explicit_role = str(result.metadata.get("evidence_role") or "")
+    if authority_class and explicit_role:
+        normative_role = any(
+            marker in explicit_role.casefold()
+            for marker in ("standard", "regulatory", "program authority")
+        )
+        evidence_class = (
+            EvidenceClass.EXTERNAL_STANDARD
+            if normative_role
+            else EvidenceClass.EXTERNAL_COMPARATOR
+        )
+        return (
+            evidence_class,
+            0.98,
+            "Curated external provenance explicitly identifies authority "
+            f"{authority_class!r} and evidence role {explicit_role!r}.",
         )
         return (
             EvidenceClass.CONSTITUTIONAL,
@@ -144,19 +234,32 @@ def classify_evidence(result: RetrievalResult) -> tuple[EvidenceClass, float, st
         )
 
     if "abet" in text:
-        # ABET criteria are standards; ABET self-studies from other institutions
-        # can also function as comparators. In v0.1, keep ABET under standards
-        # unless the path clearly signals a sample from another institution.
-        if any(term in text for term in ["sample", "purdue", "self-study report (purdue"]):
+        if any(term in text for term in _EXTERNAL_COMPARATOR_MARKERS):
             return (
                 EvidenceClass.EXTERNAL_COMPARATOR,
                 0.80,
                 "Path/title indicates an ABET self-study sample from another institution.",
             )
+        if _is_institutional_self_study(text):
+            return (
+                EvidenceClass.INSTITUTIONAL,
+                0.90,
+                (
+                    "Path/title identifies a locally authored ABET self-study "
+                    "or institutional criterion-response section."
+                ),
+            )
         return (
             EvidenceClass.EXTERNAL_STANDARD,
             0.85,
-            "Path/title references ABET accreditation material.",
+            "Path/title references ABET accreditation criteria or formal material.",
+        )
+
+    if _is_institutional_self_study(text):
+        return (
+            EvidenceClass.INSTITUTIONAL,
+            0.85,
+            "Path/title identifies an institutional self-study or criterion response.",
         )
 
     # Planning documents: intended future state, program review, strategic/budget planning.
@@ -251,6 +354,8 @@ def make_evidence(
         result.metadata["evidence_class"] = evidence_class.value
         result.metadata["evidence_class_confidence"] = confidence
         result.metadata["evidence_class_rationale"] = rationale
+        # This narrower role is serialized into the governed prompt so the
+        # model cannot silently generalize a local narrative into a standard.
         result.metadata["source_kind"] = source_kind
         result.metadata["display_source_number"] = (
             display_source_number
@@ -269,6 +374,10 @@ def make_evidence(
                 confidence=confidence,
                 rationale=rationale,
             )
+        )
+
+        result.metadata["evidence_role"] = evidence_role_label(
+            evidence_items[-1]
         )
 
     return evidence_items

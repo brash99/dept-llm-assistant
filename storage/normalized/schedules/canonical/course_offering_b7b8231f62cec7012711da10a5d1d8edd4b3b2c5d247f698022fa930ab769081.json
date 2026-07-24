@@ -1,0 +1,357 @@
+{
+  "id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ACCT 201 Section 3 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: ACCT 201\nSection: 3\nCRN: 9419",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1,
+      "instructor_type_unknown": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081",
+          "published_name": "ACCT 201 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081",
+                "published_name": "ACCT 201 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "001dca9b0e7c639da2064d66d16aef1ec23c0713d1fdec55e5962f554f03c13d"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 10865,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b7b8231f62cec7012711da10a5d1d8edd4b3b2c5d247f698022fa930ab769081",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 10865,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "ACCT",
+  "course_number": "201",
+  "course_code": "ACCT 201",
+  "course_title": null,
+  "section": "3",
+  "crn": "9419",
+  "instructor_name": "Julianna Wait",
+  "instructor_raw": "Julianna Wait",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [],
+    "normalized_value": "unknown",
+    "has_blank_value": true,
+    "conflicting": false,
+    "resolution": {
+      "resolved": false,
+      "method": "unknown_source_value",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Principles of Accounting I",
+      "Prin of Account I: Financial"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 8,
+      "supporting_observation_ids": [
+        "9a7d38ad192e7f2e6d083c78f85e27eacf8adb1a8ed55ed12ba6125266eeec46",
+        "3e2bc8c559576b2d0fabc6a79c239ae780250e3b08ff7a6e0edeb79733a47349",
+        "76869bbb142d547f42f512cef84b85865de91492676eb79fa7470ec9a0e98764",
+        "7bea98b8bc38e3f8b712c03637e657dbc87f2c4f498803719aae82e15c35e58e",
+        "2cf2d42e804477d69bf8c010e72d42281e4ae68c89865a23261c3b1907beb251",
+        "03a1f4d8b50fd6dc53fe9491cd11dd5ca8c89aa5145d921df2ea6b7aeed3f523",
+        "4a4fb070745671ab65d266f512f691f36661f6c36cd409cf89be7e50bb0692c8",
+        "1ed373ecf2ee4fbab654636cb200053f9b626a4b17916a1ee2fadb874e74981a"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1800-1915",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 262",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1800-1915",
+      "location_published": "Lewis McMurran Hall 262",
+      "source_rows": [
+        10865,
+        16218
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "78671229552024dfb4ab41e93bb5e559c6eb899b0d51c3a62e702e3be095e28c",
+    "source_row_hashes": [
+      "ddeb7ccbacb2362327507db547ab8f69af78218251d25661ea07cf4bd94da32c",
+      "305928fc9223801aa39930c03970194b748abf684b9fa9c1005671fe11d415cb"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 10865,
+    "source_rows": [
+      10865,
+      16218
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9419",
+    "Course": "ACCT 201",
+    "Section": "3",
+    "Title": "Principles of Accounting I",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1800-1915",
+    "Location": "Lewis McMurran Hall 262",
+    "Instructor": "Julianna Wait",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "19",
+    "Instructor Type": "",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    10865,
+    16218
+  ],
+  "raw_records": [
+    {
+      "CRN": "9419",
+      "Course": "ACCT 201",
+      "Section": "3",
+      "Title": "Principles of Accounting I",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1800-1915",
+      "Location": "Lewis McMurran Hall 262",
+      "Instructor": "Julianna Wait",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "9419",
+      "Course": "ACCT 201",
+      "Section": "3",
+      "Title": "Prin of Account I: Financial",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1800-1915",
+      "Location": "Lewis McMurran Hall 262",
+      "Instructor": "Julianna Wait",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "19",
+      "Instructor Type": "",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Principles of Accounting I",
+      "Prin of Account I: Financial"
+    ]
+  }
+}

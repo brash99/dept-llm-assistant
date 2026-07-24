@@ -1,0 +1,352 @@
+{
+  "id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHYS 201L Section 1M (2023_fall)",
+  "text": "Academic term: 2023_fall\nCourse: PHYS 201L\nSection: 1M\nTitle: University Physics I Lab\nCRN: 8320",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0",
+          "published_name": "PHYS 201L 1M"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_fall",
+        "published_label": "Fall Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0",
+                "published_name": "PHYS 201L 1M"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_fall",
+              "published_label": "Fall Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "36af30fc1677cd665d1d1c255d48c2eb4a015ae3e8926c0a11f33ac330cae61c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 5110,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "57984646b91ca7d9202c1ad80710f2adccbdd0b7db8c121d57f4cd572d8739f0",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 5110,
+  "acquisition_date": null,
+  "academic_term": "2023_fall",
+  "academic_term_published": "Fall Semester 2023",
+  "subject": "PHYS",
+  "course_number": "201L",
+  "course_code": "PHYS 201L",
+  "course_title": "University Physics I Lab",
+  "section": "1M",
+  "crn": "8320",
+  "instructor_name": "Jose Fernandez",
+  "instructor_raw": "Jose Fernandez",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "5eebb251b0fecb4325337a6c737e0c8955881cee81974d5b3fd02529ff96804f",
+        "2c96180546502478d589bb53a9bda8c95e3c3325c616692d7d205468d220575b"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "University Physics I Lab"
+    ],
+    "normalized_value": "University Physics I Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "M 1800-2045",
+  "meeting_days": "M",
+  "meeting_time_raw": "1800-2045",
+  "start_time": "18:00",
+  "end_time": "20:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 310",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 22,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, NSCI, OR, SCIE, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "1800-2045",
+      "location_published": "Joseph W. Luter III Hall 310",
+      "source_rows": [
+        5110,
+        10372
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "5b68813402d25999802e124eaa9d5d04b32910e4c8ac5a3070a6a1113cb3091d",
+    "source_row_hashes": [
+      "a418b0955db4a10206fee767050caa74f36940d5302706a9876701ced3c5ca03",
+      "dbcdb68b55d86d6039584a8f897b8b35fa0af4503b3a004b997a2f34b4e0f579"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 5110,
+    "source_rows": [
+      5110,
+      10372
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8320",
+    "Course": "PHYS 201L",
+    "Section": "1M",
+    "Title": "University Physics I Lab",
+    "Hours": "1",
+    "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+    "Type": "Lab",
+    "Days": "M",
+    "Time": "1800-2045",
+    "Location": "Joseph W. Luter III Hall 310",
+    "Instructor": "Jose Fernandez",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "22",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2023"
+  },
+  "source_rows": [
+    5110,
+    10372
+  ],
+  "raw_records": [
+    {
+      "CRN": "8320",
+      "Course": "PHYS 201L",
+      "Section": "1M",
+      "Title": "University Physics I Lab",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lab",
+      "Days": "M",
+      "Time": "1800-2045",
+      "Location": "Joseph W. Luter III Hall 310",
+      "Instructor": "Jose Fernandez",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "22",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2023"
+    },
+    {
+      "CRN": "8320",
+      "Course": "PHYS 201L",
+      "Section": "1M",
+      "Title": "University Physics I Lab",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lab",
+      "Days": "M",
+      "Time": "1800-2045",
+      "Location": "Joseph W. Luter III Hall 310",
+      "Instructor": "Jose Fernandez",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "22",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

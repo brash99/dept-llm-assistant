@@ -1,0 +1,354 @@
+{
+  "id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 315L Section 4 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: BIOL 315L\nSection: 4\nTitle: Human Anatmy/Physiology II Lab\nCRN: 8111",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7",
+          "published_name": "BIOL 315L 4"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7",
+                "published_name": "BIOL 315L 4"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "079d3ee0d13cf224ecbabd5e9e226c39c71cf390e42f823f940ca9354a618d2a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 5227,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "be4f0b07545d7063230e2eade34a15a7d5be065dc10f8a233f66242b2a26b7b7",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 5227,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "BIOL",
+  "course_number": "315L",
+  "course_code": "BIOL 315L",
+  "course_title": "Human Anatmy/Physiology II Lab",
+  "section": "4",
+  "crn": "8111",
+  "instructor_name": "Dave Knight",
+  "instructor_raw": "Dave Knight",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "887789d6bb75e6a8cfa69157185c1844f9dc0cad5a7ec496f428dd4724c5e585",
+        "7e33ca2d2a76afeec097329beebf55d5a8d783823483f8982d3656be95cc5e51",
+        "b11eaa8414fbde1bb17c3205a3e7a90707759d36e9a6e2794a8047ccd30fdf3a",
+        "129a0aa6834935172e7090b00c7863a41e7c3b992d59eae3ec23a2aa2998ff64"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Human Anatmy/Physiology II Lab"
+    ],
+    "normalized_value": "Human Anatmy/Physiology II Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "M 1300-1650",
+  "meeting_days": "M",
+  "meeting_time_raw": "1300-1650",
+  "start_time": "13:00",
+  "end_time": "16:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2056",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 23,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "1300-1650",
+      "location_published": "Forbes Hall 2056",
+      "source_rows": [
+        5227,
+        15855
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "544ccd1d2f2118f5f1bdda57c982831603d6e2f6673c0942bcb5b01c6087082b",
+    "source_row_hashes": [
+      "5818765c9b77c4376931ba8f60ff54732a8eaacab37ebfd318837800219c84c5",
+      "a78dd39e3864dccc6135c406839654da10483add6f442750eab596d76ea14c21"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 5227,
+    "source_rows": [
+      5227,
+      15855
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8111",
+    "Course": "BIOL 315L",
+    "Section": "4",
+    "Title": "Human Anatmy/Physiology II Lab",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "M",
+    "Time": "1300-1650",
+    "Location": "Forbes Hall 2056",
+    "Instructor": "Dave Knight",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "23",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    5227,
+    15855
+  ],
+  "raw_records": [
+    {
+      "CRN": "8111",
+      "Course": "BIOL 315L",
+      "Section": "4",
+      "Title": "Human Anatmy/Physiology II Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "M",
+      "Time": "1300-1650",
+      "Location": "Forbes Hall 2056",
+      "Instructor": "Dave Knight",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "23",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8111",
+      "Course": "BIOL 315L",
+      "Section": "4",
+      "Title": "Human Anatmy/Physiology II Lab",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "M",
+      "Time": "1300-1650",
+      "Location": "Forbes Hall 2056",
+      "Instructor": "Dave Knight",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "23",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 215 Section ON1 (2026_may)",
+  "text": "Academic term: 2026_may\nCourse: CPSC 215\nSection: ON1\nTitle: Software Pkgs-Busn Applcations\nCRN: 2017",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e",
+          "published_name": "CPSC 215 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_may",
+        "published_label": "May Term 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e",
+                "published_name": "CPSC 215 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_may",
+              "published_label": "May Term 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d046944e876608d7e2312317357523eecd8330417d7210941c5ca9e3a55bc218"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1459,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "ab554b45a7dfa703dbca9e10066c03954387f1d3fc133ab25557a4ff0e12389e",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1459,
+  "acquisition_date": null,
+  "academic_term": "2026_may",
+  "academic_term_published": "May Term 2026",
+  "subject": "CPSC",
+  "course_number": "215",
+  "course_code": "CPSC 215",
+  "course_title": "Software Pkgs-Busn Applcations",
+  "section": "ON1",
+  "crn": "2017",
+  "instructor_name": "Kimberly Davis",
+  "instructor_raw": "Kimberly Davis",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "cc8da0e47da15beee9a2a84c30255ae231d3751783bf60a729452e3eccacd558",
+        "f39d878997ffb59cfb3678a26a9439c068784391c851bb10127fc909284a8186",
+        "4e77699e00e29468e3b8fe7115134dfb965c0d1c289c4acf6db178b519a35e45",
+        "62ce2c2ea33fba990d2a350bcc8e00d72ecd30a3506a995907735896ac48642b"
+      ],
+      "supporting_terms": [
+        "2026_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Software Pkgs-Busn Applcations"
+    ],
+    "normalized_value": "Software Pkgs-Busn Applcations",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Asynchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 21,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 3,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIIF, GE, PROF, XPCE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "Asynchronous Online Course ",
+      "source_rows": [
+        1459,
+        19859
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "5234e2682b2dfbc39708ca3c6c86b61d24185cd8a926daaf16594f8577c49d26",
+    "source_row_hashes": [
+      "beeb6b6dd16d51acd9d71a5f2416ecce6c469bede4f33b1fad87820f5095240f",
+      "ff470d905bd0187107f90cf1e885ac96194d9db6503f66a39ade75e17b836a27"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1459,
+    "source_rows": [
+      1459,
+      19859
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "2017",
+    "Course": "CPSC 215",
+    "Section": "ON1",
+    "Title": "Software Pkgs-Busn Applcations",
+    "Hours": "3",
+    "Area of LLC": "AIIF, GE, PROF, XPCE",
+    "Type": "Lec",
+    "Days": "",
+    "Time": "-",
+    "Location": "Asynchronous Online Course ",
+    "Instructor": "Kimberly Davis",
+    "Seats Still Available": "3",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "21",
+    "Instructor Type": "Full Time",
+    "Term": "May Term 2026"
+  },
+  "source_rows": [
+    1459,
+    19859
+  ],
+  "raw_records": [
+    {
+      "CRN": "2017",
+      "Course": "CPSC 215",
+      "Section": "ON1",
+      "Title": "Software Pkgs-Busn Applcations",
+      "Hours": "3",
+      "Area of LLC": "AIIF, GE, PROF, XPCE",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Kimberly Davis",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "21",
+      "Instructor Type": "Full Time",
+      "Term": "May Term 2026"
+    },
+    {
+      "CRN": "2017",
+      "Course": "CPSC 215",
+      "Section": "ON1",
+      "Title": "Software Pkgs-Busn Applcations",
+      "Hours": "3",
+      "Area of LLC": "AIIF, GE, PROF, XPCE",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Kimberly Davis",
+      "Seats Still Available": "3",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "21",
+      "Instructor Type": "Adjunct",
+      "Term": "May Term 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

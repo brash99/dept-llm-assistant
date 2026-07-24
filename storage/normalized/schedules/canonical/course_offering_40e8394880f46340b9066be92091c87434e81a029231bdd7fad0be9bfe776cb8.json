@@ -1,0 +1,352 @@
+{
+  "id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENVS 525 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: ENVS 525\nSection: 1\nTitle: Environmental Regulations\nCRN: 8400",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8",
+          "published_name": "ENVS 525 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8",
+                "published_name": "ENVS 525 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f207fa0c41afe3b4e531c9ccb01609788e181b3183a1a00858a87683d602a85c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1977,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "40e8394880f46340b9066be92091c87434e81a029231bdd7fad0be9bfe776cb8",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1977,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "ENVS",
+  "course_number": "525",
+  "course_code": "ENVS 525",
+  "course_title": "Environmental Regulations",
+  "section": "1",
+  "crn": "8400",
+  "instructor_name": "Russ Burke",
+  "instructor_raw": "Russ Burke",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "c9b34be28a5e23d57e0fb0408642b7254b1868bb9168ed428b090831b3f2c341",
+        "f759d58b2541abaf54522f630c0a386054fc11ff01d0aae6bb145b3cbb02c552"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Environmental Regulations"
+    ],
+    "normalized_value": "Environmental Regulations",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "R 1730-2020",
+  "meeting_days": "R",
+  "meeting_time_raw": "1730-2020",
+  "start_time": "17:30",
+  "end_time": "20:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2070D",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 9,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 6,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "R",
+      "time_published": "1730-2020",
+      "location_published": "Forbes Hall 2070D",
+      "source_rows": [
+        1977,
+        4536
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "b357f4d23d7ce09d332556c64c10fa464fafb1732bf3cb5e4f424ccae12f109e",
+    "source_row_hashes": [
+      "55a18db9fdb3a7ab00a30abcc62666ee42466acde2cb1a5557a067edb79a9c79",
+      "9caf78629c542a183a6945e5caa92277e04f0dd5a9129f3303bf2c8e49bb80d7"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1977,
+    "source_rows": [
+      1977,
+      4536
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8400",
+    "Course": "ENVS 525",
+    "Section": "1",
+    "Title": "Environmental Regulations",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "R",
+    "Time": "1730-2020",
+    "Location": "Forbes Hall 2070D",
+    "Instructor": "Russ Burke",
+    "Seats Still Available": "6",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "15",
+    "Enrolled": "9",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    1977,
+    4536
+  ],
+  "raw_records": [
+    {
+      "CRN": "8400",
+      "Course": "ENVS 525",
+      "Section": "1",
+      "Title": "Environmental Regulations",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "R",
+      "Time": "1730-2020",
+      "Location": "Forbes Hall 2070D",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "6",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "9",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8400",
+      "Course": "ENVS 525",
+      "Section": "1",
+      "Title": "Environmental Regulations",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "R",
+      "Time": "1730-2020",
+      "Location": "Forbes Hall 2070D",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "6",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "9",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

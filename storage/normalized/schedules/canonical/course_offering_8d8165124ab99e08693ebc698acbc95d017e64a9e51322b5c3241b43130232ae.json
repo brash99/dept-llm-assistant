@@ -1,0 +1,354 @@
+{
+  "id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CRIM 275 Section 1 (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: CRIM 275\nSection: 1\nTitle: Introduction to Forensic Scien\nCRN: 9338",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae",
+          "published_name": "CRIM 275 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae",
+                "published_name": "CRIM 275 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "cebd02c5a2eab1bdddff8b8397365cc8b663687d9c6336dd014856b13528160e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 832,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "8d8165124ab99e08693ebc698acbc95d017e64a9e51322b5c3241b43130232ae",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 832,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "CRIM",
+  "course_number": "275",
+  "course_code": "CRIM 275",
+  "course_title": "Introduction to Forensic Scien",
+  "section": "1",
+  "crn": "9338",
+  "instructor_name": "Chris Loy",
+  "instructor_raw": "Chris Loy",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "779ade119189c0cc17789e5021e75af06c84a65274c5fd6b37e3bd8f853f3d69",
+        "9e1106557e9c50ab3434982fc0521370604ec05a7a652da35f79fd1563adc797",
+        "003635200acaf3bdf729f23ee17da38e961242579f298bed5da07df619fce4c3",
+        "a8870e6706e8c4576c31d15d8aa1569bea0a5d9796134ebc005cd0d101038b44"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introduction to Forensic Scien"
+    ],
+    "normalized_value": "Introduction to Forensic Scien",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1200-1250",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1200-1250",
+  "start_time": "12:00",
+  "end_time": "12:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 347",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 27,
+  "capacity": 29,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1200-1250",
+      "location_published": "Joseph W. Luter III Hall 347",
+      "source_rows": [
+        832,
+        11327
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "771bf4d42945eb22ad1c153212d37f051a1c5f19c0b756074df6fe9c25126b06",
+    "source_row_hashes": [
+      "b89a7e1cfcb6e29127540e1bb0cdc794d35e3ed030067888e1f2259dc5513e27",
+      "deb3a5e03946f94091f2c8c778740ac2e338cd8d6e00abfa6b0bf4d1c63ee470"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 832,
+    "source_rows": [
+      832,
+      11327
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9338",
+    "Course": "CRIM 275",
+    "Section": "1",
+    "Title": "Introduction to Forensic Scien",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1200-1250",
+    "Location": "Joseph W. Luter III Hall 347",
+    "Instructor": "Chris Loy",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "29",
+    "Enrolled": "27",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    832,
+    11327
+  ],
+  "raw_records": [
+    {
+      "CRN": "9338",
+      "Course": "CRIM 275",
+      "Section": "1",
+      "Title": "Introduction to Forensic Scien",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Joseph W. Luter III Hall 347",
+      "Instructor": "Chris Loy",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "29",
+      "Enrolled": "27",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "9338",
+      "Course": "CRIM 275",
+      "Section": "1",
+      "Title": "Introduction to Forensic Scien",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Joseph W. Luter III Hall 347",
+      "Instructor": "Chris Loy",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "29",
+      "Enrolled": "27",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

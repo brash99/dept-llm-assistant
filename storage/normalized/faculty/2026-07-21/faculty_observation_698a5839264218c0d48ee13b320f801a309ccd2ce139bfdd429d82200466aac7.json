@@ -1,0 +1,430 @@
+{
+  "id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+  "object_type": "faculty_observation",
+  "title": "Chelsey Hamm",
+  "text": "Faculty directory observation\nName: Chelsey Hamm\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+          "published_name": "Chelsey Hamm"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+                "published_name": "Chelsey Hamm"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Music, Theatre and Dance",
+                "published_name": "Music, Theatre and Dance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "07ea4046f23863d6d73da379fc83856ae305e13d51c7ec935d071f0e153fd52a"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+                "published_name": "Chelsey Hamm"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d7c541737544d6eaf21591e2a13ba8e9932c1175b3b7b78588b9c083ce995267"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_chelseyhamm.html",
+    "url": "https://cnu.edu/faculty/chelseyhamm.html",
+    "content_hash": "d6e4be038451ab86fa596f47ea8d3e345690e7f864636406b8949e200a747ad9"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "698a5839264218c0d48ee13b320f801a309ccd2ce139bfdd429d82200466aac7",
+  "display_name": "Chelsey Hamm",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Chelsey Hamm",
+  "published_titles": [
+    "Associate Professor",
+    "Director of Music Theory and Aural Skills"
+  ],
+  "published_department": "Music, Theatre and Dance",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "Music, Theatre and Dance",
+      "url": "https://cnu.edu/academics/departments/"
+    },
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    },
+    {
+      "label": "Honors Program",
+      "url": "https://cnu.edu/academics/honors/index.html"
+    }
+  ],
+  "email": "chelsey.hamm@cnu.edu",
+  "phone": "(757) 594-8790",
+  "office": null,
+  "profile_url": "https://cnu.edu/faculty/chelseyhamm.html",
+  "biography": "Dr. Chelsey Hamm received her Ph.D. in Music Theory from Indiana University, where she completed her dissertation titled \"Charles Ives and Democracy: Association, Borrowing, and Treatment of Dissonance in His Music\" in 2016. Dr. Hamm also holds a M.M. in Music Theory and Composition from Florida State University and B.M.s in Music Education, Horn Performance, and Music Theory from Ithaca College. Her research, much of which intersects both music theory and musicology, focuses on theories of musical meaning and criticism, text and musical relationships, and twentieth-century music, especially that of Charles Ives. She also has several additional areas of scholarly expertise, including the history of music theory, especially with regards to medieval music theory documents, music theory pedagogy, and theoretical investigations that examine questions of listener experiences, whether they are expressive, hermeneutic, or phenomenological. Dr. Hamm has essays published in a variety of journals including the \"Indiana Theory Review,\" \"The Horn Call,\" and \"Revista di Analisi e Teoria Musicale,\" as well as in books such as \"The Routledge Companion to Music Theory Pedagogy\" and \"Histories and Narratives of Music Analysis.\" She has also presented at numerous national, international, and regional conferences including EuroMAC, the Society for Music Theory's Annual Conference, the annual Pedagogy into Practice conference, Music Theory Midwest, and the New England Conference of Music Theorists' Annual Meeting. Dr. Hamm is also the author of the \"Fundamentals\" chapters in Open Music Theory , https://viva.pressbooks.pub/openmusictheory/ . At Christopher Newport University, Dr. Hamm teaches music theory, aural skills, 20th-and 21st-century analytical techniques, and counterpoint. Previously she taught at Missouri Western State University and Kenyon College.",
+  "education_entries": [
+    "Ph D in Music Theory, Indiana University",
+    "MM in Music Theory and Composition, Florida State University",
+    "BM in Music Theory, Ithaca College"
+  ],
+  "research_interests": "Music and meaning, text and musical relationships, popular music timbre, Kesha, medieval music theory, performance and analysis, music theory pedagogy, musical borrowings, Schenkerian analysis, popular music analysis, 20th-century music, the music of Charles Ives.",
+  "teaching_interests": "Music theory, aural skills, form and analysis, 20th- and 21st-century music theory, counterpoint, music theory pedagogy, text and musical relationships.",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [
+    "Tidewater Community-Engaged Learning Faculty Fellows, Center for Community Engagement at CNU. (2023)",
+    "Professor of the Year, CNU Student Government Association. (2022)"
+  ],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Artistic Accomplishments": [
+      "Music Performance - Participation \"CNU Commencement 2025\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"CNU Athletics Graduation\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"\"International Symposia for Emerging Conductors\" Concert\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"\"Bliss!\"\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"\"Music of Nancy Galbraith\"\". CNU Wind Ensemble. Diamonstein Hall. Newport News."
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Chelsey Hamm",
+    "Published titles": [
+      "Associate Professor",
+      "Director of Music Theory and Aural Skills"
+    ],
+    "Phone": "(757) 594-8790",
+    "Email": "chelsey.hamm@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Music, Theatre and Dance",
+        "url": "https://cnu.edu/academics/departments/"
+      },
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      },
+      {
+        "label": "Honors Program",
+        "url": "https://cnu.edu/academics/honors/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Music Theory, Indiana University",
+      "MM in Music Theory and Composition, Florida State University",
+      "BM in Music Theory, Ithaca College"
+    ],
+    "Biography": "Dr. Chelsey Hamm received her Ph.D. in Music Theory from Indiana University, where she completed her dissertation titled \"Charles Ives and Democracy: Association, Borrowing, and Treatment of Dissonance in His Music\" in 2016. Dr. Hamm also holds a M.M. in Music Theory and Composition from Florida State University and B.M.s in Music Education, Horn Performance, and Music Theory from Ithaca College. Her research, much of which intersects both music theory and musicology, focuses on theories of musical meaning and criticism, text and musical relationships, and twentieth-century music, especially that of Charles Ives. She also has several additional areas of scholarly expertise, including the history of music theory, especially with regards to medieval music theory documents, music theory pedagogy, and theoretical investigations that examine questions of listener experiences, whether they are expressive, hermeneutic, or phenomenological. Dr. Hamm has essays published in a variety of journals including the \"Indiana Theory Review,\" \"The Horn Call,\" and \"Revista di Analisi e Teoria Musicale,\" as well as in books such as \"The Routledge Companion to Music Theory Pedagogy\" and \"Histories and Narratives of Music Analysis.\" She has also presented at numerous national, international, and regional conferences including EuroMAC, the Society for Music Theory's Annual Conference, the annual Pedagogy into Practice conference, Music Theory Midwest, and the New England Conference of Music Theorists' Annual Meeting. Dr. Hamm is also the author of the \"Fundamentals\" chapters in Open Music Theory , https://viva.pressbooks.pub/openmusictheory/ . At Christopher Newport University, Dr. Hamm teaches music theory, aural skills, 20th-and 21st-century analytical techniques, and counterpoint. Previously she taught at Missouri Western State University and Kenyon College.",
+    "Teaching": "Music theory, aural skills, form and analysis, 20th- and 21st-century music theory, counterpoint, music theory pedagogy, text and musical relationships.",
+    "Research": "Music and meaning, text and musical relationships, popular music timbre, Kesha, medieval music theory, performance and analysis, music theory pedagogy, musical borrowings, Schenkerian analysis, popular music analysis, 20th-century music, the music of Charles Ives.",
+    "Awards and Honors": [
+      "Tidewater Community-Engaged Learning Faculty Fellows, Center for Community Engagement at CNU. (2023)",
+      "Professor of the Year, CNU Student Government Association. (2022)"
+    ],
+    "Artistic Accomplishments": [
+      "Music Performance - Participation \"CNU Commencement 2025\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"CNU Athletics Graduation\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"\"International Symposia for Emerging Conductors\" Concert\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"\"Bliss!\"\". CNU Wind Ensemble. Diamonstein Hall. Newport News.",
+      "Music Performance - Participation \"\"Music of Nancy Galbraith\"\". CNU Wind Ensemble. Diamonstein Hall. Newport News."
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_chelseyhamm.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_chelseyhamm.html",
+  "raw_acquisition_hash": "d6e4be038451ab86fa596f47ea8d3e345690e7f864636406b8949e200a747ad9",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/chelseyhamm.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_chelseyhamm.html",
+    "source_sha256": "d6e4be038451ab86fa596f47ea8d3e345690e7f864636406b8949e200a747ad9",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

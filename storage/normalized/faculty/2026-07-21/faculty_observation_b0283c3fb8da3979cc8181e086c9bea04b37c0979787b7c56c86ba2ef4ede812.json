@@ -1,0 +1,411 @@
+{
+  "id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+  "object_type": "faculty_observation",
+  "title": "William Phelps",
+  "text": "Faculty directory observation\nName: William Phelps\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+          "published_name": "William Phelps"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+                "published_name": "William Phelps"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "dae4dc0d59874788aa5dc9859141bb901406a56d34cc9f24e4eecc885ae3f5b5"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+                "published_name": "William Phelps"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a3a66d0bcc3c572b6c1f9e6737a8873c81305b0a9454adc33bbec0399577f390"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_williamphelps.html",
+    "url": "https://cnu.edu/faculty/williamphelps.html",
+    "content_hash": "88017a4fdcb642e1f2b4b309367a29612d1b415478f96572c7440e3c06ab866f"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "b0283c3fb8da3979cc8181e086c9bea04b37c0979787b7c56c86ba2ef4ede812",
+  "display_name": "William Phelps",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "William Phelps",
+  "published_titles": [
+    "Associate Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "william.phelps@cnu.edu",
+  "phone": "(757) 594-8741",
+  "office": "Luter Hall 319",
+  "profile_url": "https://cnu.edu/faculty/williamphelps.html",
+  "biography": null,
+  "education_entries": [
+    "Ph D in Physics, Florida International University",
+    "MS in Physics, Florida International University",
+    "BS in Applied Physics, Christopher Newport University"
+  ],
+  "research_interests": "Experimental Nuclear Physics Novel Detector Research and Development Applications of Artificial Intelligence in Nuclear Physics",
+  "teaching_interests": "Programming and Data Manipulation Data Science",
+  "publications": [
+    "Conference Proceeding (2021). Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Midwest Association for Information Systems (MWAIS).",
+    "Journal Article, Academic Journal Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Journal of the Southern Association for Information Systems."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "William Phelps",
+    "Published titles": [
+      "Associate Professor"
+    ],
+    "Office": [
+      "Luter Hall 319"
+    ],
+    "Phone": "(757) 594-8741",
+    "Email": "william.phelps@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Physics, Florida International University",
+      "MS in Physics, Florida International University",
+      "BS in Applied Physics, Christopher Newport University"
+    ],
+    "Teaching": "Programming and Data Manipulation Data Science",
+    "Research": "Experimental Nuclear Physics Novel Detector Research and Development Applications of Artificial Intelligence in Nuclear Physics",
+    "Publications": [
+      "Conference Proceeding (2021). Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Midwest Association for Information Systems (MWAIS).",
+      "Journal Article, Academic Journal Reducing Risk of Password Reuse through Random Character Requirements and Image Prompting . Journal of the Southern Association for Information Systems."
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_williamphelps.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_williamphelps.html",
+  "raw_acquisition_hash": "88017a4fdcb642e1f2b4b309367a29612d1b415478f96572c7440e3c06ab866f",
+  "structural_variant": "no-biography; education-h2; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/williamphelps.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_williamphelps.html",
+    "source_sha256": "88017a4fdcb642e1f2b4b309367a29612d1b415478f96572c7440e3c06ab866f",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

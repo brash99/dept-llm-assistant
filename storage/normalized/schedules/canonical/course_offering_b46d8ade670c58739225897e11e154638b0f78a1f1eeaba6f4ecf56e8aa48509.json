@@ -1,0 +1,412 @@
+{
+  "id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 315 Section ON1 (2023_summer_1)",
+  "text": "Academic term: 2023_summer_1\nCourse: PSYC 315\nSection: ON1\nCRN: 3131",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509",
+          "published_name": "PSYC 315 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_summer_1",
+        "published_label": "Summer Term I 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509",
+                "published_name": "PSYC 315 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_summer_1",
+              "published_label": "Summer Term I 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "5c6fdca741f60bea105ce138d3e28bcfa50ba2b4dd7f6b32abd5b9d37f6e9123"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2664,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2664,
+  "acquisition_date": null,
+  "academic_term": "2023_summer_1",
+  "academic_term_published": "Summer Term I 2023",
+  "subject": "PSYC",
+  "course_number": "315",
+  "course_code": "PSYC 315",
+  "course_title": null,
+  "section": "ON1",
+  "crn": "3131",
+  "instructor_name": "Earl Riggins",
+  "instructor_raw": "Earl Riggins",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "2512eb667557d863550d2c4775d1520be603ff3cbd38bd16f54e684a230ecacf",
+        "4120a2f371af9da6dd959863d352e981f7d53f1064f8647205804116a3db92c4",
+        "6387fd30261c4488929c04eb414dcb5fb554d762e912f8df97b86518c5f3d119"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychopathology",
+      "Psychology-Abnormal Behavior"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "fa3caff48ec857e35b6a256d820ca9461be5419621ba815f85459cc70ea1b07b",
+        "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MTWRF 1000-1230",
+  "meeting_days": "MTWRF",
+  "meeting_time_raw": "1000-1230",
+  "start_time": "10:00",
+  "end_time": "12:30",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Hybrid Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 7,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 12,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MTWRF",
+      "time_published": "1000-1230",
+      "location_published": "Hybrid Online Course ",
+      "source_rows": [
+        2664,
+        5268,
+        7888,
+        10526
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "3949be06518f76bfb84df1c65b20bfb7b10476a7ebe8b62912a80c4369037535",
+    "source_row_hashes": [
+      "b75ebeb55963cc3486b97ca20e36740407e946326a8431a36016c46d9410fa64",
+      "445d0c1104e5732266be9e8f1ce4662dc2c11566f253ddc7229e4ad5493f5a0f",
+      "337af788d7a380862de56dd4f83c24faa40c2e78445babbe6ae9a8711f54332e",
+      "007bf78fa1e396934d223486c49b382f94f8a61e4efcc04f218a680e4c28f234"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2664,
+    "source_rows": [
+      2664,
+      5268,
+      7888,
+      10526
+    ],
+    "source_row_count": 4,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "3131",
+    "Course": "PSYC 315",
+    "Section": "ON1",
+    "Title": "Psychopathology",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MTWRF",
+    "Time": "1000-1230",
+    "Location": "Hybrid Online Course ",
+    "Instructor": "Earl Riggins",
+    "Seats Still Available": "12",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "7",
+    "Instructor Type": "Adjunct",
+    "Term": "Summer Term I 2023"
+  },
+  "source_rows": [
+    2664,
+    5268,
+    7888,
+    10526
+  ],
+  "raw_records": [
+    {
+      "CRN": "3131",
+      "Course": "PSYC 315",
+      "Section": "ON1",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MTWRF",
+      "Time": "1000-1230",
+      "Location": "Hybrid Online Course ",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "7",
+      "Instructor Type": "Adjunct",
+      "Term": "Summer Term I 2023"
+    },
+    {
+      "CRN": "3131",
+      "Course": "PSYC 315",
+      "Section": "ON1",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MTWRF",
+      "Time": "1000-1230",
+      "Location": "Hybrid Online Course ",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "7",
+      "Instructor Type": "Full Time",
+      "Term": "Summer Term I 2023"
+    },
+    {
+      "CRN": "3131",
+      "Course": "PSYC 315",
+      "Section": "ON1",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MTWRF",
+      "Time": "1000-1230",
+      "Location": "Hybrid Online Course ",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "7",
+      "Instructor Type": "Adjunct",
+      "Term": "Summer Term I 2023"
+    },
+    {
+      "CRN": "3131",
+      "Course": "PSYC 315",
+      "Section": "ON1",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MTWRF",
+      "Time": "1000-1230",
+      "Location": "Hybrid Online Course ",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "12",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "7",
+      "Instructor Type": "Full Time",
+      "Term": "Summer Term I 2023"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Psychopathology",
+      "Psychology-Abnormal Behavior"
+    ],
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

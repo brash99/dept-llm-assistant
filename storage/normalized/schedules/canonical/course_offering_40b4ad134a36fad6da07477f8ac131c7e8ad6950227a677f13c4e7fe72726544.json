@@ -1,0 +1,316 @@
+{
+  "id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 150 Section 2 (2027_spring)",
+  "text": "Academic term: 2027_spring\nCourse: CPSC 150\nSection: 2\nTitle: Introduction to Programming\nCRN: 8295",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544",
+          "published_name": "CPSC 150 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2027_spring",
+        "published_label": "Spring Semester 2027"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544",
+                "published_name": "CPSC 150 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2027_spring",
+              "published_label": "Spring Semester 2027"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "45bf2f056a6a1346df51bce661c7dc241960205a41faac1ee425f285ffd11db2"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 556,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "40b4ad134a36fad6da07477f8ac131c7e8ad6950227a677f13c4e7fe72726544",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 556,
+  "acquisition_date": null,
+  "academic_term": "2027_spring",
+  "academic_term_published": "Spring Semester 2027",
+  "subject": "CPSC",
+  "course_number": "150",
+  "course_code": "CPSC 150",
+  "course_title": "Introduction to Programming",
+  "section": "2",
+  "crn": "8295",
+  "instructor_name": "Lynn Lambert",
+  "instructor_raw": "Lynn Lambert",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Introduction to Programming"
+    ],
+    "normalized_value": "Introduction to Programming",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 0900-0950",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "0900-0950",
+  "start_time": "09:00",
+  "end_time": "09:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 0,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 24,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIIF, GE, LLFR, XPCE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "0900-0950",
+      "location_published": "Joseph W. Luter III Hall ",
+      "source_rows": [
+        556
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "fabf118f644737934cc80d98770da8b85b3302798dfbed2db3d5d4b93a87d011",
+    "source_row_hashes": [
+      "cde0c5f9c895f564aa58f24e396fa836f871af46556e250c7d5a52095f0a6278"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 556,
+    "source_rows": [
+      556
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8295",
+    "Course": "CPSC 150",
+    "Section": "2",
+    "Title": "Introduction to Programming",
+    "Hours": "3",
+    "Area of LLC": "AIIF, GE, LLFR, XPCE",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "0900-0950",
+    "Location": "Joseph W. Luter III Hall ",
+    "Instructor": "Lynn Lambert",
+    "Seats Still Available": "24",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "24",
+    "Enrolled": "0",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2027"
+  },
+  "source_rows": [
+    556
+  ],
+  "raw_records": [
+    {
+      "CRN": "8295",
+      "Course": "CPSC 150",
+      "Section": "2",
+      "Title": "Introduction to Programming",
+      "Hours": "3",
+      "Area of LLC": "AIIF, GE, LLFR, XPCE",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "0900-0950",
+      "Location": "Joseph W. Luter III Hall ",
+      "Instructor": "Lynn Lambert",
+      "Seats Still Available": "24",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "24",
+      "Enrolled": "0",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2027"
+    }
+  ],
+  "published_field_variants": {}
+}

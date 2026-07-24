@@ -1,0 +1,354 @@
+{
+  "id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: LDSP 386 Section 2 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: LDSP 386\nSection: 2\nTitle: Values Leadership\nCRN: 9028",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448",
+          "published_name": "LDSP 386 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448",
+                "published_name": "LDSP 386 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f84133f0e7a3f8198bf974feee1fecdeff964fe1a0d81d767ed0cbea3098293c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 370,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "1eac33925b78cdd2bcb9c0b14c78ac02496ee3e6f7c1f33742f22ef15b316448",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 370,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "LDSP",
+  "course_number": "386",
+  "course_code": "LDSP 386",
+  "course_title": "Values Leadership",
+  "section": "2",
+  "crn": "9028",
+  "instructor_name": "Shalyn Lapke",
+  "instructor_raw": "Shalyn Lapke",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "48509d8606de67e75467a9afae55d1c641f068fd8185b06b615a454dfac70983",
+        "05b30b32798dc28a28fce58a6afb082f1a779496cd635736dcad8971ecd09d59",
+        "633abe142b97eee542ba391ed1484f6a46a951de7769eea08499b7c9ae09858a",
+        "caa68a8e911bdd78dac77c0ddef5498bf8e96798d6ca7a20fcc5fca9bd6994e2"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Values Leadership"
+    ],
+    "normalized_value": "Values Leadership",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1100-1215",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts 210",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 17,
+  "waitlist": null,
+  "seats_available": -2,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1100-1215",
+      "location_published": "Ferguson Center for the Arts 210",
+      "source_rows": [
+        370,
+        5512
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "a4ed6bcf5c25cb554b78b03b2a22db56d94d3d7f015236eaf3808190737e671d",
+    "source_row_hashes": [
+      "12d390414782b61bac84c28b310e0be1c6b811219cb4e498bd5d823a43c621b5",
+      "9a1e74d3f64e2b19f42cb7cd8a0413a944b0e4ff6a9fec41418b2b31709b54b0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 370,
+    "source_rows": [
+      370,
+      5512
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9028",
+    "Course": "LDSP 386",
+    "Section": "2",
+    "Title": "Values Leadership",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1100-1215",
+    "Location": "Ferguson Center for the Arts 210",
+    "Instructor": "Shalyn Lapke",
+    "Seats Still Available": "-2",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "17",
+    "Enrolled": "19",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    370,
+    5512
+  ],
+  "raw_records": [
+    {
+      "CRN": "9028",
+      "Course": "LDSP 386",
+      "Section": "2",
+      "Title": "Values Leadership",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Ferguson Center for the Arts 210",
+      "Instructor": "Shalyn Lapke",
+      "Seats Still Available": "-2",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "17",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "9028",
+      "Course": "LDSP 386",
+      "Section": "2",
+      "Title": "Values Leadership",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1100-1215",
+      "Location": "Ferguson Center for the Arts 210",
+      "Instructor": "Shalyn Lapke",
+      "Seats Still Available": "-2",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "17",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

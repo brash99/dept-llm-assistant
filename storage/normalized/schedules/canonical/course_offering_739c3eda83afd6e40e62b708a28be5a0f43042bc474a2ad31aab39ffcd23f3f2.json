@@ -1,0 +1,352 @@
+{
+  "id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MUSC 215 Section 1 (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: MUSC 215\nSection: 1\nTitle: Keyboard Skills III\nCRN: 9045",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2",
+          "published_name": "MUSC 215 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2",
+                "published_name": "MUSC 215 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "447d49019ee03949d8d0073aa4c797c2738831a2b9fc99aca6b9d8858a008f8e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3598,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "739c3eda83afd6e40e62b708a28be5a0f43042bc474a2ad31aab39ffcd23f3f2",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3598,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "MUSC",
+  "course_number": "215",
+  "course_code": "MUSC 215",
+  "course_title": "Keyboard Skills III",
+  "section": "1",
+  "crn": "9045",
+  "instructor_name": "Beth Tomassetti",
+  "instructor_raw": "Beth Tomassetti",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "023f5935c45f5f1d6110acefd3c13478e5e6eb1ea0b1c5502fbc59938ee108c6",
+        "523a92cbd4d2088e0c891ec3fe0ef9ac4d315f1d294f232e6f3e3dfa500a8a4b"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Keyboard Skills III"
+    ],
+    "normalized_value": "Keyboard Skills III",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "TR 0800-0915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0800-0915",
+  "start_time": "08:00",
+  "end_time": "09:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Ferguson Center for the Arts 213",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 8,
+  "capacity": 13,
+  "waitlist": null,
+  "seats_available": 5,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0800-0915",
+      "location_published": "Ferguson Center for the Arts 213",
+      "source_rows": [
+        3598,
+        14214
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "cf2371edb90752ef15e09a8cbac4eb539f6bdb182986eaa06e96df4d4d6d519a",
+    "source_row_hashes": [
+      "02cc35afe1c6c31f142d145f12cfbb1a34abad54aca4249203085f830049c5ec",
+      "39f6192a293fb8a6bf7c654238ed6c18521ef0fbc13207f33541c7849340c1c5"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3598,
+    "source_rows": [
+      3598,
+      14214
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9045",
+    "Course": "MUSC 215",
+    "Section": "1",
+    "Title": "Keyboard Skills III",
+    "Hours": "1",
+    "Area of LLC": "LETR",
+    "Type": "Lab",
+    "Days": "TR",
+    "Time": "0800-0915",
+    "Location": "Ferguson Center for the Arts 213",
+    "Instructor": "Beth Tomassetti",
+    "Seats Still Available": "5",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "13",
+    "Enrolled": "8",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    3598,
+    14214
+  ],
+  "raw_records": [
+    {
+      "CRN": "9045",
+      "Course": "MUSC 215",
+      "Section": "1",
+      "Title": "Keyboard Skills III",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "0800-0915",
+      "Location": "Ferguson Center for the Arts 213",
+      "Instructor": "Beth Tomassetti",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "13",
+      "Enrolled": "8",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "9045",
+      "Course": "MUSC 215",
+      "Section": "1",
+      "Title": "Keyboard Skills III",
+      "Hours": "1",
+      "Area of LLC": "LETR",
+      "Type": "Lab",
+      "Days": "TR",
+      "Time": "0800-0915",
+      "Location": "Ferguson Center for the Arts 213",
+      "Instructor": "Beth Tomassetti",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "13",
+      "Enrolled": "8",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

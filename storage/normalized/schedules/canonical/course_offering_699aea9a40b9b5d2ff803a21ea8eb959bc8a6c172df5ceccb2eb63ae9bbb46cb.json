@@ -1,0 +1,355 @@
+{
+  "id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 408 Section ON1 (2023_may)",
+  "text": "Academic term: 2023_may\nCourse: PSYC 408\nSection: ON1\nTitle: Psychopharmacology\nCRN: 2101",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb",
+          "published_name": "PSYC 408 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_may",
+        "published_label": "May Term 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb",
+                "published_name": "PSYC 408 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_may",
+              "published_label": "May Term 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "0ab3970a4a74bd69ff8d6f0c17c101d151c34b49a390de4215a13c18257a62ed"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 660,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "699aea9a40b9b5d2ff803a21ea8eb959bc8a6c172df5ceccb2eb63ae9bbb46cb",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 660,
+  "acquisition_date": null,
+  "academic_term": "2023_may",
+  "academic_term_published": "May Term 2023",
+  "subject": "PSYC",
+  "course_number": "408",
+  "course_code": "PSYC 408",
+  "course_title": "Psychopharmacology",
+  "section": "ON1",
+  "crn": "2101",
+  "instructor_name": "Michelle Lange",
+  "instructor_raw": "Michelle Lange",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "f24b97d530ac5570d325a0d90bedd1a6cae9772b33012d4f3ab3e05806310c67",
+        "fa3caff48ec857e35b6a256d820ca9461be5419621ba815f85459cc70ea1b07b",
+        "909129f29847551b36c3bf075bd19548a354bd0c1031e4a02c8bdbab4d01175b",
+        "79b5e13142e69a547d2342d78e1c0554a984f5a2375ef59df5945f2cb51fc701",
+        "0d77a598f15a6512e4864643f30742eb0286d4025c45a087086b0b69dbcce5f1"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychopharmacology"
+    ],
+    "normalized_value": "Psychopharmacology",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MTWRF 0900-1215",
+  "meeting_days": "MTWRF",
+  "meeting_time_raw": "0900-1215",
+  "start_time": "09:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Synchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 11,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 8,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MTWRF",
+      "time_published": "0900-1215",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        660,
+        5813
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "a0a4b789c78e22e226ad6f8a62fd71c064b8239bd9c2bcc324306208857b43f8",
+    "source_row_hashes": [
+      "d109d8662f8e777fb5637b760b8b8827ec7cf798c40c9c73f8c11cc621dadc34",
+      "0820b70168bf642b411460ce283f1d70a37aa1db88d7bcada4f7a7a464229d53"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 660,
+    "source_rows": [
+      660,
+      5813
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "2101",
+    "Course": "PSYC 408",
+    "Section": "ON1",
+    "Title": "Psychopharmacology",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MTWRF",
+    "Time": "0900-1215",
+    "Location": "Synchronous Online Course ",
+    "Instructor": "Michelle Lange",
+    "Seats Still Available": "8",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "11",
+    "Instructor Type": "Full Time",
+    "Term": "May Term 2023"
+  },
+  "source_rows": [
+    660,
+    5813
+  ],
+  "raw_records": [
+    {
+      "CRN": "2101",
+      "Course": "PSYC 408",
+      "Section": "ON1",
+      "Title": "Psychopharmacology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MTWRF",
+      "Time": "0900-1215",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "8",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "11",
+      "Instructor Type": "Full Time",
+      "Term": "May Term 2023"
+    },
+    {
+      "CRN": "2101",
+      "Course": "PSYC 408",
+      "Section": "ON1",
+      "Title": "Psychopharmacology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MTWRF",
+      "Time": "0900-1215",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Michelle Lange",
+      "Seats Still Available": "8",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "11",
+      "Instructor Type": "Adjunct",
+      "Term": "May Term 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

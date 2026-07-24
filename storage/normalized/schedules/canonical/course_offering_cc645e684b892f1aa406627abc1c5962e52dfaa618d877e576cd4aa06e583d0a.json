@@ -1,0 +1,355 @@
+{
+  "id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHYS 105L Section 1 (2026_spring)",
+  "text": "Academic term: 2026_spring\nCourse: PHYS 105L\nSection: 1\nTitle: Elementary Physics Lab\nCRN: 8825",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a",
+          "published_name": "PHYS 105L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_spring",
+        "published_label": "Spring Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a",
+                "published_name": "PHYS 105L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_spring",
+              "published_label": "Spring Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "68571d2d28d3fe911c00a4729310a8b0026dcf5e552b327f55e9533493f2d24b"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 11619,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "cc645e684b892f1aa406627abc1c5962e52dfaa618d877e576cd4aa06e583d0a",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 11619,
+  "acquisition_date": null,
+  "academic_term": "2026_spring",
+  "academic_term_published": "Spring Semester 2026",
+  "subject": "PHYS",
+  "course_number": "105L",
+  "course_code": "PHYS 105L",
+  "course_title": "Elementary Physics Lab",
+  "section": "1",
+  "crn": "8825",
+  "instructor_name": "Avery McElhenny",
+  "instructor_raw": "Avery McElhenny",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "07c21e1199ea5104dc052129b6c75fb3593a16268740637f71e1aea465a20e24",
+        "9328b603fc6ac19ab1c9d0b276f15d0a79e42ff57421d24fd0a82fe1945561ea",
+        "ce251f4f67f07186b92c4dd4a98f37046c8bf1e74e990d2ddf6910df6037668b",
+        "7e46205f9f7e1981e08c994122c2e874088453e55529eefbec7d33ae105160cb",
+        "7797a118698e2c3ed424cd9da9e1e3082a874bcc0f2020038eb1c802d85acdeb"
+      ],
+      "supporting_terms": [
+        "2025_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Elementary Physics Lab"
+    ],
+    "normalized_value": "Elementary Physics Lab",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "R 1800-2045",
+  "meeting_days": "R",
+  "meeting_time_raw": "1800-2045",
+  "start_time": "18:00",
+  "end_time": "20:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Science & Engineering Research 3380",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 32,
+  "capacity": 36,
+  "waitlist": null,
+  "seats_available": 4,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, LOW, NSCI, SCIE, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "R",
+      "time_published": "1800-2045",
+      "location_published": "Science & Engineering Research 3380",
+      "source_rows": [
+        11619,
+        14300
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "ae3328bfefc2d3d0afcccbb47feb063d2663f9bbda556b14c45d32eb6587a4f9",
+    "source_row_hashes": [
+      "86b3ae978360cefc18ca4ddb73214137b0f01d265565cccd5ffe265006c1682e",
+      "fb095c486beda038c279be1ed38c8651360b5532e347a628af644637d41593c0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 11619,
+    "source_rows": [
+      11619,
+      14300
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8825",
+    "Course": "PHYS 105L",
+    "Section": "1",
+    "Title": "Elementary Physics Lab",
+    "Hours": "1",
+    "Area of LLC": "AINW, GE, LOW, NSCI, SCIE, XNAT",
+    "Type": "Lab",
+    "Days": "R",
+    "Time": "1800-2045",
+    "Location": "Science & Engineering Research 3380",
+    "Instructor": "Avery McElhenny",
+    "Seats Still Available": "4",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "36",
+    "Enrolled": "32",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2026"
+  },
+  "source_rows": [
+    11619,
+    14300
+  ],
+  "raw_records": [
+    {
+      "CRN": "8825",
+      "Course": "PHYS 105L",
+      "Section": "1",
+      "Title": "Elementary Physics Lab",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, LOW, NSCI, SCIE, XNAT",
+      "Type": "Lab",
+      "Days": "R",
+      "Time": "1800-2045",
+      "Location": "Science & Engineering Research 3380",
+      "Instructor": "Avery McElhenny",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "36",
+      "Enrolled": "32",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2026"
+    },
+    {
+      "CRN": "8825",
+      "Course": "PHYS 105L",
+      "Section": "1",
+      "Title": "Elementary Physics Lab",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, LOW, NSCI, SCIE, XNAT",
+      "Type": "Lab",
+      "Days": "R",
+      "Time": "1800-2045",
+      "Location": "Science & Engineering Research 3380",
+      "Instructor": "Avery McElhenny",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "36",
+      "Enrolled": "32",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

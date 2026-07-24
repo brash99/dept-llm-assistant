@@ -1,0 +1,315 @@
+{
+  "id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: AMST 100 Section 5M (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: AMST 100\nSection: 5M\nTitle: The American Experiment\nCRN: 8074",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1,
+      "instructor_type_unknown": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9",
+          "published_name": "AMST 100 5M"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9",
+                "published_name": "AMST 100 5M"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "ec9d35740c5259e0cc106e863b7f078e8debe548c9b0d60275b748f313d3c48e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3883,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "51689a91c54b727abf88c938c48b7ddabeec2f8d7ccea8a075895df78b19e8c9",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3883,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "AMST",
+  "course_number": "100",
+  "course_code": "AMST 100",
+  "course_title": "The American Experiment",
+  "section": "5M",
+  "crn": "8074",
+  "instructor_name": "David Little",
+  "instructor_raw": "David Little",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [],
+    "normalized_value": "unknown",
+    "has_blank_value": true,
+    "conflicting": false,
+    "resolution": {
+      "resolved": false,
+      "method": "unknown_source_value",
+      "confidence": 0.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "The American Experiment"
+    ],
+    "normalized_value": "The American Experiment",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1400-1450",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1400-1450",
+  "start_time": "14:00",
+  "end_time": "14:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 364",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 15,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 4,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIDE, LDSP, LOW, XAMS",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1400-1450",
+      "location_published": "Lewis McMurran Hall 364",
+      "source_rows": [
+        3883
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f345c85e1cf3c6a315a356505d39f49d85304b0404d2962f12c2582e7d16f30c",
+    "source_row_hashes": [
+      "68a4304621d54acef65b62fc3ca34f446cbd19ddf890dffe1325c8a4e698911b"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3883,
+    "source_rows": [
+      3883
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8074",
+    "Course": "AMST 100",
+    "Section": "5M",
+    "Title": "The American Experiment",
+    "Hours": "3",
+    "Area of LLC": "AIDE, LDSP, LOW, XAMS",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1400-1450",
+    "Location": "Lewis McMurran Hall 364",
+    "Instructor": "David Little",
+    "Seats Still Available": "4",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "19",
+    "Enrolled": "15",
+    "Instructor Type": "",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    3883
+  ],
+  "raw_records": [
+    {
+      "CRN": "8074",
+      "Course": "AMST 100",
+      "Section": "5M",
+      "Title": "The American Experiment",
+      "Hours": "3",
+      "Area of LLC": "AIDE, LDSP, LOW, XAMS",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 364",
+      "Instructor": "David Little",
+      "Seats Still Available": "4",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "19",
+      "Enrolled": "15",
+      "Instructor Type": "",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {}
+}

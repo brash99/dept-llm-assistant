@@ -1,0 +1,488 @@
+version: 4
+
+# Reviewed organizational facts used to resolve published academic-unit labels.
+# Operational roles are explicit institutional modeling decisions; they are not
+# inferred from words such as "school", "department", or "college".
+units:
+  - unit_id: academic_unit:college_natural_behavioral_sciences
+    published_name: College of Natural and Behavioral Sciences
+    aliases: [Natural and Behavioral Sciences]
+    entity_type: college
+    formal_unit_type: college
+    governance_level: college
+    leadership_type: dean
+    has_dean: true
+    contains_subordinate_departments: true
+    operational_roles: [college_equivalent, dean_level_unit, parent_academic_unit, budgetary_rollup_unit]
+    subordinate_unit_ids: [academic_unit:sec]
+    valid_analytical_rollup_unit: true
+
+  - unit_id: academic_unit:sec
+    published_name: School of Engineering and Computing
+    aliases: [SEC]
+    abbreviation: SEC
+    entity_type: school
+    formal_unit_type: dependent_school
+    parent_unit_id: academic_unit:college_natural_behavioral_sciences
+    governance_level: department_equivalent
+    leadership_type: null
+    has_dean: false
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+    specialties: [Physics, Computer Science, Cybersecurity and Information Science, Computer Engineering, Electrical Engineering]
+
+  - unit_id: academic_unit:luter_school_business
+    published_name: Joseph W. Luter, III School of Business
+    aliases: ["Luter School of Business", "Joseph W. Luter III School of Business"]
+    entity_type: school
+    formal_unit_type: independent_school
+    governance_level: college_equivalent
+    leadership_type: dean
+    has_dean: true
+    contains_subordinate_departments: true
+    operational_roles: [college_equivalent, dean_level_unit, budgetary_rollup_unit, parent_academic_unit]
+    subordinate_unit_ids: [academic_unit:department_accounting_finance, academic_unit:department_management_marketing]
+    valid_analytical_rollup_unit: true
+
+  - unit_id: academic_unit:faculty_arts_humanities
+    published_name: College of Arts and Humanities
+    aliases: [Faculty of Arts and Humanities, Arts and Humanities]
+    entity_type: college
+    formal_unit_type: college
+    governance_level: college
+    leadership_type: dean
+    has_dean: true
+    contains_subordinate_departments: true
+    operational_roles: [college_equivalent, dean_level_unit, parent_academic_unit]
+    subordinate_unit_ids: [academic_unit:school_arts]
+    valid_analytical_rollup_unit: true
+
+  - unit_id: academic_unit:college_social_sciences
+    published_name: College of Social Sciences
+    aliases: [Social Sciences]
+    entity_type: college
+    formal_unit_type: college
+    governance_level: college
+    leadership_type: dean
+    has_dean: true
+    contains_subordinate_departments: true
+    operational_roles: [college_equivalent, dean_level_unit, parent_academic_unit, budgetary_rollup_unit]
+    valid_analytical_rollup_unit: true
+
+  - unit_id: academic_unit:school_arts
+    published_name: School of the Arts
+    aliases: []
+    entity_type: school
+    formal_unit_type: dependent_school
+    parent_unit_id: academic_unit:faculty_arts_humanities
+    governance_level: intermediate_academic_unit
+    leadership_type: null
+    has_dean: false
+    contains_subordinate_departments: true
+    operational_roles: [intermediate_academic_unit, parent_academic_unit]
+    subordinate_unit_ids: [academic_unit:department_fine_art_art_history, academic_unit:department_music_theatre_dance]
+
+  - unit_id: academic_unit:department_fine_art_art_history
+    published_name: Department of Fine Arts and Art History
+    aliases: [Fine Arts and Art History, Fine Art and Art History, Fine Art and Art History Department]
+    entity_type: department
+    formal_unit_type: department
+    parent_unit_id: academic_unit:school_arts
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_music_theatre_dance
+    published_name: Department of Music, Theatre, and Dance
+    aliases: ["Music, Theatre, and Dance", "Music, Theatre and Dance", "Department of Music, Theatre and Dance", Music, Performing Arts, Performimg Arts]
+    entity_type: department
+    formal_unit_type: department
+    parent_unit_id: academic_unit:school_arts
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_accounting_finance
+    published_name: Department of Accounting and Finance
+    aliases: [Accounting, Finance, "Accounting, Finance", Accounting and Finance, Accounting and Finance Department]
+    entity_type: department
+    formal_unit_type: department
+    parent_unit_id: academic_unit:luter_school_business
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_management_marketing
+    published_name: Department of Management and Marketing
+    aliases: [Management, Management and Marketing, Management and Marketing Department]
+    entity_type: department
+    formal_unit_type: department
+    parent_unit_id: academic_unit:luter_school_business
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_biology_chemistry_environmental_science
+    published_name: Department of Biology, Chemistry, and Environmental Science
+    aliases: [Biology, Chemistry, "Biology, Chemistry and Environmental Science", "Biology, Chemistry, and Environmental Science", "Department of Biology, Chemistry and Environmental Science"]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_modern_classical_languages_literatures
+    published_name: Department of Modern and Classical Languages and Literatures
+    aliases: [Modern and Classical Languages and Literatures]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_military_science
+    published_name: Military Science
+    aliases: [Department of Military Science]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_communication_studies
+    published_name: Department of Communication Studies
+    aliases: [Communication, Communication Studies, Department of Communication]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_economics
+    published_name: Department of Economics
+    aliases: [Economics]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_english
+    published_name: Department of English
+    aliases: [English]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_history
+    published_name: Department of History
+    aliases: [History]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_leadership_american_studies
+    published_name: Department of Leadership and American Studies
+    aliases: [Leadership and American Studies, American Studies]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_mathematics
+    published_name: Department of Mathematics
+    aliases: [Mathematics]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_philosophy_religion
+    published_name: Department of Philosophy and Religion
+    aliases: [Philosophy and Religion]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_political_science
+    published_name: Department of Political Science
+    aliases: [Political Science]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_psychology
+    published_name: Department of Psychology
+    aliases: [Psychology]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_sociology_social_work_anthropology
+    published_name: Department of Sociology, Social Work and Anthropology
+    aliases: ["Sociology, Social Work and Anthropology", "Sociology, Social Work, and Anthropology"]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+
+  - unit_id: academic_unit:department_pcse_historical
+    published_name: Department of Physics, Computer Science and Engineering
+    aliases: ["Physics, Computer Science and Engineering", "Physics, Computer Science and Engineering Department"]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [department_equivalent, faculty_home_unit, workforce_allocation_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:sec]
+
+  - unit_id: academic_unit:department_luter_combined_historical
+    published_name: Department of Accounting, Finance, Management and Marketing
+    aliases: ["Accounting, Finance, Management & Marketing", "Accounting, Finance, Management and Marketing"]
+    entity_type: department
+    formal_unit_type: department
+    parent_unit_id: academic_unit:luter_school_business
+    governance_level: department
+    leadership_type: chair
+    contains_subordinate_departments: false
+    operational_roles: [non_workforce_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:department_accounting_finance, academic_unit:department_management_marketing]
+
+  - unit_id: academic_unit:graduate_program_environmental_science
+    published_name: Environmental Science Graduate Program
+    aliases: [Environmental Science]
+    entity_type: academic_program
+    formal_unit_type: academic_program
+    governance_level: academic_program
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+
+  - unit_id: academic_unit:graduate_program_master_financial_analysis
+    published_name: Master of Financial Analysis
+    aliases: [Master of Financial Analysis Program]
+    entity_type: academic_program
+    formal_unit_type: academic_program
+    governance_level: academic_program
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+
+  - unit_id: academic_unit:graduate_program_physics_computer_science
+    published_name: Physics and Computer Science Graduate Program
+    aliases: [Physics and Computer Science]
+    entity_type: academic_program
+    formal_unit_type: academic_program
+    governance_level: academic_program
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+
+  - unit_id: academic_unit:graduate_program_teacher_preparation
+    published_name: Teacher Preparation Graduate Program
+    aliases: [Teacher Preparation]
+    entity_type: academic_program
+    formal_unit_type: academic_program
+    governance_level: academic_program
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+
+  - unit_id: academic_unit:honors_program
+    published_name: Honors Program
+    aliases: [Honors]
+    entity_type: academic_program
+    formal_unit_type: academic_program
+    governance_level: university_wide
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [university_wide_program, curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:neuroscience_program
+    published_name: Neuroscience Program
+    aliases: [Neuroscience]
+    entity_type: academic_program
+    formal_unit_type: interdisciplinary_program
+    governance_level: university_wide
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [interdisciplinary, curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:office_provost
+    published_name: Office of the Provost
+    aliases: [Provost's Office, Provost Office]
+    entity_type: academic_unit
+    formal_unit_type: university_unit
+    governance_level: university_wide
+    leadership_type: provost
+    contains_subordinate_departments: false
+    operational_roles: [academic_governance, curriculum_ownership_unit, non_workforce_unit]
+    valid_curriculum_ownership_unit: true
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:office_research_creative_activity
+    published_name: Office of Research and Creative Activity
+    aliases: [ORCA]
+    entity_type: academic_unit
+    formal_unit_type: university_unit
+    parent_unit_id: academic_unit:office_provost
+    governance_level: university_wide
+    leadership_type: director
+    contains_subordinate_departments: false
+    operational_roles: [academic_coordination, non_workforce_unit]
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:graduate_studies
+    published_name: Graduate Studies
+    aliases: [Office of Graduate Studies]
+    entity_type: academic_unit
+    formal_unit_type: university_unit
+    governance_level: university_wide
+    leadership_type: null
+    contains_subordinate_departments: false
+    operational_roles: [academic_coordination, non_workforce_unit]
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    valid_analytical_rollup_unit: false
+
+  - unit_id: academic_unit:department_molecular_biology_chemistry_historical
+    published_name: Department of Molecular Biology and Chemistry
+    aliases: [Molecular Biology and Chemistry]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    contains_subordinate_departments: false
+    operational_roles: [non_workforce_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:department_biology_chemistry_environmental_science]
+
+  - unit_id: academic_unit:department_organismal_environmental_biology_historical
+    published_name: Department of Organismal and Environmental Biology
+    aliases: ["Biology, Organismal and Environmental", Organismal and Environmental Biology]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    contains_subordinate_departments: false
+    operational_roles: [non_workforce_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:department_biology_chemistry_environmental_science]
+
+  - unit_id: academic_unit:department_music_historical
+    published_name: Department of Music
+    aliases: [Music Department]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    contains_subordinate_departments: false
+    operational_roles: [non_workforce_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:department_music_theatre_dance]
+
+  - unit_id: academic_unit:department_performing_arts_historical
+    published_name: Department of Performing Arts
+    aliases: []
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    contains_subordinate_departments: false
+    operational_roles: [non_workforce_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:department_music_theatre_dance]
+
+  - unit_id: academic_unit:department_theater_dance_historical
+    published_name: Department of Theater and Dance
+    aliases: [Theater and Dance]
+    entity_type: department
+    formal_unit_type: department
+    governance_level: department
+    contains_subordinate_departments: false
+    operational_roles: [non_workforce_unit]
+    deprecated: true
+    active_current_unit: false
+    valid_curriculum_ownership_unit: false
+    valid_faculty_home_unit: false
+    valid_conventional_denominator_unit: false
+    successor_unit_ids: [academic_unit:department_music_theatre_dance]

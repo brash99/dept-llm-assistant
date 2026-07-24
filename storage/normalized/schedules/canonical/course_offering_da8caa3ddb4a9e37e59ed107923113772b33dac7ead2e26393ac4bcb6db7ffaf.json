@@ -1,0 +1,353 @@
+{
+  "id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 200 Section 2 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: ENGL 200\nSection: 2\nTitle: Lit Foundation I:Ancient-17thC\nCRN: 9140",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf",
+          "published_name": "ENGL 200 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf",
+                "published_name": "ENGL 200 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "f32273dd72854a62dc4c2d7639624d8f8cba8c98a70dbf1d489bc93bac8430c1"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 970,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "da8caa3ddb4a9e37e59ed107923113772b33dac7ead2e26393ac4bcb6db7ffaf",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 970,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "ENGL",
+  "course_number": "200",
+  "course_code": "ENGL 200",
+  "course_title": "Lit Foundation I:Ancient-17thC",
+  "section": "2",
+  "crn": "9140",
+  "instructor_name": "Jessica Apolloni",
+  "instructor_raw": "Jessica Apolloni",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "efc4f487ee6202465bd4459f572425078502e26796ad1d13adc17a27bc8e0792",
+        "eb122d039ce23b1ab47e5ea95860e71f4a5a8ca24a3957087a7dc66db399d894",
+        "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Lit Foundation I:Ancient-17thC"
+    ],
+    "normalized_value": "Lit Foundation I:Ancient-17thC",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1500-1615",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1500-1615",
+  "start_time": "15:00",
+  "end_time": "16:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 162",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 14,
+  "capacity": 25,
+  "waitlist": null,
+  "seats_available": 11,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1500-1615",
+      "location_published": "Lewis McMurran Hall 162",
+      "source_rows": [
+        970,
+        6159
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "9fefa6a6327f2abf9b972c9d1fbd25e5ce594860b44cc3be28d3f5b5b6deafae",
+    "source_row_hashes": [
+      "420e77d5b9d3a97e9c0f17cd3e19cd5b07143edc30821f4dabed757eddafa7e9",
+      "9de1250c47b653d470b83644ee897fb7e1d258f708d197f50c262cb61e6297b7"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 970,
+    "source_rows": [
+      970,
+      6159
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9140",
+    "Course": "ENGL 200",
+    "Section": "2",
+    "Title": "Lit Foundation I:Ancient-17thC",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1500-1615",
+    "Location": "Lewis McMurran Hall 162",
+    "Instructor": "Jessica Apolloni",
+    "Seats Still Available": "11",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "25",
+    "Enrolled": "14",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    970,
+    6159
+  ],
+  "raw_records": [
+    {
+      "CRN": "9140",
+      "Course": "ENGL 200",
+      "Section": "2",
+      "Title": "Lit Foundation I:Ancient-17thC",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Lewis McMurran Hall 162",
+      "Instructor": "Jessica Apolloni",
+      "Seats Still Available": "11",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "25",
+      "Enrolled": "14",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "9140",
+      "Course": "ENGL 200",
+      "Section": "2",
+      "Title": "Lit Foundation I:Ancient-17thC",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Lewis McMurran Hall 162",
+      "Instructor": "Jessica Apolloni",
+      "Seats Still Available": "11",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "25",
+      "Enrolled": "14",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

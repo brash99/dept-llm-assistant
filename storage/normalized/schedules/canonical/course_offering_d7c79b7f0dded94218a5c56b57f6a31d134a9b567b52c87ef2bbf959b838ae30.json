@@ -1,0 +1,352 @@
+{
+  "id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 223 Section 12 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: ENGL 223\nSection: 12\nTitle: Second-Year Writing Seminar\nCRN: 8123",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30",
+          "published_name": "ENGL 223 12"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30",
+                "published_name": "ENGL 223 12"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "73a10bfce6230e4aeb2b9c6c2a28660c9809cbd519bbd0a7b3cbfbf2946883db"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 11002,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "d7c79b7f0dded94218a5c56b57f6a31d134a9b567b52c87ef2bbf959b838ae30",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 11002,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "ENGL",
+  "course_number": "223",
+  "course_code": "ENGL 223",
+  "course_title": "Second-Year Writing Seminar",
+  "section": "12",
+  "crn": "8123",
+  "instructor_name": "Cristina Menjivar",
+  "instructor_raw": "Cristina Menjivar",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "14d3039b8e8708840db80553f5fc7c6d36fc018b28abb612cb44224bcaffaec1",
+        "be4337903716a5fc22e698a24610f2efa69e5ef6532027adc881ebe2565cb8c8"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Second-Year Writing Seminar"
+    ],
+    "normalized_value": "Second-Year Writing Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1200-1250",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1200-1250",
+  "start_time": "12:00",
+  "end_time": "12:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 366",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 22,
+  "capacity": 22,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "GE, LLF, LLFW, LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1200-1250",
+      "location_published": "Lewis McMurran Hall 366",
+      "source_rows": [
+        11002,
+        13724
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "166246564f8fac3475f8e97f8ccf1d5ba5875a13a25d781da131679ef7054c49",
+    "source_row_hashes": [
+      "c3eafdce8473635580381794b07bb9054bbf338289a1a0c3046a816e70c54a3a",
+      "91a7aa1b30cdb93e23de545d777a5332d7e1c5adce224251127e9a9e040738ce"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 11002,
+    "source_rows": [
+      11002,
+      13724
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8123",
+    "Course": "ENGL 223",
+    "Section": "12",
+    "Title": "Second-Year Writing Seminar",
+    "Hours": "3",
+    "Area of LLC": "GE, LLF, LLFW, LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1200-1250",
+    "Location": "Lewis McMurran Hall 366",
+    "Instructor": "Cristina Menjivar",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "22",
+    "Enrolled": "22",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    11002,
+    13724
+  ],
+  "raw_records": [
+    {
+      "CRN": "8123",
+      "Course": "ENGL 223",
+      "Section": "12",
+      "Title": "Second-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LLF, LLFW, LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Lewis McMurran Hall 366",
+      "Instructor": "Cristina Menjivar",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "22",
+      "Enrolled": "22",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "8123",
+      "Course": "ENGL 223",
+      "Section": "12",
+      "Title": "Second-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LLF, LLFW, LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Lewis McMurran Hall 366",
+      "Instructor": "Cristina Menjivar",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "22",
+      "Enrolled": "22",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

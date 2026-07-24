@@ -1,0 +1,317 @@
+{
+  "id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 123 Section ON2 (2023_may)",
+  "text": "Academic term: 2023_may\nCourse: ENGL 123\nSection: ON2\nTitle: First-Year Writing Seminar\nCRN: 2127",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0",
+          "published_name": "ENGL 123 ON2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_may",
+        "published_label": "May Term 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0",
+                "published_name": "ENGL 123 ON2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_may",
+              "published_label": "May Term 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7eb8d3e6fb68c8bd51665b08f9a5c42aa1f78ed8dc4771ffb9e77fa3e1d4bc3f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 10987,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "69e8f9de7a7131a41cc0222f8278f2aa5f274747bee934a8959fbdaa261e53b0",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 10987,
+  "acquisition_date": null,
+  "academic_term": "2023_may",
+  "academic_term_published": "May Term 2023",
+  "subject": "ENGL",
+  "course_number": "123",
+  "course_code": "ENGL 123",
+  "course_title": "First-Year Writing Seminar",
+  "section": "ON2",
+  "crn": "2127",
+  "instructor_name": "Nathan Stewart",
+  "instructor_raw": "Nathan Stewart",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "First-Year Writing Seminar"
+    ],
+    "normalized_value": "First-Year Writing Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Asynchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "GE, LETR, LLF, LLFW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "Asynchronous Online Course ",
+      "source_rows": [
+        10987
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "504b7c2c307d02e6658e2e6d2903896ea5ae4b76d91b0efa7d316a82181c1aa9",
+    "source_row_hashes": [
+      "e134e3700829ed0feab62d3f1a83066cfa1fbcd2cecda04270f732f2ff47888b"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 10987,
+    "source_rows": [
+      10987
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "2127",
+    "Course": "ENGL 123",
+    "Section": "ON2",
+    "Title": "First-Year Writing Seminar",
+    "Hours": "3",
+    "Area of LLC": "GE, LETR, LLF, LLFW",
+    "Type": "Lec",
+    "Days": "",
+    "Time": "-",
+    "Location": "Asynchronous Online Course ",
+    "Instructor": "Nathan Stewart",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "18",
+    "Instructor Type": "Adjunct",
+    "Term": "May Term 2023"
+  },
+  "source_rows": [
+    10987
+  ],
+  "raw_records": [
+    {
+      "CRN": "2127",
+      "Course": "ENGL 123",
+      "Section": "ON2",
+      "Title": "First-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LETR, LLF, LLFW",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Nathan Stewart",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "May Term 2023"
+    }
+  ],
+  "published_field_variants": {}
+}

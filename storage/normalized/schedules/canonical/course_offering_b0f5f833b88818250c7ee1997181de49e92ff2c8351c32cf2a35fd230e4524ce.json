@@ -1,0 +1,354 @@
+{
+  "id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ARAB 399 Section 1 (2024_spring)",
+  "text": "Academic term: 2024_spring\nCourse: ARAB 399\nSection: 1\nTitle: Independent Study\nCRN: 9403",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce",
+          "published_name": "ARAB 399 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_spring",
+        "published_label": "Spring Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce",
+                "published_name": "ARAB 399 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_spring",
+              "published_label": "Spring Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9a17cbcf868e900cb23bbd289acdea5c31c9c0259931f3411c5e01872a9a6d0e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 8099,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 8099,
+  "acquisition_date": null,
+  "academic_term": "2024_spring",
+  "academic_term_published": "Spring Semester 2024",
+  "subject": "ARAB",
+  "course_number": "399",
+  "course_code": "ARAB 399",
+  "course_title": "Independent Study",
+  "section": "1",
+  "crn": "9403",
+  "instructor_name": "Diana Obeid",
+  "instructor_raw": "Diana Obeid",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "87619ac2318f46c3b8b9ea2ae0ec7757da5e0567d34a6066ae537bf78e267ba3",
+        "011f048728c9b6752426b5a96742574a9e804d431d7d3a71b7961128d7d89d32",
+        "3aab670e2f49fa174633f5fceb93c1dcc0c02bee36827b6adde358d3c280116e",
+        "9cfedbfd5c210799712a1a55320643670a74a13c4aa2d1a4658a69d5935d5e40"
+      ],
+      "supporting_terms": [
+        "2023_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Independent Study"
+    ],
+    "normalized_value": "Independent Study",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Ind",
+  "meeting_pattern": "WF 1500-1600",
+  "meeting_days": "WF",
+  "meeting_time_raw": "1500-1600",
+  "start_time": "15:00",
+  "end_time": "16:00",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 307",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 1,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -1,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LLF, LLFL",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "WF",
+      "time_published": "1500-1600",
+      "location_published": "Lewis McMurran Hall 307",
+      "source_rows": [
+        8099,
+        13410
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "fdf9a3b2c6a67c86c449380d857f10d8f93aa7c7577d1b6a97a4b62fd4971322",
+    "source_row_hashes": [
+      "deccb4f41835ba9e98781c302150cb1d1b54ea60bb2920e871152edf88245f95",
+      "44c3c96ac85a239b17e1f61f61fa394c0cf5163d5f0efa3dfc3d367a93b4ab2b"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 8099,
+    "source_rows": [
+      8099,
+      13410
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9403",
+    "Course": "ARAB 399",
+    "Section": "1",
+    "Title": "Independent Study",
+    "Hours": "1",
+    "Area of LLC": "LLF, LLFL",
+    "Type": "Ind",
+    "Days": "WF",
+    "Time": "1500-1600",
+    "Location": "Lewis McMurran Hall 307",
+    "Instructor": "Diana Obeid",
+    "Seats Still Available": "-1",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "1",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2024"
+  },
+  "source_rows": [
+    8099,
+    13410
+  ],
+  "raw_records": [
+    {
+      "CRN": "9403",
+      "Course": "ARAB 399",
+      "Section": "1",
+      "Title": "Independent Study",
+      "Hours": "1",
+      "Area of LLC": "LLF, LLFL",
+      "Type": "Ind",
+      "Days": "WF",
+      "Time": "1500-1600",
+      "Location": "Lewis McMurran Hall 307",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2024"
+    },
+    {
+      "CRN": "9403",
+      "Course": "ARAB 399",
+      "Section": "1",
+      "Title": "Independent Study",
+      "Hours": "1",
+      "Area of LLC": "LLF, LLFL",
+      "Type": "Ind",
+      "Days": "WF",
+      "Time": "1500-1600",
+      "Location": "Lewis McMurran Hall 307",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "-1",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "1",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 490 Section 3 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: PSYC 490\nSection: 3\nTitle: WI: Senior Seminar in Psych\nCRN: 8832",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562",
+          "published_name": "PSYC 490 3"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562",
+                "published_name": "PSYC 490 3"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c706bc5c44a1189863aef8c22c5d23083ae42a963aafcc27e78300f5c89b024a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3608,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "d5f0f398a12dfe03d19b4fd7e7d12480583fbb12251aa41db430e1e6157ef562",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3608,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "PSYC",
+  "course_number": "490",
+  "course_code": "PSYC 490",
+  "course_title": "WI: Senior Seminar in Psych",
+  "section": "3",
+  "crn": "8832",
+  "instructor_name": "Earl Riggins",
+  "instructor_raw": "Earl Riggins",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "e53f5b6574af2595e042d13e0c7e915547793152501b796b83e3e92356978ea7",
+        "2a5cb655e4f268c2cf164425c027e3aceae527919837ea7561e7f04b110da11a",
+        "1774edf3e0f1dc3d5dbc63be24995420b758072f18e07be9395ff62ce1ddf78a",
+        "229d3235c19f59667e139b4f1a516cdec5598e2fa7f34918ec369fd92c9dc57b"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Senior Seminar in Psych"
+    ],
+    "normalized_value": "WI: Senior Seminar in Psych",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1600-1715",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1600-1715",
+  "start_time": "16:00",
+  "end_time": "17:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2012",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 12,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 7,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "WI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1600-1715",
+      "location_published": "Forbes Hall 2012",
+      "source_rows": [
+        3608,
+        8887
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "72471d38f853719782344328aa8a67337e6384216788ba1c37de6abed7c56fa4",
+    "source_row_hashes": [
+      "0bdb34e2faf43196d15113c53b2241b99b36ad6bbbe7350e16b52d063845f99f",
+      "dedfc81ed41ce0cb7ef1a614f9e8dfad484c53d13bf5f96cca8bc092297b479d"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3608,
+    "source_rows": [
+      3608,
+      8887
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8832",
+    "Course": "PSYC 490",
+    "Section": "3",
+    "Title": "WI: Senior Seminar in Psych",
+    "Hours": "3",
+    "Area of LLC": "WI",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1600-1715",
+    "Location": "Forbes Hall 2012",
+    "Instructor": "Earl Riggins",
+    "Seats Still Available": "7",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "12",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    3608,
+    8887
+  ],
+  "raw_records": [
+    {
+      "CRN": "8832",
+      "Course": "PSYC 490",
+      "Section": "3",
+      "Title": "WI: Senior Seminar in Psych",
+      "Hours": "3",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1600-1715",
+      "Location": "Forbes Hall 2012",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "7",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "12",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8832",
+      "Course": "PSYC 490",
+      "Section": "3",
+      "Title": "WI: Senior Seminar in Psych",
+      "Hours": "3",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1600-1715",
+      "Location": "Forbes Hall 2012",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "7",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "12",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

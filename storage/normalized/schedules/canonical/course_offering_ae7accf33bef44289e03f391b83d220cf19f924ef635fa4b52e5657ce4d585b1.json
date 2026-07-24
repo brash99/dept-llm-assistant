@@ -1,0 +1,316 @@
+{
+  "id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: FNAR 121 Section 1 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: FNAR 121\nSection: 1\nTitle: Drawing I\nCRN: 8573",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1",
+          "published_name": "FNAR 121 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1",
+                "published_name": "FNAR 121 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "30766c9eef6a173ef0f3531157e99bc0a59992815ea5f8338ec7e6bfe5e1ebed"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 17074,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "ae7accf33bef44289e03f391b83d220cf19f924ef635fa4b52e5657ce4d585b1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 17074,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "FNAR",
+  "course_number": "121",
+  "course_code": "FNAR 121",
+  "course_title": "Drawing I",
+  "section": "1",
+  "crn": "8573",
+  "instructor_name": "Barbara Stephenson",
+  "instructor_raw": "Barbara Stephenson",
+  "instructor_type": {
+    "published_value": "Adjunct",
+    "published_values": [
+      "Adjunct"
+    ],
+    "normalized_value": "adjunct",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Drawing I"
+    ],
+    "normalized_value": "Drawing I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Stu",
+  "meeting_pattern": "MW 0800-1020",
+  "meeting_days": "MW",
+  "meeting_time_raw": "0800-1020",
+  "start_time": "08:00",
+  "end_time": "10:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Torggler Fine Arts Center 318",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 15,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LETR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "0800-1020",
+      "location_published": "Torggler Fine Arts Center 318",
+      "source_rows": [
+        17074
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "bcf219be81d746f5bda4dd6a61c87ec2d345aab43eec6fb8af413caf21f45435",
+    "source_row_hashes": [
+      "bd266c778ccbb4ed8600702355ff7531b35adf3c37564cd65bb1fd4d9c59d5c1"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 17074,
+    "source_rows": [
+      17074
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8573",
+    "Course": "FNAR 121",
+    "Section": "1",
+    "Title": "Drawing I",
+    "Hours": "3",
+    "Area of LLC": "LETR",
+    "Type": "Stu",
+    "Days": "MW",
+    "Time": "0800-1020",
+    "Location": "Torggler Fine Arts Center 318",
+    "Instructor": "Barbara Stephenson",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "15",
+    "Enrolled": "15",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    17074
+  ],
+  "raw_records": [
+    {
+      "CRN": "8573",
+      "Course": "FNAR 121",
+      "Section": "1",
+      "Title": "Drawing I",
+      "Hours": "3",
+      "Area of LLC": "LETR",
+      "Type": "Stu",
+      "Days": "MW",
+      "Time": "0800-1020",
+      "Location": "Torggler Fine Arts Center 318",
+      "Instructor": "Barbara Stephenson",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "15",
+      "Enrolled": "15",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {}
+}

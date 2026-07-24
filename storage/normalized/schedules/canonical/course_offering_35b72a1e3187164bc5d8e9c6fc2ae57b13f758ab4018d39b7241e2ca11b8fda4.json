@@ -1,0 +1,354 @@
+{
+  "id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 201 Section ON1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: PSYC 201\nSection: ON1\nCRN: 9029",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4",
+          "published_name": "PSYC 201 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4",
+                "published_name": "PSYC 201 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "678ebdb33a04e86ac960081a034b8a0cd256e14f66eb983a0b7312df94c385f0"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4612,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "35b72a1e3187164bc5d8e9c6fc2ae57b13f758ab4018d39b7241e2ca11b8fda4",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4612,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "PSYC",
+  "course_number": "201",
+  "course_code": "PSYC 201",
+  "course_title": null,
+  "section": "ON1",
+  "crn": "9029",
+  "instructor_name": "Jeff Gibbons",
+  "instructor_raw": "Jeff Gibbons",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Inv Biol Bases of Beh & Cogn",
+      "Intro to Psychological Science"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "eb2a61c292acc8a2af4d647739476ab78105166c97cc5e551bee36b6cb8c09d1",
+        "d83ee2d353b4be0edf9b5e7aad49bb21f28e4c5a84a125cc01c0b0111edf7323",
+        "c4db76a0cea4797589905cac1ef34c347ae4d1c65e31cc65c875ccb36eaba70b",
+        "607f4f0d317a0de179ab33a0cc2a630528e1caace31bfedf493a56b9b4257ccc"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1300-1350",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1300-1350",
+  "start_time": "13:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Synchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 85,
+  "capacity": 90,
+  "waitlist": null,
+  "seats_available": 5,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, OR, SSCI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1300-1350",
+      "location_published": "Synchronous Online Course ",
+      "source_rows": [
+        4612,
+        7237
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "d7ab29702c89dd45ea3aaecc7859d1d27b1567061f2dc2f6f7f1482553d3c3ad",
+    "source_row_hashes": [
+      "9fe079a36f3c65b7418eb522707529207a95d834ec6467bcc231ace757fbb391",
+      "7b9a6194f77238bca35f86b9fd4f73ff393abe0cbcfa2b3ee19c2efbdb878b5e"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4612,
+    "source_rows": [
+      4612,
+      7237
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9029",
+    "Course": "PSYC 201",
+    "Section": "ON1",
+    "Title": "Inv Biol Bases of Beh & Cogn",
+    "Hours": "3",
+    "Area of LLC": "AINW, GE, OR, SSCI",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1300-1350",
+    "Location": "Synchronous Online Course ",
+    "Instructor": "Jeff Gibbons",
+    "Seats Still Available": "5",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "90",
+    "Enrolled": "85",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    4612,
+    7237
+  ],
+  "raw_records": [
+    {
+      "CRN": "9029",
+      "Course": "PSYC 201",
+      "Section": "ON1",
+      "Title": "Inv Biol Bases of Beh & Cogn",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, OR, SSCI",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Jeff Gibbons",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "90",
+      "Enrolled": "85",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "9029",
+      "Course": "PSYC 201",
+      "Section": "ON1",
+      "Title": "Intro to Psychological Science",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, OR, SSCI",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1300-1350",
+      "Location": "Synchronous Online Course ",
+      "Instructor": "Jeff Gibbons",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "90",
+      "Enrolled": "85",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Inv Biol Bases of Beh & Cogn",
+      "Intro to Psychological Science"
+    ]
+  }
+}

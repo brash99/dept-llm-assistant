@@ -1,0 +1,352 @@
+{
+  "id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PHYS 201 Section 1M (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: PHYS 201\nSection: 1M\nTitle: University Physics I\nCRN: 8271",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8",
+          "published_name": "PHYS 201 1M"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8",
+                "published_name": "PHYS 201 1M"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "819ecd31c786c5c520af326eb76674251eb735679ebfe08ca6a4a7677320582a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 8303,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e641324de2270efe6c04c14b3499050f40d2efb909a852bef8fe4958d050ebf8",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 8303,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "PHYS",
+  "course_number": "201",
+  "course_code": "PHYS 201",
+  "course_title": "University Physics I",
+  "section": "1M",
+  "crn": "8271",
+  "instructor_name": "Avery McElhenny",
+  "instructor_raw": "Avery McElhenny",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "eaa451c60bbd1de69230747cf632e3acd4a89a4fe14bf8a6e9ecb9969baac22e",
+        "31ce92b3dd95923baf8130d27128d762d2572d253275fd6ae954e126c8516cee"
+      ],
+      "supporting_terms": [
+        "2022_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "University Physics I"
+    ],
+    "normalized_value": "University Physics I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1630-1745",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1630-1745",
+  "start_time": "16:30",
+  "end_time": "17:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 322",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 19,
+  "capacity": 26,
+  "waitlist": null,
+  "seats_available": 7,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, NSCI, OR, SCIE, XNAT",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1630-1745",
+      "location_published": "Joseph W. Luter III Hall 322",
+      "source_rows": [
+        8303,
+        13669
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "8f417848e5c6b4e906bc2a6f9fae4b5a142466a193edee9391c2e8932b1be969",
+    "source_row_hashes": [
+      "f215e2bff8475f496e0d13a98d604fa3d87e1b72e61b3bd69fa58a72b530fe79",
+      "b049d8b114bbb7e5c283fffee2a3dd3b3c5be0694463d94b88c1cddda3db03e3"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 8303,
+    "source_rows": [
+      8303,
+      13669
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8271",
+    "Course": "PHYS 201",
+    "Section": "1M",
+    "Title": "University Physics I",
+    "Hours": "3",
+    "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1630-1745",
+    "Location": "Joseph W. Luter III Hall 322",
+    "Instructor": "Avery McElhenny",
+    "Seats Still Available": "7",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "26",
+    "Enrolled": "19",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    8303,
+    13669
+  ],
+  "raw_records": [
+    {
+      "CRN": "8271",
+      "Course": "PHYS 201",
+      "Section": "1M",
+      "Title": "University Physics I",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Joseph W. Luter III Hall 322",
+      "Instructor": "Avery McElhenny",
+      "Seats Still Available": "7",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "19",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    },
+    {
+      "CRN": "8271",
+      "Course": "PHYS 201",
+      "Section": "1M",
+      "Title": "University Physics I",
+      "Hours": "3",
+      "Area of LLC": "AINW, GE, NSCI, OR, SCIE, XNAT",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1630-1745",
+      "Location": "Joseph W. Luter III Hall 322",
+      "Instructor": "Avery McElhenny",
+      "Seats Still Available": "7",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "19",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

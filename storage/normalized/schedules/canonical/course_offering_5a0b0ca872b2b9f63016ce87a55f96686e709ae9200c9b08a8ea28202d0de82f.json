@@ -1,0 +1,352 @@
+{
+  "id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: SOWK 402 Section 1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: SOWK 402\nSection: 1\nTitle: WI: Field Instruction II\nCRN: 9144",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f",
+          "published_name": "SOWK 402 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f",
+                "published_name": "SOWK 402 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d9a907ed0cc93052e20fd2e10c2d7dd6e4775d56b707e239dbe6fbd37f346c20"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 2393,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "5a0b0ca872b2b9f63016ce87a55f96686e709ae9200c9b08a8ea28202d0de82f",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 2393,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "SOWK",
+  "course_number": "402",
+  "course_code": "SOWK 402",
+  "course_title": "WI: Field Instruction II",
+  "section": "1",
+  "crn": "9144",
+  "instructor_name": "Diane Griffiths",
+  "instructor_raw": "Diane Griffiths",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "7176b9d903919195a41b6e6ba5f4586527cc7e05c215ae581b25f12c6342f6a1",
+        "719a37b5394c0e2d44c8203513c39fb61121e20a313d6a18084456c9c1c0fe43"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Field Instruction II"
+    ],
+    "normalized_value": "WI: Field Instruction II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "6"
+    ],
+    "normalized_value": "6",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "M 1200-1350",
+  "meeting_days": "M",
+  "meeting_time_raw": "1200-1350",
+  "start_time": "12:00",
+  "end_time": "13:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 131",
+  "building": null,
+  "room": null,
+  "credits": 6,
+  "credits_raw": "6",
+  "enrollment": 8,
+  "capacity": 8,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "WI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "1200-1350",
+      "location_published": "Joseph W. Luter III Hall 131",
+      "source_rows": [
+        2393,
+        20721
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "a0e269cdeaab02f8eed9a3850f9af5795f98135a08774557785febfa64c54337",
+    "source_row_hashes": [
+      "bacef2a5380a8ee65dc0b8f69181befd062d1c0b69ac472d28539affd94c6a6b",
+      "d522850e7fa82df0f9aad3a6937141d86ebae683af8ae5c4924d8bef082bb754"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 2393,
+    "source_rows": [
+      2393,
+      20721
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "9144",
+    "Course": "SOWK 402",
+    "Section": "1",
+    "Title": "WI: Field Instruction II",
+    "Hours": "6",
+    "Area of LLC": "WI",
+    "Type": "Lec",
+    "Days": "M",
+    "Time": "1200-1350",
+    "Location": "Joseph W. Luter III Hall 131",
+    "Instructor": "Diane Griffiths",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "8",
+    "Enrolled": "8",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    2393,
+    20721
+  ],
+  "raw_records": [
+    {
+      "CRN": "9144",
+      "Course": "SOWK 402",
+      "Section": "1",
+      "Title": "WI: Field Instruction II",
+      "Hours": "6",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "1200-1350",
+      "Location": "Joseph W. Luter III Hall 131",
+      "Instructor": "Diane Griffiths",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "8",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "9144",
+      "Course": "SOWK 402",
+      "Section": "1",
+      "Title": "WI: Field Instruction II",
+      "Hours": "6",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "1200-1350",
+      "Location": "Joseph W. Luter III Hall 131",
+      "Instructor": "Diane Griffiths",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "8",
+      "Enrolled": "8",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

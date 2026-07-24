@@ -29,6 +29,16 @@ env/
 # Environment variables
 .env
 
+# Editor and source snapshots
+*~
+*.bak
+*.old
+*.orig
+*.rej
+*.pre_*
+*.before_*
+*.sprint*.bak
+
 # Jupyter
 .ipynb_checkpoints/
 
@@ -40,9 +50,6 @@ env/
 htmlcov/
 
 
-# --------------------------------------------------------------------
-# Runtime storage
-# --------------------------------------------------------------------
 # ----------------------------------------------------------------------
 # Runtime storage
 # ----------------------------------------------------------------------
@@ -52,6 +59,12 @@ storage/raw_drive/*
 
 storage/normalized/*
 !storage/normalized/.gitkeep
+!storage/normalized/faculty/
+!storage/normalized/faculty/**
+!storage/normalized/catalogs/
+!storage/normalized/catalogs/**
+!storage/normalized/schedules/
+!storage/normalized/schedules/**
 
 storage/chunks/*
 !storage/chunks/.gitkeep
@@ -82,5 +95,7 @@ storage/raw_private/
 storage/campaigns/
 storage/backups/
 storage/discovery_candidates/
+storage/external_staging/
+storage/reports/
 
 intake/

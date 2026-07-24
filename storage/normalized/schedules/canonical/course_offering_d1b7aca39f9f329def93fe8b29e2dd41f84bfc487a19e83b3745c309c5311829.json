@@ -1,0 +1,355 @@
+{
+  "id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ARAB 101 Section 2 (2026_fall)",
+  "text": "Academic term: 2026_fall\nCourse: ARAB 101\nSection: 2\nTitle: Beginning Arabic I\nCRN: 8043",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829",
+          "published_name": "ARAB 101 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_fall",
+        "published_label": "Fall Semester 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829",
+                "published_name": "ARAB 101 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_fall",
+              "published_label": "Fall Semester 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "1ee6724b8d97332e0ed4db6c5b77f0b16ac4fa2823051611e501a4cb57e35ecd"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1514,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "d1b7aca39f9f329def93fe8b29e2dd41f84bfc487a19e83b3745c309c5311829",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1514,
+  "acquisition_date": null,
+  "academic_term": "2026_fall",
+  "academic_term_published": "Fall Semester 2026",
+  "subject": "ARAB",
+  "course_number": "101",
+  "course_code": "ARAB 101",
+  "course_title": "Beginning Arabic I",
+  "section": "2",
+  "crn": "8043",
+  "instructor_name": "Diana Obeid",
+  "instructor_raw": "Diana Obeid",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "67f80cae62b454f6d6ced5eb0ac0d7330cc03823022fc8a38035dacfa0608c6f",
+        "6f8f997041fcb67268a376b687dae9330d236c82a62726111d68ea6d1f9c888e",
+        "45ecca17dd4ecfec987170bf9860cab1e41cbb0ed9bb5e5bba98f17e3d6edce9",
+        "dfb90f2f8a91e01c29ddac9d1d78d0bda8a44b9acbf3bfc8e6f5302274dbeb04",
+        "fbe5b59e6666a76b7a998129dcb9413dbcf823fa118a80b7660014926ad6563c"
+      ],
+      "supporting_terms": [
+        "2026_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Beginning Arabic I"
+    ],
+    "normalized_value": "Beginning Arabic I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1200-1250",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1200-1250",
+  "start_time": "12:00",
+  "end_time": "12:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 310",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 13,
+  "capacity": 15,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1200-1250",
+      "location_published": "Lewis McMurran Hall 310",
+      "source_rows": [
+        1514,
+        17299
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "af580e8540e722add840aee2f1bae868175d0c34eb9378aeab81ea9828718172",
+    "source_row_hashes": [
+      "8486a22ae2cb520e19d2ce95148e3cad173f182eac250c81e6d3360db86378b4",
+      "2fe3e9a15f02df576294443ba8b3ec14318fde887a0d64f2d92ea5ec7a8dbedd"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1514,
+    "source_rows": [
+      1514,
+      17299
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8043",
+    "Course": "ARAB 101",
+    "Section": "2",
+    "Title": "Beginning Arabic I",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1200-1250",
+    "Location": "Lewis McMurran Hall 310",
+    "Instructor": "Diana Obeid",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "15",
+    "Enrolled": "13",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2026"
+  },
+  "source_rows": [
+    1514,
+    17299
+  ],
+  "raw_records": [
+    {
+      "CRN": "8043",
+      "Course": "ARAB 101",
+      "Section": "2",
+      "Title": "Beginning Arabic I",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Lewis McMurran Hall 310",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "15",
+      "Enrolled": "13",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2026"
+    },
+    {
+      "CRN": "8043",
+      "Course": "ARAB 101",
+      "Section": "2",
+      "Title": "Beginning Arabic I",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1200-1250",
+      "Location": "Lewis McMurran Hall 310",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "15",
+      "Enrolled": "13",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2026"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

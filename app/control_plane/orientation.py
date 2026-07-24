@@ -1,5 +1,5 @@
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional, Sequence, Tuple
 
 from app.control_plane.concepts import InstitutionalConcept
@@ -9,6 +9,7 @@ from app.control_plane.semantic_neighbors import (
     SemanticProgramNeighbor,
     SemanticProgramNeighborhoodService,
 )
+from app.question_scope import QuestionScopeAssessment, classify_question_scope
 
 
 @dataclass(frozen=True)
@@ -27,6 +28,9 @@ class InstitutionalOrientation:
     resolution: ProgramResolution
     confidence: float
     notes: Tuple[str, ...]
+    question_scope: QuestionScopeAssessment = field(
+        default_factory=lambda: classify_question_scope("")
+    )
 
     @property
     def has_resolved_entities(self) -> bool:
@@ -41,7 +45,7 @@ class ProposedProgramConceptExtractor:
     """
     Deterministically identify proposed academic-program concepts.
 
-    Version 0.1 intentionally recognizes only explicit proposal language.
+    The extractor intentionally recognizes only explicit proposal language.
     It does not use an LLM and does not fabricate ProgramEntity records.
     """
 
@@ -79,9 +83,10 @@ class ProposedProgramConceptExtractor:
         (?P<name>
             [A-Za-z][A-Za-z&/\-]*(?:
                 \s+[A-Za-z][A-Za-z&/\-]*
-            ){0,6}
+            ){0,6}?
         )
         \s+
+        (?:academic\s+)?
         (?P<structure>program|major|concentration|certificate|track|specialization|pathway)\b
         """,
         flags=re.IGNORECASE | re.VERBOSE,
@@ -165,17 +170,35 @@ class ProposedProgramConceptExtractor:
             if not cleaned_name:
                 continue
 
-            concepts.append(
-                InstitutionalConcept(
-                    name=cleaned_name,
-                    concept_type=concept_type,
-                    asserted=False,
-                    confidence=0.85,
-                    extraction_method="explicit_academic_structure_v0.5",
-                )
+            concept = InstitutionalConcept(
+                name=cleaned_name,
+                concept_type=concept_type,
+                asserted=False,
+                confidence=0.85,
+                extraction_method="explicit_academic_structure_v0.5",
             )
 
+            if self._duplicates_resolved_entity(concept, resolution):
+                continue
+
+            concepts.append(concept)
+
         return self._deduplicate(concepts)
+
+    @staticmethod
+    def _duplicates_resolved_entity(
+        concept: InstitutionalConcept,
+        resolution: ProgramResolution,
+    ) -> bool:
+        """Avoid relabeling the resolved catalog entity as a proposal."""
+        if not resolution.found or resolution.program is None:
+            return False
+
+        asserted_names = {
+            resolution.program.name.casefold(),
+            *(alias.casefold() for alias in resolution.program.aliases),
+        }
+        return concept.name.casefold() in asserted_names
 
     def _contains_proposal_language(self, question: str) -> bool:
         return any(
@@ -226,7 +249,7 @@ class ProposedProgramConceptExtractor:
 
 class ProgramOrientationService:
     """
-    Produce an InstitutionalOrientation from the Sprint 1 program services.
+    Produce an InstitutionalOrientation from catalog and semantic services.
 
     This service remains advisory. It executes before retrieval but does not
     yet modify the retrieval query or ranking.
@@ -253,6 +276,7 @@ class ProgramOrientationService:
             raise ValueError("Question must not be empty.")
 
         resolution = self.resolver.resolve(clean_question)
+        question_scope = classify_question_scope(clean_question)
 
         resolved_entities: List[ProgramEntity] = []
         if resolution.found and resolution.program is not None:
@@ -297,6 +321,7 @@ class ProgramOrientationService:
             proposed_concepts=tuple(proposed_concepts),
             semantic_neighbors=tuple(neighbors),
             resolution=resolution,
+            question_scope=question_scope,
             confidence=confidence,
             notes=tuple(notes),
         )
@@ -317,7 +342,7 @@ class ProgramOrientationService:
                 "academic_"
             ).replace("_", " ")
             parts.append(
-                f"Proposed {structure_label} concept: {concept.name}."
+                f"Proposed academic {structure_label} concept: {concept.name}."
             )
 
         return "\n".join(parts)
@@ -327,21 +352,22 @@ class ProgramOrientationService:
         resolution: ProgramResolution,
         proposed_concepts: Sequence[InstitutionalConcept],
     ) -> List[str]:
+        notes: List[str] = []
+
         if resolution.found and resolution.program is not None:
-            return [
-                (
-                    "The question explicitly references an existing program "
-                    "in the asserted institutional catalog."
-                )
-            ]
+            notes.append(
+                "The question explicitly references an existing program "
+                "in the asserted institutional catalog."
+            )
 
         if proposed_concepts:
-            return [
-                (
-                    "The question references a proposed academic program that "
-                    "is not asserted as an existing program in the catalog."
-                )
-            ]
+            notes.append(
+                "The question references a proposed academic program that "
+                "is not asserted as an existing program in the catalog."
+            )
+
+        if notes:
+            return notes
 
         return [
             (

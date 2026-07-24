@@ -1,0 +1,353 @@
+{
+  "id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CPSC 498 Section 1 (2025_spring)",
+  "text": "Academic term: 2025_spring\nCourse: CPSC 498\nSection: 1\nTitle: Capstone Project-Comp Science\nCRN: 8266",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1",
+          "published_name": "CPSC 498 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_spring",
+        "published_label": "Spring Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1",
+                "published_name": "CPSC 498 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_spring",
+              "published_label": "Spring Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "77ed7ad14acef7fd9b84cc55b935bcc45d368889943b219d4a103b320d77a96b"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 4192,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e0d8e85e8617cfc2cd7ac30f8fd78da395375c64e96e7a7933a37404aad362d1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 4192,
+  "acquisition_date": null,
+  "academic_term": "2025_spring",
+  "academic_term_published": "Spring Semester 2025",
+  "subject": "CPSC",
+  "course_number": "498",
+  "course_code": "CPSC 498",
+  "course_title": "Capstone Project-Comp Science",
+  "section": "1",
+  "crn": "8266",
+  "instructor_name": "Daniel Belsky",
+  "instructor_raw": "Daniel Belsky",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "f211b0cb8a2538e47ca282b3184a12ccc458d8bfc6dc074a89db5b90f6acd4af",
+        "60e1c8ecc8ef54352085a7be5053af4727c2b56de30c13d697bf215c0a540cfd",
+        "fe790ea93dd76de284cf575ad86c9f6085c9bca0558114a2417ed0e3f3a0f153"
+      ],
+      "supporting_terms": [
+        "2024_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Capstone Project-Comp Science"
+    ],
+    "normalized_value": "Capstone Project-Comp Science",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1100-1150",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1100-1150",
+  "start_time": "11:00",
+  "end_time": "11:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 258",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 23,
+  "capacity": 24,
+  "waitlist": null,
+  "seats_available": 1,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1100-1150",
+      "location_published": "Joseph W. Luter III Hall 258",
+      "source_rows": [
+        4192,
+        17389
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "d6f428e08eab09e1783381ba6d9e05cd830fcd3f81aeb6eb723eee14794938e5",
+    "source_row_hashes": [
+      "cb6fc627ad1c423e232a75d29692d8765dcd5abf15e467570d04966a7d908dad",
+      "4aade312a669a24a03887886dc23ccb429c561c7f86f44543ef0058a4ab50d95"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 4192,
+    "source_rows": [
+      4192,
+      17389
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8266",
+    "Course": "CPSC 498",
+    "Section": "1",
+    "Title": "Capstone Project-Comp Science",
+    "Hours": "3",
+    "Area of LLC": "LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1100-1150",
+    "Location": "Joseph W. Luter III Hall 258",
+    "Instructor": "Daniel Belsky",
+    "Seats Still Available": "1",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "24",
+    "Enrolled": "23",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2025"
+  },
+  "source_rows": [
+    4192,
+    17389
+  ],
+  "raw_records": [
+    {
+      "CRN": "8266",
+      "Course": "CPSC 498",
+      "Section": "1",
+      "Title": "Capstone Project-Comp Science",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Daniel Belsky",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "23",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2025"
+    },
+    {
+      "CRN": "8266",
+      "Course": "CPSC 498",
+      "Section": "1",
+      "Title": "Capstone Project-Comp Science",
+      "Hours": "3",
+      "Area of LLC": "LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1100-1150",
+      "Location": "Joseph W. Luter III Hall 258",
+      "Instructor": "Daniel Belsky",
+      "Seats Still Available": "1",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "24",
+      "Enrolled": "23",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

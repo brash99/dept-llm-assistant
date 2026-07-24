@@ -1,0 +1,352 @@
+{
+  "id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 123 Section 13 (2027_spring)",
+  "text": "Academic term: 2027_spring\nCourse: ENGL 123\nSection: 13\nTitle: First-Year Writing Seminar\nCRN: 8432",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490",
+          "published_name": "ENGL 123 13"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2027_spring",
+        "published_label": "Spring Semester 2027"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490",
+                "published_name": "ENGL 123 13"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2027_spring",
+              "published_label": "Spring Semester 2027"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d6f7d3aedb28db1926f9c82e7d3a5bc53aaa1f9bffeb3a59245c226bcc286700"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 5783,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "5fb08118882a21ddc34e3988ea35427bb3a856322c04139c4908c76dc4d49490",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 5783,
+  "acquisition_date": null,
+  "academic_term": "2027_spring",
+  "academic_term_published": "Spring Semester 2027",
+  "subject": "ENGL",
+  "course_number": "123",
+  "course_code": "ENGL 123",
+  "course_title": "First-Year Writing Seminar",
+  "section": "13",
+  "crn": "8432",
+  "instructor_name": "Jessica Apolloni",
+  "instructor_raw": "Jessica Apolloni",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "2100c11758be7a6453ac2f0796e3c283419ca2b1b20cfeee040a8d5c77f0b79e",
+        "a02f0d638a496ce1d96427106d7aa174aad54bac2d6cf82225cbbdf90594e0d4",
+        "75c18522f0fab767433121fdb7b25a9009321c321e42cf24c45e93da91a30183"
+      ],
+      "supporting_terms": [
+        "2026_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "First-Year Writing Seminar"
+    ],
+    "normalized_value": "First-Year Writing Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1330-1445",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1330-1445",
+  "start_time": "13:30",
+  "end_time": "14:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": " ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 0,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 19,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "GE, LETR, LLF, LLFW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1330-1445",
+      "location_published": " ",
+      "source_rows": [
+        5783,
+        8443
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "acbd41776939b968b5b237b9aa3d0a37a9d13aaac3bc27726c53e072b9dc30bc",
+    "source_row_hashes": [
+      "2be4d5da0f843b97691f927db97d93abc41431157c998c6c7b6d698cb222a2ef",
+      "fca46c5aa0731a3fe8db4d62d74f2d53843275df613e40c9549cf9c324dd9fa6"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 5783,
+    "source_rows": [
+      5783,
+      8443
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8432",
+    "Course": "ENGL 123",
+    "Section": "13",
+    "Title": "First-Year Writing Seminar",
+    "Hours": "3",
+    "Area of LLC": "GE, LETR, LLF, LLFW",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1330-1445",
+    "Location": " ",
+    "Instructor": "Jessica Apolloni",
+    "Seats Still Available": "19",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "0",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2027"
+  },
+  "source_rows": [
+    5783,
+    8443
+  ],
+  "raw_records": [
+    {
+      "CRN": "8432",
+      "Course": "ENGL 123",
+      "Section": "13",
+      "Title": "First-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LETR, LLF, LLFW",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": " ",
+      "Instructor": "Jessica Apolloni",
+      "Seats Still Available": "19",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "0",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2027"
+    },
+    {
+      "CRN": "8432",
+      "Course": "ENGL 123",
+      "Section": "13",
+      "Title": "First-Year Writing Seminar",
+      "Hours": "3",
+      "Area of LLC": "GE, LETR, LLF, LLFW",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1330-1445",
+      "Location": " ",
+      "Instructor": "Jessica Apolloni",
+      "Seats Still Available": "19",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "0",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2027"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

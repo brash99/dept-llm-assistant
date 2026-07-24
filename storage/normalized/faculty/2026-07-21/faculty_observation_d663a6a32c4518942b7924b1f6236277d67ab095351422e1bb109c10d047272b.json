@@ -1,0 +1,412 @@
+{
+  "id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+  "object_type": "faculty_observation",
+  "title": "Abhishek Phadke",
+  "text": "Faculty directory observation\nName: Abhishek Phadke\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+          "published_name": "Abhishek Phadke"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+                "published_name": "Abhishek Phadke"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "0eff9d7327414bd57c1c0e14ea044d7bec048b3280a066d2f5de4b292bf1ae48"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+                "published_name": "Abhishek Phadke"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "169e5c51e1346d2d76186c6546e21e7c161a47747b45f297244df995743672dc"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_abhishekphadke.html",
+    "url": "https://cnu.edu/faculty/abhishekphadke.html",
+    "content_hash": "317131928f4429e8ff1adc334bf94ca71569bdfb2610c8bba0604aadabb4f499"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "d663a6a32c4518942b7924b1f6236277d67ab095351422e1bb109c10d047272b",
+  "display_name": "Abhishek Phadke",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Abhishek Phadke",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "abhishek.phadke@cnu.edu",
+  "phone": "(757) 594-7192",
+  "office": "Luter Hall 330",
+  "profile_url": "https://cnu.edu/faculty/abhishekphadke.html",
+  "biography": "After completing a master\u2019s in electrical engineering, Abhishek Phadke graduated with his PhD in Geospatial and Computer Science from Texas A&M University. In this interdisciplinary program, he focused on the multi-faceted requirements of Uncrewed Aerial Vehicles and their Guidance, Navigation, and Control. This challenge is further complicated by considering swarms of UAVs. A UAV swarm is a set of UAV agents working towards a common goal. These swarms typically function in complex, dynamic environments. A UAV swarm system is highly susceptible to failure due to disruptions in this dynamic environment. Creating \u201cresilient\u201d UAV swarms was thus the challenge Abhishek explored in his PhD dissertation. He proposed a three-pronged approach that consisted of self-healing swarm networks, simulation, and modeling of environmental disruptions to strengthen agent response and unified swarm management frameworks. During this period, he has also explored supporting technologies in intrusion detection in networks, blockchain, and vehicular microclouds. In addition to continuing research on swarm resilience, Abhishek is also pursuing promising research in the Urban Aerial Mobility and Personal Aerial Vehicle domains, focusing on complex optimization and policy problems such as placement of vertiports, governing software for PAVs, and augmented \u201chighways in the sky\u201d deployment for aerial vehicles.",
+  "education_entries": [
+    "Ph D in Computer Science, Texas AandM University, Corpus Christi",
+    "MS in Electrical Engineering, Texas AandM University, Kingsville",
+    "BE in Electronics Engineering, University of Mumbai, India"
+  ],
+  "research_interests": "Cyber Physical Systems, UAV, Swarms, Robotics, Blockchain, Smart Grids",
+  "teaching_interests": "Network Security, Communication/Computer Networks, Aerial robotics",
+  "publications": [
+    "Journal Article, Academic Journal (2024). Modeling Wind and Obstacle Disturbances for Effective Performance Observations and Analysis of Resilience in UAV Swarms . Aerospace. Volume, 11. Issue, 3. Pages, 237.",
+    "Journal Article, Academic Journal (2023). Designing UAV Swarm Experiments: A Simulator Selection and Experiment Design Process . Sensors. Volume, 23. Issue, 17. Pages, 7359."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Abhishek Phadke",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 330"
+    ],
+    "Phone": "(757) 594-7192",
+    "Email": "abhishek.phadke@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Computer Science, Texas AandM University, Corpus Christi",
+      "MS in Electrical Engineering, Texas AandM University, Kingsville",
+      "BE in Electronics Engineering, University of Mumbai, India"
+    ],
+    "Biography": "After completing a master\u2019s in electrical engineering, Abhishek Phadke graduated with his PhD in Geospatial and Computer Science from Texas A&M University. In this interdisciplinary program, he focused on the multi-faceted requirements of Uncrewed Aerial Vehicles and their Guidance, Navigation, and Control. This challenge is further complicated by considering swarms of UAVs. A UAV swarm is a set of UAV agents working towards a common goal. These swarms typically function in complex, dynamic environments. A UAV swarm system is highly susceptible to failure due to disruptions in this dynamic environment. Creating \u201cresilient\u201d UAV swarms was thus the challenge Abhishek explored in his PhD dissertation. He proposed a three-pronged approach that consisted of self-healing swarm networks, simulation, and modeling of environmental disruptions to strengthen agent response and unified swarm management frameworks. During this period, he has also explored supporting technologies in intrusion detection in networks, blockchain, and vehicular microclouds. In addition to continuing research on swarm resilience, Abhishek is also pursuing promising research in the Urban Aerial Mobility and Personal Aerial Vehicle domains, focusing on complex optimization and policy problems such as placement of vertiports, governing software for PAVs, and augmented \u201chighways in the sky\u201d deployment for aerial vehicles.",
+    "Teaching": "Network Security, Communication/Computer Networks, Aerial robotics",
+    "Research": "Cyber Physical Systems, UAV, Swarms, Robotics, Blockchain, Smart Grids",
+    "Publications": [
+      "Journal Article, Academic Journal (2024). Modeling Wind and Obstacle Disturbances for Effective Performance Observations and Analysis of Resilience in UAV Swarms . Aerospace. Volume, 11. Issue, 3. Pages, 237.",
+      "Journal Article, Academic Journal (2023). Designing UAV Swarm Experiments: A Simulator Selection and Experiment Design Process . Sensors. Volume, 23. Issue, 17. Pages, 7359."
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_abhishekphadke.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_abhishekphadke.html",
+  "raw_acquisition_hash": "317131928f4429e8ff1adc334bf94ca71569bdfb2610c8bba0604aadabb4f499",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/abhishekphadke.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_abhishekphadke.html",
+    "source_sha256": "317131928f4429e8ff1adc334bf94ca71569bdfb2610c8bba0604aadabb4f499",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

@@ -1,0 +1,657 @@
+schema_version: 1
+registry_id: cnu.subject_ownership
+description: >-
+  Governed facts about instructional subject ownership and analytical
+  assignment. Organizational-unit definitions remain authoritative in
+  config/institutional_units.yaml.
+
+subjects:
+  - &sec_subject
+    record_id: cnu.subject.phys.sec.v1
+    subject_code: PHYS
+    display_name: Physics
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    relationship_type: owns_instructional_subject
+    mapping_status: intentionally_grouped_department_equivalent
+    mapping_method: governed_registry_lookup
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: config/institutional_programs.yaml
+        source_type: governed_registry
+        assertion: The governed program registry places this instructional subject within SEC.
+    rationale: >-
+      SEC owns this instructional subject and is the governed faculty-home and
+      workforce-allocation unit. This does not create a separate department or
+      assert faculty-to-major membership.
+    notes: Workforce aggregation only; formal organizational facts are resolved from the unit registry.
+
+  - <<: *sec_subject
+    record_id: cnu.subject.cpsc.sec.v1
+    subject_code: CPSC
+    display_name: Computer Science
+
+  - <<: *sec_subject
+    record_id: cnu.subject.cybr.sec.v1
+    subject_code: CYBR
+    display_name: Cybersecurity
+
+  - <<: *sec_subject
+    record_id: cnu.subject.cpen.sec.v1
+    subject_code: CPEN
+    display_name: Computer Engineering
+
+  - <<: *sec_subject
+    record_id: cnu.subject.eeng.sec.v1
+    subject_code: EENG
+    display_name: Electrical Engineering
+
+  - record_id: cnu.subject.pcse.sec.v1
+    subject_code: PCSE
+    display_name: Physics, Computer Science and Engineering
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    relationship_type: owns_instructional_subject
+    mapping_status: intentionally_grouped_department_equivalent
+    mapping_method: institutional_expert_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: institutional_review:edward_brash:pcse_subject_ownership:2026-07-22
+        source_type: institutional_expert
+        assertion: >-
+          PCSE courses belong to the School of Engineering and Computing and
+          roll up to SEC for workforce analysis; PCSE is not a formal department.
+        reviewer: Edward Brash
+        review_date: 2026-07-22
+    rationale: >-
+      Institutional review confirms that PCSE is an instructional and
+      historical cross-disciplinary SEC prefix. Its observations belong to SEC
+      and do not establish a Department of Physics and Computer Science.
+    notes: No catalog citation is asserted; evidence is explicitly institutional-expert review.
+
+  # Operational scheduling prefixes publish instrument- and activity-specific
+  # Music instruction. MUSC remains the catalog-visible curriculum family.
+  - &music_schedule_alias
+    record_id: cnu.subject.basn.music_schedule_alias.v1
+    subject_code: BASN
+    display_name: Bassoon
+    canonical_subject_code: MUSC
+    catalog_visible_subject_code: MUSC
+    owning_academic_unit_id: academic_unit:department_music_theatre_dance
+    analytical_academic_unit_id: academic_unit:department_music_theatre_dance
+    relationship_type: operational_schedule_alias
+    mapping_status: mapped
+    mapping_method: administrative_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: institutional_review:music_operational_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: >-
+          This operational scheduling prefix identifies Music instruction owned
+          by the Department of Music, Theatre, and Dance and represented in the
+          catalog under the broader MUSC curriculum.
+    rationale: >-
+      Preserve the operational prefix as schedule evidence while assigning its
+      workforce observations to Music, Theatre, and Dance; the prefix does not
+      establish a separate department or catalog subject family.
+    notes: Governed operational alias; no independent catalog section is required.
+
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.bass.music_schedule_alias.v1
+    subject_code: BASS
+    display_name: Bass
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.btmg.music_schedule_alias.v1
+    subject_code: BTMG
+    display_name: Music Operational Instruction (BTMG)
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.cell.music_schedule_alias.v1
+    subject_code: CELL
+    display_name: Cello
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.clar.music_schedule_alias.v1
+    subject_code: CLAR
+    display_name: Clarinet
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.comp.music_schedule_alias.v1
+    subject_code: COMP
+    display_name: Composition
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.cond.music_schedule_alias.v1
+    subject_code: COND
+    display_name: Conducting
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.euph.music_schedule_alias.v1
+    subject_code: EUPH
+    display_name: Euphonium
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.flut.music_schedule_alias.v1
+    subject_code: FLUT
+    display_name: Flute
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.guit.music_schedule_alias.v1
+    subject_code: GUIT
+    display_name: Guitar
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.harp.music_schedule_alias.v1
+    subject_code: HARP
+    display_name: Harp
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.horn.music_schedule_alias.v1
+    subject_code: HORN
+    display_name: Horn
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.impr.music_schedule_alias.v1
+    subject_code: IMPR
+    display_name: Improvisation
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.oboe.music_schedule_alias.v1
+    subject_code: OBOE
+    display_name: Oboe
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.orgn.music_schedule_alias.v1
+    subject_code: ORGN
+    display_name: Organ
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.perc.music_schedule_alias.v1
+    subject_code: PERC
+    display_name: Percussion
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.pian.music_schedule_alias.v1
+    subject_code: PIAN
+    display_name: Piano
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.saxo.music_schedule_alias.v1
+    subject_code: SAXO
+    display_name: Saxophone
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.trmb.music_schedule_alias.v1
+    subject_code: TRMB
+    display_name: Trombone
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.trpt.music_schedule_alias.v1
+    subject_code: TRPT
+    display_name: Trumpet
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.tuba.music_schedule_alias.v1
+    subject_code: TUBA
+    display_name: Tuba
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.viol.music_schedule_alias.v1
+    subject_code: VIOL
+    display_name: Violin
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.voic.music_schedule_alias.v1
+    subject_code: VOIC
+    display_name: Voice
+  - <<: *music_schedule_alias
+    record_id: cnu.subject.vola.music_schedule_alias.v1
+    subject_code: VOLA
+    display_name: Viola
+
+  - &reviewed_schedule_subject
+    record_id: cnu.subject.mech.sec.v1
+    subject_code: MECH
+    display_name: Mechatronics
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    relationship_type: owns_instructional_subject
+    mapping_status: intentionally_grouped_department_equivalent
+    mapping_method: administrative_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: MECH is the legitimate instructional prefix for Mechatronics minor courses owned by SEC.
+    rationale: >-
+      MECH observations roll up to SEC for workforce analysis and do not create
+      a separate formal Mechatronics department.
+    notes: Governed from institutional review; source schedule identity remains MECH.
+
+  - <<: *reviewed_schedule_subject
+    record_id: cnu.subject.envs.bces.v1
+    subject_code: ENVS
+    display_name: Environmental Science
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    analytical_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    mapping_status: mapped
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: ENVS is Environmental Science instruction owned by Biology, Chemistry, and Environmental Science and is distinct from EVST.
+    rationale: ENVS is a governed instructional subject distinct from Environmental Studies (EVST).
+    notes: Source schedule identity remains ENVS; no equivalence to EVST is asserted.
+
+  - <<: *reviewed_schedule_subject
+    record_id: cnu.subject.navs.military_science.v1
+    subject_code: NAVS
+    display_name: Naval Science
+    owning_academic_unit_id: academic_unit:department_military_science
+    analytical_academic_unit_id: academic_unit:department_military_science
+    mapping_status: mapped
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: NAVS is the legitimate Naval Science prefix associated with the Naval ROTC program and owned by Military Science.
+    rationale: NAVS schedule observations belong to Military Science for analytical aggregation.
+    notes: Source schedule identity remains NAVS.
+
+  - <<: *reviewed_schedule_subject
+    record_id: cnu.subject.hbrw.languages.v1
+    subject_code: HBRW
+    display_name: Hebrew
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    analytical_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    mapping_status: mapped
+    evidence:
+      - source: institutional_review:resolved_schedule_prefixes:2026-07-22
+        source_type: administrative_review
+        assertion: HBRW is legitimate Hebrew language instruction owned by Modern and Classical Languages and Literatures.
+    rationale: HBRW schedule observations belong to Modern and Classical Languages and Literatures.
+    notes: Source schedule identity remains HBRW.
+
+  # Current catalog-visible instructional prefixes. These reviewed records
+  # complete the ordinary department crosswalk; catalog extraction remains
+  # evidence and never becomes governance automatically.
+  - &catalog_department_subject
+    record_id: cnu.subject.amst.leadership_american_studies.v1
+    subject_code: AMST
+    display_name: American Studies
+    owning_academic_unit_id: academic_unit:department_leadership_american_studies
+    analytical_academic_unit_id: academic_unit:department_leadership_american_studies
+    relationship_type: owns_instructional_subject
+    mapping_status: mapped
+    mapping_method: governed_catalog_section_review
+    confidence: 1.0
+    review_status: governed
+    effective_start_term: null
+    effective_end_term: null
+    evidence:
+      - source: data/acquisition/catalogs/2025-26-undergraduate_catalog.pdf
+        source_type: official_catalog
+        assertion: >-
+          The current official catalog course-description structure was
+          reviewed against the governed academic-unit registry for this
+          instructional prefix.
+    rationale: >-
+      The reviewed current catalog section establishes the owning current
+      academic unit; source schedule prefixes remain unchanged.
+    notes: Governed catalog-visible subject ownership.
+
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.ldsp.leadership_american_studies.v1
+    subject_code: LDSP
+    display_name: Leadership Studies
+
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.acct.accounting_finance.v1
+    subject_code: ACCT
+    display_name: Accounting
+    owning_academic_unit_id: academic_unit:department_accounting_finance
+    analytical_academic_unit_id: academic_unit:department_accounting_finance
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.finc.accounting_finance.v1
+    subject_code: FINC
+    display_name: Finance
+    owning_academic_unit_id: academic_unit:department_accounting_finance
+    analytical_academic_unit_id: academic_unit:department_accounting_finance
+
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.mgmt.management_marketing.v1
+    subject_code: MGMT
+    display_name: Management
+    owning_academic_unit_id: academic_unit:department_management_marketing
+    analytical_academic_unit_id: academic_unit:department_management_marketing
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.mktg.management_marketing.v1
+    subject_code: MKTG
+    display_name: Marketing
+    owning_academic_unit_id: academic_unit:department_management_marketing
+    analytical_academic_unit_id: academic_unit:department_management_marketing
+
+  - &sswa_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.anth.sociology_social_work_anthropology.v1
+    subject_code: ANTH
+    display_name: Anthropology
+    owning_academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+    analytical_academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+  - <<: *sswa_subject
+    record_id: cnu.subject.crim.sociology_social_work_anthropology.v1
+    subject_code: CRIM
+    display_name: Criminology
+  - <<: *sswa_subject
+    record_id: cnu.subject.geog.sociology_social_work_anthropology.v1
+    subject_code: GEOG
+    display_name: Geography
+  - <<: *sswa_subject
+    record_id: cnu.subject.socl.sociology_social_work_anthropology.v1
+    subject_code: SOCL
+    display_name: Sociology
+  - <<: *sswa_subject
+    record_id: cnu.subject.sowk.sociology_social_work_anthropology.v1
+    subject_code: SOWK
+    display_name: Social Work
+
+  - &languages_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.arab.languages.v1
+    subject_code: ARAB
+    display_name: Arabic
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    analytical_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+  - <<: *languages_subject
+    record_id: cnu.subject.chin.languages.v1
+    subject_code: CHIN
+    display_name: Chinese
+  - <<: *languages_subject
+    record_id: cnu.subject.clst.languages.v1
+    subject_code: CLST
+    display_name: Classical Studies
+  - <<: *languages_subject
+    record_id: cnu.subject.fren.languages.v1
+    subject_code: FREN
+    display_name: French
+  - <<: *languages_subject
+    record_id: cnu.subject.germ.languages.v1
+    subject_code: GERM
+    display_name: German
+  - <<: *languages_subject
+    record_id: cnu.subject.grek.languages.v1
+    subject_code: GREK
+    display_name: Greek
+  - <<: *languages_subject
+    record_id: cnu.subject.ital.languages.v1
+    subject_code: ITAL
+    display_name: Italian
+  - <<: *languages_subject
+    record_id: cnu.subject.latn.languages.v1
+    subject_code: LATN
+    display_name: Latin
+  - <<: *languages_subject
+    record_id: cnu.subject.mlan.languages.v1
+    subject_code: MLAN
+    display_name: Modern Languages
+  - <<: *languages_subject
+    record_id: cnu.subject.span.languages.v1
+    subject_code: SPAN
+    display_name: Spanish
+
+  - &bces_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.bchm.bces.v1
+    subject_code: BCHM
+    display_name: Biochemistry
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    analytical_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+  - <<: *bces_subject
+    record_id: cnu.subject.biol.bces.v1
+    subject_code: BIOL
+    display_name: Biology
+  - <<: *bces_subject
+    record_id: cnu.subject.chem.bces.v1
+    subject_code: CHEM
+    display_name: Chemistry
+  - <<: *bces_subject
+    record_id: cnu.subject.mbch.bces.v1
+    subject_code: MBCH
+    display_name: Molecular Biology and Chemistry
+  - <<: *bces_subject
+    record_id: cnu.subject.nsci.bces.v1
+    subject_code: NSCI
+    display_name: Natural Science
+
+  - &music_catalog_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.danc.music_theatre_dance.v1
+    subject_code: DANC
+    display_name: Dance
+    owning_academic_unit_id: academic_unit:department_music_theatre_dance
+    analytical_academic_unit_id: academic_unit:department_music_theatre_dance
+  - <<: *music_catalog_subject
+    record_id: cnu.subject.musc.music_theatre_dance.v1
+    subject_code: MUSC
+    display_name: Music
+  - <<: *music_catalog_subject
+    record_id: cnu.subject.thea.music_theatre_dance.v1
+    subject_code: THEA
+    display_name: Theatre
+
+  - &sec_catalog_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.data.sec.v1
+    subject_code: DATA
+    display_name: Data Science
+    owning_academic_unit_id: academic_unit:sec
+    analytical_academic_unit_id: academic_unit:sec
+    mapping_status: intentionally_grouped_department_equivalent
+  - <<: *sec_catalog_subject
+    record_id: cnu.subject.engr.sec.v1
+    subject_code: ENGR
+    display_name: Engineering
+
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.comm.communication_studies.v1
+    subject_code: COMM
+    display_name: Communication Studies
+    owning_academic_unit_id: academic_unit:department_communication_studies
+    analytical_academic_unit_id: academic_unit:department_communication_studies
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.econ.economics.v1
+    subject_code: ECON
+    display_name: Economics
+    owning_academic_unit_id: academic_unit:department_economics
+    analytical_academic_unit_id: academic_unit:department_economics
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.engl.english.v1
+    subject_code: ENGL
+    display_name: English
+    owning_academic_unit_id: academic_unit:department_english
+    analytical_academic_unit_id: academic_unit:department_english
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.fnar.fine_art_art_history.v1
+    subject_code: FNAR
+    display_name: Fine Arts
+    owning_academic_unit_id: academic_unit:department_fine_art_art_history
+    analytical_academic_unit_id: academic_unit:department_fine_art_art_history
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.hist.history.v1
+    subject_code: HIST
+    display_name: History
+    owning_academic_unit_id: academic_unit:department_history
+    analytical_academic_unit_id: academic_unit:department_history
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.math.mathematics.v1
+    subject_code: MATH
+    display_name: Mathematics
+    owning_academic_unit_id: academic_unit:department_mathematics
+    analytical_academic_unit_id: academic_unit:department_mathematics
+  - &philosophy_religion_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.phil.philosophy_religion.v1
+    subject_code: PHIL
+    display_name: Philosophy
+    owning_academic_unit_id: academic_unit:department_philosophy_religion
+    analytical_academic_unit_id: academic_unit:department_philosophy_religion
+  - <<: *philosophy_religion_subject
+    record_id: cnu.subject.rstd.philosophy_religion.v1
+    subject_code: RSTD
+    display_name: Religious Studies
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.pols.political_science.v1
+    subject_code: POLS
+    display_name: Political Science
+    owning_academic_unit_id: academic_unit:department_political_science
+    analytical_academic_unit_id: academic_unit:department_political_science
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.psyc.psychology.v1
+    subject_code: PSYC
+    display_name: Psychology
+    owning_academic_unit_id: academic_unit:department_psychology
+    analytical_academic_unit_id: academic_unit:department_psychology
+  - <<: *catalog_department_subject
+    record_id: cnu.subject.mlsc.military_science.v1
+    subject_code: MLSC
+    display_name: Military Science
+    owning_academic_unit_id: academic_unit:department_military_science
+    analytical_academic_unit_id: academic_unit:department_military_science
+
+  # Governed instructional prefixes owned above or outside the department
+  # level remain explicit. Department profiles report them as non-department
+  # ownership instead of guessing a receiving department.
+  - &catalog_non_department_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.busn.luter_school_business.v1
+    subject_code: BUSN
+    display_name: Business
+    owning_academic_unit_id: academic_unit:luter_school_business
+    analytical_academic_unit_id: academic_unit:luter_school_business
+    relationship_type: cross_unit_subject
+    mapping_status: non_workforce_unit
+  - <<: *catalog_non_department_subject
+    record_id: cnu.subject.coll.office_provost.v1
+    subject_code: COLL
+    display_name: College Studies
+    owning_academic_unit_id: academic_unit:office_provost
+    analytical_academic_unit_id: academic_unit:office_provost
+    relationship_type: centrally_administered_subject
+    mapping_status: service_subject
+  - <<: *catalog_non_department_subject
+    record_id: cnu.subject.idst.office_provost.v1
+    subject_code: IDST
+    display_name: Interdisciplinary Studies
+    owning_academic_unit_id: academic_unit:office_provost
+    analytical_academic_unit_id: academic_unit:office_provost
+    relationship_type: interdisciplinary_subject
+    mapping_status: interdisciplinary
+  - <<: *catalog_non_department_subject
+    record_id: cnu.subject.honr.honors_program.v1
+    subject_code: HONR
+    display_name: Honors
+    owning_academic_unit_id: academic_unit:honors_program
+    analytical_academic_unit_id: academic_unit:honors_program
+    relationship_type: interdisciplinary_coordination
+    mapping_status: interdisciplinary
+  - <<: *catalog_non_department_subject
+    record_id: cnu.subject.neur.neuroscience_program.v1
+    subject_code: NEUR
+    display_name: Neuroscience
+    owning_academic_unit_id: academic_unit:neuroscience_program
+    analytical_academic_unit_id: academic_unit:neuroscience_program
+    relationship_type: interdisciplinary_coordination
+    mapping_status: interdisciplinary
+  - <<: *catalog_non_department_subject
+    record_id: cnu.subject.tchg.teacher_preparation.v1
+    subject_code: TCHG
+    display_name: Teaching
+    owning_academic_unit_id: academic_unit:graduate_program_teacher_preparation
+    analytical_academic_unit_id: academic_unit:graduate_program_teacher_preparation
+    relationship_type: service_subject_provision
+    mapping_status: non_workforce_unit
+  - <<: *catalog_non_department_subject
+    record_id: cnu.subject.urca.orca.v1
+    subject_code: URCA
+    display_name: Undergraduate Research and Creative Activity
+    owning_academic_unit_id: academic_unit:office_research_creative_activity
+    analytical_academic_unit_id: academic_unit:office_research_creative_activity
+    relationship_type: centrally_administered_subject
+    mapping_status: non_workforce_unit
+
+  # Institutional review of the final six previously unassigned production
+  # schedule prefixes. Prefix identity is preserved; only governed analytical
+  # ownership is asserted.
+  - &reviewed_final_subject
+    <<: *catalog_department_subject
+    record_id: cnu.subject.pmed.bces.v1
+    subject_code: PMED
+    display_name: Pre-medical Scholars Program
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    analytical_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    mapping_method: institutional_expert_review
+    evidence:
+      - source: institutional_review:edward_brash:final_subject_ownership:2026-07-23
+        source_type: institutional_expert
+        assertion: >-
+          PMED instruction is assigned to the Department of Biology,
+          Chemistry, and Environmental Science.
+        reviewer: Edward Brash
+        review_date: 2026-07-23
+    rationale: >-
+      Institutional expert review establishes the current analytical owner
+      while preserving PMED as the observed schedule prefix.
+    notes: Governed institutional-review decision.
+  - <<: *reviewed_final_subject
+    record_id: cnu.subject.evst.bces.v1
+    subject_code: EVST
+    display_name: Environmental Studies
+    evidence:
+      - source: institutional_review:edward_brash:final_subject_ownership:2026-07-23
+        source_type: institutional_expert
+        assertion: >-
+          EVST instruction is assigned to the Department of Biology,
+          Chemistry, and Environmental Science; EVST remains distinct from
+          the ENVS subject prefix.
+        reviewer: Edward Brash
+        review_date: 2026-07-23
+  - <<: *reviewed_final_subject
+    record_id: cnu.subject.dtan.economics.v1
+    subject_code: DTAN
+    display_name: Data Analytics for the Social Sciences
+    owning_academic_unit_id: academic_unit:department_economics
+    analytical_academic_unit_id: academic_unit:department_economics
+    evidence:
+      - source: institutional_review:edward_brash:final_subject_ownership:2026-07-23
+        source_type: institutional_expert
+        assertion: DTAN instruction is assigned to the Department of Economics.
+        reviewer: Edward Brash
+        review_date: 2026-07-23
+  - <<: *reviewed_final_subject
+    record_id: cnu.subject.heal.communication_studies.v1
+    subject_code: HEAL
+    display_name: Health Studies
+    owning_academic_unit_id: academic_unit:department_communication_studies
+    analytical_academic_unit_id: academic_unit:department_communication_studies
+    evidence:
+      - source: institutional_review:edward_brash:final_subject_ownership:2026-07-23
+        source_type: institutional_expert
+        assertion: HEAL instruction is assigned to the Department of Communication Studies.
+        reviewer: Edward Brash
+        review_date: 2026-07-23
+  - <<: *reviewed_final_subject
+    record_id: cnu.subject.chlf.psychology.v1
+    subject_code: CHLF
+    display_name: Child Life
+    owning_academic_unit_id: academic_unit:department_psychology
+    analytical_academic_unit_id: academic_unit:department_psychology
+    evidence:
+      - source: institutional_review:edward_brash:final_subject_ownership:2026-07-23
+        source_type: institutional_expert
+        assertion: CHLF instruction is assigned to the Department of Psychology.
+        reviewer: Edward Brash
+        review_date: 2026-07-23
+  - <<: *reviewed_final_subject
+    record_id: cnu.subject.humn.languages.v1
+    subject_code: HUMN
+    display_name: Humanities
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    analytical_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    evidence:
+      - source: institutional_review:edward_brash:final_subject_ownership:2026-07-23
+        source_type: institutional_expert
+        assertion: >-
+          HUMN instruction is assigned to the Department of Modern and
+          Classical Languages and Literatures.
+        reviewer: Edward Brash
+        review_date: 2026-07-23

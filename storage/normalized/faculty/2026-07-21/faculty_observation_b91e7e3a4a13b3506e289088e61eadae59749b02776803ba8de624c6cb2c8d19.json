@@ -1,0 +1,442 @@
+{
+  "id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+  "object_type": "faculty_observation",
+  "title": "Anton Riedl",
+  "text": "Faculty directory observation\nName: Anton Riedl\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+          "published_name": "Anton Riedl"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+                "published_name": "Anton Riedl"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "48620cb85f01f4e160fb2e2d4984b33bf982fba736d37eda7892011cfb1363fb"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+                "published_name": "Anton Riedl"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "ca55afa6f6d1e6fe5c70bb4107eec2dd2de2d9c91e925165b554e5799b0cd221"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_riedl.html",
+    "url": "https://cnu.edu/faculty/riedl.html",
+    "content_hash": "edc051a4511da2c1005e519877af6ead30bd75d1499d15a47fdabfcc8d2f34c7"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "b91e7e3a4a13b3506e289088e61eadae59749b02776803ba8de624c6cb2c8d19",
+  "display_name": "Anton Riedl",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Anton Riedl",
+  "published_titles": [
+    "Associate Professor",
+    "Associate Dean, School of Engineering and Computing"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "riedl@cnu.edu",
+  "phone": "(757) 594-7829",
+  "office": "Luter Hall 313A",
+  "profile_url": "https://cnu.edu/faculty/riedl.html",
+  "biography": "Dr. Anton Riedl is the Associate Dean and inaugural Head of School of Engineering and Computing at Christopher Newport University, where he oversees undergraduate programs in Physics, Electrical and Computer Engineering, Computer Science, Artificial Intelligence, Cybersecurity, and Information Science, as well as a Master\u2019s program in Applied Physics and Computer Science. Dr. Riedl enjoys teaching undergraduate and graduate courses, mostly in computer networking and engineering fundamentals, and supervising capstone design projects and Master\u2019s theses. His research interests include applications of networking, network planning and optimization, and autonomous systems. For nearly 12 years, Dr. Riedl chaired the Department of Physics, Computer Science and Engineering, leading its transition to the new school. Dr. Riedl holds an M.S. degree in Electrical Engineering from Purdue University, and Dipl.-Ing. and Dr.-Ing. degrees in Electrical and Computer Engineering from the Technical University of Munich. Dr. Riedl is a strong advocate for university-industry partnerships and workforce development. An active member of IEEE, a Program Evaluator for ABET, and an enthusiastic supporter of FIRST Robotics, Dr. Riedl is dedicated to broadening access to and advancing STEM education.",
+  "education_entries": [
+    "Dr.-Ing in Electrical Engineering, Munich University of Technology (Germany)",
+    "Dipl.-Ing in Electrical Engineering, Munich University of Technology (Germany)",
+    "MS in Electrical Engineering, Purdue University"
+  ],
+  "research_interests": "Applications of networking, network planning and optimization, autonomous systems.",
+  "teaching_interests": "Data Communication Systems and Networking, Cryptography and Network Security, Engineering Design, Engineering Math, Engineering Capstones.",
+  "publications": [
+    "Conference Proceeding (2021). Optimal Service Provisioning Schemes for Multi-Layer Fog Networks . IEEE Globecom 2021.",
+    "Conference Proceeding (2021). Network Simulator for Large Low Earth Orbit Satellite Networks . ICC 2021 - IEEE International Conference on Communications.",
+    "Conference Proceeding (2018). Modifiable Intuitive Robot Controller: computer vision-based controller for various robotic designs . IEEE SouthEastCon 2018.",
+    "Conference Proceeding (2016). Improving student retention through a redesigned first-year engineering class . 2016 ASEE Annual Conference. Pages, 7.",
+    "Conference Proceeding (2013). On the Development of Voter Transition Models for Social Choice Markov Decision Processes . IEEE International Conference on Tools with Artificial Intelligence."
+  ],
+  "professional_experience": [],
+  "awards_honors": [
+    "2018 Faculty Excellence Award in Service, Christopher Newport University. (2018)"
+  ],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Anton Riedl, Luncheon of the AFCEA Tidewater Chapter, \"Promoting STE(A)M: A Collaborative Approach,\" Hampton, VA. (2013)",
+      "Anton Riedl, The 2011 International Conference on Frontiers in Education: Computer Science and Computer Engineering (FECS'11), \"Mobile Robotics as a Platform for Capstone Projects,\" Las Vegas. (2011)",
+      "Anton Riedl, Brian Lamprecht, Robert Atkinson, The 2010 International Conference on Wireless Networks (ICWN\u201910), \"A Wireless Data Collection and Integrity Assurance System for Wetland Monitoring Projects,\" Las Vegas, NV. (2010)"
+    ],
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Anton Riedl",
+    "Published titles": [
+      "Associate Professor",
+      "Associate Dean, School of Engineering and Computing"
+    ],
+    "Office": [
+      "Luter Hall 313A"
+    ],
+    "Phone": "(757) 594-7829",
+    "Email": "riedl@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Dr.-Ing in Electrical Engineering, Munich University of Technology (Germany)",
+      "Dipl.-Ing in Electrical Engineering, Munich University of Technology (Germany)",
+      "MS in Electrical Engineering, Purdue University"
+    ],
+    "Biography": "Dr. Anton Riedl is the Associate Dean and inaugural Head of School of Engineering and Computing at Christopher Newport University, where he oversees undergraduate programs in Physics, Electrical and Computer Engineering, Computer Science, Artificial Intelligence, Cybersecurity, and Information Science, as well as a Master\u2019s program in Applied Physics and Computer Science. Dr. Riedl enjoys teaching undergraduate and graduate courses, mostly in computer networking and engineering fundamentals, and supervising capstone design projects and Master\u2019s theses. His research interests include applications of networking, network planning and optimization, and autonomous systems. For nearly 12 years, Dr. Riedl chaired the Department of Physics, Computer Science and Engineering, leading its transition to the new school. Dr. Riedl holds an M.S. degree in Electrical Engineering from Purdue University, and Dipl.-Ing. and Dr.-Ing. degrees in Electrical and Computer Engineering from the Technical University of Munich. Dr. Riedl is a strong advocate for university-industry partnerships and workforce development. An active member of IEEE, a Program Evaluator for ABET, and an enthusiastic supporter of FIRST Robotics, Dr. Riedl is dedicated to broadening access to and advancing STEM education.",
+    "Teaching": "Data Communication Systems and Networking, Cryptography and Network Security, Engineering Design, Engineering Math, Engineering Capstones.",
+    "Research": "Applications of networking, network planning and optimization, autonomous systems.",
+    "Awards and Honors": [
+      "2018 Faculty Excellence Award in Service, Christopher Newport University. (2018)"
+    ],
+    "Publications": [
+      "Conference Proceeding (2021). Optimal Service Provisioning Schemes for Multi-Layer Fog Networks . IEEE Globecom 2021.",
+      "Conference Proceeding (2021). Network Simulator for Large Low Earth Orbit Satellite Networks . ICC 2021 - IEEE International Conference on Communications.",
+      "Conference Proceeding (2018). Modifiable Intuitive Robot Controller: computer vision-based controller for various robotic designs . IEEE SouthEastCon 2018.",
+      "Conference Proceeding (2016). Improving student retention through a redesigned first-year engineering class . 2016 ASEE Annual Conference. Pages, 7.",
+      "Conference Proceeding (2013). On the Development of Voter Transition Models for Social Choice Markov Decision Processes . IEEE International Conference on Tools with Artificial Intelligence."
+    ],
+    "Presentations": [
+      "Anton Riedl, Luncheon of the AFCEA Tidewater Chapter, \"Promoting STE(A)M: A Collaborative Approach,\" Hampton, VA. (2013)",
+      "Anton Riedl, The 2011 International Conference on Frontiers in Education: Computer Science and Computer Engineering (FECS'11), \"Mobile Robotics as a Platform for Capstone Projects,\" Las Vegas. (2011)",
+      "Anton Riedl, Brian Lamprecht, Robert Atkinson, The 2010 International Conference on Wireless Networks (ICWN\u201910), \"A Wireless Data Collection and Integrity Assurance System for Wetland Monitoring Projects,\" Las Vegas, NV. (2010)"
+    ],
+    "Grants and Sponsored Research": [
+      "Roberto Flores, Ryan Fisher, Lynn Lambert, Anton Riedl, \"EPIIC: Developing Emerging Technology Ecosystem Partnerships for Primarily Undergraduate Institutions,\" Sponsored by National Science Foundation"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_riedl.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_riedl.html",
+  "raw_acquisition_hash": "edc051a4511da2c1005e519877af6ead30bd75d1499d15a47fdabfcc8d2f34c7",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/riedl.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_riedl.html",
+    "source_sha256": "edc051a4511da2c1005e519877af6ead30bd75d1499d15a47fdabfcc8d2f34c7",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

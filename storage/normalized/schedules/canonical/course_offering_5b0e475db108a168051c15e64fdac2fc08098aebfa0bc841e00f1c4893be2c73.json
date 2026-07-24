@@ -1,0 +1,358 @@
+{
+  "id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: CHEM 122L Section 12 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: CHEM 122L\nSection: 12\nTitle: General Chemistry Lab II\nCRN: 8578",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73",
+          "published_name": "CHEM 122L 12"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73",
+                "published_name": "CHEM 122L 12"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "9fcb61557adffeb04b63d98b2fd05b43533ff6cc9afa542c4d56e783b3cc9d07"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1886,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "5b0e475db108a168051c15e64fdac2fc08098aebfa0bc841e00f1c4893be2c73",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1886,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "CHEM",
+  "course_number": "122L",
+  "course_code": "CHEM 122L",
+  "course_title": "General Chemistry Lab II",
+  "section": "12",
+  "crn": "8578",
+  "instructor_name": "Sumie Shima",
+  "instructor_raw": "Sumie Shima",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 8,
+      "supporting_observation_ids": [
+        "9e9860fb95a8515cfa6c668a00133b1f22578ed04311eb60b7caee487c45c872",
+        "67c58ba79f1aeb4f747836d9734512cdce6003155115aa83310f0c8982596844",
+        "ede3f5539d17f9d34937c792c734940cae49b4674270c84693070d580219fca1",
+        "959de2486ad2a6625b4fbe944ef68cba2833030d070218cf7e2e4ea98b0739c9",
+        "6f51634d0c44e2045a583141c46f7c17e6c1c1ed84121ef3ff08f5ce0b6bbd7e",
+        "4967611eb786969dd53c1a97e40fdfa6c07ba5f48a380d0781b50d8eb94ed2da",
+        "3db13c1ea8a264e46b7f08013623c3bc88d3f6869f811664afc005df3cc6feea",
+        "3b5600d71af3fec2b07a812ef37eaedc50e5cb3e0b922b91eae2fee0529a85fc"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "General Chemistry Lab II"
+    ],
+    "normalized_value": "General Chemistry Lab II",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "R 1330-1720",
+  "meeting_days": "R",
+  "meeting_time_raw": "1330-1720",
+  "start_time": "13:30",
+  "end_time": "17:20",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 3002",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 17,
+  "capacity": 22,
+  "waitlist": null,
+  "seats_available": 5,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AINW, GE, OR",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "R",
+      "time_published": "1330-1720",
+      "location_published": "Forbes Hall 3002",
+      "source_rows": [
+        1886,
+        1887
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "1f518d73eb209d7e53776c6e5ea587336d96863f6ae71f60ada8b75452630922",
+    "source_row_hashes": [
+      "4653024c7f739ba9774ae08a9bfab50bb81d9ede47252f71b629f026bd5772db",
+      "3469f6ba8a1b4cbf932e9211232e3150c918fd955f37b5b686729aa631135ba2"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1886,
+    "source_rows": [
+      1886,
+      1887
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8578",
+    "Course": "CHEM 122L",
+    "Section": "12",
+    "Title": "General Chemistry Lab II",
+    "Hours": "1",
+    "Area of LLC": "AINW, GE, OR",
+    "Type": "Lab",
+    "Days": "R",
+    "Time": "1330-1720",
+    "Location": "Forbes Hall 3002",
+    "Instructor": "Sumie Shima",
+    "Seats Still Available": "5",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "22",
+    "Enrolled": "17",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    1886,
+    1887
+  ],
+  "raw_records": [
+    {
+      "CRN": "8578",
+      "Course": "CHEM 122L",
+      "Section": "12",
+      "Title": "General Chemistry Lab II",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, OR",
+      "Type": "Lab",
+      "Days": "R",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 3002",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "22",
+      "Enrolled": "17",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8578",
+      "Course": "CHEM 122L",
+      "Section": "12",
+      "Title": "General Chemistry Lab II",
+      "Hours": "1",
+      "Area of LLC": "AINW, GE, OR",
+      "Type": "Lab",
+      "Days": "R",
+      "Time": "1330-1720",
+      "Location": "Forbes Hall 3002",
+      "Instructor": "Sumie Shima",
+      "Seats Still Available": "5",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "22",
+      "Enrolled": "17",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

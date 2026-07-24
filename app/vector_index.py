@@ -10,6 +10,8 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+from app.semantic_scope import record_matches_semantic_memberships
+
 
 # ----------------------------------------------------------------------
 # Runtime caches
@@ -156,6 +158,7 @@ def search_index(
     fetch_k=None,
     dedupe_by="text",
     object_type_filter=None,
+    semantic_memberships_filter=None,
 ):
     index, records, metadata = get_cached_index(vector_db_dir)
 
@@ -187,6 +190,14 @@ def search_index(
             continue
 
         record = records[int(idx)]
+
+        if (
+            semantic_memberships_filter is not None
+            and not record_matches_semantic_memberships(
+                record, semantic_memberships_filter
+            )
+        ):
+            continue
 
         if (
             object_type_filter is not None

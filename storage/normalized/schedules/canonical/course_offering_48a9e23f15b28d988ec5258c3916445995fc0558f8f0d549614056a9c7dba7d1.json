@@ -1,0 +1,351 @@
+{
+  "id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGL 490 Section 1 (2021_fall)",
+  "text": "Academic term: 2021_fall\nCourse: ENGL 490\nSection: 1\nTitle: WI: Senior Seminar\nCRN: 8838",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1",
+          "published_name": "ENGL 490 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_fall",
+        "published_label": "Fall Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1",
+                "published_name": "ENGL 490 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_fall",
+              "published_label": "Fall Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "48c51dc9033029803982590ca905d0172a7a1ef33336c3835b91c3e7702bf74e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 9772,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "48a9e23f15b28d988ec5258c3916445995fc0558f8f0d549614056a9c7dba7d1",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 9772,
+  "acquisition_date": null,
+  "academic_term": "2021_fall",
+  "academic_term_published": "Fall Semester 2021",
+  "subject": "ENGL",
+  "course_number": "490",
+  "course_code": "ENGL 490",
+  "course_title": "WI: Senior Seminar",
+  "section": "1",
+  "crn": "8838",
+  "instructor_name": "Jessica Apolloni",
+  "instructor_raw": "Jessica Apolloni",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "9141fc5a11325197ab317013b9b87c32ac70e3f8113be933b32f18425c768bcd"
+      ],
+      "supporting_terms": [
+        "2021_may"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Senior Seminar"
+    ],
+    "normalized_value": "WI: Senior Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1500-1615",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1500-1615",
+  "start_time": "15:00",
+  "end_time": "16:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 210",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 11,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 8,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "WI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1500-1615",
+      "location_published": "Lewis McMurran Hall 210",
+      "source_rows": [
+        9772,
+        15107
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "8aec6e9e70847655c69a52226e65cd5cadaf0da8d57f59a8fc72b9d05b80a68c",
+    "source_row_hashes": [
+      "bd3d47ac5b51bb120040a987c3c6442a0db00c85403983c82b9182c622bdff2d",
+      "598c2c00e32fdaee25516c75a89f3a3110b57d24e6092d9e3c42c93b9d6d7ec8"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 9772,
+    "source_rows": [
+      9772,
+      15107
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8838",
+    "Course": "ENGL 490",
+    "Section": "1",
+    "Title": "WI: Senior Seminar",
+    "Hours": "3",
+    "Area of LLC": "WI",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1500-1615",
+    "Location": "Lewis McMurran Hall 210",
+    "Instructor": "Jessica Apolloni",
+    "Seats Still Available": "8",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "11",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2021"
+  },
+  "source_rows": [
+    9772,
+    15107
+  ],
+  "raw_records": [
+    {
+      "CRN": "8838",
+      "Course": "ENGL 490",
+      "Section": "1",
+      "Title": "WI: Senior Seminar",
+      "Hours": "3",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Lewis McMurran Hall 210",
+      "Instructor": "Jessica Apolloni",
+      "Seats Still Available": "8",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "11",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2021"
+    },
+    {
+      "CRN": "8838",
+      "Course": "ENGL 490",
+      "Section": "1",
+      "Title": "WI: Senior Seminar",
+      "Hours": "3",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1500-1615",
+      "Location": "Lewis McMurran Hall 210",
+      "Instructor": "Jessica Apolloni",
+      "Seats Still Available": "8",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "11",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

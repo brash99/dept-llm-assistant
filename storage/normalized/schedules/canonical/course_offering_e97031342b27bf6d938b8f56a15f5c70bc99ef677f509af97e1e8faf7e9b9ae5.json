@@ -1,0 +1,355 @@
+{
+  "id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 313 Section 1 (2023_spring)",
+  "text": "Academic term: 2023_spring\nCourse: BIOL 313\nSection: 1\nTitle: Genetics\nCRN: 8529",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5",
+          "published_name": "BIOL 313 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_spring",
+        "published_label": "Spring Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5",
+                "published_name": "BIOL 313 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_spring",
+              "published_label": "Spring Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "136f4d05eb4208031a8df781cf641caca28216fe6ad41b3ba9d166011e8d1494"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 10589,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e97031342b27bf6d938b8f56a15f5c70bc99ef677f509af97e1e8faf7e9b9ae5",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 10589,
+  "acquisition_date": null,
+  "academic_term": "2023_spring",
+  "academic_term_published": "Spring Semester 2023",
+  "subject": "BIOL",
+  "course_number": "313",
+  "course_code": "BIOL 313",
+  "course_title": "Genetics",
+  "section": "1",
+  "crn": "8529",
+  "instructor_name": "James Bogenpohl",
+  "instructor_raw": "James Bogenpohl",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "6d85ecf0204a05d18bc13529a91d83b38f797352441764ab3d0e5c404e8aa54f",
+        "da5995991e0af06450804e47aefed13eff59a0839372359f307ce97f9cab0b9b",
+        "eee2b0cae935fa732f0ee017d1921513105642b793df9633c55a6c30c79c0861",
+        "9118cff517f0baaefc6ecbd4e2c881c09bafec7d9c27c412eb3035682b8184f2",
+        "9627813aa4130ed3ee56e52f70700c8c448d8aec215ca2483eda2cba3c92d410"
+      ],
+      "supporting_terms": [
+        "2022_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Genetics"
+    ],
+    "normalized_value": "Genetics",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 1800-1915",
+  "meeting_days": "TR",
+  "meeting_time_raw": "1800-1915",
+  "start_time": "18:00",
+  "end_time": "19:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 101",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 69,
+  "capacity": 95,
+  "waitlist": null,
+  "seats_available": 26,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "1800-1915",
+      "location_published": "Lewis McMurran Hall 101",
+      "source_rows": [
+        10589,
+        15937
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "ec1dc658f9670b73cd9a5f6ed00f4d0c867a2e5b970d635ea165495b755631a8",
+    "source_row_hashes": [
+      "9fef25e4b66bb82357f977d9837ae918c41b34b2b4b6d6d782a736fd022e7b5e",
+      "58fbb98a1274321603ce56d66034278d334c2ed04a7b0439f33ca41902f0b4e0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 10589,
+    "source_rows": [
+      10589,
+      15937
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8529",
+    "Course": "BIOL 313",
+    "Section": "1",
+    "Title": "Genetics",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "1800-1915",
+    "Location": "Lewis McMurran Hall 101",
+    "Instructor": "James Bogenpohl",
+    "Seats Still Available": "26",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "95",
+    "Enrolled": "69",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2023"
+  },
+  "source_rows": [
+    10589,
+    15937
+  ],
+  "raw_records": [
+    {
+      "CRN": "8529",
+      "Course": "BIOL 313",
+      "Section": "1",
+      "Title": "Genetics",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Lewis McMurran Hall 101",
+      "Instructor": "James Bogenpohl",
+      "Seats Still Available": "26",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "69",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2023"
+    },
+    {
+      "CRN": "8529",
+      "Course": "BIOL 313",
+      "Section": "1",
+      "Title": "Genetics",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "1800-1915",
+      "Location": "Lewis McMurran Hall 101",
+      "Instructor": "James Bogenpohl",
+      "Seats Still Available": "26",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "95",
+      "Enrolled": "69",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

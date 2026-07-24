@@ -1,0 +1,355 @@
+{
+  "id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: MLAN 220 Section 1R (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: MLAN 220\nSection: 1R\nTitle: Gender in the Arab World\nCRN: 8964",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd",
+          "published_name": "MLAN 220 1R"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd",
+                "published_name": "MLAN 220 1R"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "67c1a7199aa77b03c15e5ab735352e0b03f0c0258481db50a604651c3ec0464f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 3270,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "628e09a7cf07d5b7a873755dc90e9fd2c72d01ef29439ad3290a5be65100cdbd",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 3270,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "MLAN",
+  "course_number": "220",
+  "course_code": "MLAN 220",
+  "course_title": "Gender in the Arab World",
+  "section": "1R",
+  "crn": "8964",
+  "instructor_name": "Diana Obeid",
+  "instructor_raw": "Diana Obeid",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "63c742818b0a680bbd5982570dd908a6c35398d105cecc66e042f0bd6ef33208",
+        "f1244b02d801eb85a27fe3b4a6d240697cfd6e10bfa379a50924334546f73f0f",
+        "66107325991d7abe5cc1913ff23bad0b6f861cd4d44331270a1954ca25363c3f",
+        "b0f5f833b88818250c7ee1997181de49e92ff2c8351c32cf2a35fd230e4524ce",
+        "e9b0ec711e1304f19ffafc30ffa63c1537c39a5f5dd3db168beb5a83f8f277ba"
+      ],
+      "supporting_terms": [
+        "2024_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Gender in the Arab World"
+    ],
+    "normalized_value": "Gender in the Arab World",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1400-1450",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1400-1450",
+  "start_time": "14:00",
+  "end_time": "14:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 212",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 27,
+  "capacity": 29,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIGM, LOW",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1400-1450",
+      "location_published": "Lewis McMurran Hall 212",
+      "source_rows": [
+        3270,
+        19063
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "afba14d090d6540e97979c4ee0dfa0da40b4d0f9bc087159b21672ba0a5e7c2a",
+    "source_row_hashes": [
+      "2ac56ea0865641a9c8d0198c40d58ae73b2503736ea1bb27fb05e2cdd409fd09",
+      "6cb3f9fb118bccb03e6ec0d76b3a171e8130f25f4651e394f013c2f4a8a7b460"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 3270,
+    "source_rows": [
+      3270,
+      19063
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8964",
+    "Course": "MLAN 220",
+    "Section": "1R",
+    "Title": "Gender in the Arab World",
+    "Hours": "3",
+    "Area of LLC": "AIGM, LOW",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1400-1450",
+    "Location": "Lewis McMurran Hall 212",
+    "Instructor": "Diana Obeid",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "YES",
+    "Capacity": "29",
+    "Enrolled": "27",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    3270,
+    19063
+  ],
+  "raw_records": [
+    {
+      "CRN": "8964",
+      "Course": "MLAN 220",
+      "Section": "1R",
+      "Title": "Gender in the Arab World",
+      "Hours": "3",
+      "Area of LLC": "AIGM, LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 212",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "29",
+      "Enrolled": "27",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "8964",
+      "Course": "MLAN 220",
+      "Section": "1R",
+      "Title": "Gender in the Arab World",
+      "Hours": "3",
+      "Area of LLC": "AIGM, LOW",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1400-1450",
+      "Location": "Lewis McMurran Hall 212",
+      "Instructor": "Diana Obeid",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "YES",
+      "Capacity": "29",
+      "Enrolled": "27",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

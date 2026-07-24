@@ -1,0 +1,959 @@
+schema_version: 1
+registry_id: cnu.undergraduate_majors
+title: Christopher Newport University Governed Undergraduate Major Registry
+as_of_catalog_year: 2025-26
+description: >-
+  Governed undergraduate-major facts assembled from official undergraduate
+  catalogs, the existing SEC program registry, and Quentin Kidd's pasted
+  department-major administrative evidence. Completion counts were not
+  ingested. Conflicting ownership and naming evidence remains explicit.
+
+source_definitions:
+  catalog_2025_26: &catalog
+    source_type: official_catalog
+    source: data/acquisition/catalogs/2025-26-undergraduate_catalog.pdf
+    catalog_year: 2025-26
+  quentin_major_cell: &quentin
+    source_type: authoritative_administrative_mapping
+    source: Quentin Kidd workbook pasted department-major cell
+  sec_registry: &sec_registry
+    source_type: governed_program_registry
+    source: config/institutional_programs.yaml
+
+owner_assertion_templates:
+  ACFN: &owner_acfn
+    owner_code: ACFN
+    academic_unit_id: academic_unit:department_accounting_finance
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to ACFN.
+  BCES: &owner_bces
+    owner_code: BCES
+    academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to BCES.
+  COMM: &owner_comm
+    owner_code: COMM
+    academic_unit_id: academic_unit:department_communication_studies
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to COMM.
+  ECON: &owner_econ
+    owner_code: ECON
+    academic_unit_id: academic_unit:department_economics
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to ECON.
+  ENGL: &owner_engl
+    owner_code: ENGL
+    academic_unit_id: academic_unit:department_english
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to ENGL.
+  FAAH: &owner_faah
+    owner_code: FAAH
+    academic_unit_id: academic_unit:department_fine_art_art_history
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to FAAH.
+  HIST: &owner_hist
+    owner_code: HIST
+    academic_unit_id: academic_unit:department_history
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to HIST.
+  IDST: &owner_idst
+    owner_code: IDST
+    academic_unit_id: academic_unit:office_provost
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: >-
+      Quentin maps this major to IDST; ISO's governed IDST curriculum owner is
+      the Office of the Provost rather than a conventional department.
+  LAMS_CATALOG: &owner_lams_catalog
+    owner_code: LAMS
+    academic_unit_id: academic_unit:department_leadership_american_studies
+    source: data/acquisition/catalogs/2025-26-undergraduate_catalog.pdf
+    source_type: official_catalog
+    assertion: The current catalog publishes the major in the Leadership and American Studies section.
+  MATH: &owner_math
+    owner_code: MATH
+    academic_unit_id: academic_unit:department_mathematics
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to MATH.
+  MCLL: &owner_mcll
+    owner_code: MCLL
+    academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to MCLL.
+  MGMT: &owner_mgmt
+    owner_code: MGMT
+    academic_unit_id: academic_unit:department_management_marketing
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to MGMT.
+  MTD: &owner_mtd
+    owner_code: MTD
+    academic_unit_id: academic_unit:department_music_theatre_dance
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to MTD.
+  PHIL: &owner_phil
+    owner_code: PHIL
+    academic_unit_id: academic_unit:department_philosophy_religion
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to PHIL.
+  POLS: &owner_pols
+    owner_code: POLS
+    academic_unit_id: academic_unit:department_political_science
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to POLS.
+  PSYC: &owner_psyc
+    owner_code: PSYC
+    academic_unit_id: academic_unit:department_psychology
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to PSYC.
+  SEC: &owner_sec
+    owner_code: SEC
+    academic_unit_id: academic_unit:sec
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to SEC.
+  SSWA: &owner_sswa
+    owner_code: SSWA
+    academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+    source: Quentin Kidd workbook pasted department-major cell
+    source_type: authoritative_administrative_mapping
+    assertion: Quentin maps this major to SSWA.
+
+majors:
+  - major_id: undergraduate_major:accounting
+    display_name: Accounting
+    aliases: [Accounting (BSBA)]
+    degrees: [Bachelor of Science in Business Administration]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_accounting_finance
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_acfn]
+    evidence:
+      - {<<: *catalog, assertion: Listed as an Accounting major., published_name: Accounting, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Accounting (BSBA), owner_code: ACFN}
+    notes: []
+
+  - major_id: undergraduate_major:american_studies
+    display_name: American Studies
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:office_provost
+    ownership_status: resolved_with_conflicting_catalog_structure
+    curriculum_unit_id: null
+    owner_assertions: [*owner_idst, *owner_lams_catalog]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a major under Interdisciplinary Studies and published in the Leadership and American Studies section., published_name: American Studies, source_locator: pages 42 and 145}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: American Studies, owner_code: IDST}
+    notes:
+      - Administrative ownership is IDST while catalog section placement points to LAMS; both assertions are retained.
+
+  - major_id: undergraduate_major:anthropology
+    display_name: Anthropology
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sswa]
+    evidence:
+      - {<<: *catalog, assertion: Listed as an Anthropology major., published_name: Anthropology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Anthropology, owner_code: SSWA}
+    notes: []
+
+  - major_id: undergraduate_major:art_history
+    display_name: Art History
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_fine_art_art_history
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_faah]
+    evidence:
+      - {<<: *catalog, assertion: Explicitly published as the Art History major., published_name: Art History, source_locator: page 232}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Art History, owner_code: FAAH}
+    notes: []
+
+  - major_id: undergraduate_major:biochemistry
+    display_name: Biochemistry
+    aliases: []
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Biochemistry major., published_name: Biochemistry, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Biochemistry, owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:biology
+    display_name: Biology
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Bachelor of Arts primary area in Biology., published_name: Biology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Biology, owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:cellular_molecular_physiological_biology
+    display_name: Cellular, Molecular and Physiological Biology
+    aliases: [Cell, Molecular & Phys Biology]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Biology major., published_name: "Cellular, Molecular and Physiological Biology", source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: "Cell, Molecular & Phys Biology", owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:chemistry
+    display_name: Chemistry
+    aliases: []
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Chemistry major., published_name: Chemistry, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Chemistry, owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:classical_studies
+    display_name: Classical Studies
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mcll]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Foreign Languages major., published_name: Classical Studies, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Classical Studies, owner_code: MCLL}
+    notes: []
+
+  - major_id: undergraduate_major:communication
+    display_name: Communication
+    aliases: [Communication Studies]
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_communication_studies
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_comm]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Communication degree primary area., published_name: Communication, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Communication Studies, owner_code: COMM}
+    notes:
+      - Catalog and administrative display names differ; both are retained.
+
+  - major_id: undergraduate_major:computational_applied_mathematics
+    display_name: Computational and Applied Mathematics
+    aliases: [Computational & Applied Math]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_mathematics
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_math]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Mathematics major., published_name: Computational and Applied Mathematics, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Computational & Applied Math, owner_code: MATH}
+    notes: []
+
+  - major_id: program.computer_engineering
+    display_name: Computer Engineering
+    aliases: [CPE, CPEN, BSCPEN, Computer Engineering major]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a current degree program and major., published_name: Computer Engineering, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Computer Engineering, owner_code: SEC}
+      - {<<: *sec_registry, assertion: Existing governed SEC program identity., published_name: Computer Engineering}
+    notes: []
+
+  - major_id: program.computer_science
+    display_name: Computer Science
+    aliases: [CS, CPSC, Computer Science major]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Computer Foundations major., published_name: Computer Science, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Computer Science, owner_code: SEC}
+      - {<<: *sec_registry, assertion: Existing governed SEC program identity., published_name: Computer Science}
+    notes: []
+
+  - major_id: undergraduate_major:criminology
+    display_name: Criminology
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sswa]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Sociology degree major., published_name: Criminology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Criminology, owner_code: SSWA}
+    notes: []
+
+  - major_id: program.cybersecurity
+    display_name: Cybersecurity
+    aliases: [Cyber, CYBR, Cybersecurity major]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Computer Foundations major., published_name: Cybersecurity, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Cybersecurity, owner_code: SEC}
+      - {<<: *sec_registry, assertion: Existing governed SEC program identity., published_name: Cybersecurity}
+    notes: []
+
+  - major_id: undergraduate_major:economics
+    display_name: Economics
+    aliases: [Economics (BA)]
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_economics
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_econ]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Economics degree primary area., published_name: Economics, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Economics (BA), owner_code: ECON}
+    notes: []
+
+  - major_id: program.electrical_engineering
+    display_name: Electrical Engineering
+    aliases: [EE, BSEE, Electrical Engineering major]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a current degree program and major., published_name: Electrical Engineering, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Electrical Engineering, owner_code: SEC}
+      - {<<: *sec_registry, assertion: Existing governed SEC program identity., published_name: Electrical Engineering}
+    notes: []
+
+  - major_id: undergraduate_major:english
+    display_name: English
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_english
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_engl]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the English degree primary area., published_name: English, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: English, owner_code: ENGL}
+    notes: []
+
+  - major_id: undergraduate_major:environmental_studies
+    display_name: Environmental Studies
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:office_provost
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_idst]
+    evidence:
+      - {<<: *catalog, assertion: Listed as an Interdisciplinary Studies major., published_name: Environmental Studies, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Environmental Studies, owner_code: IDST}
+    notes:
+      - IDST resolves to its governed curriculum owner, the Office of the Provost, not a conventional faculty-home department.
+
+  - major_id: undergraduate_major:finance
+    display_name: Finance
+    aliases: []
+    degrees: [Bachelor of Science in Business Administration]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_accounting_finance
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_acfn]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Business major., published_name: Finance, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Finance, owner_code: ACFN}
+    notes: []
+
+  - major_id: undergraduate_major:french
+    display_name: French
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mcll]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Foreign Languages major., published_name: French, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: French, owner_code: MCLL}
+    notes: []
+
+  - major_id: undergraduate_major:german
+    display_name: German
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mcll]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Foreign Languages major., published_name: German, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: German, owner_code: MCLL}
+    notes: []
+
+  - major_id: undergraduate_major:global_commerce_culture
+    display_name: Global Commerce and Culture
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:office_provost
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_idst]
+    evidence:
+      - {<<: *catalog, assertion: Listed as an Interdisciplinary Studies major., published_name: Global Commerce and Culture, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Global Commerce and Culture, owner_code: IDST}
+    notes:
+      - IDST resolves to its governed curriculum owner, the Office of the Provost.
+
+  - major_id: undergraduate_major:health_studies
+    display_name: Health Studies
+    aliases: [Health Sciences]
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: null
+    ownership_status: unresolved
+    curriculum_unit_id: null
+    owner_assertions: []
+    evidence:
+      - {<<: *catalog, assertion: The degree summary says Health Sciences while the detailed program section says Health Studies., published_name: Health Sciences, source_locator: pages 42 and 121}
+    notes:
+      - No row in Quentin's pasted administrative ownership evidence establishes a current owner.
+
+  - major_id: undergraduate_major:history
+    display_name: History
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_history
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_hist]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the History degree primary area., published_name: History, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: History, owner_code: HIST}
+    notes: []
+
+  - major_id: program.information_science
+    display_name: Information Science
+    aliases: [IS, BSIS, Information Science major]
+    degrees: [Bachelor of Science in Information Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Information Science degree primary area., published_name: Information Science, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Information Science, owner_code: SEC}
+      - {<<: *sec_registry, assertion: Existing governed SEC program identity., published_name: Information Science}
+    notes:
+      - Information Systems is retained separately because no evidence establishes that it is merely an alias.
+
+  - major_id: undergraduate_major:integrative_biology
+    display_name: Integrative Biology
+    aliases: []
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Biology major., published_name: Integrative Biology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Integrative Biology, owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:interdisciplinary_studies
+    display_name: Interdisciplinary Studies
+    aliases: []
+    degrees: [Bachelor of Arts, Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:office_provost
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_idst]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a degree program with an optional named major., published_name: Interdisciplinary Studies, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Interdisciplinary Studies, owner_code: IDST}
+    notes:
+      - Registry inclusion preserves the administrative degree/major reporting identity despite the catalog's optional-major structure.
+
+  - major_id: undergraduate_major:international_affairs
+    display_name: International Affairs
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_political_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_pols]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Political Science degree major., published_name: International Affairs, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: International Affairs, owner_code: POLS}
+    notes: []
+
+  - major_id: undergraduate_major:kinesiology
+    display_name: Kinesiology
+    aliases: []
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Biology major., published_name: Kinesiology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Kinesiology, owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:leadership_studies
+    display_name: Leadership Studies
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_leadership_american_studies
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_lams_catalog]
+    evidence:
+      - {<<: *catalog, assertion: Listed as an Interdisciplinary Studies major in the Leadership and American Studies section., published_name: Leadership Studies, source_locator: pages 42 and 145}
+    notes:
+      - Quentin's pasted cell contains an empty LAMS line but no Leadership Studies ownership assertion.
+
+  - major_id: undergraduate_major:management
+    display_name: Management
+    aliases: []
+    degrees: [Bachelor of Science in Business Administration]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_management_marketing
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mgmt]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Business major., published_name: Management, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Management, owner_code: MGMT}
+    notes: []
+
+  - major_id: undergraduate_major:marketing
+    display_name: Marketing
+    aliases: []
+    degrees: [Bachelor of Science in Business Administration]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_management_marketing
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mgmt]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Business major., published_name: Marketing, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Marketing, owner_code: MGMT}
+    notes: []
+
+  - major_id: undergraduate_major:mathematics
+    display_name: Mathematics
+    aliases: []
+    degrees: [Bachelor of Arts, Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_mathematics
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_math]
+    evidence:
+      - {<<: *catalog, assertion: Listed under both Bachelor of Arts and Bachelor of Science., published_name: Mathematics, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Mathematics, owner_code: MATH}
+    notes: []
+
+  - major_id: undergraduate_major:music
+    display_name: Music
+    aliases: [Music (BA), Music (BM)]
+    degrees: [Bachelor of Arts, Bachelor of Music]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_music_theatre_dance
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mtd]
+    evidence:
+      - {<<: *catalog, assertion: Listed under both Bachelor of Arts and Bachelor of Music., published_name: Music, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Music (BA), owner_code: MTD}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Music (BM), owner_code: MTD}
+    notes: []
+
+  - major_id: undergraduate_major:neuroscience
+    display_name: Neuroscience
+    aliases: []
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: null
+    ownership_status: conflicting_authoritative_assertions
+    curriculum_unit_id: academic_unit:neuroscience_program
+    owner_assertions: [*owner_idst, *owner_psyc]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a current Bachelor of Science program., published_name: Neuroscience, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Neuroscience, owner_code: IDST}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Neuroscience, owner_code: PSYC}
+    notes:
+      - Quentin's evidence assigns the same major to two department codes; no single department owner is selected.
+      - The governed interdisciplinary Neuroscience Program remains the curriculum unit.
+
+  - major_id: undergraduate_major:organismal_environmental_biology
+    display_name: Organismal and Environmental Biology
+    aliases: [Organismal & Environmental B]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Biology major., published_name: Organismal and Environmental Biology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping with a truncated label., published_name: Organismal & Environmental B, owner_code: BCES}
+    notes: []
+
+  - major_id: undergraduate_major:philosophy
+    display_name: Philosophy
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_philosophy_religion
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_phil]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Philosophy degree primary area., published_name: Philosophy, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Philosophy, owner_code: PHIL}
+    notes: []
+
+  - major_id: program.physics
+    display_name: Physics
+    aliases: [PHYS, Physics major, Applied Physics]
+    degrees: [Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *catalog, assertion: Current catalog lists Physics; the 2021-22 catalog listed Applied Physics., published_name: Physics, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping uses the historical reporting label Applied Physics., published_name: Applied Physics, owner_code: SEC}
+      - {<<: *sec_registry, assertion: Existing governed SEC program identity., published_name: Physics}
+    notes:
+      - Applied Physics is retained as a historical/reporting alias rather than a separate current major.
+
+  - major_id: undergraduate_major:political_science
+    display_name: Political Science
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_political_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_pols]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Political Science degree primary area., published_name: Political Science, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Political Science, owner_code: POLS}
+    notes: []
+
+  - major_id: undergraduate_major:psychology
+    display_name: Psychology
+    aliases: []
+    degrees: [Bachelor of Arts, Bachelor of Science]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_psychology
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_psyc]
+    evidence:
+      - {<<: *catalog, assertion: Listed under both Bachelor of Arts and Bachelor of Science., published_name: Psychology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Psychology, owner_code: PSYC}
+    notes: []
+
+  - major_id: undergraduate_major:social_work
+    display_name: Social Work
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sswa]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the Social Work degree primary area., published_name: Social Work, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Social Work, owner_code: SSWA}
+    notes: []
+
+  - major_id: undergraduate_major:sociology
+    display_name: Sociology
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_sociology_social_work_anthropology
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sswa]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a Sociology degree major., published_name: Sociology, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Sociology, owner_code: SSWA}
+    notes: []
+
+  - major_id: undergraduate_major:spanish
+    display_name: Spanish
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_modern_classical_languages_literatures
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mcll]
+    evidence:
+      - {<<: *catalog, assertion: Listed as a General Foreign Languages major., published_name: Spanish, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Spanish, owner_code: MCLL}
+    notes: []
+
+  - major_id: undergraduate_major:studio_art
+    display_name: Studio Art
+    aliases: []
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_music_theatre_dance
+    ownership_status: resolved_with_conflicting_catalog_structure
+    curriculum_unit_id: null
+    owner_assertions:
+      - *owner_mtd
+      - owner_code: FAAH
+        academic_unit_id: academic_unit:department_fine_art_art_history
+        source: data/acquisition/catalogs/2025-26-undergraduate_catalog.pdf
+        source_type: official_catalog
+        assertion: The current catalog publishes Studio Art in the Department of Fine Art and Art History.
+    evidence:
+      - {<<: *catalog, assertion: Explicitly published as the Studio Art major., published_name: Studio Art, source_locator: page 232}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Studio Art, owner_code: MTD}
+    notes:
+      - Quentin assigns Studio Art to MTD while the current catalog places it in Fine Art and Art History; administrative ownership governs and the catalog conflict remains explicit.
+      - Quentin's Fine Arts reporting label is retained as a separate possible historical major because equivalence is not explicit.
+
+  - major_id: undergraduate_major:theater
+    display_name: Theater
+    aliases: [Theatre]
+    degrees: [Bachelor of Arts]
+    status: current
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_music_theatre_dance
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_mtd]
+    evidence:
+      - {<<: *catalog, assertion: Listed as the required Fine and Performing Arts major., published_name: Theater, source_locator: page 42}
+      - {<<: *quentin, assertion: Current administrative major-owner mapping., published_name: Theater, owner_code: MTD}
+    notes: []
+
+  - major_id: undergraduate_major:fine_arts_historical_candidate
+    display_name: Fine Arts
+    aliases: []
+    degrees: []
+    status: possible_discontinued
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_fine_art_art_history
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_faah]
+    evidence:
+      - {<<: *quentin, assertion: Administrative completions mapping not found as a current 2025-26 major name., published_name: Fine Arts, owner_code: FAAH}
+    notes:
+      - Possible historical or reporting label; do not collapse into Studio Art without reviewed evidence.
+
+  - major_id: undergraduate_major:environmental_biology_historical_candidate
+    display_name: Environmental Biology
+    aliases: []
+    degrees: []
+    status: possible_discontinued
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *quentin, assertion: Administrative completions mapping not found as a current 2025-26 major name., published_name: Environmental Biology, owner_code: BCES}
+    notes:
+      - Retained separately from Organismal and Environmental Biology pending historical review.
+
+  - major_id: undergraduate_major:information_systems_historical_candidate
+    display_name: Information Systems
+    aliases: []
+    degrees: []
+    status: possible_discontinued
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:sec
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_sec]
+    evidence:
+      - {<<: *quentin, assertion: Administrative completions mapping not found as a current 2025-26 major name., published_name: Information Systems, owner_code: SEC}
+    notes:
+      - Not merged with Information Science; the repository does not establish equivalence.
+
+  - major_id: undergraduate_major:organismal_biology_historical_candidate
+    display_name: Organismal Biology
+    aliases: []
+    degrees: []
+    status: possible_discontinued
+    effective_start: null
+    effective_end: null
+    owning_academic_unit_id: academic_unit:department_biology_chemistry_environmental_science
+    ownership_status: resolved
+    curriculum_unit_id: null
+    owner_assertions: [*owner_bces]
+    evidence:
+      - {<<: *quentin, assertion: Administrative completions mapping not found as a current 2025-26 major name., published_name: Organismal Biology, owner_code: BCES}
+    notes:
+      - Retained separately from current Organismal and Environmental Biology pending historical review.

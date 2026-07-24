@@ -1,0 +1,355 @@
+{
+  "id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 391 Section 4 (2022_fall)",
+  "text": "Academic term: 2022_fall\nCourse: BIOL 391\nSection: 4\nTitle: WI: Junior Seminar\nCRN: 8033",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790",
+          "published_name": "BIOL 391 4"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_fall",
+        "published_label": "Fall Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790",
+                "published_name": "BIOL 391 4"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_fall",
+              "published_label": "Fall Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7fc08e6272ef6ea861b1cc877d11b3a95e341118ea7bdfd1f183b60a522d265e"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 7243,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b7481f2f3bf412858dfb8bb8e2cba20a63532e59a6d4211f1c43ac7712d13790",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 7243,
+  "acquisition_date": null,
+  "academic_term": "2022_fall",
+  "academic_term_published": "Fall Semester 2022",
+  "subject": "BIOL",
+  "course_number": "391",
+  "course_code": "BIOL 391",
+  "course_title": "WI: Junior Seminar",
+  "section": "4",
+  "crn": "8033",
+  "instructor_name": "Russ Burke",
+  "instructor_raw": "Russ Burke",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "fe7cadf21580b4e7e3cb771a0c68d901be9eed3c10d130e433611a420b72776d",
+        "a5ccdab25322a04ff2d2c8b1165926168cd30b981b5e1c28a8efc081fdb25cb8",
+        "2f0e925d359a2f82ce17e25a7db789f8e76c37ec17a9b2516267377a4e8762ae",
+        "615e57935b4ec7855a6adcc3e04396a7465d54bfb5154b11c92ac37e811ddda5",
+        "1b5859c2be8773a1c11c4b1a42cb8ca78332a5c78fb869dd56791e5393212b75"
+      ],
+      "supporting_terms": [
+        "2022_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "WI: Junior Seminar"
+    ],
+    "normalized_value": "WI: Junior Seminar",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "M 1000-1050",
+  "meeting_days": "M",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2043",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 5,
+  "capacity": 7,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "WI",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "M",
+      "time_published": "1000-1050",
+      "location_published": "Forbes Hall 2043",
+      "source_rows": [
+        7243,
+        9910
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "c72812c989f9cb3cb23ae6d11bf9c70b88f9d77ce8a8defda2050d7c7187a1ac",
+    "source_row_hashes": [
+      "dc7eab09aa2ce80d09c6753c9bc11029fc32bf565aac456ad70a0f5c2dff75b2",
+      "a53ce9b0d686ef2cf94c09802a28eee9c383943b0a0c3ec95bc754c462a08847"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 7243,
+    "source_rows": [
+      7243,
+      9910
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8033",
+    "Course": "BIOL 391",
+    "Section": "4",
+    "Title": "WI: Junior Seminar",
+    "Hours": "1",
+    "Area of LLC": "WI",
+    "Type": "Lec",
+    "Days": "M",
+    "Time": "1000-1050",
+    "Location": "Forbes Hall 2043",
+    "Instructor": "Russ Burke",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "7",
+    "Enrolled": "5",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2022"
+  },
+  "source_rows": [
+    7243,
+    9910
+  ],
+  "raw_records": [
+    {
+      "CRN": "8033",
+      "Course": "BIOL 391",
+      "Section": "4",
+      "Title": "WI: Junior Seminar",
+      "Hours": "1",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "1000-1050",
+      "Location": "Forbes Hall 2043",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "7",
+      "Enrolled": "5",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2022"
+    },
+    {
+      "CRN": "8033",
+      "Course": "BIOL 391",
+      "Section": "4",
+      "Title": "WI: Junior Seminar",
+      "Hours": "1",
+      "Area of LLC": "WI",
+      "Type": "Lec",
+      "Days": "M",
+      "Time": "1000-1050",
+      "Location": "Forbes Hall 2043",
+      "Instructor": "Russ Burke",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "7",
+      "Enrolled": "5",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

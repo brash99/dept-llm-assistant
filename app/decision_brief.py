@@ -4,6 +4,7 @@ from typing import Dict, List, Optional
 from openai import OpenAI
 
 from app.retrieval import retrieve
+from app.reasoning.query import constitutional_quota_for_query
 from app.vector_index import RetrievalResult
 from app.observatory.metrics import ObservatoryAssessment, build_observatory_assessment
 from app.observatory.evidence_fitness import EvidenceFitnessService
@@ -55,20 +56,34 @@ def generate_decision_brief(
     constitutional_top_k=2,
     empirical_top_k=10,
     topology_entity_query=None,
+    max_per_document_family=2,
+    constitutional_orientation=None,
+    decision_type=None,
+    max_per_evidence_role=4,
+    evidence_role_relevance_margin=0.5,
 ):
     """
-    Generate a first-pass institutional Decision Brief.
+    Generate an institutional Decision Brief knowledge product.
 
     This is intentionally parallel to app.rag.answer_question(), but separate
     from it. The QA pipeline remains optimized for concise grounded answers.
     The Decision Brief pipeline retrieves a broader evidence set and asks the
     LLM to organize the evidence into decision-support sections.
 
-    Version 0.1 deliberately does not attempt clustering, scenario modeling,
-    confidence scoring, or structured JSON extraction. Those should be added
-    after DB-001 reveals the next real bottlenecks.
+    Retrieval, evidence classification, Evidence Fitness, governed synthesis,
+    and deterministic Dashboard V2 rendering are connected here. Scenario
+    Modeling and department-level recommendation remain intentionally out of
+    scope until explicit scenario services and adequate evidence exist.
     """
     question = question.strip()
+    constitutional_top_k = constitutional_quota_for_query(
+        question, constitutional_top_k
+    )
+    if decision_type is None:
+        from app.observatory.evidence_fitness import EvidenceFitnessService
+
+        classified_type, _ = EvidenceFitnessService.classify_decision_type(question)
+        decision_type = classified_type.value
 
     retrieved = retrieve(
         query=question,
@@ -85,6 +100,10 @@ def generate_decision_brief(
         return_trace=return_trace,
         constitutional_top_k=constitutional_top_k,
         empirical_top_k=empirical_top_k,
+        max_per_document_family=max_per_document_family,
+        decision_type=decision_type,
+        max_per_evidence_role=max_per_evidence_role,
+        evidence_role_relevance_margin=evidence_role_relevance_margin,
     )
 
     if return_trace:
@@ -102,6 +121,7 @@ def generate_decision_brief(
         llm_base_url=llm_base_url,
         llm_model=llm_model,
         topology_entity_query=topology_entity_query,
+        constitutional_orientation=constitutional_orientation,
     )
 
     if return_trace:

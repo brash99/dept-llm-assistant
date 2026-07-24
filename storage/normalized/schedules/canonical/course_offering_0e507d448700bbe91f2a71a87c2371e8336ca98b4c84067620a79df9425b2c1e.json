@@ -1,0 +1,410 @@
+{
+  "id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: PSYC 315 Section 1 (2023_fall)",
+  "text": "Academic term: 2023_fall\nCourse: PSYC 315\nSection: 1\nCRN: 8482",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "course_title_conflicting_source_values": 1,
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e",
+          "published_name": "PSYC 315 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_fall",
+        "published_label": "Fall Semester 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e",
+                "published_name": "PSYC 315 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_fall",
+              "published_label": "Fall Semester 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "bbb0d848b8de6cd0eed5c6257cd038738fc93443758dddd31bf44688ea32fb0c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 264,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "0e507d448700bbe91f2a71a87c2371e8336ca98b4c84067620a79df9425b2c1e",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 264,
+  "acquisition_date": null,
+  "academic_term": "2023_fall",
+  "academic_term_published": "Fall Semester 2023",
+  "subject": "PSYC",
+  "course_number": "315",
+  "course_code": "PSYC 315",
+  "course_title": null,
+  "section": "1",
+  "crn": "8482",
+  "instructor_name": "Earl Riggins",
+  "instructor_raw": "Earl Riggins",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 2,
+      "supporting_observation_ids": [
+        "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509",
+        "43412067ad24f74592b137f118cecbeae5f44763955f5f6c0db4e0e8b2be246a"
+      ],
+      "supporting_terms": [
+        "2023_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ],
+    "normalized_value": null,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_course_title_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "b46d8ade670c58739225897e11e154638b0f78a1f1eeaba6f4ecf56e8aa48509"
+      ],
+      "supporting_terms": [
+        "2023_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "No unique contemporaneous or prior course assertion supports a scalar value."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Forbes Hall 2074",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 29,
+  "capacity": 45,
+  "waitlist": null,
+  "seats_available": 16,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Forbes Hall 2074",
+      "source_rows": [
+        264,
+        265,
+        5421,
+        10690
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "7cb763e8fd609f6e2125f006f70062ac7ca2372fd712ba8e1b6e6c2bf2dbc5ca",
+    "source_row_hashes": [
+      "3f03c9dcf287b415a252cc35010e9c082e27e16c06b247e8dfaa8bed41b39986",
+      "1b6413b9f795f7328846cbb41e998ea38f523addd694d55901ec522805198038",
+      "aae9597f791535278a4d8e5e34d0e6871af3416bd7e55e44f288e961c3ba70a2",
+      "3b01886b4d347276a1ca1831cd6f310766d747bddd51f82728b1873a8b165f48"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 264,
+    "source_rows": [
+      264,
+      265,
+      5421,
+      10690
+    ],
+    "source_row_count": 4,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8482",
+    "Course": "PSYC 315",
+    "Section": "1",
+    "Title": "Psychology-Abnormal Behavior",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Forbes Hall 2074",
+    "Instructor": "Earl Riggins",
+    "Seats Still Available": "16",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "45",
+    "Enrolled": "29",
+    "Instructor Type": "Full Time",
+    "Term": "Fall Semester 2023"
+  },
+  "source_rows": [
+    264,
+    265,
+    5421,
+    10690
+  ],
+  "raw_records": [
+    {
+      "CRN": "8482",
+      "Course": "PSYC 315",
+      "Section": "1",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "16",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "29",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2023"
+    },
+    {
+      "CRN": "8482",
+      "Course": "PSYC 315",
+      "Section": "1",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "16",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "29",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2023"
+    },
+    {
+      "CRN": "8482",
+      "Course": "PSYC 315",
+      "Section": "1",
+      "Title": "Psychology-Abnormal Behavior",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "16",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "29",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2023"
+    },
+    {
+      "CRN": "8482",
+      "Course": "PSYC 315",
+      "Section": "1",
+      "Title": "Psychopathology",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Forbes Hall 2074",
+      "Instructor": "Earl Riggins",
+      "Seats Still Available": "16",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "45",
+      "Enrolled": "29",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2023"
+    }
+  ],
+  "published_field_variants": {
+    "course_title": [
+      "Psychology-Abnormal Behavior",
+      "Psychopathology"
+    ],
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: DANC 204 Section 2 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: DANC 204\nSection: 2\nTitle: Ballet I\nCRN: 8393",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020",
+          "published_name": "DANC 204 2"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020",
+                "published_name": "DANC 204 2"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "10948efa052b4d7f5c16975defe355d905de45c273b1fb16fba474cddabbc5cc"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 421,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "91331c9efa4e47ab7fa104e33824f1941e223b313da413a6f6ab6ea1e0e4c020",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 421,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "DANC",
+  "course_number": "204",
+  "course_code": "DANC 204",
+  "course_title": "Ballet I",
+  "section": "2",
+  "crn": "8393",
+  "instructor_name": "Laura Lloyd",
+  "instructor_raw": "Laura Lloyd",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Full Time",
+      "Adjunct"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "a7bda1ac4c6b0f240d586e126ee708a8e5c1ad0ca0e37002c083a47518354f2a",
+        "062d33048c12f36d5d6086f130019661d803fec6a9c996ea13db91f4f253c95d",
+        "32c5fc8fcdbabc3327a3ef6b30001b7336e29977e934866ea1f798464d31e0f8",
+        "859c83023f09db154cf73ad71373c782f1f3f84b41b8cec93274241c1f64372b",
+        "e760d718ff349083cf5753ecd537f959bf7ad54a79c23dc8c878b03ddbdb2686"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Ballet I"
+    ],
+    "normalized_value": "Ballet I",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MW 1100-1215",
+  "meeting_days": "MW",
+  "meeting_time_raw": "1100-1215",
+  "start_time": "11:00",
+  "end_time": "12:15",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Freeman Center G150",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 18,
+  "capacity": 18,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AICE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MW",
+      "time_published": "1100-1215",
+      "location_published": "Freeman Center G150",
+      "source_rows": [
+        421,
+        8219
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "e01b387b5796064f73efa58a65b8e7e164622a044c1305422948a9420ad0d1bc",
+    "source_row_hashes": [
+      "20055ec2ded493f87e228b1c425e8ca39b19cd7a4e288bf692cf14113c8b6bbd",
+      "88a075027e58cc59d670e39894cf1b7e01eda96ff375bce14cc5d12fe1dbfc8e"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 421,
+    "source_rows": [
+      421,
+      8219
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8393",
+    "Course": "DANC 204",
+    "Section": "2",
+    "Title": "Ballet I",
+    "Hours": "3",
+    "Area of LLC": "AICE",
+    "Type": "Lec",
+    "Days": "MW",
+    "Time": "1100-1215",
+    "Location": "Freeman Center G150",
+    "Instructor": "Laura Lloyd",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "18",
+    "Enrolled": "18",
+    "Instructor Type": "Full Time",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    421,
+    8219
+  ],
+  "raw_records": [
+    {
+      "CRN": "8393",
+      "Course": "DANC 204",
+      "Section": "2",
+      "Title": "Ballet I",
+      "Hours": "3",
+      "Area of LLC": "AICE",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1100-1215",
+      "Location": "Freeman Center G150",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "18",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8393",
+      "Course": "DANC 204",
+      "Section": "2",
+      "Title": "Ballet I",
+      "Hours": "3",
+      "Area of LLC": "AICE",
+      "Type": "Lec",
+      "Days": "MW",
+      "Time": "1100-1215",
+      "Location": "Freeman Center G150",
+      "Instructor": "Laura Lloyd",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "18",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Full Time",
+      "Adjunct"
+    ]
+  }
+}

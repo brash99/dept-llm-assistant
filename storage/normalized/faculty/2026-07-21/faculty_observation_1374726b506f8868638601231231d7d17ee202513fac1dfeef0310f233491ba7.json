@@ -1,0 +1,405 @@
+{
+  "id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+  "object_type": "faculty_observation",
+  "title": "Azad Ghaffari",
+  "text": "Faculty directory observation\nName: Azad Ghaffari\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+          "published_name": "Azad Ghaffari"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+                "published_name": "Azad Ghaffari"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "76957fc8104491b9faa77498504eeedde842efc7d73b0391410d445d25dde09e"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+                "published_name": "Azad Ghaffari"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "a8ff786e4f8a1c367958d6779d23f53b782fcd98dc80d923766adf6926e050e2"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_azadghaffari.html",
+    "url": "https://cnu.edu/faculty/azadghaffari.html",
+    "content_hash": "5aa46fac2d94d70adda7c4d0ad774da7052222673fc8d046995985bd45ab252f"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "1374726b506f8868638601231231d7d17ee202513fac1dfeef0310f233491ba7",
+  "display_name": "Azad Ghaffari",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Azad Ghaffari",
+  "published_titles": [
+    "Assistant Professor"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "azad.ghaffari@cnu.edu",
+  "phone": "(757) 594-8180",
+  "office": "Luter Hall 238",
+  "profile_url": "https://cnu.edu/faculty/azadghaffari.html",
+  "biography": "Dr. Ghaffari's research tackles existing and emerging gaps in controls, robotics, and energy systems. As an instructor of record for control theory and electrical engineering courses, he has taught over 700 students across five institutions. His academic career includes postdoctoral appointments at the University of Michigan, Ann Arbor, and the University of California, San Diego. Additionally, he brings six years of industry experience in control, automation, and instrumentation, focusing on combined cycle power plants and photolithography lasers.",
+  "education_entries": [
+    "Ph D in Engineering Sciences (Dynamic Systems and Control), University of California, San Diego",
+    "MS in Electrical Engineering (Controls), K.N. Toosi University of Technology",
+    "BS in Electrical Engineering (Electronics), K.N. Toosi University of Technology"
+  ],
+  "research_interests": "Safe control and navigation of ground and aerial autonomous vehicles, control applications in robotics and high-precision mechatronic systems, model-free optimization, and wind and solar energy conversion systems.",
+  "teaching_interests": "Control theory, optimization, model predictive control, signals and systems, electric and electronic circuits, and digital design.",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Azad Ghaffari",
+    "Published titles": [
+      "Assistant Professor"
+    ],
+    "Office": [
+      "Luter Hall 238"
+    ],
+    "Phone": "(757) 594-8180",
+    "Email": "azad.ghaffari@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Engineering Sciences (Dynamic Systems and Control), University of California, San Diego",
+      "MS in Electrical Engineering (Controls), K.N. Toosi University of Technology",
+      "BS in Electrical Engineering (Electronics), K.N. Toosi University of Technology"
+    ],
+    "Biography": "Dr. Ghaffari's research tackles existing and emerging gaps in controls, robotics, and energy systems. As an instructor of record for control theory and electrical engineering courses, he has taught over 700 students across five institutions. His academic career includes postdoctoral appointments at the University of Michigan, Ann Arbor, and the University of California, San Diego. Additionally, he brings six years of industry experience in control, automation, and instrumentation, focusing on combined cycle power plants and photolithography lasers.",
+    "Teaching": "Control theory, optimization, model predictive control, signals and systems, electric and electronic circuits, and digital design.",
+    "Research": "Safe control and navigation of ground and aerial autonomous vehicles, control applications in robotics and high-precision mechatronic systems, model-free optimization, and wind and solar energy conversion systems."
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_azadghaffari.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_azadghaffari.html",
+  "raw_acquisition_hash": "5aa46fac2d94d70adda7c4d0ad774da7052222673fc8d046995985bd45ab252f",
+  "structural_variant": "biography; education-h3; teaching; research; no-accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/azadghaffari.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_azadghaffari.html",
+    "source_sha256": "5aa46fac2d94d70adda7c4d0ad774da7052222673fc8d046995985bd45ab252f",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

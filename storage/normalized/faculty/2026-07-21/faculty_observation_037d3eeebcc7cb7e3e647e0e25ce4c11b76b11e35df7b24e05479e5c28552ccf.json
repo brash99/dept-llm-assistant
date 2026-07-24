@@ -1,0 +1,414 @@
+{
+  "id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+  "object_type": "faculty_observation",
+  "title": "Alberto Accardi",
+  "text": "Faculty directory observation\nName: Alberto Accardi\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+          "published_name": "Alberto Accardi"
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:sec",
+          "published_name": "School of Engineering and Computing",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+          "governance_level": "department_equivalent",
+          "has_dean": false,
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "college",
+          "entity_id": "academic_unit:college_natural_behavioral_sciences",
+          "published_name": "College of Natural and Behavioral Sciences",
+          "formal_unit_type": "college",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "parent_academic_unit",
+            "budgetary_rollup_unit"
+          ],
+          "governance_level": "college",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:sec",
+          "target": "academic_unit:college_natural_behavioral_sciences",
+          "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+          "target": "academic_unit:sec",
+          "published_label": "School of Engineering and Computing",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+                "published_name": "Alberto Accardi"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:School of Engineering and Computing",
+                "published_name": "School of Engineering and Computing"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "b589b0ec00ae4e212b3dc1259d7e991bdee6b559f861022f81a32ea375621f8f"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+                "published_name": "Alberto Accardi"
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:sec",
+                "published_name": "School of Engineering and Computing",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:college_natural_behavioral_sciences",
+                "governance_level": "department_equivalent",
+                "has_dean": false,
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "college",
+                "entity_id": "academic_unit:college_natural_behavioral_sciences",
+                "published_name": "College of Natural and Behavioral Sciences",
+                "formal_unit_type": "college",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "parent_academic_unit",
+                  "budgetary_rollup_unit"
+                ],
+                "governance_level": "college",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:sec",
+                "target": "academic_unit:college_natural_behavioral_sciences",
+                "published_label": "School of Engineering and Computing belongs to College of Natural and Behavioral Sciences",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+                "target": "academic_unit:sec",
+                "published_label": "School of Engineering and Computing",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:sec",
+                  "published_label": "School of Engineering and Computing",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:School of Engineering and Computing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "1bf37a40b7f49725d37f51f5f2ebbab472f2987d2f4324e17b74d4080fc1e7a5"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_albertoaccardi.html",
+    "url": "https://cnu.edu/faculty/albertoaccardi.html",
+    "content_hash": "cb7ac1e751c0ca8edf3dab7001dd048ba9df9e27d1abdbe9e12b1ea15a3e52a0"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "037d3eeebcc7cb7e3e647e0e25ce4c11b76b11e35df7b24e05479e5c28552ccf",
+  "display_name": "Alberto Accardi",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Alberto Accardi",
+  "published_titles": [
+    "Research Scientist",
+    "Affiliate Scholar"
+  ],
+  "published_department": "School of Engineering and Computing",
+  "published_college": "College of Natural and Behavioral Sciences",
+  "organizational_affiliations": [
+    {
+      "label": "College of Natural and Behavioral Sciences",
+      "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+    },
+    {
+      "label": "School of Engineering and Computing",
+      "url": "https://cnu.edu/academics/departments/sec/index.html"
+    }
+  ],
+  "email": "alberto.accardi@cnu.edu",
+  "phone": "(757) 594-0707",
+  "office": "Luter Hall 349",
+  "profile_url": "https://cnu.edu/faculty/albertoaccardi.html",
+  "biography": "Quantum chromodynamics is a fascinating theory that explains the inner nature of visible matter and how the so-called \"strong nuclear force\" keeps this together. It superficially resembles electromagnetism, but exhibits emergent phenomena that are still challenging us nearly 60 years after its formulation and numerous experimental verifications. My research aims at understanding two of these phenomena: -- why the mass of the proton is not equal to the sum of the masses of its constituents (the quarks) but rather to the energy of the gluons that bind these together; -- and why no free quark or gluon has, in fact, ever been observed experimentally. My approach combines quantum field theory methods with numerical analysis of large data sets on high-energy scattering processes such as electron-proton collisions at the nearby Jefferson Lab. You can find my journal articles and recent preprints listed on the INSPIRE HEP archive ( https://inspirehep.net/authors/1019006 ).",
+  "education_entries": [
+    "Ph D in Physics, Trieste University",
+    "BS in Physics, Milan University"
+  ],
+  "research_interests": "Theoretical Quantum Chromodynamics Quark and gluon structure of matter",
+  "teaching_interests": "Physics",
+  "publications": [
+    "Conference Proceeding (2024). Systematic uncertainty of off-shell corrections and higher-twist contribution in DIS at large x . Sissa Medialab. Pages, 031.",
+    "Journal Article, Academic Journal (2023). Gauge invariant spectral analysis of quark hadronization dynamics . Physical Review D. Volume, 108. Issue, 11.",
+    "Journal Article, Academic Journal (2018). Gauge invariance and kaon production in deep inelastic scattering at low scales . Physical Review D. Volume, 97. Issue, 11."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Alberto Accardi",
+    "Published titles": [
+      "Research Scientist",
+      "Affiliate Scholar"
+    ],
+    "Office": [
+      "Luter Hall 349"
+    ],
+    "Phone": "(757) 594-0707",
+    "Email": "alberto.accardi@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "College of Natural and Behavioral Sciences",
+        "url": "https://cnu.edu/academics/areasofstudy/naturalandbehavioralsciences/"
+      },
+      {
+        "label": "School of Engineering and Computing",
+        "url": "https://cnu.edu/academics/departments/sec/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Physics, Trieste University",
+      "BS in Physics, Milan University"
+    ],
+    "Biography": "Quantum chromodynamics is a fascinating theory that explains the inner nature of visible matter and how the so-called \"strong nuclear force\" keeps this together. It superficially resembles electromagnetism, but exhibits emergent phenomena that are still challenging us nearly 60 years after its formulation and numerous experimental verifications. My research aims at understanding two of these phenomena: -- why the mass of the proton is not equal to the sum of the masses of its constituents (the quarks) but rather to the energy of the gluons that bind these together; -- and why no free quark or gluon has, in fact, ever been observed experimentally. My approach combines quantum field theory methods with numerical analysis of large data sets on high-energy scattering processes such as electron-proton collisions at the nearby Jefferson Lab. You can find my journal articles and recent preprints listed on the INSPIRE HEP archive ( https://inspirehep.net/authors/1019006 ).",
+    "Teaching": "Physics",
+    "Research": "Theoretical Quantum Chromodynamics Quark and gluon structure of matter",
+    "Publications": [
+      "Conference Proceeding (2024). Systematic uncertainty of off-shell corrections and higher-twist contribution in DIS at large x . Sissa Medialab. Pages, 031.",
+      "Journal Article, Academic Journal (2023). Gauge invariant spectral analysis of quark hadronization dynamics . Physical Review D. Volume, 108. Issue, 11.",
+      "Journal Article, Academic Journal (2018). Gauge invariance and kaon production in deep inelastic scattering at low scales . Physical Review D. Volume, 97. Issue, 11."
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_albertoaccardi.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_albertoaccardi.html",
+  "raw_acquisition_hash": "cb7ac1e751c0ca8edf3dab7001dd048ba9df9e27d1abdbe9e12b1ea15a3e52a0",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/albertoaccardi.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_albertoaccardi.html",
+    "source_sha256": "cb7ac1e751c0ca8edf3dab7001dd048ba9df9e27d1abdbe9e12b1ea15a3e52a0",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

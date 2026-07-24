@@ -1,0 +1,496 @@
+{
+  "id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+  "object_type": "faculty_observation",
+  "title": "Benjamin Corbin",
+  "text": "Faculty directory observation\nName: Benjamin Corbin\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+          "published_name": "Benjamin Corbin"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+                "published_name": "Benjamin Corbin"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Music, Theatre and Dance",
+                "published_name": "Music, Theatre and Dance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d9920c18f4c2bcde57177cc3418ec58b0e090519953ae98d796d13b3ad224e35"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+                "published_name": "Benjamin Corbin"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c8c96f1336d9b07ab9694c3701de45e3e8711586cce5302ac62e2ba1d5062401"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_benjamincorbin.html",
+    "url": "https://cnu.edu/faculty/benjamincorbin.html",
+    "content_hash": "e2b047a007f44a07877e366bb594cc6bfcab63052bcdd032f3ccf538c44bbb4a"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "b8ddcd514c89e4252442484c64a75e86fe32130f9a1d9998aa314332c396d976",
+  "display_name": "Benjamin Corbin",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Benjamin Corbin",
+  "published_titles": [
+    "Associate Professor",
+    "Director of Keyboard Studies"
+  ],
+  "published_department": "Music, Theatre and Dance",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "Music, Theatre and Dance",
+      "url": "https://cnu.edu/academics/departments/"
+    },
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    }
+  ],
+  "email": "benjamin.corbin@cnu.edu",
+  "phone": "(757) 594-7730",
+  "office": null,
+  "profile_url": "https://cnu.edu/faculty/benjamincorbin.html",
+  "biography": "Pianist Ben Corbin maintains an active schedule as a performer, teacher, and masterclass clinician. He was awarded top prizes in the Phi Beta Music Competition, OMTA Piano Competition, and the Coeur d\u2019Alene Symphony Young Artists\u2019 Competition. Described as an \u201cincisive\u201d pianist (Colorado Springs Gazette) and praised for his \u201csensitive keyboard work\u201d (The Virginia Pilot), Ben has also been featured on classical radio KMFA in Austin, TX, WFMT Chicago, and WHRO in Virginia. He has had the privilege of performing at Taiwan\u2019s National Concert Hall, The American Theater, the Ferguson Center for the Arts, and on the Dame Myra Hess International Concert Series, as well as a concerto soloist with the Hampton Roads Philharmonic, the Chesapeake Bay Wind Ensemble, the Virginia Symphony Chamber Orchestra, the University of Oregon Symphony Orchestra, and the Christopher Newport University Wind Ensemble. Dr. Corbin holds degrees in Piano Performance (BM, MM) from the University of Oregon where he studied with Dean Kramer and David Riley, and Collaborative Piano (MM, DMA) from The University of Texas at Austin where he studied with Anne Epperson. Ben was awarded fellowships in collaborative piano to attend the Brevard Music Center and the Colorado College Summer Music Festival. He has served as a member of the Collaborative Piano staff at the Meadowmount School of Music in New York, the International Clarinet Festival of Panam\u00e1, the Torggler Summer Vocal Institute, and Snow Pond Center for the Arts. Dr. Corbin is currently the Assistant Professor of Piano and Collaborative Arts at Christopher Newport University, where he also serves as the Director of Keyboard Studies.",
+  "education_entries": [
+    "DMA in Collaborative Piano, University of Texas at Austin",
+    "MM in Collaborative Piano, University of Texas at Austin",
+    "MM in Piano Performance, University of Oregon"
+  ],
+  "research_interests": "Mindfulness in the Concert Experience Collaborative Piano and Chamber Music Pedagogy Multimedia Recital and Concert Presentations (\"Dreaming/Being\" with Dr. Timothy Hagen, flute) Ludomusicology",
+  "teaching_interests": "Applied Piano Collaborative Piano Chamber Music Opera and Musical Theater",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [
+    "Mary Elizabeth Sherrill Presidential Endowed Award in Music, University of Texas at Austin. (2014)",
+    "Outstanding Graduate Performer in Collaborative Piano, University of Oregon. (2012)",
+    "Coeur d\u2019Alene Symphony Young Artists\u2019 Competition - 2nd Prize, Coeur d'Alene Symphony. (2011)",
+    "University of Oregon Concerto Competition - 1st Prize, University of Oregon. (2010)",
+    "Outstanding Undergraduate Performer in Collaborative Piano, University of Oregon. (2009)",
+    "Outstanding Undergraduate Performer in Keyboard, University of Oregon. (2009)",
+    "Outstanding Undergraduate Performer in Music, University of Oregon. (2009)",
+    "Grant from the Liberace Foundation, Liberace Foundation. (2008)",
+    "Madelon Petroff Piano Scholarship, University of Oregon. (2008)",
+    "Oregon Music Teachers Association Piano Competition - Winner, Oregon Music Teachers Association. (2008)"
+  ],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Artistic Accomplishments": [
+      "Music Performance - Full Chamber Recital \"The American Prize National Chamber Music Competition\". The American Prize National Nonprofit Competitions in the Performing Arts.",
+      "Music Performance - Free-lance \"George Gershwin's 'Rhapsody in Blue'\". Ben Corbin, piano soloist with Chesapeake Bay Wind Ensemble. Diamonstein Theater. Newport News, VA.",
+      "Other \"CNU Piano Day\". Ben Corbin. Peebles Theater. Newport News, VA.",
+      "\"Christopher Newport University's 3rd Annual Piano Day\". Dr. Benjamin Corbin. Peebles Concert Hall.",
+      "Other \"Second Annual International Clarinet Festival of Panam\u00e1\". MICLAP. Universidad de Panam\u00e1. Panam\u00e1 City, Panam\u00e1.",
+      "Music Performance - Free-lance \"Nancy Galbraith's 'Concerto for Piano and Wind Ensemble'\". Ben Corbin, piano soloist with Chesapeake Bay Wind Ensemble. Peebles Theater. Newport News, VA.",
+      "\"Christopher Newport University's 2nd Annual Piano Day\". Dr. Benjamin Corbin. Peebles Concert Hall.",
+      "Other \"CNU Second Annual Piano Day\". Ben Corbin and Seung-Hye Kim. Peebles Theater. Newport News, VA.",
+      "Music Performance - Full Chamber Recital \"Ben Corbin and Winnie Fan Collaborative Duo Recital\". Cheung Yuan University. Taipei, Taiwan.",
+      "Music Performance - Full Chamber Recital \"Ben Corbin and Winnie Fan Collaborative Duo Recital\". National Concert Hall of Taiwan. Taipei, Taiwan.",
+      "Music Performance - Participation \"Masterclass with Violinist James Ehnes\". Ben Corbin, piano. Westport, NY.",
+      "Music Performance - Participation \"Masterclass with Cellist Lynn Harrell\". Ben Corbin, piano. Westport, NY.",
+      "Other \"CNU Piano Day\". Ben Corbin and Rick Rowley. Peebles Theater. Newport News, VA.",
+      "Music Performance - Free-lance \"Franz Liszt's 'Totentanz for Piano and Orchestra'\". Hampton Roads Philharmonic. American Theater. Phoebus, VA.",
+      "Music Performance - Full Chamber Recital \"An Evening of Cabaret: Heather Parcells and Ben Corbin\". Heather Parcells. Ferguson Center for the Arts. Newport News, VA.",
+      "Music Performance - Partial Chamber Recital \"VSO Chamber Orchestra: Classical Winds\". Virginia Symphony Orchestra. Peebles Theatre. Newport News, Virginia."
+    ],
+    "Presentations": [
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" Jordan Kitt's Music. (2023)",
+      "Benjamin Corbin, Tidewater Music Teachers Forum, \"Piano Masterclass,\" Jordan Kitt's Music, Virginia Beach, VA. (2023)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" Yorktown, VA. (2023)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" Ferguson Center for the Arts. (2021)",
+      "Benjamin Corbin, Interview with Dr. Ben Corbin, piano, \"Collaborative Piano Masterclass,\" Richmond, VA. (2020)",
+      "Benjamin Corbin, Guest masterclass Dr. Ben Corbin, \"Collaborative Piano Masterclass,\" Richmond, VA. (2019)",
+      "Benjamin Corbin, Guest masterclass Dr. Ben Corbin, \"Collaborative Piano Masterclass,\" Panam\u00e1 City, Panam\u00e1. (2019)",
+      "Benjamin Corbin, Introduction to Collaborative Piano, \"Collaborative Piano Masterclass,\" Panam\u00e1 City, Panam\u00e1. (2019)",
+      "Benjamin Corbin, Guest artist piano masterclass, \"Dr. Ben Corbin, piano,\" Petersburg, VA. (2019)",
+      "Benjamin Corbin, Guest masterclass Dr. Ben Corbin, \"Collaborative Piano Masterclass,\" Lincoln, NE. (2019)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" The Music Post, Yorktown, VA. (2018)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"\"Teaching Practicing\",\" Northampton Church of Christ at 1409 Todd's Lane, Hampton. (2017)"
+    ],
+    "Grants and Sponsored Research": [
+      "Benjamin Corbin, Colin Ruffer, \"Yamaha NX3 Avant Grand,\" Sponsored by Hampton Roads Community Foundation, E.K. Sloane",
+      "Benjamin Corbin, \"Steinway Model 'B' Grand Piano,\" Sponsored by Hampton Roads Community Foundation, E.K. Sloane"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Benjamin Corbin",
+    "Published titles": [
+      "Associate Professor",
+      "Director of Keyboard Studies"
+    ],
+    "Phone": "(757) 594-7730",
+    "Email": "benjamin.corbin@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Music, Theatre and Dance",
+        "url": "https://cnu.edu/academics/departments/"
+      },
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      }
+    ],
+    "Education": [
+      "DMA in Collaborative Piano, University of Texas at Austin",
+      "MM in Collaborative Piano, University of Texas at Austin",
+      "MM in Piano Performance, University of Oregon"
+    ],
+    "Biography": "Pianist Ben Corbin maintains an active schedule as a performer, teacher, and masterclass clinician. He was awarded top prizes in the Phi Beta Music Competition, OMTA Piano Competition, and the Coeur d\u2019Alene Symphony Young Artists\u2019 Competition. Described as an \u201cincisive\u201d pianist (Colorado Springs Gazette) and praised for his \u201csensitive keyboard work\u201d (The Virginia Pilot), Ben has also been featured on classical radio KMFA in Austin, TX, WFMT Chicago, and WHRO in Virginia. He has had the privilege of performing at Taiwan\u2019s National Concert Hall, The American Theater, the Ferguson Center for the Arts, and on the Dame Myra Hess International Concert Series, as well as a concerto soloist with the Hampton Roads Philharmonic, the Chesapeake Bay Wind Ensemble, the Virginia Symphony Chamber Orchestra, the University of Oregon Symphony Orchestra, and the Christopher Newport University Wind Ensemble. Dr. Corbin holds degrees in Piano Performance (BM, MM) from the University of Oregon where he studied with Dean Kramer and David Riley, and Collaborative Piano (MM, DMA) from The University of Texas at Austin where he studied with Anne Epperson. Ben was awarded fellowships in collaborative piano to attend the Brevard Music Center and the Colorado College Summer Music Festival. He has served as a member of the Collaborative Piano staff at the Meadowmount School of Music in New York, the International Clarinet Festival of Panam\u00e1, the Torggler Summer Vocal Institute, and Snow Pond Center for the Arts. Dr. Corbin is currently the Assistant Professor of Piano and Collaborative Arts at Christopher Newport University, where he also serves as the Director of Keyboard Studies.",
+    "Teaching": "Applied Piano Collaborative Piano Chamber Music Opera and Musical Theater",
+    "Research": "Mindfulness in the Concert Experience Collaborative Piano and Chamber Music Pedagogy Multimedia Recital and Concert Presentations (\"Dreaming/Being\" with Dr. Timothy Hagen, flute) Ludomusicology",
+    "Awards and Honors": [
+      "Mary Elizabeth Sherrill Presidential Endowed Award in Music, University of Texas at Austin. (2014)",
+      "Outstanding Graduate Performer in Collaborative Piano, University of Oregon. (2012)",
+      "Coeur d\u2019Alene Symphony Young Artists\u2019 Competition - 2nd Prize, Coeur d'Alene Symphony. (2011)",
+      "University of Oregon Concerto Competition - 1st Prize, University of Oregon. (2010)",
+      "Outstanding Undergraduate Performer in Collaborative Piano, University of Oregon. (2009)",
+      "Outstanding Undergraduate Performer in Keyboard, University of Oregon. (2009)",
+      "Outstanding Undergraduate Performer in Music, University of Oregon. (2009)",
+      "Grant from the Liberace Foundation, Liberace Foundation. (2008)",
+      "Madelon Petroff Piano Scholarship, University of Oregon. (2008)",
+      "Oregon Music Teachers Association Piano Competition - Winner, Oregon Music Teachers Association. (2008)"
+    ],
+    "Artistic Accomplishments": [
+      "Music Performance - Full Chamber Recital \"The American Prize National Chamber Music Competition\". The American Prize National Nonprofit Competitions in the Performing Arts.",
+      "Music Performance - Free-lance \"George Gershwin's 'Rhapsody in Blue'\". Ben Corbin, piano soloist with Chesapeake Bay Wind Ensemble. Diamonstein Theater. Newport News, VA.",
+      "Other \"CNU Piano Day\". Ben Corbin. Peebles Theater. Newport News, VA.",
+      "\"Christopher Newport University's 3rd Annual Piano Day\". Dr. Benjamin Corbin. Peebles Concert Hall.",
+      "Other \"Second Annual International Clarinet Festival of Panam\u00e1\". MICLAP. Universidad de Panam\u00e1. Panam\u00e1 City, Panam\u00e1.",
+      "Music Performance - Free-lance \"Nancy Galbraith's 'Concerto for Piano and Wind Ensemble'\". Ben Corbin, piano soloist with Chesapeake Bay Wind Ensemble. Peebles Theater. Newport News, VA.",
+      "\"Christopher Newport University's 2nd Annual Piano Day\". Dr. Benjamin Corbin. Peebles Concert Hall.",
+      "Other \"CNU Second Annual Piano Day\". Ben Corbin and Seung-Hye Kim. Peebles Theater. Newport News, VA.",
+      "Music Performance - Full Chamber Recital \"Ben Corbin and Winnie Fan Collaborative Duo Recital\". Cheung Yuan University. Taipei, Taiwan.",
+      "Music Performance - Full Chamber Recital \"Ben Corbin and Winnie Fan Collaborative Duo Recital\". National Concert Hall of Taiwan. Taipei, Taiwan.",
+      "Music Performance - Participation \"Masterclass with Violinist James Ehnes\". Ben Corbin, piano. Westport, NY.",
+      "Music Performance - Participation \"Masterclass with Cellist Lynn Harrell\". Ben Corbin, piano. Westport, NY.",
+      "Other \"CNU Piano Day\". Ben Corbin and Rick Rowley. Peebles Theater. Newport News, VA.",
+      "Music Performance - Free-lance \"Franz Liszt's 'Totentanz for Piano and Orchestra'\". Hampton Roads Philharmonic. American Theater. Phoebus, VA.",
+      "Music Performance - Full Chamber Recital \"An Evening of Cabaret: Heather Parcells and Ben Corbin\". Heather Parcells. Ferguson Center for the Arts. Newport News, VA.",
+      "Music Performance - Partial Chamber Recital \"VSO Chamber Orchestra: Classical Winds\". Virginia Symphony Orchestra. Peebles Theatre. Newport News, Virginia."
+    ],
+    "Presentations": [
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" Jordan Kitt's Music. (2023)",
+      "Benjamin Corbin, Tidewater Music Teachers Forum, \"Piano Masterclass,\" Jordan Kitt's Music, Virginia Beach, VA. (2023)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" Yorktown, VA. (2023)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" Ferguson Center for the Arts. (2021)",
+      "Benjamin Corbin, Interview with Dr. Ben Corbin, piano, \"Collaborative Piano Masterclass,\" Richmond, VA. (2020)",
+      "Benjamin Corbin, Guest masterclass Dr. Ben Corbin, \"Collaborative Piano Masterclass,\" Richmond, VA. (2019)",
+      "Benjamin Corbin, Guest masterclass Dr. Ben Corbin, \"Collaborative Piano Masterclass,\" Panam\u00e1 City, Panam\u00e1. (2019)",
+      "Benjamin Corbin, Introduction to Collaborative Piano, \"Collaborative Piano Masterclass,\" Panam\u00e1 City, Panam\u00e1. (2019)",
+      "Benjamin Corbin, Guest artist piano masterclass, \"Dr. Ben Corbin, piano,\" Petersburg, VA. (2019)",
+      "Benjamin Corbin, Guest masterclass Dr. Ben Corbin, \"Collaborative Piano Masterclass,\" Lincoln, NE. (2019)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"Piano Masterclass,\" The Music Post, Yorktown, VA. (2018)",
+      "Benjamin Corbin, Peninsula Music Teacher's Association, \"\"Teaching Practicing\",\" Northampton Church of Christ at 1409 Todd's Lane, Hampton. (2017)"
+    ],
+    "Grants and Sponsored Research": [
+      "Benjamin Corbin, Colin Ruffer, \"Yamaha NX3 Avant Grand,\" Sponsored by Hampton Roads Community Foundation, E.K. Sloane",
+      "Benjamin Corbin, \"Steinway Model 'B' Grand Piano,\" Sponsored by Hampton Roads Community Foundation, E.K. Sloane"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_benjamincorbin.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_benjamincorbin.html",
+  "raw_acquisition_hash": "e2b047a007f44a07877e366bb594cc6bfcab63052bcdd032f3ccf538c44bbb4a",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/benjamincorbin.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_benjamincorbin.html",
+    "source_sha256": "e2b047a007f44a07877e366bb594cc6bfcab63052bcdd032f3ccf538c44bbb4a",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

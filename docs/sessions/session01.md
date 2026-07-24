@@ -1,5 +1,7 @@
 # Session 1 — Establishing the Vision
 
+> **Archive notice:** Historical laboratory note. Current architecture, status, and commands are documented in [the session archive index](README.md).
+
 *Project Design History*
 
 ---

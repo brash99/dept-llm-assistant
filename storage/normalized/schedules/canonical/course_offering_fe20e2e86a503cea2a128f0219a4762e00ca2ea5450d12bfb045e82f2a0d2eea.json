@@ -1,0 +1,355 @@
+{
+  "id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ENGR 212L Section 1 (2021_spring)",
+  "text": "Academic term: 2021_spring\nCourse: ENGR 212L\nSection: 1\nTitle: Electronics Laboratory\nCRN: 8518",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea",
+          "published_name": "ENGR 212L 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2021_spring",
+        "published_label": "Spring Semester 2021"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea",
+                "published_name": "ENGR 212L 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2021_spring",
+              "published_label": "Spring Semester 2021"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "4af37d86980255f478d9bff66b3e5e97b507a1f3c7e95a773ea0e6584268007c"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 15266,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "fe20e2e86a503cea2a128f0219a4762e00ca2ea5450d12bfb045e82f2a0d2eea",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 15266,
+  "acquisition_date": null,
+  "academic_term": "2021_spring",
+  "academic_term_published": "Spring Semester 2021",
+  "subject": "ENGR",
+  "course_number": "212L",
+  "course_code": "ENGR 212L",
+  "course_title": "Electronics Laboratory",
+  "section": "1",
+  "crn": "8518",
+  "instructor_name": "Jose Fernandez",
+  "instructor_raw": "Jose Fernandez",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 5,
+      "supporting_observation_ids": [
+        "f0c815d807af7b89fa601cdccee090e980e054c59bf960430b948e6ff4bef402",
+        "b739b4d9835764c9d9a380823da8de9d1acf987b37595279d22977081673e2ce",
+        "3ba904ae39df080bf00c7e935da32305f4d6ab7a62c4dbda4dbdfaa7e8a669be",
+        "142b58c9462c7039f6d5b505d8889230e5a3be79faaadb7bd9bf7b79dadb1254",
+        "743cb54abd46f5ffcba2b7145967ec389720d7844f7a22a93243dd5e0660f2b4"
+      ],
+      "supporting_terms": [
+        "2020_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Electronics Laboratory"
+    ],
+    "normalized_value": "Electronics Laboratory",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "1"
+    ],
+    "normalized_value": "1",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lab",
+  "meeting_pattern": "T 1800-2045",
+  "meeting_days": "T",
+  "meeting_time_raw": "1800-2045",
+  "start_time": "18:00",
+  "end_time": "20:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 206",
+  "building": null,
+  "room": null,
+  "credits": 1,
+  "credits_raw": "1",
+  "enrollment": 9,
+  "capacity": 18,
+  "waitlist": null,
+  "seats_available": 9,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "T",
+      "time_published": "1800-2045",
+      "location_published": "Joseph W. Luter III Hall 206",
+      "source_rows": [
+        15266,
+        17849
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "dcad24e11f64708fdd7e38e0e1a580a8b012db618c02b4c864176c09e7d71294",
+    "source_row_hashes": [
+      "cf4f1acc39fb34de0d5eaa520cb2e87eed04649369162984655d9f789ec0aed8",
+      "b058c0cdebc54d4186772d8d1fe6e1f5736bb2131ee03fcdebad594b119117a9"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 15266,
+    "source_rows": [
+      15266,
+      17849
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8518",
+    "Course": "ENGR 212L",
+    "Section": "1",
+    "Title": "Electronics Laboratory",
+    "Hours": "1",
+    "Area of LLC": "",
+    "Type": "Lab",
+    "Days": "T",
+    "Time": "1800-2045",
+    "Location": "Joseph W. Luter III Hall 206",
+    "Instructor": "Jose Fernandez",
+    "Seats Still Available": "9",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "18",
+    "Enrolled": "9",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2021"
+  },
+  "source_rows": [
+    15266,
+    17849
+  ],
+  "raw_records": [
+    {
+      "CRN": "8518",
+      "Course": "ENGR 212L",
+      "Section": "1",
+      "Title": "Electronics Laboratory",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1800-2045",
+      "Location": "Joseph W. Luter III Hall 206",
+      "Instructor": "Jose Fernandez",
+      "Seats Still Available": "9",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "9",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2021"
+    },
+    {
+      "CRN": "8518",
+      "Course": "ENGR 212L",
+      "Section": "1",
+      "Title": "Electronics Laboratory",
+      "Hours": "1",
+      "Area of LLC": "",
+      "Type": "Lab",
+      "Days": "T",
+      "Time": "1800-2045",
+      "Location": "Joseph W. Luter III Hall 206",
+      "Instructor": "Jose Fernandez",
+      "Seats Still Available": "9",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "18",
+      "Enrolled": "9",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2021"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

@@ -5,11 +5,14 @@ from typing import List, Optional
 
 from openai import OpenAI
 
+from app.constitution.orientation import ConstitutionalOrientation
 from app.evidence import (
     Evidence,
     EvidenceClass,
+    evidence_role_label,
     group_evidence_by_class,
 )
+from app.question_scope import QuestionScope, classify_question_scope
 from app.observatory.evidence_fitness import (
     EvidenceFitnessAssessment,
     EvidenceFitnessService,
@@ -58,6 +61,9 @@ class DecisionBrief:
 
 def build_grouped_evidence_context(
     evidence_items: List[Evidence],
+    constitutional_orientation: Optional[
+        ConstitutionalOrientation
+    ] = None,
 ) -> str:
     """Build Decision Brief context with values and facts separated."""
     grouped = group_evidence_by_class(evidence_items)
@@ -102,6 +108,7 @@ def build_grouped_evidence_context(
                 f"Original Source Number: {item.source_number}\n"
                 f"Constitutional Type: "
                 f"{metadata.get('constitutional_type')}\n"
+                f"Evidence Role: {evidence_role_label(item)}\n"
                 f"Institutional Scope: "
                 f"{metadata.get('institutional_scope')}\n"
                 f"Principles:\n{principle_text}\n"
@@ -109,9 +116,17 @@ def build_grouped_evidence_context(
                 f"Path: {citation.get('relative_path')}\n"
                 f"Chars: {citation.get('start_char')}–"
                 f"{citation.get('end_char')}\n"
-                f"Score: {result.score:.4f}\n\n"
                 f"{result.text}"
             )
+    elif (
+        constitutional_orientation is not None
+        and constitutional_orientation.matches
+    ):
+        constitutional_parts.append(
+            "No constitutional source excerpts were retrieved in the evidence "
+            "set. Deterministic Constitutional Orientation was supplied "
+            "separately below."
+        )
     else:
         constitutional_parts.append(
             "No constitutional evidence was retrieved."
@@ -147,13 +162,13 @@ def build_grouped_evidence_context(
                 f"[{item.citation_label}]\n"
                 f"Original Source Number: {item.source_number}\n"
                 f"Evidence Class: {item.evidence_class.value}\n"
+                f"Evidence Role: {evidence_role_label(item)}\n"
                 f"Classification Confidence: {item.confidence:.2f}\n"
                 f"Classification Rationale: {item.rationale}\n"
                 f"Title: {item.title}\n"
                 f"Path: {citation.get('relative_path')}\n"
                 f"Chars: {citation.get('start_char')}–"
                 f"{citation.get('end_char')}\n"
-                f"Score: {result.score:.4f}\n\n"
                 f"{result.text}"
             )
 
@@ -172,6 +187,40 @@ def build_grouped_evidence_context(
     )
 
 
+def build_constitutional_orientation_context(
+    orientation: Optional[ConstitutionalOrientation],
+) -> str:
+    """Serialize orientation without relabeling it as retrieved evidence."""
+    if orientation is None or not orientation.matches:
+        return ""
+
+    matches = []
+    for match in orientation.matches:
+        terms = ", ".join(match.matched_terms) or "None"
+        matches.append(
+            f"- Principle: {match.principle}\n"
+            f"  Source catalog object: {match.constitutional_object_title}\n"
+            f"  Constitutional type: {match.constitutional_type}\n"
+            f"  Relevance score: {match.score:.2f}\n"
+            f"  Matched terms: {terms}"
+        )
+
+    return """
+======================================================================
+Deterministic Constitutional Orientation
+======================================================================
+
+This is pre-retrieval semantic orientation, not a retrieved empirical source
+and not an institutional-alignment judgment. It identifies potentially
+relevant declared principles. Do not claim that constitutional context is
+absent when using these matches. If source excerpts were not retrieved, say
+that source-level constitutional evidence was not retrieved; do not say that
+no constitutional evidence or orientation was available.
+
+{matches}
+""".format(matches="\n".join(matches)).strip()
+
+
 def resolve_topology_entity(
     question: str,
     catalog: InstitutionalTopologyCatalog,
@@ -184,6 +233,10 @@ def resolve_topology_entity(
     questions do not receive topology context.
     """
     query_service = InstitutionalTopologyQuery(catalog)
+
+    scope = classify_question_scope(question).scope
+    if scope in {QuestionScope.INSTITUTION_WIDE, QuestionScope.MULTI_ENTITY}:
+        return None
 
     if entity_query:
         return query_service.find_entity(entity_query)
@@ -359,6 +412,7 @@ def build_decision_brief_prompt(
     evidence_fitness=None,
     evidence_topics: Optional[List[str]] = None,
     topology_context: Optional[str] = None,
+    constitutional_orientation_context: Optional[str] = None,
 ) -> str:
     """
     Build the reasoning prompt sent to the LLM.
@@ -391,18 +445,37 @@ def build_decision_brief_prompt(
     decision_type_guidance = ""
 
     if evidence_fitness is not None:
+        scope_label = getattr(
+            evidence_fitness,
+            "question_scope_label",
+            "Scope Unresolved",
+        )
+        domain_lines = []
+        for topic, grade in evidence_fitness.topic_grades.items():
+            support = evidence_fitness.topic_support.get(topic, {}) or {}
+            limitation = support.get("scope_limitation")
+            detail = f"- {topic}: {grade}"
+            if limitation:
+                detail += f" — {limitation}"
+            domain_lines.append(detail)
         decision_type_guidance = (
             f"Decision type: "
             f"{evidence_fitness.decision_type_label}\n"
+            f"Question scope: {scope_label}\n"
             f"Evidence Fitness score: "
             f"{evidence_fitness.fitness_score:.0f}%\n"
             f"Covered domains: "
             f"{', '.join(evidence_fitness.covered_topics) or 'None'}\n"
             f"Missing domains: "
-            f"{', '.join(evidence_fitness.missing_topics) or 'None'}"
+            f"{', '.join(evidence_fitness.missing_topics) or 'None'}\n"
+            "Scope-aware domain support:\n"
+            + "\n".join(domain_lines)
         )
 
     topology_context = topology_context or ""
+    constitutional_orientation_context = (
+        constitutional_orientation_context or ""
+    )
 
     if topology_context:
         topology_guidance = """
@@ -451,6 +524,15 @@ Never imply that empirical evidence alone determines institutional values.
 Explain explicitly how empirical evidence relates to institutional values.
 
 Claim-strength and language policy:
+
+- Use each source's explicit Evidence Role. Distinguish a formal requirement,
+  local institutional statement, self-study assertion, observed practice, and
+  analyst inference; do not substitute one role for another.
+- A statement in a self-study or departmental report must not be generalized
+  into a universal accreditation requirement unless a retrieved Formal
+  External Standard supports that claim.
+- When a requirement's institutional or unit-level applicability is not
+  established, say so explicitly and use uncertainty language.
 
 - Constitutional Evidence may support statements such as:
   "The institution values...", "The Strategic Compass prioritizes...",
@@ -583,6 +665,9 @@ Evidence domains appropriate to this question:
 Retrieved constitutional and empirical evidence:
 {evidence_context}
 
+Pre-retrieval constitutional orientation:
+{constitutional_orientation_context or "No constitutional orientation was supplied."}
+
 Institutional topology guidance:
 {topology_guidance}
 
@@ -673,6 +758,9 @@ class DecisionBriefService:
             InstitutionalTopologyCatalog
         ] = None,
         temperature: float = 0.2,
+        constitutional_orientation: Optional[
+            ConstitutionalOrientation
+        ] = None,
     ) -> DecisionBrief:
         question = question.strip()
 
@@ -698,7 +786,16 @@ class DecisionBriefService:
 
         evidence_context = (
             build_grouped_evidence_context(
-                evidence_items
+                evidence_items,
+                constitutional_orientation=(
+                    constitutional_orientation
+                ),
+            )
+        )
+
+        constitutional_orientation_context = (
+            build_constitutional_orientation_context(
+                constitutional_orientation
             )
         )
 
@@ -728,6 +825,9 @@ class DecisionBriefService:
             evidence_fitness=evidence_fitness,
             evidence_topics=evidence_topics,
             topology_context=topology_context,
+            constitutional_orientation_context=(
+                constitutional_orientation_context
+            ),
         )
 
         client = OpenAI(

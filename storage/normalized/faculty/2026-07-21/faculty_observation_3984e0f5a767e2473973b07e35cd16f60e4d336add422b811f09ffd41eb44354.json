@@ -1,0 +1,403 @@
+{
+  "id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+  "object_type": "faculty_observation",
+  "title": "Laura Lloyd",
+  "text": "Faculty directory observation\nName: Laura Lloyd\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+          "published_name": "Laura Lloyd"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_music_theatre_dance",
+          "published_name": "Department of Music, Theatre, and Dance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:school_arts",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:school_arts",
+          "published_name": "School of the Arts",
+          "formal_unit_type": "dependent_school",
+          "operational_roles": [
+            "intermediate_academic_unit",
+            "parent_academic_unit"
+          ],
+          "parent_unit_id": "academic_unit:faculty_arts_humanities",
+          "governance_level": "intermediate_academic_unit",
+          "has_dean": false,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_music_theatre_dance",
+          "target": "academic_unit:school_arts",
+          "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+          "target": "academic_unit:department_music_theatre_dance",
+          "published_label": "Music, Theatre and Dance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+                "published_name": "Laura Lloyd"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Music, Theatre and Dance",
+                "published_name": "Music, Theatre and Dance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "c1e3f2390abd45678766ae8e763ec326aee9948fda601fdfa2ee2628494ffe04"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+                "published_name": "Laura Lloyd"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_music_theatre_dance",
+                "published_name": "Department of Music, Theatre, and Dance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:school_arts",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:school_arts",
+                "published_name": "School of the Arts",
+                "formal_unit_type": "dependent_school",
+                "operational_roles": [
+                  "intermediate_academic_unit",
+                  "parent_academic_unit"
+                ],
+                "parent_unit_id": "academic_unit:faculty_arts_humanities",
+                "governance_level": "intermediate_academic_unit",
+                "has_dean": false,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_music_theatre_dance",
+                "target": "academic_unit:school_arts",
+                "published_label": "Department of Music, Theatre, and Dance belongs to School of the Arts",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+                "target": "academic_unit:department_music_theatre_dance",
+                "published_label": "Music, Theatre and Dance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_music_theatre_dance",
+                  "published_label": "Music, Theatre and Dance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Music, Theatre and Dance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "2e81bc411d9504d77bdce0b8fe41210656deaf749d63e3b9bf4e194a1c8257d8"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_lauralloyd.html",
+    "url": "https://cnu.edu/faculty/lauralloyd.html",
+    "content_hash": "edbddac87bbdba54dc8fa11083e67addd8c44aea6951a2d0976715ba3f6d5232"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "3984e0f5a767e2473973b07e35cd16f60e4d336add422b811f09ffd41eb44354",
+  "display_name": "Laura Lloyd",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Laura Lloyd",
+  "published_titles": [
+    "Senior Lecturer"
+  ],
+  "published_department": "Music, Theatre and Dance",
+  "published_college": "College of Arts and Humanities",
+  "organizational_affiliations": [
+    {
+      "label": "Music, Theatre and Dance",
+      "url": "https://cnu.edu/academics/departments/"
+    },
+    {
+      "label": "College of Arts and Humanities",
+      "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+    }
+  ],
+  "email": "laura.lloyd@cnu.edu",
+  "phone": "(757) 594-8937",
+  "office": null,
+  "profile_url": "https://cnu.edu/faculty/lauralloyd.html",
+  "biography": "Born in Minnesota but raised in Texas, I am a product of a very artistic family. I truly believe theatre and dance are in my blood. I graduated from Angelo State University in San Angelo, TX with a BA in Theatre and English. I worked as a professional actor with a regional theatre company (Granbury Opera House) for a year before realizing I wanted to continue my education. I attended Western Illinois University where I received an MFA in Acting with a concentration in Musical Theatre and was also a member of the University Dance Company. After graduating, I worked in several professional theatre companies throughout the United States. I then went home to Texas and taught dance and musical theatre at a private theatre arts school. An opportunity arose to come to Virginia and stage manage and perform as a singer and dancer at Busch Gardens. I set roots in Newport News and began teaching high school theatre and dance. I taught in the Newport News Public School system for 9 years and during that time began adjuncting as a dance instructor at Christopher Newport University. I am now a full time lecturer with the Department of Music, Theatre, and Dance and am very happy to be a part of the CNU family.",
+  "education_entries": [
+    "MFA in Musical Theatre, Western Illinois University",
+    "BA in Theatre, Angelo State University"
+  ],
+  "research_interests": "Dance in Musical Theatre - there are very few resources for this and I would like to explore this topic more. I am working on an online resource for Broadway Tap. I also plan to continue my training in Elemental Body Alignment for which I am certified (EBA).",
+  "teaching_interests": "Ballet, Jazz, Musical Theatre Dance Styles, Tap, Acting, Actor's Voice, Actor's Body, Advanced Acting, History of Musical Theatre, Choreography",
+  "publications": [],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {
+    "Presentations": [
+      "Gregg Lloyd, Laura Lloyd, Musical Theater Educators Alliance Annual Conference, \"Are Traditional Program Auditions Discriminatory,\" New York, New York. (2023)"
+    ]
+  },
+  "original_labeled_fields": {
+    "Name": "Laura Lloyd",
+    "Published titles": [
+      "Senior Lecturer"
+    ],
+    "Phone": "(757) 594-8937",
+    "Email": "laura.lloyd@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Music, Theatre and Dance",
+        "url": "https://cnu.edu/academics/departments/"
+      },
+      {
+        "label": "College of Arts and Humanities",
+        "url": "https://cnu.edu/academics/areasofstudy/artsandhumanities/"
+      }
+    ],
+    "Education": [
+      "MFA in Musical Theatre, Western Illinois University",
+      "BA in Theatre, Angelo State University"
+    ],
+    "Biography": "Born in Minnesota but raised in Texas, I am a product of a very artistic family. I truly believe theatre and dance are in my blood. I graduated from Angelo State University in San Angelo, TX with a BA in Theatre and English. I worked as a professional actor with a regional theatre company (Granbury Opera House) for a year before realizing I wanted to continue my education. I attended Western Illinois University where I received an MFA in Acting with a concentration in Musical Theatre and was also a member of the University Dance Company. After graduating, I worked in several professional theatre companies throughout the United States. I then went home to Texas and taught dance and musical theatre at a private theatre arts school. An opportunity arose to come to Virginia and stage manage and perform as a singer and dancer at Busch Gardens. I set roots in Newport News and began teaching high school theatre and dance. I taught in the Newport News Public School system for 9 years and during that time began adjuncting as a dance instructor at Christopher Newport University. I am now a full time lecturer with the Department of Music, Theatre, and Dance and am very happy to be a part of the CNU family.",
+    "Teaching": "Ballet, Jazz, Musical Theatre Dance Styles, Tap, Acting, Actor's Voice, Actor's Body, Advanced Acting, History of Musical Theatre, Choreography",
+    "Research": "Dance in Musical Theatre - there are very few resources for this and I would like to explore this topic more. I am working on an online resource for Broadway Tap. I also plan to continue my training in Elemental Body Alignment for which I am certified (EBA).",
+    "Presentations": [
+      "Gregg Lloyd, Laura Lloyd, Musical Theater Educators Alliance Annual Conference, \"Are Traditional Program Auditions Discriminatory,\" New York, New York. (2023)"
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_lauralloyd.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_lauralloyd.html",
+  "raw_acquisition_hash": "edbddac87bbdba54dc8fa11083e67addd8c44aea6951a2d0976715ba3f6d5232",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/lauralloyd.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_lauralloyd.html",
+    "source_sha256": "edbddac87bbdba54dc8fa11083e67addd8c44aea6951a2d0976715ba3f6d5232",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

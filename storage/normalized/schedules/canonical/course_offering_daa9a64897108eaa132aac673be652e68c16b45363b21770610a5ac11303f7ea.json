@@ -1,0 +1,316 @@
+{
+  "id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 422 Section S20 (2026_extended_summer)",
+  "text": "Academic term: 2026_extended_summer\nCourse: BIOL 422\nSection: S20\nTitle: Field Trip Experience\nCRN: 4073",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea",
+          "published_name": "BIOL 422 S20"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2026_extended_summer",
+        "published_label": "Extended Summer 2026"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea",
+                "published_name": "BIOL 422 S20"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2026_extended_summer",
+              "published_label": "Extended Summer 2026"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "1abcd4476784b3388ea6146d048d2856bdc5cc9b10256f59b8f281e0712f3876"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 18771,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "daa9a64897108eaa132aac673be652e68c16b45363b21770610a5ac11303f7ea",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 18771,
+  "acquisition_date": null,
+  "academic_term": "2026_extended_summer",
+  "academic_term_published": "Extended Summer 2026",
+  "subject": "BIOL",
+  "course_number": "422",
+  "course_code": "BIOL 422",
+  "course_title": "Field Trip Experience",
+  "section": "S20",
+  "crn": "4073",
+  "instructor_name": "Rick Sherwin",
+  "instructor_raw": "Rick Sherwin",
+  "instructor_type": {
+    "published_value": "Full Time",
+    "published_values": [
+      "Full Time"
+    ],
+    "normalized_value": "full_time",
+    "has_blank_value": false,
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory known Instructor Type assertions."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Field Trip Experience"
+    ],
+    "normalized_value": "Field Trip Experience",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "2"
+    ],
+    "normalized_value": "2",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Fie",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": " ",
+  "building": null,
+  "room": null,
+  "credits": 2,
+  "credits_raw": "2",
+  "enrollment": 11,
+  "capacity": 0,
+  "waitlist": null,
+  "seats_available": -11,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": " ",
+      "source_rows": [
+        18771
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "f0ee5cb41c06e2df3bab8ed84d350385745a9a31eaa51b10f5fda99161a51671",
+    "source_row_hashes": [
+      "286ea0a222506328f849338f3aa2ce73b62028ab25964fbb9e06af5c75472605"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 18771,
+    "source_rows": [
+      18771
+    ],
+    "source_row_count": 1,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "4073",
+    "Course": "BIOL 422",
+    "Section": "S20",
+    "Title": "Field Trip Experience",
+    "Hours": "2",
+    "Area of LLC": "",
+    "Type": "Fie",
+    "Days": "",
+    "Time": "-",
+    "Location": " ",
+    "Instructor": "Rick Sherwin",
+    "Seats Still Available": "-11",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "",
+    "Capacity": "0",
+    "Enrolled": "11",
+    "Instructor Type": "Full Time",
+    "Term": "Extended Summer 2026"
+  },
+  "source_rows": [
+    18771
+  ],
+  "raw_records": [
+    {
+      "CRN": "4073",
+      "Course": "BIOL 422",
+      "Section": "S20",
+      "Title": "Field Trip Experience",
+      "Hours": "2",
+      "Area of LLC": "",
+      "Type": "Fie",
+      "Days": "",
+      "Time": "-",
+      "Location": " ",
+      "Instructor": "Rick Sherwin",
+      "Seats Still Available": "-11",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "",
+      "Capacity": "0",
+      "Enrolled": "11",
+      "Instructor Type": "Full Time",
+      "Term": "Extended Summer 2026"
+    }
+  ],
+  "published_field_variants": {}
+}

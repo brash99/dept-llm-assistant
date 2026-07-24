@@ -1,0 +1,354 @@
+{
+  "id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ECON 300 Section 1 (2025_fall)",
+  "text": "Academic term: 2025_fall\nCourse: ECON 300\nSection: 1\nTitle: Quantitative Methods in ECON\nCRN: 8285",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c",
+          "published_name": "ECON 300 1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2025_fall",
+        "published_label": "Fall Semester 2025"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c",
+                "published_name": "ECON 300 1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2025_fall",
+              "published_label": "Fall Semester 2025"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "d236ee05029a919627939b0430f8472eb8c13c358cef5ea79d42b3fc1825ca2a"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 12788,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "b1a097d30d1450da74e7b81969bb5fbeaaf186f1b26d0fe1486f441741ee890c",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 12788,
+  "acquisition_date": null,
+  "academic_term": "2025_fall",
+  "academic_term_published": "Fall Semester 2025",
+  "subject": "ECON",
+  "course_number": "300",
+  "course_code": "ECON 300",
+  "course_title": "Quantitative Methods in ECON",
+  "section": "1",
+  "crn": "8285",
+  "instructor_name": "Alex Hamed",
+  "instructor_raw": "Alex Hamed",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "96fc879bc56a055dd143a47f7d5c87350c4cd48f8d5ea27618ce837de0b170b3",
+        "60f12a0f3fd1b946c81490d4753c0f6cd9647b36eb421afcf310e50ac4315263",
+        "74fd3cc4afb45a585dcd0708a9f3f7dc9e412eec368b50aaa12011ec938143c4",
+        "d46af98c1c84b74e44c8e696d072e5343652ebc6f13b9824b7f8da432d52cfa5"
+      ],
+      "supporting_terms": [
+        "2025_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Quantitative Methods in ECON"
+    ],
+    "normalized_value": "Quantitative Methods in ECON",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1000-1050",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1000-1050",
+  "start_time": "10:00",
+  "end_time": "10:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Paul & Rosemary Trible Library 1210",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 12,
+  "capacity": 19,
+  "waitlist": null,
+  "seats_available": 7,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1000-1050",
+      "location_published": "Paul & Rosemary Trible Library 1210",
+      "source_rows": [
+        12788,
+        12789
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "985274543237b171527698b6183e5b03fd4a9a1605fa66aef268b26f14906c8c",
+    "source_row_hashes": [
+      "273a179668797cd0dbe112fa2e54b9faaec4f3be45e87c6d2f0f810899396119",
+      "d40e5b7ab487feb1b3d661d521d3c8f4667cf159a9d765e465d18cc2749a0bc7"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 12788,
+    "source_rows": [
+      12788,
+      12789
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8285",
+    "Course": "ECON 300",
+    "Section": "1",
+    "Title": "Quantitative Methods in ECON",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1000-1050",
+    "Location": "Paul & Rosemary Trible Library 1210",
+    "Instructor": "Alex Hamed",
+    "Seats Still Available": "7",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "19",
+    "Enrolled": "12",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2025"
+  },
+  "source_rows": [
+    12788,
+    12789
+  ],
+  "raw_records": [
+    {
+      "CRN": "8285",
+      "Course": "ECON 300",
+      "Section": "1",
+      "Title": "Quantitative Methods in ECON",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Paul & Rosemary Trible Library 1210",
+      "Instructor": "Alex Hamed",
+      "Seats Still Available": "7",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "12",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2025"
+    },
+    {
+      "CRN": "8285",
+      "Course": "ECON 300",
+      "Section": "1",
+      "Title": "Quantitative Methods in ECON",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1000-1050",
+      "Location": "Paul & Rosemary Trible Library 1210",
+      "Instructor": "Alex Hamed",
+      "Seats Still Available": "7",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "19",
+      "Enrolled": "12",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2025"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

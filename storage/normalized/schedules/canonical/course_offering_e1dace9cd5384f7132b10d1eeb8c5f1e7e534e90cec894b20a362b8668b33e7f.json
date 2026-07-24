@@ -1,0 +1,355 @@
+{
+  "id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: BIOL 319 Section ON1 (2023_may)",
+  "text": "Academic term: 2023_may\nCourse: BIOL 319\nSection: ON1\nTitle: Nutrition & Energy Homeostasis\nCRN: 2088",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "meeting_time_complex_or_unrecognized_preserved_raw": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f",
+          "published_name": "BIOL 319 ON1"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2023_may",
+        "published_label": "May Term 2023"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f",
+                "published_name": "BIOL 319 ON1"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2023_may",
+              "published_label": "May Term 2023"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "567ecd516c05dead34e313a6471f860c1757403c02381f1d876afa9963a0002f"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 12289,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "e1dace9cd5384f7132b10d1eeb8c5f1e7e534e90cec894b20a362b8668b33e7f",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 12289,
+  "acquisition_date": null,
+  "academic_term": "2023_may",
+  "academic_term_published": "May Term 2023",
+  "subject": "BIOL",
+  "course_number": "319",
+  "course_code": "BIOL 319",
+  "course_title": "Nutrition & Energy Homeostasis",
+  "section": "ON1",
+  "crn": "2088",
+  "instructor_name": "Dave Knight",
+  "instructor_raw": "Dave Knight",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 4,
+      "supporting_observation_ids": [
+        "6ed4f9bb27cfe1cf8f57774f619b26e24c4fb9bd522e9aadebbb071724101f6c",
+        "9c8354f2112d8ae6565b9ad079e28df156cc85d4d97e03f2c2169b113be5e879",
+        "a2300b3d56d6c62e073a437f69d7c4bd5f5edf2a28a630b78efb32a6e2ba765d",
+        "1e9c41037ba8a2073ea2f262bff351b12476490049d2541a462fcc3402e575b7"
+      ],
+      "supporting_terms": [
+        "2023_spring"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Nutrition & Energy Homeostasis"
+    ],
+    "normalized_value": "Nutrition & Energy Homeostasis",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "-",
+  "meeting_days": null,
+  "meeting_time_raw": "-",
+  "start_time": null,
+  "end_time": null,
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Asynchronous Online Course ",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 15,
+  "capacity": 48,
+  "waitlist": null,
+  "seats_available": 33,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": null,
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": null,
+      "time_published": "-",
+      "location_published": "Asynchronous Online Course ",
+      "source_rows": [
+        12289,
+        14999
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "7447a4e66d5c03b05fcead28affdb7ec9fd6d4cb626b66917737427cc81f4216",
+    "source_row_hashes": [
+      "f42c87aec2b16534e41b82621aaff15aaf63cd16ff54118ec5862e004ef942af",
+      "0656631f090857a1db673de764b613fa8632756f7145d7149b351b8a1558d88c"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 12289,
+    "source_rows": [
+      12289,
+      14999
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "2088",
+    "Course": "BIOL 319",
+    "Section": "ON1",
+    "Title": "Nutrition & Energy Homeostasis",
+    "Hours": "3",
+    "Area of LLC": "",
+    "Type": "Lec",
+    "Days": "",
+    "Time": "-",
+    "Location": "Asynchronous Online Course ",
+    "Instructor": "Dave Knight",
+    "Seats Still Available": "33",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "48",
+    "Enrolled": "15",
+    "Instructor Type": "Adjunct",
+    "Term": "May Term 2023"
+  },
+  "source_rows": [
+    12289,
+    14999
+  ],
+  "raw_records": [
+    {
+      "CRN": "2088",
+      "Course": "BIOL 319",
+      "Section": "ON1",
+      "Title": "Nutrition & Energy Homeostasis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Dave Knight",
+      "Seats Still Available": "33",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "15",
+      "Instructor Type": "Adjunct",
+      "Term": "May Term 2023"
+    },
+    {
+      "CRN": "2088",
+      "Course": "BIOL 319",
+      "Section": "ON1",
+      "Title": "Nutrition & Energy Homeostasis",
+      "Hours": "3",
+      "Area of LLC": "",
+      "Type": "Lec",
+      "Days": "",
+      "Time": "-",
+      "Location": "Asynchronous Online Course ",
+      "Instructor": "Dave Knight",
+      "Seats Still Available": "33",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "48",
+      "Enrolled": "15",
+      "Instructor Type": "Full Time",
+      "Term": "May Term 2023"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

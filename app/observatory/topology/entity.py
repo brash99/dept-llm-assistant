@@ -13,6 +13,7 @@ class EntityType(str, Enum):
     DEPARTMENT = "department"
     PROGRAM = "program"
     COLLEGE = "college"
+    SCHOOL = "school"
     CURRICULUM = "curriculum"
     STRATEGIC_GOAL = "strategic_goal"
     ACCREDITOR = "accreditor"

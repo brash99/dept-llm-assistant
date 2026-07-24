@@ -1,0 +1,353 @@
+{
+  "id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: ECON 200 Section 4 (2022_spring)",
+  "text": "Academic term: 2022_spring\nCourse: ECON 200\nSection: 4\nTitle: The Economic Way of Thinking\nCRN: 8337",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4",
+          "published_name": "ECON 200 4"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2022_spring",
+        "published_label": "Spring Semester 2022"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4",
+                "published_name": "ECON 200 4"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2022_spring",
+              "published_label": "Spring Semester 2022"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "6af3b4168eb9c0a0754e66e60a3011a95949ea75f618057b8c16c40f1ac9ffdb"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 14416,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "023588094316240b747a1d355d69d07247a8c3011edd4eca2c0f0ae17438bac4",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 14416,
+  "acquisition_date": null,
+  "academic_term": "2022_spring",
+  "academic_term_published": "Spring Semester 2022",
+  "subject": "ECON",
+  "course_number": "200",
+  "course_code": "ECON 200",
+  "course_title": "The Economic Way of Thinking",
+  "section": "4",
+  "crn": "8337",
+  "instructor_name": "Gemma Kotula",
+  "instructor_raw": "Gemma Kotula",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 3,
+      "supporting_observation_ids": [
+        "0e226339d4a791b8d5af5026ef359532da93a073b61fb0019d0bfc9e61ce5d34",
+        "c1fc80ff70eb5b63cf4207a986082ef4bec2d12258284e6c7b96be99e1aa1778",
+        "9b5d4c5bd9c0fa8935ee9edea915f08b8bb5b4ef3bbabeef19373a5c4eb1ff1d"
+      ],
+      "supporting_terms": [
+        "2021_fall"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "The Economic Way of Thinking"
+    ],
+    "normalized_value": "The Economic Way of Thinking",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "MWF 1500-1550",
+  "meeting_days": "MWF",
+  "meeting_time_raw": "1500-1550",
+  "start_time": "15:00",
+  "end_time": "15:50",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Joseph W. Luter III Hall 137",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 24,
+  "capacity": 26,
+  "waitlist": null,
+  "seats_available": 2,
+  "status": "OPEN",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "LLFE",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": null,
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "MWF",
+      "time_published": "1500-1550",
+      "location_published": "Joseph W. Luter III Hall 137",
+      "source_rows": [
+        14416,
+        19591
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "422840192e0d9d7cdc2bcfe8dad7da61df6e4a3c5d8b9546b002f17cd927a6c8",
+    "source_row_hashes": [
+      "74a4fd1451027429ac527430942a4eed24d56b91ae191fe786d102ae6d236257",
+      "db8149e712de1a05970e6a75c960b6753f58d55c96bf2b7e002ae35d1d25bbfa"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 14416,
+    "source_rows": [
+      14416,
+      19591
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8337",
+    "Course": "ECON 200",
+    "Section": "4",
+    "Title": "The Economic Way of Thinking",
+    "Hours": "3",
+    "Area of LLC": "LLFE",
+    "Type": "Lec",
+    "Days": "MWF",
+    "Time": "1500-1550",
+    "Location": "Joseph W. Luter III Hall 137",
+    "Instructor": "Gemma Kotula",
+    "Seats Still Available": "2",
+    "Status": "OPEN",
+    "Low Cost Textbook": "",
+    "Capacity": "26",
+    "Enrolled": "24",
+    "Instructor Type": "Adjunct",
+    "Term": "Spring Semester 2022"
+  },
+  "source_rows": [
+    14416,
+    19591
+  ],
+  "raw_records": [
+    {
+      "CRN": "8337",
+      "Course": "ECON 200",
+      "Section": "4",
+      "Title": "The Economic Way of Thinking",
+      "Hours": "3",
+      "Area of LLC": "LLFE",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1500-1550",
+      "Location": "Joseph W. Luter III Hall 137",
+      "Instructor": "Gemma Kotula",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "24",
+      "Instructor Type": "Adjunct",
+      "Term": "Spring Semester 2022"
+    },
+    {
+      "CRN": "8337",
+      "Course": "ECON 200",
+      "Section": "4",
+      "Title": "The Economic Way of Thinking",
+      "Hours": "3",
+      "Area of LLC": "LLFE",
+      "Type": "Lec",
+      "Days": "MWF",
+      "Time": "1500-1550",
+      "Location": "Joseph W. Luter III Hall 137",
+      "Instructor": "Gemma Kotula",
+      "Seats Still Available": "2",
+      "Status": "OPEN",
+      "Low Cost Textbook": "",
+      "Capacity": "26",
+      "Enrolled": "24",
+      "Instructor Type": "Full Time",
+      "Term": "Spring Semester 2022"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

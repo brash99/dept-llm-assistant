@@ -1,0 +1,351 @@
+{
+  "id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559",
+  "object_type": "course_offering_observation",
+  "title": "Course Offering: HIST 122 Section 5M (2024_fall)",
+  "text": "Academic term: 2024_fall\nCourse: HIST 122\nSection: 5M\nTitle: Mod Amer: Rcnst to Globl Power\nCRN: 8568",
+  "metadata": {
+    "semantic_layer": "course_offering_observation",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "repair_algorithm": "schedule_source_repair",
+    "repair_version": "1.0",
+    "parsing_warnings": {
+      "instructor_type_conflicting_source_values": 1,
+      "location_not_building_room_pair_preserved_raw": 1
+    },
+    "semantic_identity": {
+      "object_type": "course_offering_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "course_offering",
+          "entity_id": "course_offering:4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559",
+          "published_name": "HIST 122 5M"
+        }
+      ],
+      "temporal_scope": {
+        "academic_term": "2024_fall",
+        "published_label": "Fall Semester 2024"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "course_offering_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "course_offering_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "course_offering",
+                "entity_id": "course_offering:4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559",
+                "published_name": "HIST 122 5M"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "course_code",
+                "knowledge_object_id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "section",
+                "knowledge_object_id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "academic_term": "2024_fall",
+              "published_label": "Fall Semester 2024"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term",
+                "knowledge_object_id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "academic_term_published",
+                "knowledge_object_id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "20ffc595d51f19e70e28ebd9fb066d6536b1cacc50f99fff10661ece3382c043"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_schedule_csv",
+    "path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "row": 1692,
+    "content_hash": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8"
+  },
+  "created_at": null,
+  "normalized_at": "2026-07-21T21:06:26.939891+00:00",
+  "observation_id": "4a04d56e0259f41144fec0ee44e347a9e93a3bbf1241d8438f61acec30d98559",
+  "source_file": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+  "source_row": 1692,
+  "acquisition_date": null,
+  "academic_term": "2024_fall",
+  "academic_term_published": "Fall Semester 2024",
+  "subject": "HIST",
+  "course_number": "122",
+  "course_code": "HIST 122",
+  "course_title": "Mod Amer: Rcnst to Globl Power",
+  "section": "5M",
+  "crn": "8568",
+  "instructor_name": "Laura Puaca",
+  "instructor_raw": "Laura Puaca",
+  "instructor_type": {
+    "published_value": null,
+    "published_values": [
+      "Adjunct",
+      "Full Time"
+    ],
+    "normalized_value": "unknown",
+    "has_blank_value": false,
+    "conflicting": true,
+    "resolution": {
+      "resolved": false,
+      "method": "unresolved_source_conflict",
+      "confidence": 0.0,
+      "supporting_section_count": 1,
+      "supporting_observation_ids": [
+        "4c8877a917c544cf4832c4d39f757880349fb01b07d484c83793bae57a7d0d39"
+      ],
+      "supporting_terms": [
+        "2024_summer_1"
+      ],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The nearest prior term with evidence is internally contradictory; older terms were not used."
+    }
+  },
+  "course_title_assertion": {
+    "published_values": [
+      "Mod Amer: Rcnst to Globl Power"
+    ],
+    "normalized_value": "Mod Amer: Rcnst to Globl Power",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "credits_assertion": {
+    "published_values": [
+      "3"
+    ],
+    "normalized_value": "3",
+    "conflicting": false,
+    "resolution": {
+      "resolved": true,
+      "method": "direct_source_assertion",
+      "confidence": 1.0,
+      "supporting_section_count": 0,
+      "supporting_observation_ids": [],
+      "supporting_terms": [],
+      "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+      "notes": "The grouped source rows contain no contradictory published values."
+    }
+  },
+  "instructional_method": "Lec",
+  "meeting_pattern": "TR 0930-1045",
+  "meeting_days": "TR",
+  "meeting_time_raw": "0930-1045",
+  "start_time": "09:30",
+  "end_time": "10:45",
+  "meeting_date_range_raw": null,
+  "start_date": null,
+  "end_date": null,
+  "location_raw": "Lewis McMurran Hall 260",
+  "building": null,
+  "room": null,
+  "credits": 3,
+  "credits_raw": "3",
+  "enrollment": 25,
+  "capacity": 25,
+  "waitlist": null,
+  "seats_available": 0,
+  "status": "CLOSED",
+  "campus": null,
+  "notes": null,
+  "llc_area_raw": "AIWT, GE, LETR, LOW, XAMS, XHIS",
+  "reserved": null,
+  "reserved_available": null,
+  "unreserved": null,
+  "unreserved_available": null,
+  "low_cost_textbook_raw": "YES",
+  "modality": null,
+  "meeting_patterns": [
+    {
+      "days_published": "TR",
+      "time_published": "0930-1045",
+      "location_published": "Lewis McMurran Hall 260",
+      "source_rows": [
+        1692,
+        14890
+      ]
+    }
+  ],
+  "repair": {
+    "algorithm": "schedule_source_repair",
+    "version": "1.0",
+    "repair_timestamp": "2026-07-21T21:06:26.939891+00:00",
+    "source_file_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "decision_fingerprint": "2a76c8fa8dc09b7215f70e9d9698ed514d0d9656da2b326c5379f6d3d767b08c",
+    "source_row_hashes": [
+      "4307cdc953a596e0eb53d127f0084596750e3e0d2f4f9ebb23262d7ccc46ec3d",
+      "1234aa0a3d844bec1438e6741821b0592b019d00a98d4d98938bf86b64d5c0a0"
+    ]
+  },
+  "provenance": {
+    "source_filename": "Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_path": "/Users/brash/dept-llm-assistant/data/acquisition/schedules/Faculty Schedule of Classes 2021 to 2026 by semester.csv",
+    "source_row": 1692,
+    "source_rows": [
+      1692,
+      14890
+    ],
+    "source_row_count": 2,
+    "ingested_at": "2026-07-21T21:06:26.939891+00:00",
+    "source_sha256": "9ab803cc1715dd39a8ba8ba6890921ca04a1a8e0a20160dfcf785cc3de4aebc8",
+    "adapter": "schedule_csv_adapter",
+    "adapter_version": "0.3",
+    "source_headers": [
+      "CRN",
+      "Course",
+      "Section",
+      "Title",
+      "Hours",
+      "Area of LLC",
+      "Type",
+      "Days",
+      "Time",
+      "Location",
+      "Instructor",
+      "Seats Still Available",
+      "Status",
+      "Low Cost Textbook",
+      "Capacity",
+      "Enrolled",
+      "Instructor Type",
+      "Term"
+    ]
+  },
+  "raw_record": {
+    "CRN": "8568",
+    "Course": "HIST 122",
+    "Section": "5M",
+    "Title": "Mod Amer: Rcnst to Globl Power",
+    "Hours": "3",
+    "Area of LLC": "AIWT, GE, LETR, LOW, XAMS, XHIS",
+    "Type": "Lec",
+    "Days": "TR",
+    "Time": "0930-1045",
+    "Location": "Lewis McMurran Hall 260",
+    "Instructor": "Laura Puaca",
+    "Seats Still Available": "0",
+    "Status": "CLOSED",
+    "Low Cost Textbook": "YES",
+    "Capacity": "25",
+    "Enrolled": "25",
+    "Instructor Type": "Adjunct",
+    "Term": "Fall Semester 2024"
+  },
+  "source_rows": [
+    1692,
+    14890
+  ],
+  "raw_records": [
+    {
+      "CRN": "8568",
+      "Course": "HIST 122",
+      "Section": "5M",
+      "Title": "Mod Amer: Rcnst to Globl Power",
+      "Hours": "3",
+      "Area of LLC": "AIWT, GE, LETR, LOW, XAMS, XHIS",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Lewis McMurran Hall 260",
+      "Instructor": "Laura Puaca",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "25",
+      "Enrolled": "25",
+      "Instructor Type": "Adjunct",
+      "Term": "Fall Semester 2024"
+    },
+    {
+      "CRN": "8568",
+      "Course": "HIST 122",
+      "Section": "5M",
+      "Title": "Mod Amer: Rcnst to Globl Power",
+      "Hours": "3",
+      "Area of LLC": "AIWT, GE, LETR, LOW, XAMS, XHIS",
+      "Type": "Lec",
+      "Days": "TR",
+      "Time": "0930-1045",
+      "Location": "Lewis McMurran Hall 260",
+      "Instructor": "Laura Puaca",
+      "Seats Still Available": "0",
+      "Status": "CLOSED",
+      "Low Cost Textbook": "YES",
+      "Capacity": "25",
+      "Enrolled": "25",
+      "Instructor Type": "Full Time",
+      "Term": "Fall Semester 2024"
+    }
+  ],
+  "published_field_variants": {
+    "instructor_type": [
+      "Adjunct",
+      "Full Time"
+    ]
+  }
+}

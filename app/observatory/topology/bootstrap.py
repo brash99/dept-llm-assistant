@@ -22,12 +22,32 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
 
     entities = [
         #
-        # Departments
+        # Academic units and programs. SEC is formally a dependent school and
+        # the department-equivalent workforce home; Physics and Computer
+        # Science are programmatic specialties, not faculty-home departments.
         #
         InstitutionalEntity(
-            id="department:physics",
+            id="college:natural_behavioral_sciences",
+            name="College of Natural and Behavioral Sciences",
+            entity_type=EntityType.COLLEGE,
+        ),
+        InstitutionalEntity(
+            id="academic_unit:sec",
+            name="School of Engineering and Computing",
+            entity_type=EntityType.SCHOOL,
+            metadata={
+                "formal_unit_type": "dependent_school",
+                "parent_unit_id": "college:natural_behavioral_sciences",
+                "operational_roles": [
+                    "department_equivalent", "faculty_home_unit",
+                    "workforce_allocation_unit",
+                ],
+            },
+        ),
+        InstitutionalEntity(
+            id="program:physics",
             name="Physics",
-            entity_type=EntityType.DEPARTMENT,
+            entity_type=EntityType.PROGRAM,
         ),
         InstitutionalEntity(
             id="department:chemistry",
@@ -45,9 +65,9 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
             entity_type=EntityType.DEPARTMENT,
         ),
         InstitutionalEntity(
-            id="department:computer_science",
+            id="program:computer_science",
             name="Computer Science",
-            entity_type=EntityType.DEPARTMENT,
+            entity_type=EntityType.PROGRAM,
         ),
         InstitutionalEntity(
             id="department:english",
@@ -127,7 +147,7 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
         # Physics
         #
         InstitutionalRelationship(
-            source_id="department:physics",
+            source_id="program:physics",
             target_id="program:mechanical_engineering",
             relationship_type=RelationshipType.SUPPORTS,
             confidence=0.95,
@@ -137,7 +157,7 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
             ),
         ),
         InstitutionalRelationship(
-            source_id="department:physics",
+            source_id="program:physics",
             target_id="program:electrical_engineering",
             relationship_type=RelationshipType.SUPPORTS,
             confidence=0.95,
@@ -147,7 +167,7 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
             ),
         ),
         InstitutionalRelationship(
-            source_id="department:physics",
+            source_id="program:physics",
             target_id="curriculum:general_education",
             relationship_type=RelationshipType.CONTRIBUTES_TO,
             confidence=0.90,
@@ -157,7 +177,7 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
             ),
         ),
         InstitutionalRelationship(
-            source_id="department:physics",
+            source_id="program:physics",
             target_id="curriculum:liberal_learning",
             relationship_type=RelationshipType.CONTRIBUTES_TO,
             confidence=0.90,
@@ -270,7 +290,7 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
         # Computer Science
         #
         InstitutionalRelationship(
-            source_id="department:computer_science",
+            source_id="program:computer_science",
             target_id="program:computer_engineering",
             relationship_type=RelationshipType.SUPPORTS,
             confidence=0.95,
@@ -280,7 +300,7 @@ def build_bootstrap_catalog() -> InstitutionalTopologyCatalog:
             ),
         ),
         InstitutionalRelationship(
-            source_id="department:computer_science",
+            source_id="program:computer_science",
             target_id="curriculum:general_education",
             relationship_type=RelationshipType.CONTRIBUTES_TO,
             confidence=0.80,

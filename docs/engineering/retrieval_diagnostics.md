@@ -1,266 +1,67 @@
 # Retrieval Diagnostics
 
-> Making every stage of retrieval observable.
+Retrieval diagnostics make the Evidence Layer inspectable. They are engineering artifacts, not executive evidence grades.
 
----
+## Current stages
 
-# Introduction
+1. **Raw FAISS candidates** — vector similarity results, plus constitutional fallback candidates when needed.
+2. **After exact deduplication** — text, source-path, or cross-format relative-path duplicates removed according to `dedupe_by`.
+3. **After reranking** — optional cross-encoder order with original FAISS score retained in metadata.
+4. **After document-family diversity** — ranked family maximum applied.
+5. **Removed by document-family diversity** — excluded candidates with inspectable family keys.
+6. **After threshold** — optional minimum reranker logit applied.
+7. **Final results** — separately quota-limited constitutional and empirical evidence sent downstream.
 
-Modern Retrieval-Augmented Generation (RAG) systems often behave as black boxes.
+## Contracts
 
-A user submits a question.
+`RetrievalTrace` preserves candidate lists for each stage. `RetrievalReport` records counts and configuration. `RetrievalProfile` records stage timings. New family fields have backward-compatible defaults.
 
-The system produces an answer.
+Important report values include:
 
-Between those two events lies an entire retrieval pipeline whose behavior is frequently hidden from both users and developers.
+- `num_candidates`;
+- `num_after_dedup`;
+- `num_after_rerank`;
+- `num_after_family_diversity`;
+- `num_removed_by_family_diversity`;
+- `num_after_threshold`;
+- `num_results`; and
+- `max_per_document_family`.
 
-The Institutional Knowledge Framework adopts a different philosophy.
+## Score interpretation
 
-Every major stage of retrieval should be observable, inspectable, and explainable.
+- The raw result score is FAISS similarity before reranking.
+- With reranking enabled, `metadata.faiss_score` preserves that value and `metadata.rerank_score` stores the cross-encoder output.
+- Cross-encoder outputs may be negative. They are uncalibrated logits, not percentages, confidence, evidence strength, or decision readiness.
+- Normal executive source labels omit these values. Developer Mode and failure-analysis tools retain them.
 
-Retrieval diagnostics therefore form a core component of the engineering architecture rather than a debugging utility.
+## Document-family diagnostics
 
----
+Every post-rerank candidate receives `document_family_key`. Family normalization accounts for obvious revisions and selected accreditation naming conventions. Review removed paths and keys when:
 
-# Why Diagnostics Matter
+- one document package dominates final evidence;
+- distinct criteria appear incorrectly merged;
+- program-specific self-studies lose program identity; or
+- revisions still appear as independent support.
 
-Retrieval failures can originate from many sources.
+Family diversity cannot create evidence roles or source diversity that retrieval did not find.
 
-Examples include:
+## Diagnosing a failure
 
-- poor embeddings
-- corpus imbalance
-- duplicate documents
-- reranker behavior
-- chunking strategy
-- parser failures
-- prompt construction
+1. Confirm the expected source exists in normalized objects, chunks, embeddings, and the FAISS index.
+2. Locate its rank in raw candidates.
+3. Check exact deduplication and its canonical path key.
+4. Check reranker displacement and both scores.
+5. Check family key and removal status.
+6. Check threshold behavior.
+7. Check constitutional/empirical quota selection.
+8. Inspect its evidence class and evidence role after selection.
+9. Compare the retrieved support with Evidence Fitness; retrieval presence alone is not fitness.
 
-Without visibility into the retrieval pipeline, identifying the true cause of failure becomes extremely difficult.
+## Tools
 
-Diagnostics transform retrieval engineering from trial-and-error into systematic investigation.
+- Streamlit Developer Mode: complete interactive trace.
+- `scripts/analyze_failure.py`: one configured benchmark case.
+- `scripts/run_retrieval_benchmark.py`: benchmark suite and JSON log.
+- `scripts/search_chunks.py`: direct search inspection.
 
----
-
-# Design Philosophy
-
-The diagnostic system is guided by four principles.
-
-## Every transformation should be observable.
-
-Every stage of retrieval changes the candidate set.
-
-Each transformation should be visible.
-
----
-
-## Explain intermediate decisions.
-
-The framework should explain not only the final answer, but also how that answer was constructed.
-
----
-
-## Support engineering.
-
-Diagnostics exist primarily to improve the system.
-
-They are engineering tools rather than user-facing features.
-
----
-
-## Build trust.
-
-Transparency increases confidence in the retrieval process.
-
-Developers can verify that the system is behaving as intended.
-
----
-
-# The Retrieval Pipeline
-
-The current retrieval pipeline consists of several distinct stages.
-
-```
-User Question
-      │
-      ▼
-Question Embedding
-      │
-      ▼
-FAISS Vector Search
-      │
-      ▼
-Candidate Chunks
-      │
-      ▼
-Deduplication
-      │
-      ▼
-Cross-Encoder Reranking
-      │
-      ▼
-Selected Context
-      │
-      ▼
-Prompt Construction
-      │
-      ▼
-Language Model
-      │
-      ▼
-Grounded Answer
-```
-
-Each stage performs a specific function and contributes independently to retrieval quality.
-
----
-
-# Stage 1 — Vector Search
-
-Semantic retrieval begins by embedding the user's question.
-
-The embedding is compared against the vector database to identify semantically similar chunks.
-
-Diagnostics include:
-
-- retrieved chunk identifiers
-- similarity scores
-- document provenance
-- retrieval latency
-
-This stage prioritizes speed over precision.
-
----
-
-# Stage 2 — Deduplication
-
-Vector search frequently retrieves multiple chunks from the same document.
-
-Deduplication reduces redundancy while preserving document diversity.
-
-Diagnostics reveal:
-
-- removed duplicates
-- retained candidates
-- document diversity
-
-This stage helps ensure that later reasoning considers multiple sources rather than repeatedly examining the same document.
-
----
-
-# Stage 3 — Cross-Encoder Reranking
-
-The reranker jointly evaluates each candidate chunk together with the user's question.
-
-Unlike vector similarity, this stage considers the relationship between question and evidence directly.
-
-Diagnostics include:
-
-- reranker scores
-- ranking changes
-- promoted candidates
-- demoted candidates
-
-This stage generally provides the greatest improvement in retrieval precision.
-
----
-
-# Stage 4 — Context Selection
-
-Only a subset of reranked chunks can be supplied to the language model.
-
-The context selection stage determines:
-
-- final chunk ordering
-- context length
-- document diversity
-- citation coverage
-
-Diagnostics expose the complete context ultimately provided to the language model.
-
----
-
-# Stage 5 — Prompt Construction
-
-Prompt construction combines:
-
-- system instructions
-- retrieved evidence
-- citations
-- user question
-
-Although often overlooked, prompt construction significantly influences answer quality.
-
-The framework therefore treats prompt generation as another observable transformation.
-
----
-
-# Provenance
-
-Every retrieved chunk retains complete provenance.
-
-This includes:
-
-- source document
-- document identifier
-- parser
-- chunk identifier
-- retrieval scores
-
-Provenance ensures that every generated statement can be traced back to institutional evidence.
-
----
-
-# Relationship to Benchmarking
-
-Retrieval diagnostics and benchmarking are closely connected.
-
-When a benchmark question fails, diagnostics reveal where the failure occurred.
-
-Examples include:
-
-- relevant documents never retrieved
-- reranker incorrectly reordered candidates
-- duplicate suppression removed useful evidence
-- context selection excluded important material
-
-This allows engineering effort to focus on the appropriate component.
-
----
-
-# Relationship to Corpus Engineering
-
-Many retrieval failures originate upstream.
-
-Diagnostics often reveal symptoms of corpus problems such as:
-
-- duplicated documents
-- parser failures
-- pathological chunk generation
-- obsolete material dominating retrieval
-
-Retrieval diagnostics therefore complement corpus engineering by identifying where corpus quality influences retrieval behavior.
-
----
-
-# Future Directions
-
-Future diagnostic capabilities may include:
-
-- embedding-space visualization
-- semantic neighborhood exploration
-- retrieval-path visualization
-- citation graphs
-- evidence clustering
-- uncertainty propagation
-- Decision Brief evidence traces
-
-These additions will further improve the explainability of institutional reasoning.
-
----
-
-# Guiding Principle
-
-A retrieval system should never be a black box.
-
-Every stage of retrieval should be understandable, measurable, and explainable.
+Current A100 commands are in [A100 Operations](../operations/a100.md).

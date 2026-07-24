@@ -1,5 +1,7 @@
 # Session 4 — Discovering the Object Model
 
+> **Archive notice:** Historical laboratory note. Current architecture, status, and commands are documented in [the session archive index](README.md).
+
 *Project Design History*
 
 ---

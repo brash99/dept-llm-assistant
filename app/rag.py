@@ -4,6 +4,7 @@ from app.retrieval import (
     retrieve,
     build_grouped_context,
 )
+from app.reasoning.query import constitutional_quota_for_query
 
 
 def answer_question(
@@ -23,8 +24,26 @@ def answer_question(
     return_trace=False,
     constitutional_top_k=2,
     empirical_top_k=10,
+    max_per_document_family=2,
+    decision_type=None,
+    max_per_evidence_role=4,
+    evidence_role_relevance_margin=0.5,
 ):
+    """Answer a question and return retrieval artifacts.
+
+    The canonical return contract is ``(answer, results, profile)``. When
+    ``return_trace`` is true, it is ``(answer, results, retrieval_report,
+    trace, profile)``. This mirrors the Decision Brief reasoning entry point.
+    """
     query = query.strip()
+    constitutional_top_k = constitutional_quota_for_query(
+        query, constitutional_top_k
+    )
+    if decision_type is None:
+        from app.observatory.evidence_fitness import EvidenceFitnessService
+
+        classified_type, _ = EvidenceFitnessService.classify_decision_type(query)
+        decision_type = classified_type.value
 
     retrieved = retrieve(
         query=query,
@@ -41,6 +60,10 @@ def answer_question(
         return_trace=return_trace,
         constitutional_top_k=constitutional_top_k,
         empirical_top_k=empirical_top_k,
+        max_per_document_family=max_per_document_family,
+        decision_type=decision_type,
+        max_per_evidence_role=max_per_evidence_role,
+        evidence_role_relevance_margin=evidence_role_relevance_margin,
     )
 
     if return_trace:

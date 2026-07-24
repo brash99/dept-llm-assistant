@@ -1,0 +1,416 @@
+{
+  "id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+  "object_type": "faculty_observation",
+  "title": "Jonathan Kugel",
+  "text": "Faculty directory observation\nName: Jonathan Kugel\nSnapshot: 2026-07-21",
+  "metadata": {
+    "semantic_layer": "faculty_observation",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+    "semantic_identity": {
+      "object_type": "faculty_observation",
+      "institutional_entities": [
+        {
+          "entity_type": "faculty",
+          "entity_id": "faculty_observation:505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+          "published_name": "Jonathan Kugel"
+        },
+        {
+          "entity_type": "department",
+          "entity_id": "academic_unit:department_accounting_finance",
+          "published_name": "Department of Accounting and Finance",
+          "formal_unit_type": "department",
+          "operational_roles": [
+            "department_equivalent",
+            "faculty_home_unit",
+            "workforce_allocation_unit"
+          ],
+          "parent_unit_id": "academic_unit:luter_school_business",
+          "governance_level": "department",
+          "leadership_type": "chair",
+          "contains_subordinate_departments": false
+        },
+        {
+          "entity_type": "school",
+          "entity_id": "academic_unit:luter_school_business",
+          "published_name": "Joseph W. Luter, III School of Business",
+          "formal_unit_type": "independent_school",
+          "operational_roles": [
+            "college_equivalent",
+            "dean_level_unit",
+            "budgetary_rollup_unit",
+            "parent_academic_unit"
+          ],
+          "governance_level": "college_equivalent",
+          "leadership_type": "dean",
+          "has_dean": true,
+          "contains_subordinate_departments": true
+        }
+      ],
+      "organizational_relationships": [
+        {
+          "relationship_type": "belongs_to",
+          "source": "academic_unit:department_accounting_finance",
+          "target": "academic_unit:luter_school_business",
+          "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+          "evidence_reference": "institutional_unit_registry:1"
+        },
+        {
+          "relationship_type": "faculty_member_of_unit",
+          "source": "faculty_observation:505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+          "target": "academic_unit:department_accounting_finance",
+          "published_label": "Accounting and Finance",
+          "evidence_reference": "published_academic_unit"
+        }
+      ],
+      "temporal_scope": {
+        "as_of": "2026-07-21",
+        "published_label": "2026-07-21"
+      }
+    },
+    "classification_provenance": [
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+                "published_name": "Jonathan Kugel"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "published_academic_unit:Accounting and Finance",
+                "published_name": "Accounting and Finance"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "display_name",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0"
+              },
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "published_department",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0"
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7aa3da70b6ba0d18653acf5a5ed27ba40d9f015dd818459df5109bcbbe1c953c"
+      },
+      {
+        "classifier_name": "faculty_observation_classifier",
+        "accepted_fields": [
+          "institutional_entities",
+          "object_type",
+          "organizational_relationships",
+          "temporal_scope"
+        ],
+        "assertion_methods": [
+          "adapter",
+          "registry_lookup"
+        ],
+        "accepted_assertions": [
+          {
+            "field_name": "object_type",
+            "value": "faculty_observation",
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "object_type",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0"
+              }
+            ]
+          },
+          {
+            "field_name": "institutional_entities",
+            "value": [
+              {
+                "entity_type": "faculty",
+                "entity_id": "faculty_observation:505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+                "published_name": "Jonathan Kugel"
+              },
+              {
+                "entity_type": "department",
+                "entity_id": "academic_unit:department_accounting_finance",
+                "published_name": "Department of Accounting and Finance",
+                "formal_unit_type": "department",
+                "operational_roles": [
+                  "department_equivalent",
+                  "faculty_home_unit",
+                  "workforce_allocation_unit"
+                ],
+                "parent_unit_id": "academic_unit:luter_school_business",
+                "governance_level": "department",
+                "leadership_type": "chair",
+                "contains_subordinate_departments": false
+              },
+              {
+                "entity_type": "school",
+                "entity_id": "academic_unit:luter_school_business",
+                "published_name": "Joseph W. Luter, III School of Business",
+                "formal_unit_type": "independent_school",
+                "operational_roles": [
+                  "college_equivalent",
+                  "dean_level_unit",
+                  "budgetary_rollup_unit",
+                  "parent_academic_unit"
+                ],
+                "governance_level": "college_equivalent",
+                "leadership_type": "dean",
+                "has_dean": true,
+                "contains_subordinate_departments": true
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "organizational_relationships",
+            "value": [
+              {
+                "relationship_type": "belongs_to",
+                "source": "academic_unit:department_accounting_finance",
+                "target": "academic_unit:luter_school_business",
+                "published_label": "Department of Accounting and Finance belongs to Joseph W. Luter, III School of Business",
+                "evidence_reference": "institutional_unit_registry:1"
+              },
+              {
+                "relationship_type": "faculty_member_of_unit",
+                "source": "faculty_observation:505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+                "target": "academic_unit:department_accounting_finance",
+                "published_label": "Accounting and Finance",
+                "evidence_reference": "published_academic_unit"
+              }
+            ],
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Unique exact alias match in the reviewed institutional-unit registry."
+            },
+            "classification_method": "registry_lookup",
+            "supporting_evidence": [
+              {
+                "source_kind": "institutional_unit_registry",
+                "field": "published_academic_unit",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+                "attributes": {
+                  "unique_match": true,
+                  "canonical_entity_exists": true,
+                  "competing_match_above_threshold": false,
+                  "registry_version": "1",
+                  "unit_id": "academic_unit:department_accounting_finance",
+                  "published_label": "Accounting and Finance",
+                  "supersedes_entity_ids": [
+                    "published_academic_unit:Accounting and Finance"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "field_name": "temporal_scope",
+            "value": {
+              "as_of": "2026-07-21",
+              "published_label": "2026-07-21"
+            },
+            "confidence": {
+              "score": 1.0,
+              "rationale": "Proposed from an explicit normalized Knowledge Object field."
+            },
+            "classification_method": "adapter",
+            "supporting_evidence": [
+              {
+                "source_kind": "knowledge_object_field",
+                "field": "snapshot_date",
+                "knowledge_object_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0"
+              }
+            ]
+          }
+        ],
+        "decision_fingerprint": "7c264621314e1762ad41c451d4c448b9ccff3c03e70a29b2ee24e4e4e1a4b549"
+      }
+    ]
+  },
+  "source": {
+    "kind": "institutional_faculty_directory",
+    "path": "data/acquisition/faculty/raw/2026-07-21/faculty_jonathankugel.html",
+    "url": "https://cnu.edu/faculty/jonathankugel.html",
+    "content_hash": "e0a9ee59e7788ad084cfc01d43ea08fc6fce2a73746516a5250b79886f5324e0"
+  },
+  "created_at": "2026-07-21T01:50:40.785353+00:00",
+  "normalized_at": "2026-07-21T03:20:50.966968+00:00",
+  "observation_id": "505073e486d4b849936a7e18d8f16e81b165f364c4793e2592309483934872d0",
+  "display_name": "Jonathan Kugel",
+  "given_name": null,
+  "middle_name": null,
+  "family_name": null,
+  "suffix": null,
+  "profile_heading": "Jonathan Kugel",
+  "published_titles": [
+    "Assistant Professor",
+    "Associate Department Chair"
+  ],
+  "published_department": "Accounting and Finance",
+  "published_college": null,
+  "organizational_affiliations": [
+    {
+      "label": "Accounting and Finance",
+      "url": "https://cnu.edu/academics/departments/accountingfinance/"
+    },
+    {
+      "label": "Luter School of Business",
+      "url": "https://cnu.edu/academics/departments/business/index.html"
+    }
+  ],
+  "email": "jonathan.kugel@cnu.edu",
+  "phone": "(757) 594-7142",
+  "office": "Luter Hall 138",
+  "profile_url": "https://cnu.edu/faculty/jonathankugel.html",
+  "biography": "Professor Kugel is a Certified Public Accountant and previously practiced in the Federal government, Not-for-Profit, and Municipal government sectors. In addition to teaching a range of courses in the Accounting major, he conducts behavioral and experimental research in financial statement user responses to disclosures and how managers blend financial and non-financial incentives in monitoring employees. A proud former resident of Exit 8A, Professor Kugel enjoys fairly mild accounting humor, finding new recipes that honestly he'll never get right, and exploring the many fascinating historical and cultural sites around Tidewater.",
+  "education_entries": [
+    "Ph D in Accounting, Georgia Institute of Technology",
+    "BS in Accounting, University of Maryland, College Park"
+  ],
+  "research_interests": "Experimental studies of (in)formal management control systems. Behavioral studies regarding not-for-profit & government financial statement user judgments and decisions.",
+  "teaching_interests": "Auditing, Intermediate Accounting II, Financial Regulation & Professional Responsibility, Gov./NFP Accounting, and Writing Intensive courses.",
+  "publications": [
+    "Journal Article, Academic Journal (2026). Call Me Maybe? An Experimental Analysis of Donor Backlash to Voluntary Nonprofit Fraud Disclosure . Nonprofit Voluntary Sector Quarterly / Sage Publishing. Volume, Forthcoming.",
+    "Journal Article, Academic Journal (2024). Good Governance in Not-for-Profit Organizations: A Review of the Literature on Boards of Directors . Journal of Governmental and Nonprofit Accounting. Volume, 13. Issue, 1. Pages, 56-82.",
+    "Journal Article, Academic Journal (2023). The ChatGPT Artificial Intelligence Chatbot: How Well Does It Answer Accounting Assessment Questions? . Issues in Accounting Education. Volume, 38. Issue, 4. Pages, 81-108.",
+    "Book, Chapter in Scholarly Book-New (2023). A Synthesis of Accounting Studies that Examine Personality Variables . Emerald Publishing Limited. Volume, 26. Issue, 1. Pages, 325-348."
+  ],
+  "professional_experience": [],
+  "awards_honors": [],
+  "service": [],
+  "courses_or_areas_taught": [],
+  "other_labeled_sections": {},
+  "original_labeled_fields": {
+    "Name": "Jonathan Kugel",
+    "Published titles": [
+      "Assistant Professor",
+      "Associate Department Chair"
+    ],
+    "Office": [
+      "Luter Hall 138"
+    ],
+    "Phone": "(757) 594-7142",
+    "Email": "jonathan.kugel@cnu.edu",
+    "Organizational affiliations": [
+      {
+        "label": "Accounting and Finance",
+        "url": "https://cnu.edu/academics/departments/accountingfinance/"
+      },
+      {
+        "label": "Luter School of Business",
+        "url": "https://cnu.edu/academics/departments/business/index.html"
+      }
+    ],
+    "Education": [
+      "Ph D in Accounting, Georgia Institute of Technology",
+      "BS in Accounting, University of Maryland, College Park"
+    ],
+    "Biography": "Professor Kugel is a Certified Public Accountant and previously practiced in the Federal government, Not-for-Profit, and Municipal government sectors. In addition to teaching a range of courses in the Accounting major, he conducts behavioral and experimental research in financial statement user responses to disclosures and how managers blend financial and non-financial incentives in monitoring employees. A proud former resident of Exit 8A, Professor Kugel enjoys fairly mild accounting humor, finding new recipes that honestly he'll never get right, and exploring the many fascinating historical and cultural sites around Tidewater.",
+    "Teaching": "Auditing, Intermediate Accounting II, Financial Regulation & Professional Responsibility, Gov./NFP Accounting, and Writing Intensive courses.",
+    "Research": "Experimental studies of (in)formal management control systems. Behavioral studies regarding not-for-profit & government financial statement user judgments and decisions.",
+    "Publications": [
+      "Journal Article, Academic Journal (2026). Call Me Maybe? An Experimental Analysis of Donor Backlash to Voluntary Nonprofit Fraud Disclosure . Nonprofit Voluntary Sector Quarterly / Sage Publishing. Volume, Forthcoming.",
+      "Journal Article, Academic Journal (2024). Good Governance in Not-for-Profit Organizations: A Review of the Literature on Boards of Directors . Journal of Governmental and Nonprofit Accounting. Volume, 13. Issue, 1. Pages, 56-82.",
+      "Journal Article, Academic Journal (2023). The ChatGPT Artificial Intelligence Chatbot: How Well Does It Answer Accounting Assessment Questions? . Issues in Accounting Education. Volume, 38. Issue, 4. Pages, 81-108.",
+      "Book, Chapter in Scholarly Book-New (2023). A Synthesis of Accounting Studies that Examine Personality Variables . Emerald Publishing Limited. Volume, 26. Issue, 1. Pages, 325-348."
+    ]
+  },
+  "snapshot_date": "2026-07-21",
+  "source_file": "faculty_jonathankugel.html",
+  "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_jonathankugel.html",
+  "raw_acquisition_hash": "e0a9ee59e7788ad084cfc01d43ea08fc6fce2a73746516a5250b79886f5324e0",
+  "structural_variant": "biography; education-h3; teaching; research; accomplishments",
+  "provenance": {
+    "snapshot_date": "2026-07-21",
+    "profile_url": "https://cnu.edu/faculty/jonathankugel.html",
+    "relative_source_path": "data/acquisition/faculty/raw/2026-07-21/faculty_jonathankugel.html",
+    "source_sha256": "e0a9ee59e7788ad084cfc01d43ea08fc6fce2a73746516a5250b79886f5324e0",
+    "acquisition_timestamp": "2026-07-21T01:50:40.785353+00:00",
+    "adapter": "faculty_directory_adapter",
+    "adapter_version": "0.1",
+    "source_type": "institutional_faculty_directory"
+  }
+}

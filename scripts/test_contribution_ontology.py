@@ -105,9 +105,11 @@ def test_predicate_vocabulary_is_governed_and_unknown_values_are_rejected():
     assert {item.value for item in ContributionPredicate} == {
         "administers_program",
         "supports_program",
+        "owns_curriculum",
         "provides_service_teaching_for",
         "delivers_instruction_for",
         "contributes_to_llc_requirement",
+        "provides_capstone_instruction_for",
     }
     payload = _assertion().to_dict()
     payload["predicate"] = "looks_similar_to"

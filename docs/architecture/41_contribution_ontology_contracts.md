@@ -71,9 +71,11 @@ The initial predicate vocabulary is deliberately small:
 
 - `administers_program`;
 - `supports_program`;
+- `owns_curriculum`;
 - `provides_service_teaching_for`;
 - `delivers_instruction_for`;
-- `contributes_to_llc_requirement`.
+- `contributes_to_llc_requirement`;
+- `provides_capstone_instruction_for`.
 
 Unknown free-text predicates are rejected. Expansion requires an explicit
 ontology change rather than accidental vocabulary growth.

@@ -51,7 +51,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 34. [Estimated Graduates by Major](33_estimated_graduates.md)
 35. [Institutional Ontology and Explainable Reasoning](40_contribution_ontology.md)
 36. [Contribution Ontology Contracts](41_contribution_ontology_contracts.md)
-37. [Architecture FAQ](ArchitectureFAQ.md)
+37. [Department Contribution Knowledge Object](42_department_contribution_knowledge_object.md)
+38. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 

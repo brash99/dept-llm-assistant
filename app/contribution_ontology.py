@@ -160,9 +160,11 @@ class ContributionPredicate(str, Enum):
 
     ADMINISTERS_PROGRAM = "administers_program"
     SUPPORTS_PROGRAM = "supports_program"
+    OWNS_CURRICULUM = "owns_curriculum"
     PROVIDES_SERVICE_TEACHING_FOR = "provides_service_teaching_for"
     DELIVERS_INSTRUCTION_FOR = "delivers_instruction_for"
     CONTRIBUTES_TO_LLC_REQUIREMENT = "contributes_to_llc_requirement"
+    PROVIDES_CAPSTONE_INSTRUCTION_FOR = "provides_capstone_instruction_for"
 
 
 @dataclass(frozen=True)
@@ -302,8 +304,10 @@ class ContributionAssertion:
             raise TypeError("temporal_scope must be a ContributionTemporalScope")
         if not self.evidence_bindings:
             raise ValueError("Contribution assertion requires evidence")
-        bindings = tuple(self.evidence_bindings)
-        measures = tuple(self.measures)
+        bindings = tuple(
+            sorted(self.evidence_bindings, key=lambda item: item.binding_id)
+        )
+        measures = tuple(sorted(self.measures, key=lambda item: item.measure_id))
         if not all(isinstance(item, ContributionEvidenceBinding) for item in bindings):
             raise TypeError("evidence_bindings contain an invalid value")
         if not all(isinstance(item, ContributionMeasure) for item in measures):
@@ -415,7 +419,9 @@ class ContributionKnowledgeObject(Generic[EntityT]):
             raise TypeError("entity must be an InstitutionalEntity")
         if not isinstance(self.temporal_scope, ContributionTemporalScope):
             raise TypeError("temporal_scope must be a ContributionTemporalScope")
-        assertions = tuple(self.assertions)
+        assertions = tuple(
+            sorted(self.assertions, key=lambda item: item.assertion_id)
+        )
         if not all(isinstance(item, ContributionAssertion) for item in assertions):
             raise TypeError("assertions contain an invalid value")
         assertion_ids = [item.assertion_id for item in assertions]

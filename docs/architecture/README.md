@@ -46,7 +46,8 @@ Read [Architecture Overview](01_architecture_overview.md) first. It is authorita
 29. [Department Profile Builder](28_department_profile_builder.md)
 30. [Faculty Identity Match Review](29_faculty_identity_match_review.md)
 31. [LLC Designation Governance](30_llc_designation_governance.md)
-32. [Architecture FAQ](ArchitectureFAQ.md)
+32. [Undergraduate Major Registry](31_undergraduate_major_registry.md)
+33. [Architecture FAQ](ArchitectureFAQ.md)
 
 ## Reading status
 
